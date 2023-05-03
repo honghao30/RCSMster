@@ -1,7 +1,9 @@
 <template>
   <div id="app">
+    <!--
     <layout-mobile v-if="isMobile"/>
     <layout-pc v-else/>
+    -->
     <!-- <error-confirm/> -->
   </div>
 </template>
@@ -16,17 +18,17 @@ import { getToken } from '@/utils/token'
 // import _ from 'lodash'
 
 // 차후 템플릿이 추가 구성하면, 이곳에서 분기하게 구성
-let LayoutPc = ''
-LayoutPc = () => import('@/Layout/PC')
+// let LayoutPc = ''
+// LayoutPc = () => import('@/Layout/PC')
 
-let LayoutMobile = ''
-LayoutMobile = () => import('@/Layout/Mobile')
+// let LayoutMobile = ''
+// LayoutMobile = () => import('@/Layout/Mobile')
 
 export default {
   name: 'App',
   components: {
-    LayoutPc,
-    LayoutMobile
+    // LayoutPc,
+    // LayoutMobile
     // ErrorConfirm
   },
   data() {
