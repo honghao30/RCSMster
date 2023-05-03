@@ -1,0 +1,179 @@
+.el-aside,
+.el-menu,
+.el-menu-item.is-active {
+  background: @mainColor02;
+  border: none;
+  position: relative;
+  // overflow: inherit;
+}
+
+.aside_title {
+  color: @subColor_09;
+  font-size: 22px;
+  text-align: center;
+  height: 70px;
+  line-height: 70px;
+}
+
+.el-menu-item,
+.el-submenu__title {
+  color: @subColor_09;
+  background: @mainColor02;
+  height: 40px;
+  line-height: 40px;
+  width: 230px;
+  // width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  &:hover {
+    color: @blueColor_01;
+    background: @mainColor02;
+  }
+}
+
+.el-submenu__title i {
+  color: @subColor_09;
+}
+
+.el-menu-item.is-active {
+  color: @blueColor_01;
+}
+
+.el-menu-item:focus,
+.el-menu-item:hover {
+  background: @mainColor02;
+}
+
+.el-submenu__title:focus,
+.el-submenu__title:hover {
+  background: @mainColor02;
+}
+
+.el-aside {
+  .el-icon-arrow-left {
+    color: @subColor_09;
+    position: absolute;
+    top: -60px;
+    right: 10px;
+    z-index: 1;
+    cursor: pointer;
+  }
+}
+
+.side_menu_box {
+  position: relative;
+  .el-icon-arrow-right {
+    color: @mainColor02;
+    position: absolute;
+    top: 10px;
+    left: 240px;
+    z-index: 1;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .clo_icon {
+    left: 5px;
+    top: 110px;
+    position: fixed;
+  }
+  .side_menu {
+    // background: @mainColor02;
+    height: 100%;
+  }
+}
+
+.el-submenu.is-opened {
+  .el-submenu__title {
+    background: @blackColor_01;
+  }
+  .el-menu-item {
+    background: @blackColor_01;
+  }
+}
+
+.el-submenu {
+  .el-menu-item {
+    height: 40px;
+    line-height: 40px;
+  }
+}
+
+// 사이드바 고정하면서 fixed적용한 부모에 가로값 설정(A,B타입)
+.aside_width {
+  width: 230px;
+}
+
+// 즐겨찾기 메뉴 스타일
+.bookmark_menu_box {
+  right: 0;
+  z-index: 1;
+  height: 100%;
+  .bookmark_menu {
+    // 즐겨찾기 상단 타이틀 및 버튼 스타일
+    .title_box {
+      height: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
+      .bookmark_title {
+        color: @subColor_09;
+        font-size: 22px;
+        height: 70px;
+        line-height: 70px;
+      }
+      .bookmark_right_btn_box {
+        height: 70px;
+        line-height: 70px;
+        top: 0px;
+        right: 20px;
+        font-size: 12px;
+        button {
+          overflow: hidden;
+          color: @subColor_09;
+          width: 17.5px;
+          -webkit-transition: width 300ms ease;
+          transition: width 300ms ease;
+          &:hover {
+            width: 41px;
+          }
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+
+    // 즐겨찾기 메뉴(jstree) 스타일
+    .bookmark_menu_box {
+      padding: 0 20px;
+      color: @subColor_09;
+      font-size: 12px;
+      input {
+        color: @mainColor02;
+        height: 20px !important;
+        line-height: 20px !important;
+      }
+    }
+  }
+}
+.bookmark_box_width {
+  width: 300px;
+}
+
+.jstree-anchor {
+  .tree_icon_size {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.25rem;
+    margin-top: 3px;
+    font-size: 0.875rem;
+  }
+}
+
+body {
+  #vakata-dnd {
+    color: @subColor_09;
+    font-size: 12px;
+  }
+}

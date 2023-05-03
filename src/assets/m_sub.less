@@ -1,0 +1,84 @@
+// 고장이력, 운전이력
+.title_box {
+  border-color: @subColor_07;
+  .title_select_box {
+    font-size: 15px;
+    line-height: 24px;
+    select {
+      color: @subColor_05;
+      width: calc(100% - 16px);
+    }
+  }
+  a {
+    line-height: 24px;
+    color: @subColor_05;
+    border-color: @subColor_07;
+  }
+  .a_select {
+    color: @subColor_09;
+    background: @subColor_01;
+  }
+}
+
+.date_box {
+  button {
+    width:calc(50% - 4px);
+    margin-left: 4px;
+    &:nth-child(1) {
+      color: @mainColor03;
+      border-color: @mainColor03;
+    }
+    &:nth-child(2) {
+      color: @subColor_01;
+      border-color: @subColor_01;
+    }
+  }
+}
+.input_date {
+  color: @subColor_05;
+  &::before {
+    content: attr(placeholder);
+    color: @subColor_06;
+  }
+  &:focus::before, &:valid::before {
+    content: '';
+  }
+}
+
+.select_box {
+  select {
+    color: @subColor_05;
+    font-size: 15px;
+  }
+}
+
+.data_box {
+  table {
+    border-color: @subColor_07;
+  }
+}
+
+// 통계현황
+.energy_box {
+  border-color: @subColor_07;
+  button {
+    color: @subColor_06;
+  }
+}
+.energy_box:not(:first-child) {
+  border-top: 3px solid @subColor_07;
+}
+.value_list {
+  li {
+    &:nth-child(odd) {
+      border-right: 1px solid @subColor_07;
+    }
+  }
+}
+.red_color {
+  color: @subColor_02;
+}
+
+.blue_color {
+  color: @subColor_01;
+}

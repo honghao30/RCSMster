@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <base href="/" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta id="appViewport" name="viewport">
+
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <title>RCS Biz Center</title>
+
+    <!-- fontawesome svg set -->
+    <script src="external/fontawesome/all.min.js" async defer></script>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= VUE_APP_GA_TAG %>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []; 
+      function gtag(){
+        dataLayer.push(arguments);
+      } 
+      gtag('js', new Date());
+      gtag('config', '<%= VUE_APP_GA_TAG %>');
+    </script>
+    <!-- viewport 설정 -->
+    <script>
+      let target = document.getElementById('appViewport')
+      if (window.location.pathname.startsWith('/mobile')) {
+        target.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0')
+      } else {
+        target.setAttribute('content', 'width=device-width')
+      }
+    </script>
+  </head>
+  <body class="body_scroll">
+    <noscript>
+      <strong
+        >We're sorry but preset doesn't work properly without JavaScript
+        enabled. Please enable it to continue.</strong
+      >
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

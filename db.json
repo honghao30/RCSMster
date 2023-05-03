@@ -1,0 +1,217 @@
+{
+  "assetTreeData": [
+    {
+      "prnt_asset_code_id": "#",
+      "asset_code_id": "Asset",
+      "code_name": "Asset등록",
+      "code_value": "0",
+      "use_yn": "Y",
+      "level_order": 0
+    },
+    {
+      "prnt_asset_code_id": "Asset",
+      "asset_code_id": "GRE",
+      "code_name": "그린에너지",
+      "code_value": "1",
+      "use_yn": "Y",
+      "level_order": 0
+    },
+    {
+      "prnt_asset_code_id": "GRE",
+      "asset_code_id": "GRE_JS",
+      "code_name": "장수",
+      "code_value": "2",
+      "use_yn": "Y",
+      "level_order": 1
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS",
+      "asset_code_id": "GRE_JS_PMS",
+      "code_name": "PMS",
+      "code_value": "3",
+      "use_yn": "Y",
+      "level_order": 0
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_PMS",
+      "asset_code_id": "GRE_JS_PMS_PCS",
+      "code_name": "PCS",
+      "code_value": "5",
+      "use_yn": "Y",
+      "level_order": 0
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_PMS_PCS",
+      "asset_code_id": "GRE_JS_PMS_PCS_RACK",
+      "code_name": "RACK",
+      "code_value": "6",
+      "use_yn": "Y",
+      "level_order": 0
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_PMS_PCS_RACK",
+      "asset_code_id": "GRE_JS_PMS_PCS_RACK_RACK1",
+      "code_name": "RACK1",
+      "code_value": "*",
+      "use_yn": "Y",
+      "level_order": 0
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_PMS_PCS_RACK",
+      "asset_code_id": "GRE_JS_PMS_PCS_RACK_RACK2",
+      "code_name": "RACK2",
+      "code_value": "*",
+      "use_yn": "Y",
+      "level_order": 1
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_PMS_PCS_RACK",
+      "asset_code_id": "GRE_JS_PMS_PCS_RACK_RACK18",
+      "code_name": "RACK18",
+      "code_value": "*",
+      "use_yn": "Y",
+      "level_order": 2
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_PMS_PCS",
+      "asset_code_id": "GRE_JS_PMS_PCS_PV",
+      "code_name": "PV",
+      "code_value": "6",
+      "use_yn": "Y",
+      "level_order": 1
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_PMS_PCS_PV",
+      "asset_code_id": "GRE_JS_PMS_PCS_PV_PV",
+      "code_name": "PV",
+      "code_value": "*",
+      "use_yn": "Y",
+      "level_order": 0
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_PMS",
+      "asset_code_id": "GRE_JS_PMS_ESS",
+      "code_name": "ESS",
+      "code_value": "5",
+      "use_yn": "Y",
+      "level_order": 1
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_PMS_ESS",
+      "asset_code_id": "GRE_JS_PMS_ESS_RACK",
+      "code_name": "RACK",
+      "code_value": "6",
+      "use_yn": "Y",
+      "level_order": 0
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_PMS_ESS",
+      "asset_code_id": "GRE_JS_PMS_ESS_PV",
+      "code_name": "PV",
+      "code_value": "6",
+      "use_yn": "Y",
+      "level_order": 1
+    },
+    {
+      "prnt_asset_code_id": "GRE",
+      "asset_code_id": "GRE_HB",
+      "code_name": "한빛",
+      "code_value": "2",
+      "use_yn": "Y",
+      "level_order": 1
+    },
+    {
+      "prnt_asset_code_id": "GRE_HB",
+      "asset_code_id": "GRE_HB_PMS",
+      "code_name": "PMS",
+      "code_value": "3",
+      "use_yn": "Y",
+      "level_order": 0
+    },
+    {
+      "prnt_asset_code_id": "GRE_HB_PMS",
+      "asset_code_id": "GRE_HB_PMS_PCS",
+      "code_name": "PCS",
+      "code_value": "3",
+      "use_yn": "Y",
+      "level_order": 0
+    },
+    {
+      "prnt_asset_code_id": "GRE_HB_PMS",
+      "asset_code_id": "GRE_HB_PMS_ESS",
+      "code_name": "ESS",
+      "code_value": "5",
+      "use_yn": "Y",
+      "level_order": 1
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS",
+      "asset_code_id": "GRE_JS_MMJ",
+      "code_name": "MMJ",
+      "code_value": "3",
+      "use_yn": ""
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_MMJ",
+      "asset_code_id": "GRE_JS_MMJ_MMKY",
+      "code_name": "MMKY-고맙",
+      "code_value": "4",
+      "use_yn": "Y"
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_MMJ",
+      "asset_code_id": "GRE_JS_MMJ_TTYY",
+      "code_name": "TTYY-Check",
+      "code_value": "4",
+      "use_yn": "Y"
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_MMJ",
+      "asset_code_id": "GRE_JS_MMJ_KKII",
+      "code_name": "KKII",
+      "code_value": "4",
+      "use_yn": "Y"
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_MMJ",
+      "asset_code_id": "GRE_JS_MMJ_UUYF",
+      "code_name": "UUYF",
+      "code_value": "4",
+      "use_yn": "Y"
+    },
+    {
+      "prnt_asset_code_id": "GRE_JS_MMJ",
+      "asset_code_id": "GRE_JS_MMJ_YUUU",
+      "code_name": "YUUU",
+      "code_value": "4",
+      "use_yn": "Y"
+    }
+  ],
+  "uidev": [
+    {"x":0,"y":0,"w":6,"h":8,"i":"0","minW":6,"minH":8,"widget_id":"widget0","title":"위젯0","type":"form","id":0},
+    {"x":6,"y":0,"w":6,"h":12,"i":"1","minW":5,"minH":12,"widget_id":"widget1","title":"위젯1","type":"chart","id":1},
+    {"x":0,"y":8,"w":6,"h":4,"i":"2","minW":5,"minH":4,"widget_id":"widget2","title":"widget 2","type":"table","id":2},
+    {"x":0,"y":12,"w":4,"h":5,"i":"3","widget_id":"widget3","title":"대시보드 위젯3","type":"form","id":3},
+    {"x":6,"y":12,"w":4,"h":5,"i":"4","widget_id":"widget4","title":"widget4","type":"form","id":4},
+    {"x":4,"y":12,"w":4,"h":5,"i":"5","widget_id":"widget5","title":"위젯5","type":"form","id":5}
+  ],
+  "admin": [
+    {"x":0,"y":0,"w":6,"h":8,"i":"0","minW":6,"minH":8,"widget_id":"widget0","title":"위젯0","type":"form","id":0},
+    {"x":6,"y":0,"w":6,"h":12,"i":"1","minW":5,"minH":12,"widget_id":"widget1","title":"위젯1","type":"chart","id":1},
+    {"x":0,"y":8,"w":6,"h":4,"i":"2","minW":5,"minH":4,"widget_id":"widget2","title":"widget 2","type":"table","id":2},
+    {"x":0,"y":12,"w":4,"h":5,"i":"3","widget_id":"widget3","title":"대시보드 위젯3","type":"form","id":3}
+  ],
+  "all": [
+    {"x":0,"y":0,"w":6,"h":8,"i":"0","minW":6,"minH":8,"widget_id":"widget0","title":"위젯0","type":"form","id":0},
+    {"x":6,"y":0,"w":6,"h":12,"i":"1","minW":5,"minH":12,"widget_id":"widget1","title":"위젯1","type":"chart","id":1},
+    {"x":0,"y":8,"w":6,"h":4,"i":"2","minW":5,"minH":4,"widget_id":"widget2","title":"widget 2","type":"table","id":2},
+    {"x":0,"y":12,"w":4,"h":5,"i":"3","widget_id":"widget3","title":"대시보드 위젯3","type":"form","id":3},
+    {"x":6,"y":12,"w":4,"h":5,"i":"4","widget_id":"widget4","title":"widget4","type":"form","id":4},
+    {"x":4,"y":12,"w":4,"h":5,"i":"5","widget_id":"widget5","title":"위젯5","type":"form","id":5},
+    {"x":8,"y":20,"w":4,"h":3,"i":"6","widget_id":"widget6","title":"위젯6","type":"form","id":6},
+    {"x":8,"y":12,"w":4,"h":8,"i":"7","widget_id":"widget7","title":"dashboard widget7","type":"chart","id":7},
+    {"x":4,"y":15,"w":4,"h":6,"i":"8","widget_id":"widget8","title":"dashboard widget8","type":"table","id":8},
+    {"x":0,"y":17,"w":4,"h":5,"i":"9","widget_id":"widget9","title":"대시보드 위젯9","type":"form","id":9},
+    {"x":2,"y":17,"w":4,"h":5,"i":"10","widget_id":"widget10","title":"위젯10","type":"form","id":10}
+  ]
+}

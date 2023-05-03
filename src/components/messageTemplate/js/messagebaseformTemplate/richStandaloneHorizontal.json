@@ -1,0 +1,14 @@
+{
+  "generalPurposeCard": {
+    "layout": {
+      "cardOrientation": "HORIZONTAL"
+    },
+    "content": {
+      "media": {
+        "mediaUrl": ""
+      },
+      "title": "{{title}}",
+      "description": "{{description}}"
+    }
+  }
+}

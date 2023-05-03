@@ -1,0 +1,122 @@
+[
+  {
+    "menuId": "M0100",
+    "parentMenuId": "#",
+    "path": "/intro/service",
+    "level": 1,
+    "sort": 1,
+    "name": "서비스 소개"
+  },
+  {
+    "menuId": "M0101",
+    "parentMenuId": "M0100",
+    "path": "/intro/service",
+    "level": 2,
+    "sort": 1,
+    "name": "RCS 서비스"
+  },
+  {
+    "menuId": "M0102",
+    "parentMenuId": "M0100",
+    "path": "/intro/serviceuse",
+    "level": 2,
+    "sort": 2,
+    "name": "서비스 이용안내"
+  },
+  {
+    "menuId": "M0103",
+    "parentMenuId": "M0100",
+    "path": "/intro/miricanvas",
+    "level": 2,
+    "sort": 3,
+    "name": "이벤트"
+  },
+  {
+    "menuId": "M0200",
+    "parentMenuId": "#",
+    "path": "/service/dashboard",
+    "level": 1,
+    "sort": 2,
+    "name": "서비스 관리"
+  },
+  {
+    "menuId": "M0201",
+    "parentMenuId": "M0200",
+    "path": "/service/dashboard",
+    "level": 2,
+    "sort": 1,
+    "name": "브랜드"
+  },
+  {
+    "menuId": "M0202",
+    "parentMenuId": "M0200",
+    "path": "/service/support",
+    "level": 2,
+    "sort": 2,
+    "name": "기술지원"
+  },
+  {
+    "menuId": "M0300",
+    "parentMenuId": "#",
+    "path": "/feed/dashboard",
+    "level": 1,
+    "sort": 2,
+    "name": "브랜드 소식 관리"
+  },
+  {
+    "menuId": "M0301",
+    "parentMenuId": "M0300",
+    "path": "/feed/dashboard",
+    "level": 2,
+    "sort": 1,
+    "name": "대시보드"
+  },
+  {
+    "menuId": "M0302",
+    "parentMenuId": "M0300",
+    "path": "/feed/list",
+    "level": 2,
+    "sort": 2,
+    "name": "소식목록"
+  },
+  {
+    "menuId": "M0303",
+    "parentMenuId": "M0300",
+    "path": "/feed/stat",
+    "level": 2,
+    "sort": 3,
+    "name": "통계"
+  },
+  {
+    "menuId": "M0400",
+    "parentMenuId": "#",
+    "path": "/cs/notice",
+    "level": 1,
+    "sort": 3,
+    "name": "고객센터"
+  },
+  {
+    "menuId": "M0401",
+    "parentMenuId": "M0400",
+    "path": "/cs/notice",
+    "level": 2,
+    "sort": 1,
+    "name": "공지사항"
+  },
+  {
+    "menuId": "M0402",
+    "parentMenuId": "M0400",
+    "path": "/cs/faq",
+    "level": 2,
+    "sort": 2,
+    "name": "FAQ"
+  },
+  {
+    "menuId": "M0403",
+    "parentMenuId": "M0400",
+    "path": "/cs/qna",
+    "level": 2,
+    "sort": 3,
+    "name": "온라인 문의"
+  }
+]

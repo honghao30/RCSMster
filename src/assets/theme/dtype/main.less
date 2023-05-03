@@ -1,0 +1,406 @@
+/* default less 셋 */
+@import './menu'; // D Type 사이드바
+
+// header
+.el-header {
+  border-bottom: 0;
+  background: @mainColor02;
+
+  .top {
+    // 로고
+    .logo {
+      top: 14px;
+      left: 20px;
+      width: 170px;
+      a {
+        display: block;
+        width: 150px;
+        height: 24px;
+        text-indent: -9999rem;
+        overflow: hidden;
+        &.ci_ko {
+          background: url('../..//image/abacusCI_03.png') no-repeat;
+          background-size: 100%;
+        }
+        &.ci_en {
+          background: url('../../image/abacusCI_en_03.png') no-repeat;
+          background-size: 100%;
+        }
+      }
+    }
+
+    // systemName 색상
+    p {
+      color: @subColor_09;
+    }
+
+    // 상단 우측 util 영역
+    .util {
+      right: 15px;
+    }
+
+    ul {
+      li {
+        margin-left: 20px;
+        padding-right: 20px;
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+          &:before {
+            @apply hidden;
+          }
+        }
+
+        &:after {
+          @apply absolute right-0;
+
+          content: '';
+          top: 19px;
+          width: 1px;
+          height: 16px;
+          background: @subColor_04;
+        }
+
+        &:nth-child(1),
+        &:nth-child(2) {
+          padding-right: 2px;
+          padding-left: 35px;
+        }
+
+        &:nth-child(3) {
+        }
+
+        &:nth-child(3),
+        &:last-child {
+          @apply pr-0;
+
+          &:after {
+            @apply hidden;
+          }
+        }
+        &:nth-child(4) {
+          padding-right: 15px;
+        }
+        &:last-child {
+          margin-left: 10px;
+        }
+        a {
+          padding: 0;
+        }
+
+        .frame_cbo {
+          height: 20px;
+          line-height: 20px;
+          min-width: 55px;
+          padding: 0 15px 0 5px;
+          margin-top: calc(32px / 2);
+          margin-right: 10px;
+          margin-left: 10px;
+          color: @subColor_09;
+          background: @mainColor02;
+          -webkit-appearance: menulist;
+          -moz-appearance: menulist;
+          -ms-appearance: menulist;
+          -o-appearance: menulist;
+          appearance: menulist;
+        }
+
+        .el-dropdown {
+          margin-top: calc(33px / 2);
+          margin-left: -5px;
+        }
+
+        // 배지 스타일
+        .el-badge {
+          margin-top: -3px;
+
+          .el-badge__content {
+            &.is-fixed {
+              top: 9px;
+              left: -67px;
+            }
+          }
+        }
+
+        // 즐겨찾기
+        // &.gnb_bookmark {
+        //   margin-left: 10px;
+        //   padding-right: 10px;
+        //   button {
+        //     color: @subColor_09;
+        //     font-size: 22px;
+        //     vertical-align: middle;
+        //     &:focus {
+        //       outline: none;
+        //     }
+        //   }
+        //   .bookmark_star {
+        //     color: #ffed4a;
+        //   }
+        //   &.bookmark_menu_btn {
+        //     button {
+        //       &:hover {
+        //         color: @mainColor03;
+        //       }
+        //     }
+        //   }
+        // }
+        &.gnb_bookmark {
+          margin-left: 20px;
+          padding-right: 20px;
+          button {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            margin-top: calc(35px / 2);
+            color: @subColor_09;
+            font-size: 24px;
+            outline: none;
+            &::before {
+              position: absolute;
+              top: -2px;
+              left: -2px;
+            }
+          }
+          .bookmark_star {
+            color: #ffed4a;
+          }
+          &.bookmark_menu_btn {
+            button {
+              &:hover {
+                color: @mainColor03;
+              }
+            }
+          }
+        }
+        // 대시보드 확장 아이콘
+        &.dashboard_full_icon {
+          &.dtype_icon_color {
+            div {
+              // background: #fcf;
+              &:hover {
+                button {
+                  color: @mainColor03;
+                }
+              }
+              button {
+                color: @subColor_09;
+              }
+            }
+          }
+        }
+        // 로그아웃 아이콘
+        &.logout_btn {
+          a {
+            display: flex;
+            width: 20px;
+            height: 20px;
+            margin-top: calc(35px / 2);
+            span {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+
+    .el-badge__content {
+      @apply relative;
+
+      height: 17px;
+      padding: 0 7px;
+      border: 0;
+      border-radius: 3px;
+      font-family: 'Malgun Gothic';
+
+      &.is-fixed {
+        top: -9px;
+        left: -82px;
+        line-height: 17px;
+      }
+
+      &:after {
+        @apply absolute block;
+
+        content: '';
+        top: calc(50% - 5px);
+        right: -9px;
+        border-top: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+      }
+    }
+
+    .badge_bell {
+      .el-badge__content {
+        background: @subColor_02;
+
+        &:after {
+          border-left: 5px solid @subColor_02;
+        }
+      }
+    }
+
+    .badge_message {
+      .el-badge__content {
+        background: @mainColor03;
+
+        &:after {
+          border-left: 5px solid @mainColor03;
+        }
+      }
+    }
+  }
+
+  .icon_bell,
+  .icon_message,
+  .icon_logout {
+    @apply inline-block align-middle bg-no-repeat bg-center;
+  }
+
+  .icon_bell {
+    width: 12px;
+    height: 16px;
+    background-image: url(../../image/icon_bell.png);
+  }
+
+  .icon_message {
+    width: 14px;
+    height: 16px;
+    background-image: url(../../image/icon_message.png);
+  }
+
+  .icon_logout {
+    width: 19px;
+    height: 19px;
+    background-image: url(../../image/icon_logout.png);
+  }
+
+  .gnb {
+    background: @mainColor03;
+  }
+}
+
+// footer
+.el-footer {
+  @apply relative;
+  width: 100%;
+  min-width: 1024px;
+  padding: 0 20px;
+  border-top: 0;
+  color: @subColor_09;
+  font-size: 12px;
+  background: @mainColor02;
+
+  .logo_btm {
+    top: 13px;
+    left: 20px;
+    width: 123px;
+    height: 20px;
+    text-indent: -9999rem;
+    overflow: hidden;
+    &.footer_ci_ko {
+      background: url('../../image/abacusCI_03.png') no-repeat;
+      background-size: 100%;
+    }
+    &.footer_ci_en {
+      background: url('../../image/abacusCI_en_03.png') no-repeat;
+      background-size: 100%;
+    }
+  }
+
+  .footer_copy {
+    margin-top: 12px;
+    margin-left: 145px;
+
+    p {
+      color: @subColor_09;
+      line-height: 18px;
+
+      span {
+        @apply ml-0 pl-0;
+
+        &:before {
+          @apply hidden;
+        }
+      }
+    }
+  }
+
+  .info_policy {
+    padding-top: 19px;
+    height: 41px;
+    button {
+      background: @subColor_06;
+      color: @subColor_09;
+      height: 22px;
+      padding: 0 10px;
+    }
+
+    .btn_m {
+      margin: 0 8px 0 5px;
+    }
+
+    form {
+      display: flex;
+      select {
+        width: 160px;
+        height: 22px;
+        padding: 0 7px;
+        border: 1px solid @subColor_07;
+        margin-right: 2px;
+        line-height: 20px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: @subColor_09 url('../../image/icon_arrow_down_02.png')
+          no-repeat center right 7px;
+        background-size: 9px auto;
+        color: @subColor_05;
+        &::-ms-expand {
+          @apply hidden;
+        }
+      }
+    }
+  }
+}
+
+// header, footer 고정 후 section margin 값 (D타입)
+.fixed_margin {
+  margin: 100px 0 60px;
+}
+
+// section에서 header, footer값을 뺀 높이(D타입)
+.fixed_side_height {
+  height: calc(100% - 160px);
+}
+
+// form
+.icon_lbl {
+  &:before {
+    background: @mainColor03;
+  }
+}
+
+// table
+.table_basic {
+  th {
+    background: @bgColor_04;
+  }
+}
+
+.uiframe_pgnv {
+  .total {
+    .num {
+      color: @mainColor03;
+    }
+  }
+
+  .pager {
+    .active {
+      border-color: @mainColor03;
+      color: @mainColor03;
+    }
+  }
+}

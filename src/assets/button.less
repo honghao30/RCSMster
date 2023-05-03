@@ -1,0 +1,512 @@
+//카드 섹션
+.btn_box {
+  @apply w-full p-3 border-solid border border-gray-300 rounded-lg;
+}
+
+.word_keep {
+  word-break: keep-all;
+}
+
+// 간격조정
+.btn_margin_right {
+  margin-right: 2px;
+}
+
+.btn_margin_right {
+  margin-right: 2px;
+}
+
+// 하나의 클래스로 정의
+@responsive {
+  .btn_base {
+    font-family: 'Malgun Gothic';
+    min-width: 80px;
+    height: 26px;
+    line-height: 22px;
+    padding: 0 8px;
+  }
+}
+
+// 페이지 버튼-타입1
+.btn_pg_clr1 {
+  @apply btn_base border border-solid bg-white rounded text-sm;
+  color: @subColor_01;
+  border-color: @subColor_01;
+  &:disabled {
+    // 비활성화
+    border-color: @subColor_07;
+    background: @subColor_08;
+    color: @subColor_06;
+    &:hover {
+      background: @subColor_08;
+      color: @subColor_06;
+      cursor: default;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: @subColor_01;
+    color: @subColor_09;
+  }
+}
+
+// 페이지 버튼-타입2
+.btn_pg_clr2 {
+  @apply btn_base border border-solid bg-white rounded text-sm;
+  color: @subColor_04;
+  border-color: @subColor_04;
+  &:disabled {
+    // 비활성화
+    border-color: @subColor_07;
+    background: @subColor_08;
+    color: @subColor_06;
+    &:hover {
+      background: @subColor_08;
+      color: @subColor_06;
+      cursor: default;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: @subColor_04;
+    color: @subColor_09;
+  }
+}
+
+// Section 버튼-타입1
+.btn_con_clr1 {
+  @apply btn_base border border-solid bg-white rounded text-sm;
+  background: @subColor_04;
+  border-color: @subColor_04;
+  color: @subColor_09;
+  &:disabled {
+    // 비활성화
+    background: @subColor_04;
+    border-color: @subColor_04;
+    color: @subColor_07;
+    opacity: 0.6;
+    &:hover {
+      background: @subColor_04;
+      border-color: @subColor_04;
+      color: @subColor_07;
+      cursor: default;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: @subColor_01;
+    border-color: @subColor_01;
+  }
+}
+
+// Section 버튼-타입2
+.btn_con_clr2 {
+  @apply btn_base border border-solid bg-white rounded text-sm;
+  background: @mainColor03;
+  border-color: @mainColor03;
+  color: @subColor_09;
+  &:disabled {
+    // 비활성화
+    background: @mainColor03;
+    border-color: @mainColor03;
+    color: @subColor_09;
+    opacity: 0.5;
+    &:hover {
+      background: @mainColor03;
+      color: @subColor_09;
+      border-color: @mainColor03;
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: @btnColor_05;
+    border-color: @btnColor_05;
+  }
+}
+
+// Search 버튼-타입1
+.btn_srch1 {
+  @apply btn_base border border-solid bg-white rounded text-sm;
+  background: @btnColor_01;
+  border-color: @btnColor_01;
+  color: @subColor_09;
+  &:disabled {
+    background: @btnColor_01;
+    border-color: @btnColor_01;
+    color: @subColor_09;
+    opacity: 0.4;
+    &:hover {
+      background: @btnColor_01;
+      border-color: @btnColor_01;
+      color: @subColor_09;
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: @subColor_01;
+    border-color: @subColor_01;
+  }
+}
+
+// 그린 모바일 디자인 라인
+.btn_big_01 {
+  @apply abacus_btn big_btn;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: @mainColor01;
+    border-color: @mainColor01;
+  }
+}
+
+.btn_big_02 {
+  @apply abacus_btn big_btn;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: @blueColor_01;
+    border-style: solid;
+    border-image: linear-gradient(
+      to bottom,
+      @btnColor_05 0%,
+      @blueColor_01 100%
+    );
+    border-image-slice: 1;
+    border-image-width: 2px;
+  }
+}
+
+.btn_small_01 {
+  @apply abacus_btn sm_btn;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: @subColor_09;
+    background: @subColor_05;
+  }
+}
+
+.btn_small_02 {
+  @apply abacus_btn sm_btn sm_ver1;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: @mainColor02;
+  }
+}
+
+.btn_small_03 {
+  @apply abacus_btn sm_btn sm_ver2;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: @subColor_09;
+    border: none;
+    background: @subColor_04;
+  }
+}
+
+.btn_small_04 {
+  @apply abacus_btn sm_btn sm_ver3;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: @subColor_09;
+    border: none;
+    background: @mainColor02;
+  }
+}
+
+// 리얼그리드 버튼 추가
+// 추가버튼
+.btn_add {
+  @apply abacus_btn sm_btn border border-solid rounded;
+  background: @subColor_09;
+  color: @blackColor_02;
+  border-color: @blackColor_02;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: @subColor_08;
+  }
+}
+
+// 삭제버튼
+.btn_delete {
+  @apply abacus_btn sm_btn rounded;
+  background: @subColor_02;
+  color: @subColor_09;
+  opacity: 0.7;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// 저장버튼
+.btn_save {
+  @apply abacus_btn sm_btn rounded;
+  background: @subColor_01;
+  color: @subColor_09;
+  opacity: 0.8;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// button
+@responsive {
+  .abacus_btn {
+    font-family: 'Malgun Gothic';
+    background: @subColor_08;
+    min-width: 80px;
+    color: @subColor_04;
+    border-radius: 0;
+    box-sizing: border-box;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+@responsive {
+  .big_btn {
+    padding: 0 50px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 46px;
+    border: 2px solid @subColor_06;
+    &:hover {
+      color: @mainColor01;
+      border-color: @mainColor01;
+    }
+  }
+}
+
+.big_ver2 {
+  &:hover {
+    color: @blueColor_01;
+    border-style: solid;
+    border-image: linear-gradient(
+      to bottom,
+      @btnColor_05 0%,
+      @blueColor_01 100%
+    );
+    border-image-slice: 1;
+    border-image-width: 2px;
+  }
+}
+
+@responsive {
+  .sm_btn {
+    height: 30px;
+    padding: 0 20px;
+    font-size: 14px;
+    &:hover {
+      color: @subColor_09;
+      background: @subColor_05;
+    }
+  }
+}
+
+@responsive {
+  .sm_ver1 {
+    background: @subColor_05;
+    color: @subColor_09;
+    &:hover {
+      background: @mainColor02;
+    }
+  }
+}
+
+@responsive {
+  .sm_ver2 {
+    background: @subColor_09;
+    border: 1px solid @subColor_06;
+    color: @subColor_06;
+    &:hover {
+      border: none;
+      background: @subColor_04;
+    }
+  }
+}
+
+@responsive {
+  .sm_ver3 {
+    background: @subColor_09;
+    border: 1px solid @subColor_04;
+    color: @subColor_04;
+    &:hover {
+      border: none;
+      background: @mainColor02;
+    }
+  }
+}
+
+// button style
+.uiframe_btn {
+  // min-width: 80px;
+  // height: 26px;
+  margin-bottom: 2px;
+  margin-left: 2px;
+  // padding: 0 8px;
+  // border-radius: 3px;
+  // border: 1px solid;
+  // border-color: @btnColor_01;
+  // font-family: 'Malgun Gothic';
+  // line-height: 24px;
+
+  &.uiframe_btn_lg {
+    height: 34px;
+    line-height: 32px;
+  }
+
+  &.uiframe_btn_pg_clr1 {
+    border-color: @btnColor_01;
+    color: @btnColor_01;
+    background-color: @subColor_09;
+
+    &:hover {
+      border-color: @btnColor_01;
+      color: @subColor_09;
+      background-color: @btnColor_01;
+    }
+
+    &:disabled {
+      border-color: @btnColor_03;
+      color: @btnColor_04;
+      background-color: @btnColor_06;
+      cursor: default;
+    }
+  }
+
+  &.uiframe_btn_pg_clr2 {
+    border-color: @subColor_04;
+    color: @subColor_04;
+    background-color: @subColor_09;
+
+    &:hover {
+      border-color: @subColor_04;
+      color: @subColor_09;
+      background-color: @subColor_04;
+    }
+
+    &:disabled {
+      border-color: @btnColor_07;
+      color: @btnColor_08;
+      background-color: @btnColor_09;
+      cursor: default;
+    }
+  }
+
+  &.uiframe_btn_con_clr1 {
+    border-color: @subColor_04;
+    color: @subColor_09;
+    background-color: @subColor_04;
+
+    &:hover {
+      border-color: @btnColor_01;
+      color: @subColor_09;
+      background-color: @btnColor_01;
+    }
+
+    &:disabled {
+      border-color: @btnColor_10;
+      color: @btnColor_02;
+      background-color: @btnColor_10;
+      cursor: default;
+    }
+  }
+
+  &.uiframe_btn_con_clr2 {
+    border-color: @mainColor03;
+    color: @subColor_09;
+    background-color: @mainColor03;
+
+    &:hover {
+      border-color: @btnColor_11;
+      color: @subColor_09;
+      background-color: @btnColor_11;
+    }
+
+    &:disabled {
+      border-color: @btnColor_12;
+      color: @btnColor_13;
+      background-color: @btnColor_12;
+      cursor: default;
+    }
+  }
+
+  &.uiframe_btn_con_clr3 {
+    border-color: @btnColor_01;
+    color: @subColor_09;
+    background-color: @btnColor_01;
+
+    &:hover {
+      border-color: @subColor_01;
+      color: @subColor_09;
+      background-color: @subColor_01;
+    }
+
+    &:disabled {
+      border-color: @btnColor_10;
+      color: @btnColor_02;
+      background-color: @btnColor_10;
+      cursor: default;
+    }
+  }
+
+  &.uiframe_btn_srch {
+    border-color: @subColor_04;
+    color: @subColor_09;
+    font-family: 'Malgun Gothic';
+    background-color: @subColor_04;
+
+    &:hover {
+      border-color: @btnColor_01;
+      color: @subColor_09;
+      background-color: @btnColor_01;
+    }
+
+    &:disabled {
+      border-color: @btnColor_10;
+      color: @btnColor_02;
+      background-color: @btnColor_10;
+      cursor: default;
+    }
+  }
+}
+
+//input이 + button 정렬
+.btn_vrtcl_align {
+  line-height: 34px;
+}
+.vrtcl_align {
+  line-height: 32px;
+}

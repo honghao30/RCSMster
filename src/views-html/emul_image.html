@@ -1,0 +1,532 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>RCS-퍼블리싱</title>
+
+    
+<!-- 이미지 및 css 경로
+vue : ../images/tmplt/image_sample_wide.jpg
+html : ../../src/assets/images/tmplt/image_sample_wide.jpg
+-->
+<style type="text/css">
+    /*기존에 있는 css 입니다. 추가 할 필요 없습니다. */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+    html, body, div, span, p, h {font-family: 'Noto Sans KR', sans-serif;} /*300:light , 400:regular , Medium 500 , Bold 700, Black 900*/
+    .rcs_emulator_wrap { position: absolute; top:0; left:0;  width:340px;height: 824px;-webkit-box-sizing:border-box;
+    box-sizing: border-box; background: #343146; border-radius: 18px; border: 1px solid #ccc; padding: 9px;  }
+    
+    .rcs_emulator_wrap.open_brand { 
+                height: auto; max-height: 1200px; margin-top: 20px;
+                }
+
+    .blind { position: absolute; overflow: hidden; clip:rect(0 0 0 0); margin: -1px; width: 1px; height: 1px;}
+   
+    
+    .rcs_emulator_wrap.open_brand .template-openrichcard-suggestion { background: #e4e4e4; border-radius: 8px; overflow: hidden;}
+  
+    .btn {position: relative; display: inline-block; vertical-align: middle; display: inline-block !important; background: #fff; text-align: center;-webkit-transition:all 0.3s; transition: all 0.3s; font-family: 'NotoSansMedium'; color:#222; border-radius: 4px; }
+    .rcs_emulator_wrap.open_brand .btn_wrap .btn { height:  35px!important; line-height: 35px!important; }
+    .emulator_area .emulator_view .btn_wrap { display: block; margin-top: 10px;}
+    .emulator_area .emulator_view .btn_wrap .btn { display: block !important; height:30px;-webkit-box-sizing:border-box;
+            margin: 0;padding: 0;border:0; background: transparent; font-size: 14px;color:#00a8ff; font-weight:normal; 
+            line-height: 30px; text-align: center; }
+    
+    
+    /*기존 contents.less의 상단 정의에 추가 할 내용 입니다. */
+    .bgwhite { background:rgba(0, 0, 0, 0) !important;} /* 텍스트템플릿 기본형의 버튼 수정
+    as-is : <div class="template-openrichcard-suggestion btn_wrap"><div class="btn">버튼</div></div>
+    to-be : <div class="template-openrichcard-suggestion btn_wrap bgwhite"><div class="btn">버튼</div></div>
+    기존 버튼 높이 35 > 42로 변경 해야 함 .
+    */
+    
+    
+    /* ////////////////////////////////////////////////////////////// */
+    /*아래부터 contents.less에 추가 할 내용 입니다.  width:320px; > 100%  */
+    .inner_emul_image {padding: 0px; background:#fff; border-radius: 20px;}
+    .emulator_area .emulator_view_image { width:320px; min-height: 580px; height: auto; padding: 0px;overflow: hidden; background: #f2f2f2;border-radius:11px; }
+    
+    
+	
+	/* 이미지 3가지 유형 (공통) */
+	.emulator_area .emulator_view_image .img_wide { box-sizing: border-box; width:320px; height:199px; overflow: hidden;background: url('../images/tmplt/image_sample_wide.jpg') center center no-repeat;} 
+    .emulator_area .emulator_view_image .img_wide img {width:100%; height:100%; } 
+	
+	.emulator_area .emulator_view_image .img_vertical { box-sizing: border-box; width:320px; height:427px; overflow: hidden;background: url('../images/tmplt/image_sample_vertical.jpg') center center no-repeat;} 
+    .emulator_area .emulator_view_image .img_vertical img {width:100%; height:100%; } 
+	
+	.emulator_area .emulator_view_image .img_square { box-sizing: border-box; width:320px; height:320px; overflow: hidden;background: url('../images/tmplt/image_sample_square.jpg') center center no-repeat;} 
+    .emulator_area .emulator_view_image .img_square img {width:100%; height:100%; } 
+
+	.emulator_area .emulator_view_image .img_sns { box-sizing: border-box;width:100%; height:auto; overflow: hidden;background: url('../images/tmplt/image_sample_square.jpg') center center no-repeat; padding-bottom: 11px;} 
+    .emulator_area .emulator_view_image .img_sns img {width:100%; height:auto;border-radius: 8px; } 
+
+	.emulator_area .emulator_view_image .img_snsbtn { box-sizing: border-box; width:320px; height:auto; overflow: hidden;background: url('../images/tmplt/image_sample_square.jpg') center center no-repeat; margin-bottom: -5px;} 
+    .emulator_area .emulator_view_image .img_snsbtn img {width:100%; height:auto; border-radius: 0  0 16px 16px;margin-bottom: -5px; } 
+	
+	
+	
+	/*제목과 내용 ( 공통 )*/	 
+    .emulator_area .emulator_view_image .img_textwrap {padding:20px;}
+    .emulator_area .emulator_view_image .img_textwrap .img_title    {font-size: 17px; line-height: 25px; font-weight: 700; color:#232323; padding-bottom:10px;  } 
+    .emulator_area .emulator_view_image .img_textwrap .img_contents {font-size: 16px; line-height: 22px; font-weight: 400; color:#232323; 
+     padding-bottom:16px; } 
+
+
+	/*이미지템플릿 버튼 타입 (공통)*/
+    .emulator_area .emulator_view_image .img_textwrap .btn_wrap_image { margin-top: 0 !important; margin-bottom: 8px;}
+    .emulator_area .emulator_view .btn_wrap_image .btn { display: block !important; height: 42px; line-height: 42px;-webkit-box-sizing:border-box;
+     margin: 0; padding: 0; border:0; font-size: 16px; color:#0094ff; font-weight: bold; background: #e4e4e4; }
+	
+	
+	
+    /*썸네일형 세로*/
+    .emulator_area .emulator_view_image .img_textwrap .thum_vertical_wrap { padding-bottom: 6px;}
+    .emulator_area .emulator_view_image .img_textwrap .thum_vertical { display: flex;padding-bottom: 10px;}
+    .emulator_area .emulator_view_image .img_textwrap .thum_vertical .thum_img { width:68px ; height: 68px ;background: url('../images/tmplt/image_sample_thumnail.jpg') center center no-repeat;
+       border-radius: 4px; display: block;}
+    .emulator_area .emulator_view_image .img_textwrap .thum_vertical .thum_img img {width:68px; height:68px;border-radius:4px; }
+    .emulator_area .emulator_view_image .img_textwrap .thum_vertical .thum_text { font-size: 16px; line-height: 22px;font-weight: 400; color:#232323;padding-left: 12px;}
+    
+
+	
+	 /*썸네일형 가로*/
+    .emulator_area .emulator_view_image .img_textwrap .thum_horizontal_wrap { padding-bottom: 16px;}
+    .emulator_area .emulator_view_image .img_textwrap .thum_horizontal { display: flex;padding-bottom: 0px;}
+    .emulator_area .emulator_view_image .img_textwrap .thum_horizontal .thum_img { width:86.666px ; height: 86.666px ;background: url('../images/tmplt/image_sample_thumnail.jpg') center center no-repeat; margin-right: 10px;
+       border-radius: 4px; display: block;}
+	.emulator_area .emulator_view_image .img_textwrap .thum_horizontal .thum_img:nth-child(3) {margin-right: 0; }
+    .emulator_area .emulator_view_image .img_textwrap .thum_horizontal .thum_img img {width:86.666px; height:86.666px;border-radius:4px; }
+    .emulator_area .emulator_view_image .img_textwrap .thum_horizontal .thum_text { font-size: 16px; line-height: 22px;font-weight: 400; color:#232323;padding-left: 12px;}
+    
+	
+	/*이미지&타이틀강조형 본문 (2열 배치 )*/
+	.img_contents.twoline { display: flex; padding-bottom: 10px !important;}
+    .img_contents.twoline .txtam-left {font-weight: bold; vertical-align: top; padding-bottom: 6px;  text-align: justify;  text-justify: inter-word; }
+    .img_contents.twoline .txtam-1  {width:18px; }
+    .img_contents.twoline .txtam-2  {width:33px; }
+    .img_contents.twoline .txtam-3  {width:48px; }
+    .img_contents.twoline .txtam-4  {width:63px; }
+    .img_contents.twoline .txtam-right {padding-left: 10px;vertical-align: top; padding-bottom: 6px;}
+    .img_contents.twoline  table {margin: 0; padding: 0;border-collapse: collapse; vertical-align: top;}
+	
+
+
+</style>
+
+    
+    
+</head>
+
+<body>
+<!-- 인라인으로 작성된 style의 위치값은 임시 css입니다. 개발에서는 제거해주세요. -->
+<!-- S:  이미지템플릿 등록 _ 이미지타이틀강조(1:1) ////////////////////////////////////////////////////  -->    
+    <div class="rcs_emulator_wrap open_brand">
+        <div class="inner_emul_image">
+            <strong class="blind">미리보기</strong>
+        
+            <div class="emulator_area">
+                <div class="emulator_cont">
+					<!--  이미지템플릿 class :  emulator_view_image / 텍스트 템플릿 :emulator_view   -->
+                    <div class="emulator_view emulator_view_image">
+                        <div>
+                            <!-- S : image -->
+                            <div class="img_square"><img src="../../src/assets/images/tmplt/image_sample_square_2.jpg"></div>
+                            <!-- E : image-->
+                            
+                            <div class="img_textwrap">
+                                <!-- s:title -->
+                                <div class="img_title">이미지&amp;타이틀강조형(1:1)-일이삼사오육칠팔구십일이삼사오육칠팔구</div>
+                                <!-- e:title -->
+
+                                <!-- s:contents -->
+                                <div class="img_contents twoline"> 
+                                    <table>
+                                        <colgroup>
+                                            <col class="txtam-4"><!-- 텍스트 글자 수에 따라 class txtam-1이 1~4번으로 변경 되어야함 -->
+                                            <col class="right">
+                                        </colgroup>
+                                        <tr><td class="txtam-left">가나다라</td><td class="txtam-right">일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼</td></tr>
+                                        <tr><td class="txtam-left">가나</td><td class="txtam-right">일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼</td></tr>
+                                    </table>
+                                </div>
+                                <!-- e:contents -->
+                       
+                                
+								<!-- s:button  -->
+                                <div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                </div>
+                                <!-- e:button -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+ <!-- E :  이미지템플릿 등록 _ 이미지타이틀강조(1:1) ////////////////////////////////////////////////////  -->      
+    
+    
+<!-- S:  이미지템플릿 등록 _ 이미지타이틀강조(3:4) ////////////////////////////////////////////////////  -->    
+    <div class="rcs_emulator_wrap open_brand" style="left:400px;">
+        <div class="inner_emul_image">
+            <strong class="blind">미리보기</strong>
+        
+            <div class="emulator_area">
+                <div class="emulator_cont">
+					<!--  이미지템플릿 class :  emulator_view_image / 텍스트 템플릿 :emulator_view   -->
+                    <div class="emulator_view emulator_view_image">
+                        <div>
+                            <!-- S : image -->
+                            <div class="img_vertical"><img src="../../src/assets/images/tmplt/image_sample_vertical_2.jpg"></div>
+                            <!-- E : image-->
+                            
+                            <div class="img_textwrap">
+                                <!-- s:title -->
+                                <div class="img_title">이미지&amp;타이틀강조형(3:4)-일이삼사오육칠팔구십일이삼사오육칠팔구</div>
+                                <!-- e:title -->
+
+                                <!-- s:contents -->
+								<div class="img_contents twoline"> 
+                                    <table>
+                                        <colgroup>
+                                            <col class="txtam-3">
+                                            <col class="right">
+                                        </colgroup>
+                                        <tr><td class="txtam-left">가나다</td><td class="txtam-right">일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼</td></tr>
+                                        <tr><td class="txtam-left">가나다</td><td class="txtam-right">일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼</td></tr>
+                                    </table>
+                                </div>
+                                <!-- e:contents -->
+
+                                
+                                
+                                <!-- s:button  -->
+                                <div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                </div>
+                                <!-- e:button -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+ <!-- E : 이미지템플릿 등록 _ 이미지타이틀강조(3:4) ////////////////////////////////////////////////////  -->     
+	
+	
+	
+	
+<!-- S:  이미지템플릿 등록 _ 이미지강조(1:1) ////////////////////////////////////////////////////  -->    
+    <div class="rcs_emulator_wrap open_brand" style="left:800px;">
+        <div class="inner_emul_image">
+            <strong class="blind">미리보기</strong>
+        
+            <div class="emulator_area">
+                <div class="emulator_cont">
+					<!--  이미지템플릿 class :  emulator_view_image / 텍스트 템플릿 :emulator_view   -->
+                    <div class="emulator_view emulator_view_image">
+                        <div>
+                            <!-- S : image -->
+                            <div class="img_square"><img src="../../src/assets/images/tmplt/image_sample_square_2.jpg"></div>
+                            <!-- E : image-->
+                            
+                            <div class="img_textwrap">
+                                <!-- s:title -->
+                                <div class="img_title">이미지강조형(1:1)-일이삼사오육칠팔구십일이삼사오육칠팔구</div>
+                                <!-- e:title -->
+
+                                <!-- s:contents -->
+                                <div class="img_contents">백오십자내용을입력해주요일이삼사오육칠팔구십일이삼사오육칠팔일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십
+                                </div>
+                                <!-- e:contents -->
+
+                                <!-- s:button  -->
+                                <div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                </div>
+                                <!-- e:button -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+ <!-- E :  이미지템플릿 등록 _ 이미지강조(1:1) ////////////////////////////////////////////////////  -->      
+    
+    
+<!-- S:  이미지템플릿 등록 _ 이미지강조(3:4) ////////////////////////////////////////////////////  -->    
+    <div class="rcs_emulator_wrap open_brand" style="left:1200px;">
+        <div class="inner_emul_image">
+            <strong class="blind">미리보기</strong>
+        
+            <div class="emulator_area">
+                <div class="emulator_cont">
+					<!--  이미지템플릿 class :  emulator_view_image / 텍스트 템플릿 :emulator_view   -->
+                    <div class="emulator_view emulator_view_image">
+                        <div>
+                            <!-- S : image -->
+                            <div class="img_vertical"><img src="../../src/assets/images/tmplt/image_sample_vertical_2.jpg"></div>
+                            <!-- E : image-->
+                            
+                            <div class="img_textwrap">
+                                <!-- s:title -->
+                                <div class="img_title">이미지강조형(3:4)-일이삼사오육칠팔구십일이삼사오육칠팔구</div>
+                                <!-- e:title -->
+
+                                <!-- s:contents -->
+                                <div class="img_contents">백오십자내용을입력해주요일이삼사오육칠팔구십일이삼사오육칠팔일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십
+                                </div>
+                                <!-- e:contents -->
+								
+                                <!-- s:button  -->
+                                <div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                </div>
+                                <!-- e:button -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+ <!-- E : 이미지템플릿 등록 _ 이미지강조(3:4) ////////////////////////////////////////////////////  -->     
+	
+	
+	
+	
+	
+	<!-- S:  이미지템플릿 등록 _ 썸네일형(세로) ////////////////////////////////////////////////////  -->    
+    <div class="rcs_emulator_wrap open_brand" style="top:900px;left:0px;">
+        <div class="inner_emul_image">
+            <strong class="blind">미리보기</strong>
+        
+            <div class="emulator_area">
+                <div class="emulator_cont">
+					<!--  이미지템플릿 class :  emulator_view_image / 텍스트 템플릿 :emulator_view   -->
+                    <div class="emulator_view emulator_view_image">
+                        <div>
+                            <!-- S : image -->
+                            <div class="img_wide"><img src="../../src/assets/images/tmplt/image_sample_wide_2.jpg"></div>
+                            <!-- E : image-->
+                            
+                            <div class="img_textwrap">
+                                <!-- s:title -->
+                                <div class="img_title">썸네일형(세로)-입력해주요일이삼사오육칠팔구십일이삼사오육칠팔구</div>
+                                <!-- e:title -->
+
+                                <!-- s:contents -->
+                                <div class="img_contents">백오십자내용을입력해주요일이삼사오육칠팔구십일이삼사오육칠팔일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십
+                                </div>
+                                <!-- e:contents -->
+
+                                <!-- s:thumnail-->
+                                <div class="thum_vertical_wrap">
+                                    <div class="thum_vertical">
+                                        <div class="thum_img"><img src="../../src/assets/images/tmplt/image_sample_thumnail_2.jpg"></div>
+                                        <div class="thum_text">삽십삼자내용들어갈곳삽십삼자내용들어갈곳삽십삼자내용들어갈곳삼십삼</div>
+                                    </div>
+                                    
+                                    <div class="thum_vertical">
+                                        <div class="thum_img"><img src="../../src/assets/images/tmplt/image_sample_thumnail.jpg"></div>
+                                        <div class="thum_text">삽십삼자내용들어갈곳삽십삼자내용들어갈곳삽십삼자내용들어갈곳삼십삼</div>
+                                    </div>
+                                    
+                                    <div class="thum_vertical">
+                                        <div class="thum_img"><img src="../../src/assets/images/tmplt/image_sample_thumnail.jpg"></div>
+                                        <div class="thum_text">삽십삼자내용들어갈곳삽십삼자내용들어갈곳삽십삼자내용들어갈곳삼십삼</div>
+                                    </div>
+                                </div>
+                                <!-- e:thumnail-->
+                                
+                                
+                                <!-- s:button  -->
+                                <div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                </div>
+
+                                <!-- e:button -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+ <!-- E :  이미지템플릿 등록 _ 썸네일형(세로) ////////////////////////////////////////////////////  -->     
+    
+    
+    
+
+	
+	<!-- S:  이미지템플릿 등록 _ 썸네일형(가로) ////////////////////////////////////////////////////  -->    
+    <div class="rcs_emulator_wrap open_brand" style="top:900px;left:400px;">
+        <div class="inner_emul_image">
+            <strong class="blind">미리보기</strong>
+        
+            <div class="emulator_area">
+                <div class="emulator_cont">
+					<!--  이미지템플릿 class :  emulator_view_image / 텍스트 템플릿 :emulator_view   -->
+                    <div class="emulator_view emulator_view_image">
+                        <div>
+                            <!-- S : image -->
+                            <div class="img_wide"><img src="../../src/assets/images/tmplt/image_sample_wide_2.jpg"></div>
+                            <!-- E : image-->
+                            
+                            <div class="img_textwrap">
+                                <!-- s:title -->
+                                <div class="img_title">썸네일형(가로)-입력해주요일이삼사오육칠팔구십일이삼사오육칠팔구</div>
+                                <!-- e:title -->
+
+                                <!-- s:contents -->
+                                <div class="img_contents">백오십자내용을입력해주요일이삼사오육칠팔구십일이삼사오육칠팔일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십
+                                </div>
+                                <!-- e:contents -->
+
+                                <!-- s:thumnail-->
+                                <div class="thum_horizontal_wrap">
+                                    <div class="thum_horizontal">
+                                        <div class="thum_img"><img src="../../src/assets/images/tmplt/image_sample_thumnail_2.jpg"></div>
+										<div class="thum_img"><img src="../../src/assets/images/tmplt/image_sample_thumnail_2.jpg"></div>
+										<div class="thum_img"><img src="../../src/assets/images/tmplt/image_sample_thumnail_2.jpg"></div>
+                                    </div>
+                                    
+                            
+                                </div>
+                                <!-- e:thumnail-->
+                                
+                                
+                                <!-- s:button  -->
+                                <div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                </div>
+                                <!-- e:button -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+ <!-- E :  이미지템플릿 등록 _ 썸네일형(세로) ////////////////////////////////////////////////////  -->     
+    
+    
+	
+	
+	
+	<!-- S:  이미지템플릿 등록 _ SNS형 ////////////////////////////////////////////////////  -->    
+    <div class="rcs_emulator_wrap open_brand" style="top:900px; left:800px;">
+        <div class="inner_emul_image">
+            <strong class="blind">미리보기</strong>
+        
+            <div class="emulator_area">
+                <div class="emulator_cont">
+					<!--  이미지템플릿 class :  emulator_view_image / 텍스트 템플릿 :emulator_view   -->
+                    <div class="emulator_view emulator_view_image">
+                        <div>
+                            
+                            
+                            <div class="img_textwrap">
+                                <!-- s:title -->
+                                <div class="img_title">SNS형-입력해주요일이삼사오육칠팔구십일이삼사오육칠팔구</div>
+                                <!-- e:title -->
+
+                                <!-- s:contents -->
+                                <div class="img_contents">백오십자내용을입력해주요일이삼사오육칠팔구십일이삼사오육칠팔일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십
+                                </div>
+                                <!-- e:contents -->
+                                
+                                <!-- S : image -->
+                                <div class="img_sns"><img src="../../src/assets/images/tmplt/image_sample_vertical_2.jpg"></div>
+                                <!-- E : image-->
+
+                                
+                                
+                                <!-- s:button  -->
+                                <div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                </div>
+                                <!-- e:button -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+ <!-- E :  이미지템플릿 등록 _ SNS형 ////////////////////////////////////////////////////  -->     
+	
+	
+	
+	<!-- S:  이미지템플릿 등록 _ SNS형(중간버튼) ////////////////////////////////////////////////////  -->    
+    <div class="rcs_emulator_wrap open_brand" style="top:900px; left:1200px;">
+        <div class="inner_emul_image">
+            <strong class="blind">미리보기</strong>
+        
+            <div class="emulator_area">
+                <div class="emulator_cont">
+					<!--  이미지템플릿 class :  emulator_view_image / 텍스트 템플릿 :emulator_view   -->
+                    <div class="emulator_view emulator_view_image">
+                        <div>
+                            <div class="img_textwrap">
+                                <!-- s:title -->
+                                <div class="img_title">SNS형(중간버튼)-제목</div>
+                                <!-- e:title -->
+
+                                <!-- s:contents -->
+                                <div class="img_contents">본문 내용
+                                </div>
+                                <!-- e:contents -->
+
+                                
+                                
+                                <!-- s:button  -->
+                                <div>
+                                    <div class="template-openrichcard-suggestion btn_wrap_image"><div class="btn">버튼</div></div>
+                                </div>
+                                <!-- e:button -->
+                            </div>
+                            
+                            <!-- S : image -->
+                            <div class="img_snsbtn"><img src="../../src/assets/images/tmplt/image_sample_wide_2.jpg"></div>
+                            <!-- E : image-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+ <!-- E :  이미지템플릿 등록 _ SNS형(중간버튼) ////////////////////////////////////////////////////  -->     
+    
+    
+    
+    
+    
+</body>
+</html>

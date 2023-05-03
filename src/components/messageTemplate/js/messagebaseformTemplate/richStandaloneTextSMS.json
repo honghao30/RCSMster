@@ -1,0 +1,10 @@
+{
+  "generalPurposeCard": {
+    "layout": {
+      "cardOrientation": "VERTICAL"
+    },
+    "content": {
+      "description": "{{description}}"
+    }
+  }
+}

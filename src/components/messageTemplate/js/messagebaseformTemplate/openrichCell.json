@@ -1,0 +1,711 @@
+{
+  "widget": "LinearLayout",
+  "width": "284dp",
+  "height": "content",
+  "background": "#ffffff",
+  "orientation": "vertical",
+  "children": [
+    {
+      "widget": "ImageView",
+      "width": "match",
+      "height": "90dp",
+      "gravity": "center|vertical",
+      "scaleType": "centerCrop",
+      "mediaUrl": ""
+    },
+    {
+      "widget": "LinearLayout",
+      "width": "match",
+      "height": "content",
+      "marginTop": "16dp",
+      "marginBottom": "8dp",
+      "paddingLeft": "16dp",
+      "paddingRight": "16dp",
+      "orientation": "vertical",
+      "children": [
+        {
+          "widget": "LinearLayout",
+          "width": "match",
+          "height": "content",
+          "paddingBottom": "8dp",
+          "orientation": "horizontal",
+          "visibility": "visible",
+          "children": [
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle"
+                ]
+              },
+              "widget": "TextView",
+              "width": "content",
+              "height": "content",
+              "textAlignment": "textStart",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": ""
+            },
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle",
+                  "visibility"
+                ]
+              },
+              "widget": "TextView",
+              "width": "match",
+              "height": "content",
+              "textAlignment": "textEnd",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": "",
+              "visibility": "visible"
+            }
+          ]
+        },
+        {
+          "widgetPolicy": {
+            "allowedAttributes": ["visibility"]
+          },
+          "widget": "View",
+          "width": "match",
+          "height": "0.5dp",
+          "background": "#B3252525",
+          "marginBottom": "16dp",
+          "marginTop": "8dp",
+          "visibility": "gone"
+        },
+        {
+          "widget": "LinearLayout",
+          "width": "match",
+          "height": "content",
+          "paddingBottom": "8dp",
+          "orientation": "horizontal",
+          "visibility": "visible",
+          "children": [
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle"
+                ]
+              },
+              "widget": "TextView",
+              "width": "content",
+              "height": "content",
+              "textAlignment": "textStart",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": ""
+            },
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle",
+                  "visibility"
+                ]
+              },
+              "widget": "TextView",
+              "width": "match",
+              "height": "content",
+              "textAlignment": "textEnd",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": "",
+              "visibility": "visible"
+            }
+          ]
+        },
+        {
+          "widgetPolicy": {
+            "allowedAttributes": ["visibility"]
+          },
+          "widget": "View",
+          "width": "match",
+          "height": "0.5dp",
+          "background": "#B3252525",
+          "marginBottom": "16dp",
+          "marginTop": "8dp",
+          "visibility": "gone"
+        },
+        {
+          "widget": "LinearLayout",
+          "width": "match",
+          "height": "content",
+          "paddingBottom": "8dp",
+          "orientation": "horizontal",
+          "visibility": "visible",
+          "children": [
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle"
+                ]
+              },
+              "widget": "TextView",
+              "width": "content",
+              "height": "content",
+              "textAlignment": "textStart",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": ""
+            },
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle",
+                  "visibility"
+                ]
+              },
+              "widget": "TextView",
+              "width": "match",
+              "height": "content",
+              "textAlignment": "textEnd",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": "",
+              "visibility": "visible"
+            }
+          ]
+        },
+        {
+          "widgetPolicy": {
+            "allowedAttributes": ["visibility"]
+          },
+          "widget": "View",
+          "width": "match",
+          "height": "0.5dp",
+          "background": "#B3252525",
+          "marginBottom": "16dp",
+          "marginTop": "8dp",
+          "visibility": "gone"
+        },
+        {
+          "widget": "LinearLayout",
+          "width": "match",
+          "height": "content",
+          "paddingBottom": "8dp",
+          "orientation": "horizontal",
+          "visibility": "visible",
+          "children": [
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle"
+                ]
+              },
+              "widget": "TextView",
+              "width": "content",
+              "height": "content",
+              "textAlignment": "textStart",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": ""
+            },
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle",
+                  "visibility"
+                ]
+              },
+              "widget": "TextView",
+              "width": "match",
+              "height": "content",
+              "textAlignment": "textEnd",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": "",
+              "visibility": "visible"
+            }
+          ]
+        },
+        {
+          "widgetPolicy": {
+            "allowedAttributes": ["visibility"]
+          },
+          "widget": "View",
+          "width": "match",
+          "height": "0.5dp",
+          "background": "#B3252525",
+          "marginBottom": "16dp",
+          "marginTop": "8dp",
+          "visibility": "gone"
+        },
+        {
+          "widget": "LinearLayout",
+          "width": "match",
+          "height": "content",
+          "paddingBottom": "8dp",
+          "orientation": "horizontal",
+          "visibility": "visible",
+          "children": [
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle"
+                ]
+              },
+              "widget": "TextView",
+              "width": "content",
+              "height": "content",
+              "textAlignment": "textStart",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": ""
+            },
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle",
+                  "visibility"
+                ]
+              },
+              "widget": "TextView",
+              "width": "match",
+              "height": "content",
+              "textAlignment": "textEnd",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": "",
+              "visibility": "visible"
+            }
+          ]
+        },
+        {
+          "widgetPolicy": {
+            "allowedAttributes": ["visibility"]
+          },
+          "widget": "View",
+          "width": "match",
+          "height": "0.5dp",
+          "background": "#B3252525",
+          "marginBottom": "16dp",
+          "marginTop": "8dp",
+          "visibility": "gone"
+        },
+        {
+          "widget": "LinearLayout",
+          "width": "match",
+          "height": "content",
+          "paddingBottom": "8dp",
+          "orientation": "horizontal",
+          "visibility": "visible",
+          "children": [
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle"
+                ]
+              },
+              "widget": "TextView",
+              "width": "content",
+              "height": "content",
+              "textAlignment": "textStart",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": ""
+            },
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle",
+                  "visibility"
+                ]
+              },
+              "widget": "TextView",
+              "width": "match",
+              "height": "content",
+              "textAlignment": "textEnd",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": "",
+              "visibility": "visible"
+            }
+          ]
+        },
+        {
+          "widgetPolicy": {
+            "allowedAttributes": ["visibility"]
+          },
+          "widget": "View",
+          "width": "match",
+          "height": "0.5dp",
+          "background": "#B3252525",
+          "marginBottom": "16dp",
+          "marginTop": "8dp",
+          "visibility": "gone"
+        },
+        {
+          "widget": "LinearLayout",
+          "width": "match",
+          "height": "content",
+          "paddingBottom": "8dp",
+          "orientation": "horizontal",
+          "visibility": "visible",
+          "children": [
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle"
+                ]
+              },
+              "widget": "TextView",
+              "width": "content",
+              "height": "content",
+              "textAlignment": "textStart",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": ""
+            },
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle",
+                  "visibility"
+                ]
+              },
+              "widget": "TextView",
+              "width": "match",
+              "height": "content",
+              "textAlignment": "textEnd",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": "",
+              "visibility": "visible"
+            }
+          ]
+        },
+        {
+          "widgetPolicy": {
+            "allowedAttributes": ["visibility"]
+          },
+          "widget": "View",
+          "width": "match",
+          "height": "0.5dp",
+          "background": "#B3252525",
+          "marginBottom": "16dp",
+          "marginTop": "8dp",
+          "visibility": "gone"
+        },
+        {
+          "widget": "LinearLayout",
+          "width": "match",
+          "height": "content",
+          "paddingBottom": "8dp",
+          "orientation": "horizontal",
+          "visibility": "visible",
+          "children": [
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle"
+                ]
+              },
+              "widget": "TextView",
+              "width": "content",
+              "height": "content",
+              "textAlignment": "textStart",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": ""
+            },
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle",
+                  "visibility"
+                ]
+              },
+              "widget": "TextView",
+              "width": "match",
+              "height": "content",
+              "textAlignment": "textEnd",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": "",
+              "visibility": "visible"
+            }
+          ]
+        },
+        {
+          "widgetPolicy": {
+            "allowedAttributes": ["visibility"]
+          },
+          "widget": "View",
+          "width": "match",
+          "height": "0.5dp",
+          "background": "#B3252525",
+          "marginBottom": "16dp",
+          "marginTop": "8dp",
+          "visibility": "gone"
+        },
+        {
+          "widget": "LinearLayout",
+          "width": "match",
+          "height": "content",
+          "paddingBottom": "8dp",
+          "orientation": "horizontal",
+          "visibility": "visible",
+          "children": [
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle"
+                ]
+              },
+              "widget": "TextView",
+              "width": "content",
+              "height": "content",
+              "textAlignment": "textStart",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": ""
+            },
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle",
+                  "visibility"
+                ]
+              },
+              "widget": "TextView",
+              "width": "match",
+              "height": "content",
+              "textAlignment": "textEnd",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": "",
+              "visibility": "visible"
+            }
+          ]
+        },
+        {
+          "widgetPolicy": {
+            "allowedAttributes": ["visibility"]
+          },
+          "widget": "View",
+          "width": "match",
+          "height": "0.5dp",
+          "background": "#B3252525",
+          "marginBottom": "16dp",
+          "marginTop": "8dp",
+          "visibility": "gone"
+        },
+        {
+          "widget": "LinearLayout",
+          "width": "match",
+          "height": "content",
+          "paddingBottom": "8dp",
+          "orientation": "horizontal",
+          "visibility": "visible",
+          "children": [
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle"
+                ]
+              },
+              "widget": "TextView",
+              "width": "content",
+              "height": "content",
+              "textAlignment": "textStart",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": ""
+            },
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle",
+                  "visibility"
+                ]
+              },
+              "widget": "TextView",
+              "width": "match",
+              "height": "content",
+              "textAlignment": "textEnd",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": "",
+              "visibility": "visible"
+            }
+          ]
+        },
+        {
+          "widgetPolicy": {
+            "allowedAttributes": ["visibility"]
+          },
+          "widget": "View",
+          "width": "match",
+          "height": "0.5dp",
+          "background": "#B3252525",
+          "marginBottom": "16dp",
+          "marginTop": "8dp",
+          "visibility": "gone"
+        },
+        {
+          "widget": "LinearLayout",
+          "width": "match",
+          "height": "content",
+          "paddingBottom": "8dp",
+          "orientation": "horizontal",
+          "visibility": "visible",
+          "children": [
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle"
+                ]
+              },
+              "widget": "TextView",
+              "width": "content",
+              "height": "content",
+              "textAlignment": "textStart",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": ""
+            },
+            {
+              "widgetPolicy": {
+                "allowedAttributes": [
+                  "text",
+                  "textAlignment",
+                  "textColor",
+                  "textSize",
+                  "textStyle",
+                  "visibility"
+                ]
+              },
+              "widget": "TextView",
+              "width": "match",
+              "height": "content",
+              "textAlignment": "textEnd",
+              "textColor": "#252525",
+              "textSize": "14dp",
+              "textStyle": "",
+              "text": "",
+              "visibility": "visible"
+            }
+          ]
+        },
+        {
+          "widgetPolicy": {
+            "allowedAttributes": ["visibility"]
+          },
+          "widget": "View",
+          "width": "match",
+          "height": "0.5dp",
+          "background": "#B3252525",
+          "marginBottom": "16dp",
+          "marginTop": "8dp",
+          "visibility": "gone"
+        }
+      ]
+    }
+  ]
+}

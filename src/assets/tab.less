@@ -1,0 +1,293 @@
+// Tab 기능
+.tab_box {
+  @apply overflow-hidden relative;
+  &::after {
+    @apply border-b border-solid absolute w-full z-0;
+    border-color: @subColor_07;
+    content: '';
+    top: 44px;
+    left: 0;
+  }
+  // 기존에 만든 탭 샘플 재작업예정
+  .tab_txt {
+    @apply float-left;
+    border-color: @subColor_07;
+    &:first-child {
+      a {
+        @apply border-l rounded-tl;
+      }
+    }
+    &:last-child {
+      a {
+        @apply rounded-tr;
+      }
+    }
+    a {
+      @apply no-underline block p-4 border-r border-t border-solid;
+      color: @mainColor02;
+    }
+  }
+  // 선택 했을 때 적용됨
+  .tab_select {
+    @apply relative;
+    &::after {
+      @apply absolute border-b border-solid z-10 w-full;
+      border-color: @subColor_09;
+      content: '';
+      top: 44px;
+      left: 0;
+    }
+    a {
+      color: @mainColor01;
+    }
+  }
+}
+
+// 페이지 히스토리 tab 기능
+
+// 스크롤 전체 정의
+// 크롬 용
+::-webkit-scrollbar {
+  width: 10px;                        // 세로축 스크롤바 길이
+  height: 10px;                       // 가로축 스크롤바 길이
+}
+::-webkit-scrollbar-track {           // 화살표를 제외한 부분
+  background-color: none;
+}
+::-webkit-scrollbar-track-piece {     // 스크롤 배경 색
+  background-color: none;
+}
+::-webkit-scrollbar-thumb {           // 스크롤 바
+  background-color: none;
+}
+::-webkit-scrollbar-button {          // 상하, 좌우스크롤바 버튼
+  background-color: none;
+}
+::-webkit-scrollbar-button:start {    // Top, Left 방향의 이동버튼
+  background-color: none;
+}
+::-webkit-scrollbar-button:end {     // Bottom, Right 방향의 이동버튼
+  background-color: none;
+}
+// ::-webkit-scrollbar-button:vertical:increment {   // 세로 스크롤
+// }
+// ::-webkit-scrollbar-button:vertical:decrement {   // 세로 스크롤
+// }
+::-webkit-scrollbar-corner {        // 리사이징이 가능 할 경우: 우측 하단의 코너 부분
+  background-color: lightgray;
+}
+::-webkit-resizer {
+  background-color: lightgray;
+}
+
+// ie 용 스크롤 바
+.history_box {
+  scrollbar-face-color: @subColor_08;       // 스크롤바 색
+  scrollbar-border-color: @subColor_08;       // 스크롤바 색
+  scrollbar-track-color: none;              // 스크롤바 배경색, 이동버튼 배경색
+  scrollbar-arrow-color: @subColor_08;      // 이동버튼 색
+  scrollbar-highlight-color: none;          // 스크롤 바, button의 왼쪽과 위, 즉, 밝은 부분
+  scrollbar-3dlight-color: none;            // 스크롤 바, button의 왼쪽과 위, 즉, 밝은 부분
+  scrollbar-shadow-color: none;             // 스크롤 바, button의 오른쪽과 아래, 즉, 어두운 부분
+  scrollbar-darkshadow-color: none;         // 스크롤 바, button의 오른쪽과 아래, 즉, 어두운 부분
+  // -ms-overflow-style: -ms-autohiding-scrollbar;   // 포커스가 없을때 숨겨지는 모습
+}
+
+// 기본 탭 스타일
+
+.history_area {
+  padding-top: 6px;
+
+  // vuescroll
+  .__vuescroll {
+    min-height: 45px;
+  }
+
+  // rail
+  .__bar-wrap-is-horizontal {
+    // background: @subColor_07;
+  }
+
+  // scrollButton
+  .__bar-button {
+    .__bar-button-inner {
+      &:before {
+        @apply block absolute;
+
+        content: '';
+        top: -3px;
+        width: 6px;
+        height: 6px;
+        background: @subColor_09;
+      }
+    }
+
+    &.__bar-button-is-horizontal-start {
+      .__bar-button-inner {
+        &:before {
+          left: -5px;
+          background: url(../assets/image/icon_arrow_left.png) no-repeat center;
+        }
+      }
+    }
+
+    &.__bar-button-is-horizontal-end {
+      .__bar-button-inner {
+        &:before {
+          right: -5px;
+          background: url(../assets/image/icon_arrow_right.png) no-repeat right center;
+        }
+      }
+    }
+  }
+}
+
+.history_box {
+  height: 34px;
+  padding: 0 0 0 20px;
+  border-bottom: 1px solid @subColor_08;
+}
+
+.history_tab {
+  @apply border border-solid inline-block no-underline cursor-pointer;
+
+  height: 26px;
+  margin-right: 5px;
+  padding-right: 8px;
+  padding-left: 10px;
+  border-color: @subColor_07;
+  border-radius: 30px;
+  color: @subColor_04;
+  font-family: 'Malgun Gothic';
+  font-size: 12px;
+  line-height: 22px;
+
+  &:hover {
+    background: @subColor_08;
+  }
+
+  i {
+    @apply relative align-middle;
+
+    width: 15px;
+    height: 15px;
+    margin-top: -2px;
+    margin-left: 2px;
+    color: @subColor_05;
+    font-size: 13px;
+
+    &:before {
+      @apply absolute;
+
+      top: calc(50% - 6.5px);
+      left: calc(50% - 6.5px);
+    }
+    
+    &:hover {
+      color: @subColor_09;
+      background: @bgColor_02;
+      border-radius: 50%;
+    }
+  }
+}
+
+// 탭 선택 시 스타일
+.tab_active {
+  border-color: @subColor_04;
+  color: @subColor_09;
+  background: @subColor_04;
+
+  &:hover {
+    border-color: @subColor_04;
+    color: @subColor_09;
+    background: @subColor_04;
+  }
+
+  i {
+    color: @subColor_09;
+
+    &:hover {
+      color: @subColor_04;
+    }
+  }
+}
+
+// 여기는 element
+.el-tabs__header {
+  margin: 0;
+}
+
+.el-tabs--card>.el-tabs__header {
+  border: 0;
+}
+
+.el-tabs__nav-scroll {
+  // overflow-x: scroll;
+}
+
+// 탭 설정
+.el-tabs--card>.el-tabs__header {
+  .el-tabs__nav {
+    border: 0;
+    // padding: 0 20px;
+    transform: translateX(0px);
+  }
+  .el-tabs__item {
+    margin-right: 5px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 0.875rem;
+    border: 1px solid @subColor_07;
+    padding: 0 10px;
+    &:hover {
+      color: inherit;
+      background: @subColor_08;
+    }
+    // 첫번째 탭 설정
+    &:first-child  {
+      border-left: 1px solid @subColor_07;
+    }
+    .el-icon-close {
+      overflow: visible;
+      width: 14px;
+    }
+  }
+  .el-tabs__item.is-active.is-closable {
+    padding: 0 10px;
+  }
+  // 탭 마우스 오버
+  .el-tabs__item.is-closable {
+    &:hover {
+      padding: 0 10px;
+    }
+  }
+  // 탭 선택되었을때 설정
+  .el-tabs__item.is-active {
+    color: @subColor_09;
+    border: none;
+    background: @subColor_04;
+
+  }
+}
+
+// 탭 설정 패딩 조절
+.el-tabs--top.el-tabs--card {
+  .el-tabs__item {
+    &:last-child {
+      padding: 0 10px;
+    }
+    &:nth-child(2) {
+      padding-left: 10px;
+    }
+  }
+}
+
+// 닫기 아이콘 크기 조절
+.el-tabs__item {
+  .el-icon-close {
+    &::before {
+      transform: scale(1);
+      -webkit-transform: scale(1);
+    }
+  }
+}

@@ -1,0 +1,217 @@
+.template-openrichcard-hrview {
+  border-top: 2px solid #dddddd;
+  width: 100%;
+  margin: 8px 0;
+}
+
+.template-openrichcard-linearlayout {
+  @apply flex flex-wrap w-full;
+}
+.template-openrichcard-linearlayout > .template-openrichcard-linearlayout {
+  padding: 20px;
+}
+.template-openrichcard-linearlayout
+  > .template-openrichcard-linearlayout.template-openrichcard-linearlayout-horizontal {
+  padding: 0;
+  margin: 0 0 8px 0;
+}
+.template-openrichcard-linearlayout-horizontal {
+  @apply flex flex-wrap;
+}
+.template-openrichcard-linearlayout-horizontal .template-openrich-textview {
+  padding: 0;
+}
+.template-openrichcard-linearlayout-horizontal
+  .template-openrich-textview
+  .text {
+  height: auto;
+}
+
+.template-openrichcard-suggestion {
+  margin: 0;
+  background: #fff;
+  border: 0;
+}
+.template-openrichcard-suggestion > div {
+  display: block;
+  height: 30px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 20px;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  color: #00a8ff;
+  font-weight: normal;
+  line-height: 30px;
+  text-align: center;
+}
+
+.template-openrich-textview {
+  flex: auto;
+  @apply w-1/2;
+  padding: 20px;
+  font-size: 13px;
+  color: #898989;
+  font-weight: normal;
+  font-family: 'NotoSansLight';
+  line-height: 1.6;
+
+  &.textStart {
+    text-align: left;
+    font-size: 13px;
+    color: #222222;
+    font-weight: normal;
+    line-height: 1.6;
+    font-family: 'NotoSansRegular';
+  }
+  &.textEnd {
+    text-align: right;
+    font-size: 13px;
+    color: #898989;
+    font-weight: normal;
+    font-family: 'NotoSansLight';
+    line-height: 1.6;
+  }
+  &.bold {
+    font-weight: bold;
+  }
+  &.italic {
+    text-style: italic;
+  }
+  &.text-size-14dp {
+    font-size: 14px;
+  }
+  &.text-size-16dp {
+    font-size: 16px;
+  }
+  &.text-size-18dp {
+    font-size: 18px;
+  }
+
+  .text {
+    height: 320px;
+    overflow-y: auto;
+    padding: 0 8px 0 0;
+  }
+}
+.template-richcard-descriptionview {
+  padding: 20px;
+}
+.template-richcard-titleview + .template-richcard-descriptionview {
+  padding-top: 0;
+}
+.template-richcard-descriptionview .text {
+  font-size: 13px;
+  color: #898989;
+  font-weight: normal;
+  line-height: 1.6;
+  font-family: 'NotoSansLight';
+  height: 120px;
+  overflow-y: auto;
+  padding: 0 8px 0 0;
+  white-space: pre-wrap;
+}
+
+.template-richcard-titleview {
+  padding: 20px 20px 0 20px;
+}
+.template-richcard-titleview .title {
+  max-height: 40px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #222222;
+  font-weight: normal;
+  font-family: 'NotoSansMedium';
+  overflow: hidden;
+  line-height: 1.6;
+}
+
+.template-richcard-carousel-warpper {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  min-height: 490px;
+}
+
+.template-richcard-carousel {
+  position: relative;
+  display: block;
+  padding: 5px;
+  transition: all 0.5s ease;
+}
+
+.template-richcard-carousel-item {
+  display: inline-block !important;
+  width: 248px;
+  vertical-align: top;
+  margin: 0 10px 0 0;
+  background: #ededed;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.template-richcard-carousel-prev,
+.template-richcard-carousel-next {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  bottom: 20px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0;
+}
+.template-richcard-carousel-prev:before,
+.template-richcard-carousel-next:before {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #333;
+  border-right: 1px solid #333;
+}
+.template-richcard-carousel-prev:before {
+  transform: translate(-50%, -50%) rotate(-225deg);
+}
+.template-richcard-carousel-next:before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.template-richcard-carousel-prev {
+  left: calc(50% - 30px);
+}
+.template-richcard-carousel-next {
+  right: calc(50% - 30px);
+}
+
+.tempate-richcard-horizontal {
+  @apply w-full flex flex-wrap;
+
+  .template-richard-horizontal-warp {
+    @apply w-1/2;
+  }
+
+  .template-richcard-component {
+    @apply mb-5;
+  }
+  .template-richcard-textview-title {
+    @apply font-bold;
+  }
+}
+
+.tempate-richcard-vertical {
+  @apply w-full;
+
+  .template-richcard-component {
+    @apply mb-5;
+  }
+  .template-richcard-imageview {
+    @apply w-full;
+  }
+  .template-richcard-textview-title {
+    @apply font-bold;
+  }
+}

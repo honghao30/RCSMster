@@ -1,0 +1,2572 @@
+From 163050284315e8e9da3be57017208c4791aba1f5 Mon Sep 17 00:00:00 2001
+From: yoonmin Cho <yoonmin9411@medialog.co.kr>
+Date: Thu, 23 Feb 2023 16:21:37 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=AF=B8=EB=A6=AC=EC=BA=94=EB=B2=84=EC=8A=A4?=
+ =?UTF-8?q?=20-=20=EC=9D=B4=EB=B2=A4=ED=8A=B8=20=EB=A9=94=EB=89=B4=20?=
+ =?UTF-8?q?=EC=B6=94=EA=B0=80=20=EB=B0=8F=20=EC=98=A8=EB=9D=BC=EC=9D=B8=20?=
+ =?UTF-8?q?=EB=AC=B8=EC=9D=98=20=EC=9D=B4=EB=8F=99=EC=8B=9C=20=EA=B8=B0?=
+ =?UTF-8?q?=EB=B3=B8=20=EB=8D=B0=EC=9D=B4=ED=84=B0=20set?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/api/common/mock/menu.json                 |   8 ++
+ src/router/index.js                           |   7 --
+ src/router/modules/csList.js                  |   5 +-
+ src/views/Main.vue                            |  10 +-
+ src/views/cs/OnlineQnaForm.vue                |  15 +--
+ src/views/cs/components/OnlineQnaFormInfo.vue | 101 ++++++++----------
+ src/views/intro/MiriCanvas.vue                |  34 +++---
+ 7 files changed, 79 insertions(+), 101 deletions(-)
+
+diff --git a/src/api/common/mock/menu.json b/src/api/common/mock/menu.json
+index 914f33d8..a9312cef 100644
+--- a/src/api/common/mock/menu.json
++++ b/src/api/common/mock/menu.json
+@@ -23,6 +23,14 @@
+     "sort": 2,
+     "name": "서비스 이용안내"
+   },
++  {
++    "menuId": "M0103",
++    "parentMenuId": "M0100",
++    "path": "/intro/miricanvas",
++    "level": 2,
++    "sort": 3,
++    "name": "이벤트"
++  },
+   {
+     "menuId": "M0200",
+     "parentMenuId": "#",
+diff --git a/src/router/index.js b/src/router/index.js
+index 31eb01f1..707f19a3 100644
+--- a/src/router/index.js
++++ b/src/router/index.js
+@@ -86,13 +86,6 @@ let router = new Router({
+           meta: {
+             headerView: false
+           }
+-        },
+-        // (check) 테스트 완료 후 제거필요: 테스트용 페이지
+-        {
+-          path: 'test',
+-          name: 'test',
+-          component: () => import(/* webpackChunkName: "test" */ '@/Layout/components/Test'),
+-          meta: {}
+         }
+       ]
+     },
+diff --git a/src/router/modules/csList.js b/src/router/modules/csList.js
+index 087e8753..6b89b16b 100644
+--- a/src/router/modules/csList.js
++++ b/src/router/modules/csList.js
+@@ -35,13 +35,12 @@ export default {
+     {
+       path: 'qna/form',
+       name: 'onlineqnaform',
+-      // component: OnlineQnaForm
+-      component: () => import(/* webpackChunkName: "cs" */ '@/views/cs/OnlineQnaForm')
++      component: () => import(/* webpackChunkName: "cs" */ '@/views/cs/OnlineQnaForm'),
++      props: true
+     },
+     {
+       path: 'qna',
+       name: 'onlineqnaList',
+-      // component: OnlineQnaList
+       component: () => import(/* webpackChunkName: "cs" */ '@/views/cs/OnlineQnaList')
+     },
+     {
+diff --git a/src/views/Main.vue b/src/views/Main.vue
+index 86a93456..e75ffe1d 100644
+--- a/src/views/Main.vue
++++ b/src/views/Main.vue
+@@ -29,14 +29,13 @@
+ 
+       <!-- Start : 신규배너 2022 SI 고도화 (남미라)  -->
+       <carousel v-bind="optionsMain" class="visual2_main" @changed="changedMain">
+-
+         <!-- 2302232 미리캔버스 이벤트 추가 -->
+         <div class="slides slide4 miri">
+           <div class="slide_left">
+             <h4 style="color:#333957;">RCS 메시지에 필요한 이미지를 <br>미리캔버스로<br>쉽게 만들어보세요</h4>
+-            <p style="color:#333957;">다양한 소식을 이미지로 풍부하게 전달할 수 있는 <br>이미지형 RCS를 쉽게 제작할 수 있도록 미리캔버스가 도와드립니다.</p>
++            <p style="color:#333957;">다양한 소식을 이미지로 풍부하게 전달할 수 있는<br>이미지형 RCS를 쉽게 제작할 수 있도록 미리캔버스가 도와드립니다.</p>
+             <div class="btn_wrap">
+-                <a href="/intro/miricanvas">더 알아보기</a>
++                <a href="javascript:void(0)" @click="goMiriCanvas">더 알아보기</a>
+             </div>
+           </div>
+           <div class="slide_right slidingIn">
+@@ -44,7 +43,7 @@
+           </div>
+         </div>
+         <!-- //2302232 미리캔버스 이벤트 추가 -->
+-        
++
+         <div class="slides slide1">
+           <div class="slide_left">
+             <h4>기존보다 합리적인 가격,<br/>광고로도 이용 가능한<br/>새로운 템플릿이 추가되었습니다.</h4>
+@@ -426,6 +425,9 @@ export default {
+     goIntroService() {
+       this.$router.push('/intro/service')
+     },
++    goMiriCanvas() {
++      this.$router.push('/intro/miricanvas')
++    },
+     changedMain() {
+       let mainBann = document.querySelectorAll('.slide_right')
+       mainBann.forEach(e => e.classList.remove('slidingIn'))
+diff --git a/src/views/cs/OnlineQnaForm.vue b/src/views/cs/OnlineQnaForm.vue
+index b674f4e2..c1b89618 100644
+--- a/src/views/cs/OnlineQnaForm.vue
++++ b/src/views/cs/OnlineQnaForm.vue
+@@ -21,7 +21,7 @@
+           </a>
+         </div>
+       </div>
+-      <Online-Qna-Form-Info ref="Info"></Online-Qna-Form-Info>
++      <Online-Qna-Form-Info ref="Info" :from="from"></Online-Qna-Form-Info>
+       <div class="agree_wrap mar_t60" v-show="!member">
+         <h4>개인정보 수집 및 이용에 대한 안내</h4>
+         <div class="box_agree">
+@@ -35,13 +35,7 @@
+         </div>
+         <div class="check_wrap">
+           <span class="custom_checkbox">
+-            <input
+-              type="checkbox"
+-              name="Checkbox"
+-              id="Checkbox01"
+-              v-model="agreeCheck"
+-              ref="agreeCheck"
+-            >
++            <input type="checkbox" name="Checkbox" id="Checkbox01" v-model="agreeCheck" ref="agreeCheck">
+             <label for="Checkbox01">개인정보 수집 및 이용에 동의합니다.</label>
+           </span>
+         </div>
+@@ -62,8 +56,6 @@
+ import { memberInquiry, noMemberInquiry } from '@/api/cs/onlineqna'
+ import OnlineQnaFormInfo from '@/views/cs/components/OnlineQnaFormInfo'
+ import Breadcrumb from '@/components/global/Breadcrumb'
+-// 스크립트를 정의하는 부분
+-// 개발자 작업 영역
+ 
+ // [ECMA6] export default 된 부분이 외부에서 import로 사용할 수 있게 된다.
+ export default {
+@@ -74,6 +66,9 @@ export default {
+     OnlineQnaFormInfo,
+     Breadcrumb
+   },
++  props: {
++    from: { type: String, default: '' }
++  },
+   data() {
+     return {
+       // 회원 true, 비회원 flase
+diff --git a/src/views/cs/components/OnlineQnaFormInfo.vue b/src/views/cs/components/OnlineQnaFormInfo.vue
+index 65c86264..e60766c3 100644
+--- a/src/views/cs/components/OnlineQnaFormInfo.vue
++++ b/src/views/cs/components/OnlineQnaFormInfo.vue
+@@ -11,8 +11,7 @@
+     <tbody>
+       <tr>
+         <th scope="row">
+-          이름
+-          <span class="require">*</span>
++          이름 <span class="require">*</span>
+         </th>
+         <td>
+           <span class="custom_input">
+@@ -22,8 +21,7 @@
+       </tr>
+       <tr>
+         <th scope="row">
+-          휴대폰번호
+-          <span class="require">*</span>
++          휴대폰번호 <span class="require">*</span>
+         </th>
+         <td>
+           <div class="phone_number_area">
+@@ -40,27 +38,11 @@
+               </span>
+               <span class="hypen">-</span>
+               <span class="custom_input">
+-                <input
+-                  type="text"
+-                  maxlength="4"
+-                  @keydown="keydownOnlyNum"
+-                  @keyup="keyupOnlyNum"
+-                  placeholder
+-                  v-model="mblNum[1]"
+-                  ref="mblNum1"
+-                >
++                <input type="text" maxlength="4" @keydown="keydownOnlyNum" @keyup="keyupOnlyNum" v-model="mblNum[1]" ref="mblNum1">
+               </span>
+               <span class="hypen">-</span>
+               <span class="custom_input">
+-                <input
+-                  type="text"
+-                  maxlength="4"
+-                  @keydown="keydownOnlyNum"
+-                  @keyup="keyupOnlyNum"
+-                  placeholder
+-                  v-model="mblNum[2]"
+-                  ref="mblNum2"
+-                >
++                <input type="text" maxlength="4" @keydown="keydownOnlyNum" @keyup="keyupOnlyNum" v-model="mblNum[2]" ref="mblNum2">
+               </span>
+             </div>
+           </div>
+@@ -68,8 +50,7 @@
+       </tr>
+       <tr>
+         <th scope="row">
+-          이메일
+-          <span class="require">*</span>
++          이메일 <span class="require">*</span>
+         </th>
+         <td>
+           <div class="email_area">
+@@ -84,11 +65,7 @@
+             <span class="custom_select">
+               <select v-model="setEmailDomain">
+                 <option value>직접입력</option>
+-                <option
+-                  v-for="item in emailDomainList"
+-                  :value="item.code"
+-                  :key="item.code"
+-                >{{item.codeNm}}</option>
++                <option v-for="item in emailDomainList" :value="item.code" :key="item.code">{{item.codeNm}}</option>
+               </select>
+             </span>
+           </div>
+@@ -96,32 +73,22 @@
+       </tr>
+       <tr>
+         <th scope="row">
+-          제목
+-          <span class="require">*</span>
++          제목 <span class="require">*</span>
+         </th>
+         <td>
+           <div class="length_area">
+             <span class="custom_input">
+-              <input
+-                type="text"
+-                id
+-                placeholder="제목을 입력해 주세요."
+-                maxlength="40"
+-                v-model="subject"
+-                ref="subject"
+-              >
++              <input type="text" id placeholder="제목을 입력해 주세요." maxlength="40" v-model="subject" ref="subject">
+             </span>
+             <span class="length">
+-              (
+-              <em>{{ subject.length }}</em>/40자)
++              (<em>{{ subject.length }}</em>/40자)
+             </span>
+           </div>
+         </td>
+       </tr>
+       <tr>
+         <th scope="row">
+-          문의내용
+-          <span class="require">*</span>
++          문의내용 <span class="require">*</span>
+         </th>
+         <td>
+           <div class="length_area">
+@@ -129,8 +96,7 @@
+               <textarea placeholder="문의 내용을 입력하세요." maxlength="1000" v-model="ctn" ref="ctn"></textarea>
+             </div>
+             <span class="length">
+-              (
+-              <em>{{ ctn.length }}</em>/1000자)
++              (<em>{{ ctn.length }}</em>/1000자)
+             </span>
+           </div>
+         </td>
+@@ -169,6 +135,7 @@ export default {
+     DragDropFileUpload
+   },
+   props: {
++    from: { type: String, default: '' },
+     fileExt: {
+       type: Array,
+       default() {
+@@ -186,14 +153,8 @@ export default {
+         ]
+       }
+     },
+-    maxSize: {
+-      type: String,
+-      default: '50MB'
+-    },
+-    limit: {
+-      type: Number,
+-      default: 0
+-    }
++    maxSize: { type: String, default: '50MB' },
++    limit: { type: Number, default: 0 }
+   },
+   data() {
+     return {
+@@ -216,11 +177,7 @@ export default {
+   computed: {
+     totalSize() {
+       let size = 0
+-
+-      this.fileList.map(f => {
+-        size += f.size
+-      })
+-
++      this.fileList.map(f => { size += f.size })
+       return size
+     },
+     maxSizeByte() {
+@@ -280,7 +237,33 @@ export default {
+       }
+     })
+   },
+-  mounted() {},
++  mounted() {
++    // 미리캔버스 이벤트 페이지에서 넘어온 경우
++    if (this.from === 'miricanvas') {
++      this.subject = '[프로모션] 미리캔버스 프로모션 신청'
++      this.ctn =
++        `문의 내용을 입력하세요.
++---------------------------------------------------------------------------------------------------------
++미리캔버스 프로모션 신청하실 고객이시라면, 아래 사항을 입력해 주세요.
++
++01. 기업 고객이 직접 신청
++· RBC 아이디 :
++· 연락처 :
++   (이메일, 휴대폰 번호 모두 입력) **해당 연락처로 프로모션 코드가 발급 및 1:1 맞춤 디자인이 진행되오니 정확히 입력해주세요.
++· 브랜드명 :
++· 가입한 대행사 :
++
++02. 대행사가 대리 신청
++· 고객사의 RBC 아이디 :
++· 연락처 :
++   (이메일, 휴대폰 번호 모두 입력) **해당 연락처로 프로모션 코드가 발급 및 1:1 맞춤 디자인이 진행되오니 정확히 입력해주세요.
++· 브랜드명 :
++· 가입한 대행사 :
++
++
++* (공지) 미리캔버스 디자이너와 1:1 디자인 진행을 위해 고객님의 연락처와 브랜드명 등은 미리캔버스로 전달 될 예정입니다.`
++    }
++  },
+   methods: {
+     // 파일 업로드 영역
+     handleChangeFileList(fileList) {
+diff --git a/src/views/intro/MiriCanvas.vue b/src/views/intro/MiriCanvas.vue
+index af99ae34..e90f8e22 100644
+--- a/src/views/intro/MiriCanvas.vue
++++ b/src/views/intro/MiriCanvas.vue
+@@ -62,7 +62,6 @@
+                                 <p class="step_title">정보 입력 후 신청서 제출</p>
+                                 <p class="step_desc">(RBC 아이디, 연락처, 청약한 대행사명,<br>브랜드명 등 정보 입력이 필요합니다.)</p>
+                             </div>
+-                            
+                         </li>
+                         <li class="action_item">
+                             <div class="img"><img src="../../assets/images/intro/miri_event/miri_08.png" alt=""></img></div>
+@@ -71,7 +70,6 @@
+                                 <p class="step_title">전담매니저와 상담 진행</p>
+                                 <p class="step_desc">(혜택 중복 신청, 대행사 미청약, RBC 미로그인 상태에서<br>문의하기 등록 시 프로모션 이용이 반려될 수 있습니다.)</p>
+                             </div>
+-                            
+                         </li>
+                         <li class="action_item">
+                             <div class="img"><img src="../../assets/images/intro/miri_event/miri_09.png" alt=""></img></div>
+@@ -82,7 +80,7 @@
+                         </li>
+                     </ul>
+                     <div class="goto_link action_item">
+-                        <a href="#">
++                        <a href="javascript:void(0)" @click="goOnlineFaq">
+                             <img src="../../assets/images/intro/miri_event/miri_10.png" alt="혜택받고 신청하기 버튼">
+                         </a>
+                     </div>
+@@ -111,27 +109,27 @@ export default {
+   components: {},
+   data() {
+     return {
+-        sectionY: [],
++      sectionY: []
+     }
+   },
+-  created() {},
+   mounted() {
+-    window.addEventListener("load", this.scrollEvent);
+-    document.addEventListener("scroll", this.scrollEvent);
+-    this.sectionY = document.querySelectorAll(".action_item");
++    window.addEventListener('load', this.scrollEvent)
++    document.addEventListener('scroll', this.scrollEvent)
++    this.sectionY = document.querySelectorAll('.action_item')
+   },
+-  computed: {},
+   methods: {
+     scrollEvent() {
+-        this.sectionY.forEach(sectY => {
+-            if(!sectY.classList.contains('action')) {
+-                if(Math.abs(sectY.offsetTop - window.scrollY)<(window.innerHeight/2)) {
+-                    sectY.classList.add('action');
+-                }
+-            }
+-        });
++      this.sectionY.forEach(sectY => {
++        if (!sectY.classList.contains('action')) {
++          if (Math.abs(sectY.offsetTop - window.scrollY) < (window.innerHeight / 2)) {
++            sectY.classList.add('action')
++          }
++        }
++      })
+     },
+-    
++    goOnlineFaq() {
++      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
++    }
+   }
+ }
+ </script>
+@@ -205,4 +203,4 @@ export default {
+     from {opacity: 0; transform: translateY(-50px);}
+     to {opacity: 1; transform: translateY(0);}
+   }
+-</style>
+\ No newline at end of file
++</style>
+-- 
+2.23.0.windows.1
+
+From 121852e7b41480cb0852287bae6e75820101d2af Mon Sep 17 00:00:00 2001
+From: yoonmin Cho <yoonmin9411@medialog.co.kr>
+Date: Thu, 23 Feb 2023 17:30:06 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=AF=B8=EB=A6=AC=EC=BA=94=EB=B2=84=EC=8A=A4?=
+ =?UTF-8?q?=20-=20=EB=A1=9C=EA=B7=B8=EC=9D=B8=20=EC=97=AC=EB=B6=80=20?=
+ =?UTF-8?q?=EC=B2=B4=ED=81=AC=20=EB=B0=8F=20=EC=9D=B4=EB=B2=A4=ED=8A=B8=20?=
+ =?UTF-8?q?=ED=8E=98=EC=9D=B4=EC=A7=80=20=EC=A0=91=EA=B7=BC=EC=8B=9C=20?=
+ =?UTF-8?q?=EB=A1=9C=EA=B7=B8=EC=9D=B8=ED=95=98=EC=A7=80=20=EC=95=8A?=
+ =?UTF-8?q?=EC=9D=80=20=EC=82=AC=EC=9A=A9=EC=9E=90=EB=8A=94=20=EB=A1=9C?=
+ =?UTF-8?q?=EA=B7=B8=EC=9D=B8=20=EC=9D=B4=ED=9B=84=20=EC=98=A8=EB=9D=BC?=
+ =?UTF-8?q?=EC=9D=B8=20=EB=AC=B8=EC=9D=98=ED=95=98=EA=B8=B0=EB=A1=9C=20?=
+ =?UTF-8?q?=EC=9D=B4=EB=8F=99?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/Layout/components/AuthNum.vue       | 11 +++++++++--
+ src/Layout/components/AuthNumAgency.vue |  5 ++++-
+ src/Layout/components/Login.vue         |  7 +++++--
+ src/router/index.js                     |  9 ++++++---
+ src/views/intro/MiriCanvas.vue          | 17 ++++++++++++++---
+ 5 files changed, 38 insertions(+), 11 deletions(-)
+
+diff --git a/src/Layout/components/AuthNum.vue b/src/Layout/components/AuthNum.vue
+index b0af2266..a45a1f83 100644
+--- a/src/Layout/components/AuthNum.vue
++++ b/src/Layout/components/AuthNum.vue
+@@ -55,6 +55,9 @@ export default {
+       }
+     }
+   },
++  props: {
++    from: { type: String, default: '' }
++  },
+   data: function() {
+     return {
+       userId: '',
+@@ -121,8 +124,12 @@ export default {
+         if (response.result.exceed90days) {
+           this.$router.replace({ name: 'ExceedPassword' })
+         } else {
+-          // 로그인 이후 페이지는 대시보드로 고정
+-          this.$router.replace('/service/dashboard')
++          if (this.from === 'miricanvas') {
++            this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
++          } else {
++            // 로그인 이후 페이지는 대시보드로 고정
++            this.$router.replace('/service/dashboard')
++          }
+           // if (this.$route.params && this.$route.params.afterRouter) {
+           //   this.$router.replace(this.$route.params.afterRouter.path)
+           // } else {
+diff --git a/src/Layout/components/AuthNumAgency.vue b/src/Layout/components/AuthNumAgency.vue
+index d28a5445..35694fb9 100644
+--- a/src/Layout/components/AuthNumAgency.vue
++++ b/src/Layout/components/AuthNumAgency.vue
+@@ -48,6 +48,9 @@ export default {
+       }
+     }
+   },
++  props: {
++    from: { type: String, default: '' }
++  },
+   data: function() {
+     return {
+       userId: '',
+@@ -84,7 +87,7 @@ export default {
+         this.$store.dispatch('updateUserForAuthSms', response.result)
+         this.$router.replace({
+           name: 'authNum',
+-          params: { afterRouter: this.$route.params.afterRouter }
++          params: { afterRouter: this.$route.params.afterRouter, from: this.from }
+         })
+       }).catch(error => {
+         if (error.code === '60000001') {
+diff --git a/src/Layout/components/Login.vue b/src/Layout/components/Login.vue
+index c122e803..25c69ebc 100644
+--- a/src/Layout/components/Login.vue
++++ b/src/Layout/components/Login.vue
+@@ -79,6 +79,9 @@ export default {
+   components: {
+     BlockPopup
+   },
++  props: {
++    from: { type: String, default: '' }
++  },
+   data() {
+     return {
+       userId: '',
+@@ -129,7 +132,7 @@ export default {
+           if (response.result.userType === 'AGENCY') {
+             this.$router.push({
+               name: 'authNumAgency',
+-              params: { afterRouter: this.$route.params.afterRouter }
++              params: { afterRouter: this.$route.params.afterRouter, from: this.from }
+             })
+             /* this.errorMsg = ''
+             if (response.result.exceed90days) {
+@@ -144,7 +147,7 @@ export default {
+           } else {
+             this.$router.push({
+               name: 'authNum',
+-              params: { afterRouter: this.$route.params.afterRouter }
++              params: { afterRouter: this.$route.params.afterRouter, from: this.from }
+             })
+           }
+         })
+diff --git a/src/router/index.js b/src/router/index.js
+index 707f19a3..f8d4a812 100644
+--- a/src/router/index.js
++++ b/src/router/index.js
+@@ -56,21 +56,24 @@ let router = new Router({
+             tagView: false,
+             headerView: true,
+             footerView: true
+-          }
++          },
++          props: true
+         },
+         {
+           path: 'authNum',
+           name: 'authNum',
+           // component: AuthNum,
+           component: () => import(/* webpackChunkName: "login" */ '@/Layout/components/AuthNum'),
+-          meta: {}
++          meta: {},
++          props: true
+         },
+         {
+           path: 'authNumAgency',
+           name: 'authNumAgency',
+           // component: AuthNumAgency,
+           component: () => import(/* webpackChunkName: "login" */ '@/Layout/components/AuthNumAgency'),
+-          meta: {}
++          meta: {},
++          props: true
+         },
+         {
+           path: 'logout',
+diff --git a/src/views/intro/MiriCanvas.vue b/src/views/intro/MiriCanvas.vue
+index e90f8e22..73b805c1 100644
+--- a/src/views/intro/MiriCanvas.vue
++++ b/src/views/intro/MiriCanvas.vue
+@@ -80,7 +80,7 @@
+                         </li>
+                     </ul>
+                     <div class="goto_link action_item">
+-                        <a href="javascript:void(0)" @click="goOnlineFaq">
++                        <a href="javascript:void(0)" @click="clickLink">
+                             <img src="../../assets/images/intro/miri_event/miri_10.png" alt="혜택받고 신청하기 버튼">
+                         </a>
+                     </div>
+@@ -112,6 +112,9 @@ export default {
+       sectionY: []
+     }
+   },
++  computed: {
++    isLogin() { return (this.$store.state.user.accessToken !== undefined && this.$store.state.user.accessToken !== '') }
++  },
+   mounted() {
+     window.addEventListener('load', this.scrollEvent)
+     document.addEventListener('scroll', this.scrollEvent)
+@@ -127,8 +130,16 @@ export default {
+         }
+       })
+     },
+-    goOnlineFaq() {
+-      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
++    clickLink() {
++      // 로그인을 한 고객의 경우만 이동처리
++      if (this.isLogin) {
++        this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
++      } else {
++        this.$router.push({ name: 'login', params: { from: 'miricanvas' } }).catch(() => {
++          let route = { path: '/login', hash: Math.floor(Math.random() * 10000) }
++          this.$store.dispatch('SetRoute', route)
++        })
++      }
+     }
+   }
+ }
+-- 
+2.23.0.windows.1
+
+From d5f6bf59bc0680a0dbe96c8554cdb377221b07ab Mon Sep 17 00:00:00 2001
+From: yoonmin Cho <yoonmin9411@medialog.co.kr>
+Date: Thu, 23 Feb 2023 18:01:51 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=AF=B8=EB=A6=AC=EC=BA=94=EB=B2=84=EC=8A=A4?=
+ =?UTF-8?q?=20=EB=B2=84=ED=8A=BC=20=EC=B6=94=EA=B0=80=20-=20=EB=B8=8C?=
+ =?UTF-8?q?=EB=9E=9C=EB=93=9C=20=EA=B0=9C=EC=84=A4/=EC=8A=B9=EC=9D=B8?=
+ =?UTF-8?q?=EC=99=84=EB=A3=8C=20=EA=B1=B4,=20=EC=9D=B4=EB=AF=B8=EC=A7=80?=
+ =?UTF-8?q?=20=ED=85=9C=ED=94=8C=EB=A6=BF=20=EC=98=B5=EC=85=98=20=EC=84=A0?=
+ =?UTF-8?q?=ED=83=9D=EB=9E=80=20(=EC=9D=B4=EB=AF=B8=EC=A7=80&=ED=83=80?=
+ =?UTF-8?q?=EC=9D=B4=ED=8B=80=20=EA=B0=95=EC=A1=B0,=20=EC=9D=B4=EB=AF=B8?=
+ =?UTF-8?q?=EC=A7=80=20=EA=B0=95=EC=A1=B0)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ .../service/brand/brand/approval/BrandApprovalStep1.vue    | 6 ++++++
+ src/views/service/brand/brand/create/BrandCreateStep1.vue  | 7 ++++---
+ src/views/service/brand/template/components/Common.vue     | 4 ++++
+ 3 files changed, 14 insertions(+), 3 deletions(-)
+
+diff --git a/src/views/service/brand/brand/approval/BrandApprovalStep1.vue b/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
+index 6189a2ca..be933edb 100644
+--- a/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
++++ b/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
+@@ -185,6 +185,9 @@
+               </el-upload>
+             </div>
+           </li>
++          <li>
++            <div class="miri_event_bloon" @click="clickMiriCanvas"></div>
++          </li>
+         </ul>
+         <div class="box_file_txt">
+           <p v-show="!profileImgFileImageDataYn">사이즈 : 388X388px~1080X1080px / 1:1 비율 / 파일형식 : png (최대1MB)</p>
+@@ -874,6 +877,9 @@ export default {
+         return carageReuturnVal
+       }
+       return carageReuturnVal.replace(/(?:\r\n|\r|\n)/g, '<br />')
++    },
++    clickMiriCanvas() {
++      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+diff --git a/src/views/service/brand/brand/create/BrandCreateStep1.vue b/src/views/service/brand/brand/create/BrandCreateStep1.vue
+index 071e7e91..ffc433e1 100644
+--- a/src/views/service/brand/brand/create/BrandCreateStep1.vue
++++ b/src/views/service/brand/brand/create/BrandCreateStep1.vue
+@@ -158,10 +158,8 @@
+             </div>
+           </li>
+           <li>
+-            <div class="miri_event_bloon"><a href="/"></a></div>
++            <div class="miri_event_bloon" @click="clickMiriCanvas"></div>
+           </li>
+-          
+-       
+         </ul>
+         <div class="box_file_txt">
+           <p v-show="!profileFileDescFlag">사이즈 : 388X388px~1080X1080px / 1:1 비율 / 파일형식 : png (최대1MB)</p>
+@@ -778,6 +776,9 @@ export default {
+       //   return false
+       // }
+       return true
++    },
++    clickMiriCanvas() {
++      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+diff --git a/src/views/service/brand/template/components/Common.vue b/src/views/service/brand/template/components/Common.vue
+index b05c7d27..7e3d4001 100644
+--- a/src/views/service/brand/template/components/Common.vue
++++ b/src/views/service/brand/template/components/Common.vue
+@@ -59,6 +59,7 @@
+         <div class="using_stat" style="padding-top: 0;">
+           <span class="btn stat_btn sml" :class="{ 'check': info.tplType === tpl.type }" v-for="(tpl, idx) in tplTypes" :key="idx" @click="changeType(tpl.type)">{{ tpl.typeNm }}</span>
+         </div>
++        <div class="miri_event_bloon" @click="clickMiriCanvas"></div>
+       </div>
+     </div>
+     <div class="rcs_item_bundle">
+@@ -189,6 +190,9 @@ export default {
+         return false
+       }
+       return true
++    },
++    clickMiriCanvas() {
++      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+-- 
+2.23.0.windows.1
+
+From aa16c2ff6ac4c38e352e903ee6e65476c025eeaa Mon Sep 17 00:00:00 2001
+From: designvii <elwkdlsql1004@>
+Date: Thu, 23 Feb 2023 18:13:50 +0900
+Subject: [PATCH] =?UTF-8?q?#1535=20=EB=AF=B8=EB=A6=AC=EC=BA=94=EB=B2=84?=
+ =?UTF-8?q?=EC=8A=A4=20=EA=B4=80=EB=A0=A8=20UI=EC=88=98=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/views/service/brand/template/components/Common.vue | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/views/service/brand/template/components/Common.vue b/src/views/service/brand/template/components/Common.vue
+index 7e3d4001..5c4048c2 100644
+--- a/src/views/service/brand/template/components/Common.vue
++++ b/src/views/service/brand/template/components/Common.vue
+@@ -59,7 +59,7 @@
+         <div class="using_stat" style="padding-top: 0;">
+           <span class="btn stat_btn sml" :class="{ 'check': info.tplType === tpl.type }" v-for="(tpl, idx) in tplTypes" :key="idx" @click="changeType(tpl.type)">{{ tpl.typeNm }}</span>
+         </div>
+-        <div class="miri_event_bloon" @click="clickMiriCanvas"></div>
++        <div class="miri_event_bloon" @click="clickMiriCanvas" style="margin:-8px 0 0 263px;"></div>
+       </div>
+     </div>
+     <div class="rcs_item_bundle">
+-- 
+2.23.0.windows.1
+
+From 66cdc936279a6941b2758cba94a40ed5149ed165 Mon Sep 17 00:00:00 2001
+From: yoonmin Cho <yoonmin9411@medialog.co.kr>
+Date: Fri, 24 Feb 2023 09:49:51 +0900
+Subject: [PATCH] =?UTF-8?q?=ED=85=8C=EC=8A=A4=ED=8A=B8=20=ED=8E=98?=
+ =?UTF-8?q?=EC=9D=B4=EC=A7=80/=EB=A9=94=EB=89=B4=20=EC=A0=9C=EA=B1=B0?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/Layout/components/Header.vue          |  8 --------
+ src/views/service/components/BrandTop.vue | 16 +---------------
+ 2 files changed, 1 insertion(+), 23 deletions(-)
+
+diff --git a/src/Layout/components/Header.vue b/src/Layout/components/Header.vue
+index ea38be33..5dcadd68 100644
+--- a/src/Layout/components/Header.vue
++++ b/src/Layout/components/Header.vue
+@@ -34,10 +34,6 @@
+           <a href="javascript:void(0);" class="btn_user myinfo" v-if="isLogin" @click="goMyInfo">
+             <span>내 정보관리</span>
+           </a>
+-          <!-- 임시 퍼블 테스트 페이지 -->
+-          <a href="javascript:void(0);" class="btn bd_black" @click="goTestEmul">
+-            <span>에뮬레이터</span>
+-          </a>
+         </div>
+       </nav>
+     </header>
+@@ -120,10 +116,6 @@ export default {
+         // document.location.href = document.location.pathname
+         document.location.href = '/main'
+       })
+-    },
+-    // (check)-완료후 제거 필요: 퍼블작업을 위한 에뮬레이터 테스트용 페이지 이동
+-    goTestEmul() {
+-      this.$router.push({ name: 'test' })
+     }
+   }
+ }
+diff --git a/src/views/service/components/BrandTop.vue b/src/views/service/components/BrandTop.vue
+index 76233835..0dd320ae 100644
+--- a/src/views/service/components/BrandTop.vue
++++ b/src/views/service/components/BrandTop.vue
+@@ -27,14 +27,9 @@
+               { 'active': active === tab.id },
+               { 'active': (active === 'twowayChat' || active === 'psMenu' || active === 'autoReply') && index === 2 },
+               { 'active': (active === 'statMessage' || active === 'statPersistentMenu') && index === 5 },
+-              { 'active': (active === 'sendnum' || active === 'twoway') && index === 6 }, // (제거 필요)
+               { 'hasDep2': 'chat' === tab.id || 'twowayMng' === tab.id || 'stat' === tab.id }]"
+         >
+           <a href="javascript:void(0);" @click="goBrandTab(tab)">{{ tab.tabName }}</a>
+-          <!-- 추후 제거 필요 -->
+-          <div class="dep2" v-if="'chat' === tab.id" :style="(active === 'sendnum' || active === 'twoway') ? '' : ''">
+-            <a href="javascript:void(0);" v-for="(subTab, subIndex) in tab.subMenu" :key="`brandTab_${subIndex}`" @click="goBrandTab(subTab)" :class="{'active': active === subTab.id}">{{ subTab.tabName }}</a>
+-          </div>
+           <!-- 임시 스타일 적용 -->
+           <div class="dep2" v-if="'twowayMng' === tab.id" :style="(active === 'twowayChat' || active === 'psMenu' || active === 'autoReply') ? '' : ''" style="width: 400px">
+             <a href="javascript:void(0);" v-for="(subTab, subIndex) in tab.subMenu" :key="`brandTab_${subIndex}`" @click="goBrandTab(subTab)" :class="{'active': active === subTab.id}">{{ subTab.tabName }}</a>
+@@ -102,14 +97,7 @@ export default {
+             { id: 'statMessage', tabName: '메시지', routerName: 'StatMessage' },
+             { id: 'statPersistentMenu', tabName: '대화방 메뉴', routerName: 'StatPersistentMenu' }
+           ]
+-        },
+-        {
+-          id: 'chat',
+-          tabName: '대화방 관리(as-is)',
+-          routerName: 'CallingNumberManagement',
+-          subMenu: [{ id: 'sendnum', tabName: '단방향', routerName: 'CallingNumberManagement' }, { id: 'twoway', tabName: '양방향', routerName: 'CallingTwoWayManagement' }]
+-        },
+-        { id: 'autoReplyOld', tabName: '자동응답 관리(as-is)', routerName: 'AutoReplyListOld' }
++        }
+       ]
+     }
+   },
+@@ -119,8 +107,6 @@ export default {
+       if (this.$store.state.user.userId === this.mgrUserId || this.$store.state.user.userType === 'CORP') {
+         tabs.push(this.tabList[5])
+       }
+-      tabs.push(this.tabList[6])
+-      tabs.push(this.tabList[7])
+       return tabs
+     },
+     disabledTab() {
+-- 
+2.23.0.windows.1
+
+From 3d8f7ceaf1659fe4f651a52560008173c11a479b Mon Sep 17 00:00:00 2001
+From: gowndll <khj@designvii.com>
+Date: Fri, 24 Feb 2023 10:05:32 +0900
+Subject: [PATCH] =?UTF-8?q?[#1353]=20=EB=AF=B8=EB=A6=AC=EC=BA=94=EB=B2=84?=
+ =?UTF-8?q?=EC=8A=A4=20=EC=9D=B4=EB=B2=A4=ED=8A=B8=20=EC=83=81=EC=84=B8?=
+ =?UTF-8?q?=ED=8E=98=EC=9D=B4=EC=A7=80=20=EC=8A=A4=ED=81=AC=EB=A1=A4=20?=
+ =?UTF-8?q?=EC=95=A0=EB=8B=88=EB=A9=94=EC=9D=B4=EC=85=98=20=EC=9D=B4?=
+ =?UTF-8?q?=EB=B2=A4=ED=8A=B8=20=EC=82=AD=EC=A0=9C=20(=EC=B2=AB=20?=
+ =?UTF-8?q?=EC=84=B9=EC=85=98=20=EC=A0=9C=EC=99=B8)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/views/intro/MiriCanvas.vue | 58 +++++++++++++++-------------------
+ 1 file changed, 25 insertions(+), 33 deletions(-)
+
+diff --git a/src/views/intro/MiriCanvas.vue b/src/views/intro/MiriCanvas.vue
+index 73b805c1..f2708bf3 100644
+--- a/src/views/intro/MiriCanvas.vue
++++ b/src/views/intro/MiriCanvas.vue
+@@ -62,6 +62,7 @@
+                                 <p class="step_title">정보 입력 후 신청서 제출</p>
+                                 <p class="step_desc">(RBC 아이디, 연락처, 청약한 대행사명,<br>브랜드명 등 정보 입력이 필요합니다.)</p>
+                             </div>
++                            
+                         </li>
+                         <li class="action_item">
+                             <div class="img"><img src="../../assets/images/intro/miri_event/miri_08.png" alt=""></img></div>
+@@ -70,6 +71,7 @@
+                                 <p class="step_title">전담매니저와 상담 진행</p>
+                                 <p class="step_desc">(혜택 중복 신청, 대행사 미청약, RBC 미로그인 상태에서<br>문의하기 등록 시 프로모션 이용이 반려될 수 있습니다.)</p>
+                             </div>
++                            
+                         </li>
+                         <li class="action_item">
+                             <div class="img"><img src="../../assets/images/intro/miri_event/miri_09.png" alt=""></img></div>
+@@ -80,7 +82,7 @@
+                         </li>
+                     </ul>
+                     <div class="goto_link action_item">
+-                        <a href="javascript:void(0)" @click="clickLink">
++                        <a href="#">
+                             <img src="../../assets/images/intro/miri_event/miri_10.png" alt="혜택받고 신청하기 버튼">
+                         </a>
+                     </div>
+@@ -108,39 +110,28 @@ export default {
+   name: 'miricanvas',
+   components: {},
+   data() {
+-    return {
+-      sectionY: []
+-    }
+-  },
+-  computed: {
+-    isLogin() { return (this.$store.state.user.accessToken !== undefined && this.$store.state.user.accessToken !== '') }
++    // return {
++    //     sectionY: [],
++    // }
+   },
++  created() {},
+   mounted() {
+-    window.addEventListener('load', this.scrollEvent)
+-    document.addEventListener('scroll', this.scrollEvent)
+-    this.sectionY = document.querySelectorAll('.action_item')
++    // window.addEventListener("load", this.scrollEvent);
++    // document.addEventListener("scroll", this.scrollEvent);
++    // this.sectionY = document.querySelectorAll(".action_item");
+   },
++  computed: {},
+   methods: {
+-    scrollEvent() {
+-      this.sectionY.forEach(sectY => {
+-        if (!sectY.classList.contains('action')) {
+-          if (Math.abs(sectY.offsetTop - window.scrollY) < (window.innerHeight / 2)) {
+-            sectY.classList.add('action')
+-          }
+-        }
+-      })
+-    },
+-    clickLink() {
+-      // 로그인을 한 고객의 경우만 이동처리
+-      if (this.isLogin) {
+-        this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
+-      } else {
+-        this.$router.push({ name: 'login', params: { from: 'miricanvas' } }).catch(() => {
+-          let route = { path: '/login', hash: Math.floor(Math.random() * 10000) }
+-          this.$store.dispatch('SetRoute', route)
+-        })
+-      }
+-    }
++    // scrollEvent() {
++    //     this.sectionY.forEach(sectY => {
++    //         if(!sectY.classList.contains('action')) {
++    //             if(Math.abs(sectY.offsetTop - window.scrollY)<(window.innerHeight/2)) {
++    //                 sectY.classList.add('action');
++    //             }
++    //         }
++    //     });
++    // },
++    
+   }
+ }
+ </script>
+@@ -207,11 +198,12 @@ export default {
+   .miricanvas section.miri_notice ul li {position: relative; font-size:20px; color:#fff; padding-left: 20px; margin-bottom: 10px; text-align: left;}
+   .miricanvas section.miri_notice ul li:before {content:""; display: block; width: 9px; height: 9px; border-radius: 100%; background:#fff; position: absolute; left:0; top:8px;}
+ 
+-  .miricanvas section .action_item{ opacity: 0; transform: translateY(-50px); }
+-  .miricanvas section .action_item.action{animation: 0.5s ease-in forwards miriAction;}
++  /* .miricanvas section .action_item{ opacity: 0; transform: translateY(-50px); } */
++  /* .miricanvas section .action_item.action{animation: 0.5s ease-in forwards miriAction;} */
++  .miricanvas section.miri_main { opacity: 0; transform: translateY(-50px); animation: 0.5s ease-in forwards miriAction;}
+ 
+   @keyframes miriAction {
+     from {opacity: 0; transform: translateY(-50px);}
+     to {opacity: 1; transform: translateY(0);}
+   }
+-</style>
++</style>
+\ No newline at end of file
+-- 
+2.23.0.windows.1
+
+From ac9c3bcbec11a848363415169824e426d7281a52 Mon Sep 17 00:00:00 2001
+From: yoonmin Cho <yoonmin9411@medialog.co.kr>
+Date: Fri, 24 Feb 2023 10:48:35 +0900
+Subject: [PATCH] =?UTF-8?q?(=ED=85=8C=EC=8A=A4=ED=8A=B8=20=EC=86=8C?=
+ =?UTF-8?q?=EC=8A=A4)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ vue.config.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/vue.config.js b/vue.config.js
+index 89a3eede..836fe5d9 100644
+--- a/vue.config.js
++++ b/vue.config.js
+@@ -31,7 +31,7 @@ module.exports = {
+     },
+     */
+   },
+-  productionSourceMap: false, // sourcemap 제외
++  // productionSourceMap: false, // sourcemap 제외
+   // 웹팩의 설정을 바로 사용하기 위해서는 configureWebpack에서 정의를 한다.
+   configureWebpack: {
+     resolve: {
+-- 
+2.23.0.windows.1
+
+From ac9c3bcbec11a848363415169824e426d7281a52 Mon Sep 17 00:00:00 2001
+From: yoonmin Cho <yoonmin9411@medialog.co.kr>
+Date: Fri, 24 Feb 2023 10:48:35 +0900
+Subject: [PATCH] =?UTF-8?q?(=ED=85=8C=EC=8A=A4=ED=8A=B8=20=EC=86=8C?=
+ =?UTF-8?q?=EC=8A=A4)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ vue.config.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/vue.config.js b/vue.config.js
+index 89a3eede..836fe5d9 100644
+--- a/vue.config.js
++++ b/vue.config.js
+@@ -31,7 +31,7 @@ module.exports = {
+     },
+     */
+   },
+-  productionSourceMap: false, // sourcemap 제외
++  // productionSourceMap: false, // sourcemap 제외
+   // 웹팩의 설정을 바로 사용하기 위해서는 configureWebpack에서 정의를 한다.
+   configureWebpack: {
+     resolve: {
+-- 
+2.23.0.windows.1
+
+From b3dc782017e263566d963919f3a42fcd7c02f98a Mon Sep 17 00:00:00 2001
+From: yoonmin Cho <yoonmin9411@medialog.co.kr>
+Date: Fri, 24 Feb 2023 11:29:28 +0900
+Subject: [PATCH] =?UTF-8?q?=EC=86=8C=EC=8A=A4=20=EC=98=A4=EB=A5=98=20?=
+ =?UTF-8?q?=EC=88=98=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/views/intro/MiriCanvas.vue | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
+
+diff --git a/src/views/intro/MiriCanvas.vue b/src/views/intro/MiriCanvas.vue
+index f2708bf3..50d3293e 100644
+--- a/src/views/intro/MiriCanvas.vue
++++ b/src/views/intro/MiriCanvas.vue
+@@ -62,7 +62,7 @@
+                                 <p class="step_title">정보 입력 후 신청서 제출</p>
+                                 <p class="step_desc">(RBC 아이디, 연락처, 청약한 대행사명,<br>브랜드명 등 정보 입력이 필요합니다.)</p>
+                             </div>
+-                            
++
+                         </li>
+                         <li class="action_item">
+                             <div class="img"><img src="../../assets/images/intro/miri_event/miri_08.png" alt=""></img></div>
+@@ -71,7 +71,7 @@
+                                 <p class="step_title">전담매니저와 상담 진행</p>
+                                 <p class="step_desc">(혜택 중복 신청, 대행사 미청약, RBC 미로그인 상태에서<br>문의하기 등록 시 프로모션 이용이 반려될 수 있습니다.)</p>
+                             </div>
+-                            
++
+                         </li>
+                         <li class="action_item">
+                             <div class="img"><img src="../../assets/images/intro/miri_event/miri_09.png" alt=""></img></div>
+@@ -107,12 +107,11 @@
+ <script>
+ 
+ export default {
+-  name: 'miricanvas',
+-  components: {},
++  name: 'Miricanvas',
+   data() {
+-    // return {
++    return {
+     //     sectionY: [],
+-    // }
++    }
+   },
+   created() {},
+   mounted() {
+@@ -131,7 +130,7 @@ export default {
+     //         }
+     //     });
+     // },
+-    
++
+   }
+ }
+ </script>
+@@ -206,4 +205,4 @@ export default {
+     from {opacity: 0; transform: translateY(-50px);}
+     to {opacity: 1; transform: translateY(0);}
+   }
+-</style>
+\ No newline at end of file
++</style>
+-- 
+2.23.0.windows.1
+
+From 54e0f75e6c8a7cf80868b7fc6ac8d9ed39af2315 Mon Sep 17 00:00:00 2001
+From: yoonmin Cho <yoonmin9411@medialog.co.kr>
+Date: Fri, 24 Feb 2023 11:37:09 +0900
+Subject: [PATCH] =?UTF-8?q?=ED=85=8C=EC=8A=A4=ED=8A=B8=20=EC=86=8C?=
+ =?UTF-8?q?=EC=8A=A4=20=EC=A0=9C=EA=B1=B0?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ vue.config.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/vue.config.js b/vue.config.js
+index 836fe5d9..89a3eede 100644
+--- a/vue.config.js
++++ b/vue.config.js
+@@ -31,7 +31,7 @@ module.exports = {
+     },
+     */
+   },
+-  // productionSourceMap: false, // sourcemap 제외
++  productionSourceMap: false, // sourcemap 제외
+   // 웹팩의 설정을 바로 사용하기 위해서는 configureWebpack에서 정의를 한다.
+   configureWebpack: {
+     resolve: {
+-- 
+2.23.0.windows.1
+
+From 027fa4d1b1ffa8938bc8e975a10cc2d95c18fe15 Mon Sep 17 00:00:00 2001
+From: yoonmin Cho <yoonmin9411@medialog.co.kr>
+Date: Mon, 27 Feb 2023 10:54:49 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=AF=B8=EB=A6=AC=EC=BA=94=EB=B2=84=EC=8A=A4?=
+ =?UTF-8?q?=20-=20=EC=86=8C=EC=8A=A4=20=EB=88=84=EB=9D=BD=EB=B6=80?=
+ =?UTF-8?q?=EB=B6=84=20=EC=B6=94=EA=B0=80?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/views/intro/MiriCanvas.vue | 18 +++++++++++++++---
+ 1 file changed, 15 insertions(+), 3 deletions(-)
+
+diff --git a/src/views/intro/MiriCanvas.vue b/src/views/intro/MiriCanvas.vue
+index 50d3293e..3264bac7 100644
+--- a/src/views/intro/MiriCanvas.vue
++++ b/src/views/intro/MiriCanvas.vue
+@@ -82,7 +82,7 @@
+                         </li>
+                     </ul>
+                     <div class="goto_link action_item">
+-                        <a href="#">
++                        <a href="javascript:void(0)" @click="clickLink">
+                             <img src="../../assets/images/intro/miri_event/miri_10.png" alt="혜택받고 신청하기 버튼">
+                         </a>
+                     </div>
+@@ -119,7 +119,9 @@ export default {
+     // document.addEventListener("scroll", this.scrollEvent);
+     // this.sectionY = document.querySelectorAll(".action_item");
+   },
+-  computed: {},
++  computed: {
++    isLogin() { return (this.$store.state.user.accessToken !== undefined && this.$store.state.user.accessToken !== '') }
++  },
+   methods: {
+     // scrollEvent() {
+     //     this.sectionY.forEach(sectY => {
+@@ -130,7 +132,17 @@ export default {
+     //         }
+     //     });
+     // },
+-
++    clickLink() {
++      // 로그인을 한 고객의 경우만 이동처리
++      if (this.isLogin) {
++        this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
++      } else {
++        this.$router.push({ name: 'login', params: { from: 'miricanvas' } }).catch(() => {
++          let route = { path: '/login', hash: Math.floor(Math.random() * 10000) }
++          this.$store.dispatch('SetRoute', route)
++        })
++      }
++    }
+   }
+ }
+ </script>
+-- 
+2.23.0.windows.1
+
+From a86b1c816462481414ebe096ec5ce5f0babee797 Mon Sep 17 00:00:00 2001
+From: yoonmin Cho <yoonmin9411@medialog.co.kr>
+Date: Mon, 27 Feb 2023 11:17:54 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=AF=B8=EB=A6=AC=EC=BA=94=EB=B2=84=EC=8A=A4?=
+ =?UTF-8?q?=20-=20=EC=9D=B4=EB=B2=A4=ED=8A=B8=20=ED=8E=98=EC=9D=B4?=
+ =?UTF-8?q?=EC=A7=80=EB=A5=BC=20=ED=86=B5=ED=95=B4=20=EB=A1=9C=EA=B7=B8?=
+ =?UTF-8?q?=EC=9D=B8=20=EC=8B=9C=20=EC=98=A8=EB=9D=BC=EC=9D=B8=EB=AC=B8?=
+ =?UTF-8?q?=EC=9D=98=20=ED=99=94=EB=A9=B4=EC=97=90=EC=84=9C=20=EB=8C=80?=
+ =?UTF-8?q?=ED=96=89=EC=82=AC=20=EB=93=B1=EB=A1=9D=20=ED=8C=9D=EC=97=85=20?=
+ =?UTF-8?q?=EB=AF=B8=EC=B6=9C=EB=A0=A5=20=EC=B2=98=EB=A6=AC?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/Layout/PC/index.vue | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/src/Layout/PC/index.vue b/src/Layout/PC/index.vue
+index e2315dff..93a5c814 100644
+--- a/src/Layout/PC/index.vue
++++ b/src/Layout/PC/index.vue
+@@ -64,7 +64,9 @@ export default {
+       )
+     },
+     hasDesertedBrand() {
+-      if (this.$store.state.user.accessToken !== undefined && this.$store.state.user.accessToken !== '' && this.$store.state.user.chkDesertedBrand) {
++      if (this.$route.params && this.$route.params.from === 'miricanvas') { // 미리캔버스 이동시에는 대행사 팝업 출력하지 않는다.
++        return false
++      } if (this.$store.state.user.accessToken !== undefined && this.$store.state.user.accessToken !== '' && this.$store.state.user.chkDesertedBrand) {
+         return true
+       } else {
+         return false
+-- 
+2.23.0.windows.1
+
+From 12a6297237d11022d13f52524cf146130d00ba72 Mon Sep 17 00:00:00 2001
+From: YYH <yyh@designvii.com>
+Date: Mon, 27 Feb 2023 11:40:29 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=A9=94=EC=9D=B8=20=EB=B2=A0=EB=84=88=20?=
+ =?UTF-8?q?=EC=88=98=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/assets/css/designvii.css | 15 ++++++++++-----
+ src/views/Main.vue           |  2 +-
+ 2 files changed, 11 insertions(+), 6 deletions(-)
+
+diff --git a/src/assets/css/designvii.css b/src/assets/css/designvii.css
+index 1adea847..df121b2f 100644
+--- a/src/assets/css/designvii.css
++++ b/src/assets/css/designvii.css
+@@ -1609,12 +1609,17 @@ font-family:'NotoSansLight'; color:#666;font-weight:normal; font-size:14px; line
+ }
+ 
+ /* 230222 미리캔버스 이벤트 슬라이드 추가 */
+-.visual2_main .owl-item .slides.miri { background:#CFD9F2; }
+-.visual2_main .owl-item .slides .slide_right.slidingIn .slide_miri img { transform: translateX(50px); }
++.visual2_main .owl-item .slides.miri {
++  background:#CFD9F2;
++}
++.visual2_main .owl-item .slides .slide_right .slide_miri {
++  display: flex;
++  align-items: center;
++  height:100%;
++}
+ .visual2_main .owl-item .slides .slide_right.slidingIn .slide_miri { 
+-display: flex; align-items: center; height:100%;
+-animation-name: fadeInRight;
+-animation-duration: 1s;
++  animation-name: fadeInRight;
++  animation-duration: 1s;
+ }
+ .miri_event_bloon  { position: absolute; background: url('../../assets/images/icons/bloon_event.svg') no-repeat; background-position:left top; cursor:pointer; width:160px;height:50px; margin-top: -23px; }
+ .miri_event_bloon a { width:160px;height:50px; cursor: pointer;}
+diff --git a/src/views/Main.vue b/src/views/Main.vue
+index e75ffe1d..101dea80 100644
+--- a/src/views/Main.vue
++++ b/src/views/Main.vue
+@@ -39,7 +39,7 @@
+             </div>
+           </div>
+           <div class="slide_right slidingIn">
+-            <div class="slide_miri"><img src="@/assets/images/theme/main_miri.png" alt="" style="transform: translateX(40px);"/></div>
++            <div class="slide_miri"><img src="@/assets/images/theme/main_miri.png"/></div>
+           </div>
+         </div>
+         <!-- //2302232 미리캔버스 이벤트 추가 -->
+-- 
+2.23.0.windows.1
+
+From 12a6297237d11022d13f52524cf146130d00ba72 Mon Sep 17 00:00:00 2001
+From: YYH <yyh@designvii.com>
+Date: Mon, 27 Feb 2023 11:40:29 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=A9=94=EC=9D=B8=20=EB=B2=A0=EB=84=88=20?=
+ =?UTF-8?q?=EC=88=98=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/assets/css/designvii.css | 15 ++++++++++-----
+ src/views/Main.vue           |  2 +-
+ 2 files changed, 11 insertions(+), 6 deletions(-)
+
+diff --git a/src/assets/css/designvii.css b/src/assets/css/designvii.css
+index 1adea847..df121b2f 100644
+--- a/src/assets/css/designvii.css
++++ b/src/assets/css/designvii.css
+@@ -1609,12 +1609,17 @@ font-family:'NotoSansLight'; color:#666;font-weight:normal; font-size:14px; line
+ }
+ 
+ /* 230222 미리캔버스 이벤트 슬라이드 추가 */
+-.visual2_main .owl-item .slides.miri { background:#CFD9F2; }
+-.visual2_main .owl-item .slides .slide_right.slidingIn .slide_miri img { transform: translateX(50px); }
++.visual2_main .owl-item .slides.miri {
++  background:#CFD9F2;
++}
++.visual2_main .owl-item .slides .slide_right .slide_miri {
++  display: flex;
++  align-items: center;
++  height:100%;
++}
+ .visual2_main .owl-item .slides .slide_right.slidingIn .slide_miri { 
+-display: flex; align-items: center; height:100%;
+-animation-name: fadeInRight;
+-animation-duration: 1s;
++  animation-name: fadeInRight;
++  animation-duration: 1s;
+ }
+ .miri_event_bloon  { position: absolute; background: url('../../assets/images/icons/bloon_event.svg') no-repeat; background-position:left top; cursor:pointer; width:160px;height:50px; margin-top: -23px; }
+ .miri_event_bloon a { width:160px;height:50px; cursor: pointer;}
+diff --git a/src/views/Main.vue b/src/views/Main.vue
+index e75ffe1d..101dea80 100644
+--- a/src/views/Main.vue
++++ b/src/views/Main.vue
+@@ -39,7 +39,7 @@
+             </div>
+           </div>
+           <div class="slide_right slidingIn">
+-            <div class="slide_miri"><img src="@/assets/images/theme/main_miri.png" alt="" style="transform: translateX(40px);"/></div>
++            <div class="slide_miri"><img src="@/assets/images/theme/main_miri.png"/></div>
+           </div>
+         </div>
+         <!-- //2302232 미리캔버스 이벤트 추가 -->
+-- 
+2.23.0.windows.1
+
+From 74f205e8346afee3a76745886ad8208ed936c6e3 Mon Sep 17 00:00:00 2001
+From: yoonmin Cho <yoonmin9411@medialog.co.kr>
+Date: Tue, 28 Feb 2023 14:18:24 +0900
+Subject: [PATCH] =?UTF-8?q?(#1536)=20=EA=B3=A0=EA=B0=9D=EB=B0=98=EC=9D=91?=
+ =?UTF-8?q?=ED=86=B5=EA=B3=84=20>=20=EB=A9=94=EC=8B=9C=EC=A7=80=20?=
+ =?UTF-8?q?=ED=86=B5=EA=B3=84:=20=EC=86=8C=EC=8A=A4=20=EB=B6=84=EA=B8=B0?=
+ =?UTF-8?q?=20=EC=B2=98=EB=A6=AC?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/components/FromTo.vue                    | 23 ++++++++++++++++----
+ src/views/service/brand/stat/StatMessage.vue |  2 +-
+ 2 files changed, 20 insertions(+), 5 deletions(-)
+
+diff --git a/src/components/FromTo.vue b/src/components/FromTo.vue
+index 1c58d9b2..106407ba 100644
+--- a/src/components/FromTo.vue
++++ b/src/components/FromTo.vue
+@@ -1,5 +1,21 @@
+ <template>
+-  <div class="cont_bundle">
++  <div v-if="from === 'statMessage'" class="cont_bundle">
++    <div class="cont_flex_bundle date_checkbox">
++      <span class="custom_input icon_right" style="width: 185px;">
++        <div class="date_picker">
++          <el-date-picker v-model="searchParam.bgn" type="date" placeholder="시작일" format="yyyy-MM-dd" value-format="yyyyMMdd" @change="changeDate('start')" :picker-options="datePickerStDtOptions"/>
++        </div>
++      </span>
++      <span class="bar">-</span>
++      <span class="custom_input icon_right" style="width: 185px;">
++        <div class="date_picker">
++          <el-date-picker ref="endCal" v-model="searchParam.end" type="date" placeholder="종료일" format="yyyy-MM-dd" value-format="yyyyMMdd" @change="changeDate('end')" :picker-options="datePickerEdDtOptions"/>
++        </div>
++      </span>
++      <span v-if="descr" class="custom_checkbox nowrap" style="width: 460px;">{{ descr }}</span>
++    </div>
++  </div>
++  <div v-else class="cont_bundle">
+     <div class="cont_flex_bundle date_checkbox">
+       <span class="custom_input icon_right" style="width: 185px;">
+         <div class="date_picker">
+@@ -22,9 +38,8 @@ import moment from 'moment'
+ 
+ export default {
+   props: {
+-    descr: {
+-      type: String
+-    },
++    from: { type: String, default: '' },
++    descr: { type: String },
+     searchParam: {
+       type: Object,
+       default: () => {
+diff --git a/src/views/service/brand/stat/StatMessage.vue b/src/views/service/brand/stat/StatMessage.vue
+index d0c4a30b..13548022 100644
+--- a/src/views/service/brand/stat/StatMessage.vue
++++ b/src/views/service/brand/stat/StatMessage.vue
+@@ -83,7 +83,7 @@
+                   <strong class="tit_bundle">기간</strong>
+                   <div class="cont_bundle">
+                     <div class="cont_flex_bundle date_checkbox">
+-                      <FromTo :searchParam.sync="searchParam" :periodCondition="periodCondition" descr="※ 최근 1년 6개월 이내 기간 중 최대 31일까지 검색 가능합니다."></FromTo>
++                      <FromTo :searchParam.sync="searchParam" :periodCondition="periodCondition" from="statMessage" descr="※ 최근 1년 6개월 이내 기간 중 최대 31일까지 검색 가능합니다."></FromTo>
+                     </div>
+                   </div>
+                 </div>
+-- 
+2.23.0.windows.1
+
+From f37f4335fcb0e6fbf3f23dcc25611dcbf9b8eaac Mon Sep 17 00:00:00 2001
+From: YYH <yyh@designvii.com>
+Date: Tue, 28 Feb 2023 14:54:12 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=AF=B8=EB=A6=AC=20=EC=9D=B4=EB=B2=A4?=
+ =?UTF-8?q?=ED=8A=B8=20=EC=95=8C=EB=A6=BC=20=EC=88=98=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/assets/css/designvii.css                  | 40 ++++++++++++++++++-
+ src/views/Main.vue                            | 29 +++++++-------
+ .../brand/approval/BrandApprovalStep1.vue     |  4 +-
+ .../brand/brand/create/BrandCreateStep1.vue   |  4 +-
+ src/views/service/brand/stat/StatMessage.vue  | 28 +++++--------
+ .../brand/template/components/Common.vue      |  1 -
+ .../brand/template/components/MainImg.vue     |  8 +++-
+ 7 files changed, 73 insertions(+), 41 deletions(-)
+
+diff --git a/src/assets/css/designvii.css b/src/assets/css/designvii.css
+index df121b2f..51cfe593 100644
+--- a/src/assets/css/designvii.css
++++ b/src/assets/css/designvii.css
+@@ -1621,7 +1621,7 @@ font-family:'NotoSansLight'; color:#666;font-weight:normal; font-size:14px; line
+   animation-name: fadeInRight;
+   animation-duration: 1s;
+ }
+-.miri_event_bloon  { position: absolute; background: url('../../assets/images/icons/bloon_event.svg') no-repeat; background-position:left top; cursor:pointer; width:160px;height:50px; margin-top: -23px; }
++.miri_event_bloon  { position: absolute; background: url('../../assets/images/icons/bloon_event.svg') no-repeat; background-position:left top; cursor:pointer; width:160px;height:50px; top: -2px; right: 0;}
+ .miri_event_bloon a { width:160px;height:50px; cursor: pointer;}
+ /* //230222 미리캔버스 이벤트 슬라이드 추가 */
+ 
+@@ -2380,4 +2380,42 @@ font-family:'NotoSansLight'; color:#666;font-weight:normal; font-size:14px; line
+ }
+ .custom_input.dv2023_countbumper input {
+   padding-right: 84px;
++}
++
++/* search bar styling */
++
++.dv2023_search-width {
++  justify-content: space-between;
++  /* background-color: pink; */
++}
++.dv2023_search-width .box_select {
++  width: 100%;
++  min-width: 160px;
++}
++.dv2023_search-width > div.filter_bundle:nth-child(1) {
++  width: 220px;
++  /* background-color: aliceblue; */
++}
++.dv2023_search-width > div.filter_bundle:nth-child(2) {
++  width: 210px;
++  /* background-color: yellowgreen; */
++}
++.dv2023_search-width > div.filter_bundle:nth-child(3) {
++  width: 600px;
++  /* background-color: orange; */
++}
++.dv2023_search-width > div.filter_bundle .cont_bundle {
++  width: auto;
++}
++.dv2023_search-width > div.filter_bundle .date_checkbox .custom_input {
++  width: 136px !important;
++}
++.dv2023_search-width > div.filter_bundle .date_checkbox .custom_checkbox {
++  width: 280px !important;
++  font-size: 14px;
++  color: #666;
++  padding-right: 0;
++}
++.dv2023_search-width > div.filter_bundle:nth-child(4) {
++  /* background-color: wheat; */
+ }
+\ No newline at end of file
+diff --git a/src/views/Main.vue b/src/views/Main.vue
+index 101dea80..ae036137 100644
+--- a/src/views/Main.vue
++++ b/src/views/Main.vue
+@@ -29,20 +29,6 @@
+ 
+       <!-- Start : 신규배너 2022 SI 고도화 (남미라)  -->
+       <carousel v-bind="optionsMain" class="visual2_main" @changed="changedMain">
+-        <!-- 2302232 미리캔버스 이벤트 추가 -->
+-        <div class="slides slide4 miri">
+-          <div class="slide_left">
+-            <h4 style="color:#333957;">RCS 메시지에 필요한 이미지를 <br>미리캔버스로<br>쉽게 만들어보세요</h4>
+-            <p style="color:#333957;">다양한 소식을 이미지로 풍부하게 전달할 수 있는<br>이미지형 RCS를 쉽게 제작할 수 있도록 미리캔버스가 도와드립니다.</p>
+-            <div class="btn_wrap">
+-                <a href="javascript:void(0)" @click="goMiriCanvas">더 알아보기</a>
+-            </div>
+-          </div>
+-          <div class="slide_right slidingIn">
+-            <div class="slide_miri"><img src="@/assets/images/theme/main_miri.png"/></div>
+-          </div>
+-        </div>
+-        <!-- //2302232 미리캔버스 이벤트 추가 -->
+ 
+         <div class="slides slide1">
+           <div class="slide_left">
+@@ -73,6 +59,21 @@
+           </div>
+         </div>
+ 
++        <!-- 2302232 미리캔버스 이벤트 추가 -->
++        <div class="slides slide4 miri">
++          <div class="slide_left">
++            <h4 style="color:#333957;">RCS 메시지에 필요한 이미지를 <br>미리캔버스로<br>쉽게 만들어보세요</h4>
++            <p style="color:#333957;">다양한 소식을 이미지로 풍부하게 전달할 수 있는<br>이미지형 RCS를 쉽게 제작할 수 있도록 미리캔버스가 도와드립니다.</p>
++            <div class="btn_wrap">
++                <a href="javascript:void(0)" @click="goMiriCanvas">더 알아보기</a>
++            </div>
++          </div>
++          <div class="slide_right slidingIn">
++            <div class="slide_miri"><img src="@/assets/images/theme/main_miri.png"/></div>
++          </div>
++        </div>
++        <!-- //2302232 미리캔버스 이벤트 추가 -->
++
+         <div class="slides slide2">
+           <div class="slide_left">
+             <h5>깔끔하게 정리된<br/>알림 메시지</h5>
+diff --git a/src/views/service/brand/brand/approval/BrandApprovalStep1.vue b/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
+index be933edb..dcfcfabc 100644
+--- a/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
++++ b/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
+@@ -185,9 +185,7 @@
+               </el-upload>
+             </div>
+           </li>
+-          <li>
+-            <div class="miri_event_bloon" @click="clickMiriCanvas"></div>
+-          </li>
++          <li style="position: relative;"><div class="miri_event_bloon" style="top: -22px; left: -4px;" @click="clickMiriCanvas"></div></li>
+         </ul>
+         <div class="box_file_txt">
+           <p v-show="!profileImgFileImageDataYn">사이즈 : 388X388px~1080X1080px / 1:1 비율 / 파일형식 : png (최대1MB)</p>
+diff --git a/src/views/service/brand/brand/create/BrandCreateStep1.vue b/src/views/service/brand/brand/create/BrandCreateStep1.vue
+index ffc433e1..ddd9ac38 100644
+--- a/src/views/service/brand/brand/create/BrandCreateStep1.vue
++++ b/src/views/service/brand/brand/create/BrandCreateStep1.vue
+@@ -157,9 +157,7 @@
+               </el-upload>
+             </div>
+           </li>
+-          <li>
+-            <div class="miri_event_bloon" @click="clickMiriCanvas"></div>
+-          </li>
++          <li style="position: relative;"><div class="miri_event_bloon" style="top: -22px; left: -8px;" @click="clickMiriCanvas"></div></li>
+         </ul>
+         <div class="box_file_txt">
+           <p v-show="!profileFileDescFlag">사이즈 : 388X388px~1080X1080px / 1:1 비율 / 파일형식 : png (최대1MB)</p>
+diff --git a/src/views/service/brand/stat/StatMessage.vue b/src/views/service/brand/stat/StatMessage.vue
+index d0c4a30b..53512245 100644
+--- a/src/views/service/brand/stat/StatMessage.vue
++++ b/src/views/service/brand/stat/StatMessage.vue
+@@ -32,10 +32,10 @@
+             </ul>
+             <!-- 검색영역 -->
+             <div class="box_search_area mar_b30">
+-              <div class="cont_flex_bundle">
+-                <div class="filter_bundle col_4">
+-                  <strong class="tit_bundle">그룹ID</strong>
+-                  <div class="box_select select_40" style="width: 330px;">
++              <div class="cont_flex_bundle dv2023_search-width">
++                <div class="filter_bundle">
++                  <!-- <strong class="tit_bundle">그룹ID</strong> -->
++                  <div class="box_select select_40">
+                     <a href="javascript:void(0);" class="btn_arrow" style="color: black;" v-if="!searchParam.groupId" @click="toggleSelect('group')">전체</a>
+                     <a href="javascript:void(0);" class="btn_arrow" style="color: black;" v-if="searchParam.groupId" @click="toggleSelect('group')">{{searchParam.groupId}}</a>
+                     <div class="select_search_area" v-if="find.group.flag">
+@@ -55,9 +55,9 @@
+                     </div>
+                   </div>
+                 </div>
+-                <div class="filter_bundle col_6">
+-                  <strong class="tit_bundle" style="width: 170px; padding-left: 30px;">발신번호/대화방ID</strong>
+-                  <div class="box_select select_40" style="width: 330px;">
++                <div class="filter_bundle">
++                  <!-- <strong class="tit_bundle" style="width: 170px; padding-left: 30px;">발신번호/대화방ID</strong> -->
++                  <div class="box_select select_40">
+                     <a href="javascript:void(0);" class="btn_arrow" v-if="!searchParam.chatbotId" @click="toggleSelect('chatbot')">전체</a>
+                     <a href="javascript:void(0);" class="btn_arrow" v-if="searchParam.chatbotId" @click="toggleSelect('chatbot')">{{ addHyphenTelNum(searchParam.chatbotId) }}</a>
+                     <div class="select_search_area" v-if="find.chatbot.flag">
+@@ -77,20 +77,14 @@
+                     </div>
+                   </div>
+                 </div>
+-              </div>
+-              <div class="cont_flex_bundle mar_t20">
+-                <div class="filter_bundle full_width">
+-                  <strong class="tit_bundle">기간</strong>
+-                  <div class="cont_bundle">
+-                    <div class="cont_flex_bundle date_checkbox">
+-                      <FromTo :searchParam.sync="searchParam" :periodCondition="periodCondition" descr="※ 최근 1년 6개월 이내 기간 중 최대 31일까지 검색 가능합니다."></FromTo>
+-                    </div>
+-                  </div>
++                <div class="filter_bundle">
++                  <FromTo :searchParam.sync="searchParam" :periodCondition="periodCondition" descr="※ 최근 1년 6개월 이내 기간 중 최대 31일까지 검색 가능합니다."></FromTo>
+                 </div>
+-                <div class="filter_bundle col_8">
++                <div class="filter_bundle">
+                   <a href="javascript:void(0);" class="btn sml gray col_1" @click="search"><span>검색</span></a>
+                 </div>
+               </div>
++              <!-- <div class="cont_flex_bundle mar_t20"></div> -->
+             </div>
+           </div>
+           <!-- 리스트 -->
+diff --git a/src/views/service/brand/template/components/Common.vue b/src/views/service/brand/template/components/Common.vue
+index 5c4048c2..b6ab1c21 100644
+--- a/src/views/service/brand/template/components/Common.vue
++++ b/src/views/service/brand/template/components/Common.vue
+@@ -59,7 +59,6 @@
+         <div class="using_stat" style="padding-top: 0;">
+           <span class="btn stat_btn sml" :class="{ 'check': info.tplType === tpl.type }" v-for="(tpl, idx) in tplTypes" :key="idx" @click="changeType(tpl.type)">{{ tpl.typeNm }}</span>
+         </div>
+-        <div class="miri_event_bloon" @click="clickMiriCanvas" style="margin:-8px 0 0 263px;"></div>
+       </div>
+     </div>
+     <div class="rcs_item_bundle">
+diff --git a/src/views/service/brand/template/components/MainImg.vue b/src/views/service/brand/template/components/MainImg.vue
+index e014df85..476cd308 100644
+--- a/src/views/service/brand/template/components/MainImg.vue
++++ b/src/views/service/brand/template/components/MainImg.vue
+@@ -20,15 +20,16 @@
+         <span class="require">*</span>
+       </strong>
+       <div class="rcs_cont_bundle">
+-        <span class="custom_image">
++        <span class="custom_image" style="position: relative;">
+           <el-upload ref="media" action :on-change="onFileChange" :on-remove="onFileRemove" :auto-upload="false" :accept="acceptType" class="i_block">
+-            <span class="custom_image_input readonly">
++            <span class="custom_image_input readonly" style="width: 400px;">
+               <a class="textover">{{ getfileName() }}</a>
+             </span>
+             <el-button v-if="originImage || info.media" size="small" type="primary" class="btn sml bd_black" @click.stop="onFileRemove">삭제</el-button>
+             <el-button v-else size="small" type="primary" class="btn sml bd_black">첨부</el-button>
+           </el-upload>
+           <div class="custom_input_etc">권장 사이즈: {{ cropInfo.width }}px X {{ cropInfo.height }}px | 지원 파일: gif, jpeg, jpg, png, bmp | 메시지 내 이미지 용량 총합 1MB</div>
++          <div class="miri_event_bloon" @click="clickMiriCanvas"></div>
+         </span>
+       </div>
+     </div>
+@@ -220,6 +221,9 @@ export default {
+         }
+         return true
+       }
++    },
++    clickMiriCanvas() {
++      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+-- 
+2.23.0.windows.1
+
+From f37f4335fcb0e6fbf3f23dcc25611dcbf9b8eaac Mon Sep 17 00:00:00 2001
+From: YYH <yyh@designvii.com>
+Date: Tue, 28 Feb 2023 14:54:12 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=AF=B8=EB=A6=AC=20=EC=9D=B4=EB=B2=A4?=
+ =?UTF-8?q?=ED=8A=B8=20=EC=95=8C=EB=A6=BC=20=EC=88=98=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/assets/css/designvii.css                  | 40 ++++++++++++++++++-
+ src/views/Main.vue                            | 29 +++++++-------
+ .../brand/approval/BrandApprovalStep1.vue     |  4 +-
+ .../brand/brand/create/BrandCreateStep1.vue   |  4 +-
+ src/views/service/brand/stat/StatMessage.vue  | 28 +++++--------
+ .../brand/template/components/Common.vue      |  1 -
+ .../brand/template/components/MainImg.vue     |  8 +++-
+ 7 files changed, 73 insertions(+), 41 deletions(-)
+
+diff --git a/src/assets/css/designvii.css b/src/assets/css/designvii.css
+index df121b2f..51cfe593 100644
+--- a/src/assets/css/designvii.css
++++ b/src/assets/css/designvii.css
+@@ -1621,7 +1621,7 @@ font-family:'NotoSansLight'; color:#666;font-weight:normal; font-size:14px; line
+   animation-name: fadeInRight;
+   animation-duration: 1s;
+ }
+-.miri_event_bloon  { position: absolute; background: url('../../assets/images/icons/bloon_event.svg') no-repeat; background-position:left top; cursor:pointer; width:160px;height:50px; margin-top: -23px; }
++.miri_event_bloon  { position: absolute; background: url('../../assets/images/icons/bloon_event.svg') no-repeat; background-position:left top; cursor:pointer; width:160px;height:50px; top: -2px; right: 0;}
+ .miri_event_bloon a { width:160px;height:50px; cursor: pointer;}
+ /* //230222 미리캔버스 이벤트 슬라이드 추가 */
+ 
+@@ -2380,4 +2380,42 @@ font-family:'NotoSansLight'; color:#666;font-weight:normal; font-size:14px; line
+ }
+ .custom_input.dv2023_countbumper input {
+   padding-right: 84px;
++}
++
++/* search bar styling */
++
++.dv2023_search-width {
++  justify-content: space-between;
++  /* background-color: pink; */
++}
++.dv2023_search-width .box_select {
++  width: 100%;
++  min-width: 160px;
++}
++.dv2023_search-width > div.filter_bundle:nth-child(1) {
++  width: 220px;
++  /* background-color: aliceblue; */
++}
++.dv2023_search-width > div.filter_bundle:nth-child(2) {
++  width: 210px;
++  /* background-color: yellowgreen; */
++}
++.dv2023_search-width > div.filter_bundle:nth-child(3) {
++  width: 600px;
++  /* background-color: orange; */
++}
++.dv2023_search-width > div.filter_bundle .cont_bundle {
++  width: auto;
++}
++.dv2023_search-width > div.filter_bundle .date_checkbox .custom_input {
++  width: 136px !important;
++}
++.dv2023_search-width > div.filter_bundle .date_checkbox .custom_checkbox {
++  width: 280px !important;
++  font-size: 14px;
++  color: #666;
++  padding-right: 0;
++}
++.dv2023_search-width > div.filter_bundle:nth-child(4) {
++  /* background-color: wheat; */
+ }
+\ No newline at end of file
+diff --git a/src/views/Main.vue b/src/views/Main.vue
+index 101dea80..ae036137 100644
+--- a/src/views/Main.vue
++++ b/src/views/Main.vue
+@@ -29,20 +29,6 @@
+ 
+       <!-- Start : 신규배너 2022 SI 고도화 (남미라)  -->
+       <carousel v-bind="optionsMain" class="visual2_main" @changed="changedMain">
+-        <!-- 2302232 미리캔버스 이벤트 추가 -->
+-        <div class="slides slide4 miri">
+-          <div class="slide_left">
+-            <h4 style="color:#333957;">RCS 메시지에 필요한 이미지를 <br>미리캔버스로<br>쉽게 만들어보세요</h4>
+-            <p style="color:#333957;">다양한 소식을 이미지로 풍부하게 전달할 수 있는<br>이미지형 RCS를 쉽게 제작할 수 있도록 미리캔버스가 도와드립니다.</p>
+-            <div class="btn_wrap">
+-                <a href="javascript:void(0)" @click="goMiriCanvas">더 알아보기</a>
+-            </div>
+-          </div>
+-          <div class="slide_right slidingIn">
+-            <div class="slide_miri"><img src="@/assets/images/theme/main_miri.png"/></div>
+-          </div>
+-        </div>
+-        <!-- //2302232 미리캔버스 이벤트 추가 -->
+ 
+         <div class="slides slide1">
+           <div class="slide_left">
+@@ -73,6 +59,21 @@
+           </div>
+         </div>
+ 
++        <!-- 2302232 미리캔버스 이벤트 추가 -->
++        <div class="slides slide4 miri">
++          <div class="slide_left">
++            <h4 style="color:#333957;">RCS 메시지에 필요한 이미지를 <br>미리캔버스로<br>쉽게 만들어보세요</h4>
++            <p style="color:#333957;">다양한 소식을 이미지로 풍부하게 전달할 수 있는<br>이미지형 RCS를 쉽게 제작할 수 있도록 미리캔버스가 도와드립니다.</p>
++            <div class="btn_wrap">
++                <a href="javascript:void(0)" @click="goMiriCanvas">더 알아보기</a>
++            </div>
++          </div>
++          <div class="slide_right slidingIn">
++            <div class="slide_miri"><img src="@/assets/images/theme/main_miri.png"/></div>
++          </div>
++        </div>
++        <!-- //2302232 미리캔버스 이벤트 추가 -->
++
+         <div class="slides slide2">
+           <div class="slide_left">
+             <h5>깔끔하게 정리된<br/>알림 메시지</h5>
+diff --git a/src/views/service/brand/brand/approval/BrandApprovalStep1.vue b/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
+index be933edb..dcfcfabc 100644
+--- a/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
++++ b/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
+@@ -185,9 +185,7 @@
+               </el-upload>
+             </div>
+           </li>
+-          <li>
+-            <div class="miri_event_bloon" @click="clickMiriCanvas"></div>
+-          </li>
++          <li style="position: relative;"><div class="miri_event_bloon" style="top: -22px; left: -4px;" @click="clickMiriCanvas"></div></li>
+         </ul>
+         <div class="box_file_txt">
+           <p v-show="!profileImgFileImageDataYn">사이즈 : 388X388px~1080X1080px / 1:1 비율 / 파일형식 : png (최대1MB)</p>
+diff --git a/src/views/service/brand/brand/create/BrandCreateStep1.vue b/src/views/service/brand/brand/create/BrandCreateStep1.vue
+index ffc433e1..ddd9ac38 100644
+--- a/src/views/service/brand/brand/create/BrandCreateStep1.vue
++++ b/src/views/service/brand/brand/create/BrandCreateStep1.vue
+@@ -157,9 +157,7 @@
+               </el-upload>
+             </div>
+           </li>
+-          <li>
+-            <div class="miri_event_bloon" @click="clickMiriCanvas"></div>
+-          </li>
++          <li style="position: relative;"><div class="miri_event_bloon" style="top: -22px; left: -8px;" @click="clickMiriCanvas"></div></li>
+         </ul>
+         <div class="box_file_txt">
+           <p v-show="!profileFileDescFlag">사이즈 : 388X388px~1080X1080px / 1:1 비율 / 파일형식 : png (최대1MB)</p>
+diff --git a/src/views/service/brand/stat/StatMessage.vue b/src/views/service/brand/stat/StatMessage.vue
+index d0c4a30b..53512245 100644
+--- a/src/views/service/brand/stat/StatMessage.vue
++++ b/src/views/service/brand/stat/StatMessage.vue
+@@ -32,10 +32,10 @@
+             </ul>
+             <!-- 검색영역 -->
+             <div class="box_search_area mar_b30">
+-              <div class="cont_flex_bundle">
+-                <div class="filter_bundle col_4">
+-                  <strong class="tit_bundle">그룹ID</strong>
+-                  <div class="box_select select_40" style="width: 330px;">
++              <div class="cont_flex_bundle dv2023_search-width">
++                <div class="filter_bundle">
++                  <!-- <strong class="tit_bundle">그룹ID</strong> -->
++                  <div class="box_select select_40">
+                     <a href="javascript:void(0);" class="btn_arrow" style="color: black;" v-if="!searchParam.groupId" @click="toggleSelect('group')">전체</a>
+                     <a href="javascript:void(0);" class="btn_arrow" style="color: black;" v-if="searchParam.groupId" @click="toggleSelect('group')">{{searchParam.groupId}}</a>
+                     <div class="select_search_area" v-if="find.group.flag">
+@@ -55,9 +55,9 @@
+                     </div>
+                   </div>
+                 </div>
+-                <div class="filter_bundle col_6">
+-                  <strong class="tit_bundle" style="width: 170px; padding-left: 30px;">발신번호/대화방ID</strong>
+-                  <div class="box_select select_40" style="width: 330px;">
++                <div class="filter_bundle">
++                  <!-- <strong class="tit_bundle" style="width: 170px; padding-left: 30px;">발신번호/대화방ID</strong> -->
++                  <div class="box_select select_40">
+                     <a href="javascript:void(0);" class="btn_arrow" v-if="!searchParam.chatbotId" @click="toggleSelect('chatbot')">전체</a>
+                     <a href="javascript:void(0);" class="btn_arrow" v-if="searchParam.chatbotId" @click="toggleSelect('chatbot')">{{ addHyphenTelNum(searchParam.chatbotId) }}</a>
+                     <div class="select_search_area" v-if="find.chatbot.flag">
+@@ -77,20 +77,14 @@
+                     </div>
+                   </div>
+                 </div>
+-              </div>
+-              <div class="cont_flex_bundle mar_t20">
+-                <div class="filter_bundle full_width">
+-                  <strong class="tit_bundle">기간</strong>
+-                  <div class="cont_bundle">
+-                    <div class="cont_flex_bundle date_checkbox">
+-                      <FromTo :searchParam.sync="searchParam" :periodCondition="periodCondition" descr="※ 최근 1년 6개월 이내 기간 중 최대 31일까지 검색 가능합니다."></FromTo>
+-                    </div>
+-                  </div>
++                <div class="filter_bundle">
++                  <FromTo :searchParam.sync="searchParam" :periodCondition="periodCondition" descr="※ 최근 1년 6개월 이내 기간 중 최대 31일까지 검색 가능합니다."></FromTo>
+                 </div>
+-                <div class="filter_bundle col_8">
++                <div class="filter_bundle">
+                   <a href="javascript:void(0);" class="btn sml gray col_1" @click="search"><span>검색</span></a>
+                 </div>
+               </div>
++              <!-- <div class="cont_flex_bundle mar_t20"></div> -->
+             </div>
+           </div>
+           <!-- 리스트 -->
+diff --git a/src/views/service/brand/template/components/Common.vue b/src/views/service/brand/template/components/Common.vue
+index 5c4048c2..b6ab1c21 100644
+--- a/src/views/service/brand/template/components/Common.vue
++++ b/src/views/service/brand/template/components/Common.vue
+@@ -59,7 +59,6 @@
+         <div class="using_stat" style="padding-top: 0;">
+           <span class="btn stat_btn sml" :class="{ 'check': info.tplType === tpl.type }" v-for="(tpl, idx) in tplTypes" :key="idx" @click="changeType(tpl.type)">{{ tpl.typeNm }}</span>
+         </div>
+-        <div class="miri_event_bloon" @click="clickMiriCanvas" style="margin:-8px 0 0 263px;"></div>
+       </div>
+     </div>
+     <div class="rcs_item_bundle">
+diff --git a/src/views/service/brand/template/components/MainImg.vue b/src/views/service/brand/template/components/MainImg.vue
+index e014df85..476cd308 100644
+--- a/src/views/service/brand/template/components/MainImg.vue
++++ b/src/views/service/brand/template/components/MainImg.vue
+@@ -20,15 +20,16 @@
+         <span class="require">*</span>
+       </strong>
+       <div class="rcs_cont_bundle">
+-        <span class="custom_image">
++        <span class="custom_image" style="position: relative;">
+           <el-upload ref="media" action :on-change="onFileChange" :on-remove="onFileRemove" :auto-upload="false" :accept="acceptType" class="i_block">
+-            <span class="custom_image_input readonly">
++            <span class="custom_image_input readonly" style="width: 400px;">
+               <a class="textover">{{ getfileName() }}</a>
+             </span>
+             <el-button v-if="originImage || info.media" size="small" type="primary" class="btn sml bd_black" @click.stop="onFileRemove">삭제</el-button>
+             <el-button v-else size="small" type="primary" class="btn sml bd_black">첨부</el-button>
+           </el-upload>
+           <div class="custom_input_etc">권장 사이즈: {{ cropInfo.width }}px X {{ cropInfo.height }}px | 지원 파일: gif, jpeg, jpg, png, bmp | 메시지 내 이미지 용량 총합 1MB</div>
++          <div class="miri_event_bloon" @click="clickMiriCanvas"></div>
+         </span>
+       </div>
+     </div>
+@@ -220,6 +221,9 @@ export default {
+         }
+         return true
+       }
++    },
++    clickMiriCanvas() {
++      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+-- 
+2.23.0.windows.1
+
+From fde709a7ab329c59225929f13128f14b2b1d24e5 Mon Sep 17 00:00:00 2001
+From: YYH <yyh@designvii.com>
+Date: Tue, 28 Feb 2023 15:32:23 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=AF=B8=EB=A6=AC=EC=9D=B4=EB=B2=A4=ED=8A=B8?=
+ =?UTF-8?q?=20=EC=88=98=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/views/Main.vue                  | 3 ++-
+ src/views/feed/FeedRegistration.vue | 9 +++++++--
+ 2 files changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/src/views/Main.vue b/src/views/Main.vue
+index ae036137..1d7c2b3e 100644
+--- a/src/views/Main.vue
++++ b/src/views/Main.vue
+@@ -62,7 +62,8 @@
+         <!-- 2302232 미리캔버스 이벤트 추가 -->
+         <div class="slides slide4 miri">
+           <div class="slide_left">
+-            <h4 style="color:#333957;">RCS 메시지에 필요한 이미지를 <br>미리캔버스로<br>쉽게 만들어보세요</h4>
++            <p style="color: #6287E4; margin-bottom: 8px; font-size: 22px;">RCS Biz Center X 미리캔버스 제휴 프로모션</p>
++            <h4 style="color:#333957;">RCS 메시지에 필요한 이미지를<br>쉽게 만들어보세요</h4>
+             <p style="color:#333957;">다양한 소식을 이미지로 풍부하게 전달할 수 있는<br>이미지형 RCS를 쉽게 제작할 수 있도록 미리캔버스가 도와드립니다.</p>
+             <div class="btn_wrap">
+                 <a href="javascript:void(0)" @click="goMiriCanvas">더 알아보기</a>
+diff --git a/src/views/feed/FeedRegistration.vue b/src/views/feed/FeedRegistration.vue
+index 29a4520e..f34d7091 100644
+--- a/src/views/feed/FeedRegistration.vue
++++ b/src/views/feed/FeedRegistration.vue
+@@ -185,7 +185,7 @@
+                   </span>
+                 </strong>
+                 <div class="rbc_cont_bundle">
+-                  <div class="content_text_info mar_b10">
++                  <div class="content_text_info mar_b10" style="position: relative;">
+                     <h4 class="h4_title">
+                       - 이미지는 필수 1장, 최대 10장까지 등록 가능 합니다.<br>
+                       - 권장 이미지 사이즈(700px X 600~1080px)/ jpg, png, gif (용량 최대 3MB) <!-- 2021.09.23 RBC고도화수정2 -->
+@@ -195,6 +195,7 @@
+                         <span>썸네일 보기</span>
+                       </a>
+                     </div>
++                    <div class="miri_event_bloon" style="top: 2px; right: -52px;" @click="clickMiriCanvas"></div>
+                   </div>
+                   <!-- upload -->
+                   <div class="image_upload">
+@@ -569,7 +570,7 @@
+                           </h4>
+                         </div>
+                         <!-- upload -->
+-                        <div class="image_upload">
++                        <div class="image_upload" style="position: relative;">
+ 
+                           <!-- image -->
+                           <div class="image" v-for="(file, index) in slideCnt[slideTab-1].slideMedia" :key="index">
+@@ -582,6 +583,7 @@
+                           <div class="image_upload hei_100">
+                             <input v-if="slideCnt[slideTab-1].slideMedia.length < 1" type="file" id="file2" ref="filesSlide" class="btn_add2" @change="imageUploadSlide" multiple accept="image/gif, image/jpeg, image/png" style="cursor:pointer" name="ATTACH_FILE_NAME"/>
+                           </div>
++                          <div class="miri_event_bloon" style="top: -38px; right: -160px;" @click="clickMiriCanvas"></div>
+                         </div>
+                         <!-- //upload -->
+                       </div>
+@@ -2734,6 +2736,9 @@ export default {
+     },
+     keyupOnlyNum(e) {
+       jglib.keyupOnlyNum(e)
++    },
++    clickMiriCanvas() {
++      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+-- 
+2.23.0.windows.1
+
+From 597f11a55eed66fe72234a3a3788da732dd9a804 Mon Sep 17 00:00:00 2001
+From: YYH <yyh@designvii.com>
+Date: Tue, 28 Feb 2023 16:24:02 +0900
+Subject: [PATCH] =?UTF-8?q?=EA=B2=80=EC=83=89=EB=B0=94=20=EC=88=98?=
+ =?UTF-8?q?=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/assets/css/designvii.css                 | 35 ++++++++++++++------
+ src/views/service/brand/stat/StatMessage.vue | 21 ++++++++++--
+ 2 files changed, 43 insertions(+), 13 deletions(-)
+
+diff --git a/src/assets/css/designvii.css b/src/assets/css/designvii.css
+index 51cfe593..f13835ca 100644
+--- a/src/assets/css/designvii.css
++++ b/src/assets/css/designvii.css
+@@ -2385,24 +2385,24 @@ font-family:'NotoSansLight'; color:#666;font-weight:normal; font-size:14px; line
+ /* search bar styling */
+ 
+ .dv2023_search-width {
+-  justify-content: space-between;
+-  /* background-color: pink; */
++  justify-content: flex-start;
++  column-gap: 16px;
++  position: relative;
+ }
+ .dv2023_search-width .box_select {
+   width: 100%;
+   min-width: 160px;
+ }
+ .dv2023_search-width > div.filter_bundle:nth-child(1) {
+-  width: 220px;
+-  /* background-color: aliceblue; */
++  width: 200px;
+ }
+ .dv2023_search-width > div.filter_bundle:nth-child(2) {
+-  width: 210px;
+-  /* background-color: yellowgreen; */
++  width: 190px;
+ }
+ .dv2023_search-width > div.filter_bundle:nth-child(3) {
+-  width: 600px;
+-  /* background-color: orange; */
++  width: 652px;
++  padding-left: 16px;
++  border-left: 1px solid #d9d9d9;
+ }
+ .dv2023_search-width > div.filter_bundle .cont_bundle {
+   width: auto;
+@@ -2411,11 +2411,26 @@ font-family:'NotoSansLight'; color:#666;font-weight:normal; font-size:14px; line
+   width: 136px !important;
+ }
+ .dv2023_search-width > div.filter_bundle .date_checkbox .custom_checkbox {
+-  width: 280px !important;
++  width: 330px !important;
+   font-size: 14px;
+   color: #666;
+   padding-right: 0;
+ }
++.dv2023_search-width .relative {
++  position: absolute;
++  top: 18px;
++  right: 176px;
++}
++.dv2023_search-width .relative .icon_info {
++  border: none;
++  background-image: url("../../assets/images/icons/circle-question-solid.svg");
++}
++.dv2023_search-width .relative .message {
++  width: 400px;
++  left: -292px;
++}
++.dv2023_search-width .relative .message::before {
++  left: 297px;
++}
+ .dv2023_search-width > div.filter_bundle:nth-child(4) {
+-  /* background-color: wheat; */
+ }
+\ No newline at end of file
+diff --git a/src/views/service/brand/stat/StatMessage.vue b/src/views/service/brand/stat/StatMessage.vue
+index 36c9f4aa..3960610a 100644
+--- a/src/views/service/brand/stat/StatMessage.vue
++++ b/src/views/service/brand/stat/StatMessage.vue
+@@ -31,7 +31,7 @@
+               <li>동일 그룹ID 발송일 기준 3일간 (D+3) 집계됩니다. 단, 이통사별 발송 성공건수 100건 이상인 경우에 한해 집계됩니다.</li>
+             </ul>
+             <!-- 검색영역 -->
+-            <div class="box_search_area mar_b30">
++            <div class="box_search_area mar_b30" style="padding: 32px 28px;">
+               <div class="cont_flex_bundle dv2023_search-width">
+                 <div class="filter_bundle">
+                   <!-- <strong class="tit_bundle">그룹ID</strong> -->
+@@ -77,8 +77,23 @@
+                     </div>
+                   </div>
+                 </div>
++                <div class="filter_bundle">
++                  <FromTo :searchParam.sync="searchParam" :periodCondition="periodCondition" from="statMessage" descr="- 최근 1년 6개월 이내 기간 중 최대 31일까지 검색 가능합니다. - 캠페인 발송 시작일을 포함하여 조회하시기 바랍니다."></FromTo>
++                </div>
++                <div class="filter_bundle">
++                  <a href="javascript:void(0);" class="btn sml gray col_1" @click="search"><span>검색</span></a>
++                </div>
++                <span class="relative">
++                  <button class="icon_info">툴팁</button>
++                  <span class="message">
++                    예를 들어,<br/>
++                    광고 캠페인의 메시지 발송을 &acute;23년 2월 1일에 한 경우,<br/>
++                    기간 조회 시 2월 1일을 포함해서 조회<br/>
++                    &#149; 2월 2일부터 조회 시 발송 성공 건수가 &acute;0&acute;으로 보이게 됩니다.
++                  </span>
++                </span>
+               </div>
+-              <div class="cont_flex_bundle mar_t20">
++              <!-- <div class="cont_flex_bundle mar_t20">
+                 <div class="filter_bundle full_width">
+                   <strong class="tit_bundle">기간</strong>
+                   <div class="cont_bundle">
+@@ -90,7 +105,7 @@
+                 <div class="filter_bundle col_8">
+                   <a href="javascript:void(0);" class="btn sml gray col_1" @click="search"><span>검색</span></a>
+                 </div>
+-              </div>
++              </div> -->
+               <!-- <div class="cont_flex_bundle mar_t20"></div> -->
+             </div>
+           </div>
+-- 
+2.23.0.windows.1
+
+From 73c368008c0c3feb70ec9371af264b99645178e2 Mon Sep 17 00:00:00 2001
+From: YYH <yyh@designvii.com>
+Date: Tue, 28 Feb 2023 16:36:44 +0900
+Subject: [PATCH] =?UTF-8?q?=EA=B2=80=EC=83=89=EB=B0=94=20=EC=88=98?=
+ =?UTF-8?q?=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/assets/css/designvii.css                 | 3 +++
+ src/views/service/brand/stat/StatMessage.vue | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/src/assets/css/designvii.css b/src/assets/css/designvii.css
+index f13835ca..6d7d5bec 100644
+--- a/src/assets/css/designvii.css
++++ b/src/assets/css/designvii.css
+@@ -2433,4 +2433,7 @@ font-family:'NotoSansLight'; color:#666;font-weight:normal; font-size:14px; line
+   left: 297px;
+ }
+ .dv2023_search-width > div.filter_bundle:nth-child(4) {
++}
++.el-picker-panel.el-popper[x-placement^=bottom] .popper__arrow {
++  left: 10% !important;
+ }
+\ No newline at end of file
+diff --git a/src/views/service/brand/stat/StatMessage.vue b/src/views/service/brand/stat/StatMessage.vue
+index 3960610a..33abf343 100644
+--- a/src/views/service/brand/stat/StatMessage.vue
++++ b/src/views/service/brand/stat/StatMessage.vue
+@@ -89,7 +89,7 @@
+                     예를 들어,<br/>
+                     광고 캠페인의 메시지 발송을 &acute;23년 2월 1일에 한 경우,<br/>
+                     기간 조회 시 2월 1일을 포함해서 조회<br/>
+-                    &#149; 2월 2일부터 조회 시 발송 성공 건수가 &acute;0&acute;으로 보이게 됩니다.
++                    * 2월 2일부터 조회 시 발송 성공 건수가 &acute;0&acute;으로 보이게 됩니다.
+                   </span>
+                 </span>
+               </div>
+-- 
+2.23.0.windows.1
+
+From a193ebcce601deb0c6bb0f661e574616ce749e56 Mon Sep 17 00:00:00 2001
+From: YYH <yyh@designvii.com>
+Date: Tue, 28 Feb 2023 17:21:28 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=AF=B8=EB=A6=AC=EC=9D=B4=EB=B2=A4=ED=8A=B8?=
+ =?UTF-8?q?=20=EC=88=98=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/views/Main.vue                                            | 2 +-
+ src/views/service/brand/brand/approval/BrandApprovalStep1.vue | 2 +-
+ src/views/service/brand/brand/create/BrandCreateStep1.vue     | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/views/Main.vue b/src/views/Main.vue
+index 1d7c2b3e..dab82b92 100644
+--- a/src/views/Main.vue
++++ b/src/views/Main.vue
+@@ -62,7 +62,7 @@
+         <!-- 2302232 미리캔버스 이벤트 추가 -->
+         <div class="slides slide4 miri">
+           <div class="slide_left">
+-            <p style="color: #6287E4; margin-bottom: 8px; font-size: 22px;">RCS Biz Center X 미리캔버스 제휴 프로모션</p>
++            <p style="color: #6287E4; margin-bottom: 8px; font-size: 24px; letter-spacing: -1px;">RCS Biz Center X 미리캔버스 제휴 프로모션</p>
+             <h4 style="color:#333957;">RCS 메시지에 필요한 이미지를<br>쉽게 만들어보세요</h4>
+             <p style="color:#333957;">다양한 소식을 이미지로 풍부하게 전달할 수 있는<br>이미지형 RCS를 쉽게 제작할 수 있도록 미리캔버스가 도와드립니다.</p>
+             <div class="btn_wrap">
+diff --git a/src/views/service/brand/brand/approval/BrandApprovalStep1.vue b/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
+index dcfcfabc..630682c7 100644
+--- a/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
++++ b/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
+@@ -26,6 +26,7 @@
+               </el-upload>
+             </div>
+           </li>
++          <li style="position: relative;"><div class="miri_event_bloon" style="top: -22px; left: -4px;" @click="clickMiriCanvas"></div></li>
+         </ul>
+         <div class="box_file_txt">
+           <p v-show="!bgImgFileImageDataYn">사이즈 : 388X388px~1080X1080px / 1:1 비율 / 파일형식 : jpg, png (최대1MB)</p>
+@@ -185,7 +186,6 @@
+               </el-upload>
+             </div>
+           </li>
+-          <li style="position: relative;"><div class="miri_event_bloon" style="top: -22px; left: -4px;" @click="clickMiriCanvas"></div></li>
+         </ul>
+         <div class="box_file_txt">
+           <p v-show="!profileImgFileImageDataYn">사이즈 : 388X388px~1080X1080px / 1:1 비율 / 파일형식 : png (최대1MB)</p>
+diff --git a/src/views/service/brand/brand/create/BrandCreateStep1.vue b/src/views/service/brand/brand/create/BrandCreateStep1.vue
+index ddd9ac38..84acf4a5 100644
+--- a/src/views/service/brand/brand/create/BrandCreateStep1.vue
++++ b/src/views/service/brand/brand/create/BrandCreateStep1.vue
+@@ -16,6 +16,7 @@
+               </el-upload>
+             </div>
+           </li>
++          <li style="position: relative;"><div class="miri_event_bloon" style="top: -22px; left: -8px;" @click="clickMiriCanvas"></div></li>
+         </ul>
+         <div class="box_file_txt">
+           <p v-show="!bgFileDescFlag">사이즈 : 388X388px~1080X1080px / 1:1 비율 / 파일형식 : jpg, png (최대1MB)</p>
+@@ -157,7 +158,6 @@
+               </el-upload>
+             </div>
+           </li>
+-          <li style="position: relative;"><div class="miri_event_bloon" style="top: -22px; left: -8px;" @click="clickMiriCanvas"></div></li>
+         </ul>
+         <div class="box_file_txt">
+           <p v-show="!profileFileDescFlag">사이즈 : 388X388px~1080X1080px / 1:1 비율 / 파일형식 : png (최대1MB)</p>
+-- 
+2.23.0.windows.1
+
+From ff81c94e6673b56e368b300f8386781a65737951 Mon Sep 17 00:00:00 2001
+From: YYH <yyh@designvii.com>
+Date: Tue, 28 Feb 2023 17:46:59 +0900
+Subject: [PATCH] =?UTF-8?q?=ED=88=AC=EC=8A=A4=ED=8A=B8=20=EC=9C=84?=
+ =?UTF-8?q?=EC=B9=98=20=EC=88=98=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/assets/css/designvii.css  | 14 +++++++-------
+ src/views/feed/FeedDetail.vue |  8 ++++++--
+ 2 files changed, 13 insertions(+), 9 deletions(-)
+
+diff --git a/src/assets/css/designvii.css b/src/assets/css/designvii.css
+index 6d7d5bec..eb2d4e7a 100644
+--- a/src/assets/css/designvii.css
++++ b/src/assets/css/designvii.css
+@@ -2386,7 +2386,7 @@ font-family:'NotoSansLight'; color:#666;font-weight:normal; font-size:14px; line
+ 
+ .dv2023_search-width {
+   justify-content: flex-start;
+-  column-gap: 16px;
++  column-gap: 8px;
+   position: relative;
+ }
+ .dv2023_search-width .box_select {
+@@ -2394,21 +2394,21 @@ font-family:'NotoSansLight'; color:#666;font-weight:normal; font-size:14px; line
+   min-width: 160px;
+ }
+ .dv2023_search-width > div.filter_bundle:nth-child(1) {
+-  width: 200px;
++  width: 210px;
+ }
+ .dv2023_search-width > div.filter_bundle:nth-child(2) {
+-  width: 190px;
++  width: 210px;
+ }
+ .dv2023_search-width > div.filter_bundle:nth-child(3) {
+-  width: 652px;
+-  padding-left: 16px;
++  width: 678px;
++  padding-left: 8px;
+   border-left: 1px solid #d9d9d9;
+ }
+ .dv2023_search-width > div.filter_bundle .cont_bundle {
+   width: auto;
+ }
+ .dv2023_search-width > div.filter_bundle .date_checkbox .custom_input {
+-  width: 136px !important;
++  width: 150px !important;
+ }
+ .dv2023_search-width > div.filter_bundle .date_checkbox .custom_checkbox {
+   width: 330px !important;
+@@ -2419,7 +2419,7 @@ font-family:'NotoSansLight'; color:#666;font-weight:normal; font-size:14px; line
+ .dv2023_search-width .relative {
+   position: absolute;
+   top: 18px;
+-  right: 176px;
++  right: 142px;
+ }
+ .dv2023_search-width .relative .icon_info {
+   border: none;
+diff --git a/src/views/feed/FeedDetail.vue b/src/views/feed/FeedDetail.vue
+index 954de198..a4918ceb 100644
+--- a/src/views/feed/FeedDetail.vue
++++ b/src/views/feed/FeedDetail.vue
+@@ -119,7 +119,7 @@
+                     </span>
+                   </span>
+                 </strong>
+-                <div class="rbc_cont_bundle">
++                <div class="rbc_cont_bundle" style="position: relative;">
+                   <div class="content_text_info mar_b10">
+                     <h4 class="h4_title">
+                       - 이미지는 필수 1장, 최대 10장까지 등록 가능 합니다.<br>
+@@ -501,7 +501,8 @@
+                           </h4>
+                         </div>
+                         <!-- upload -->
+-                        <div class="image_upload">
++                        <div class="image_upload" style="position: relative;">
++                          <div class="miri_event_bloon" style="top:-36px; right: -156px;" @click="clickMiriCanvas"></div>
+ 
+                           <!-- image -->
+                           <div class="image" v-for="(file, index) in slideCnt[slideTab-1].slideMedia" :key="index">
+@@ -2942,6 +2943,9 @@ export default {
+     },
+     keyupOnlyNum(e) {
+       jglib.keyupOnlyNum(e)
++    },
++    clickMiriCanvas() {
++      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+-- 
+2.23.0.windows.1
+
+From 42e4f56f1e23358221fdbc8b4995b55b06ef16b2 Mon Sep 17 00:00:00 2001
+From: YYH <yyh@designvii.com>
+Date: Tue, 28 Feb 2023 18:01:05 +0900
+Subject: [PATCH] =?UTF-8?q?=EC=88=98=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/components/FromTo.vue | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/components/FromTo.vue b/src/components/FromTo.vue
+index 106407ba..1cafc129 100644
+--- a/src/components/FromTo.vue
++++ b/src/components/FromTo.vue
+@@ -12,7 +12,7 @@
+           <el-date-picker ref="endCal" v-model="searchParam.end" type="date" placeholder="종료일" format="yyyy-MM-dd" value-format="yyyyMMdd" @change="changeDate('end')" :picker-options="datePickerEdDtOptions"/>
+         </div>
+       </span>
+-      <span v-if="descr" class="custom_checkbox nowrap" style="width: 460px;">{{ descr }}</span>
++      <span v-if="descr" class="custom_checkbox nowrap" style="width: 460px; margin-top:-4px; line-height:150%">{{ descr }}</span>
+     </div>
+   </div>
+   <div v-else class="cont_bundle">
+-- 
+2.23.0.windows.1
+
+From 9e0802f12bce29320e603753cbc360918c506cfa Mon Sep 17 00:00:00 2001
+From: YYH <yyh@designvii.com>
+Date: Thu, 2 Mar 2023 11:32:59 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=AF=B8=EB=A6=AC=EC=BC=84=EB=B2=84=EC=8A=A4?=
+ =?UTF-8?q?=20=EC=88=98=EC=A0=95?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/views/feed/FeedDetail.vue                                 | 2 +-
+ src/views/feed/FeedRegistration.vue                           | 2 +-
+ src/views/service/brand/brand/approval/BrandApprovalStep1.vue | 2 +-
+ src/views/service/brand/brand/create/BrandCreateStep1.vue     | 2 +-
+ src/views/service/brand/template/components/Common.vue        | 2 +-
+ src/views/service/brand/template/components/MainImg.vue       | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/src/views/feed/FeedDetail.vue b/src/views/feed/FeedDetail.vue
+index a4918ceb..acf8c137 100644
+--- a/src/views/feed/FeedDetail.vue
++++ b/src/views/feed/FeedDetail.vue
+@@ -2945,7 +2945,7 @@ export default {
+       jglib.keyupOnlyNum(e)
+     },
+     clickMiriCanvas() {
+-      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
++      this.$router.push({ name: 'miricanvas', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+diff --git a/src/views/feed/FeedRegistration.vue b/src/views/feed/FeedRegistration.vue
+index f34d7091..e9597b30 100644
+--- a/src/views/feed/FeedRegistration.vue
++++ b/src/views/feed/FeedRegistration.vue
+@@ -2738,7 +2738,7 @@ export default {
+       jglib.keyupOnlyNum(e)
+     },
+     clickMiriCanvas() {
+-      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
++      this.$router.push({ name: 'miricanvas', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+diff --git a/src/views/service/brand/brand/approval/BrandApprovalStep1.vue b/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
+index 630682c7..9388ccdd 100644
+--- a/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
++++ b/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
+@@ -877,7 +877,7 @@ export default {
+       return carageReuturnVal.replace(/(?:\r\n|\r|\n)/g, '<br />')
+     },
+     clickMiriCanvas() {
+-      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
++      this.$router.push({ name: 'miricanvas', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+diff --git a/src/views/service/brand/brand/create/BrandCreateStep1.vue b/src/views/service/brand/brand/create/BrandCreateStep1.vue
+index 84acf4a5..1be42ee3 100644
+--- a/src/views/service/brand/brand/create/BrandCreateStep1.vue
++++ b/src/views/service/brand/brand/create/BrandCreateStep1.vue
+@@ -776,7 +776,7 @@ export default {
+       return true
+     },
+     clickMiriCanvas() {
+-      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
++      this.$router.push({ name: 'miricanvas', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+diff --git a/src/views/service/brand/template/components/Common.vue b/src/views/service/brand/template/components/Common.vue
+index b6ab1c21..b17c096d 100644
+--- a/src/views/service/brand/template/components/Common.vue
++++ b/src/views/service/brand/template/components/Common.vue
+@@ -191,7 +191,7 @@ export default {
+       return true
+     },
+     clickMiriCanvas() {
+-      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
++      this.$router.push({ name: 'miricanvas', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+diff --git a/src/views/service/brand/template/components/MainImg.vue b/src/views/service/brand/template/components/MainImg.vue
+index 476cd308..33a15247 100644
+--- a/src/views/service/brand/template/components/MainImg.vue
++++ b/src/views/service/brand/template/components/MainImg.vue
+@@ -223,7 +223,7 @@ export default {
+       }
+     },
+     clickMiriCanvas() {
+-      this.$router.push({ name: 'onlineqnaform', params: { from: 'miricanvas' } })
++      this.$router.push({ name: 'miricanvas', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+-- 
+2.23.0.windows.1
+
+From f1d6ec0c87ed5fd1bf736e81d03b4e2448067127 Mon Sep 17 00:00:00 2001
+From: yoonmin Cho <yoonmin9411@medialog.co.kr>
+Date: Thu, 2 Mar 2023 13:32:50 +0900
+Subject: [PATCH] =?UTF-8?q?=EB=AF=B8=EB=A6=AC=EC=BA=94=EB=B2=84=EC=8A=A4?=
+ =?UTF-8?q?=20-=20=EC=9D=B4=EB=B2=A4=ED=8A=B8=20=ED=8E=98=EC=9D=B4?=
+ =?UTF-8?q?=EC=A7=80=20=EC=9D=B4=EB=8F=99=EC=8B=9C=20=EB=B6=88=ED=95=84?=
+ =?UTF-8?q?=EC=9A=94=20=ED=8C=8C=EB=9D=BC=EB=AF=B8=ED=84=B0=20=EC=A0=9C?=
+ =?UTF-8?q?=EA=B1=B0?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/views/feed/FeedDetail.vue                                 | 2 +-
+ src/views/feed/FeedRegistration.vue                           | 2 +-
+ src/views/service/brand/brand/approval/BrandApprovalStep1.vue | 2 +-
+ src/views/service/brand/brand/create/BrandCreateStep1.vue     | 2 +-
+ src/views/service/brand/template/components/Common.vue        | 3 ---
+ src/views/service/brand/template/components/MainImg.vue       | 2 +-
+ 6 files changed, 5 insertions(+), 8 deletions(-)
+
+diff --git a/src/views/feed/FeedDetail.vue b/src/views/feed/FeedDetail.vue
+index acf8c137..4587f9fe 100644
+--- a/src/views/feed/FeedDetail.vue
++++ b/src/views/feed/FeedDetail.vue
+@@ -2945,7 +2945,7 @@ export default {
+       jglib.keyupOnlyNum(e)
+     },
+     clickMiriCanvas() {
+-      this.$router.push({ name: 'miricanvas', params: { from: 'miricanvas' } })
++      this.$router.push({ name: 'miricanvas' })
+     }
+   }
+ }
+diff --git a/src/views/feed/FeedRegistration.vue b/src/views/feed/FeedRegistration.vue
+index e9597b30..9ac974aa 100644
+--- a/src/views/feed/FeedRegistration.vue
++++ b/src/views/feed/FeedRegistration.vue
+@@ -2738,7 +2738,7 @@ export default {
+       jglib.keyupOnlyNum(e)
+     },
+     clickMiriCanvas() {
+-      this.$router.push({ name: 'miricanvas', params: { from: 'miricanvas' } })
++      this.$router.push({ name: 'miricanvas' })
+     }
+   }
+ }
+diff --git a/src/views/service/brand/brand/approval/BrandApprovalStep1.vue b/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
+index 9388ccdd..b97645bf 100644
+--- a/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
++++ b/src/views/service/brand/brand/approval/BrandApprovalStep1.vue
+@@ -877,7 +877,7 @@ export default {
+       return carageReuturnVal.replace(/(?:\r\n|\r|\n)/g, '<br />')
+     },
+     clickMiriCanvas() {
+-      this.$router.push({ name: 'miricanvas', params: { from: 'miricanvas' } })
++      this.$router.push({ name: 'miricanvas' })
+     }
+   }
+ }
+diff --git a/src/views/service/brand/brand/create/BrandCreateStep1.vue b/src/views/service/brand/brand/create/BrandCreateStep1.vue
+index 1be42ee3..29586079 100644
+--- a/src/views/service/brand/brand/create/BrandCreateStep1.vue
++++ b/src/views/service/brand/brand/create/BrandCreateStep1.vue
+@@ -776,7 +776,7 @@ export default {
+       return true
+     },
+     clickMiriCanvas() {
+-      this.$router.push({ name: 'miricanvas', params: { from: 'miricanvas' } })
++      this.$router.push({ name: 'miricanvas' })
+     }
+   }
+ }
+diff --git a/src/views/service/brand/template/components/Common.vue b/src/views/service/brand/template/components/Common.vue
+index b17c096d..b05c7d27 100644
+--- a/src/views/service/brand/template/components/Common.vue
++++ b/src/views/service/brand/template/components/Common.vue
+@@ -189,9 +189,6 @@ export default {
+         return false
+       }
+       return true
+-    },
+-    clickMiriCanvas() {
+-      this.$router.push({ name: 'miricanvas', params: { from: 'miricanvas' } })
+     }
+   }
+ }
+diff --git a/src/views/service/brand/template/components/MainImg.vue b/src/views/service/brand/template/components/MainImg.vue
+index 33a15247..f419d6ab 100644
+--- a/src/views/service/brand/template/components/MainImg.vue
++++ b/src/views/service/brand/template/components/MainImg.vue
+@@ -223,7 +223,7 @@ export default {
+       }
+     },
+     clickMiriCanvas() {
+-      this.$router.push({ name: 'miricanvas', params: { from: 'miricanvas' } })
++      this.$router.push({ name: 'miricanvas' })
+     }
+   }
+ }
+-- 
+2.23.0.windows.1
+
