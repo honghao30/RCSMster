@@ -2,7 +2,7 @@
   <div class="login">
     <div class="login-title__wrap--top">
       <PageTitle pagetitle="로그인" />
-      <p>Biz RCS는 기업, 기관, 인증된 단체만 이용 가능합니다.</p>
+      <p>Biz RCS는 기업, 기관, 인증된 단체만 <span class="m-block">이용 가능합니다.</span></p>
     </div>
     <form  ref="form" :model="form">
       <div class="form-list">
