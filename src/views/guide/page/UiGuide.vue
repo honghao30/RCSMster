@@ -119,7 +119,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('@/assets/scss/common/guide.scss');
+@import url('../../../assets/scss/common/guide.scss');
 .ui-guide__wrap {
   padding:20px;
   .wsg-guide-header {

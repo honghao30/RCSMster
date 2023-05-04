@@ -1,19 +1,19 @@
 <template>
   <div>
-    <!-- <HeaterGuide /> -->
+    <HeaterGuide />
     <BasicSummary />
   </div>
 </template>
 
 <script>
 import BasicSummary from './cmp/BasicSummary.vue'
-// import HeaterGuide from './cmp/Header.vue'
+import HeaterGuide from './cmp/Header.vue'
 
 export default {
   name: 'PubGuides',
   components: {
-    BasicSummary
-    // HeaterGuide
+    BasicSummary,
+    HeaterGuide
   },
   metaInfo: {
     title: 'Publishing Guides'
@@ -22,5 +22,5 @@ export default {
 </script>
 
 <style lang="scss">
-// @import url('@/assets/scss/common/guide.scss');
+@import url('../../assets/scss/common/guide.scss');
 </style>

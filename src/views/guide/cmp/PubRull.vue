@@ -111,7 +111,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('@/assets/scss/common/guide.scss');
 .wsg-table-body {
     width: calc(100% + 2px);
     table-layout: fixed;

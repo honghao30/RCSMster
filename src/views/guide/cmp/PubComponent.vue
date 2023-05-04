@@ -96,7 +96,6 @@ export default {
 
 <style lang="scss" scoped>
 * {font-size: 13px;}
-@import url('@/assets/scss/common/guide.scss');
 .ia__list {margin-top:50px;}
 .wsg-guide-header+.ia__list  {
   margin-top: 10px;

@@ -1,3 +1,4 @@
+//20230504 남다현 경로 확인을 위해 background-image 주석 처리 진행
 .notice-table {
     .table-list {
         table-layout: fixed;
@@ -26,7 +27,7 @@
         height:19px;
         flex-shrink: 0;
         margin-left:5px;
-        background:url('@/assets/images/customer/ico_attach.png') no-repeat 50% 50%
+        // background:url('@/assets/images/customer/ico_attach.png') no-repeat 50% 50%
     }
     .ico-new {
         display: inline-block;
@@ -34,7 +35,7 @@
         height:10px;
         flex-shrink: 0;
         margin-left:8px;
-        background:url('@/assets/images/customer/ico_new.png') no-repeat 50% 50%;
+        // background:url('@/assets/images/customer/ico_new.png') no-repeat 50% 50%;
     } 
 }
 @media #{$phone} {
@@ -89,7 +90,7 @@
                  vertical-align: top;
                  position:relative;
                  top:4px;
-                 background:url('@/assets/images/customer/m_ico_attach.png') no-repeat 50% 50%;
+                //  background:url('@/assets/images/customer/m_ico_attach.png') no-repeat 50% 50%;
                  background-size:100%;
              }
              .ico-new {
@@ -99,7 +100,7 @@
                  position:relative;
                  vertical-align: top;
                  top:3px;
-                 background:url('@/assets/images/customer/m_ico_new.png') no-repeat 50% 50%;
+                //  background:url('@/assets/images/customer/m_ico_new.png') no-repeat 50% 50%;
                  background-size:100%;
              } 
 

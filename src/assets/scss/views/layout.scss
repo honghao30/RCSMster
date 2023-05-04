@@ -1,3 +1,4 @@
+//20230504 남다현 경로 확인을 위해 background-image 주석 처리 진행
 
 $headerHeight: 100px;
 $contentPaddingM: 16px;
@@ -25,7 +26,7 @@ $contentPaddingM: 16px;
     h1{
         width:180px;
         height:30px;
-        background:url('@/assets/images/layout/logo.png') no-repeat 50% 50%;   
+        // background:url('@/assets/images/layout/logo.png') no-repeat 50% 50%;   
     }
     a {
         display:block;
@@ -107,7 +108,7 @@ $contentPaddingM: 16px;
         width:38px;
         padding-left:5px;
         cursor:pointer;
-        background:url('@/assets/images/layout/ico_alarm.png') no-repeat left 5px top 50%;
+        // background:url('@/assets/images/layout/ico_alarm.png') no-repeat left 5px top 50%;
         &__num {
             border-radius:10px;
             padding:0 4px;
@@ -188,7 +189,7 @@ $contentPaddingM: 16px;
                 display:inline-block;
                 width: 6px;
                 height:10px;
-                background:url('@/assets/images/layout/arrow_next.png') no-repeat 50% 50%;
+                // background:url('@/assets/images/layout/arrow_next.png') no-repeat 50% 50%;
                 margin:0 12px;
             }
             &:last-child {
@@ -251,17 +252,17 @@ $contentPaddingM: 16px;
             }
             &.tworld {
                 a {
-                    background-image:url('@/assets/images/layout/logo_tworld.png')
+                    // background-image:url('@/assets/images/layout/logo_tworld.png')
                 }
             }
             &.kt {
                 a {
-                    background-image:url('@/assets/images/layout/logo_kt.png')
+                    // background-image:url('@/assets/images/layout/logo_kt.png')
                 }
             }
             &.uplus {
                 a {
-                    background-image:url('@/assets/images/layout/logo_lg.png')
+                   //  background-image:url('@/assets/images/layout/logo_lg.png')
                 }
             }
         }
@@ -309,7 +310,7 @@ $contentPaddingM: 16px;
             
             height: 24px;
             width: 24px;
-            background:url('@/assets/images/layout/btn_nav.png') no-repeat 50% 50%;
+            // background:url('@/assets/images/layout/btn_nav.png') no-repeat 50% 50%;
             background-size:100%;
         }
         &__inner {
@@ -394,17 +395,17 @@ $contentPaddingM: 16px;
                 }
                 &.tworld {
                     a {
-                        background-image:url('@/assets/images/layout/m_logo_tworld.png')
+                        // background-image:url('@/assets/images/layout/m_logo_tworld.png')
                     }
                 }
                 &.kt {
                     a {
-                        background-image:url('@/assets/images/layout/m_logo_kt.png')
+                        // background-image:url('@/assets/images/layout/m_logo_kt.png')
                     }
                 }
                 &.uplus {
                     a {
-                        background-image:url('@/assets/images/layout/m_logo_lg.png')
+                        // background-image:url('@/assets/images/layout/m_logo_lg.png')
                     }
                 }
             }
