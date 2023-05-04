@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div>
+      <div class="box">테스트</div>
+    </div>
     <!--
     <layout-mobile v-if="isMobile"/>
     <layout-pc v-else/>
@@ -49,5 +52,6 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
+  @import  './assets/scss/test.scss';
 </style>
