@@ -1,8 +1,10 @@
 <template>
   <div class="wrap">
     <HeaderCmp />
-    <BreadCrumb />
-    <router-view></router-view>
+    <div class="contents" id="contents" role="main">
+      <BreadCrumb />
+      <router-view></router-view>
+    </div>
     <FooterCmp />
   </div>
 </template>
