@@ -3,9 +3,8 @@ import Router from 'vue-router'
 
 import store from '@/store'
 
-
-//파일 링크
-import PubGuides from '@/views/guide';
+// 파일 링크
+import PubGuides from '@/views/guide'
 // import RullGuide from './views/guide/page/RullGuide';
 // import PubList from './views/guide/page/PubList';
 // import UiGuides from './views/guide/page/UiGuide';
@@ -20,21 +19,19 @@ import PubGuides from '@/views/guide';
 // import AgencyJoinStep01 from './views/publish/join/AgencyJoinStep01';
 // import AgencyJoinStep04 from './views/publish/join/AgencyJoinStep04';
 
-
 Vue.use(Router)
-
 
 let router = new Router({
   mode: 'history',
   routes: [
     {
-      path: "/PubGuides", 
+      path: '/PubGuides',
       component: PubGuides,
       meta: {
-        layout: "GuideLayout",
+        layout: 'GuideLayout',
         tittle: 'RCS Biz Center 가이드'
       }
-    },
+    }
   ]
 })
 
