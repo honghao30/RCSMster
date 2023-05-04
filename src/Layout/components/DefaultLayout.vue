@@ -14,12 +14,12 @@ import DefaultHeader from './DefaultHeader.vue'
 import DefaultFooter from './DefaultFooter.vue'
 import BreadCrumb from './BreadCrumb.vue'
 export default {
-    name: 'DefaultLayout',
-    components: {
-      DefaultHeader,
-      DefaultFooter,
-      BreadCrumb
-    }
+  name: 'DefaultLayout',
+  components: {
+    DefaultHeader,
+    DefaultFooter,
+    BreadCrumb
+  }
 }
 </script>
 

@@ -4,8 +4,8 @@
       <ul class="breadcrumb-list">
         <li><router-link to="/">HOME</router-link></li>
         <li>회원가입</li>
-      </ul>   
-    </div> 
+      </ul>
+    </div>
   </div>
 </template>
 

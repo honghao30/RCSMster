@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap guide">    
+  <div class="wrap guide">
     <!-- <HeaderCmp /> -->
     <router-view />
   </div>
@@ -8,10 +8,10 @@
 <script>
 // import HeaderCmp from '@/views/guide/cmp/Header.vue'
 export default {
-    name: 'GuideLayout',
-    components: {
-        // HeaderCmp      
-    }
+  name: 'GuideLayout',
+  components: {
+  // HeaderCmp
+  }
 }
 </script>
 
