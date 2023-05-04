@@ -1,6 +1,6 @@
 <template>
   <div class="join">
-    <PageTitle pagetitle="기업담당자 회원가입" />  
+    <PageTitle pagetitle="기업담당자 회원가입" />
     <JoinStep :step="3"/>
     <PageTitleH3 titleh3="회원정보 입력" noticeinfo="필수 입력값" />
     <form  ref="form" :model="form">
@@ -8,9 +8,9 @@
           <table class="table table-bodyonly form-table">
             <colgroup>
               <col width="200px">
-              <col /> 
+              <col />
               <col width="150px">
-              <col />               
+              <col />
             </colgroup>
             <tbody>
               <tr>
@@ -18,31 +18,31 @@
                 <td colspan="3">
                     <div class="form-item__content">
                         <div class="form-item-row">
-                            <div class="input-item">   
-                                <span class="input"><input type="text" class="input" placeholder="담당자 이름을 입력해주세요." v-model="form.name"></span>                           
+                            <div class="input-item">
+                                <span class="input"><input type="text" class="input" placeholder="담당자 이름을 입력해주세요." v-model="form.name"></span>
                             </div>
                         </div>
-                        <p class="form-item__error" v-if="nameErrorMsg">담당자 이름을 입력해주세요.</p>  
-                    </div>                                     
+                        <p class="form-item__error" v-if="nameErrorMsg">담당자 이름을 입력해주세요.</p>
+                    </div>
                 </td>
               </tr>
               <tr>
                 <th scope="row"><span class="form-item__label required">휴대폰 번호</span></th>
                 <td colspan="3">
-                    <div class="form-item__content">  
+                    <div class="form-item__content">
                         <div class="form-item-row">
-                            <div class="input-item">   
-                                <span class="input"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요." v-model="form.phone"></span>                           
+                            <div class="input-item">
+                                <span class="input"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요." v-model="form.phone"></span>
                                 <ButtonCmp
                                     type="btn-default-line"
-                                    @click="phoneCertificate"                                    
+                                    @click="phoneCertificate"
                                 >
                                 휴대폰 인증
-                                </ButtonCmp>                                   
+                                </ButtonCmp>
                             </div>
-                            <p class="form-item__error" v-if="phoneErrorMsg">휴대폰 번호을 입력해주세요.</p>  
-                        </div>                       
-                    </div>                                     
+                            <p class="form-item__error" v-if="phoneErrorMsg">휴대폰 번호을 입력해주세요.</p>
+                        </div>
+                    </div>
                 </td>
               </tr>
               <!-- 휴대폰 인증 이후 인증번호 입력 폼이 필요할듯 한데.. 확인 필요 -->
@@ -51,30 +51,30 @@
                 <td colspan="3">
                   <div class="form-item__content">
                     <div class="form-item-row">
-                      <div class="input-item">   
-                        <span class="input"><input type="text" class="input" placeholder="아이디 입력해주세요." v-model="form.id"></span>                           
+                      <div class="input-item">
+                        <span class="input"><input type="text" class="input" placeholder="아이디 입력해주세요." v-model="form.id"></span>
                         <ButtonCmp
                             type="btn-default-line"
-                            @click="checkCertificate"                                    
+                            @click="checkCertificate"
                         >
                           아이디 중복확인
-                        </ButtonCmp>                           
+                        </ButtonCmp>
                       </div>
-                    </div>  
-                    <p class="form-item__error"  v-if="idErrorMsg">아이디를 입력해주세요.</p>                   
+                    </div>
+                    <p class="form-item__error"  v-if="idErrorMsg">아이디를 입력해주세요.</p>
                   </div>
                 </td>
-              </tr>              
+              </tr>
               <tr>
                 <th scope="row"><span class="form-item__label required">비밀번호</span></th>
                 <td colspan="3">
                   <div class="form-item__content">
                     <div class="form-item-row">
-                      <div class="input-item">   
+                      <div class="input-item">
                         <span class="input"><input type="text" class="input" placeholder="비밀번호를 입력하세요"  v-model="form.pass"></span>
                       </div>
                     </div>
-                    <p class="form-item__error" v-if="passErrorMsg">비밀번호을 입력해주세요.</p>                   
+                    <p class="form-item__error" v-if="passErrorMsg">비밀번호을 입력해주세요.</p>
                     <p class="guide-text black">영문, 숫자, 특수문자 중 2개 이상 사용 (2개 조합 시 10자리 이상 / 3개 조합 시 8자리 이상)</p>
                     <p class="guide-text black">연속적인 숫자 또는 문자 사용 불가 (예 : 1234, abcd)</p>
                     <p class="form-item__error">연속적인 숫자 또는 문자 사용 불가 (예 : 1234, abcd)</p>
@@ -89,140 +89,140 @@
                 <td colspan="3">
                   <div class="form-item__content">
                     <div class="form-item-row">
-                      <div class="input-item">   
+                      <div class="input-item">
                         <span class="input"><input type="text" class="input" placeholder="비밀번호를 다시 한번 입력하세요"  v-model="form.passre"></span>
                       </div>
-                    </div>                    
+                    </div>
                   </div>
                 </td>
-              </tr>              
+              </tr>
               <tr>
                 <th scope="row"><span class="form-item__label required">담당자 이메일</span></th>
                 <td colspan="3">
                   <div class="form-item__content">
                     <div class="form-item-row">
-                      <div class="input-item">   
+                      <div class="input-item">
                         <span class="input"><input type="text" class="input" placeholder="담당자 이메일을 입력해주세요."   v-model="form.email"></span>
                       </div>
-                    </div> 
-                    <p class="form-item__error" v-if="emailErrorMsg">담당자 이메일을 입력해주세요.</p>                       
+                    </div>
+                    <p class="form-item__error" v-if="emailErrorMsg">담당자 이메일을 입력해주세요.</p>
                   </div>
                 </td>
-              </tr>              
+              </tr>
               <tr>
                 <th scope="row"><span class="form-item__label required">전화번호</span></th>
                 <td>
                   <div class="form-item__content">
-                    <div class="form-item-row">       
-                      <div class="input-item">   
+                    <div class="form-item-row">
+                      <div class="input-item">
                         <span class="input"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요."   v-model="form.tel"></span>
-                      </div>                    
-                    </div> 
-                    <p class="form-item__error" v-if="telErrorMsg">전화번호 이메일을 입력해주세요.</p>                       
+                      </div>
+                    </div>
+                    <p class="form-item__error" v-if="telErrorMsg">전화번호 이메일을 입력해주세요.</p>
                   </div>
                 </td>
                 <th scope="row"><span class="form-item__label">내선번호</span></th>
                 <td>
                   <div class="form-item__content">
                     <div class="form-item-row">
-                      <div class="input-item">   
+                      <div class="input-item">
                         <span class="input"><input type="text" class="input" placeholder="내선번호를 입력해주세요."   v-model="form.bizevent"></span>
-                      </div>                    
-                    </div>                     
+                      </div>
+                    </div>
                   </div>
-                </td>                
-              </tr>                             
+                </td>
+              </tr>
             </tbody>
           </table>
-        </div> 
+        </div>
       <div class="button__wrap">
         <ButtonCmp
-          type="btn-blue-line"          
+          type="btn-blue-line"
         >취소</ButtonCmp>
         <ButtonCmp
-          type="btn-blue"     
-          @click="onSubmit"     
-        >신청</ButtonCmp>        
+          type="btn-blue"
+          @click="onSubmit"
+        >신청</ButtonCmp>
       </div>
   </form>
-        <ModalView          
+        <ModalView
           v-if="isModalViewed" @closeModal="isModalViewed = false"
         >
-            <CertificateMsg @closeModal="isModalViewed = false" />
+          <CertificateMsg @closeModal="isModalViewed = false" />
         </ModalView>
   </div>
 </template>
 
 <script>
-import PageTitle from '@/components/common/PageTitle.vue';
-import PageTitleH3 from '@/components/common/PageTitleH3.vue';
+import PageTitle from '@/components/common/PageTitle.vue'
+import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import ModalView from '@/components/common/ModalView.vue';
-import CertificateMsg from '@/views/publish/join/CertificateMsg.vue';
-import JoinStep from '@/views/publish/join/JoinStep';
-  export default {
-    components: {
-      PageTitle,
-      ButtonCmp,
-      PageTitleH3,
-      ModalView,
-      CertificateMsg,
-      JoinStep 
-    },
-    data() {
-      return {
-        form: {
-          name: '',
-          id: '',
-          phone: '',
-          pass: '',
-          passre: '',
-          email: '',
-          tel: ''      
-        }, 
-        nameErrorMsg: false,
-        idErrorMsg: false,
-        phoneErrorMsg: false,
-        passErrorMsg: false,
-        emailErrorMsg: false,
-        telErrorMsg: false        
+import ModalView from '@/components/common/ModalView.vue'
+import CertificateMsg from '@/views/publish/join/CertificateMsg.vue'
+import JoinStep from '@/views/publish/join/JoinStep'
+export default {
+  components: {
+    PageTitle,
+    ButtonCmp,
+    PageTitleH3,
+    ModalView,
+    CertificateMsg,
+    JoinStep
+  },
+  data() {
+    return {
+      form: {
+        name: '',
+        id: '',
+        phone: '',
+        pass: '',
+        passre: '',
+        email: '',
+        tel: ''
+      },
+      nameErrorMsg: false,
+      idErrorMsg: false,
+      phoneErrorMsg: false,
+      passErrorMsg: false,
+      emailErrorMsg: false,
+      telErrorMsg: false
+    }
+  },
+  methods: {
+    onSubmit () {
+      if (this.form.name === '') {
+        this.nameErrorMsg = true
+        return
+      }
+      if (this.form.phone === '') {
+        this.phoneErrorMsg = true
+        return
+      }
+      if (this.form.pass === '') {
+        this.passErrorMsg = true
+        return
+      }
+      if (this.form.email === '') {
+        this.emailErrorMsg = true
+        return
+      }
+      if (this.form.tel === '') {
+        this.telErrorMsg = true
+        // return
       }
     },
-    methods: {
-      onSubmit () {
-        if (this.form.name === '') {
-          this.nameErrorMsg = true;
-          return
-        }
-        if (this.form.phone === '') {          
-          this.phoneErrorMsg = true;
-          return
-        }   
-        if (this.form.pass === '') {          
-          this.passErrorMsg = true;
-          return
-        } 
-        if (this.form.email === '') {          
-          this.emailErrorMsg = true;
-          return
-        }
-        if (this.form.tel === '') {          
-          this.telErrorMsg = true;
-          return
-        }        
-      },
-      checkCertificate () {
-        if (this.form.certificate === '') {
-          this.certificateErrorMsg = true;
-          return
-        }        
-        this.showall = false,
-        this.isModalViewed = true;
-        //document.body.classList.add('modal-open')
-      },
-      phoneCertificate () {
-        alert('휴대폰 인증')
+    checkCertificate () {
+      if (this.form.certificate === '') {
+        this.certificateErrorMsg = true
+        return
       }
-    }      
+      this.showall = false
+      this.isModalViewed = true
+      // document.body.classList.add('modal-open')
+    },
+    phoneCertificate () {
+      alert('휴대폰 인증')
+    }
   }
+}
 </script>
