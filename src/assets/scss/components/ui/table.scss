@@ -1,0 +1,160 @@
+//table common
+@mixin tableCommon {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  th,
+  td {
+    padding: 8px;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  th {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    border-color:#ddd;
+    padding: 16px 0;
+  }
+  td {
+    background-color: #fff;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 20px 0;
+    .c-align {
+      text-align: center;
+    }
+    .l-align {
+      text-align: left
+    }
+    
+    .date {
+      color: #888;
+    }
+  }
+}
+
+@mixin tableListType () {
+  border-top: 2px solid $pointColor;
+  @include tableCommon;
+  th, td {
+    text-align:center
+  }
+}
+
+@mixin tableBodyType () {
+  @include tableCommon;
+  tr {
+    &:first-child {
+      border-left: 0;
+    }
+    &:last-child {
+      border-right: 0;
+    }
+  }  
+}
+
+.table__wrap {
+  width: 100%;
+  position: relative;
+  .table-list {
+    @include tableListType
+  }
+  .table-bodyonly {
+    @include tableBodyType;
+  }
+}
+
+
+.paging {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  margin-top: 32px;
+  a {
+    display:inline-block;
+    width: 32px;
+    height:32px;
+    margin:0 4px;
+    text-align:center;
+    font-size: 14px;
+    color: #888;
+    border-radius:4px;
+    &.btn-num {
+      width:auto;
+      height: auto;
+      line-height: 21px;
+      margin:0 16px;
+    }
+    &.active {
+      color: $pointColor;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+    &.btn-first {
+      border:1px solid #EAEAEA;
+      background:url('@/assets/images/cmp/chevron_first.png') no-repeat 50% 50%;
+    }
+    &.btn-prev {
+      margin-right: 16px;
+      border:1px solid #EAEAEA;
+      background:url('@/assets/images/cmp/chevron_left.png') no-repeat 50% 50%;
+    }
+    &.btn-next {
+      margin-left: 16px;
+      border:1px solid #EAEAEA;
+      background:url('@/assets/images/cmp/chevron_right.png') no-repeat 50% 50%;
+    }
+    &.btn-last {
+      border:1px solid #EAEAEA;
+      background:url('@/assets/images/cmp/chevron_last.png') no-repeat 50% 50%;
+    }
+  }
+}
+
+@media #{$phone} {
+  @mixin tableCommon {
+    td {
+      font-size: 14px;
+      line-height: 21px;
+    }
+    .date {
+      font-size: 13px;
+    }
+  }
+  @mixin tableListType () {
+    @include tableCommon;
+  }
+
+  .table__wrap {
+    .table-list {
+      @include tableListType
+    }
+  }
+  .paging {
+    margin-top: 24px;
+    a {
+      border-radius:8px;
+      &.btn-num {
+        line-height: 20px;
+        margin:0 12px;
+      }
+      &.btn-first {
+        background-image:url('@/assets/images/cmp/m_chevron_first.png');
+        background-size:auto 20px;
+      }
+      &.btn-prev {
+        background-image:url('@/assets/images/cmp/m_chevron_prev.png');
+        background-size:auto 20px;
+      }
+      &.btn-next {
+        margin-left: 16px;
+        background-image:url('@/assets/images/cmp/m_chevron_next.png');
+        background-size:auto 20px;
+      }
+      &.btn-last {
+        background-image:url('@/assets/images/cmp/m_chevron_last.png');
+        background-size:auto 20px;
+      }
+    }
+  }
+}

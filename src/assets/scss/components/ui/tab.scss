@@ -1,0 +1,87 @@
+.category-tab, 
+.tab__wrap {
+  margin-bottom: 32px;
+  	ul {
+      display:flex;
+      align-items:center;
+      background-color:#F9F9F9;
+      border-radius:8px;
+      	li  {
+			flex: 1;
+			border-radius:8px;
+			border:1px solid transparent;
+			&.active {
+				background-color:#DCF2FF;
+				border-color:#ADE2FF;
+				span {
+					&:before {
+						display:none;
+					}
+				}
+				+ li {
+					span {
+						&:before {
+							display:none;
+						}
+					}
+				}
+			}
+			&:first-child {
+				span {
+					&:Before {
+						display:none;
+					}
+				}
+			}
+      	}
+		  &.fixed { // 넓이 고정 
+			.tab-item {
+			  flex:none;
+			}
+		  }
+		  &.scroll { // 스크롤 
+			overflow-x: scroll;
+		  }
+		a {
+			display:flex;
+			align-items: center;
+			justify-content:center;
+			height:56px;
+			font-size:16px;
+			font-weight: 500;
+			position:relative;
+			cursor:pointer;
+			span {
+				line-height: 20px;
+				display:block;
+				&:before {
+					content:'';
+					display:inline-block;
+					width:1px;
+					height: 20px;
+					background-color:#d9d9d9;
+					position:absolute;
+					left:0;
+					top: 50%;
+					margin-top: -10px;
+				}
+			}
+      	}
+  	}
+}
+
+@media #{$phone} {
+	.category-tab, 
+	.tab__wrap  {
+        margin-bottom: 24px;
+        ul {
+            a {
+                height:54px;
+                font-size:14px;
+                span {
+                    line-height: 14px;
+                }
+            }
+        }
+    }
+}

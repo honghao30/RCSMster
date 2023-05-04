@@ -1,0 +1,344 @@
+//폼 공통요소
+$inputHeight: 42px;
+$font-tsize: 16px;
+$inputColor: #fafafa;
+$bordersColor: #DDDDDD;
+
+@mixin hiddens {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@mixin inputBasic {  
+    background-color: #fff;    
+    border-radius: 8px;
+    border: 1px solid $bordersColor;    
+    color: #000;
+    display: inline-block;
+    font-size: $font-tsize;
+    height: $inputHeight;
+    line-height: $inputHeight;    
+    padding: 0 16px;    
+    width: 100%;
+    &::placeholder {
+      color: #999
+    }
+}
+
+.input {
+  input {
+    @include inputBasic;
+  }
+}
+//check box
+//input 은 숨겨주기
+//checkbox 는 .checkbox 클래스명의 엘리먼트안에 input 관 label 로 구현
+//디자인 구현시 이미지 사용 여부등 결정
+.checkbox {
+  input[type=checkbox] {
+    @include hiddens;
+  }
+  input[type=checkbox] + label {
+    cursor: pointer;
+    position: relative;
+    display:inline-flex;
+    align-items:center;
+    &:before{
+      content:"";
+      display:inline-block;
+      width:20px;
+      height:20px;
+      line-height:17px;
+      border:1px solid #000;
+      vertical-align:middle;
+      background:#fff;
+      margin-right:10px;
+      position: relative;
+      top:1px;
+      border-radius:4px;
+    }    
+  } 
+  input[type=checkbox]:checked + label {
+    &:before {
+      background-color: $pointColor;
+      border-color: $pointColor;
+    }
+  }
+  input[type=checkbox]:checked + label {
+    &:after{
+      content:"";
+      border:2px solid #fff;
+      border-width:0 3px 3px 0;
+      height:9px;
+      position:absolute;
+      top:7px;
+      left: 8px;
+      width: 5px;
+      font-size:14px !important;
+      line-height:14px !important;
+      transform: rotate(45deg) scaleY(1)
+    }    
+  }
+}
+//radiobox
+.radiobox {
+  input[type=radio] {
+    @include hiddens;
+  }
+  input[type=radio] + label {
+    cursor: pointer;
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    
+    &:before{
+      content:"";
+      display:inline-block;
+      width:20px;
+      height:20px;
+      line-height:14px;
+      border:1px solid #000;
+      border-radius: 100%;
+      vertical-align:middle;
+      background:#fff;
+      margin-right:10px;
+      position:relative;
+      top:1px;
+    }   
+    &::after {
+      content: '';
+      position: absolute;
+      top: 7px;
+      left: 4px;
+      width: 13px;
+      height: 13px;
+      border-radius: 100%;
+      background: transparent;
+      border-radius:100%;
+      box-shadow: none;
+    }  
+  } 
+  input[type=radio]:checked + label {
+    &::before {
+      border-color:$pointColor
+    }
+    &::after {
+      content: '';
+      background: $pointColor;
+    }    
+  }
+}
+
+.select {
+  position:relative;
+  display:inline-block;
+
+  select {
+    width: 100%;
+    height: $inputHeight;
+    -moz-appearance:none; 
+    -webkit-appearance:none; 
+    appearance:none;
+    border:1px solid $bordersColor;
+    padding:0 12px;
+    color: #666;
+    border-radius: 8px;
+    padding:8px 40px 8px 16px;
+    outline:none;
+    color:#000;
+  }
+  select::-ms-expand {
+    display:none;
+  }
+  &::after {
+    content:'';
+    display:inline-block;
+    position: absolute;
+    right:20px;
+    top:50%;
+    width: 8px; 
+    height: 8px; 
+    margin-top: -6px;
+    border: 1px solid #888; 
+    border-width: 2px 2px 0 0; 
+    transform: rotate(135deg) translate(-50%, -50%);
+  }
+}
+
+$formLabelWidth : 120px;
+.form-list {
+  .form-item {
+    display:flex;
+    flex-wrap:wrap;
+    align-items: center;
+    position: relative;
+    margin-bottom:24px;
+    + .form-item {
+      margin-top: 30px;
+    }
+    &__label {
+      flex:0 0 $formLabelWidth;
+    }
+    &__content {
+      flex: auto;
+      display:flex;
+      .input {
+        flex: auto;
+      }
+      .btn__certi {
+        flex:0 0 160px;
+        margin-left:10px;
+      }
+    }
+    &__error {
+      margin-bottom:-24px;
+      @include fontoption(14px,$errorColor,400,24px);
+      width:100%;
+      padding-left:$formLabelWidth;;
+    }
+    
+  }
+}
+
+.form-table {
+  .form-item__label {
+    @include fontoption(16px,#000,500,26px);
+    &.required:before {
+      content:'*';
+      color:#f56c6c;
+      position:relative;
+      top:-1px
+    }
+  }
+  .form-item__content {
+    .form-item-row {
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      + .form-item-row {
+        margin-top:10px;
+      }
+      +.align--top {
+        align-items: flex-start;
+      }
+      .guide-text {width:auto}
+    }
+    .guide-text {width:100%;}
+  }
+  .input-item {
+    width: 100%;
+    display:flex;
+    align-items:center;
+    padding:0 5px;
+    &.w--half {
+      width: 50%;
+    }
+    &:first-child {
+      padding-left:0;
+    }
+    &:last-child {
+      padding-right:0;
+    }
+    .input {
+      flex:auto;
+    }
+    button {
+      min-width:100px;
+      margin-left:10px;
+    }
+  }
+}
+
+.search-table {
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom: 16px;
+  .select {
+    width: 120px;
+    select {
+      font-size: 16px;
+    }
+    
+  }
+  .input {
+    width: 240px;
+    margin-left:8px;
+    font-size: 16px;
+  }
+  .btn {
+    width: 74px;
+    margin-left: 8px;
+  }
+}
+
+@media #{$phone} {
+  $inputHeight: 45px;
+  @mixin inputBasicM {  
+    background-color: #fff;    
+    border-radius: 8px;
+    border: 1px solid $bordersColor;    
+    display: inline-block;
+    font-size: 14px;
+    height: $inputHeight;
+    line-height: $inputHeight;    
+    padding: 0 12px;    
+    width: 100%;
+    &::placeholder {
+      @include fontoption(16px,#999,400,26px);      
+    }
+    &:disabled, 
+    &:read-only {
+      background-color: #F4F4F4;
+      cursor:default
+    }
+  }
+
+  .input {
+    input {
+      @include inputBasicM;
+    }
+  }
+
+  .select {
+    select {
+      height: $inputHeight;
+      color: #000;
+      border-radius: 8px;
+      padding:12px 28px 12px 10px;
+    }
+    &::after {
+      content:'';
+      display:inline-block;
+      position: absolute;
+      right:18px;
+    }
+  }
+  .search-table {
+    margin-bottom: 24px;
+    .select {
+      width: 80px;
+      flex-shrink: 0;
+      select {
+        font-size: 14px;
+      }
+    }
+    .input {
+      width: auto;
+      margin: 0 8px;
+      font-size: 14px;
+      flex: auto
+    }
+    .btn {
+      flex-shrink: 0;
+      width: 74px;
+      margin-left: 0;
+    }
+  }
+
+}

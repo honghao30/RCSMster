@@ -1,0 +1,29 @@
+//signup
+@import "../components/ui/button.scss";  
+.signup {
+    width: 100%;
+    max-width:628px;
+    margin: 80px auto;
+    .signup-title__wrap--top {
+        text-align: center;
+        .page-title {
+            margin-bottom:12px;
+        } 
+        p {
+            @include fontoption(16px,#000,400,26px);
+        }
+    }
+    .signup-wrap{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 32px;
+        .signup-item{
+            max-width: 302px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        &:nth-child(2){
+            margin-left: 24px;
+        }
+        }
+    }
+}

@@ -1,0 +1,102 @@
+$radius: 8px;
+
+//버튼 공통
+@mixin btnCommon {
+  position: relative;
+  display: inline-grid;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: .1em;
+  line-height: normal;
+  max-width: 100%;  
+  border-radius: $radius;  
+  text-decoration: none;
+  vertical-align: middle;
+  font-weight: 700;
+  outline: none;
+  border: none;
+  padding:0 20px;
+  cursor: pointer;
+}
+@mixin btntype($btnFontSize,$btnBorder,$btnBGColor,$btnColor,$radius, $btnHoverColor,$btnHoverFtColor) {  
+  font-size: $btnFontSize;
+  border: 1px solid $btnBorder;
+  color: $btnColor;
+  background-color: $btnBGColor;
+  border-radius: $radius;
+  &:hover,
+  &:focus,
+  &:active,    
+  &.active:focus, 
+  &:active:hover{
+    background-color: $btnHoverColor;
+    color: $btnHoverFtColor;
+    border: 1px solid $btnBorder;
+    text-decoration: none;    
+  }
+}
+
+@mixin btnSize($btnFontSize,$btnPadding) { 
+  font-size: $btnFontSize;
+  padding: $btnPadding;
+}
+
+.button__wrap {
+  position: relative;
+  padding:20px 0 50px;
+  &:last-child {
+    padding-bottom:0;
+  }
+}
+
+.btn {
+  @include btnCommon;  
+   
+  &.search {
+    color:#fff;
+    background-color:#717883
+  }
+}
+
+//button List
+.btn-blue {
+  @include btntype(16px,$pointColor,$pointColor,#fff,8px, $pointColor,#fff);
+  width: 126px;
+  height: 48px;
+  line-height: 24px;           
+  text-align: center;          
+}
+.btn-blue-line {
+  width: 126px;
+  height: 48px;
+  border: 1px solid #2F77FB;
+  background:#fff;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;           
+  text-align: center;            
+  color: #2F77FB;          
+}
+.btn-default-line {
+  @include btntype(14px,#4A5567,#fff,#4A5567,8px,  #fff,#4A5567);  
+  font-weight: 700;
+  margin-left:10px;
+  height: 42px;
+  line-height: 42px;
+  cursor: pointer;
+}
+
+
+
+$iconBsUrl: '/src/assets/images/icon/';
+
+//icon List
+.icon-eye {
+  width: 22px;
+  height:18px;
+  background-image: url('#{$iconBsUrl}icon_eye.png');
+  background-repeat: no-repeat;
+  background-position: center;  
+}

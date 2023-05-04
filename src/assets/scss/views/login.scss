@@ -1,0 +1,165 @@
+//login
+@import "../components/ui/button.scss";  
+.login {
+    width: 100%;
+    max-width:628px;
+    margin: 80px auto;
+    .login-title__wrap--top {
+        text-align: center;
+       .page-title {
+         margin-bottom:12px;
+        }
+        p {
+            @include fontoption(16px,#000,400,26px);
+        }
+    }
+    .form-list {
+        border-top:2px solid $pointColor;
+        margin:32px 0;
+        .form-item {
+            border-bottom:1px solid #F0F0F0;
+            padding: 20px 0;
+            margin:0;
+        .form-item__label {           
+            padding-left:10px;
+            flex: 0 0 200px;
+        }
+        .form-item__content {
+            position: relative;
+            padding-right: 20px;
+            .btn-only-icon {
+                position: absolute;
+                right: 30px;
+                width: 30px;
+                height: 30px;
+                top: 50%;
+                transform: translateY(-50%);                
+                z-index: 10;
+                border:0;
+                padding:0;
+                background: none;
+                cursor: pointer;
+            }
+        }
+        .form-item__error {
+            margin:10px 0 0;
+            padding-left: 220px;
+            background-image: url('#{$iconBsUrl}icon_exclamation_circle.png');
+            background-repeat: no-repeat;
+            background-position: 200px center;
+        }
+      }      
+    }
+    .button__wrap {
+        margin: 0px auto;
+        padding:0;
+        width: 100%;
+        .btn-login {
+            display: block;
+            width:100%;
+        }
+    }
+    .help-menu__wrap--bottom {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        @include fontoption(16px,#000,400,26px);
+        .idfind {
+            display: flex;
+            a {
+                position: relative;
+                padding:0 12px; 
+                &:first-child {
+                    &::after {
+                        content: '';
+                        display: block;
+                        width:1px;
+                        height: 10px;
+                        background: #D7D0D0;
+                        position: absolute;
+                        right:0;
+                        top:50%;
+                        transform: translateY(-50%);
+                    }
+                }
+                &:last-child {
+                    padding-right: 0;
+                }
+            }            
+        }
+    }
+    &.login-help {
+        .category-tab {
+            margin-top: 32px;
+        }
+        .form-item__content {
+            .input {
+                flex: 1;
+            }
+            .time {
+                position: absolute;
+                right:30px;
+                top: 50%;
+                transform: translateY(-50%);
+                @include fontoption(16px,#000,400,26px);
+                &.active {
+                    color: #FF4830;
+                    ;
+                }
+            }
+        }
+
+        .button__wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .btn-blue-help {
+                height: 48px;
+                background: #2F77FB;
+                padding:0 48px;
+                border-radius: 8px;
+                color: #FFF;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media #{$phone} {
+    .login {
+        max-width:656px;
+        margin: 0 auto;
+        padding: 0 16px;
+        .login-title__wrap--top {
+            p {
+                font-size: 14px;
+                line-height: 24px;
+            }
+        }
+        .form-list {
+            margin: 32px 0 22px 0;
+            .form-item {
+                font-size: 14px;
+                padding: 16px 0;
+                .form-item__label {      
+                    padding: 0 0 12px 0;
+                }
+                .form-item__content {
+                    width: 100%;
+                    padding-right: 0;
+                    .btn-only-icon {
+                        right: 15px;
+                    }
+                }
+                .form-item__error {
+                    background-position: 0;
+                    padding-left: 17px;
+                }
+            }
+        }
+        .help-menu__wrap--bottom {
+            margin-top: 13.5px;
+            font-size: 14px;
+        }
+    }
+}
