@@ -2,14 +2,14 @@
     <transition
         name="fade"
     >
-        <div 
+        <div
         class="modal__wrap"
         >
             <div class="overlay-mask" @click="$emit('closeModal')"></div>
             <div class="modal__container">
                 <slot></slot>
             </div>
-        </div>  
+        </div>
     </transition>
 </template>
 
