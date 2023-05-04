@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <div>
-      <div class="box">테스트</div>
-    </div>
+    <router-view></router-view>
     <!--
     <layout-mobile v-if="isMobile"/>
     <layout-pc v-else/>
