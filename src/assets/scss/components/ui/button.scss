@@ -51,7 +51,7 @@ $radius: 8px;
 
 .btn {
   @include btnCommon;  
-   
+  
   &.search {
     color:#fff;
     background-color:#717883
@@ -90,7 +90,7 @@ $radius: 8px;
 
 
 
-$iconBsUrl: '/src/assets/images/icon/';
+$iconBsUrl: '../assets/images/icon/';
 
 //icon List
 .icon-eye {
