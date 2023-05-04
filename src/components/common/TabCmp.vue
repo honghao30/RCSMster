@@ -1,18 +1,18 @@
 <template>
   <div class="tab__wrap">
-    <ul 
-      class="tab-list" 
+    <ul
+      class="tab-list"
       role="tablist"
       :class="[{scroll: tabs.length > 10}, {fixed: tabWidth}]"
     >
-      <li 
-        v-for="(tab, i) in tabs" 
-        :key=i  
+      <li
+        v-for="(tab, i) in tabs"
+        :key=i
         class="tab-item"
         :class="[{active: activeTabIndex === i}]"
         :style="{ width: tabWidth + 'px' }"
       >
-        <a role="tab" 
+        <a role="tab"
           @click="tabCtrl(i)"
         >
           <span>{{ tab.tabTitle }}</span>
@@ -20,9 +20,9 @@
       </li>
     </ul>
     <div class="tab-contents">
-      <slot></slot>  
+      <slot></slot>
     </div>
-  </div>     
+  </div>
 </template>
 
 <script>

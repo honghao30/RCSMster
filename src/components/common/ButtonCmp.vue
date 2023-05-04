@@ -1,18 +1,18 @@
 <template>
-    <button
-      type="button"
-      class="btn"
-      :class="[type, size, icondrection]"
-      :disabled="disabled"
-      @click="$emit('click')"
+  <button
+    type="button"
+    class="btn"
+    :class="[type, size, icondrection]"
+    :disabled="disabled"
+    @click="$emit('click')"
+    >
+    <i
+      v-if="iconname !== null"
+      :class="iconname"
       >
-      <i
-        v-if="iconname !== null"
-        :class="iconname"
-        >
-      </i>
-      <slot></slot>
-    </button>
+    </i>
+    <slot></slot>
+  </button>
 </template>
 
 <script>

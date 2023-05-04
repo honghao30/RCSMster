@@ -4,7 +4,7 @@
       {{ titleh3 }}
     </h3>
     <p v-if="noticeinfo !== null">
-        {{ noticeinfo }}
+      {{ noticeinfo }}
     </p>
 </div>
 </template>
