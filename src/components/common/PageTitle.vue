@@ -6,9 +6,9 @@
 
 <script>
 export default {
-    props: {
-        pagetitle: String
-    }
+  props: {
+    pagetitle: String
+  }
 }
 </script>
 

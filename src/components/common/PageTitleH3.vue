@@ -11,13 +11,13 @@
 
 <script>
 export default {
-    props: {
-        titleh3: String,
-        noticeinfo: {
-          type: String,
-          default: null
-        }
+  props: {
+    titleh3: String,
+    noticeinfo: {
+      type: String,
+      default: null
     }
+  }
 }
 </script>
 
