@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="pubgud" class="pubGuide">
     <HeaterGuide />
     <PubRull />
   </div>
@@ -16,6 +16,13 @@ export default {
   },
   metaInfo: {
     title: 'Publishing Guides'
+  },
+  mounted () {
+    const guiEl = this.$refs.pubgud
+    console.log(guiEl)
+    guiEl.parentElement.style.paddingTop = '0'
+    guiEl.parentElement.previousElementSibling.style.display = 'none'
+    guiEl.parentElement.nextElementSibling.style.display = 'none'
   }
 }
 </script>

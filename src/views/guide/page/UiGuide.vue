@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="pubgud" class="pubGuide">
     <HeaterGuide />
     <div class="ui-guide__wrap">
       <div class="ui-guide__subnav--top">
@@ -76,6 +76,9 @@
         <ModalGuide />
       </div>
     </div>
+    <button @click="scrollToTop" class="scroll-to-top">
+       위로
+    </button>
   </div>
 </template>
 
@@ -113,7 +116,21 @@ export default {
       console.log(element)
       var top = element.offsetTop
       window.scrollTo(0, top)
+    },
+    scrollToTop (refName) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
+  },
+  mounted () {
+    const guiEl = this.$refs.pubgud
+    console.log(guiEl)
+    guiEl.parentElement.style.paddingTop = '0'
+    guiEl.parentElement.previousElementSibling.style.display = 'none'
+    guiEl.previousElementSibling.style.display = 'none'
+    guiEl.parentElement.nextElementSibling.style.display = 'none'
   }
 }
 </script>
@@ -141,5 +158,23 @@ export default {
     padding: 10px 0;
   }
 
+}
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.scroll-to-top:hover {
+  background-color: #555;
 }
 </style>
