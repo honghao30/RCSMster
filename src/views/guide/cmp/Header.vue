@@ -49,7 +49,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('@/assets/scss/common/guide.scss');
   .header-guid {
     width: 100%;
     display: flex;
