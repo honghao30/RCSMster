@@ -160,7 +160,7 @@ export default {
   },
   computed: {
     checkBoardLength() {
-      return this.noticeData.length < 10 ? false : true;
+      return this.noticeData.length < 10 ? false : true
     }
   },
   methods: {
