@@ -1,7 +1,7 @@
 <template>
   <div>
-    <HeaterGuide />  
-    <div class="ui-guide__wrap">    
+    <HeaterGuide />
+    <div class="ui-guide__wrap">
       <div class="ui-guide__subnav--top">
         <ButtonCmp
           type="blue"
@@ -14,12 +14,12 @@
           @click="goto('sect02')"
         >
           TypoGraphy
-        </ButtonCmp> 
+        </ButtonCmp>
         <ButtonCmp
           type="blue"
           @click="goto('sect03')"
         >
-          Table 
+          Table
         </ButtonCmp>
         <ButtonCmp
           type="blue"
@@ -38,13 +38,13 @@
           @click="goto('sect06')"
         >
           Tab
-        </ButtonCmp>     
+        </ButtonCmp>
         <ButtonCmp
           type="blue"
           @click="goto('sect07')"
         >
           modal
-        </ButtonCmp>         
+        </ButtonCmp>
       </div>
       <SubTitle pagetitle="UI 템플릿" />
       <div ref="sect01">
@@ -52,7 +52,7 @@
         <BemGuide />
       </div>
       <div ref="sect02">
-        <TitleH3 ref="sect02" titleh3="TypoGraphy" />    
+        <TitleH3 ref="sect02" titleh3="TypoGraphy" />
         <TypoGraphy />
       </div>
       <div ref="sect03">
@@ -74,7 +74,7 @@
       <div ref="sect07">
         <TitleH3 titleh3="Modal" />
         <ModalGuide />
-      </div>    
+      </div>
     </div>
   </div>
 </template>
@@ -93,29 +93,28 @@ import TabGuide from '@/views/guide/ui_temp/TabGuide.vue'
 import HeaterGuide from '../cmp/Header'
 
 export default {
-    name: 'BasicGuide',
-    components: {
-        SubTitle,
-        TitleH3,
-        BemGuide,
-        TypoGraphy,
-        TableGuide,
-        ButtonGuide,
-        FormGuide,
-        ButtonCmp,
-        ModalGuide,
-        TabGuide,
-        HeaterGuide
-    },
-    methods: {
-      goto(refName) {
-        var element = this.$refs[refName];
-        console.log(element);
-        var top = element.offsetTop;
-        
-        window.scrollTo(0, top);
-      }
-  } 
+  name: 'BasicGuide',
+  components: {
+    SubTitle,
+    TitleH3,
+    BemGuide,
+    TypoGraphy,
+    TableGuide,
+    ButtonGuide,
+    FormGuide,
+    ButtonCmp,
+    ModalGuide,
+    TabGuide,
+    HeaterGuide
+  },
+  methods: {
+    goto(refName) {
+      var element = this.$refs[refName]
+      console.log(element)
+      var top = element.offsetTop
+      window.scrollTo(0, top)
+    }
+  }
 }
 </script>
 

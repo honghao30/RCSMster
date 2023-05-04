@@ -1,30 +1,30 @@
 <template>
   <div class="tmep__wrap">
-      <div class="wsg-guide-content">
-        <div class="wsg-note__wrap--gray-box">
-          <ul class="wsg_desc">
-            <li>모달에 대한 가이드 입니다.</li>            
-          </ul>
-        </div>
+    <div class="wsg-guide-content">
+      <div class="wsg-note__wrap--gray-box">
+        <ul class="wsg_desc">
+          <li>모달에 대한 가이드 입니다.</li>
+        </ul>
       </div>
-      <TitleH3 titleh3="모달 가이드" />
-      <div class="wsg-guide-content">
-        <div class="button__wrap">
+    </div>
+    <TitleH3 titleh3="모달 가이드" />
+    <div class="wsg-guide-content">
+      <div class="button__wrap">
         <ButtonCmp
-         type="green"
-         icondrection="left"
-         iconname="icon-add"
-         @click="isModalViewed = true"
-        > 
+          type="green"
+          icondrection="left"
+          iconname="icon-add"
+          @click="isModalViewed = true"
+        >
           모달1
-        </ButtonCmp>  
+        </ButtonCmp>
         <ModalView
           v-if="isModalViewed" @closeModal="isModalViewed = false"
         >
           <ModalCont1 />
-        </ModalView>  
+        </ModalView>
       </div>
-      </div>             
+    </div>
   </div>
 </template>
 
@@ -48,16 +48,14 @@ export default {
   },
   watch: {
     isModalViewed () {
-      if(this.isModalViewed){
+      if (this.isModalViewed) {
         document.documentElement.style.overflow = 'hidden'
         return
       }
-      document.documentElement.style.overflow = 'auto'    
+      document.documentElement.style.overflow = 'auto'
     }
   },
   methods: {
-
- }
+  }
 }
 </script>
-

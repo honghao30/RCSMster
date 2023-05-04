@@ -10,9 +10,9 @@
 
 <script>
 export default {
-    props: {
-      titleh3: String,
-    }
+  props: {
+    titleh3: String
+  }
 }
 </script>
 

@@ -6,17 +6,17 @@
 
 <script>
 export default {
-    props: {
-        pagetitle: String
-    }
+  props: {
+    pagetitle: String
+  }
 }
 </script>
 
 <style lang="scss">
 .guidepage {
-    border-bottom:1px solid #ddd;
-    padding: 5px 0 10px;
-    font-size: 28px;
-    font-weight: 500;
+  border-bottom:1px solid #ddd;
+  padding: 5px 0 10px;
+  font-size: 28px;
+  font-weight: 500;
 }
 </style>
