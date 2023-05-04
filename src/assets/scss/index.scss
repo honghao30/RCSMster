@@ -8,7 +8,7 @@
 @import '@/assets/scss/components/ui/typography.scss';
 // 메뉴별
 @import '@/assets/scss/views/layout.scss';
-// @import '../assets/scss/views/signup.scss';
-// @import '../assets/scss/views/login.scss';
-// @import '../assets/scss/views/customer.scss';
-// @import '../assets/scss/views/join.scss';
+@import '@/assets/scss/views/signup.scss';
+@import '@/assets/scss/views/login.scss';
+@import '@/assets/scss/views/customer.scss';
+@import '@/assets/scss/views/join.scss';
