@@ -1,12 +1,12 @@
 <template>
   <div class="join">
-    <PageTitle pagetitle="대행사 회원가입" />  
+    <PageTitle pagetitle="대행사 회원가입" />
     <JoinStep :step="1" :agency=true />
     <div class="top-notice--gray">
       원활한 기업담당자 가입신청을 위해서 기업의 사업자등록증 사본을 준비해주세요.
-    </div> 
+    </div>
     <form  ref="form" :model="form">
-		<div class="agree__wrap">
+    <div class="agree__wrap">
 			<h3 class="agree__title">약관동의</h3>
 			<div class="agree__item">
 				<div class="checkbox">
@@ -27,7 +27,6 @@
 					② 본 약관의 내용은 “서비스” 화면에 게시하거나 기타의 방법으로 “회원”에게 공지하고, 이에 동의한 “회원”이 “서비스”에 가입함으로써 효력이 발생합니다.
 				</div>
 			</div>
-			
 			<div class="agree__item">
 				<div class="checkbox">
 					<input type="checkbox" id="service" value="form.delegate"/>
@@ -52,27 +51,25 @@
 </template>
 
 <script>
-import PageTitle from '@/components/common/PageTitle.vue';
+import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import JoinStep from '@/views/publish/join/JoinStep';
+import JoinStep from '@/views/publish/join/JoinStep'
 
-  export default {
-    components: {
+export default {
+	components: {
 		PageTitle,
 		ButtonCmp,
-		JoinStep 
-    },
-    data() {
-      return {
-        form: {
-			agreeAll: false,
-			serviceAgree: false,
-        },   
-        
-      }
-    },
-    methods: {
-      
-    }      
-  }
+		JoinStep
+		},
+	data() {
+		return {
+			form: {
+		agreeAll: false,
+		serviceAgree: false,
+			},		
+		}
+	},
+	methods: {
+	}
+}
 </script>

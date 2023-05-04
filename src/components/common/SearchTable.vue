@@ -1,6 +1,6 @@
 <template>
   <div class="search-table">
-    <div class="select"> 
+    <div class="select">
       <select name="" id="selectValue">
         <option value="1">선택 1</option>
         <option value="2">선택 2</option>
@@ -21,12 +21,12 @@
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 export default {
-    props: {
-        pagetitle: String
-    },
-    components: {
-      ButtonCmp
-    }
+  props: {
+    pagetitle: String
+  },
+  components: {
+    ButtonCmp
+  }
 }
 </script>
 

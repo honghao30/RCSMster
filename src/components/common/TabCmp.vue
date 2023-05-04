@@ -32,12 +32,12 @@ export default {
   },
   data() {
     return {
-      tabs:[],
-      activeTabIndex: 0,
+      tabs: [],
+      activeTabIndex: 0
     }
   },
   created() {
-    this.tabs = this.$children;
+    this.tabs = this.$children
   },
   mounted() {
     this.tabs[0].isActive = true
@@ -45,10 +45,10 @@ export default {
   },
   methods: {
     tabCtrl: function(num) {
-        this.activeTabIndex = num;
-        this.tabs.forEach((tab, index) => {
-          tab.isActive = (index === this.activeTabIndex);
-        });
+      this.activeTabIndex = num
+      this.tabs.forEach((tab, index) => {
+        tab.isActive = (index === this.activeTabIndex)
+      })
     }
   }
 
