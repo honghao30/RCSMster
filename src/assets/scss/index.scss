@@ -1,4 +1,18 @@
 // @import url('./common/base.scss');
+// @import url('./common/base.scss');
 // @import url('./common/values.scss');
 // @import url('./components/ui/table.scss');
 // @import url('./components/ui/button.scss');
+@import './common/_variables.scss';
+@import './components/ui/button.scss';
+@import './components/ui/form.scss';
+@import './components/ui/icon.scss';
+@import './components/ui/table.scss';
+@import './components/ui/tab.scss';
+@import './components/ui/typography.scss';
+// 메뉴별
+@import './views/layout.scss';
+@import './views/signup.scss';
+@import './views/login.scss';
+@import './views/customer.scss';
+@import './views/join.scss';

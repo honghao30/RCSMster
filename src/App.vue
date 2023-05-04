@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <LayoutPc />
     <!--
     <layout-mobile v-if="isMobile"/>
     <layout-pc v-else/>
@@ -19,8 +19,8 @@ import { getToken } from '@/utils/token'
 // import _ from 'lodash'
 
 // 차후 템플릿이 추가 구성하면, 이곳에서 분기하게 구성
-// let LayoutPc = ''
-// LayoutPc = () => import('@/Layout/PC')
+let LayoutPc = ''
+LayoutPc = () => import('@/Layout/index')
 
 // let LayoutMobile = ''
 // LayoutMobile = () => import('@/Layout/Mobile')
@@ -28,7 +28,7 @@ import { getToken } from '@/utils/token'
 export default {
   name: 'App',
   components: {
-    // LayoutPc,
+    LayoutPc
     // LayoutMobile
     // ErrorConfirm
   },
@@ -51,5 +51,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import  './assets/scss/test.scss';
+  // @import  './assets/scss/index.scss';
 </style>
