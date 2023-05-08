@@ -27,7 +27,7 @@
         height:19px;
         flex-shrink: 0;
         margin-left:5px;
-        // background:url('@/assets/images/customer/ico_attach.png') no-repeat 50% 50%
+        background:url('../assets/images/customer/ico_attach.png') no-repeat 50% 50%
     }
     .ico-new {
         display: inline-block;
@@ -35,8 +35,13 @@
         height:10px;
         flex-shrink: 0;
         margin-left:8px;
-        // background:url('@/assets/images/customer/ico_new.png') no-repeat 50% 50%;
-    } 
+        background:url('../assets/images/customer/ico_new.png') no-repeat 50% 50%;
+    }
+    .no-data {
+        margin: 160px 0px 160px 77px;
+        font-size: 16px;
+        color: #888888;
+    }
 }
 @media #{$phone} {
     .notice-table {
@@ -50,62 +55,62 @@
                     align-items:flex-start;
                     padding: 16px 0 ;
                     border-bottom:1px solid #F0F0F0;
-                 }
+                }
             }
-            
-             th {
-                 display:none;
-                 
-             }
-             td {
-                 border: none;
-                 padding:0;
-             }
-             .num {
-                 display:none;
-             }
-             .primary  {
-                 &__text {
-                     position:absolute;;
-                 }
-                 .title {
-                     text-indent:40px;
-                 }   
-             }
-             .title {
-                 display:block;
-                 margin-bottom:4px;
-                 a {
-                     overflow:auto;
-                     white-space:normal;
-                 }
-             }
-             .date {
-                font-size: 13px;
-             }
-             .ico-attach {
-                 width:15px;
-                 height:16px;
-                 margin-left:4px;
-                 vertical-align: top;
-                 position:relative;
-                 top:4px;
-                //  background:url('@/assets/images/customer/m_ico_attach.png') no-repeat 50% 50%;
-                 background-size:100%;
-             }
-             .ico-new {
-                 width:24px;
-                 height:8px;
-                 margin-left:4px;
-                 position:relative;
-                 vertical-align: top;
-                 top:3px;
-                //  background:url('@/assets/images/customer/m_ico_new.png') no-repeat 50% 50%;
-                 background-size:100%;
-             } 
-
+            th {
+                display:none;
+            }
+            td {
+                border: none;
+                padding:0;
+            }
+            .num {
+                display:none;
+            }
+            .primary  {
+                &__text {
+                    position:absolute;;
+                }
+                .title {
+                    text-indent:40px;
+                }   
+            }
+            .title {
+                display:block;
+                margin-bottom:4px;
+                a {
+                    overflow:auto;
+                    white-space:normal;
+                }
+            }
+            .date {
+            font-size: 13px;
+            }
+            .ico-attach {
+                width:15px;
+                height:16px;
+                margin-left:4px;
+                vertical-align: top;
+                position:relative;
+                top:4px;
+                background:url('../assets/images/customer/m_ico_attach.png') no-repeat 50% 50%;
+                background-size:100%;
+            }
+            .ico-new {
+                width:24px;
+                height:8px;
+                margin-left:4px;
+                position:relative;
+                vertical-align: top;
+                top:3px;
+                background:url('../assets/images/customer/m_ico_new.png') no-repeat 50% 50%;
+                background-size:100%;
+            }
+            .no-data {
+                margin: 100px auto;
+                font-size: 14px;
+                width: 328px;
+            }
         }
-       
     }
-
 }

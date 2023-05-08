@@ -25,7 +25,7 @@ import AgencyJoinStep04 from '@/views/publish/join/AgencyJoinStep04'
 
 // 고객센터
 import NoticeView from '@/views/publish/customer/Notice'
-import FAQ from '@/views/publish/customer/FAQ'
+import NoticeSearch from '@/views/publish/customer/NoticeSearch'
 
 Vue.use(Router)
 
@@ -138,10 +138,10 @@ let router = new Router({
       }
     },
     {
-      path: '/faq',
-      component: FAQ,
+      path: '/noticesearch',
+      component: NoticeSearch,
       meta: {
-        tittle: 'FAQ'
+        tittle: '공지사항'
       }
     }
   ]
@@ -171,8 +171,8 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to, from) => {
-    // 라우터 이동 후 상단으로 화면 이동
-    window.scrollTo(0, 0)
+  // 라우터 이동 후 상단으로 화면 이동
+  window.scrollTo(0, 0)
 })
 
 export default router
