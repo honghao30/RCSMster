@@ -9,7 +9,7 @@
         <div class="form-item">
           <span class="form-item__label">아이디</span>
           <div class="form-item__content">
-            <span class="input"><input type="text" class="input" placeholder="아이디를 입력해주세요." v-model="form.id"></span>
+            <span class="input"><input ref="usrid" type="text" class="input" placeholder="아이디를 입력해주세요." v-model="form.id"></span>
           </div>
           <p class="form-item__error" v-if="idErrorMsg">아이디를 입력해주세요.</p>
         </div>
@@ -21,8 +21,8 @@
               iconname="icon-eye"
               @click="toggleShow"
             ><span class="irtext">비밀번호 보이기</span></ButtonCmp>
-            <span class="input"><input  v-if="showPassword" type="text" class="input" placeholder="비밀번호를 입력해주세요."  v-model="form.pw">
-              <input v-else type="password" class="input" placeholder="비밀번호를 입력해주세요."  v-model="form.pw">
+            <span class="input"><input ref="usrid" v-if="showPassword" type="text" class="input" placeholder="비밀번호를 입력해주세요."  v-model="form.pw">
+              <input ref="usrpw" v-else type="password" class="input" placeholder="비밀번호를 입력해주세요."  v-model="form.pw">
             </span>
           </div>
           <p class="form-item__error" v-if="pwErrorMsg">비밀번호를 입력해주세요.</p>
@@ -73,11 +73,13 @@ export default {
     onSubmit () {
       if (this.form.id === '') {
         this.idErrorMsg = true
+        this.$refs.usrid.focus()
         return
       }
 
       if (this.form.pw === '') {
         this.pwErrorMsg = true
+        this.$refs.usrpw.focus()
         return
       }
       alert('로그인 되었습니다.')
