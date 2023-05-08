@@ -23,6 +23,7 @@ export default {
     guiEl.parentElement.style.paddingTop = '0'
     guiEl.parentElement.previousElementSibling.style.display = 'none'
     guiEl.parentElement.nextElementSibling.style.display = 'none'
+    guiEl.parentElement.previousElementSibling.style.display = 'none'
   }
 }
 </script>

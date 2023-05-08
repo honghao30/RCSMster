@@ -1,7 +1,7 @@
 <template>
   <div class="join">
-    <PageTitle pagetitle="기업담당자 회원가입" />
-    <JoinStep :step="3"/>
+    <PageTitle pagetitle="대행사 회원가입" />
+    <JoinStep :step="3" :agency=true />
     <PageTitleH3 titleh3="회원정보 입력" noticeinfo="필수 입력값" />
     <form  ref="form" :model="form">
         <div class="table__wrap">
@@ -145,14 +145,14 @@
         <ButtonCmp
           type="btn-blue"
           @click="onSubmit"
-        >신청</ButtonCmp>
+        >회원가입</ButtonCmp>
       </div>
   </form>
-        <ModalView
-          v-if="isModalViewed" @closeModal="isModalViewed = false"
-        >
-          <CertificateMsg @closeModal="isModalViewed = false" />
-        </ModalView>
+  <ModalView
+    v-if="isModalViewed" @closeModal="isModalViewed = false"
+  >
+    <CertificateMsg @closeModal="isModalViewed = false" />
+  </ModalView>
   </div>
 </template>
 
