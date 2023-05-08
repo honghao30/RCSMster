@@ -93,21 +93,21 @@
     }
     &.btn-first {
       border:1px solid #EAEAEA;
-      // background:url('@/assets/images/cmp/chevron_first.png') no-repeat 50% 50%;
+      background:url('../assets/images/cmp/chevron_first.png') no-repeat 50% 50%;
     }
     &.btn-prev {
       margin-right: 16px;
       border:1px solid #EAEAEA;
-      // background:url('@/assets/images/cmp/chevron_left.png') no-repeat 50% 50%;
+      background:url('../assets/images/cmp/chevron_left.png') no-repeat 50% 50%;
     }
     &.btn-next {
       margin-left: 16px;
       border:1px solid #EAEAEA;
-      // background:url('@/assets/images/cmp/chevron_right.png') no-repeat 50% 50%;
+      background:url('../assets/images/cmp/chevron_right.png') no-repeat 50% 50%;
     }
     &.btn-last {
       border:1px solid #EAEAEA;
-      // background:url('@/assets/images/cmp/chevron_last.png') no-repeat 50% 50%;
+      background:url('../assets/images/cmp/chevron_last.png') no-repeat 50% 50%;
     }
   }
 }

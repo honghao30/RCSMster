@@ -81,6 +81,9 @@ $contentPaddingM: 16px;
     }
     &__button {
         display:none;
+        &--close {
+            display: none;
+        }
     }
 
 }
