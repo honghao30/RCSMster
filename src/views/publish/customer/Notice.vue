@@ -2,7 +2,7 @@
   <div class="inner">
     <PageTitle pagetitle="공지사항" />
     <TabCategory :category="category" :newTabIndex="newTabIndex"/>
-    <SearchTable v-if="checkBoardLength" listnumber="73" />
+    <SearchTable v-if="checkBoardLength" listnumber=73 />
     <div class="table__wrap notice-table">
         <table class="table table-list">
           <colgroup>

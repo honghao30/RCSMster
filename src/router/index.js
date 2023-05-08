@@ -25,8 +25,9 @@ import AgencyJoinStep04 from '@/views/publish/join/AgencyJoinStep04'
 
 // 고객센터
 import NoticeView from '@/views/publish/customer/Notice'
-import FAQ from '@/views/publish/customer/FAQ'
 import NoticeSearch from '@/views/publish/customer/NoticeSearch'
+import NoticeContent from '@/views/publish/customer/NoticeContent'
+import FAQ from '@/views/publish/customer/FAQ'
 
 Vue.use(Router)
 
@@ -141,6 +142,13 @@ let router = new Router({
     {
       path: '/noticesearch',
       component: NoticeSearch,
+      meta: {
+        tittle: '공지사항'
+      }
+    },
+    {
+      path: '/noticecontent',
+      component: NoticeContent,
       meta: {
         tittle: '공지사항'
       }
