@@ -26,7 +26,7 @@
                         </ButtonCmp>
                       </div>
                     </div>
-                    <p class="form-item__error" v-if="certificateErrorMsg">사업자등록번호를 입력해주세요.</p>
+                    <p class="guide-text error" v-if="certificateErrorMsg">사업자등록번호를 입력해주세요.</p>
                     <p class="guide-text">※ 사업자등록번호 인증 후 회원가입을 진행 할 수 있습니다.</p>
                   </div>
                   <div class="form-item__content" v-else>
@@ -65,7 +65,7 @@
                       <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명(단체명)을 입력해주세요." v-model="form.companyname"></span>
                     </div>
                   </div>
-                  <p class="form-item__error" v-if="companynameErrorMsg">법인명(단체명)을 입력해주세요.</p>
+                  <p class="guide-text error" v-if="companynameErrorMsg">법인명(단체명)을 입력해주세요.</p>
                 </div>
               </td>
             </tr>
@@ -78,7 +78,7 @@
                       <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 업태명을 입력해주세요."  v-model="form.biztype"></span>
                     </div>
                   </div>
-                  <p class="form-item__error" v-if="biztypeErrorMsg">사업자등록증에 등록된 첫번째 업태명을 입력해주세요.</p>
+                  <p class="guide-text error" v-if="biztypeErrorMsg">사업자등록증에 등록된 첫번째 업태명을 입력해주세요.</p>
                   <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘기업/단체’로 입력해주세요.</p>
                 </div>
               </td>
@@ -92,7 +92,7 @@
                       <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 종목명을 입력해주세요."   v-model="form.bizevent"></span>
                     </div>
                   </div>
-                  <p class="form-item__error" v-if="bizeventErrorMsg">사업자등록증에 등록된 첫번째 종목명을 입력해주세요.</p>
+                  <p class="guide-text error" v-if="bizeventErrorMsg">사업자등록증에 등록된 첫번째 종목명을 입력해주세요.</p>
                   <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘비영리, 공공/행정, 정치/사회, 복지, 종교, 모임, 기관/단체일반’ 중에서 해당하는 항목을 입력해주세요.</p>
                 </div>
               </td>
@@ -180,7 +180,8 @@
   <ModalView
     v-if="isModalViewed" @closeModal="isModalViewed = false"
   >
-      <CertificateMsg @closeModal="isModalViewed = false" />
+      <CertificateMsg @closeModal="isModalViewed = false" status="done"/>
+      <!-- 기 가입자일 경우 done, 진행 중인 경우는 ing  -->
   </ModalView>
   </div>
 </template>
