@@ -25,7 +25,7 @@
                       </ButtonCmp>
                     </div>
                   </div>
-                  <p class="form-item__error" v-if="certificateErrorMsg">사업자등록번호를 입력해주세요.</p>
+                  <p class="guide-text error" v-if="certificateErrorMsg">사업자등록번호를 입력해주세요.</p>
                   <p class="guide-text">※ 사업자등록번호 인증 후 회원가입을 진행 할 수 있습니다.</p>
                 </div>
                 <div class="form-item__content" v-else>
@@ -64,7 +64,7 @@
                     <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명(단체명)을 입력해주세요." v-model="form.companyname"></span>
                     </div>
                   </div>
-                  <p class="form-item__error" v-if="companynameErrorMsg">법인명(단체명)을 입력해주세요.</p>
+                  <p class="guide-text error" v-if="companynameErrorMsg">법인명(단체명)을 입력해주세요.</p>
                 </div>
               </td>
             </tr>
@@ -77,7 +77,7 @@
                     <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 업태명을 입력해주세요."  v-model="form.biztype"></span>
                   </div>
                 </div>
-                <p class="form-item__error" v-if="biztypeErrorMsg">사업자등록증에 등록된 첫번째 업태명을 입력해주세요.</p>
+                <p class="guide-text error" v-if="biztypeErrorMsg">사업자등록증에 등록된 첫번째 업태명을 입력해주세요.</p>
                 <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘기업/단체’로 입력해주세요.</p>
                 </div>
               </td>
@@ -91,7 +91,7 @@
                     <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 종목명을 입력해주세요."   v-model="form.bizevent"></span>
                   </div>
                 </div>
-                <p class="form-item__error" v-if="bizeventErrorMsg">사업자등록증에 등록된 첫번째 종목명을 입력해주세요.</p>
+                <p class="guide-text error" v-if="bizeventErrorMsg">사업자등록증에 등록된 첫번째 종목명을 입력해주세요.</p>
                 <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘비영리, 공공/행정, 정치/사회, 복지, 종교, 모임, 기관/단체일반’ 중에서 해당하는 항목을 입력해주세요.</p>
                 </div>
               </td>
@@ -115,7 +115,7 @@
                     <span class="input"><input type="text" class="input" v-model="form.addr1"></span> <span class="input"><input type="text" class="input" v-model="form.addr2"></span>
                     </div>
                   </div>
-                  <p class="form-item__error" v-if="postcodeErrorMsg">기업주소를 입력해주세요.</p>
+                  <p class="guide-text error" v-if="postcodeErrorMsg">기업주소를 입력해주세요.</p>
                 </div>
               </td>
             </tr>
@@ -205,7 +205,7 @@
                       </div>
                     </div>
                   </div>
-                  <p class="form-item__error" v-if="serviceErrorMsg">제공 서비스를 선택해 주세요.</p>
+                  <p class="guide-text error" v-if="serviceErrorMsg">제공 서비스를 선택해 주세요.</p>
                 </div>
               </td>
             </tr>
@@ -241,7 +241,7 @@
                       <span class="result-text">선택 중개사 <em class="point">4</em>개</span>
                     </div>
                   </div>
-                  <p class="form-item__error" v-if="agencyErrorMsg">중계사를 선택해주세요.</p>
+                  <p class="guide-text error" v-if="agencyErrorMsg">중계사를 선택해주세요.</p>
                   <p class="guide-text" v-if="form.agency === 'agencyY'">※ 중계사 지정 안내<br>중계사로 지정된 브랜드의 모든 메시지 및 자동응답메시지의 트래픽이 모두 중계사에게 부과됩니다.<br>대행사가 중계사로 지정되는 경우 해당 대행사가 메시지 청약 및 과금을 대행한다는 것에 대한 동의 절차를 진행해야 합니다.</p>
                   <p class="guide-text" v-if="form.agency === 'agencyN'">※ 중계사 선택 안내<br>반드시 청약이 완료된 중계사를 선택해야 하며 메시지를 수신하기 위한 webhook.url 정보를 해당 중계사의 시스템에 등록해야 합니다. </p>
                 </div>

@@ -201,13 +201,28 @@ $formLabelWidth : 120px;
         margin-left:10px;
       }
     }
-    &__error {
-      margin-bottom:-24px;
-      @include fontoption(14px,$errorColor,400,24px);
-      width:100%;
-      padding-left:$formLabelWidth;;
+  }
+  .guide-text {
+    margin-top:16px;
+    @include fontoption(14px,#2F77FB,400,24px);   
+    &.black {
+        color: #000;
     }
-    
+    &.validation {
+        margin:10px 0 0;
+        padding-left:20px;
+        background-image: url('../assets/images/icon/icon_validation_check.png');
+        background-repeat: no-repeat;
+        background-position: 0 center;       
+    }
+    &.error {
+      margin:10px 0 0;
+      padding-left:20px;
+      background-image: url('../assets/images/icon/icon_exclamation_circle.png');
+      background-repeat: no-repeat;
+      background-position: 0 center;
+      @include fontoption(14px,#FF4830,400,24px);    
+    }
   }
 }
 
