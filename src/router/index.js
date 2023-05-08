@@ -14,6 +14,7 @@ import UiGuides from '@/views/guide/page/UiGuide'
 import LoginPage from '@/views/publish/join/LoginPage'
 import IdFind from '@/views/publish/join/IdFind'
 import pwFind from '@/views/publish/join/pwFind'
+import SignUp from '@/views/publish/join/SignUp'
 
 // 가입
 import JoinStep01 from '@/views/publish/join/JoinStep01'
@@ -84,6 +85,13 @@ let router = new Router({
       component: pwFind,
       meta: {
         tittle: '비밀번호 찾기'
+      }
+    },
+    {
+      path: '/SignUp',
+      component: SignUp,
+      meta: {
+        tittle: '회원가입 유형선택'
       }
     },
     // 가입
