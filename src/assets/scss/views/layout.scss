@@ -278,7 +278,7 @@ $contentPaddingM: 16px;
 // 모바일 
 
 @media #{$phone} {
-
+    $mobileNavWidth: 240px;
     $headerHeight: 48px;
     .inner { 
         width:100%;
@@ -316,7 +316,7 @@ $contentPaddingM: 16px;
         }
         &__inner {
             position:fixed;
-            right:0;
+            right:-$mobileNavWidth;
             top:0;
             transform:translate(100%, 0);
             transition:transform 300ms linear;
@@ -331,7 +331,7 @@ $contentPaddingM: 16px;
         }
         &.open {
             .nav__inner {
-                transform:translate(0,0)
+                transform:translate(-$mobileNavWidth,0)
             }
         }
         &__item {
@@ -344,6 +344,9 @@ $contentPaddingM: 16px;
             padding: 0;
             border:none;
             background-color:#fff;
+        }
+        &__button--close {
+            display: block;
         }
     }
     .header__util {
