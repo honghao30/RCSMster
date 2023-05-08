@@ -180,7 +180,8 @@
   <ModalView
     v-if="isModalViewed" @closeModal="isModalViewed = false"
   >
-      <CertificateMsg @closeModal="isModalViewed = false" />
+      <CertificateMsg @closeModal="isModalViewed = false" status="done"/>
+      <!-- 기 가입자일 경우 done, 진행 중인 경우는 ing  -->
   </ModalView>
   </div>
 </template>

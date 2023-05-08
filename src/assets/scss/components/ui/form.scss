@@ -82,7 +82,7 @@ $bordersColor: #DDDDDD;
       border-width:0 2px 2px 0;
       height:9px;
       position:absolute;
-      top:7px;
+      top:8px;
       left: 8px;
       width: 5px;
       font-size:14px !important;
@@ -119,10 +119,10 @@ $bordersColor: #DDDDDD;
     &::after {
       content: '';
       position: absolute;
-      top: 7px;
-      left: 4px;
-      width: 13px;
-      height: 13px;
+      top: 6px;
+      left: 3px;
+      width: 14px;
+      height: 14px;
       border-radius: 100%;
       background: transparent;
       border-radius:100%;
@@ -240,22 +240,25 @@ $formLabelWidth : 120px;
     width: 100%;
     display:flex;
     align-items:center;
-    padding:0 5px;
+    gap: 10px;
     &.w--half {
       width: 50%;
-    }
-    &:first-child {
-      padding-left:0;
-    }
-    &:last-child {
-      padding-right:0;
+      padding:0 5px;
+      &:first-child {
+        padding-left:0;
+      }
+      &:last-child {
+        padding-right:0;
+      }
     }
     .input {
       flex:auto;
     }
-    button {
-      min-width:100px;
-      margin-left:10px;
+  }
+  .btn-default-line {
+    min-width:100px;
+    &.small {
+      min-width: 74px;
     }
   }
 }

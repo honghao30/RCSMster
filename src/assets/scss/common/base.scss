@@ -23,6 +23,8 @@ caption{position: absolute;width: 1px;height: 1px;clip: rect(0 0 0 0);overflow: 
 a[role="button"] {cursor:pointer}
 
 .blind,.irtext { position: absolute;width: 1px;height: 1px;clip: rect(0 0 0 0);overflow: hidden;}
+.point {color:$pointColor;font-style:normal}
+
 @media #{$phone} {
     .m-block{
        display: block;
