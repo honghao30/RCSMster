@@ -21,10 +21,13 @@ import JoinStep02 from '@/views/publish/join/JoinStep02'
 import JoinStep03 from '@/views/publish/join/JoinStep03'
 import JoinStep04 from '@/views/publish/join/JoinStep04'
 import AgencyJoinStep01 from '@/views/publish/join/AgencyJoinStep01'
+import AgencyJoinStep02 from '@/views/publish/join/AgencyJoinStep02'
+import AgencyJoinStep03 from '@/views/publish/join/AgencyJoinStep03'
 import AgencyJoinStep04 from '@/views/publish/join/AgencyJoinStep04'
 
 // 고객센터
 import NoticeView from '@/views/publish/customer/Notice'
+import NoticeSearch from '@/views/publish/customer/NoticeSearch'
 
 Vue.use(Router)
 
@@ -122,6 +125,27 @@ let router = new Router({
       }
     },
     {
+      path: '/agencyjoinStep01',
+      component: AgencyJoinStep01,
+      meta: {
+        tittle: '회원가입'
+      }
+    },
+    {
+      path: '/agencyjoinStep02',
+      component: AgencyJoinStep02,
+      meta: {
+        tittle: '회원가입'
+      }
+    },
+    {
+      path: '/agencyjoinStep03',
+      component: AgencyJoinStep03,
+      meta: {
+        tittle: '회원가입'
+      }
+    },
+    {
       path: '/agencyjoinStep04',
       component: AgencyJoinStep04,
       meta: {
@@ -132,6 +156,13 @@ let router = new Router({
     {
       path: '/notice',
       component: NoticeView,
+      meta: {
+        tittle: '공지사항'
+      }
+    },
+    {
+      path: '/noticesearch',
+      component: NoticeSearch,
       meta: {
         tittle: '공지사항'
       }
@@ -161,10 +192,10 @@ router.beforeEach((to, from, next) => {
   store.dispatch('SetRoute', to)
   next()
 })
-  
+
 router.afterEach((to, from) => {
-    // 라우터 이동 후 상단으로 화면 이동
-    window.scrollTo(0, 0)
+  // 라우터 이동 후 상단으로 화면 이동
+  window.scrollTo(0, 0)
 })
 
 export default router

@@ -103,7 +103,13 @@
                     background-color: #2F77FB;   
                 }
             }                              
-        }    
+        } 
+        + .page-title__wrap {
+            margin-top:0;
+        }   
+    }
+    .page-title__wrap {
+        margin-top: 60px;
     }
     .table__wrap {
         margin-top: 20px;
@@ -129,10 +135,12 @@
                 position: relative;
                 input[type='file'] {
                     position: absolute;
-                    width: 70%;
+                    width: calc(100% - 110px);
                     left:0;
                     top:0;
                     opacity: 0;
+                    height: 100%;
+                    border-radius: 8px;
                 }
                 input {
                     flex: 1;
@@ -156,17 +164,7 @@
                 }
                 &.ip {
                     gap: 10px;
-                    button {
-                        min-width: 74px;
-                        margin-left:0;
-                    }
-                    +.input-item {
-                        margin-top: 8px;
-                        padding-left:0;
-                    }
-                    +.btn-default-line {
-                        margin: 8px 0 0;
-                    }
+                    margin-bottom: 8px;
                 }
                 &.service {
                     .checkbox + .checkbox {
@@ -233,14 +231,7 @@
             
         }
     }
-    .btn-default-line {
-        @include fontoption(14px,#4A5567,700,42px);
-        margin-left:10px;
-        height: 42px;        
-        cursor: pointer;
-        background-color: #fff;
-        border: 1px solid #4A5567;
-    }    
+    
     .button__wrap {
         text-align: center;
         margin-top: 10px;
@@ -304,7 +295,15 @@
         @include fontoption(14px,#2F77FB,400,24px);   
         &.black {
             color: #000;
-        }               
+        }
+        &.validation {
+            margin:10px 0 0;
+            padding-left:20px;
+            background-image: url('../assets/images/icon/icon_validation_check.png');
+            background-repeat: no-repeat;
+            background-position: 0 center;       
+        }
+                    
     }
 }
 .modal__container {
@@ -385,8 +384,24 @@
         font-size: 16px;
         line-height: 26px;
         color: #666;
-        overflow-y:auto
+        overflow-y:auto;
+        .terms {
+            color: #666;
+            font-size: 16px;
+            line-height: 26px;
+            &__h1 {
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 30px;
+            }
+            &__h2 {
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 28px;
+            }
+        }
     } 
+    
 }
 .join-compt__wrap {
     text-align:center;

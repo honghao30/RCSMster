@@ -10,11 +10,17 @@
     <div class="input">
       <input type="text" placeholder="검색어를 입력해 주세요.">
     </div>
+    <div class="input-m">
+      <input type="text" placeholder="검색어 입력">
+    </div>
     <ButtonCmp
       type="search"
     >
       검색
     </ButtonCmp>
+    <p class="list-number">
+      총 {{ listnumber }}건
+    </p>
   </div>
 </template>
 
@@ -22,7 +28,8 @@
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 export default {
   props: {
-    pagetitle: String
+    pagetitle: String,
+    listnumber: String
   },
   components: {
     ButtonCmp
