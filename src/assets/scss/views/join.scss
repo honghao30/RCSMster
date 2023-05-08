@@ -35,7 +35,7 @@
                     width: 41px;
                     height: 40px;                            
                     margin: 0 auto;
-                    background-image: url('/src/assets/images/icon/icon_exclude_join_step.png');
+                    background-image: url('../assets/images/icon/icon_exclude_join_step.png');
                     background-repeat: no-repeat;
                     background-position: center center;
                     z-index: 3;
@@ -85,7 +85,7 @@
                 color:#2855A7;
                 .join-step__inner {
                     &::before {
-                        background-image: url('/src/assets/images/icon/icon_exclude_join_step_end.png');
+                        background-image: url('../assets/images/icon/icon_exclude_join_step_end.png');
                     }
                 }
                 &::before {
@@ -96,7 +96,7 @@
                 color: #2F77FB;
                 .join-step__inner {
                     &::before {
-                        background-image: url('/src/assets/images/icon/icon_exclude_join_step_ing.png');
+                        background-image: url('../assets/images/icon/icon_exclude_join_step_ing.png');
                     }
                 }
                 &::before {
@@ -252,7 +252,7 @@
     .form-item__error {
         margin:10px 0 0;
         padding-left:20px;
-        background-image: url('/src/assets/images/icon/icon_exclamation_circle.png');
+        background-image: url('../assets/images/icon/icon_exclamation_circle.png');
         background-repeat: no-repeat;
         background-position: 0 center;
         @include fontoption(14px,#FF4830,400,24px);     
@@ -385,8 +385,24 @@
         font-size: 16px;
         line-height: 26px;
         color: #666;
-        overflow-y:auto
+        overflow-y:auto;
+        .terms {
+            color: #666;
+            font-size: 16px;
+            line-height: 26px;
+            &__h1 {
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 30px;
+            }
+            &__h2 {
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 28px;
+            }
+        }
     } 
+    
 }
 .join-compt__wrap {
     text-align:center;

@@ -39,17 +39,22 @@
                 <span class="date">{{ item.date }}</span>
               </td>
             </tr>
+            <tr>
+              <td></td>
+              <td>
+                <p class="no-data">검색 결과가 없습니다.</p>
+              </td>
+              <td>  </td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <PagingCmp />
   </div>
 </template>
 
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
 import SearchTable from '@/components/common/SearchTable.vue'
-import PagingCmp from '@/components/common/PagingCmp.vue'
 import TabCategory from '@/components/common/TabCategory'
 
 export default {
@@ -76,70 +81,6 @@ export default {
           primary: true,
           new: false,
           attach: false
-        },
-        {
-          id: 45,
-          title: 'CS Biz Center X 미리캔버스 제휴 프로모션',
-          date: '2023.04.25',
-          primary: false,
-          new: true,
-          attach: false
-        },
-        {
-          id: 45,
-          title: '[작업] 서비스 점검 공지 (06월11일 14시~15시) [작업] 서비스 점검 공지 (06월11일 14시~15시) [작업] 서비스 점검 공지에 대한 안내 드립니다.',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: false
-        },
-        {
-          id: 45,
-          title: 'RCS Biz Center 제3회 전국동시조합장선거 후보자 브랜드 등록 수정',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: true
-        },
-        {
-          id: 45,
-          title: '[안내] 발신번호 신청 사업자와 증빙서류의 사업자가 상이한 경우 (발신번호 위탁서)',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: false
-        },
-        {
-          id: 45,
-          title: 'RCS Biz Center 검수기 승인 안내',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: false
-        },
-        {
-          id: 45,
-          title: '[RCS 활용사례] 국민은행 - 보이스피싱 예방',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: false
-        },
-        {
-          id: 45,
-          title: '3rd Party App의 RCS 문자 메시지 인식을 위한 개발 가이드',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: false
-        },
-        {
-          id: 45,
-          title: '[작업] 삼성 MaaP 작업에 따른 RCS Biz Center 서비스 차단 안내 (7월 19일 ~ 20일)',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: false
         }
       ]
     }
@@ -147,12 +88,11 @@ export default {
   components: {
     PageTitle,
     SearchTable,
-    PagingCmp,
     TabCategory
   },
   computed: {
     checkBoardLength() {
-      return this.noticeData.length < 10 ? false : true;
+      return this.noticeData.length < 0 ? false : true;
     }
   }
 }

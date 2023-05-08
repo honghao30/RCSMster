@@ -14,6 +14,7 @@ import UiGuides from '@/views/guide/page/UiGuide'
 import LoginPage from '@/views/publish/join/LoginPage'
 import IdFind from '@/views/publish/join/IdFind'
 import pwFind from '@/views/publish/join/pwFind'
+import SignUp from '@/views/publish/join/SignUp'
 
 // 가입
 import JoinStep01 from '@/views/publish/join/JoinStep01'
@@ -25,6 +26,8 @@ import AgencyJoinStep04 from '@/views/publish/join/AgencyJoinStep04'
 
 // 고객센터
 import NoticeView from '@/views/publish/customer/Notice'
+import FAQ from '@/views/publish/customer/FAQ'
+import NoticeSearch from '@/views/publish/customer/NoticeSearch'
 
 Vue.use(Router)
 
@@ -87,12 +90,27 @@ let router = new Router({
     },
     // 가입
     {
+      path: '/SignUp',
+      component: SignUp,
+      meta: {
+        tittle: '회원가입 유형선택'
+      }
+    },
+    {
       path: '/agencyjoinStep01',
       component: AgencyJoinStep01,
       meta: {
         tittle: '약관동의'
       }
     },
+    {
+      path: '/agencyjoinStep04',
+      component: AgencyJoinStep04,
+      meta: {
+        tittle: '회원가입'
+      }    
+    }
+    // 기업 회원 가입
     {
       path: '/joinStep01',
       component: JoinStep01,
@@ -104,28 +122,21 @@ let router = new Router({
       path: '/joinStep02',
       component: JoinStep02,
       meta: {
-        tittle: '회원가입'
+        tittle: '기업정보 입력'
       }
     },
     {
       path: '/joinStep03',
       component: JoinStep03,
       meta: {
-        tittle: '회원가입'
+        tittle: '회원정보 입력'
       }
     },
     {
       path: '/joinStep04',
       component: JoinStep04,
       meta: {
-        tittle: '회원가입'
-      }
-    },
-    {
-      path: '/agencyjoinStep04',
-      component: AgencyJoinStep04,
-      meta: {
-        tittle: '회원가입'
+        tittle: '회원가입 완료'
       }
     },
     // 고객센터
@@ -134,6 +145,20 @@ let router = new Router({
       component: NoticeView,
       meta: {
         tittle: '공지사항'
+      }
+    },
+    {
+      path: '/noticesearch',
+      component: NoticeSearch,
+      meta: {
+        tittle: '공지사항'
+      }
+    },
+    {
+      path: '/faq',
+      component: FAQ,
+      meta: {
+        tittle: 'FAQ'
       }
     }
   ]
@@ -161,10 +186,10 @@ router.beforeEach((to, from, next) => {
   store.dispatch('SetRoute', to)
   next()
 })
-  
+
 router.afterEach((to, from) => {
-    // 라우터 이동 후 상단으로 화면 이동
-    window.scrollTo(0, 0)
+  // 라우터 이동 후 상단으로 화면 이동
+  window.scrollTo(0, 0)
 })
 
 export default router

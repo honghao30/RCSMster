@@ -177,11 +177,11 @@
         >다음</ButtonCmp>
       </div>
   </form>
-        <ModalView
-          v-if="isModalViewed" @closeModal="isModalViewed = false"
-        >
-            <CertificateMsg @closeModal="isModalViewed = false" />
-        </ModalView>
+  <ModalView
+    v-if="isModalViewed" @closeModal="isModalViewed = false"
+  >
+      <CertificateMsg @closeModal="isModalViewed = false" />
+  </ModalView>
   </div>
 </template>
 

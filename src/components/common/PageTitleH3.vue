@@ -38,10 +38,13 @@ export default {
     font-size: 16px;
     line-height: 26px;
     color: #000000;
-    background-image: url('/src/assets/images/icon/icon_check_required.png');
-    background-repeat: no-repeat;
-    background-position: left center;
     padding-left:12px;
+    &:before {
+      content:'*';
+      color: #2f77fb;
+      position:relative;
+      top:-1px
+    }
   }
 }
 </style>

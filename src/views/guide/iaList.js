@@ -1,33 +1,64 @@
 const guideList = [
   {
-    'depth1': '퍼블리싱 가이드',
+    'depth1': '개요',
     'status': '완료',
-    'date': '2023-04-21'
+    'date': '2023-04-21',
+    'link': '/PubGuides/'
+  },
+  {
+    'depth1': '규칙 & 설계',
+    'status': '완료',
+    'date': '2023-04-21',
+    'link': '/RullGuide'
+  },
+  {
+    'depth1': 'UI 가이드',
+    'status': '',
+    'date': '2023-04-21',
+    'link': '/UiGuides'
+  },
+  {
+    'depth2': 'BEM 예시',
+    'status': '완료',
+    'link': ''
   },
   {
     'depth1': '컴포넌트',
-    'depth2': '타이포 그래피',
+    'depth2': 'TypoGraphy',
     'status': '',
-    'link': '/Typography'
+    'link': ''
   },
   {
     'depth2': 'TABLE',
-    'status': '',
-    'link': '/tableCmp'
+    'status': '완료',
+    'link': ''
   },
   {
     'depth2': '폼 요소',
-    'status': ''
+    'status': '완료'
+  },
+  {
+    'depth2': '탭',
+    'status': '완료'
   },
   {
     'depth2': '버튼 & 아이콘',
     'status': ''
   },
   {
+    'depth2': '모달',
+    'status': '완료'
+  },
+  {
     'depth1': 'Layout',
     'status': ''
+  },
+  {
+    'depth1': '퍼블 리스트',
+    'status': '완료',
+    'date': '2023-04-21',
+    'link': '/PubList'
   }
-
 ]
 
 const homeList = [
@@ -89,11 +120,15 @@ const homeList = [
   },
   {
     'depth1': '로그인',
-    'screenId': 'G001'
+    'screenId': 'G001',
+    'status': '완료',
+    'link': '/LoginPage'
   },
   {
     'depth2': '아이디 찾기',
-    'screenId': 'G001_1'
+    'screenId': 'G001_1',
+    'status': '완료',
+    'link': '/IdFind'
   },
   {
     'depth3': '아이디 찾기 결과',
@@ -101,7 +136,9 @@ const homeList = [
   },
   {
     'depth2': '비밀번호 찾기',
-    'screenId': 'G001_2'
+    'screenId': 'G001_2',
+    'status': '완료',
+    'link': '/pwFind'
   },
   {
     'depth3': '비밀번호 변경',
@@ -109,20 +146,44 @@ const homeList = [
   },
   {
     'depth1': '회원가입',
+    'depth2': '회원가입 유형선택',
+    'screenId': '',
+    'status': '완료',
+    'link': '/SignUp'
+  },
+  // 기업 담당자 회원가입
+  {
     'depth2': '기업담당자 회원가입',
-    'screenId': 'G002'
+    'depth3': '약관동의',
+    'screenId': 'G002',
+    'status': '완료',
+    'link': '/joinStep01'
+  },
+  {
+    'depth3': '기업정보 입력',
+    'screenId': '',
+    'status': '완료',
+    'link': '/joinStep02'
+  },
+  {
+    'depth3': '회원정보 입력',
+    'screenId': '',
+    'status': '완료',
+    'link': '/joinStep03'
   },
   {
     'depth3': '완료',
-    'screenId': 'G002'
+    'screenId': '',
+    'status': '완료',
+    'link': '/joinStep04'
   },
+  // 대행사 회원가입
   {
     'depth2': '대행사 회원가입',
-    'screenId': 'G003'
-  },
-  {
-    'depth3': '완료',
-    'screenId': 'G003_1'
+    'depth3': '약관동의',
+    'screenId': 'G003',
+    'status': '완료',
+    'link': '/agencyjoinStep01'
   },
   {
     'depth1': '마이페이지',

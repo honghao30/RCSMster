@@ -159,22 +159,4 @@ export default {
   }
 
 }
-.scroll-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: #333;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 50%;
-}
-
-.scroll-to-top:hover {
-  background-color: #555;
-}
 </style>
