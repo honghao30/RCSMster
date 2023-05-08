@@ -26,21 +26,21 @@
         <div class="form-item">
           <span class="form-item__label">아이디</span>
           <div class="form-item__content">
-            <span class="input"><input type="text" class="input" placeholder="아이디를 입력해주세요." v-model="form.id"></span>
+            <span class="input"><input ref="userId" type="text" class="input" placeholder="아이디를 입력해주세요." v-model="form.id"></span>
           </div>
           <p class="form-item__error" v-if="idErrorMsg">아이디를 입력해주세요.</p>
         </div>
         <div class="form-item">
           <span class="form-item__label">이름</span>
           <div class="form-item__content">
-            <span class="input"><input type="text" class="input" placeholder="이름을 입력해주세요."  v-model="form.name"></span>
+            <span class="input"><input  ref="userName" type="text" class="input" placeholder="이름을 입력해주세요."  v-model="form.name"></span>
           </div>
           <p class="form-item__error" v-if="nameErrorMsg">이름을 입력해주세요.</p>
         </div>
         <div class="form-item">
           <span class="form-item__label">휴대폰</span>
           <div class="form-item__content">
-            <span class="input"><input type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요."  v-model="form.phone"></span>
+            <span class="input"><input ref="phone" type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요."  v-model="form.phone"></span>
             <ButtonCmp
               type="btn-default-line"
               @click="start"
@@ -53,7 +53,7 @@
         <div class="form-item">
           <span class="form-item__label">인증번호</span>
           <div class="form-item__content">
-            <span class="input"><input type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요."  v-model="form.number"></span>
+            <span class="input"><input ref="number" type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요."  v-model="form.number"></span>
             <span class="time" ref="time">{{ TimerStr }}</span>
           </div>
           <p class="form-item__error" v-if="numberErrorMsg">인증번호를 입력해주세요.</p>
@@ -61,7 +61,7 @@
       </div>
       <div class="button__wrap">
         <ButtonCmp
-          type="btn-blue-help"
+          type="btn-blue btn-help"
           @click="onSubmit"
         >비밀번호 찾기</ButtonCmp>
       </div>
@@ -107,22 +107,31 @@ export default {
     onSubmit () {
       if (this.form.id === '') {
         this.idErrorMsg = true
+        this.$refs.userId.focus()
         return
       }
       if (this.form.name === '') {
         this.nameErrorMsg = true
+        this.$refs.userName.focus()
         return
       }
       if (this.form.phone === '') {
         this.phoneErrorMsg = true
+        this.$refs.phone.focus()
         return
       }
       if (this.form.number === '') {
         this.numberErrorMsg = true
+        this.$refs.number.focus()
         // return
       }
     },
     start() {
+      if (this.form.phone === '') {
+        this.phoneErrorMsg = true
+        this.$refs.phone.focus()
+        return
+      }
       alert('인증번호가 전송 되었습니다.')
       this.$refs.time.classList.add('active')
       // 1초에 한번씩 start 호출

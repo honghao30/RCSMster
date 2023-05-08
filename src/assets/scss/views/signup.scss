@@ -92,9 +92,8 @@
 
 @media #{$phone} {
   .signup {
-    max-width:656px;
+    max-width:328px;
     margin: 0 auto;
-    padding: 0 16px;
     .signup-title__wrap--top {
       .page-title {
         margin-bottom:10px;
@@ -106,6 +105,7 @@
     }
     .signup__wrap {
       flex-wrap: wrap;
+      justify-content: center;
       margin-top: 32px;
       .signup-item {
         width: 328px;
