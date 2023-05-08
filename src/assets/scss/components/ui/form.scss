@@ -36,6 +36,11 @@ $bordersColor: #DDDDDD;
     @include inputBasic;
   }
 }
+.input-m {
+  input {
+    @include inputBasic;
+  }
+}
 //check box
 //input 은 숨겨주기
 //checkbox 는 .checkbox 클래스명의 엘리먼트안에 input 관 label 로 구현
@@ -257,23 +262,31 @@ $formLabelWidth : 120px;
 
 .search-table {
   display:flex;
-  justify-content:flex-end;
+  justify-content:flex-start;
   margin-bottom: 16px;
   .select {
     width: 120px;
     select {
       font-size: 16px;
     }
-    
   }
   .input {
+    display: block;
     width: 240px;
     margin-left:8px;
     font-size: 16px;
   }
+  .input-m {
+    display: none;
+  }
   .btn {
     width: 74px;
     margin-left: 8px;
+  }
+  .list-number {
+    margin-left: 784px;
+    margin-top: 16px;
+    font-size: 14px;
   }
 }
 
@@ -320,7 +333,7 @@ $formLabelWidth : 120px;
     }
   }
   .search-table {
-    margin-bottom: 24px;
+    margin-bottom: 52px;
     .select {
       width: 80px;
       flex-shrink: 0;
@@ -329,6 +342,10 @@ $formLabelWidth : 120px;
       }
     }
     .input {
+      display: none;
+    }
+    .input-m {
+      display: block;
       width: auto;
       margin: 0 8px;
       font-size: 14px;
@@ -339,6 +356,11 @@ $formLabelWidth : 120px;
       width: 74px;
       margin-left: 0;
     }
+    .list-number {
+      position: absolute;
+      margin-left: 0px;
+      margin-top: 68px;
+      font-size: 13px;
+    }
   }
-
 }
