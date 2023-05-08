@@ -14,6 +14,8 @@ import UiGuides from '@/views/guide/page/UiGuide'
 import LoginPage from '@/views/publish/join/LoginPage'
 import IdFind from '@/views/publish/join/IdFind'
 import pwFind from '@/views/publish/join/pwFind'
+import IdResult from '@/views/publish/join/IdResult'
+import PwChange from '@/views/publish/join/PwChange'
 import SignUp from '@/views/publish/join/SignUp'
 
 // 가입
@@ -22,11 +24,12 @@ import JoinStep02 from '@/views/publish/join/JoinStep02'
 import JoinStep03 from '@/views/publish/join/JoinStep03'
 import JoinStep04 from '@/views/publish/join/JoinStep04'
 import AgencyJoinStep01 from '@/views/publish/join/AgencyJoinStep01'
+import AgencyJoinStep02 from '@/views/publish/join/AgencyJoinStep02'
+import AgencyJoinStep03 from '@/views/publish/join/AgencyJoinStep03'
 import AgencyJoinStep04 from '@/views/publish/join/AgencyJoinStep04'
 
 // 고객센터
 import NoticeView from '@/views/publish/customer/Notice'
-import FAQ from '@/views/publish/customer/FAQ'
 import NoticeSearch from '@/views/publish/customer/NoticeSearch'
 
 Vue.use(Router)
@@ -88,6 +91,20 @@ let router = new Router({
         tittle: '비밀번호 찾기'
       }
     },
+    {
+      path: '/IdResult',
+      component: IdResult,
+      meta: {
+        tittle: '아이디찾기결과'
+      }
+    },
+    {
+      path: '/PwChange',
+      component: PwChange,
+      meta: {
+        tittle: '비밀번호 변경하기'
+      }
+    },
     // 가입
     {
       path: '/SignUp',
@@ -96,6 +113,7 @@ let router = new Router({
         tittle: '회원가입 유형선택'
       }
     },
+    // 기업 회원 가입
     {
       path: '/agencyjoinStep01',
       component: AgencyJoinStep01,
@@ -103,14 +121,6 @@ let router = new Router({
         tittle: '약관동의'
       }
     },
-    {
-      path: '/agencyjoinStep04',
-      component: AgencyJoinStep04,
-      meta: {
-        tittle: '회원가입'
-      }    
-    }
-    // 기업 회원 가입
     {
       path: '/joinStep01',
       component: JoinStep01,
@@ -139,6 +149,35 @@ let router = new Router({
         tittle: '회원가입 완료'
       }
     },
+    // 대행사 가입
+    {
+      path: '/agencyjoinStep01',
+      component: AgencyJoinStep01,
+      meta: {
+        tittle: '약관동의'
+      }
+    },
+    {
+      path: '/agencyjoinStep02',
+      component: AgencyJoinStep02,
+      meta: {
+        tittle: '회원가입'
+      }
+    },
+    {
+      path: '/agencyjoinStep03',
+      component: AgencyJoinStep03,
+      meta: {
+        tittle: '회원가입'
+      }
+    },
+    {
+      path: '/agencyjoinStep04',
+      component: AgencyJoinStep04,
+      meta: {
+        tittle: '회원가입'
+      }
+    },
     // 고객센터
     {
       path: '/notice',
@@ -152,13 +191,6 @@ let router = new Router({
       component: NoticeSearch,
       meta: {
         tittle: '공지사항'
-      }
-    },
-    {
-      path: '/faq',
-      component: FAQ,
-      meta: {
-        tittle: 'FAQ'
       }
     }
   ]
