@@ -22,7 +22,7 @@
                                 <span class="input"><input type="text" class="input" placeholder="담당자 이름을 입력해주세요." v-model="form.name"></span>
                             </div>
                         </div>
-                        <p class="form-item__error" v-if="nameErrorMsg">담당자 이름을 입력해주세요.</p>
+                        <p class="guide-text error" v-if="nameErrorMsg">담당자 이름을 입력해주세요.</p>
                     </div>
                 </td>
               </tr>
@@ -40,7 +40,7 @@
                                 휴대폰 인증
                                 </ButtonCmp>
                             </div>
-                            <p class="form-item__error" v-if="phoneErrorMsg">휴대폰 번호을 입력해주세요.</p>
+                            <p class="guide-text error" v-if="phoneErrorMsg">휴대폰 번호을 입력해주세요.</p>
                         </div>
                     </div>
                 </td>
@@ -61,7 +61,7 @@
                         </ButtonCmp>
                       </div>
                     </div>
-                    <p class="form-item__error"  v-if="idErrorMsg">아이디를 입력해주세요.</p>
+                    <p class="guide-text error"  v-if="idErrorMsg">아이디를 입력해주세요.</p>
                   </div>
                 </td>
               </tr>
@@ -74,15 +74,15 @@
                         <span class="input"><input type="text" class="input" placeholder="비밀번호를 입력하세요"  v-model="form.pass"></span>
                       </div>
                     </div>
-                    <p class="form-item__error" v-if="passErrorMsg">비밀번호을 입력해주세요.</p>
+                    <p class="guide-text error" v-if="passErrorMsg">비밀번호을 입력해주세요.</p>
                     <p class="guide-text black">영문, 숫자, 특수문자 중 2개 이상 사용 (2개 조합 시 10자리 이상 / 3개 조합 시 8자리 이상)</p>
                     <p class="guide-text validation">영문, 숫자, 특수문자 중 2개 이상 사용 (2개 조합 시 10자리 이상 / 3개 조합 시 8자리 이상)</p>
                     <p class="guide-text black">연속적인 숫자 또는 문자 사용 불가 (예 : 1234, abcd)</p>
-                    <p class="form-item__error">연속적인 숫자 또는 문자 사용 불가 (예 : 1234, abcd)</p>
+                    <p class="guide-text error">연속적인 숫자 또는 문자 사용 불가 (예 : 1234, abcd)</p>
                     <p class="guide-text black">아이디, 핸드폰 번호와 동일한 숫자 또는 문자 사용 불가</p>
                     <p class="guide-text validation">아이디, 핸드폰 번호와 동일한 숫자 또는 문자 사용 불가</p>
                     <p class="guide-text black">최근 사용한 비밀번호 3개 사용 불가</p>
-                    <p class="form-item__error">최근 사용한 비밀번호 3개 사용 불가</p>
+                    <p class="guide-text error">최근 사용한 비밀번호 3개 사용 불가</p>
                   </div>
                 </td>
               </tr>
@@ -108,7 +108,7 @@
                         <span class="input"><input type="text" class="input" placeholder="담당자 이메일을 입력해주세요."   v-model="form.email"></span>
                       </div>
                     </div>
-                    <p class="form-item__error" v-if="emailErrorMsg">담당자 이메일을 입력해주세요.</p>
+                    <p class="guide-text error" v-if="emailErrorMsg">담당자 이메일을 입력해주세요.</p>
                   </div>
                 </td>
               </tr>
@@ -121,7 +121,7 @@
                         <span class="input"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요."   v-model="form.tel"></span>
                       </div>
                     </div>
-                    <p class="form-item__error" v-if="telErrorMsg">전화번호 이메일을 입력해주세요.</p>
+                    <p class="guide-text error" v-if="telErrorMsg">전화번호 이메일을 입력해주세요.</p>
                   </div>
                 </td>
                 <th scope="row"><span class="form-item__label">내선번호</span></th>
