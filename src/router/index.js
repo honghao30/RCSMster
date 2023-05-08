@@ -88,6 +88,7 @@ let router = new Router({
         tittle: '비밀번호 찾기'
       }
     },
+    // 가입
     {
       path: '/SignUp',
       component: SignUp,
@@ -95,7 +96,6 @@ let router = new Router({
         tittle: '회원가입 유형선택'
       }
     },
-    // 가입
     {
       path: '/agencyjoinStep01',
       component: AgencyJoinStep01,
@@ -103,6 +103,14 @@ let router = new Router({
         tittle: '약관동의'
       }
     },
+    {
+      path: '/agencyjoinStep04',
+      component: AgencyJoinStep04,
+      meta: {
+        tittle: '회원가입'
+      }    
+    }
+    // 기업 회원 가입
     {
       path: '/joinStep01',
       component: JoinStep01,
@@ -114,28 +122,21 @@ let router = new Router({
       path: '/joinStep02',
       component: JoinStep02,
       meta: {
-        tittle: '회원가입'
+        tittle: '기업정보 입력'
       }
     },
     {
       path: '/joinStep03',
       component: JoinStep03,
       meta: {
-        tittle: '회원가입'
+        tittle: '회원정보 입력'
       }
     },
     {
       path: '/joinStep04',
       component: JoinStep04,
       meta: {
-        tittle: '회원가입'
-      }
-    },
-    {
-      path: '/agencyjoinStep04',
-      component: AgencyJoinStep04,
-      meta: {
-        tittle: '회원가입'
+        tittle: '회원가입 완료'
       }
     },
     // 고객센터
