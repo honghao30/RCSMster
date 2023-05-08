@@ -74,7 +74,7 @@ $bordersColor: #DDDDDD;
     &:after{
       content:"";
       border:2px solid #fff;
-      border-width:0 3px 3px 0;
+      border-width:0 2px 2px 0;
       height:9px;
       position:absolute;
       top:7px;
@@ -211,7 +211,7 @@ $formLabelWidth : 120px;
     @include fontoption(16px,#000,500,26px);
     &.required:before {
       content:'*';
-      color:#f56c6c;
+      color: $pointColor;
       position:relative;
       top:-1px
     }
