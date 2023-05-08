@@ -44,15 +44,25 @@
       height: calc(100% - 50px - 50px);
       position:relative;
       width: 100%;       
-      padding: 20px;
       overflow-y: scroll;
     }
     .modal__content--footer {
-      height:50px;
+      height:48px;
       display: flex;
       align-content: center;
       justify-content: center;
       background: #c9c8c8;
+      margin-top:32px;
+      .button__wrap {
+        margin-top:0;
+        padding-top:0;
+        gap: 8px;
+        width: 100%;
+        button {
+          flex:1;
+          width:auto;
+        }
+      }
     }
     .modal-close {
         position: absolute;
