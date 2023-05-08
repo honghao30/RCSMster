@@ -14,6 +14,7 @@ import UiGuides from '@/views/guide/page/UiGuide'
 import LoginPage from '@/views/publish/join/LoginPage'
 import IdFind from '@/views/publish/join/IdFind'
 import pwFind from '@/views/publish/join/pwFind'
+import SignUp from '@/views/publish/join/SignUp'
 
 // 가입
 import JoinStep01 from '@/views/publish/join/JoinStep01'
@@ -25,6 +26,8 @@ import AgencyJoinStep04 from '@/views/publish/join/AgencyJoinStep04'
 
 // 고객센터
 import NoticeView from '@/views/publish/customer/Notice'
+import FAQ from '@/views/publish/customer/FAQ'
+import NoticeSearch from '@/views/publish/customer/NoticeSearch'
 
 Vue.use(Router)
 
@@ -85,6 +88,13 @@ let router = new Router({
         tittle: '비밀번호 찾기'
       }
     },
+    {
+      path: '/SignUp',
+      component: SignUp,
+      meta: {
+        tittle: '회원가입 유형선택'
+      }
+    },
     // 가입
     {
       path: '/agencyjoinStep01',
@@ -135,6 +145,20 @@ let router = new Router({
       meta: {
         tittle: '공지사항'
       }
+    },
+    {
+      path: '/noticesearch',
+      component: NoticeSearch,
+      meta: {
+        tittle: '공지사항'
+      }
+    },
+    {
+      path: '/faq',
+      component: FAQ,
+      meta: {
+        tittle: 'FAQ'
+      }
     }
   ]
 })
@@ -161,10 +185,10 @@ router.beforeEach((to, from, next) => {
   store.dispatch('SetRoute', to)
   next()
 })
-  
+
 router.afterEach((to, from) => {
-    // 라우터 이동 후 상단으로 화면 이동
-    window.scrollTo(0, 0)
+  // 라우터 이동 후 상단으로 화면 이동
+  window.scrollTo(0, 0)
 })
 
 export default router

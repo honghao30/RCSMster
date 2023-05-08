@@ -1,29 +1,158 @@
 //signup
 @import "../components/ui/button.scss";  
 .signup {
-    width: 100%;
-    max-width:628px;
-    margin: 80px auto;
-    .signup-title__wrap--top {
+  width: 100%;
+  max-width:628px;
+  margin: 80px auto;
+  .signup-title__wrap--top {
+    text-align: center;
+    .page-title {
+      margin-bottom:12px;
+    } 
+    p {
+      @include fontoption(16px,#000,400,26px);
+    }
+  }
+  .signup__wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    .signup-item {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      &:nth-child(1) {
+        .signup-item__tit {
+          margin: 40px 0 24px;
+          p{
+            @include fontoption(18px,#000,500,28px);
+            text-align: center;
+            span{
+              color: $pointColor;
+            }
+            &::before {
+              content: '';
+              position: relative;
+              display: block;
+              margin: 0 auto;
+              background: url('#{$iconBsUrl}icon_company_person.png') no-repeat center;  
+              width: 36px;
+              height: 49px;
+              margin-bottom: 20px;
+            }
+          }
+        }
+      }
+      &:nth-child(2) {
+        margin-left: 24px;
+        .signup-item__tit {
+          margin: 40px 0 24px;
+          p{
+            @include fontoption(18px,#000,500,28px);
+            text-align: center;
+            span{
+              color: $pointColor;
+            }
+            &::before {
+              content: '';
+              position: relative;
+              display: block;
+              margin: 0 auto;
+              background: url('#{$iconBsUrl}icon_company_people.png') no-repeat center;  
+              width: 49px;
+              height: 49px;
+              margin-bottom: 20px;
+            }
+          }
+        }
+      }
+      .signup-item__des {
+        background-color: #F8F8F8;
         text-align: center;
-        .page-title {
-            margin-bottom:12px;
-        } 
-        p {
-            @include fontoption(16px,#000,400,26px);
+        padding: 32px 0 24px;
+        border-radius: 8px;
+        p{
+          @include fontoption(14px,#666,400,22px);
         }
+        .button__wrap {
+          margin: 24px auto 0;
+          padding: 0;
+          width: 100%;
+          .btn-blue.btn-person {
+            width: 236px;
+          }
+          .btn-blue.btn-people {
+            width: 203px;
+          }
+        }
+      }
     }
-    .signup-wrap{
-        display: flex;
-        justify-content: space-between;
-        margin-top: 32px;
-        .signup-item{
-            max-width: 302px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        &:nth-child(2){
-            margin-left: 24px;
-        }
-        }
+  }
+}
+
+@media #{$phone} {
+  .signup {
+    max-width:656px;
+    margin: 0 auto;
+    padding: 0 16px;
+    .signup-title__wrap--top {
+      .page-title {
+        margin-bottom:10px;
+      } 
+      p {
+        font-size: 14px;
+        line-height: 24px;
+      }
     }
+    .signup__wrap {
+      flex-wrap: wrap;
+      margin-top: 32px;
+      .signup-item {
+        width: 328px;
+        &:nth-child(1) {
+          .signup-item__tit {
+            margin: 33px 0 16px;
+            p{
+              font-size: 16px;
+              line-height: 22px;
+              &::before {
+                margin-bottom: 16px;
+              }
+            }
+          }
+        }
+        &:nth-child(2) {
+          margin: 24px 0 0 0;
+          .signup-item__tit {
+            margin: 33px 0 16px;
+            p{
+              font-size: 16px;
+              line-height: 22px;
+              &::before {
+                margin-bottom: 16px;
+              }
+            }
+          }
+        }
+        .signup-item__des {
+          padding: 16px 0 24px;
+          p{
+            font-size: 13px;
+            line-height: 19px;
+          }
+          .button__wrap {
+            margin: 16px auto 0;
+            .btn-blue.btn-person {
+              width: 280px;
+              padding: 0;
+            }
+            .btn-blue.btn-people {
+              width: 280px;
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+  }
 }

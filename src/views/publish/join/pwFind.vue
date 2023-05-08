@@ -3,16 +3,16 @@
     <div class="login-title__wrap--top">
       <PageTitle pagetitle="비밀번호 찾기" />
     </div>
-    <div class="category-tab">
-      <ul>
-        <li class="">
+    <div class="tab__wrap">
+      <ul class="tab-list">
+        <li class="tab-item">
           <router-link
             to="/IdFind"
           >
             <span>아이디 찾기</span>
           </router-link>
         </li>
-        <li class="active">
+        <li class="tab-item active">
             <router-link
               to="IdFind"
             >

@@ -3,16 +3,16 @@
     <div class="login-title__wrap--top">
       <PageTitle pagetitle="아이디 찾기" />
     </div>
-    <div class="category-tab">
-      <ul>
-        <li class="active">
+    <div class="tab__wrap">
+      <ul class="tab-list">
+        <li class="tab-item active">
             <router-link
               to="#"
             >
             <span>아이디 찾기</span>
           </router-link>
         </li>
-        <li class="">
+        <li class="tab-item">
             <router-link
               to="/pwFind"
             >
