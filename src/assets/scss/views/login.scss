@@ -118,6 +118,34 @@
       }
     }
   }
+  &.login-result {
+    .login-result__wrap{
+      margin-top: 32px;
+      border-top: 2px solid #2f77fb;
+      border-bottom: 1px solid #DDDDDD;
+      padding: 132px 0;
+      text-align: center;
+      .login-result__id{
+        p{
+          @include fontoption(16px,#000,400,24px);
+        }
+        h3{
+          @include fontoption(24px,#000,700,44px);
+          margin-top: 8px;
+        }
+      }
+    }
+    .button__wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .btn-blue {
+        display: block;
+        width:141px;
+        margin-top: 24px;
+      }
+    }
+  }
 }
 
 @media #{$phone} {
@@ -174,6 +202,32 @@
       .button__wrap {
         .btn-help {
           width:100%;
+        }
+      }
+    }
+    &.login-result {
+      .login-title__wrap--top {
+        margin-bottom: 32px;
+      }
+      .login-result__wrap{
+        margin-top: 24px;
+        padding: 100px 0;
+        .login-result__id{
+          p{
+            font-size: 14px;
+            line-height: 21px;
+          }
+          h3{
+            font-size: 21px;
+            line-height: 21px;
+            margin-top: 10px;
+          }
+        }
+      }
+      .button__wrap {
+        .btn-blue {
+          display: block;
+          width:113.5px;
         }
       }
     }
