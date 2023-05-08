@@ -1,18 +1,7 @@
 <template>
   <div class="inner">
     <PageTitle pagetitle="공지사항" />
-    <div class="category-tab">
-      <ul class="tab-list">
-        <li
-          v-for="(item, i) in category"
-          :key="i"
-          class="tab-item"
-          :class="[{active: activeTabIndex === i}]"
-        >
-          <a role="button" @click="tabCtrl(i)"><span>{{ item }}</span></a>
-        </li>
-      </ul>
-    </div>
+    <TabCategory :category="category" :newTabIndex="newTabIndex"/>
     <SearchTable v-if="checkBoardLength" listnumber="73" />
     <div class="table__wrap notice-table">
         <table class="table table-list">
@@ -55,7 +44,7 @@
               <td>
                 <p class="no-data">검색 결과가 없습니다.</p>
               </td>
-              <td>　</td>
+              <td>  </td>
             </tr>
           </tbody>
         </table>
@@ -66,7 +55,7 @@
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
 import SearchTable from '@/components/common/SearchTable.vue'
-import PagingCmp from '@/components/common/PagingCmp.vue'
+import TabCategory from '@/components/common/TabCategory'
 
 export default {
   name: 'NoticeView',
@@ -74,6 +63,7 @@ export default {
     return {
       category: ['전체', '이벤트', '시스템', '정책', '서식', '업데이트 노트'],
       activeTabIndex: 0,
+      newTabIndex: 1,
       noticeData:
       [
         {
@@ -98,16 +88,11 @@ export default {
   components: {
     PageTitle,
     SearchTable,
-    PagingCmp
+    TabCategory
   },
   computed: {
     checkBoardLength() {
       return this.noticeData.length < 0 ? false : true;
-    }
-  },
-  methods: {
-    tabCtrl: function(num) {
-      this.activeTabIndex = num
     }
   }
 }
