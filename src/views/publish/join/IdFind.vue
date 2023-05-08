@@ -61,7 +61,7 @@
       </div>
       <div class="button__wrap">
         <ButtonCmp
-          type="btn-blue-help"
+          type="btn-blue btn-help"
           @click="onSubmit"
         >아이디 찾기</ButtonCmp>
       </div>

@@ -61,7 +61,7 @@
       </div>
       <div class="button__wrap">
         <ButtonCmp
-          type="btn-blue-help"
+          type="btn-blue btn-help"
           @click="onSubmit"
         >비밀번호 찾기</ButtonCmp>
       </div>
