@@ -143,11 +143,11 @@
           .button__wrap {
             margin: 16px auto 0;
             .btn-blue.btn-person {
-              width: 280px;
+              width: calc(100% - 13.334vw);
               padding: 0;
             }
             .btn-blue.btn-people {
-              width: 280px;
+              width: calc(100% - 13.334vw);
               padding: 0;
             }
           }
