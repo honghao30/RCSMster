@@ -48,8 +48,6 @@
     }      
   }
   .button__wrap {
-    margin: 0px auto;
-    width: 100%;
     .btn-login {
         display: block;
         width:100%;
@@ -135,26 +133,6 @@
       .btn-blue {
         display: block;
         width:141px;
-      }
-    }
-  }
-  &.login-pwchange{
-    .button__wrap {
-      .btn-blue-line {
-        width:174px;
-      }
-      .btn-blue {
-        width:174px;
-      }
-    }
-  }
-  &.login-pwreset{
-    .button__wrap {
-      .btn-blue-line {
-        width: 126px;
-      }
-      .btn-blue {
-        width: 188px;
       }
     }
   }
