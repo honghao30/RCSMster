@@ -44,7 +44,7 @@ $radius: 8px;
 .button__wrap {
   position: relative;
   padding:20px 0 50px;
-  gap: 10px;
+  gap: 8px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -128,6 +128,8 @@ $iconBsUrl: '../assets/images/icon/';
 
 .btn-only-icon {
   min-width:auto;
+  height:auto;
+  line-height:1;
 }
 //icon List
 .icon-eye {
@@ -139,10 +141,11 @@ $iconBsUrl: '../assets/images/icon/';
 }
 
 @media #{$phone} {
-  .btn-blue{
-    height: 45px;
+  .button__wrap {
+    padding: 24px 0 0;
+    gap: 6px;
   }
-  .btn-blue-line {
+  .btn {
     height: 45px;
   }
 }
