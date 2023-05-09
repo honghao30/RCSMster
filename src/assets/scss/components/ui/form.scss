@@ -265,12 +265,14 @@ $formLabelWidth : 120px;
   &.validation {
       margin:10px 0 0;
       display:flex;
-      align-items:center;
+      align-items:flex-start;
     &:before {
       content:'';
       display:inline-block;
-      width:16px;
+      min-width:16px;
       height: 16px;
+      position:relative;
+      top:4px;
       background-image: url('../assets/images/icon/icon_validation_check.png');
       background-repeat: no-repeat;
       background-position: 50% 50%;
@@ -282,12 +284,14 @@ $formLabelWidth : 120px;
     margin:10px 0 0;
     @include fontoption(14px,#FF4830,400,24px);    
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     &:before {
       content:'';
       display:inline-block;
-      width:16px;
+      min-width:16px;
       height: 16px;
+      position:relative;
+      top:4px;
       background-image: url('../assets/images/icon/icon_exclamation_circle.png');
       background-repeat: no-repeat;
       background-position: 50% 50%;
