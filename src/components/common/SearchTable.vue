@@ -29,7 +29,7 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 export default {
   props: {
     pagetitle: String,
-    listnumber: String
+    listnumber: Number
   },
   components: {
     ButtonCmp

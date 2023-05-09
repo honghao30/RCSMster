@@ -31,6 +31,8 @@ import AgencyJoinStep04 from '@/views/publish/join/AgencyJoinStep04'
 // 고객센터
 import NoticeView from '@/views/publish/customer/Notice'
 import NoticeSearch from '@/views/publish/customer/NoticeSearch'
+import NoticeContent from '@/views/publish/customer/NoticeContent'
+import FAQ from '@/views/publish/customer/FAQ'
 
 Vue.use(Router)
 
@@ -105,6 +107,7 @@ let router = new Router({
         tittle: '비밀번호 변경하기'
       }
     },
+    // 가입
     {
       path: '/SignUp',
       component: SignUp,
@@ -112,7 +115,7 @@ let router = new Router({
         tittle: '회원가입 유형선택'
       }
     },
-    // 가입
+    // 기업 회원 가입
     {
       path: '/agencyjoinStep01',
       component: AgencyJoinStep01,
@@ -131,28 +134,29 @@ let router = new Router({
       path: '/joinStep02',
       component: JoinStep02,
       meta: {
-        tittle: '회원가입'
+        tittle: '기업정보 입력'
       }
     },
     {
       path: '/joinStep03',
       component: JoinStep03,
       meta: {
-        tittle: '회원가입'
+        tittle: '회원정보 입력'
       }
     },
     {
       path: '/joinStep04',
       component: JoinStep04,
       meta: {
-        tittle: '회원가입'
+        tittle: '회원가입 완료'
       }
     },
+    // 대행사 가입
     {
       path: '/agencyjoinStep01',
       component: AgencyJoinStep01,
       meta: {
-        tittle: '회원가입'
+        tittle: '약관동의'
       }
     },
     {
@@ -189,6 +193,20 @@ let router = new Router({
       component: NoticeSearch,
       meta: {
         tittle: '공지사항'
+      }
+    },
+    {
+      path: '/noticecontent',
+      component: NoticeContent,
+      meta: {
+        tittle: '공지사항'
+      }
+    },
+    {
+      path: '/faq',
+      component: FAQ,
+      meta: {
+        tittle: 'FAQ'
       }
     }
   ]

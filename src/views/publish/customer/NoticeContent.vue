@@ -1,9 +1,7 @@
 <template>
   <div class="inner">
     <PageTitle pagetitle="공지사항" />
-    <TabCategory :category="category" :newTabIndex="newTabIndex"/>
-    <SearchTable v-if="checkBoardLength" listnumber=0 />
-    <div class="table__wrap notice-table">
+    <div class="table__wrap notice-table content-table">
         <table class="table table-list">
           <colgroup>
             <col width="10%">
@@ -12,9 +10,12 @@
           </colgroup>
           <thead>
             <tr>
-              <th scope="col">번호</th>
-              <th scope="col">제목</th>
-              <th scope="col">등록일</th>
+              <th scope="col" colspan="2">
+                <p class="title">RCS Biz Center 검수기 승인 안내 제3회 전국동시조합장선거 후보자 브랜드 등록 안내 수정 국동시조합장선거 후보자 브랜드 등록 안내 RCS Biz Center 검수기 승인 안내 제3회 전국동시조합장선거 후보자 브랜드 등록 안내</p>
+              </th>
+              <th scope="col">
+                <p class="date">2023.04.25</p>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -52,8 +53,6 @@
 
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
-import SearchTable from '@/components/common/SearchTable.vue'
-import TabCategory from '@/components/common/TabCategory'
 
 export default {
   name: 'NoticeView',
@@ -84,9 +83,7 @@ export default {
     }
   },
   components: {
-    PageTitle,
-    SearchTable,
-    TabCategory
+    PageTitle
   },
   computed: {
     checkBoardLength() {
