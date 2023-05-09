@@ -74,14 +74,6 @@
         p{
           @include fontoption(14px,#666,400,22px);
         }
-        .button__wrap {
-          .btn-blue.btn-person {
-            width: 236px;
-          }
-          .btn-blue.btn-people {
-            width: 203px;
-          }
-        }
       }
     }
   }
@@ -138,14 +130,12 @@
             line-height: 19px;
           }
           .button__wrap {
-            margin: 16px auto 0;
+            padding: 16px 0 0;
             .btn-blue.btn-person {
               width: calc(100% - 13.334vw);
-              padding: 0;
             }
             .btn-blue.btn-people {
               width: calc(100% - 13.334vw);
-              padding: 0;
             }
           }
         }
