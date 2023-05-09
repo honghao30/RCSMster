@@ -186,6 +186,24 @@ const homeList = [
     'link': '/agencyjoinStep01'
   },
   {
+    'depth3': '대행사정보 입력',
+    'screenId': '',
+    'status': '완료',
+    'link': '/agencyjoinStep02'
+  },
+  {
+    'depth3': '회원정보 입력',
+    'screenId': '',
+    'status': '완료',
+    'link': '/agencyjoinStep03'
+  },
+  {
+    'depth3': '완료',
+    'screenId': '',
+    'status': '완료',
+    'link': '/agencyjoinStep04'
+  },
+  {
     'depth1': '마이페이지',
     'depth2': '개인정보 관리',
     'screenId': 'G005_1'

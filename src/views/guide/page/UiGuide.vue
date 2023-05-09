@@ -138,7 +138,7 @@ export default {
         // user is scrolling up
         console.log('up')
       }
-      if (newValue >= this.subCateOffsetTop) {
+      if (newValue >= 100) {
         this.isCateSticky = true
       } else {
         this.isCateSticky = false
