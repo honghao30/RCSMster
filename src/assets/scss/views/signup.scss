@@ -36,8 +36,8 @@
               display: block;
               margin: 0 auto;
               background: url('#{$iconBsUrl}icon_company_person.png') no-repeat center;  
-              width: 36px;
-              height: 49px;
+              width: 64px;
+              height: 64px;
               margin-bottom: 20px;
             }
           }
@@ -59,8 +59,8 @@
               display: block;
               margin: 0 auto;
               background: url('#{$iconBsUrl}icon_company_people.png') no-repeat center;  
-              width: 49px;
-              height: 49px;
+              width: 64px;
+              height: 64px;
               margin-bottom: 20px;
             }
           }
@@ -104,6 +104,10 @@
               font-size: 16px;
               line-height: 22px;
               &::before {
+                background: url('#{$iconBsUrl}icon_company_person_mo.png') no-repeat center;
+                width: 60px;
+                background-size: 100%;
+                height: 60px;  
                 margin-bottom: 16px;
               }
             }
@@ -117,6 +121,10 @@
               font-size: 16px;
               line-height: 22px;
               &::before {
+                background: url('#{$iconBsUrl}icon_company_people_mo.png') no-repeat center;
+                width: 60px;
+                background-size: 100%;
+                height: 60px;   
                 margin-bottom: 16px;
               }
             }
