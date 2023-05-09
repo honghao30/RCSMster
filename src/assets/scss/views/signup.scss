@@ -3,7 +3,7 @@
 .signup {
   width: 100%;
   max-width:628px;
-  margin: 80px auto;
+  margin: 0 auto;
   .signup-title__wrap--top {
     text-align: center;
     .page-title {
@@ -74,17 +74,6 @@
         p{
           @include fontoption(14px,#666,400,22px);
         }
-        .button__wrap {
-          margin: 24px auto 0;
-          padding: 0;
-          width: 100%;
-          .btn-blue.btn-person {
-            width: 236px;
-          }
-          .btn-blue.btn-people {
-            width: 203px;
-          }
-        }
       }
     }
   }
@@ -93,7 +82,6 @@
 @media #{$phone} {
   .signup {
     max-width:100%;
-    margin: 0 auto;
     padding: 0 16px;
     .signup-title__wrap--top {
       .page-title {
@@ -141,14 +129,12 @@
             line-height: 19px;
           }
           .button__wrap {
-            margin: 16px auto 0;
+            padding: 16px 0 0;
             .btn-blue.btn-person {
               width: calc(100% - 13.334vw);
-              padding: 0;
             }
             .btn-blue.btn-people {
               width: calc(100% - 13.334vw);
-              padding: 0;
             }
           }
         }

@@ -149,7 +149,10 @@ $iconBsUrl: '../assets/images/icon/';
   height:18px;
   background-image: url('#{$iconBsUrl}icon_eye.png');
   background-repeat: no-repeat;
-  background-position: center;  
+  background-position: center;
+  &.blue{
+    background-image: url('#{$iconBsUrl}icon_eye_blue.png');
+  }  
 }
 
 @media #{$phone} {

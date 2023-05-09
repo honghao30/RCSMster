@@ -15,6 +15,7 @@ import LoginPage from '@/views/publish/join/LoginPage'
 import IdFind from '@/views/publish/join/IdFind'
 import pwFind from '@/views/publish/join/pwFind'
 import IdResult from '@/views/publish/join/IdResult'
+import PwReset from '@/views/publish/join/PwReset'
 import PwChange from '@/views/publish/join/PwChange'
 import SignUp from '@/views/publish/join/SignUp'
 
@@ -102,6 +103,13 @@ let router = new Router({
       component: IdResult,
       meta: {
         tittle: '아이디찾기결과'
+      }
+    },
+    {
+      path: '/PwReset',
+      component: PwReset,
+      meta: {
+        tittle: '비밀번호 리셋하기'
       }
     },
     {
