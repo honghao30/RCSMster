@@ -3,7 +3,7 @@
 .login {
   width: 100%;
   max-width:628px;
-  margin: 80px auto;
+  margin: 0 auto;
   .login-title__wrap--top {
     text-align: center;
     .page-title {
@@ -15,21 +15,19 @@
   }
   .form-list {
     border-top:2px solid $pointColor;
-    margin:32px 0;
+    margin:32px 0 12px 0;
     .form-item {
       border-bottom:1px solid #F0F0F0;
-      padding: 20px 0;
+      padding: 20px 20px 20px 10px;
       margin:0;
       .form-item__label {           
-        padding-left:10px;
         flex: 0 0 200px;
       }
       .form-item__content {
         position: relative;
-        padding-right: 20px;
         .btn-only-icon {
           position: absolute;
-          right: 30px;
+          right: 19px;
           width: 30px;
           height: 30px;
           top: 50%;
@@ -41,15 +39,15 @@
           cursor: pointer;
         }
       }
-      .guide-text.error {
+      .guide-text{
         padding-left: 200px;
+        &.error {
+          width: 100%;
+        }
       }
     }      
   }
   .button__wrap {
-    margin: 0px auto;
-    padding:0;
-    width: 100%;
     .btn-login {
         display: block;
         width:100%;
@@ -92,9 +90,12 @@
       .input {
         flex: 1;
       }
+      .btn-default-line{
+        margin-left: 10px;
+      }
       .time {
         position: absolute;
-        right:30px;
+        right:16px;
         top: 50%;
         transform: translateY(-50%);
         @include fontoption(16px,#000,400,26px);
@@ -102,15 +103,6 @@
           color: #FF4830;
           ;
         }
-      }
-    }
-    .button__wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .btn-help {
-        display: block;
-        width:174px;
       }
     }
   }
@@ -131,31 +123,24 @@
         }
       }
     }
-    .button__wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .btn-blue {
-        display: block;
-        width:141px;
-        margin-top: 24px;
-      }
-    }
   }
 }
 
 @media #{$phone} {
   .login {
-    max-width:328px;
-    margin: 0 auto;
+    max-width:100%;
+    padding: 0 16px;
     .login-title__wrap--top {
+      .page-title {
+        margin-bottom:10px;
+      }
       p {
         font-size: 14px;
         line-height: 24px;
       }
     }
     .form-list {
-      margin: 32px 0 24px 0;
+      margin: 32px 0 0 0;
       .form-item {
         font-size: 14px;
         padding: 16px 0;
@@ -166,12 +151,18 @@
           width: 100%;
           padding-right: 0;
           .btn-only-icon {
-            right: 15px;
+            right: 14px;
           }
-          .btn-default-line{
-            width: 104.5px;
-            line-height: 21px;
-            padding: 0;
+        }
+        .guide-text{
+          padding-left: 0;
+          &.validation{
+            font-size: 13px;
+            line-height: 20px;
+          }
+          &.error{
+            font-size: 13px;
+            line-height: 20px;
           }
         }
       }
@@ -184,6 +175,9 @@
       .form-list {
         margin-top: 0;
         .form-item__content {
+          .btn-default-line{
+            margin-left: 8px;
+          }
           .time {
             right:12px;
             font-size: 14px;
@@ -216,10 +210,24 @@
           }
         }
       }
+    }
+    &.login-pwchange{
       .button__wrap {
+        .btn-blue-line{
+          width: 50%;
+        }
         .btn-blue {
-          display: block;
-          width:113.5px;
+          width:50%;
+        }
+      }
+    }
+    &.login-pwreset{
+      .button__wrap {
+        .btn-blue-line{
+          width: 50%;
+        }
+        .btn-blue {
+          width:50%;
         }
       }
     }

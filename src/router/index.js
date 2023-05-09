@@ -15,6 +15,7 @@ import LoginPage from '@/views/publish/join/LoginPage'
 import IdFind from '@/views/publish/join/IdFind'
 import pwFind from '@/views/publish/join/pwFind'
 import IdResult from '@/views/publish/join/IdResult'
+import PwReset from '@/views/publish/join/PwReset'
 import PwChange from '@/views/publish/join/PwChange'
 import SignUp from '@/views/publish/join/SignUp'
 
@@ -33,6 +34,10 @@ import NoticeView from '@/views/publish/customer/Notice'
 import NoticeSearch from '@/views/publish/customer/NoticeSearch'
 import NoticeContent from '@/views/publish/customer/NoticeContent'
 import FAQ from '@/views/publish/customer/FAQ'
+
+// 마이페이지
+import MyInfo from '@/views/publish/mypage/MyInfo'
+import MyInfoAgency from '@/views/publish/mypage/MyInfoAgency'
 
 Vue.use(Router)
 
@@ -98,6 +103,13 @@ let router = new Router({
       component: IdResult,
       meta: {
         tittle: '아이디찾기결과'
+      }
+    },
+    {
+      path: '/PwReset',
+      component: PwReset,
+      meta: {
+        tittle: '비밀번호 리셋하기'
       }
     },
     {
@@ -207,6 +219,21 @@ let router = new Router({
       component: FAQ,
       meta: {
         tittle: 'FAQ'
+      }
+    },
+    // 마이 페이지
+    {
+      path: '/myinfo',
+      component: MyInfo,
+      meta: {
+        tittle: '개인정보 관리'
+      }
+    },
+    {
+      path: '/myinfoagency',
+      component: MyInfoAgency,
+      meta: {
+        tittle: '개인정보 관리'
       }
     }
   ]

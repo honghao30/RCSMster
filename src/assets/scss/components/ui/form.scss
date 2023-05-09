@@ -34,11 +34,23 @@ $bordersColor: #DDDDDD;
 .input {
   input {
     @include inputBasic;
+    &:disabled {
+      background-color:#f4f4f4;
+      color:#999;
+      border-color:#ddd;
+      cursor:not-allowed;
+    }
   }
 }
 .input-m {
   input {
     @include inputBasic;
+    &:disabled {
+      background-color:#f4f4f4;
+      color:#999;
+      border-color:#ddd;
+      cursor:not-allowed;
+    }
   }
 }
 //check box
@@ -175,6 +187,12 @@ $bordersColor: #DDDDDD;
     transform: rotate(135deg) translate(-50%, -50%);
   }
 }
+form {
+  +.page-title__wrap {
+    margin-top: 60px;
+  }
+}
+
 
 $formLabelWidth : 120px;
 .form-list {
@@ -205,13 +223,37 @@ $formLabelWidth : 120px;
 }
 
 .form-table {
+  th {
+    text-align: left;
+    border-bottom: 1px solid #F0F0F0;          
+    @include fontoption(16px,#000,500,26px);
+    vertical-align: top;     
+    padding:28px 0 28px 16px;        
+  }
+  td {
+      border-bottom: 1px solid #F0F0F0;
+      padding-right:20px;
+      input::placeholder {
+          font-size: 16px;
+          line-height: 26px; 
+          color: #999999;
+      }
+      .text {
+        display:inline-block;
+        +.btn {
+          margin-left:8px;
+        }
+        
+      }
+  }
   .form-item__label {
     @include fontoption(16px,#000,500,26px);
-    &.required:before {
+    &.required:after {
       content:'*';
       color: $pointColor;
-      position:relative;
-      top:-1px
+      position: relative;
+      top: -1px;
+      left:2px;
     }
   }
   .form-item__content {
@@ -225,15 +267,14 @@ $formLabelWidth : 120px;
       +.align--top {
         align-items: flex-start;
       }
-      .guide-text {width:auto}
     }
-    .guide-text {width:100%;}
   }
   .input-item {
     width: 100%;
     display:flex;
     align-items:center;
     gap: 10px;
+    position: relative;
     &.w--half {
       width: 50%;
       padding:0 5px;
@@ -246,6 +287,9 @@ $formLabelWidth : 120px;
     }
     .input {
       flex:auto;
+      input {
+        flex: 1;
+      }
     }
   }
   .btn-default-line {
@@ -258,6 +302,7 @@ $formLabelWidth : 120px;
 
 .guide-text {
   margin-top:16px;
+  width: 100%;
   @include fontoption(14px,#2F77FB,400,24px);   
   &.black {
       color: #000;
@@ -265,15 +310,18 @@ $formLabelWidth : 120px;
   &.validation {
       margin:10px 0 0;
       display:flex;
-      align-items:center;
+      align-items:flex-start;
     &:before {
       content:'';
       display:inline-block;
-      width:16px;
+      min-width:16px;
       height: 16px;
+      position:relative;
+      top:4px;
       background-image: url('../assets/images/icon/icon_validation_check.png');
       background-repeat: no-repeat;
-      background-position: 0 center;
+      background-position: 50% 50%;
+      background-size: 100%;
       margin-right:4px; 
     }   
   }
@@ -281,15 +329,18 @@ $formLabelWidth : 120px;
     margin:10px 0 0;
     @include fontoption(14px,#FF4830,400,24px);    
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     &:before {
       content:'';
       display:inline-block;
-      width:16px;
+      min-width:16px;
       height: 16px;
+      position:relative;
+      top:4px;
       background-image: url('../assets/images/icon/icon_exclamation_circle.png');
       background-repeat: no-repeat;
-      background-position: 0 center;
+      background-position: 50% 50%;
+      background-size: 100%;
       margin-right:4px;
     }
   }
@@ -342,7 +393,6 @@ $formLabelWidth : 120px;
     }
     &:disabled, 
     &:read-only {
-      background-color: #F4F4F4;
       cursor:default
     }
   }
@@ -398,4 +448,20 @@ $formLabelWidth : 120px;
       font-size: 13px;
     }
   }
+  .guide-text {
+    &.validation {
+      &:before {
+        content:'';
+        top:2px;
+      }   
+    }
+    &.error {
+      &:before {
+        content:'';
+        top:2px;
+        
+      }
+    }
+  }
+  
 }

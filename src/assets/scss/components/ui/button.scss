@@ -6,7 +6,7 @@ $radius: 8px;
   display: inline-grid;
   justify-content: center;
   align-items: center;
-  letter-spacing: .1em;
+  letter-spacing: -.025em;
   line-height: normal;
   max-width: 100%;  
   border-radius: $radius;  
@@ -18,7 +18,7 @@ $radius: 8px;
   padding:0 20px;
   cursor: pointer;
 }
-@mixin btntype($btnFontSize,$btnBorder,$btnBGColor,$btnColor,$radius, $btnHoverColor,$btnHoverFtColor) {  
+@mixin btntype($btnFontSize,$btnBorder,$btnBGColor,$btnColor,$radius, $btnHoverColor,$btnHoverFtColor, $btnHoverBorderColor) {  
   font-size: $btnFontSize;
   border: 1px solid $btnBorder;
   color: $btnColor;
@@ -31,7 +31,7 @@ $radius: 8px;
   &:active:hover{
     background-color: $btnHoverColor;
     color: $btnHoverFtColor;
-    border: 1px solid $btnBorder;
+    border: 1px solid $btnHoverBorderColor;
     text-decoration: none;    
   }
 }
@@ -44,58 +44,124 @@ $radius: 8px;
 .button__wrap {
   position: relative;
   padding:20px 0 50px;
+  gap: 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   &:last-child {
     padding-bottom:0;
+  }
+  &.flex-end {
+    justify-content: flex-end;
   }
 }
 
 .btn {
   @include btnCommon;  
-  
+  min-width: 126px;
+  height: 48px;
+  line-height: 24px;  
+  padding:0 48px; 
   &.search {
     color:#fff;
     background-color:#717883
   }
+  &.medium {
+    height: 36px;
+    width: 90px;
+    font-size: 14px;
+    padding:0 42px; 
+    padding:0 32px; 
+  }
+  &.small {
+    height: 28px;
+    padding: 0 12x;
+    min-width: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    width:auto;
+  } 
 }
+
 
 //button List
 .btn-blue {
-  @include btntype(16px,$pointColor,$pointColor,#fff,8px, $pointColor,#fff);
-  width: 126px;
-  height: 48px;
-  line-height: 24px;           
-  text-align: center;          
+  @include btntype(16px, $pointColor, $pointColor,#fff, 8px, #2855A7,#fff, #2855A7);
+  &:disabled {
+    background-color:#ccc;
+    border-color:#ccc;
+    &:hover, &:active {
+      background-color:#ccc;
+      border-color:#ccc;
+    }
+  }  
+       
 }
 .btn-blue-line {
-  width: 126px;
-  height: 48px;
-  border: 1px solid #2F77FB;
-  background:#fff;
-  border-radius: 8px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;           
-  text-align: center;            
-  color: #2F77FB;          
+  @include btntype(16px,$pointColor,#fff,$pointColor, 8px,  #fff, #2855A7, #2855A7);               
+  &:disabled {
+    color:#ccc;
+    border-color:#ccc;
+    &:hover, &:active {
+      color:#ccc;
+      border-color:#ccc;
+    }
+  }            
 }
+.btn-line {
+  @include btntype(14px,#999,#fff,#999, 8px,  #fff,#777, #777);       
+  &:disabled {
+    color:#ccc;
+    border-color:#ccc;
+    &:hover, &:active {
+      color:#ccc;
+      border-color:#ccc;
+    }
+  }  
+}
+
 .btn-default-line {
-  @include btntype(14px,#4A5567,#fff,#4A5567,8px,  #fff,#4A5567);  
-  font-weight: 700;
-  height: 42px;
+  @include btntype(14px,#4A5567,#fff,#4A5567,8px,  #fff,#4A5567, #4A5567);  
   line-height: 42px;
+  min-width: auto;
+  height: 42px;
+  padding:0 23px;
   cursor: pointer;
+  &.small {
+    height: 42px;
+  }
+  &.inactive {
+    color:#999;
+    border-color:#999;
+  }
 }
-
-
 
 $iconBsUrl: '../assets/images/icon/';
 
+.btn-only-icon {
+  min-width:auto;
+  height:auto;
+  line-height:1;
+}
 //icon List
 .icon-eye {
   width: 22px;
   height:18px;
   background-image: url('#{$iconBsUrl}icon_eye.png');
   background-repeat: no-repeat;
-  background-position: center;  
+  background-position: center;
+  &.blue{
+    background-image: url('#{$iconBsUrl}icon_eye_blue.png');
+  }  
+}
+
+@media #{$phone} {
+  .button__wrap {
+    padding: 24px 0 0;
+    gap: 6px;
+  }
+  .btn {
+    height: 45px;
+    padding:0 12px;
+  }
 }

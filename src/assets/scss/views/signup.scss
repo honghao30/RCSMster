@@ -3,7 +3,7 @@
 .signup {
   width: 100%;
   max-width:628px;
-  margin: 80px auto;
+  margin: 0 auto;
   .signup-title__wrap--top {
     text-align: center;
     .page-title {
@@ -36,8 +36,8 @@
               display: block;
               margin: 0 auto;
               background: url('#{$iconBsUrl}icon_company_person.png') no-repeat center;  
-              width: 36px;
-              height: 49px;
+              width: 64px;
+              height: 64px;
               margin-bottom: 20px;
             }
           }
@@ -59,8 +59,8 @@
               display: block;
               margin: 0 auto;
               background: url('#{$iconBsUrl}icon_company_people.png') no-repeat center;  
-              width: 49px;
-              height: 49px;
+              width: 64px;
+              height: 64px;
               margin-bottom: 20px;
             }
           }
@@ -70,20 +70,9 @@
         background-color: #F8F8F8;
         text-align: center;
         padding: 32px 0 24px;
-        border-radius: 8px;
+        border-radius: 0 0 8px 8px;
         p{
           @include fontoption(14px,#666,400,22px);
-        }
-        .button__wrap {
-          margin: 24px auto 0;
-          padding: 0;
-          width: 100%;
-          .btn-blue.btn-person {
-            width: 236px;
-          }
-          .btn-blue.btn-people {
-            width: 203px;
-          }
         }
       }
     }
@@ -92,8 +81,8 @@
 
 @media #{$phone} {
   .signup {
-    max-width:328px;
-    margin: 0 auto;
+    max-width:100%;
+    padding: 0 16px;
     .signup-title__wrap--top {
       .page-title {
         margin-bottom:10px;
@@ -108,7 +97,6 @@
       justify-content: center;
       margin-top: 32px;
       .signup-item {
-        width: 328px;
         &:nth-child(1) {
           .signup-item__tit {
             margin: 33px 0 16px;
@@ -116,6 +104,10 @@
               font-size: 16px;
               line-height: 22px;
               &::before {
+                background: url('#{$iconBsUrl}icon_company_person_mo.png') no-repeat center;
+                width: 60px;
+                background-size: 100%;
+                height: 60px;  
                 margin-bottom: 16px;
               }
             }
@@ -129,6 +121,10 @@
               font-size: 16px;
               line-height: 22px;
               &::before {
+                background: url('#{$iconBsUrl}icon_company_people_mo.png') no-repeat center;
+                width: 60px;
+                background-size: 100%;
+                height: 60px;   
                 margin-bottom: 16px;
               }
             }
@@ -141,14 +137,12 @@
             line-height: 19px;
           }
           .button__wrap {
-            margin: 16px auto 0;
+            padding: 16px 0 0;
             .btn-blue.btn-person {
-              width: 280px;
-              padding: 0;
+              width: calc(100% - 13.334vw);
             }
             .btn-blue.btn-people {
-              width: 280px;
-              padding: 0;
+              width: calc(100% - 13.334vw);
             }
           }
         }

@@ -19,27 +19,100 @@
 
     <div class="button__wrap">
       <ButtonCmp
-        type="blue"
-        size="small"
-        disabled
+        type="btn-blue-line"
         @click="clickHandler"
       >
         기본형
       </ButtonCmp>
       <ButtonCmp
-        type="blue"
+        type="btn-blue"
         @click="clickHandler"
       >
         기본형
       </ButtonCmp>
       <ButtonCmp
-        type="green"
+        type="btn-line"
         @click="clickHandler"
       >
-        버튼 유형
+        기본형
+      </ButtonCmp>
+      <ButtonCmp
+        type="btn-default-line"
+        @click="clickHandler"
+      >
+        Form 내부
       </ButtonCmp>
     </div>
-    <TitleH3 titleh3="아이콘 & 버튼" />
+    <div class="button__wrap">
+      <ButtonCmp
+        type="btn-blue-line"
+        size="medium"
+        @click="clickHandler"
+      >
+        기본형
+      </ButtonCmp>
+      <ButtonCmp
+        type="btn-blue"
+        size="medium"
+        @click="clickHandler"
+      >
+        기본형
+      </ButtonCmp>
+      <ButtonCmp
+        type="btn-line"
+        size="medium"
+        @click="clickHandler"
+      >
+        기본형
+      </ButtonCmp>
+    </div>
+    <div class="button__wrap">
+      <ButtonCmp
+        type="btn-blue-line"
+        size="small"
+        @click="clickHandler"
+      >
+        기본형
+      </ButtonCmp>
+      <ButtonCmp
+        type="btn-blue"
+        size="small"
+        @click="clickHandler"
+      >
+        기본형
+      </ButtonCmp>
+      <ButtonCmp
+        type="btn-line"
+        size="small"
+        @click="clickHandler"
+      >
+        기본형
+      </ButtonCmp>
+    </div>
+    <div class="button__wrap">
+      <ButtonCmp
+        type="btn-blue-line"
+        @click="clickHandler"
+        disabled
+      >
+        기본형
+      </ButtonCmp>
+      <ButtonCmp
+        type="btn-blue"
+        @click="clickHandler"
+        disabled
+      >
+        기본형
+      </ButtonCmp>
+      <ButtonCmp
+        type="btn-line"
+        @click="clickHandler"
+        disabled
+      >
+        기본형
+      </ButtonCmp>
+    </div>
+    <!-- <TitleH3 titleh3="아이콘 & 버튼" />
     <div class="wsg-guide-content">
       <div class="wsg-note__wrap--gray-box">
         <ul class="wsg_desc">
@@ -50,14 +123,14 @@
     </div>
     <div class="button__wrap">
       <ButtonCmp
-        type="green"
+        type="btn-blue-line"
         icondrection="left"
         iconname="icon-add"
         @click="clickHandler"
       >
         버튼 유형
       </ButtonCmp>
-    </div>
+    </div> -->
   </div>
 </template>
 

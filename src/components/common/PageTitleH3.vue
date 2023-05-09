@@ -26,6 +26,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 16px;
   h3 {
     font-style: normal;
     font-weight: 500;
