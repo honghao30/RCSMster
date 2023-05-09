@@ -42,7 +42,7 @@
           <div class="form-item__content">
             <span class="input"><input ref="phone" type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요."  v-model="form.phone"></span>
             <ButtonCmp
-              type="btn-default-line"
+              type="btn-default-line small"
               @click="start"
             >
             인증번호 요청

@@ -15,7 +15,7 @@
   }
   .form-list {
     border-top:2px solid $pointColor;
-    margin:32px 0;
+    margin:32px 0 12px 0;
     .form-item {
       border-bottom:1px solid #F0F0F0;
       padding: 20px 20px 20px 10px;
@@ -27,7 +27,7 @@
         position: relative;
         .btn-only-icon {
           position: absolute;
-          right: 30px;
+          right: 19px;
           width: 30px;
           height: 30px;
           top: 50%;
@@ -39,15 +39,16 @@
           cursor: pointer;
         }
       }
-      .guide-text.error {
+      .guide-text{
         padding-left: 200px;
-        width: 100%;
+        &.error {
+          width: 100%;
+        }
       }
     }      
   }
   .button__wrap {
     margin: 0px auto;
-    padding:0;
     width: 100%;
     .btn-login {
         display: block;
@@ -96,7 +97,7 @@
       }
       .time {
         position: absolute;
-        right:30px;
+        right:16px;
         top: 50%;
         transform: translateY(-50%);
         @include fontoption(16px,#000,400,26px);
@@ -107,9 +108,6 @@
       }
     }
     .button__wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       .btn-help {
         display: block;
         width:174px;
@@ -134,34 +132,29 @@
       }
     }
     .button__wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       .btn-blue {
         display: block;
         width:141px;
-        margin-top: 24px;
       }
     }
   }
   &.login-pwchange{
-    .form-list {
-      .form-item {
-        .guide-text{
-          &.validation{
-            padding-left: 200px;
-          }
-        }
-      }      
-    }
     .button__wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      .btn-blue-line {
+        width:174px;
+      }
       .btn-blue {
-        display: block;
-        width:188px;
-        margin-left: 8px;
+        width:174px;
+      }
+    }
+  }
+  &.login-pwreset{
+    .button__wrap {
+      .btn-blue-line {
+        width: 126px;
+      }
+      .btn-blue {
+        width: 188px;
       }
     }
   }
@@ -179,7 +172,7 @@
       }
     }
     .form-list {
-      margin: 32px 0 24px 0;
+      margin: 32px 0 0 0;
       .form-item {
         font-size: 14px;
         padding: 16px 0;
@@ -190,13 +183,19 @@
           width: 100%;
           padding-right: 0;
           .btn-only-icon {
-            right: 15px;
+            right: 14px;
           }
         }
-        .guide-text.error {
+        .guide-text{
           padding-left: 0;
-          font-size: 13px;
-          line-height: 20px;
+          &.validation{
+            font-size: 13px;
+            line-height: 20px;
+          }
+          &.error{
+            font-size: 13px;
+            line-height: 20px;
+          }
         }
       }
     }
@@ -251,27 +250,22 @@
       }
     }
     &.login-pwchange{
-      .form-list {
-        .form-item {
-          .guide-text{
-            &.validation{
-              font-size: 13px;
-              line-height: 20px;
-              padding-left: 0;
-            }
-            &:before {
-            margin-bottom: 0;
-            }
-          }
-        }      
-      }
       .button__wrap {
         .btn-blue-line{
           width: 50%;
         }
         .btn-blue {
           width:50%;
-          margin-left: 6px;
+        }
+      }
+    }
+    &.login-pwreset{
+      .button__wrap {
+        .btn-blue-line{
+          width: 50%;
+        }
+        .btn-blue {
+          width:50%;
         }
       }
     }

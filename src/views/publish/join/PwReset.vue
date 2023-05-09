@@ -1,25 +1,11 @@
 <template>
-  <div class="login login-pwchange">
+  <div class="login login-pwreset">
     <div class="login-title__wrap--top">
       <PageTitle pagetitle="비밀번호 변경" />
-      <p>현재 90일동안 동일한 비밀번호를 사용하고 있습니다<br> 비밀번호를 변경해 주세요</p>
+      <p>안전한 사용을 위해 새 비밀번호를 <span class="m-block">입력해주세요</span></p>
     </div>
     <form  ref="form" :model="form">
       <div class="form-list">
-        <div class="form-item">
-          <span class="form-item__label">현재 비밀번호</span>
-          <div class="form-item__content">
-            <ButtonCmp
-              type="btn-only-icon"
-              iconname="icon-eye"
-              @click="toggleShowCurrent"
-            ><span class="irtext">비밀번호 보이기</span></ButtonCmp>
-            <span class="input"><input ref="usrid" v-if="showPasswordCurrent" type="text" class="input" placeholder="현재 비밀번호를 입력해주세요."  v-model="form.pwcurrent">
-              <input ref="usrpwcheck" v-else type="password" class="input" placeholder="현재 비밀번호를 입력해주세요."  v-model="form.pwcurrent">
-            </span>
-          </div>
-          <p class="guide-text error" v-if="pwCurrentErrorMsg">현재 비밀번호를 다시 입력해주세요.</p>
-        </div>
         <div class="form-item">
           <span class="form-item__label">새 비밀번호</span>
           <div class="form-item__content">
@@ -57,7 +43,7 @@
       <div class="button__wrap">
         <ButtonCmp
           type="btn-blue-line"
-        >나중에 변경</ButtonCmp>
+        >취소</ButtonCmp>
         <ButtonCmp
           type="btn-blue"
           @click="onSubmit"
@@ -79,26 +65,17 @@ export default {
     return {
       form: {
         pw: '',
-        pwcheck: '',
-        pwcurrent: ''
+        pwcheck: ''
       },
-      pwCurrentErrorMsg: false,
       pwErrorMsg: false,
       pwcheckErrorMsg: false,
       showPassword: false,
       showPasswordCheck: false,
-      showPasswordCurrent: false,
       iconName: 'icon-eye'
     }
   },
   methods: {
     onSubmit () {
-      if (this.form.pwcurrent === '') {
-        this.pwCurrentErrorMsg = true
-        this.$refs.usrpw.focus()
-        return
-      }
-
       if (this.form.pw === '') {
         this.pwErrorMsg = true
         this.$refs.usrpw.focus()
@@ -111,9 +88,6 @@ export default {
         return
       }
       alert('비밀번호 변경되었습니다.')
-    },
-    toggleShowCurrent () {
-      this.showPasswordCurrent = !this.showPasswordCurrent
     },
     toggleShow () {
       if (this.showPassword) {
