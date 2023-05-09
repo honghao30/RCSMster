@@ -448,4 +448,20 @@ $formLabelWidth : 120px;
       font-size: 13px;
     }
   }
+  .guide-text {
+    &.validation {
+      &:before {
+        content:'';
+        top:2px;
+      }   
+    }
+    &.error {
+      &:before {
+        content:'';
+        top:2px;
+        
+      }
+    }
+  }
+  
 }
