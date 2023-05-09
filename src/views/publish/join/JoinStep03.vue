@@ -125,7 +125,7 @@
                   </div>
                 </td>
                 <th scope="row"><span class="form-item__label">내선번호</span></th>
-                <td>
+                <td class="align--top">
                   <div class="form-item__content">
                     <div class="form-item-row">
                       <div class="input-item">

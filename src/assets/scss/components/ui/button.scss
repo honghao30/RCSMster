@@ -6,7 +6,7 @@ $radius: 8px;
   display: inline-grid;
   justify-content: center;
   align-items: center;
-  letter-spacing: .1em;
+  letter-spacing: -.025em;
   line-height: normal;
   max-width: 100%;  
   border-radius: $radius;  
@@ -51,13 +51,17 @@ $radius: 8px;
   &:last-child {
     padding-bottom:0;
   }
+  &.flex-end {
+    justify-content: flex-end;
+  }
 }
 
 .btn {
   @include btnCommon;  
   min-width: 126px;
   height: 48px;
-  line-height: 24px;   
+  line-height: 24px;  
+  padding:0 48px; 
   &.search {
     color:#fff;
     background-color:#717883
@@ -66,10 +70,12 @@ $radius: 8px;
     height: 36px;
     width: 90px;
     font-size: 14px;
+    padding:0 42px; 
+    padding:0 32px; 
   }
   &.small {
     height: 28px;
-    padding: 0 12px;
+    padding: 0 12x;
     min-width: 50px;
     font-size: 14px;
     font-weight: 500;
@@ -118,9 +124,15 @@ $radius: 8px;
   @include btntype(14px,#4A5567,#fff,#4A5567,8px,  #fff,#4A5567, #4A5567);  
   line-height: 42px;
   min-width: auto;
+  height: 42px;
+  padding:0 23px;
   cursor: pointer;
   &.small {
     height: 42px;
+  }
+  &.inactive {
+    color:#999;
+    border-color:#999;
   }
 }
 
@@ -147,5 +159,6 @@ $iconBsUrl: '../assets/images/icon/';
   }
   .btn {
     height: 45px;
+    padding:0 12px;
   }
 }

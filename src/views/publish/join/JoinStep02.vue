@@ -22,7 +22,7 @@
                           type="btn-default-line"
                           @click="checkCertificate"
                         >
-                        사업자등록증 인증
+                        사업자등록번호 인증
                         </ButtonCmp>
                       </div>
                     </div>
