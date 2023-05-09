@@ -13,31 +13,33 @@
     font-size: 14px;
     line-height: 16px;
     border-color:#ddd;
-    padding: 16px 0;
   }
   td {
     background-color: #fff;
     font-size: 16px;
     line-height: 24px;
-    padding: 20px 0;
     .c-align {
       text-align: center;
     }
     .l-align {
       text-align: left
     }
-    
     .date {
       color: #888;
+    }
+    &.align--top {
+      vertical-align:top
     }
   }
 }
 
 @mixin tableListType () {
-  border-top: 2px solid $pointColor;
   @include tableCommon;
   th, td {
     text-align:center
+  }
+  td {
+    padding: 20px  0;
   }
 }
 
@@ -51,19 +53,26 @@
       border-right: 0;
     }
   }  
+  th {
+    padding:28px 0 28px 16px;
+    border-color:#F0F0F0;
+  }
+  td {
+    padding: 20px 20px 20px 0;
+  }
 }
 
 .table__wrap {
   width: 100%;
   position: relative;
-  .table-list {
-    @include tableListType
-  }
-  .table-bodyonly {
-    @include tableBodyType;
-  }
+  border-top: 2px solid $pointColor;
 }
-
+.table-list {
+  @include tableListType;
+}
+.table-bodyonly {
+  @include tableBodyType;
+}
 
 .paging {
   display:flex;

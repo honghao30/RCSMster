@@ -35,6 +35,9 @@ import NoticeSearch from '@/views/publish/customer/NoticeSearch'
 import NoticeContent from '@/views/publish/customer/NoticeContent'
 import FAQ from '@/views/publish/customer/FAQ'
 
+// 마이페이지
+import MyInfo from '@/views/publish/mypage/MyInfo'
+
 Vue.use(Router)
 
 let router = new Router({
@@ -215,6 +218,14 @@ let router = new Router({
       component: FAQ,
       meta: {
         tittle: 'FAQ'
+      }
+    },
+    // 마이 페이지
+    {
+      path: '/myinfo',
+      component: MyInfo,
+      meta: {
+        tittle: '개인정보 관리'
       }
     }
   ]
