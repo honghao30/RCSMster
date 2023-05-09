@@ -273,7 +273,8 @@ $formLabelWidth : 120px;
       height: 16px;
       background-image: url('../assets/images/icon/icon_validation_check.png');
       background-repeat: no-repeat;
-      background-position: 0 center;
+      background-position: 50% 50%;
+      background-size: 100%;
       margin-right:4px; 
     }   
   }
@@ -289,7 +290,8 @@ $formLabelWidth : 120px;
       height: 16px;
       background-image: url('../assets/images/icon/icon_exclamation_circle.png');
       background-repeat: no-repeat;
-      background-position: 0 center;
+      background-position: 50% 50%;
+      background-size: 100%;
       margin-right:4px;
     }
   }
