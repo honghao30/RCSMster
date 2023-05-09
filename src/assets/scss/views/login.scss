@@ -41,12 +41,8 @@
           cursor: pointer;
         }
       }
-      .form-item__error {
-        margin:10px 0 0;
-        padding-left: 220px;
-        background-image: url('#{$iconBsUrl}icon_exclamation_circle.png');
-        background-repeat: no-repeat;
-        background-position: 200px center;
+      .guide-text.error {
+        padding-left: 200px;
       }
     }      
   }
@@ -177,10 +173,6 @@
             line-height: 21px;
             padding: 0;
           }
-        }
-        .form-item__error {
-          background-position: 0;
-          padding-left: 17px;
         }
       }
     }

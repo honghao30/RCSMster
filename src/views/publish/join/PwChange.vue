@@ -18,7 +18,7 @@
               <input ref="usrpw" v-else type="password" class="input" placeholder="변경할 비밀번호를 입력해주세요."  v-model="form.pw">
             </span>
           </div>
-          <p class="form-item__error" v-if="pwErrorMsg">비밀번호를 입력해주세요.</p>
+          <p class="guide-text error" v-if="pwErrorMsg">비밀번호를 입력해주세요.</p>
         </div>
         <div class="form-item">
           <span class="form-item__label">새 비밀번호 확인</span>
@@ -32,7 +32,7 @@
               <input ref="usrpwcheck" v-else type="password" class="input" placeholder="한번 더 입력해주세요."  v-model="form.pwcheck">
             </span>
           </div>
-          <p class="form-item__error" v-if="pwcheckErrorMsg">새 비밀번호를 한번 더 입력해주세요.</p>
+          <p class="guide-text error" v-if="pwcheckErrorMsg">새 비밀번호를 한번 더 입력해주세요.</p>
         </div>
       </div>
       <div class="button__wrap">

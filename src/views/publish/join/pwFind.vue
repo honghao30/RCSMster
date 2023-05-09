@@ -28,14 +28,14 @@
           <div class="form-item__content">
             <span class="input"><input ref="userId" type="text" class="input" placeholder="아이디를 입력해주세요." v-model="form.id"></span>
           </div>
-          <p class="form-item__error" v-if="idErrorMsg">아이디를 입력해주세요.</p>
+          <p class="guide-text error" v-if="idErrorMsg">아이디를 입력해주세요.</p>
         </div>
         <div class="form-item">
           <span class="form-item__label">이름</span>
           <div class="form-item__content">
             <span class="input"><input  ref="userName" type="text" class="input" placeholder="이름을 입력해주세요."  v-model="form.name"></span>
           </div>
-          <p class="form-item__error" v-if="nameErrorMsg">이름을 입력해주세요.</p>
+          <p class="guide-text error" v-if="nameErrorMsg">이름을 입력해주세요.</p>
         </div>
         <div class="form-item">
           <span class="form-item__label">휴대폰</span>
@@ -48,7 +48,7 @@
             인증번호 요청
             </ButtonCmp>
           </div>
-          <p class="form-item__error" v-if="phoneErrorMsg">휴대폰번호를 입력해주세요.</p>
+          <p class="guide-text error" v-if="phoneErrorMsg">휴대폰번호를 입력해주세요.</p>
         </div>
         <div class="form-item">
           <span class="form-item__label">인증번호</span>
@@ -56,7 +56,7 @@
             <span class="input"><input ref="number" type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요."  v-model="form.number"></span>
             <span class="time" ref="time">{{ TimerStr }}</span>
           </div>
-          <p class="form-item__error" v-if="numberErrorMsg">인증번호를 입력해주세요.</p>
+          <p class="guide-text error" v-if="numberErrorMsg">인증번호를 입력해주세요.</p>
         </div>
       </div>
       <div class="button__wrap">

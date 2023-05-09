@@ -11,7 +11,7 @@
           <div class="form-item__content">
             <span class="input"><input ref="usrid" type="text" class="input" placeholder="아이디를 입력해주세요." v-model="form.id"></span>
           </div>
-          <p class="form-item__error" v-if="idErrorMsg">아이디를 입력해주세요.</p>
+          <p class="guide-text error" v-if="idErrorMsg">아이디를 입력해주세요.</p>
         </div>
         <div class="form-item">
           <span class="form-item__label">비밀번호</span>
@@ -25,7 +25,7 @@
               <input ref="usrpw" v-else type="password" class="input" placeholder="비밀번호를 입력해주세요."  v-model="form.pw">
             </span>
           </div>
-          <p class="form-item__error" v-if="pwErrorMsg">비밀번호를 입력해주세요.</p>
+          <p class="guide-text error" v-if="pwErrorMsg">비밀번호를 입력해주세요.</p>
         </div>
       </div>
       <div class="button__wrap">
