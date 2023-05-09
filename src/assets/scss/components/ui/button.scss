@@ -55,81 +55,13 @@ $radius: 8px;
 
 .btn {
   @include btnCommon;  
+  min-width: 126px;
+  height: 48px;
+  line-height: 24px;   
   &.search {
     color:#fff;
     background-color:#717883
   }
-}
-
-
-//button List
-.btn-blue {
-  @include btntype(16px, $pointColor, $pointColor,#fff, 8px, #2855A7,#fff, #2855A7);
-  min-width: 126px;
-  height: 48px;
-  line-height: 24px;           
-  &:disabled {
-    background-color:#ccc;
-    border-color:#ccc;
-    &:hover, &:active {
-      background-color:#ccc;
-      border-color:#ccc;
-    }
-  }  
-  &.medium {
-    height: 36px;
-    width: 90px;
-    font-size: 14px;
-  }
-  &.small {
-    height: 28px;
-    padding: 0 12px;
-    min-width: 50px;
-    font-size: 14px;
-    font-weight: 500;
-    width:auto;
-  }      
-}
-.btn-blue-line {
-  @include btntype(16px,$pointColor,#fff,$pointColor, 8px,  #fff, #2855A7, #2855A7);  
-  min-width: 126px;
-  height: 48px;
-  line-height: 24px;                    
-  &:disabled {
-    color:#ccc;
-    border-color:#ccc;
-    &:hover, &:active {
-      color:#ccc;
-      border-color:#ccc;
-    }
-  }    
-  &.medium {
-    height: 36px;
-    width: 90px;
-    font-size: 14px;
-  }
-  &.small {
-    height: 28px;
-    padding: 0 12px;
-    min-width: 50px;
-    font-size: 14px;
-    font-weight: 500;
-    width:auto;
-  }        
-}
-.btn-line {
-  @include btntype(14px,#999,#fff,#999, 8px,  #fff,#777, #777);  
-  min-width: 126px;
-  height: 48px;
-  line-height: 24px;           
-  &:disabled {
-    color:#ccc;
-    border-color:#ccc;
-    &:hover, &:active {
-      color:#ccc;
-      border-color:#ccc;
-    }
-  }  
   &.medium {
     height: 36px;
     width: 90px;
@@ -145,22 +77,58 @@ $radius: 8px;
   } 
 }
 
+
+//button List
+.btn-blue {
+  @include btntype(16px, $pointColor, $pointColor,#fff, 8px, #2855A7,#fff, #2855A7);
+  &:disabled {
+    background-color:#ccc;
+    border-color:#ccc;
+    &:hover, &:active {
+      background-color:#ccc;
+      border-color:#ccc;
+    }
+  }  
+       
+}
+.btn-blue-line {
+  @include btntype(16px,$pointColor,#fff,$pointColor, 8px,  #fff, #2855A7, #2855A7);               
+  &:disabled {
+    color:#ccc;
+    border-color:#ccc;
+    &:hover, &:active {
+      color:#ccc;
+      border-color:#ccc;
+    }
+  }            
+}
+.btn-line {
+  @include btntype(14px,#999,#fff,#999, 8px,  #fff,#777, #777);       
+  &:disabled {
+    color:#ccc;
+    border-color:#ccc;
+    &:hover, &:active {
+      color:#ccc;
+      border-color:#ccc;
+    }
+  }  
+}
+
 .btn-default-line {
   @include btntype(14px,#4A5567,#fff,#4A5567,8px,  #fff,#4A5567, #4A5567);  
-  font-weight: 700;
-  height: 42px;
   line-height: 42px;
-  width: auto;
+  min-width: auto;
   cursor: pointer;
   &.small {
     height: 42px;
   }
 }
 
-
-
 $iconBsUrl: '../assets/images/icon/';
 
+.btn-only-icon {
+  min-width:auto;
+}
 //icon List
 .icon-eye {
   width: 22px;
