@@ -355,30 +355,30 @@
           </tbody>
         </table>
       </div>
-      <p class="guide-text">※ 대행사에서 제공가능한 서비스 범위를 선택하시면 기업에게 대행사를 추천해드립니다.</p>
-      <div class="button__wrap">
-        <ButtonCmp
-          type="btn-blue-line"
-        >취소</ButtonCmp>
-        <ButtonCmp
-          type="btn-blue"
-          @click="onSubmit"
-        >다음</ButtonCmp>
-      </div>
-      </form>
-      <ModalView
-        v-if="isModalViewed" @closeModal="isModalViewed = false"
-      >
-          <CertificateMsg @closeModal="isModalViewed = false" status="ing"/>
-          <!-- 기 가입자일 경우 done, 진행 중인 경우는 ing  -->
-      </ModalView>
+    </form>
+    <p class="guide-text">※ 대행사에서 제공가능한 서비스 범위를 선택하시면 기업에게 대행사를 추천해드립니다.</p>
+    <div class="button__wrap">
+      <ButtonCmp
+        type="btn-blue-line"
+      >취소</ButtonCmp>
+      <ButtonCmp
+        type="btn-blue"
+        @click="onSubmit"
+      >다음</ButtonCmp>
+    </div>
+    <ModalView
+      v-if="isModalViewed" @closeModal="isModalViewed = false"
+    >
+        <CertificateMsg @closeModal="isModalViewed = false" status="ing"/>
+        <!-- 기 가입자일 경우 done, 진행 중인 경우는 ing  -->
+    </ModalView>
 
-      <ModalView
-        v-if="isAgencyModal" @closeModal="isAgencyModal = false"
-      >
-          <AgencyCheckMsg @closeModal="isAgencyModal = false"/>
-      </ModalView>
-      <!-- 중개사 url 정보 입력 확인 팝업 호출 시점 기획 확인 필요-->
+    <ModalView
+      v-if="isAgencyModal" @closeModal="isAgencyModal = false"
+    >
+        <AgencyCheckMsg @closeModal="isAgencyModal = false"/>
+    </ModalView>
+    <!-- 중개사 url 정보 입력 확인 팝업 호출 시점 기획 확인 필요-->
   </div>
 </template>
 
