@@ -3,7 +3,7 @@
 .signup {
   width: 100%;
   max-width:628px;
-  margin: 80px auto;
+  margin: 0 auto;
   .signup-title__wrap--top {
     text-align: center;
     .page-title {
@@ -82,7 +82,6 @@
 @media #{$phone} {
   .signup {
     max-width:100%;
-    margin: 0 auto;
     padding: 0 16px;
     .signup-title__wrap--top {
       .page-title {
