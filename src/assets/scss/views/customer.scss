@@ -1,140 +1,305 @@
-.notice-table {
-  .table-list {
-    table-layout: fixed;
-  }
-  .primary  {
-    &__text {
-      color:$pointColor;
-      font-weight: 700;
+.inner {
+  .notice-table {
+    .table-list {
+      table-layout: fixed;
+    }
+    .primary  {
+      &__text {
+        color:$pointColor;
+        font-weight: 700;
+      }
+      .title {
+        font-weight: 500;
+        color: #204485;
+      }   
     }
     .title {
-      font-weight: 500;
-      color: #204485;
-    }   
-  }
-  .title {
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-    a {
-      @include ellipsis($line: 1);
-    }
-  }
-  .ico-attach {
-    display: inline-block;
-    width:18px;
-    height:19px;
-    flex-shrink: 0;
-    margin-left:5px;
-    background:url('../assets/images/customer/ico_attach.png') no-repeat 50% 50%
-  }
-  .ico-new {
-    display: inline-block;
-    width:30px;
-    height:10px;
-    flex-shrink: 0;
-    margin-left:8px;
-    background:url('../assets/images/customer/ico_new.png') no-repeat 50% 50%;
-  }
-  .no-data {
-    p{
-      margin: 160px 0;
-      font-size: 16px;
-      color: #888888;
-    }
-  }
-}
-.content-table {
-  thead {
-    th {
-      .title {
-        width: 1020px;
-        padding: 12px 22px;
-        text-align: left;
-        font-size: 20px;
-        font-weight: 500;
-        line-height: 32px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      a {
+        @include ellipsis($line: 1);
       }
     }
-    
-    .date {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-      color: #888888;
+    .ico-attach {
+      display: inline-block;
+      width:18px;
+      height:19px;
+      flex-shrink: 0;
+      margin-left:5px;
+      background:url('../assets/images/customer/ico_attach.png') no-repeat 50% 50%
+    }
+    .ico-new {
+      display: inline-block;
+      width:30px;
+      height:10px;
+      flex-shrink: 0;
+      margin-left:8px;
+      background:url('../assets/images/customer/ico_new.png') no-repeat 50% 50%;
+    }
+    .ico-download {
+      display: inline-block;
+      width:24px;
+      height:24px;
+      flex-shrink: 0;
+      margin-left:8px;
+      background:url('../assets/images/customer/ico_download.png') no-repeat 50% 50%;
+    }
+    .ico-up {
+      display: inline-block;
+      width:24px;
+      height:24px;
+      flex-shrink: 0;
+      margin-left:8px;
+      background:url('../assets/images/customer/ico_up.png') no-repeat 50% 50%;
+    }
+    .ico-down {
+      display: inline-block;
+      width:24px;
+      height:24px;
+      flex-shrink: 0;
+      margin-left:8px;
+      background:url('../assets/images/customer/ico_down.png') no-repeat 50% 50%;
+    }
+  }
+  &.notice-search {
+    .no-data {
+      p{
+        margin: 160px 0;
+        font-size: 16px;
+        color: #888888;
+      }
+    }
+  }
+  &.notice-content {
+    thead {
+      th {
+        &.notice-content__title {
+          padding: 12px 16px 12px 22px;
+          p{
+            text-align: left;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 32px;
+          }
+        }
+        &.notice-content__date {
+          p {
+            border-left: 1px solid #dddddd;
+            height: 16px;
+            font-size: 16px;
+            font-weight: 400;
+            color: #888888;
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        .notice-content__file {
+          span {
+            padding: 3px 38px 3px 47px;
+            border-right: 1px solid #dddddd;
+            height: 32px;
+            line-height: 32px;
+            font-size: 14px;
+            font-weight: 500;
+          }
+        }
+        .notice-content__list {
+          padding: 20px 33px 20px;
+          li {
+            margin: 0px 0px 12px;
+            a{
+              font-size: 16px;
+              line-height: 26px;
+            }
+          }
+          li:last-child {
+            margin: 0;
+          }
+        }
+        .notice-content__contents {
+          text-align: left;
+          padding: 32px 24px;
+          p {
+            font-size: 16px;
+            line-height: 26px;
+          }
+        }
+      }
+    }
+    .button__wrap {
+      display: flex;
+      justify-content: center;
+      padding: 32px 0;
     }
   }
 }
 
 @media #{$phone} {
-  .notice-table {
-    .table-list {
-      tbody {
-        tr {
-          display:flex; 
-          width:calc(100vw - (#{$contentPaddingM} * 2));
-          flex-direction: column;
-          justify-content: flex-start;
-          align-items:flex-start;
-          padding: 16px 0 ;
-          border-bottom:1px solid #F0F0F0;
+  .inner {
+    .notice-table {
+      .table-list {
+        tbody {
+          tr {
+            display:flex; 
+            width:calc(100vw - (#{$contentPaddingM} * 2));
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items:flex-start;
+            padding: 16px 0 ;
+            border-bottom:1px solid #F0F0F0;
+          }
         }
-      }
-      th {
-        display:none;
-      }
-      td {
-        border: none;
-        padding:0;
-      }
-      .num {
-        display:none;
-      }
-      .primary  {
-        &__text {
-          position:absolute;;
+        th {
+          display:none;
+        }
+        td {
+          border: none;
+          padding:0;
+        }
+        .num {
+          display:none;
+        }
+        .primary  {
+          &__text {
+            position:absolute;;
+          }
+          .title {
+            text-indent:40px;
+          }   
         }
         .title {
-          text-indent:40px;
-        }   
-      }
-      .title {
-        display:block;
-        margin-bottom:4px;
-        a {
-          overflow:auto;
-          white-space:normal;
+          display:block;
+          margin-bottom:4px;
+          a {
+            overflow:auto;
+            white-space:normal;
+          }
+        }
+        .date {
+          font-size: 13px;
+        }
+        .ico-attach {
+          width:15px;
+          height:16px;
+          margin-left:4px;
+          vertical-align: top;
+          position:relative;
+          top:4px;
+          background:url('../assets/images/customer/m_ico_attach.png') no-repeat 50% 50%;
+          background-size:100%;
+        }
+        .ico-new {
+          width:24px;
+          height:8px;
+          margin-left:4px;
+          position:relative;
+          vertical-align: top;
+          top:3px;
+          background:url('../assets/images/customer/m_ico_new.png') no-repeat 50% 50%;
+          background-size:100%;
+        }
+        .ico-download {
+          width:20px;
+          height:20px;
+          margin-left:6px;
+          position:relative;
+          vertical-align: top;
+          background:url('../assets/images/customer/m_ico_download.png') no-repeat 50% 50%;
+          background-size:100%;
+        }
+        .ico-up {
+          width:20px;
+          height:20px;
+          margin-left:6px;
+          position:relative;
+          vertical-align: top;
+          background:url('../assets/images/customer/m_ico_up.png') no-repeat 50% 50%;
+          background-size:100%;
+        }
+        .ico-down {
+          width:20px;
+          height:20px;
+          margin-left:6px;
+          position:relative;
+          vertical-align: top;
+          background:url('../assets/images/customer/m_ico_down.png') no-repeat 50% 50%;
+          background-size:100%;
         }
       }
-      .date {
-        font-size: 13px;
-      }
-      .ico-attach {
-        width:15px;
-        height:16px;
-        margin-left:4px;
-        vertical-align: top;
-        position:relative;
-        top:4px;
-        background:url('../assets/images/customer/m_ico_attach.png') no-repeat 50% 50%;
-        background-size:100%;
-      }
-      .ico-new {
-        width:24px;
-        height:8px;
-        margin-left:4px;
-        position:relative;
-        vertical-align: top;
-        top:3px;
-        background:url('../assets/images/customer/m_ico_new.png') no-repeat 50% 50%;
-        background-size:100%;
-      }
+    }
+    &.notice-search {
       .no-data {
         width: 100%;
         p{
           margin: 100px auto;
           font-size: 14px;
         }
+      }
+    }
+    &.notice-content {
+      thead {
+        .notice-content__subject {
+          th {
+            width:calc(100vw - (#{$contentPaddingM} * 2));
+            display: block;
+            text-align: left;
+            &.notice-content__title {
+              padding: 20px 8px 0;
+              border-bottom: 0;
+              p {
+              text-align: left;
+              font-size: 16px;
+              font-weight: 500;
+              line-height: 23px;
+              }
+            }
+            &.notice-content__date {
+              padding: 4px 8px 20px;
+              p {
+              border-left: 0;
+              font-size: 13px;
+              }
+            }
+          }
+        }
+      }
+      tbody {
+        tr {
+          .notice-content__file {
+            display: none;
+          }
+          .notice-content__list {
+            padding: 0 8px 0;
+            .title {
+              display: flex;
+            }
+            li {
+              margin: 0px 0px 8px;
+              a{
+                font-size: 16px;
+                line-height: 21px;
+              }
+            }
+            li:last-child {
+              margin: 0;
+            }
+          }
+          .notice-content__contents {
+            padding: 8px;
+            p {
+              font-size: 14px;
+              line-height: 21px;
+            }
+          }
+        }
+      }
+      .button__wrap {
+        display: flex;
+        justify-content: center;
+        padding: 24px 0;
       }
     }
   }

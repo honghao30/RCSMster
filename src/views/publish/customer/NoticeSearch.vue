@@ -1,5 +1,5 @@
 <template>
-  <div class="inner">
+  <div class="inner notice-search">
     <PageTitle pagetitle="공지사항" />
     <TabCategory :category="category" :newTabIndex="newTabIndex"/>
     <SearchTable v-if="checkBoardLength" listnumber=0 />

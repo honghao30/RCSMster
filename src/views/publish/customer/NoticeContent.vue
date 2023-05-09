@@ -1,89 +1,124 @@
 <template>
-  <div class="inner">
+  <div class="inner notice-content">
     <PageTitle pagetitle="공지사항" />
-    <div class="table__wrap notice-table content-table">
-        <table class="table table-list">
-          <colgroup>
-            <col width="10%">
-            <col>
-            <col width="16%">
-          </colgroup>
-          <thead>
-            <tr>
-              <th scope="col" colspan="2">
-                <p class="title">RCS Biz Center 검수기 승인 안내 제3회 전국동시조합장선거 후보자 브랜드 등록 안내 수정 국동시조합장선거 후보자 브랜드 등록 안내 RCS Biz Center 검수기 승인 안내 제3회 전국동시조합장선거 후보자 브랜드 등록 안내</p>
-              </th>
-              <th scope="col">
-                <p class="date">2023.04.25</p>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="(item, i) in noticeData" :key="i"
-              :class="[{primary: item.primary}]"
-            >
-              <td>
-                <span v-if="item.primary" class="primary__text">공지</span>
-                <span v-if="!item.primary" class="num">{{ item.id }}</span>
-              </td>
-              <td>
-                <div class="l-align title">
-                  <router-link to=""
-                  >{{ item.title }}
-                  </router-link>
-                  <i class="ico-attach" v-if="item.attach"></i>
-                  <i class="ico-new" v-if="item.new"></i>
-                </div>
-              </td>
-              <td>
-                <span class="date">{{ item.date }}</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="no-data" colspan="3">
-                <p>검색 결과가 없습니다.</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="table__wrap notice-table">
+      <table class="table table-list">
+        <colgroup>
+          <col width="11%">
+          <col>
+          <col width="17%">
+        </colgroup>
+        <thead>
+          <tr class="notice-content__subject">
+            <th scope="col" colspan="2" class="notice-content__title">
+              <p>RCS Biz Center 검수기 승인 안내 제3회 전국동시조합장선거 후보자 브랜드 등록 안내 수정 국동시조합장선거 후보자 브랜드 등록 안내</p>
+            </th>
+            <th scope="col" class="notice-content__date">
+              <p>2023.04.25</p>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="notice-content__file">
+              <span>첨부파일</span>
+            </td>
+            <td colspan="2" class="notice-content__list">
+              <ul>
+                <li class="l-align title">
+                  <p>펨플릿.jpg</p>
+                  <i class="ico-download"></i>
+                </li>
+                <li class="l-align title">
+                  <p>Action버튼_데이터 셋_sample_20201103.xlsx</p>
+                  <i class="ico-download"></i>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="notice-content__contents"> 
+              <p>안녕하세요. RCS Biz Center입니다.<br/>
+                  RCS Biz Center 검수 사이트는 평일 09:00~18:00 에만 승인이 가능하며,<br/>
+                  운영에 다른 점검 및 반영 작업으로 인해 승인이 다소 늦어질 수 있습니다.<br/>
+                  또한 검수기 특성상 연동 테스트를 위한 정보들이 대량으로 등록되어 있어<br/>
+                  실제 승인이 필요한 항목에 대한 구분이 불가하여 신청 후 메일(tech@rcsbizcenter.com)로 요청 부탁 드립니다.<br/>
+                  <br/>
+                  RCS Biz Center 검수 사이트는 평일 09:00~18:00 에만 승인이 가능하며,<br/>
+                  운영에 다른 점검 및 반영 작업으로 인해 승인이 다소 늦어질 수 있습니다.<br/>
+                  또한 검수기 특성상 연동 테스트를 위한 정보들이 대량으로 등록되어 있어<br/>
+                  실제 승인이 필요한 항목에 대한 구분이 불가하여 신청 후 메일(tech@rcsbizcenter.com)로 요청 부탁 드립니다.<br/>
+                  <br/>
+                  RCS Biz Center 검수 사이트는 평일 09:00~18:00 에만 승인이 가능하며,<br/>
+                  운영에 다른 점검 및 반영 작업으로 인해 승인이 다소 늦어질 수 있습니다.<br/>
+                  또한 검수기 특성상 연동 테스트를 위한 정보들이 대량으로 등록됩니다.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="button__wrap">
+      <ButtonCmp type="btn-blue">목록</ButtonCmp>
+    </div>
+    <div class="table__wrap notice-table">
+      <table class="table table-list notice-content__table">
+        <colgroup>
+          <col width="12%">
+          <col width="12%">
+          <col>
+        </colgroup>
+        <tbody>
+          <tr
+            v-for="(item, i) in noticeData" :key="i">
+            <td>
+                <i class="ico-up" v-if="item.up"></i>
+                <i class="ico-down" v-if="item.down"></i>
+            </td>
+            <td>
+                <p class="list-data">{{ item.data }}</p>
+            </td>
+            <td>
+              <div class="l-align title">
+                <router-link to=""
+                >{{ item.title }}
+                </router-link>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
+import ButtonCmp from '@/components/common/ButtonCmp.vue'
 
 export default {
   name: 'NoticeView',
   data() {
     return {
-      category: ['전체', '이벤트', '시스템', '정책', '서식', '업데이트 노트'],
-      activeTabIndex: 0,
-      newTabIndex: 1,
       noticeData:
       [
         {
-          id: 1,
-          title: '[중요] RCS 메시지 발송 규격 추가 예정 안내',
-          date: '2023.04.25',
-          primary: true,
-          new: false,
-          attach: false
+          up: true,
+          down: false,
+          data: '이전글',
+          title: '3rd Party App의 RCS 문자 메시지 인식을 위한 개발 가이드'
         },
         {
-          id: 2,
-          title: '발신번호 삭제 및 전시모드 정책 변경 등 공지 드립니다.',
-          date: '2023.04.25',
-          primary: true,
-          new: false,
-          attach: false
+          up: false,
+          down: true,
+          data: '다음글',
+          title: '[작업] 삼성 MaaP 작업에 따른 RCS Biz Center 서비스 차단 안내 (7월 19일 ~ 20일)'
         }
       ]
     }
   },
   components: {
-    PageTitle
+    PageTitle,
+    ButtonCmp
   },
   computed: {
     checkBoardLength() {
