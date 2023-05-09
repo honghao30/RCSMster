@@ -115,7 +115,7 @@ let router = new Router({
       path: '/PwChange',
       component: PwChange,
       meta: {
-        tittle: '비밀번호 리셋하기'
+        tittle: '비밀번호 변경하기'
       }
     },
     // 가입
