@@ -26,8 +26,8 @@
                         </ButtonCmp>
                       </div>
                     </div>
-                    <p class="guide-text error" v-if="certificateErrorMsg">사업자등록번호를 입력해주세요.</p>
                     <p class="guide-text">※ 사업자등록번호 인증 후 회원가입을 진행 할 수 있습니다.</p>
+                    <p class="guide-text error" v-if="certificateErrorMsg">사업자등록번호를 입력해주세요.</p>
                   </div>
                   <div class="form-item__content" v-else>
                       <div class="form-item-row">
@@ -35,7 +35,7 @@
                             <span class="input"><input type="text" class="input" :value="certificatetemp" disabled></span>
                           </div>
                       </div>
-                      <p class="guide-text black">사업자등록번호 인증이 완료되었습니다.</p>
+                      <p class="guide-text black">※ 사업자등록번호 인증이 완료되었습니다.</p>
                   </div>
               </td>
             </tr>

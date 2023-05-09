@@ -75,13 +75,13 @@
                       </div>
                     </div>
                     <p class="guide-text error" v-if="passErrorMsg">비밀번호을 입력해주세요.</p>
-                    <p class="guide-text black">영문, 숫자, 특수문자 중 2개 이상 사용 (2개 조합 시 10자리 이상 / 3개 조합 시 8자리 이상)</p>
+                    <p class="guide-text black">&middot; 영문, 숫자, 특수문자 중 2개 이상 사용 (2개 조합 시 10자리 이상 / 3개 조합 시 8자리 이상)</p>
                     <p class="guide-text validation">영문, 숫자, 특수문자 중 2개 이상 사용 (2개 조합 시 10자리 이상 / 3개 조합 시 8자리 이상)</p>
-                    <p class="guide-text black">연속적인 숫자 또는 문자 사용 불가 (예 : 1234, abcd)</p>
+                    <p class="guide-text black">&middot; 연속적인 숫자 또는 문자 사용 불가 (예 : 1234, abcd)</p>
                     <p class="guide-text error">연속적인 숫자 또는 문자 사용 불가 (예 : 1234, abcd)</p>
-                    <p class="guide-text black">아이디, 핸드폰 번호와 동일한 숫자 또는 문자 사용 불가</p>
+                    <p class="guide-text black">&middot; 아이디, 핸드폰 번호와 동일한 숫자 또는 문자 사용 불가</p>
                     <p class="guide-text validation">아이디, 핸드폰 번호와 동일한 숫자 또는 문자 사용 불가</p>
-                    <p class="guide-text black">최근 사용한 비밀번호 3개 사용 불가</p>
+                    <p class="guide-text black">&middot; 최근 사용한 비밀번호 3개 사용 불가</p>
                     <p class="guide-text error">최근 사용한 비밀번호 3개 사용 불가</p>
                   </div>
                 </td>

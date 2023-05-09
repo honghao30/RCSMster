@@ -5,9 +5,9 @@
     <div class="top-notice--gray">
       원활한 기업담당자 가입신청을 위해서 기업의 사업자등록증 사본을 준비해주세요.
     </div>
-    <form ref="form" :model="form">
+    <form ref="form" :model="form" >
       <div class="agree__wrap">
-      <h3 class="agree__title">약관동의</h3>
+        <h3 class="agree__title">약관동의</h3>
         <div class="agree__item">
           <div class="checkbox">
             <input type="checkbox" id="chkAll" value="form.agreeAll"/>
@@ -48,7 +48,7 @@
         type="btn-blue"
       >다음</ButtonCmp>
       </div>
-  </form>
+    </form>
   </div>
 </template>
 

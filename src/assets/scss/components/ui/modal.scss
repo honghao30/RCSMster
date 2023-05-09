@@ -12,7 +12,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, .5);
     display: table;
-    transition: opacity .3s ease;
+    transition: opacity .1s ease;
   }
   .modal__container {
     position: fixed;
@@ -75,7 +75,7 @@
       }
   }
   .fade-enter-active, .fade-leave-active {
-    transition: opacity .5s;
+    transition: opacity .2s;
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
