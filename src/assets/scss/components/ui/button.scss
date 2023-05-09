@@ -99,3 +99,12 @@ $iconBsUrl: '../assets/images/icon/';
   background-repeat: no-repeat;
   background-position: center;  
 }
+
+@media #{$phone} {
+  .btn-blue{
+    height: 45px;
+  }
+  .btn-blue-line {
+    height: 45px;
+  }
+}
