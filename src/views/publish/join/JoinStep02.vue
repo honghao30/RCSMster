@@ -167,16 +167,16 @@
           </tbody>
         </table>
       </div>
-      <div class="button__wrap">
-        <ButtonCmp
-          type="btn-blue-line"
-        >이전</ButtonCmp>
-        <ButtonCmp
-          type="btn-blue"
-          @click="onSubmit"
-        >다음</ButtonCmp>
-      </div>
-  </form>
+    </form>
+    <div class="button__wrap">
+      <ButtonCmp
+        type="btn-blue-line"
+      >이전</ButtonCmp>
+      <ButtonCmp
+        type="btn-blue"
+        @click="onSubmit"
+      >다음</ButtonCmp>
+    </div>
   <ModalView
     v-if="isModalViewed" @closeModal="isModalViewed = false"
   >

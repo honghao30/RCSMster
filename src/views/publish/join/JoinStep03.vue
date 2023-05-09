@@ -138,21 +138,21 @@
             </tbody>
           </table>
         </div>
-      <div class="button__wrap">
-        <ButtonCmp
-          type="btn-blue-line"
-        >취소</ButtonCmp>
-        <ButtonCmp
-          type="btn-blue"
-          @click="onSubmit"
-        >신청</ButtonCmp>
-      </div>
-  </form>
-        <ModalView
-          v-if="isModalViewed" @closeModal="isModalViewed = false"
-        >
-          <CertificateMsg @closeModal="isModalViewed = false" />
-        </ModalView>
+    </form>
+    <div class="button__wrap">
+      <ButtonCmp
+        type="btn-blue-line"
+      >취소</ButtonCmp>
+      <ButtonCmp
+        type="btn-blue"
+        @click="onSubmit"
+      >신청</ButtonCmp>
+    </div>
+    <ModalView
+      v-if="isModalViewed" @closeModal="isModalViewed = false"
+    >
+      <CertificateMsg @closeModal="isModalViewed = false" />
+    </ModalView>
   </div>
 </template>
 

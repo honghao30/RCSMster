@@ -187,6 +187,12 @@ $bordersColor: #DDDDDD;
     transform: rotate(135deg) translate(-50%, -50%);
   }
 }
+form {
+  +.page-title__wrap {
+    margin-top: 60px;
+  }
+}
+
 
 $formLabelWidth : 120px;
 .form-list {
@@ -215,6 +221,7 @@ $formLabelWidth : 120px;
     }
   }
 }
+
 .form-table {
   th {
     text-align: left;
@@ -230,6 +237,13 @@ $formLabelWidth : 120px;
           font-size: 16px;
           line-height: 26px; 
           color: #999999;
+      }
+      .text {
+        display:inline-block;
+        +.btn {
+          margin-left:8px;
+        }
+        
       }
   }
   .form-item__label {
@@ -254,7 +268,6 @@ $formLabelWidth : 120px;
         align-items: flex-start;
       }
     }
-    .guide-text {width:100%;}
   }
   .input-item {
     width: 100%;
@@ -289,6 +302,7 @@ $formLabelWidth : 120px;
 
 .guide-text {
   margin-top:16px;
+  width: 100%;
   @include fontoption(14px,#2F77FB,400,24px);   
   &.black {
       color: #000;
@@ -434,4 +448,20 @@ $formLabelWidth : 120px;
       font-size: 13px;
     }
   }
+  .guide-text {
+    &.validation {
+      &:before {
+        content:'';
+        top:2px;
+      }   
+    }
+    &.error {
+      &:before {
+        content:'';
+        top:2px;
+        
+      }
+    }
+  }
+  
 }

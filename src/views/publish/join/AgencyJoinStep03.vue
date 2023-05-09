@@ -138,6 +138,7 @@
             </tbody>
           </table>
         </div>
+      </form>
       <div class="button__wrap">
         <ButtonCmp
           type="btn-blue-line"
@@ -147,12 +148,11 @@
           @click="onSubmit"
         >회원가입</ButtonCmp>
       </div>
-  </form>
-  <ModalView
-    v-if="isModalViewed" @closeModal="isModalViewed = false"
-  >
-    <CertificateMsg @closeModal="isModalViewed = false" />
-  </ModalView>
+      <ModalView
+        v-if="isModalViewed" @closeModal="isModalViewed = false"
+      >
+        <CertificateMsg @closeModal="isModalViewed = false" />
+      </ModalView>
   </div>
 </template>
 

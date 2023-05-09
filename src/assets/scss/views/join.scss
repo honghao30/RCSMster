@@ -104,12 +104,6 @@
                 }
             }                              
         } 
-        + .page-title__wrap {
-            margin-top:0;
-        }   
-    }
-    .page-title__wrap {
-        margin-top: 60px;
     }
     .table__wrap {
         .form-table {
@@ -238,45 +232,6 @@
                 margin-left: 10px;
             }
         }
-    }
-}
-.modal__container {
-    .modal__content--inner {
-        &.small-message__modal {
-            width:403px;               
-            padding:40px;  
-            border-radius: 16px;
-            background-color: #fff;    
-            transition: opacity.3s ease;  
-            .msg {
-                text-align: center;
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 26px;
-                text-align: center;
-                color: #000000;
-            }  
-            .msg2 {
-                margin-top: 16px;
-                background: #F4F4F4;
-                border-radius: 8px;
-                text-align: center;
-                padding:16px;
-                font-style: normal;
-                font-weight: 400;
-                font-size: 18px;
-                line-height: 30px;                
-                text-align: center;                
-                color: #000000;                
-            }        
-            .modal__content--footer {
-                background-color: #fff;                
-            }
-            .modal__content--body {
-                height: calc(100% - 50px);
-                overflow:hidden;
-            }
-        }    
     }
 }
 
