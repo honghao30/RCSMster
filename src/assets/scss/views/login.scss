@@ -18,15 +18,13 @@
     margin:32px 0;
     .form-item {
       border-bottom:1px solid #F0F0F0;
-      padding: 20px 0;
+      padding: 20px 20px 20px 10px;
       margin:0;
       .form-item__label {           
-        padding-left:10px;
         flex: 0 0 200px;
       }
       .form-item__content {
         position: relative;
-        padding-right: 20px;
         .btn-only-icon {
           position: absolute;
           right: 30px;
@@ -43,7 +41,7 @@
       }
       .guide-text.error {
         padding-left: 200px;
-        margin:8px 0 0;
+        width: 100%;
       }
     }      
   }
@@ -92,6 +90,9 @@
     .form-item__content {
       .input {
         flex: 1;
+      }
+      .btn-default-line{
+        margin-left: 10px;
       }
       .time {
         position: absolute;
@@ -143,6 +144,27 @@
       }
     }
   }
+  &.login-pwchange{
+    .form-list {
+      .form-item {
+        .guide-text{
+          &.validation{
+            padding-left: 200px;
+          }
+        }
+      }      
+    }
+    .button__wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .btn-blue {
+        display: block;
+        width:188px;
+        margin-left: 8px;
+      }
+    }
+  }
 }
 
 @media #{$phone} {
@@ -173,6 +195,8 @@
         }
         .guide-text.error {
           padding-left: 0;
+          font-size: 13px;
+          line-height: 20px;
         }
       }
     }
@@ -184,6 +208,9 @@
       .form-list {
         margin-top: 0;
         .form-item__content {
+          .btn-default-line{
+            margin-left: 8px;
+          }
           .time {
             right:12px;
             font-size: 14px;
@@ -220,6 +247,31 @@
         .btn-blue {
           display: block;
           width:113.5px;
+        }
+      }
+    }
+    &.login-pwchange{
+      .form-list {
+        .form-item {
+          .guide-text{
+            &.validation{
+              font-size: 13px;
+              line-height: 20px;
+              padding-left: 0;
+            }
+            &:before {
+            margin-bottom: 0;
+            }
+          }
+        }      
+      }
+      .button__wrap {
+        .btn-blue-line{
+          width: 50%;
+        }
+        .btn-blue {
+          width:50%;
+          margin-left: 6px;
         }
       }
     }
