@@ -203,6 +203,7 @@ const homeList = [
     'status': '완료',
     'link': '/agencyjoinStep04'
   },
+  // 마이 페이지
   {
     'depth1': '마이페이지',
     'depth2': '개인정보 관리',
