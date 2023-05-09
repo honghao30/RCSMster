@@ -43,6 +43,7 @@
       }
       .guide-text.error {
         padding-left: 200px;
+        margin:8px 0 0;
       }
     }      
   }
@@ -146,8 +147,9 @@
 
 @media #{$phone} {
   .login {
-    max-width:328px;
+    max-width:100%;
     margin: 0 auto;
+    padding: 0 16px;
     .login-title__wrap--top {
       p {
         font-size: 14px;
@@ -168,11 +170,9 @@
           .btn-only-icon {
             right: 15px;
           }
-          .btn-default-line{
-            width: 104.5px;
-            line-height: 21px;
-            padding: 0;
-          }
+        }
+        .guide-text.error {
+          padding-left: 0;
         }
       }
     }

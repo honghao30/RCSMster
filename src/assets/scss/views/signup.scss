@@ -70,7 +70,7 @@
         background-color: #F8F8F8;
         text-align: center;
         padding: 32px 0 24px;
-        border-radius: 8px;
+        border-radius: 0 0 8px 8px;
         p{
           @include fontoption(14px,#666,400,22px);
         }
@@ -92,8 +92,9 @@
 
 @media #{$phone} {
   .signup {
-    max-width:328px;
+    max-width:100%;
     margin: 0 auto;
+    padding: 0 16px;
     .signup-title__wrap--top {
       .page-title {
         margin-bottom:10px;
@@ -108,7 +109,6 @@
       justify-content: center;
       margin-top: 32px;
       .signup-item {
-        width: 328px;
         &:nth-child(1) {
           .signup-item__tit {
             margin: 33px 0 16px;
