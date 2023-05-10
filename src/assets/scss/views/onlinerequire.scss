@@ -1,0 +1,53 @@
+
+//폼 공통요소
+$textareaHeight: 100px;
+$font-tsize: 16px;
+$textareaColor: #fafafa;
+$bordersColor: #DDDDDD;
+
+@mixin textareaBasic {
+  resize: none;  
+  background-color: #fff;    
+  border-radius: 8px;
+  border: 1px solid $bordersColor;    
+  color: #000;
+  display: inline-block;
+  font-size: $font-tsize;
+  height: $textareaHeight;
+  line-height: inherit;
+  padding: 0 16px;    
+  width: 100%;
+  &::placeholder {
+    @include fontoption(16px,#999,400,26px);
+    margin-top: 8px;
+  }
+}
+
+.textarea {
+  textarea {
+    @include textareaBasic;
+    height: 172px;
+    &:disabled {
+      background-color:#f4f4f4;
+      color:#999;
+      border-color:#ddd;
+      cursor:not-allowed;
+    }
+  }
+}
+
+
+.input-item{
+  .textarea {
+    flex:auto;
+    textarea {
+      flex: 1;
+    }
+  }
+}
+
+
+.online{
+  max-width: 1280px;
+  margin: 0 auto;
+}

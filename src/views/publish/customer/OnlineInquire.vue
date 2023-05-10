@@ -1,5 +1,5 @@
 <template>
-  <div class="inner">
+  <div class="online">
     <PageTitle pagetitle="온라인 문의" />
     <PageTitleH3 titleh3="문의정보" noticeinfo="필수 입력값" />
     <form  ref="form" :model="form">
@@ -10,107 +10,63 @@
             <col />
           </colgroup>
           <tbody>
+            <!-- 문의유형 / select -->
             <tr>
               <th scope="row"><span class="form-item__label required">문의유형</span></th>
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <div class="wsg-guide-content">
-                      <div class="select">
-                        <select name="" id="selectValue" v-model="form.inquiretype">
-                          <option value="1">가입</option>
-                          <option value="2">서비스 관리</option>
-                          <option value="3">브랜드 관리</option>
-                          <option value="4">대화방 관리</option>
-                          <option value="5">탬플릿 관리</option>
-                          <option value="6">자동응답 관리</option>
-                          <option value="7">브랜드 소식 관리</option>
-                        </select>
+                    <div class="select">
+                      <select name="" id="selectValue" v-model="form.inquirevalue">
+                        <option value="1">가입</option>
+                        <option value="2">서비스 관리</option>
+                        <option value="3">브랜드 관리</option>
+                        <option value="4">대화방 관리</option>
+                        <option value="5">탬플릿 관리</option>
+                        <option value="6">자동응답 관리</option>
+                        <option value="7">브랜드 소식 관리</option>
+                      </select>
+                    </div>
+                  </div>
+                  <p class="guide-text error" v-if="inquirevalueErrorMsg">문의 유형을 선택해주세요.</p>
+                </div>
+              </td>
+            </tr>
+            <!-- 문의 제목 / text -->
+            <tr>
+              <th scope="row"><span class="form-item__label required">문의 제목</span></th>
+              <td>
+                <div class="form-item__content">
+                  <div class="form-item-row">
+                    <div class="input-item">
+                      <span class="input">
+                        <input type="text" class="input" maxlength="40" placeholder="문의 제목을 입력해주세요." v-model="form.inquiretitle">
+                        <p class="input-text_limit">
+                          {{ form.inquiretitle.length }}/40자
+                        </p>
+                      </span>
+                    </div>
+                  </div>
+                  <p class="guide-text error" v-if="inquiretitleErrorMsg">문의 제목을 입력해주세요.</p>
+                </div>
+              </td>
+            </tr>
+            <!-- 문의 내용 / textarea -->
+            <tr>
+              <th scope="row"><span class="form-item__label required">문의 내용</span></th>
+              <td>
+                <div class="form-item__content">
+                  <div class="form-item-row">
+                    <div class="input-item">
+                      <div class="textarea">
+                        <textarea maxlength="1000" placeholder="문의 내용을 입력해주세요." v-model="form.inquirecont"></textarea>
+                        <p class="textarea-text_limit">
+                          {{ form.inquirecont.length }}/1000자
+                        </p>
                       </div>
                     </div>
                   </div>
-                  <p class="guide-text error" v-if="inquiretypeErrorMsg">문의 유형을 선택해주세요.</p>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="form-item__label">사업자등록증</span></th>
-              <td>
-                <div class="form-item__content">
-                  <div class="form-item-row">
-                    <div class="input-item">
-                    <span class="input"><input type="text" class="input" :value="filesName"></span>
-                    <input type="file" id="fileUp" class="input" @change="onFileChanged">
-                    <label for="fileUp" class="btn btn-default-line">파일찾기</label>
-                    </div>
-                  </div>
-                  <p class="guide-text black">&middot; 파일형식: JPG, PNG, PDF, TIFF(최대 5MB)</p>
-                  <p class="guide-text"> ※ 사업자등록증이 없는 경우 사업자등록증명 또는 고유번호증을 등록해주세요. </p>
-                  <p class="guide-text"> ※ 비영리법인/국가기관인 경우 고유번호증을 등록해주세요. </p>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="form-item__label required">법인명(단체명)</span></th>
-              <td>
-                <div class="form-item__content">
-                  <div class="form-item-row">
-                    <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명(단체명)을 입력해주세요." v-model="form.companyname"></span>
-                    </div>
-                  </div>
-                  <p class="guide-text error" v-if="companynameErrorMsg">법인명(단체명)을 입력해주세요.</p>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="form-item__label required">업태</span></th>
-              <td>
-                <div class="form-item__content">
-                <div class="form-item-row">
-                  <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 업태명을 입력해주세요."  v-model="form.biztype"></span>
-                  </div>
-                </div>
-                <p class="guide-text error" v-if="biztypeErrorMsg">사업자등록증에 등록된 첫번째 업태명을 입력해주세요.</p>
-                <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘기업/단체’로 입력해주세요.</p>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="form-item__label required">종목</span></th>
-              <td>
-                <div class="form-item__content">
-                <div class="form-item-row">
-                  <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 종목명을 입력해주세요."   v-model="form.bizevent"></span>
-                  </div>
-                </div>
-                <p class="guide-text error" v-if="bizeventErrorMsg">사업자등록증에 등록된 첫번째 종목명을 입력해주세요.</p>
-                <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘비영리, 공공/행정, 정치/사회, 복지, 종교, 모임, 기관/단체일반’ 중에서 해당하는 항목을 입력해주세요.</p>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="form-item__label required">기업주소</span></th>
-              <td>
-                <div class="form-item__content">
-                  <div class="form-item-row">
-                    <div class="input-item post">
-                    <span class="input"><input type="text" class="input" v-model="form.postcode"></span>
-                    <ButtonCmp
-                      type="btn-default-line"
-                      @click="findPost">
-                      우편번호
-                    </ButtonCmp>
-                    </div>
-                  </div>
-                  <div class="form-item-row">
-                    <div class="input-item address">
-                    <span class="input"><input type="text" class="input" v-model="form.addr1"></span> <span class="input"><input type="text" class="input" v-model="form.addr2"></span>
-                    </div>
-                  </div>
-                  <p class="guide-text error" v-if="postcodeErrorMsg">기업주소를 입력해주세요.</p>
+                  <p class="guide-text error" v-if="inquirecontErrorMsg">문의 내용을 입력해주세요.</p>
                 </div>
               </td>
             </tr>
@@ -161,9 +117,11 @@ export default {
   data() {
     return {
       form: {
+        inquirevalue: '',
+        inquiretitle: '',
+        inquirecont: '',
         certificate: '',
         certificateFile: '',
-        companyname: '',
         biztype: '',
         bizevent: '',
         postcode: '',
@@ -172,17 +130,24 @@ export default {
         service: [],
         serviceRange: [],
         agency: ''
-      }
+      },
+      inquirevalueErrorMsg: false,
+      inquiretitleErrorMsg: false,
+      inquirecontErrorMsg: false
     }
   },
   methods: {
     onSubmit () {
-      if (this.form.inquiretype === '') {
-        this.inquiretypeErrorMsg = true
+      if (this.form.inquirevalue === '') {
+        this.inquirevalueErrorMsg = true
         return
       }
-      if (this.form.companyname === '') {
-        this.companynameErrorMsg = true
+      if (this.form.inquiretitle === '') {
+        this.inquiretitleErrorMsg = true
+        return
+      }
+      if (this.form.inquirecont === '') {
+        this.inquirecontErrorMsg = true
         return
       }
       if (this.form.biztype === '') {
