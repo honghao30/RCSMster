@@ -11,7 +11,7 @@
           <div class="form-item__content">
             <ButtonCmp
               type="btn-only-icon"
-              iconname="icon-eye"
+              :iconname=iconCurrnetName
               @click="toggleShowCurrent"
             ><span class="irtext">비밀번호 보이기</span></ButtonCmp>
             <span class="input"><input ref="usrid" v-if="showPasswordCurrent" type="text" class="input" placeholder="현재 비밀번호를 입력해주세요."  v-model="form.pwcurrent">
@@ -44,7 +44,7 @@
           <div class="form-item__content">
             <ButtonCmp
               type="btn-only-icon"
-              iconname="icon-eye"
+              :iconname=iconChangeName
               @click="toggleShowCheck"
             ><span class="irtext">비밀번호 보이기</span></ButtonCmp>
             <span class="input"><input ref="usrid" v-if="showPasswordCheck" type="text" class="input" placeholder="한번 더 입력해주세요."  v-model="form.pwcheck">
@@ -88,7 +88,10 @@ export default {
       showPassword: false,
       showPasswordCheck: false,
       showPasswordCurrent: false,
-      iconName: 'icon-eye'
+      iconCurrnetName: 'icon-eye',
+      iconName: 'icon-eye',
+      iconChangeName: 'icon-eye'
+
     }
   },
   methods: {
@@ -113,6 +116,11 @@ export default {
       alert('비밀번호 변경되었습니다.')
     },
     toggleShowCurrent () {
+      if (this.showPasswordCurrent) {
+        this.iconCurrnetName = 'icon-eye'
+      } else {
+        this.iconCurrnetName = 'icon-eye blue'
+      }
       this.showPasswordCurrent = !this.showPasswordCurrent
     },
     toggleShow () {
@@ -124,6 +132,11 @@ export default {
       this.showPassword = !this.showPassword
     },
     toggleShowCheck () {
+      if (this.showPasswordCheck) {
+        this.iconChangeName = 'icon-eye'
+      } else {
+        this.iconChangeName = 'icon-eye blue'
+      }
       this.showPasswordCheck = !this.showPasswordCheck
     }
   }

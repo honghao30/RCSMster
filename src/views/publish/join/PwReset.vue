@@ -30,7 +30,7 @@
           <div class="form-item__content">
             <ButtonCmp
               type="btn-only-icon"
-              iconname="icon-eye"
+              :iconname=iconChangeName
               @click="toggleShowCheck"
             ><span class="irtext">비밀번호 보이기</span></ButtonCmp>
             <span class="input"><input ref="usrid" v-if="showPasswordCheck" type="text" class="input" placeholder="한번 더 입력해주세요."  v-model="form.pwcheck">
@@ -71,7 +71,8 @@ export default {
       pwcheckErrorMsg: false,
       showPassword: false,
       showPasswordCheck: false,
-      iconName: 'icon-eye'
+      iconName: 'icon-eye',
+      iconChangeName: 'icon-eye'
     }
   },
   methods: {
@@ -98,6 +99,11 @@ export default {
       this.showPassword = !this.showPassword
     },
     toggleShowCheck () {
+      if (this.showPasswordCheck) {
+        this.iconChangeName = 'icon-eye'
+      } else {
+        this.iconChangeName = 'icon-eye blue'
+      }
       this.showPasswordCheck = !this.showPasswordCheck
     }
   }
