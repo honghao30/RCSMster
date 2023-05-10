@@ -162,7 +162,7 @@ $contentPaddingM: 16px;
 .contents {
     padding-top: $headerHeight;
     position: relative;
-    min-height:calc(100vh - 200px);
+    min-height:880px;
     padding-bottom: 80px;
     .page-title {
         font-weight: 700;
@@ -170,7 +170,7 @@ $contentPaddingM: 16px;
         line-height: 44px;
         text-align:center;
         padding-top: 82px;   
-        margin-bottom: 32px;
+        margin-bottom: 56px;
     }
 }
 

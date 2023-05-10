@@ -1,5 +1,5 @@
 d<template>
-  <div class="inner join">
+  <div class="join">
     <PageTitle pagetitle="개인정보 관리" />
     <PageTitleH3 titleh3="내 계정 정보" noticeinfo="필수 입력값" />
     <form  ref="form" :model="form">
@@ -68,27 +68,47 @@ d<template>
               <tr>
                 <th scope="row"><span class="form-item__label required">휴대폰(담당자)</span></th>
                 <td colspan="3">
-                    <div class="form-item__content">
-                        <div class="form-item-row">
-                          <!-- <div class="input-item agency-phone">
-
-                            <span class="input"><input type="text" class="input" v-model="form.ipName" placeholder="항목명"></span>
-                            <ButtonCmp
-                              type="btn-default-line"
-                              size="small"
-                            >
-                            삭제
-                            </ButtonCmp>
-                          </div> -->
-                            <ButtonCmp
-                                type="btn-default-line"
-                                size="small"
-                            >
-                            추가
-                            </ButtonCmp>
-                            <p class="guide-text black">대행사 관리를 위한 추가 사용자를 최대10개 등록할 수 있습니다.</p>
+                  <div class="form-item__content">
+                      <div class="form-item-row agency-phone">
+                        <div class="input-item">
+                          <span class="inpun-item__title">이름</span>
+                          <span class="input"><input type="text" class="input" placeholder="이름을 입력해주세요."></span>
                         </div>
-                    </div>
+                        <div class="input-item">
+                          <span class="inpun-item__title">휴대폰 번호</span>
+                          <span class="input"><input type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요.​"></span>
+                        </div>
+                        <ButtonCmp
+                          type="btn-default-line"
+                          size="small"
+                        >
+                        삭제
+                        </ButtonCmp>
+                      </div>
+                      <div class="form-item-row agency-phone">
+                        <div class="input-item">
+                          <span class="inpun-item__title">이름</span>
+                          <span class="input"><input type="text" class="input" placeholder="이름을 입력해주세요."></span>
+                        </div>
+                        <div class="input-item">
+                          <span class="inpun-item__title">휴대폰 번호</span>
+                          <span class="input"><input type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요.​"></span>
+                        </div>
+                        <ButtonCmp
+                          type="btn-default-line"
+                          size="small"
+                        >
+                        삭제
+                        </ButtonCmp>
+                      </div>
+                      <ButtonCmp
+                          type="btn-default-line"
+                          size="small"
+                      >
+                      추가
+                      </ButtonCmp>
+                      <p class="guide-text black">&middot; 대행사 관리를 위한 추가 사용자를 최대10개 등록할 수 있습니다.</p>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -156,7 +176,7 @@ d<template>
                 <td>
                   <div class="form-item__content">
                     <div class="form-item-row">
-                      <div class="input-item">
+                      <div class="input-item justify">
                         <span class="text">SK.U2OEo9pOzelDe0T</span>
                         <ButtonCmp
                                 type="btn-default-line"
@@ -217,14 +237,50 @@ d<template>
                 <th scope="row"><span class="form-item__label">Agency Key</span></th>
                 <td>
                   <div class="form-item__content">
-                    <div class="form-item-row">
-                      <div class="input-item agency-key">
-                        <ul>
-                          <li><span class="flag-progress">동기화 완료</span></li>
-                          <li>AK.TxMIxUI1s20cgR5</li>
-                          <li>2022. 03. 30</li>
-                        </ul>
+                    <div class="form-item-row agency-key">
+                      <div class="input-item">
+                        <table class="inner-table">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <span class="flag-progress">동기화 완료</span>
+                              </td>
+                              <td><span class="text">AK.TxMIxUI1s20cgR5</span></td>
+                              <td><span class="text">2022. 03. 30</span></td>
+                              <td><span class="text">15:40:08</span></td>
+                              <td><span class="text">system</span></td>
+                              <td><ButtonCmp
+                                    type="btn-default-line"
+                                      >
+                                      Agency Key 삭제
+                                  </ButtonCmp>
+                                  <ButtonCmp
+                                      type="btn-only-icon"
+                                      iconname="icon-tooltip"
+                                  ><span class="irtext">설명</span>
+                                  </ButtonCmp>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <span class="flag-progress">동기화 완료</span>
+                              </td>
+                              <td><span class="text">AK.TxMIxUI1s20cgR5</span></td>
+                              <td><span class="text">2022. 03. 30</span></td>
+                              <td><span class="text">15:40:08</span></td>
+                              <td><span class="text">system</span></td>
+                              <td><ButtonCmp
+                                    type="btn-default-line"
+                                      >
+                                      Agency Key 재발급
+                                  </ButtonCmp>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
+                      <p class="guide-text">※ Biz RCS 메시지 발송 시 필요한 대행사별 특수키입니다. 보안을 위해 외부에 노출되지 않도록 유의하세요.</p>
+                      <p class="guide-text">※ Biz RCS 메시지 신규 보안 정책 적용 시 최초 발송 대행사는 반드시 Agency Key를 삽입하여 발송해야 합니다.</p>
                     </div>
                   </div>
                 </td>
@@ -238,7 +294,7 @@ d<template>
           type="btn-line"
         >취소</ButtonCmp>
         <router-link
-          to="/"
+          to="/companyinfo"
           class="btn btn-blue-line"
         >기업정보 관리</router-link>
         <ButtonCmp
@@ -267,7 +323,7 @@ export default {
   data() {
     return {
       form: {
-        name: '',
+        name: '홍길동',
         phone: '010-1234-5678',
         email: '',
         tel: '',

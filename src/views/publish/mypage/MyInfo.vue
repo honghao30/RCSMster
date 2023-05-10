@@ -1,5 +1,5 @@
 d<template>
-  <div class="inner join">
+  <div class="join">
     <PageTitle pagetitle="개인정보 관리" />
     <PageTitleH3 titleh3="내 계정 정보" noticeinfo="필수 입력값" />
     <form  ref="form" :model="form">
@@ -17,7 +17,9 @@ d<template>
               <td colspan="3">
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <span class="text">CX Hub</span>
+                    <div class="input-item">
+                      <span class="text">CX Hub</span>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -27,12 +29,14 @@ d<template>
               <td colspan="3">
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <span class="text">매니저</span>
-                    <ButtonCmp
-                      type="btn-default-line"
-                    >
-                    계정 변경요청
-                  </ButtonCmp>
+                    <div class="input-item">
+                      <span class="text">매니저</span>
+                      <ButtonCmp
+                        type="btn-default-line"
+                      >
+                      계정 변경요청
+                    </ButtonCmp>
+                  </div>
                 </div>
                 </div>
 
@@ -44,7 +48,7 @@ d<template>
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                      <span class="input"><input type="text" class="input" value="홍길동" placeholder="이름을 입력해주세요." v-model="form.name"></span>
+                      <span class="input"><input type="text" class="input" placeholder="이름을 입력해주세요." v-model="form.name"></span>
                     </div>
                     <p class="guide-text error" v-if="nameErrorMsg">이름을 입력해주세요.</p>
                   </div>
@@ -132,7 +136,7 @@ d<template>
         type="btn-line"
       >취소</ButtonCmp>
       <router-link
-        to="/"
+        to="/companyinfo"
         class="btn btn-blue-line"
       >기업정보 관리</router-link>
       <ButtonCmp
@@ -161,7 +165,7 @@ export default {
   data() {
     return {
       form: {
-        name: '',
+        name: '홍길동',
         phone: '010-1234-5678',
         email: '',
         tel: '',

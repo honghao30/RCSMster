@@ -79,15 +79,56 @@
                     margin-left:20px;
                 }
             }
-            .guide-text {
-                margin-top:4px;
+            .agency-phone {
+                gap: 8px;
+                margin-bottom: 8px;
+                .input-item {
+                    flex: auto;
+                    width: auto;
+                    padding-left: 24px;
+                    &:first-child {
+                        flex: 0 0 338px;
+                        padding-left:0;
+                    }
+                    &__title {
+                        margin-right: 8px;
+                    }
+                }
             }
-            
+            .agency-key {
+                .inner-table {
+                    td {
+                        padding:7px 16px;
+                        border:0;
+                        &:first-child {
+                            padding-left: 0;
+                        }
+                    }
+                    tr:first-child {
+                        td {
+                            padding-top: 0;
+                        }
+                    }
+                }
+                .flag-progress {
+                    color:$pointColor;
+                    line-height: 26px;
+                    padding:6px 16px;
+                    border-radius:21px;
+                    background-color:rgba(38, 130, 238, 0.08);
+                }
+                .text {
+                    display:inline-block;
+                    padding:0 12px;
+                }
+                .btn-default-line {
+                    width: 168px;
+                }
+                .btn-only-icon {
+                    margin-left: 6px;
+                }
+            }
         }
-    }
-    
-    .button__wrap {
-        margin-top: 10px;
     }
     .authority {
         display: flex;
@@ -129,6 +170,11 @@
             &+dl{
                 margin-left: 10px;
             }
+        }
+    }
+    .button__wrap {
+        &.flex-end {
+            padding-top: 20px;
         }
     }
 }
@@ -211,5 +257,50 @@
     }
     +.button__wrap {
         padding-bottom:70px;
+    }
+}
+
+.top-progress-area {
+    padding: 16px 24px;
+    border-radius:8px;
+    border:1px solid #ddd;
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    font-size:14px;
+    +.top-notice--gray {
+        margin-top: 8px;
+    }
+    .flag-progress {
+        padding: 2px 10px;
+        border-radius: 20px;
+        color:#fff;
+        background-color:#ccc;
+        font-size: 12px;
+        line-height:22px;
+        &.done {
+            background-color:$pointColor;
+        }
+        &.reject {
+            background-color: $errorColor;
+        }
+    }
+    .comment {
+        color:#666;
+        padding-left:13px;
+    }
+}
+
+.withdrawal-text__wrap {
+    padding:32px 0 0;
+    .guide-text {
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .checkbox {
+        margin-top: 32px;
+        &__text {
+            font-weight: 700;
+        }
     }
 }
