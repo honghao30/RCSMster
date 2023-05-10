@@ -86,6 +86,7 @@
           }
         }
         &.notice-content__date {
+          border-bottom: 1px solid #F0F0F0;
           p {
             border-left: 1px solid #dddddd;
             height: 16px;
@@ -175,7 +176,7 @@
         display: none;
       }
       .list-number {
-        padding: 28px 0 0 852px;
+        padding: 22px 0 0 852px;
       }
     }
     .accodien-list__wrap {
@@ -454,6 +455,82 @@
             }
           }
         }
+      }
+    }
+    // faq
+    &.notice-faq {
+      .search-table {
+        .select {
+          display: none;
+        }
+        .list-number {
+          padding: 68px 0 0 0;
+        }
+      }
+      .accodien-list__wrap {
+        border-top: 2px solid #2F77FB;
+        width: 100%;
+        .accordion__item {    
+          border-bottom: 1px solid #F0F0F0;
+          a.accordion__title {
+            position: relative;    
+            @include fontoption(16px,#000000,400,24px);
+            display: block;
+            padding: 17px 85px;
+            &::after {
+              content: '';
+              display: block;
+              position: absolute;
+              right: 40px;
+              top:50%;
+              transform: translateY(-50%);
+              width: 16px;
+              height:16px;
+              background-image: url('../assets/images/icon/icon_arrow_accodien.png');
+              background-position: center center;
+              background-repeat: no-repeat;
+              transform: rotate(180deg);
+              transition: all 0.3s;
+            }
+            &.isOpen {
+              &::after {      
+                transform: rotate(0deg);    
+                transition: all 0.3s;
+                top: 23px;
+              }
+            } 
+            .accodien-cate {
+              position: absolute;
+              left: 40px;
+              top:50%;
+              transform: translateY(-50%);
+              @include fontoption(16px,#000000,500,24px)
+            }     
+          }
+        }
+        .accordion__content {
+          position: relative;
+          padding: 20px 85px 40px;
+          background-color: #F8F8F8;
+          .accodien-cate {
+            position: absolute;
+            left: 40px;
+            top:20px;
+            @include fontoption(16px,#2F77FB,500,24px)
+          }    
+        }
+      }
+      .accordion-enter-active,
+      .accordion-leave-active {
+        will-change: height, opacity;
+        transition: height 0.3s ease, opacity 0.3s ease;
+        overflow: hidden;
+      }
+  
+      .accordion-enter,
+      .accordion-leave-to {
+        height: 0 !important;
+        opacity: 0;
       }
     }
   }
