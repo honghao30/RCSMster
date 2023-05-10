@@ -3,6 +3,12 @@ import Router from 'vue-router'
 
 import store from '@/store'
 
+// login 검증을 위함
+import { getToken } from '@/utils/token'
+
+import NotFound from '@/views/errors/404.vue'
+// import ServerError from '@/views/errors/500.vue'
+
 // 파일 링크
 // 가이드
 import PubGuides from '@/views/guide'

@@ -16,7 +16,7 @@
             <router-link
               to="IdFind"
             >
-            <span>비밀번호 찾기</span>
+            <span>비밀번호 재설정</span>
           </router-link>
         </li>
       </ul>
@@ -63,20 +63,68 @@
         <ButtonCmp
           type="btn-blue btn-help"
           @click="onSubmit"
-        >비밀번호 찾기</ButtonCmp>
+        >비밀번호 재설정</ButtonCmp>
       </div>
   </form>
-
+    <!-- 메시지 모달 -->
+    <ModalView
+      v-if="isModalViewed" @closeModal="isModalViewed = false"
+    >
+      <ConfirmMsg
+        v-if="errorMessage"
+        @closeModal="isModalViewed = false"
+      >
+        <div class="msg" slot="msg">
+          입력한 정보와 일치하는 계정이<br>없습니다
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+            type="btn-blue-line"
+            @click="closeMsg"
+          >닫기
+          </ButtonCmp>
+          <ButtonCmp
+          type="btn-blue"
+          @click="moveIdFind"
+          >
+            아이디 찾기
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+      <!-- 확인 메시지 -->
+      <ConfirmMsg
+        v-else
+        @closeModal="isModalViewed = false"
+      >
+        <div class="msg" slot="msg">
+          인증번호가 발송되었습니다.
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+            type="btn-blue"
+            @click="closeMsg"
+          >
+            확인
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+    </ModalView>
+    <!-- //메시지 모달 -->
   </div>
 </template>
 
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import ModalView from '@/components/common/ModalView.vue'
+import ConfirmMsg from '@/views/publish/join/ConfirmMsg.vue'
+
 export default {
   components: {
     PageTitle,
-    ButtonCmp
+    ButtonCmp,
+    ModalView,
+    ConfirmMsg
   },
   data() {
     return {
@@ -90,18 +138,21 @@ export default {
       nameErrorMsg: false,
       phoneErrorMsg: false,
       numberErrorMsg: false,
+      isModalViewed: false,
+      errorMessage: false,
       Timer: null,
       TimeCounter: 180,
       TimerStr: '03:00'
     }
   },
-  mounted: function() {
-  // 문자발송성공시 호출
-    if (this.Timer != null) {
-      this.timerStop(this.Timer)
-      this.Timer = null
+  watch: {
+    isModalViewed () {
+      if (this.isModalViewed) {
+        document.documentElement.style.overflow = 'hidden'
+        return
+      }
+      document.documentElement.style.overflow = 'auto'
     }
-    this.Timer = this.timerStart()
   },
   methods: {
     onSubmit () {
@@ -125,14 +176,18 @@ export default {
         this.$refs.number.focus()
         // return
       }
+      this.$router.push('./PwChange')
     },
     start() {
       if (this.form.phone === '') {
         this.phoneErrorMsg = true
         this.$refs.phone.focus()
+        this.isModalViewed = true
+        this.errorMessage = true
         return
       }
-      alert('인증번호가 전송 되었습니다.')
+      this.isModalViewed = true
+      this.errorMessage = false
       this.$refs.time.classList.add('active')
       // 1초에 한번씩 start 호출
       this.TimeCounter = 180
@@ -157,6 +212,13 @@ export default {
         ':' +
         secondes.toString().padStart(2, '0')
       )
+    },
+    closeMsg () {
+      this.isModalViewed = false
+    },
+    moveIdFind () {
+      this.$router.push('./IdFind')
+      document.documentElement.style.overflow = 'auto'
     }
   }
 }
