@@ -15,7 +15,7 @@
               @click="toggleShowCurrent"
             ><span class="irtext">비밀번호 보이기</span></ButtonCmp>
             <span class="input"><input ref="usrid" v-if="showPasswordCurrent" type="text" class="input" placeholder="현재 비밀번호를 입력해주세요."  v-model="form.pwcurrent">
-              <input ref="usrpwcheck" v-else type="password" class="input" placeholder="현재 비밀번호를 입력해주세요."  v-model="form.pwcurrent">
+              <input ref="usrpwcurrent" v-else type="password" class="input" placeholder="현재 비밀번호를 입력해주세요."  v-model="form.pwcurrent">
             </span>
           </div>
           <p class="guide-text error" v-if="pwCurrentErrorMsg">현재 비밀번호를 다시 입력해주세요.</p>
@@ -98,7 +98,7 @@ export default {
     onSubmit () {
       if (this.form.pwcurrent === '') {
         this.pwCurrentErrorMsg = true
-        this.$refs.usrpw.focus()
+        this.$refs.usrpwcurrent.focus()
         return
       }
 
