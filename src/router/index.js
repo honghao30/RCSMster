@@ -34,6 +34,7 @@ import NoticeView from '@/views/publish/customer/Notice'
 import NoticeSearch from '@/views/publish/customer/NoticeSearch'
 import NoticeContent from '@/views/publish/customer/NoticeContent'
 import FAQ from '@/views/publish/customer/FAQ'
+import OnlineInquire from '@/views/publish/customer/OnlineInquire'
 
 // 마이페이지
 import MyInfo from '@/views/publish/mypage/MyInfo'
@@ -218,6 +219,13 @@ let router = new Router({
       component: FAQ,
       meta: {
         tittle: 'FAQ'
+      }
+    },
+    {
+      path: '/OnlineInquire',
+      component: OnlineInquire,
+      meta: {
+        tittle: '온라인 문의'
       }
     },
     // 마이 페이지
