@@ -38,7 +38,6 @@ import OnlineInquire from '@/views/publish/customer/OnlineInquire'
 
 // 마이페이지
 import MyInfo from '@/views/publish/mypage/MyInfo'
-import MyInfoAgency from '@/views/publish/mypage/MyInfoAgency'
 
 Vue.use(Router)
 
@@ -233,13 +232,6 @@ let router = new Router({
     {
       path: '/myinfo',
       component: MyInfo,
-      meta: {
-        tittle: '개인정보 관리'
-      }
-    },
-    {
-      path: '/myinfoagency',
-      component: MyInfoAgency,
       meta: {
         tittle: '개인정보 관리'
       }
