@@ -57,7 +57,7 @@
         </tbody>
       </table>
     </div>
-    <div class="button__wrap">
+    <div class="button__wrap notice-content__button">
       <ButtonCmp type="btn-blue">목록</ButtonCmp>
     </div>
     <div class="table__wrap notice-table notice-content__list">
@@ -70,9 +70,11 @@
         <tbody>
           <tr
             v-for="(item, i) in noticeData" :key="i">
-            <td class="table-ico">
-                <i class="ico-up" v-if="item.up"></i>
-                <i class="ico-down" v-if="item.down"></i>
+            <td class="table-button">
+              <div class="button__wrap">
+                <button class="ico-up" v-if="item.up"></button>
+                <button class="ico-down" v-if="item.down"></button>
+              </div>
             </td>
             <td>
                 <p class="list-data">{{ item.data }}</p>

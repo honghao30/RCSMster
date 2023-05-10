@@ -3,6 +3,7 @@ $inputHeight: 42px;
 $font-tsize: 16px;
 $inputColor: #fafafa;
 $bordersColor: #DDDDDD;
+$textareaHeight: 100px;
 
 @mixin hiddens {
   position: absolute;
@@ -29,6 +30,22 @@ $bordersColor: #DDDDDD;
     &::placeholder {
       color: #999
     }
+}
+
+@mixin textareaBasic {
+  resize: none;  
+  background-color: #fff;    
+  color: #000;
+  display: inline-block;
+  font-size: $font-tsize;
+  height: $textareaHeight;
+  line-height: inherit;
+  width: 100%;
+  overflow-y: auto;
+  &::placeholder {
+    @include fontoption(16px,#999,400,26px);
+    margin-top: 8px;
+  }
 }
 
 .input {
@@ -453,6 +470,30 @@ $formLabelWidth : 120px;
   .list-number {
     padding: 28px 0 0 732px;
     font-size: 14px;
+  }
+}
+
+.textarea {
+  flex:auto;
+  padding: 8px 16px 34px 16px;
+  border-radius: 8px;
+  border: 1px solid $bordersColor;
+  position: relative;
+  overflow:hidden;
+  textarea {
+    @include textareaBasic;
+    flex: 1;
+    height: 172px;
+    width: 100%;
+    border: none
+  }
+  .textarea-limit__text{
+    @include fontoption(16px,#000,400,26px);
+    position: absolute;
+    text-align: end;
+    width:calc(100% - 32px);
+    bottom:8px;
+    box-sizing: border-box;
   }
 }
 

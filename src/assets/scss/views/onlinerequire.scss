@@ -1,53 +1,41 @@
-
-//폼 공통요소
-$textareaHeight: 100px;
-$font-tsize: 16px;
-$textareaColor: #fafafa;
-$bordersColor: #DDDDDD;
-
-@mixin textareaBasic {
-  resize: none;  
-  background-color: #fff;    
-  border-radius: 8px;
-  border: 1px solid $bordersColor;    
-  color: #000;
-  display: inline-block;
-  font-size: $font-tsize;
-  height: $textareaHeight;
-  line-height: inherit;
-  padding: 0 16px;    
-  width: 100%;
-  &::placeholder {
-    @include fontoption(16px,#999,400,26px);
-    margin-top: 8px;
-  }
-}
-
-.textarea {
-  textarea {
-    @include textareaBasic;
-    height: 172px;
-    &:disabled {
-      background-color:#f4f4f4;
-      color:#999;
-      border-color:#ddd;
-      cursor:not-allowed;
-    }
-  }
-}
-
-
-.input-item{
-  .textarea {
-    flex:auto;
-    textarea {
-      flex: 1;
-    }
-  }
-}
-
-
 .online{
   max-width: 1280px;
   margin: 0 auto;
+  form{
+      .form-table{
+        tbody{
+          .form-item__content{
+            .select{
+              width: 100%;
+            }
+            .input-limit{
+              position: relative;
+              .input-limit__text{
+                position: absolute;
+                right: 16px;
+                top:50%;
+                transform: translateY(-50%);
+              }
+            }
+          }  
+        }
+      }
+  }
 }
+/* textarea scroll custom */
+.textarea textarea::-webkit-scrollbar {
+  width: 3px;
+}
+.textarea textarea::-webkit-scrollbar-button:decrement,.textarea textarea::-webkit-scrollbar-button:end:increment {
+  display: block;
+  height: 0;
+}
+.textarea textarea::-webkit-scrollbar-track {
+  background: #dedede
+}
+.textarea textarea::-webkit-scrollbar-thumb {
+  height: 20px;
+  width: 3px;
+  background: #6f6f6f;
+}
+/* //textarea scroll custom */

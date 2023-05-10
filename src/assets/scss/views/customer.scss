@@ -51,8 +51,6 @@
       width:24px;
       height:24px;
       flex-shrink: 0;
-      margin-left:8px;
-      margin-top: 4px;
       background:url('../assets/images/customer/ico_up.png') no-repeat 50% 50%;
     }
     .ico-down {
@@ -60,8 +58,6 @@
       width:24px;
       height:24px;
       flex-shrink: 0;
-      margin-left:8px;
-      margin-top: 4px;
       background:url('../assets/images/customer/ico_down.png') no-repeat 50% 50%;
     }
   }
@@ -138,10 +134,10 @@
         }
       }
     }
-    .button__wrap {
+    .notice-content__button {
       display: flex;
       justify-content: center;
-      padding: 32px 0;
+      padding: 24px 0;
     }
     .notice-content__list {
       border-top: 1px solid #ddd;
@@ -149,8 +145,14 @@
         tr {
           td {
             padding: 12px 0;
-            i {
-              padding: 0 24px;
+            &.table-button {
+              .button__wrap:last-child {
+                padding: 0;
+              }
+              button {
+                border: 0;
+                padding: 20px 24px;
+              }
             }
             .list-data {
               padding: 0 33px 0 17px;
@@ -168,6 +170,14 @@
   }
   // faq
   &.notice-faq {
+    .search-table {
+      .select {
+        display: none;
+      }
+      .list-number {
+        padding: 28px 0 0 852px;
+      }
+    }
     .accodien-list__wrap {
       border-top: 2px solid #2F77FB;
       width: 100%;
@@ -403,31 +413,37 @@
           }
         }
       }
-      .button__wrap {
-        display: flex;
-        justify-content: center;
-        padding: 24px 0;
-      }
       .notice-content__list {
         tbody {
           tr {
+            flex-direction: initial;
             td {
               padding: 0;
-              &.table-ico {
-                padding: 0 16px 0 12px;
-                border-right: 1px solid #ddd;
-                border-left-style: height 16px;
-              }
-              i {
-                padding: 0;
+              display: block;
+              &.table-button {
+                padding: 2px 16px 0 12px;
+                &::after {
+                  content: "";
+                  position: absolute;
+                  border-right: 1px solid #ddd;
+                  height: 16px;
+                  padding-left: 26px;
+                  margin-top: -18px;
+                }
+                .button__wrap {
+                  padding: 20px;
+                }
+                button {
+                  padding: 0;
+                }
               }
               .list-data {
                 display: none;
               }
               .title {
-                margin-top: -22px;
-                padding-left: 65px;
-                width:calc(100vw - (#{$contentPaddingM} * 2));
+                margin-bottom: 0;
+                padding: 0 10px 0 16px;
+                width:calc(100vw - 90px);
                 overflow:hidden;
                 text-overflow:ellipsis;
                 a {
