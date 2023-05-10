@@ -22,6 +22,15 @@
         </accordion-item>
     </accordion>
     <PagingCmp />
+    <div class="notice-faq__quire">
+      <p>원하시는 답변을 찾지 못하셨나요? <br/> 온라인 문의를 남겨주세요.</p>
+      <ButtonCmp
+        type="btn-blue"
+        @click="clickHandler"
+      >
+        문의하기
+      </ButtonCmp>
+    </div>
   </div>
 </template>
 
@@ -32,6 +41,7 @@ import Accordion from './compornents/accordion'
 import AccordionItem from './compornents/accordion-item'
 import SearchTable from '@/components/common/SearchTable.vue'
 import PagingCmp from '@/components/common/PagingCmp.vue'
+import ButtonCmp from '@/components/common/ButtonCmp.vue'
 
 export default {
   components: {
@@ -40,7 +50,8 @@ export default {
     Accordion,
     AccordionItem,
     SearchTable,
-    PagingCmp
+    PagingCmp,
+    ButtonCmp
   },
   data() {
     return {
