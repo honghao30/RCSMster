@@ -12,7 +12,7 @@ $contentPaddingM: 16px;
     border-bottom:1px solid #eaeaea;
     height:$headerHeight;
     background:#fff;
-    z-index:10;
+    z-index:20;
     .inner {
         display:flex;
         justify-content: space-between;
@@ -162,7 +162,7 @@ $contentPaddingM: 16px;
 .contents {
     padding-top: $headerHeight;
     position: relative;
-    min-height:calc(100vh - 200px);
+    min-height:880px;
     padding-bottom: 80px;
     .page-title {
         font-weight: 700;
@@ -170,7 +170,7 @@ $contentPaddingM: 16px;
         line-height: 44px;
         text-align:center;
         padding-top: 82px;   
-        margin-bottom: 32px;
+        margin-bottom: 56px;
     }
 }
 

@@ -152,7 +152,7 @@ export default {
   },
   computed: {
     checkBoardLength() {
-      return !(this.noticeData.length < 10);
+      return !(this.noticeData.length < 10)
     }
   }
 }

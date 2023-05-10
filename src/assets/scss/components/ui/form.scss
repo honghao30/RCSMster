@@ -3,6 +3,7 @@ $inputHeight: 42px;
 $font-tsize: 16px;
 $inputColor: #fafafa;
 $bordersColor: #DDDDDD;
+$textareaHeight: 100px;
 
 @mixin hiddens {
   position: absolute;
@@ -31,6 +32,22 @@ $bordersColor: #DDDDDD;
     }
 }
 
+@mixin textareaBasic {
+  resize: none;  
+  background-color: #fff;    
+  color: #000;
+  display: inline-block;
+  font-size: $font-tsize;
+  height: $textareaHeight;
+  line-height: inherit;
+  width: 100%;
+  overflow-y: auto;
+  &::placeholder {
+    @include fontoption(16px,#999,400,26px);
+    margin-top: 8px;
+  }
+}
+
 .input {
   input {
     @include inputBasic;
@@ -39,6 +56,24 @@ $bordersColor: #DDDDDD;
       color:#999;
       border-color:#ddd;
       cursor:not-allowed;
+    }
+  }
+  &.search {
+    position:relative;
+    &::after {
+      content:'';
+      display:inline-block;
+      width:24px;
+      height: 24px;
+      background: url('../assets/images/icon/icon_search.png') no-repeat 50% 50%;
+      position:absolute;
+      right:16px;
+      top:50%;
+      margin-top: -12px;
+    }
+    input {
+      padding-right:40px;
+
     }
   }
 }
@@ -187,6 +222,70 @@ $bordersColor: #DDDDDD;
     transform: rotate(135deg) translate(-50%, -50%);
   }
 }
+
+.dropdown {
+  position: relative;
+  &__trigger {
+    display:inline-flex;
+    align-items:center;
+    justify-content:space-between;
+    position:relative;
+    border:1px solid $bordersColor;
+    padding:0 12px;
+    color: #666;
+    border-radius: 8px;
+    padding:8px 24px 8px 16px;
+    color:#000;
+    height:$inputHeight;
+    width:100%;
+    &::after {
+      content:'';
+      display:inline-block;
+      width: 10px; 
+      height: 10px; 
+      position:relative;
+      top:-1px;
+      border: 1px solid #888; 
+      border-width: 2px 2px 0 0; 
+      transform: rotate(135deg) translate(-50%, -50%);
+    }
+  }
+  &__menu {
+    position: absolute;
+    left:0;
+    top:$inputHeight;
+    background-color:#fff;
+    width:100%;
+    border:1px solid #4A5567;
+    border-width:0 1px 1px 1px;
+    border-radius:0 0 8px 8px;
+    z-index:10;
+    overflow:hidden;
+    li {
+      padding:8px 16px;
+      line-height: 26px;
+      cursor: pointer;
+      &:hover {
+        background-color:#F4F4F4;
+      }
+    }
+    .search__area {
+      padding:8px 16px;
+    }
+  }
+  &.open {
+    .dropdown__trigger {
+      border-color: #4A5567;
+      border-radius:8px 8px 0 0;
+      &::after {
+        top: 4px;
+        transform: rotate(-45deg) translate(50%, 50%);
+      }
+    }
+  
+  }
+}
+
 form {
   +.page-title__wrap {
     margin-top: 60px;
@@ -238,13 +337,6 @@ $formLabelWidth : 120px;
           line-height: 26px; 
           color: #999999;
       }
-      .text {
-        display:inline-block;
-        +.btn {
-          margin-left:8px;
-        }
-        
-      }
   }
   .form-item__label {
     @include fontoption(16px,#000,500,26px);
@@ -275,6 +367,9 @@ $formLabelWidth : 120px;
     align-items:center;
     gap: 10px;
     position: relative;
+    &.justify {
+      justify-content:space-between;
+    }
     &.w--half {
       width: 50%;
       padding:0 5px;
@@ -301,9 +396,12 @@ $formLabelWidth : 120px;
 }
 
 .guide-text {
-  margin-top:16px;
+  margin-top:8px;
   width: 100%;
   @include fontoption(14px,#2F77FB,400,24px);   
+  +.guide-text {
+    margin-top: 4px;
+  }
   &.black {
       color: #000;
   }
@@ -370,9 +468,32 @@ $formLabelWidth : 120px;
     margin-left: 8px;
   }
   .list-number {
-    margin-left: 784px;
-    margin-top: 16px;
+    padding: 28px 0 0 732px;
     font-size: 14px;
+  }
+}
+
+.textarea {
+  flex:auto;
+  padding: 8px 16px 34px 16px;
+  border-radius: 8px;
+  border: 1px solid $bordersColor;
+  position: relative;
+  overflow:hidden;
+  textarea {
+    @include textareaBasic;
+    flex: 1;
+    height: 172px;
+    width: 100%;
+    border: none
+  }
+  .textarea-limit__text{
+    @include fontoption(16px,#000,400,26px);
+    position: absolute;
+    text-align: end;
+    width:calc(100% - 32px);
+    bottom:8px;
+    box-sizing: border-box;
   }
 }
 
@@ -443,8 +564,7 @@ $formLabelWidth : 120px;
     }
     .list-number {
       position: absolute;
-      margin-left: 0px;
-      margin-top: 68px;
+      padding: 68px 0 0 0;
       font-size: 13px;
     }
   }
