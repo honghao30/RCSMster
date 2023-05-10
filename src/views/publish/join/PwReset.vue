@@ -89,6 +89,7 @@ export default {
         return
       }
       alert('비밀번호 변경되었습니다.')
+      this.$router.push('./LoginPage')
     },
     toggleShow () {
       if (this.showPassword) {

@@ -1,13 +1,37 @@
 .online{
   max-width: 1280px;
   margin: 0 auto;
+  form{
+      .form-table{
+        tbody{
+          .form-item__content{
+            .select{
+              width: 100%;
+            }
+            .input-limit{
+              position: relative;
+              .input-limit__text{
+                position: absolute;
+                right: 16px;
+                top:50%;
+                transform: translateY(-50%);
+              }
+            }
+            .file-choice{
+              
+            }
+          }  
+        }
+      }
+  }
 }
+/* textarea scroll custom */
 .textarea textarea::-webkit-scrollbar {
-  width: 3px
+  width: 3px;
 }
 .textarea textarea::-webkit-scrollbar-button:decrement,.textarea textarea::-webkit-scrollbar-button:end:increment {
   display: block;
-  height: 0
+  height: 0;
 }
 .textarea textarea::-webkit-scrollbar-track {
   background: #dedede
@@ -15,5 +39,6 @@
 .textarea textarea::-webkit-scrollbar-thumb {
   height: 20px;
   width: 3px;
-  background: #6f6f6f
+  background: #6f6f6f;
 }
+/* //textarea scroll custom */

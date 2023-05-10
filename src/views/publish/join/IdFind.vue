@@ -16,7 +16,7 @@
             <router-link
               to="/pwFind"
             >
-            <span>비밀번호 찾기</span>
+            <span>비밀번호 재설정</span>
           </router-link>
         </li>
         </ul>
@@ -66,17 +66,41 @@
         >아이디 찾기</ButtonCmp>
       </div>
   </form>
-
+    <!-- 메시지 모달 -->
+    <ModalView
+      v-if="isModalViewed" @closeModal="isModalViewed = false"
+    >
+      <ConfirmMsg
+        @closeModal="isModalViewed = false"
+      >
+        <div class="msg" slot="msg">
+          인증번호가 발송되었습니다.
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+            type="btn-blue"
+            @click="closeMsge"
+          >
+            확인
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+    </ModalView>
+    <!-- //메시지 모달 -->
   </div>
 </template>
 
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import ModalView from '@/components/common/ModalView.vue'
+import ConfirmMsg from '@/views/publish/join/ConfirmMsg.vue'
 export default {
   components: {
     PageTitle,
-    ButtonCmp
+    ButtonCmp,
+    ModalView,
+    ConfirmMsg
   },
   data() {
     return {
@@ -92,18 +116,20 @@ export default {
       nameErrorMsg: false,
       phoneErrorMsg: false,
       numberErrorMsg: false,
+      isModalViewed: false,
       Timer: null,
       TimeCounter: 180,
       TimerStr: '03:00'
     }
   },
-  mounted: function() {
-  // 문자발송성공시 호출
-    if (this.Timer != null) {
-      this.timerStop(this.Timer)
-      this.Timer = null
+  watch: {
+    isModalViewed () {
+      if (this.isModalViewed) {
+        document.documentElement.style.overflow = 'hidden'
+        return
+      }
+      document.documentElement.style.overflow = 'auto'
     }
-    this.Timer = this.timerStart()
   },
   methods: {
     onSubmit () {
@@ -125,8 +151,8 @@ export default {
       if (this.form.number === '') {
         this.numberErrorMsg = true
         this.$refs.number.focus()
-        // return
       }
+      this.$router.push('./IdResult')
     },
     start() {
       if (this.form.phone === '') {
@@ -134,7 +160,7 @@ export default {
         this.$refs.phone.focus()
         return
       }
-      alert('인증번호가 전송 되었습니다.')
+      this.isModalViewed = true
       this.$refs.time.classList.add('active')
       // 1초에 한번씩 start 호출
       this.TimeCounter = 180
@@ -159,6 +185,9 @@ export default {
         ':' +
         secondes.toString().padStart(2, '0')
       )
+    },
+    closeMsge () {
+      this.isModalViewed = false
     }
   }
 }

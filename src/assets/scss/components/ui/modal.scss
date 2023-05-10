@@ -14,7 +14,13 @@
     display: table;
     transition: opacity .1s ease;
   }
-  .modal__container {
+
+  .modal__content--inner {
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    height:auto;
+    overflow: hidden;
     position: fixed;
     z-index: 11;
     top: 50%;
@@ -22,6 +28,113 @@
     // width: 500px;
     // height: 500px;
     transform: translate(-50%,-50%);
+    .modal__content--header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height:60px;
+      .modal-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+      }  
+    }
+
+    .modal__content--body {
+      height: calc(100% - 50px - 50px);
+      position:relative;
+      width: 100%;       
+      overflow-y: scroll;
+    }
+    .modal__content--footer {
+      height:48px;
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      background: #c9c8c8;
+      margin-top:32px;
+      .button__wrap {
+        margin-top:0;
+        padding-top:0;
+        gap: 8px;
+        width: 100%;
+        button {
+          flex:1;
+          width:auto;
+        }
+      }
+    }
+    .modal-close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+    }    
+  }
+
+  .modal__content--inner {
+    &.small-message__modal {
+        max-width:403px;               
+        padding:40px;  
+        border-radius: 16px;
+        background-color: #fff;    
+        transition: opacity.3s ease;  
+        @media #{$phone} {
+          max-width: 90vw;
+        }
+        &.login-error {
+          width: 100%;
+          max-width: 410px;
+          @media #{$phone} {
+            max-width: 90vw;
+          }              
+          button {
+            white-space: nowrap;
+          }
+        }
+        .msg {
+            text-align: center;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 26px;
+            text-align: center;
+            color: #000000;
+        }  
+        .msg2 {
+            margin-top: 16px;
+            background: #F4F4F4;
+            border-radius: 8px;
+            text-align: center;
+            padding:16px;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 30px;                
+            text-align: center;                
+            color: #000000;                
+        }        
+        .modal__content--footer {
+            background-color: #fff;     
+            button {
+              white-space: nowrap;
+              &:only-child {
+                flex: 0;
+              }
+            }           
+        }
+        .modal__content--body {
+            height: calc(100% - 50px);
+            overflow:hidden;
+        }
+    }    
+  }
+
+  //old css
+  .modal__container {
     display:flex;
     flex-direction: column;
     .modal__content--header {
@@ -39,6 +152,13 @@
     .modal__content--inner {
       height:auto;
       overflow: hidden;
+      position: fixed;
+      z-index: 11;
+      top: 50%;
+      left: 50%;
+      // width: 500px;
+      // height: 500px;
+      transform: translate(-50%,-50%);
     }
     .modal__content--body {
       height: calc(100% - 50px - 50px);
@@ -72,7 +192,7 @@
         font-weight: bold;
         color: #333;
         cursor: pointer;
-      }
+    }
   }
   .fade-enter-active, .fade-leave-active {
     transition: opacity .2s;
@@ -84,11 +204,24 @@
   .modal__container {
     .modal__content--inner {
         &.small-message__modal {
-            width:403px;               
+            max-width:403px;               
             padding:40px;  
             border-radius: 16px;
             background-color: #fff;    
             transition: opacity.3s ease;  
+            @media #{$phone} {
+              max-width: 90vw;
+            }
+            &.login-error {
+              width: 100%;
+              max-width: 410px;
+              @media #{$phone} {
+                max-width: 90vw;
+              }              
+              button {
+                white-space: nowrap;
+              }
+            }
             .msg {
                 text-align: center;
                 font-weight: 400;
@@ -111,7 +244,12 @@
                 color: #000000;                
             }        
             .modal__content--footer {
-                background-color: #fff;                
+                background-color: #fff;     
+                button {
+                  &:only-child {
+                    flex: 0;
+                  }
+                }           
             }
             .modal__content--body {
                 height: calc(100% - 50px);
