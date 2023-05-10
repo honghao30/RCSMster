@@ -16,17 +16,7 @@
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <div class="select">
-                      <select name="" id="selectValue" v-model="form.inquirevalue">
-                        <option value="1">가입</option>
-                        <option value="2">서비스 관리</option>
-                        <option value="3">브랜드 관리</option>
-                        <option value="4">대화방 관리</option>
-                        <option value="5">탬플릿 관리</option>
-                        <option value="6">자동응답 관리</option>
-                        <option value="7">브랜드 소식 관리</option>
-                      </select>
-                    </div>
+                    <Dropdown :options=dropdownOptions />
                   </div>
                   <p class="guide-text error" v-if="inquirevalueErrorMsg">문의 유형을 선택해주세요.</p>
                 </div>
@@ -79,19 +69,18 @@
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="file-choice">
-                    <label class="btn btn-default-line">파일선택</label>
-                    <el-upload
-                      class="upload-demo"
-                      drag
-                      action="https://jsonplaceholder.typicode.com/posts/"
-                      :on-preview="handlePreview"
-                      :on-remove="handleRemove"
-                      :file-list="fileList"
-                      multiple>
-                      <i class="el-icon-upload"></i>
-                      <div class="el-upload__text">Drop file here or <em>click to upload</em></div>
-                      <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
-                    </el-upload>
+                      <input type="file" id="fileUp" class="input" @change="FileChoice">
+                      <label for="fileUp" class="btn btn-default-line">파일선택</label>
+                      <el-upload
+                        class="upload-demo"
+                        drag
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :file-list="fileList"
+                        multiple>
+                        <div class="el-upload__text">Drop file here or </div>
+                      </el-upload>
                     </div>
                   </div>
                   <p class="guide-text black">&middot; 이미지 용량: 최대 50MB</p>
@@ -136,13 +125,15 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
+import Dropdown from '@/components/common/Dropdown.vue'
 
 export default {
   components: {
     PageTitle,
     ButtonCmp,
     PageTitleH3,
-    ModalView
+    ModalView,
+    Dropdown
   },
   data() {
     return {
@@ -163,7 +154,12 @@ export default {
       },
       inquirevalueErrorMsg: false,
       inquiretitleErrorMsg: false,
-      inquirecontErrorMsg: false
+      inquirecontErrorMsg: false,
+      files: '',
+      filesName: '',
+      filesName2: '',
+      isModalViewed: false,
+      dropdownOptions: ['가입', '서비스 관리', '브랜드 관리', '대화방 관리', '탬플릿 관리', '자동응답 관리', '브랜드 소식 관리']
     }
   },
   methods: {
@@ -204,7 +200,7 @@ export default {
       this.isModalViewed = false
       this.isAgencyModal = false
     },
-    onFileChoice (e) {
+    FileChoice (e) {
       const files = e.target.files
       this.files = files
       const filesName = files[0].name

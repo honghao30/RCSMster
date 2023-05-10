@@ -2,7 +2,7 @@
   <div class="inner">
     <PageTitle pagetitle="공지사항" />
     <TabCategory :category="category" :newTabIndex="newTabIndex"/>
-    <SearchTable v-if="checkBoardLength" listnumber=73 />
+    <SearchTable v-if="checkBoardLength" listnumber=73 selectable :dropdownOptions="dropdownOptions" />
     <div class="table__wrap notice-table">
       <table class="table table-list">
         <colgroup>
@@ -56,6 +56,7 @@ export default {
   name: 'NoticeView',
   data() {
     return {
+      dropdownOptions: ['전체', '제목'],
       category: ['전체', '이벤트', '시스템', '정책', '서식', '업데이트 노트'],
       activeTabIndex: 0,
       newTabIndex: 1,

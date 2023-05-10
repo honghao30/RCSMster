@@ -157,7 +157,7 @@ export default {
         radioGroup: 3,
         id: ''
       },
-      dropdownOptions:['option1', 'option2', 'option3'],
+      dropdownOptions: ['option1', 'option2', 'option3'],
       idValidation: true
     }
   },

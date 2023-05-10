@@ -225,6 +225,7 @@ $textareaHeight: 100px;
 
 .dropdown {
   position: relative;
+  min-width: 120px;
   &__trigger {
     display:inline-flex;
     align-items:center;
