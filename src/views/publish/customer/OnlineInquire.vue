@@ -72,6 +72,34 @@
                 </div>
               </td>
             </tr>
+            <!-- 파일 선택 -->
+            <tr>
+              <th scope="row"><span class="form-item__label">파일첨부</span></th>
+              <td>
+                <div class="form-item__content">
+                  <div class="form-item-row">
+                    <div class="file-choice">
+                    <label class="btn btn-default-line">파일선택</label>
+                    <el-upload
+                      class="upload-demo"
+                      drag
+                      action="https://jsonplaceholder.typicode.com/posts/"
+                      :on-preview="handlePreview"
+                      :on-remove="handleRemove"
+                      :file-list="fileList"
+                      multiple>
+                      <i class="el-icon-upload"></i>
+                      <div class="el-upload__text">Drop file here or <em>click to upload</em></div>
+                      <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+                    </el-upload>
+                    </div>
+                  </div>
+                  <p class="guide-text black">&middot; 이미지 용량: 최대 50MB</p>
+                  <p class="guide-text black">&middot; 파일종류: JPG, PNG, TIFF, PDF, DOC, PPT, PPTX, XLS, XLSX, HWP</p>
+                  <p class="guide-text black">&middot; 최대 5개까지 첨부 가능합니다.</p>
+                </div>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -176,7 +204,7 @@ export default {
       this.isModalViewed = false
       this.isAgencyModal = false
     },
-    onFileChanged (e) {
+    onFileChoice (e) {
       const files = e.target.files
       this.files = files
       const filesName = files[0].name
