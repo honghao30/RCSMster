@@ -18,7 +18,7 @@
           <div class="form-item__content">
             <ButtonCmp
               type="btn-only-icon"
-              iconname="icon-eye"
+              :iconname=iconName
               @click="toggleShow"
             ><span class="irtext">비밀번호 보이기</span></ButtonCmp>
             <span class="input"><input ref="usrid" v-if="showPassword" type="text" class="input" placeholder="비밀번호를 입력해주세요."  v-model="form.pw">
@@ -66,7 +66,8 @@ export default {
       },
       idErrorMsg: false,
       pwErrorMsg: false,
-      showPassword: false
+      showPassword: false,
+      iconName: 'icon-eye'
     }
   },
   methods: {
@@ -85,6 +86,11 @@ export default {
       alert('로그인 되었습니다.')
     },
     toggleShow () {
+      if (this.showPassword) {
+        this.iconName = 'icon-eye'
+      } else {
+        this.iconName = 'icon-eye blue'
+      }
       this.showPassword = !this.showPassword
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="join">
     <PageTitle pagetitle="기업담당자 회원가입" />
-    <JoinStep :step="4"/>
+    <StepList :stepActiveIndex="4" :stepTitle="stepTitle" />
     <div class="join-compt__wrap">
     <h3 class="title">회원가입이 완료되었습니다.</h3>
     <!-- 마스터인 경우 -->
@@ -23,17 +23,18 @@
 
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
-import JoinStep from '@/views/publish/join/JoinStep'
+import StepList from '@/components/common/StepList.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 
 export default {
   components: {
     PageTitle,
-    JoinStep,
+    StepList,
     ButtonCmp
   },
   data() {
     return {
+      stepTitle: ['약관동의', '기업정보 입력', '회원정보 입력', '가입완료']
     }
   },
   methods: {
