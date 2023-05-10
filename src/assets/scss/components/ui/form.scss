@@ -405,7 +405,7 @@ $formLabelWidth : 120px;
     width: 100%;
     border: none
   }
-  .textarea-text_limit{
+  .textarea-limit__text{
     @include fontoption(16px,#000,400,26px);
     position: absolute;
     text-align: end;

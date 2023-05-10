@@ -33,15 +33,15 @@
               </td>
             </tr>
             <!-- 문의 제목 / text -->
-            <tr>
+            <tr class="limit-area">
               <th scope="row"><span class="form-item__label required">문의 제목</span></th>
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <div class="input-item">
+                    <div class="input-item input-limit">
                       <span class="input">
                         <input type="text" class="input" maxlength="40" placeholder="문의 제목을 입력해주세요." v-model="form.inquiretitle">
-                        <p class="input-text_limit">
+                        <p class="input-limit__text">
                           {{ form.inquiretitle.length }}/40자
                         </p>
                       </span>
@@ -57,10 +57,10 @@
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <div class="input-item">
+                    <div class="input-item input-limit">
                       <div class="textarea">
                         <textarea maxlength="1000" placeholder="문의 내용을 입력해주세요." v-model="form.inquirecont"></textarea>
-                        <div class="textarea-text_limit">
+                        <div class="textarea-limit__text">
                           <p>
                             {{ form.inquirecont.length }}/1000자
                           </p>
