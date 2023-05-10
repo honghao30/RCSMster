@@ -3,6 +3,12 @@ import Router from 'vue-router'
 
 import store from '@/store'
 
+// login 검증을 위함
+import { getToken } from '@/utils/token'
+
+import NotFound from '@/views/errors/404.vue'
+// import ServerError from '@/views/errors/500.vue'
+
 // 파일 링크
 // 가이드
 import PubGuides from '@/views/guide'
@@ -15,6 +21,7 @@ import LoginPage from '@/views/publish/join/LoginPage'
 import IdFind from '@/views/publish/join/IdFind'
 import pwFind from '@/views/publish/join/pwFind'
 import IdResult from '@/views/publish/join/IdResult'
+import PwReset from '@/views/publish/join/PwReset'
 import PwChange from '@/views/publish/join/PwChange'
 import SignUp from '@/views/publish/join/SignUp'
 
@@ -31,6 +38,11 @@ import AgencyJoinStep04 from '@/views/publish/join/AgencyJoinStep04'
 // 고객센터
 import NoticeView from '@/views/publish/customer/Notice'
 import NoticeSearch from '@/views/publish/customer/NoticeSearch'
+import NoticeContent from '@/views/publish/customer/NoticeContent'
+import FAQ from '@/views/publish/customer/FAQ'
+
+// 마이페이지
+import MyInfo from '@/views/publish/mypage/MyInfo'
 
 Vue.use(Router)
 
@@ -96,6 +108,13 @@ let router = new Router({
       component: IdResult,
       meta: {
         tittle: '아이디찾기결과'
+      }
+    },
+    {
+      path: '/PwReset',
+      component: PwReset,
+      meta: {
+        tittle: '비밀번호 리셋하기'
       }
     },
     {
@@ -192,7 +211,44 @@ let router = new Router({
       meta: {
         tittle: '공지사항'
       }
-    }
+    },
+    {
+      path: '/noticecontent',
+      component: NoticeContent,
+      meta: {
+        tittle: '공지사항'
+      }
+    },
+    {
+      path: '/faq',
+      component: FAQ,
+      meta: {
+        tittle: 'FAQ'
+      }
+    },
+    // 마이 페이지
+    {
+      path: '/myinfo',
+      component: MyInfo,
+      meta: {
+        tittle: '개인정보 관리'
+      }
+    },
+    {
+      path: 'not-found',
+      name: 'NotFound',
+      component: NotFound,
+      meta: {
+        headerView: false
+      }
+    },
+    {
+      path: '*',
+      component: NotFound,
+      meta: {
+        headerView: false
+      }
+    }  
   ]
 })
 

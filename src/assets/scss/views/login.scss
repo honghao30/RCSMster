@@ -3,7 +3,10 @@
 .login {
   width: 100%;
   max-width:628px;
-  margin: 80px auto;
+  margin: 0 auto;
+  .tab__wrap {
+    margin-top: 32px;
+  }  
   .login-title__wrap--top {
     text-align: center;
     .page-title {
@@ -15,21 +18,19 @@
   }
   .form-list {
     border-top:2px solid $pointColor;
-    margin:32px 0;
+    margin:32px 0 12px 0;
     .form-item {
       border-bottom:1px solid #F0F0F0;
-      padding: 20px 0;
+      padding: 20px 20px 20px 10px;
       margin:0;
       .form-item__label {           
-        padding-left:10px;
         flex: 0 0 200px;
       }
       .form-item__content {
         position: relative;
-        padding-right: 20px;
         .btn-only-icon {
           position: absolute;
-          right: 30px;
+          right: 19px;
           width: 30px;
           height: 30px;
           top: 50%;
@@ -41,19 +42,15 @@
           cursor: pointer;
         }
       }
-      .form-item__error {
-        margin:10px 0 0;
-        padding-left: 220px;
-        background-image: url('#{$iconBsUrl}icon_exclamation_circle.png');
-        background-repeat: no-repeat;
-        background-position: 200px center;
+      .guide-text{
+        padding-left: 200px;
+        &.error {
+          width: 100%;
+        }
       }
     }      
   }
   .button__wrap {
-    margin: 0px auto;
-    padding:0;
-    width: 100%;
     .btn-login {
         display: block;
         width:100%;
@@ -89,16 +86,16 @@
     }
   }
   &.login-help {
-    .tab__wrap {
-      margin-top: 32px;
-    }
     .form-item__content {
       .input {
         flex: 1;
       }
+      .btn-default-line{
+        margin-left: 10px;
+      }
       .time {
         position: absolute;
-        right:30px;
+        right:16px;
         top: 50%;
         transform: translateY(-50%);
         @include fontoption(16px,#000,400,26px);
@@ -108,30 +105,41 @@
         }
       }
     }
-    .button__wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .btn-help {
-        display: block;
-        width:174px;
+  }
+  &.login-result {
+    .login-result__wrap{
+      margin-top: 32px;
+      border-top: 2px solid #2f77fb;
+      border-bottom: 1px solid #DDDDDD;
+      padding: 132px 0;
+      text-align: center;
+      .login-result__id{
+        p{
+          @include fontoption(16px,#000,400,24px);
+        }
+        h3{
+          @include fontoption(24px,#000,700,44px);
+          margin-top: 8px;
+        }
       }
     }
   }
 }
-
 @media #{$phone} {
   .login {
-    max-width:328px;
-    margin: 0 auto;
+    max-width:100%;
+    padding: 0 16px;
     .login-title__wrap--top {
+      .page-title {
+        margin-bottom:10px;
+      }
       p {
         font-size: 14px;
         line-height: 24px;
       }
     }
     .form-list {
-      margin: 32px 0 24px 0;
+      margin: 32px 0 0 0;
       .form-item {
         font-size: 14px;
         padding: 16px 0;
@@ -142,17 +150,19 @@
           width: 100%;
           padding-right: 0;
           .btn-only-icon {
-            right: 15px;
-          }
-          .btn-default-line{
-            width: 104.5px;
-            line-height: 21px;
-            padding: 0;
+            right: 12px;
           }
         }
-        .form-item__error {
-          background-position: 0;
-          padding-left: 17px;
+        .guide-text{
+          padding-left: 0;
+          &.validation{
+            font-size: 13px;
+            line-height: 20px;
+          }
+          &.error{
+            font-size: 13px;
+            line-height: 20px;
+          }
         }
       }
     }
@@ -164,6 +174,9 @@
       .form-list {
         margin-top: 0;
         .form-item__content {
+          .btn-default-line{
+            margin-left: 8px;
+          }
           .time {
             right:12px;
             font-size: 14px;
@@ -174,6 +187,46 @@
       .button__wrap {
         .btn-help {
           width:100%;
+        }
+      }
+    }
+    &.login-result {
+      .login-title__wrap--top {
+        margin-bottom: 32px;
+      }
+      .login-result__wrap{
+        margin-top: 24px;
+        padding: 100px 0;
+        .login-result__id{
+          p{
+            font-size: 14px;
+            line-height: 21px;
+          }
+          h3{
+            font-size: 21px;
+            line-height: 21px;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+    &.login-pwchange{
+      .button__wrap {
+        .btn-blue-line{
+          width: 50%;
+        }
+        .btn-blue {
+          width:50%;
+        }
+      }
+    }
+    &.login-pwreset{
+      .button__wrap {
+        .btn-blue-line{
+          width: 50%;
+        }
+        .btn-blue {
+          width:50%;
         }
       }
     }

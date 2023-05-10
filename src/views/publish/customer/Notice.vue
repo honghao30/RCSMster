@@ -2,47 +2,47 @@
   <div class="inner">
     <PageTitle pagetitle="공지사항" />
     <TabCategory :category="category" :newTabIndex="newTabIndex"/>
-    <SearchTable v-if="checkBoardLength" listnumber="73" />
+    <SearchTable v-if="checkBoardLength" listnumber=73 />
     <div class="table__wrap notice-table">
-        <table class="table table-list">
-          <colgroup>
-            <col width="10%">
-            <col>
-            <col width="16%">
-          </colgroup>
-          <thead>
-            <tr>
-              <th scope="col">번호</th>
-              <th scope="col">제목</th>
-              <th scope="col">등록일</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="(item, i) in noticeData" :key="i"
-              :class="[{primary: item.primary}]"
-            >
-              <td>
-                <span v-if="item.primary" class="primary__text">공지</span>
-                <span v-if="!item.primary" class="num">{{ item.id }}</span>
-              </td>
-              <td>
-                <div class="l-align title">
-                  <router-link to=""
-                  >{{ item.title }}
-                  </router-link>
-                  <i class="ico-attach" v-if="item.attach"></i>
-                  <i class="ico-new" v-if="item.new"></i>
-                </div>
-              </td>
-              <td>
-                <span class="date">{{ item.date }}</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <PagingCmp />
+      <table class="table table-list">
+        <colgroup>
+          <col width="10%">
+          <col>
+          <col width="16%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">등록일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(item, i) in noticeData" :key="i"
+            :class="[{primary: item.primary}]"
+          >
+            <td>
+              <span v-if="item.primary" class="primary__text">공지</span>
+              <span v-if="!item.primary" class="num">{{ item.id }}</span>
+            </td>
+            <td>
+              <div class="l-align title">
+                <router-link to=""
+                >{{ item.title }}
+                </router-link>
+                <i class="ico-attach" v-if="item.attach"></i>
+                <i class="ico-new" v-if="item.new"></i>
+              </div>
+            </td>
+            <td>
+              <span class="date">{{ item.date }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <PagingCmp />
   </div>
 </template>
 
@@ -152,7 +152,7 @@ export default {
   },
   computed: {
     checkBoardLength() {
-      return this.noticeData.length < 10 ? false : true;
+      return !(this.noticeData.length < 10);
     }
   }
 }

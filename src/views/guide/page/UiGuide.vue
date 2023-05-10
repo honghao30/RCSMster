@@ -1,8 +1,14 @@
 <template>
   <div ref="pubgud" class="pubGuide">
     <HeaterGuide />
-    <div class="ui-guide__wrap">
-      <div class="ui-guide__subnav--top">
+    <div
+      class="ui-guide__wrap"
+    >
+      <div
+        ref="cateMenu"
+        class="ui-guide__subnav--top"
+        :class="{ isFixed: isCateSticky }"
+        >
         <ButtonCmp
           type="blue"
           @click="goto('sect01')"
@@ -76,7 +82,12 @@
         <ModalGuide />
       </div>
     </div>
-    <button @click="scrollToTop" class="scroll-to-top">
+    <button
+      ref="topButton"
+      class="scroll-to-top"
+      :class="{ isFixed: isScrollTop }"
+      @click="scrollToTop"
+    >
        위로
     </button>
   </div>
@@ -110,12 +121,47 @@ export default {
     TabGuide,
     HeaterGuide
   },
+  data() {
+    return {
+      scrollY: null,
+      isCateSticky: false,
+      isScrollTop: false,
+      subCateOffsetTop: null
+    }
+  },
+  watch: {
+    scrollY(newValue) {
+      if (newValue > this.scrollPosition) {
+        // user is scrolling down
+        console.log('down')
+      } else {
+        // user is scrolling up
+        console.log('up')
+      }
+      if (newValue >= 100) {
+        this.isCateSticky = true
+      } else {
+        this.isCateSticky = false
+      }
+      if (newValue >= 500) {
+        this.isScrollTop = true
+      } else {
+        this.isScrollTop = false
+      }
+      this.scrollPosition = window.scrollY
+    }
+  },
   methods: {
     goto(refName) {
       var element = this.$refs[refName]
       console.log(element)
-      var top = element.offsetTop
-      window.scrollTo(0, top)
+      var top = element.offsetTop - 80
+      console.log(top, (top - 50))
+      window.scrollTo({
+        left: 0,
+        top: top,
+        behavior: 'smooth'
+      })
     },
     scrollToTop (refName) {
       window.scrollTo({
@@ -131,6 +177,11 @@ export default {
     guiEl.parentElement.previousElementSibling.style.display = 'none'
     guiEl.previousElementSibling.style.display = 'none'
     guiEl.parentElement.nextElementSibling.style.display = 'none'
+    window.addEventListener('scroll', () => {
+      this.scrollY = Math.round(window.scrollY)
+    })
+    const subCateOffsetTop = this.$refs.cateMenu.offsetTop
+    console.log('콘텐츠 높이', this.$refs.cateMenu, subCateOffsetTop)
   }
 }
 </script>
@@ -150,6 +201,21 @@ export default {
   display: flex;
   justify-content: flex-end;
   gap: 20px;
+  &.isFixed {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding-right:50px;
+    background: rgba(0,0,0,0.7);
+    color:#fff;
+    opacity: 1;
+    transition: all 0.3s;
+    z-index: 50;
+    button {
+      color:#fff;
+    }
+  }
   button {
     border: 0;
     background: transparent;
@@ -157,6 +223,22 @@ export default {
     font-size: 14px;
     padding: 10px 0;
   }
-
+}
+.scroll-to-top {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  right: 50px;
+  bottom: 60px;
+  background: #2F77FB;
+  border:0;
+  border-radius: 50%;
+  color:#fff;
+  opacity: 0;
+  cursor: pointer;
+  &.isFixed {
+    opacity: 1;
+    transition: all 0.3s linear;
+  }
 }
 </style>

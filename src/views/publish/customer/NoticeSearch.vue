@@ -1,8 +1,8 @@
 <template>
-  <div class="inner">
+  <div class="inner notice-search">
     <PageTitle pagetitle="공지사항" />
     <TabCategory :category="category" :newTabIndex="newTabIndex"/>
-    <SearchTable v-if="checkBoardLength" listnumber="73" />
+    <SearchTable v-if="checkBoardLength" listnumber=0 />
     <div class="table__wrap notice-table">
         <table class="table table-list">
           <colgroup>
@@ -40,11 +40,9 @@
               </td>
             </tr>
             <tr>
-              <td></td>
-              <td>
-                <p class="no-data">검색 결과가 없습니다.</p>
+              <td class="no-data" colspan="3">
+                <p>검색 결과가 없습니다.</p>
               </td>
-              <td>  </td>
             </tr>
           </tbody>
         </table>

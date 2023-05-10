@@ -62,19 +62,116 @@ const guideList = [
 ]
 
 const homeList = [
+  // 로그인 & 아이디 찾기 & 비밀번호 재설정
+  {
+    'depth1': '로그인',
+    'screenId': '',
+    'status': '완료',
+    'link': '/LoginPage'
+  },
+  {
+    'depth2': '아이디 찾기',
+    'screenId': '',
+    'status': '완료',
+    'link': '/IdFind'
+  },
+  {
+    'depth3': '아이디 찾기 결과',
+    'screenId': '',
+    'status': '완료',
+    'link': '/IdResult'
+  },
+  {
+    'depth2': '비밀번호 찾기',
+    'screenId': '',
+    'status': '완료',
+    'link': '/pwFind'
+  },
+  {
+    'depth3': '비밀번호 변경',
+    'screenId': '',
+    'status': '완료',
+    'link': '/PwReset'
+  },
+  {
+    'depth3': '비밀번호 재설정',
+    'screenId': '',
+    'status': '완료',
+    'link': '/PwChange'
+  },
+  {
+    'depth1': '회원가입',
+    'depth2': '회원가입 유형선택',
+    'screenId': '',
+    'status': '완료',
+    'link': '/SignUp'
+  },
+  // 기업 담당자 회원가입
+  {
+    'depth2': '기업담당자 회원가입',
+    'depth3': '약관동의',
+    'screenId': 'G002',
+    'status': '완료',
+    'link': '/joinStep01'
+  },
+  {
+    'depth3': '기업정보 입력',
+    'screenId': '',
+    'status': '완료',
+    'link': ''
+  },
+  {
+    'depth3': '회원정보 입력',
+    'screenId': '',
+    'status': '완료',
+    'link': ''
+  },
+  {
+    'depth3': '완료',
+    'screenId': '',
+    'status': '완료',
+    'link': ''
+  },
+  // 대행사 회원가입
+  {
+    'depth2': '대행사 회원가입',
+    'depth3': '약관동의',
+    'screenId': 'G003',
+    'status': '완료',
+    'link': ''
+  },
+  {
+    'depth3': '대행사정보 입력',
+    'screenId': '',
+    'status': '완료',
+    'link': ''
+  },
+  {
+    'depth3': '회원정보 입력',
+    'screenId': '',
+    'status': '완료',
+    'link': ''
+  },
+  {
+    'depth3': '완료',
+    'screenId': '',
+    'status': '완료',
+    'link': ''
+  },
+  // 메인
   {
     'depth1': '메인',
-    'link': '/'
+    'link': ''
   },
   {
     'depth1': '서비스 소개',
     'depth2': 'RCS 서비스 소개',
-    'screenId': 'G006_1',
-    'link': '/service'
+    'screenId': '',
+    'link': ''
   },
   {
     'depth2': 'RCS 도입사례',
-    'screenId': 'G006_3'
+    'screenId': ''
   },
   {
     'depth2': 'RBC 이용 안내',
@@ -90,8 +187,8 @@ const homeList = [
   },
   {
     'depth1': '파트너사 소개',
-    'screenId': 'G003',
-    'link': '/partners'
+    'screenId': '',
+    'link': ''
   },
   {
     'depth1': '고객센터',
@@ -118,73 +215,7 @@ const homeList = [
     'depth3': '상세',
     'screenId': 'G004_31'
   },
-  {
-    'depth1': '로그인',
-    'screenId': 'G001',
-    'status': '완료',
-    'link': '/LoginPage'
-  },
-  {
-    'depth2': '아이디 찾기',
-    'screenId': 'G001_1',
-    'status': '완료',
-    'link': '/IdFind'
-  },
-  {
-    'depth3': '아이디 찾기 결과',
-    'screenId': 'G001_1'
-  },
-  {
-    'depth2': '비밀번호 찾기',
-    'screenId': 'G001_2',
-    'status': '완료',
-    'link': '/pwFind'
-  },
-  {
-    'depth3': '비밀번호 변경',
-    'screenId': 'G001_3'
-  },
-  {
-    'depth1': '회원가입',
-    'depth2': '회원가입 유형선택',
-    'screenId': '',
-    'status': '완료',
-    'link': '/SignUp'
-  },
-  // 기업 담당자 회원가입
-  {
-    'depth2': '기업담당자 회원가입',
-    'depth3': '약관동의',
-    'screenId': 'G002',
-    'status': '완료',
-    'link': '/joinStep01'
-  },
-  {
-    'depth3': '기업정보 입력',
-    'screenId': '',
-    'status': '완료',
-    'link': '/joinStep02'
-  },
-  {
-    'depth3': '회원정보 입력',
-    'screenId': '',
-    'status': '완료',
-    'link': '/joinStep03'
-  },
-  {
-    'depth3': '완료',
-    'screenId': '',
-    'status': '완료',
-    'link': '/joinStep04'
-  },
-  // 대행사 회원가입
-  {
-    'depth2': '대행사 회원가입',
-    'depth3': '약관동의',
-    'screenId': 'G003',
-    'status': '완료',
-    'link': '/agencyjoinStep01'
-  },
+  // 마이 페이지
   {
     'depth1': '마이페이지',
     'depth2': '개인정보 관리',

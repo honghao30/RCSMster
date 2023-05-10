@@ -34,7 +34,7 @@
                       <span class="input"><input type="text" class="input" :value="certificatetemp" disabled></span>
                     </div>
                   </div>
-                  <p class="guide-text black">사업자등록번호 인증이 완료되었습니다.</p>
+                  <p class="guide-text black">※ 사업자등록번호 인증이 완료되었습니다.</p>
                 </div>
               </td>
             </tr>
@@ -238,7 +238,7 @@
                       >
                       중계사 선택
                       </ButtonCmp>
-                      <span class="result-text">선택 중개사 <em class="point">4</em>개</span>
+                      <span class="result-text">선택 중계사 <em class="point">4</em>개</span>
                     </div>
                   </div>
                   <p class="guide-text error" v-if="agencyErrorMsg">중계사를 선택해주세요.</p>
@@ -355,23 +355,30 @@
           </tbody>
         </table>
       </div>
-      <p class="guide-text">※ 대행사에서 제공가능한 서비스 범위를 선택하시면 기업에게 대행사를 추천해드립니다.</p>
-      <div class="button__wrap">
-        <ButtonCmp
-          type="btn-blue-line"
-        >취소</ButtonCmp>
-        <ButtonCmp
-          type="btn-blue"
-          @click="onSubmit"
-        >다음</ButtonCmp>
-      </div>
-      </form>
-      <ModalView
-        v-if="isModalViewed" @closeModal="isModalViewed = false"
-      >
-          <CertificateMsg @closeModal="isModalViewed = false" status="ing"/>
-          <!-- 기 가입자일 경우 done, 진행 중인 경우는 ing  -->
-      </ModalView>
+    </form>
+    <p class="guide-text">※ 대행사에서 제공가능한 서비스 범위를 선택하시면 기업에게 대행사를 추천해드립니다.</p>
+    <div class="button__wrap">
+      <ButtonCmp
+        type="btn-blue-line"
+      >취소</ButtonCmp>
+      <ButtonCmp
+        type="btn-blue"
+        @click="onSubmit"
+      >다음</ButtonCmp>
+    </div>
+    <ModalView
+      v-if="isModalViewed" @closeModal="isModalViewed = false"
+    >
+        <CertificateMsg @closeModal="isModalViewed = false" status="ing"/>
+        <!-- 기 가입자일 경우 done, 진행 중인 경우는 ing  -->
+    </ModalView>
+
+    <ModalView
+      v-if="isAgencyModal" @closeModal="isAgencyModal = false"
+    >
+        <AgencyCheckMsg @closeModal="isAgencyModal = false"/>
+    </ModalView>
+    <!-- 중개사 url 정보 입력 확인 팝업 호출 시점 기획 확인 필요-->
   </div>
 </template>
 
@@ -381,6 +388,7 @@ import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import CertificateMsg from '@/views/publish/join/CertificateMsg.vue'
+import AgencyCheckMsg from '@/views/publish/join/AgencyCheckMsg.vue'
 import JoinStep from '@/views/publish/join/JoinStep'
 
 export default {
@@ -390,7 +398,8 @@ export default {
     PageTitleH3,
     ModalView,
     CertificateMsg,
-    JoinStep
+    JoinStep,
+    AgencyCheckMsg
   },
   data() {
     return {
@@ -420,7 +429,8 @@ export default {
       filesName: '',
       filesName2: '',
       isModalViewed: false,
-      certificatetemp: '123456789'
+      certificatetemp: '123456789',
+      isAgencyModal: false
     }
   },
   methods: {
@@ -463,6 +473,7 @@ export default {
     },
     closeModal () {
       this.isModalViewed = false
+      this.isAgencyModal = false
     },
     onFileChanged (e) {
       const files = e.target.files

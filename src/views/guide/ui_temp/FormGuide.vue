@@ -55,7 +55,7 @@
           <div class="form-item__content">
             <input type="text" class="input" v-model="form.id"/>
           </div>
-          <p class="form-item__error" v-if="!idValidation">아이디를 입력해주세요.</p>
+          <p class="guide-text error" v-if="!idValidation">아이디를 입력해주세요.</p>
         </div>
         <div class="form-item">
           <span class="form-item__label">휴대폰번호</span>
@@ -63,7 +63,7 @@
             <input type="text" class="input">
             <button class="btn__certi">인증번호 요청</button>
           </div>
-          <p class="form-item__error" v-if="!idValidation">휴대폰번호를 입력해주세요.</p>
+          <p class="guide-text error" v-if="!idValidation">휴대폰번호를 입력해주세요.</p>
         </div>
       </div>
       <button @click="checkValidation">Validation Check</button>
