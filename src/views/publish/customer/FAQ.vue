@@ -1,5 +1,5 @@
 <template>
-  <div class="inner">
+  <div class="inner notice-faq">
     <PageTitle pagetitle="FAQ" />
     <TabCategory :category="category" />
     <SearchTable listnumber=73 />
@@ -12,7 +12,7 @@
             <span class="accodien-cate">
               Q
             </span>
-             브랜드 개설을 하는데 어느정도 시간이 소요되나요? {{ item }}
+              브랜드 개설을 하는데 어느정도 시간이 소요되나요? {{ item }}
           </template>
           <template slot="accordion-content">
             <span class="accodien-cate">
