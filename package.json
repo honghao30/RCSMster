@@ -36,6 +36,7 @@
     "swiper-vue2": "^1.0.9",
     "tailwindcss": "^1.0.2",
     "tui-pagination": "^3.3.2",
+    "v-click-outside": "^3.2.0",
     "v-jsoneditor": "^1.2.2",
     "vue": "^2.6.8",
     "vue-clipboard2": "^0.3.1",
