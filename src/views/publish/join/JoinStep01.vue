@@ -10,11 +10,18 @@
       <h3 class="agree__title">약관동의</h3>
       <div class="agree__item">
         <div class="checkbox">
-          <input type="checkbox" id="chkAll" value="form.agreeAll"/>
+          <input type="checkbox" id="chkAll"
+            v-model="allSelected"
+            @click="selectAll"
+          />
           <label for="chkAll"><span class="checkbox__text">기업담당자 회원가입 약관에 모두 확인, 동의합니다.</span></label>
         </div>
         <div class="checkbox">
-          <input type="checkbox" id="service" value="form.serviceAgree"/>
+          <input type="checkbox"
+            id="service"
+            v-model="checkedAgreement1"
+            ref="checkedAgreement1"
+          />
           <label for="service"><span class="checkbox__text">서비스 이용약관 (필수)</span></label>
         </div>
         <div class="agree__box">
@@ -31,7 +38,11 @@
       </div>
       <div class="agree__item">
         <div class="checkbox">
-          <input type="checkbox" id="delegate" value="form.delegate"/>
+          <input type="checkbox"
+            id="delegate"
+            v-model="checkedAgreement2"
+            ref="checkedAgreement2"
+          />
           <label for="delegate"><span class="checkbox__text">신청 위임 동의 (필수)</span></label>
         </div>
         <div class="agree__box">
@@ -47,6 +58,7 @@
     >취소</ButtonCmp>
     <ButtonCmp
       type="btn-blue"
+      @click="nextStep"
     >다음</ButtonCmp>
     </div>
   </form>
@@ -66,13 +78,36 @@ export default {
   },
   data() {
     return {
-      form: {
-        agreeAll: false,
-        serviceAgree: false
-      }
+      allSelected: false,
+      checkedAgreement1: false,
+      checkedAgreement2: false
     }
   },
   methods: {
+    selectAll() {
+      if (this.allSelected === false) {
+        this.checkedAgreement1 = true
+        this.checkedAgreement2 = true
+      } else if (this.allSelected === true) {
+        this.checkedAgreement1 = false
+        this.checkedAgreement2 = false
+      }
+    },
+    nextStep () {
+      if (this.checkedAgreement1 === false) {
+        this.$refs.checkedAgreement1.focus()
+        alert('서비스 이용약관(필수)')
+        return false
+      } else if (this.checkedAgreement2 === false) {
+        this.$refs.checkedAgreement2.focus()
+        alert('신청 위임 동의(필수)')
+      } else {
+        this.$router.push('./JoinStep02')
+      }
+    },
+    selectCheck() {
+      this.allSelected = false
+    }
   }
 }
 </script>

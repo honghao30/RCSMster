@@ -44,19 +44,51 @@
       </div>
       <div class="idfind">
         <router-link to="/IdFind">아이디 찾기</router-link>
-        <router-link to="/pwFind">비밀번호 찾기</router-link>
+        <router-link to="/pwFind">비밀번호 재설정</router-link>
       </div>
     </div>
+    <!-- 메시지 모달 -->
+    <ModalView
+      v-if="isModalViewed" @closeModal="isModalViewed = false"
+    >
+      <ConfirmMsg
+        @closeModal="isModalViewed = false"
+      >
+        <div class="msg" slot="msg">
+          5회 이상 아이디 또는 비밀번호를 잘못<br />
+          입력했습니다. 비밀번호를 다시 설정해주세요.
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+             type="btn-blue-line"
+             @click="closeMsge"
+          >
+            닫기
+          </ButtonCmp>
+          <ButtonCmp
+             type="btn-blue"
+             @click="moveChage"
+          >
+            비밀번호 변경
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+    </ModalView>
+    <!-- //메시지 모달 -->
   </div>
 </template>
 
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import ModalView from '@/components/common/ModalView.vue'
+import ConfirmMsg from '@/views/publish/join/ConfirmMsg.vue'
 export default {
   components: {
     PageTitle,
-    ButtonCmp
+    ButtonCmp,
+    ModalView,
+    ConfirmMsg
   },
   data() {
     return {
@@ -67,7 +99,17 @@ export default {
       idErrorMsg: false,
       pwErrorMsg: false,
       showPassword: false,
+      isModalViewed: false,
       iconName: 'icon-eye'
+    }
+  },
+  watch: {
+    isModalViewed () {
+      if (this.isModalViewed) {
+        document.documentElement.style.overflow = 'hidden'
+        return
+      }
+      document.documentElement.style.overflow = 'auto'
     }
   },
   methods: {
@@ -75,9 +117,9 @@ export default {
       if (this.form.id === '') {
         this.idErrorMsg = true
         this.$refs.usrid.focus()
+        this.isModalViewed = true
         return
       }
-
       if (this.form.pw === '') {
         this.pwErrorMsg = true
         this.$refs.usrpw.focus()
@@ -92,6 +134,13 @@ export default {
         this.iconName = 'icon-eye blue'
       }
       this.showPassword = !this.showPassword
+    },
+    moveChage () {
+      this.$router.push('./pwFind')
+      document.documentElement.style.overflow = 'auto'
+    },
+    closeMsge () {
+      this.isModalViewed = false
     }
   }
 }

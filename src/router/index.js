@@ -3,6 +3,12 @@ import Router from 'vue-router'
 
 import store from '@/store'
 
+// login 검증을 위함
+import { getToken } from '@/utils/token'
+
+import NotFound from '@/views/errors/404.vue'
+// import ServerError from '@/views/errors/500.vue'
+
 // 파일 링크
 // 가이드
 import PubGuides from '@/views/guide'
@@ -227,7 +233,22 @@ let router = new Router({
       meta: {
         tittle: '개인정보 관리'
       }
-    }
+    },
+    {
+      path: 'not-found',
+      name: 'NotFound',
+      component: NotFound,
+      meta: {
+        headerView: false
+      }
+    },
+    {
+      path: '*',
+      component: NotFound,
+      meta: {
+        headerView: false
+      }
+    }  
   ]
 })
 

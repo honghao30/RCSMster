@@ -4,6 +4,9 @@
   width: 100%;
   max-width:628px;
   margin: 0 auto;
+  .tab__wrap {
+    margin-top: 32px;
+  }  
   .login-title__wrap--top {
     text-align: center;
     .page-title {
@@ -83,9 +86,6 @@
     }
   }
   &.login-help {
-    .tab__wrap {
-      margin-top: 32px;
-    }
     .form-item__content {
       .input {
         flex: 1;
@@ -125,7 +125,6 @@
     }
   }
 }
-
 @media #{$phone} {
   .login {
     max-width:100%;
