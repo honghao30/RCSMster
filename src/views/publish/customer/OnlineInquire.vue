@@ -60,9 +60,11 @@
                     <div class="input-item">
                       <div class="textarea">
                         <textarea maxlength="1000" placeholder="문의 내용을 입력해주세요." v-model="form.inquirecont"></textarea>
-                        <p class="textarea-text_limit">
-                          {{ form.inquirecont.length }}/1000자
-                        </p>
+                        <div class="textarea-text_limit">
+                          <p>
+                            {{ form.inquirecont.length }}/1000자
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
