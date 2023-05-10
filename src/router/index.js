@@ -34,9 +34,14 @@ import NoticeView from '@/views/publish/customer/Notice'
 import NoticeSearch from '@/views/publish/customer/NoticeSearch'
 import NoticeContent from '@/views/publish/customer/NoticeContent'
 import FAQ from '@/views/publish/customer/FAQ'
+import OnlineInquire from '@/views/publish/customer/OnlineInquire'
 
 // 마이페이지
 import MyInfo from '@/views/publish/mypage/MyInfo'
+import MyInfoAgency from '@/views/publish/mypage/MyInfoAgency'
+import CorpInfo from '@/views/publish/mypage/CorpInfo'
+import CorpInfoEdit from '@/views/publish/mypage/CorpInfoEdit'
+import Withdrawal from '@/views/publish/mypage/Withdrawal'
 
 Vue.use(Router)
 
@@ -220,12 +225,47 @@ let router = new Router({
         tittle: 'FAQ'
       }
     },
+    {
+      path: '/OnlineInquire',
+      component: OnlineInquire,
+      meta: {
+        tittle: '온라인 문의'
+      }
+    },
     // 마이 페이지
     {
       path: '/myinfo',
       component: MyInfo,
       meta: {
         tittle: '개인정보 관리'
+      }
+    },
+    {
+      path: '/myinfoagency',
+      component: MyInfoAgency,
+      meta: {
+        tittle: '개인정보 관리'
+      }
+    },
+    {
+      path: '/corpinfo',
+      component: CorpInfo,
+      meta: {
+        tittle: '기업정보 관리'
+      }
+    },
+    {
+      path: '/corpinfo-edit',
+      component: CorpInfoEdit,
+      meta: {
+        tittle: '기업정보 관리'
+      }
+    },
+    {
+      path: '/withdrawal',
+      component: Withdrawal,
+      meta: {
+        tittle: '회원 탈퇴'
       }
     }
   ]
