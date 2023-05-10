@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown" :class="{ open: isOpen }">
+  <div class="dropdown" :class="{ open: isOpen }" v-click-outside="onClickOutside">
     <a role="button"
       class="dropdown__trigger"
       @click="toggleSelect">{{ selectedOption }}</a>
@@ -15,7 +15,12 @@
 </template>
 
 <script>
+import vClickOutside from 'v-click-outside'
+
 export default {
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
   data() {
     return {
       selectedOption: '',
@@ -45,6 +50,9 @@ export default {
     },
     toggleSelect: function() {
       this.isOpen ? this.isOpen = false : this.isOpen = true
+    },
+    onClickOutside: function() {
+      this.isOpen = false
     }
   }
 }
