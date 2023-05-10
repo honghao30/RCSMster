@@ -238,13 +238,6 @@ $formLabelWidth : 120px;
           line-height: 26px; 
           color: #999999;
       }
-      .text {
-        display:inline-block;
-        +.btn {
-          margin-left:8px;
-        }
-        
-      }
   }
   .form-item__label {
     @include fontoption(16px,#000,500,26px);
