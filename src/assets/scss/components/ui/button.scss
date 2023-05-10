@@ -164,4 +164,16 @@ $iconBsUrl: '../assets/images/icon/';
     height: 45px;
     padding:0 12px;
   }
+  .icon-eye {
+    width: 21px;
+    height: 21px;
+    background-image: url('#{$iconBsUrl}icon_eye_mo.png');
+    background-size: 100%;
+    &.blue{
+      width: 21px;
+      height: 21px;
+      background-image: url('#{$iconBsUrl}icon_eye_blue_mo.png');
+      background-size: 100%;
+    }  
+  }
 }
