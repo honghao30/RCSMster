@@ -90,7 +90,7 @@ export default {
   },
   computed: {
     checkBoardLength() {
-      return this.noticeData.length < 0 ? false : true;
+      return !(this.noticeData.length < 0)
     }
   }
 }

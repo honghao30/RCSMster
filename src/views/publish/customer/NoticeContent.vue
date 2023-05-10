@@ -2,7 +2,7 @@
   <div class="inner notice-content">
     <PageTitle pagetitle="공지사항" />
     <div class="table__wrap notice-table">
-      <table class="table table-list">
+      <table class="table table-list notice-content__table">
         <colgroup>
           <col width="11%">
           <col>
@@ -37,7 +37,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan="3" class="notice-content__contents"> 
+            <td colspan="3" class="notice-content__contents">
               <p>안녕하세요. RCS Biz Center입니다.<br/>
                   RCS Biz Center 검수 사이트는 평일 09:00~18:00 에만 승인이 가능하며,<br/>
                   운영에 다른 점검 및 반영 작업으로 인해 승인이 다소 늦어질 수 있습니다.<br/>
@@ -60,17 +60,17 @@
     <div class="button__wrap">
       <ButtonCmp type="btn-blue">목록</ButtonCmp>
     </div>
-    <div class="table__wrap notice-table">
+    <div class="table__wrap notice-table notice-content__list">
       <table class="table table-list notice-content__table">
         <colgroup>
-          <col width="12%">
-          <col width="12%">
+          <col width="3%">
+          <col width="8%">
           <col>
         </colgroup>
         <tbody>
           <tr
             v-for="(item, i) in noticeData" :key="i">
-            <td>
+            <td class="table-ico">
                 <i class="ico-up" v-if="item.up"></i>
                 <i class="ico-down" v-if="item.down"></i>
             </td>
@@ -119,11 +119,6 @@ export default {
   components: {
     PageTitle,
     ButtonCmp
-  },
-  computed: {
-    checkBoardLength() {
-      return this.noticeData.length < 0 ? false : true;
-    }
   }
 }
 </script>
