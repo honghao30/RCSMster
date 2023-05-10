@@ -1,7 +1,7 @@
 <template>
   <div class="join">
     <PageTitle pagetitle="대행사 회원가입" />
-    <JoinStep :step="2" :agency=true />
+    <StepList :stepActiveIndex="2" :stepTitle="stepTitle" />
     <PageTitleH3 titleh3="대행사정보 입력" noticeinfo="필수 입력값" />
     <form  ref="form" :model="form">
       <div class="table__wrap">
@@ -389,7 +389,7 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import CertificateMsg from '@/views/publish/join/CertificateMsg.vue'
 import AgencyCheckMsg from '@/views/publish/join/AgencyCheckMsg.vue'
-import JoinStep from '@/views/publish/join/JoinStep'
+import StepList from '@/components/common/StepList.vue'
 
 export default {
   components: {
@@ -398,7 +398,7 @@ export default {
     PageTitleH3,
     ModalView,
     CertificateMsg,
-    JoinStep,
+    StepList,
     AgencyCheckMsg
   },
   data() {
@@ -430,7 +430,8 @@ export default {
       filesName2: '',
       isModalViewed: false,
       certificatetemp: '123456789',
-      isAgencyModal: false
+      isAgencyModal: false,
+      stepTitle: ['약관동의', '대행사정보 입력', '회원정보 입력', '가입완료']
     }
   },
   methods: {

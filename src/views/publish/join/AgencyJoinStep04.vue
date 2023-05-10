@@ -1,7 +1,7 @@
 <template>
   <div class="join">
     <PageTitle pagetitle="대행사 회원가입" />
-    <JoinStep :step="4" :agency=true />
+    <StepList :stepActiveIndex="4" :stepTitle="stepTitle" />
     <div class="join-compt__wrap">
     <h3 class="title">회원가입이 완료되었습니다.</h3>
     <p class="text">관리자의 승인 이전에도 즉시 자유롭게 콘텐츠를 등록/관리 할 수 있습니다.
@@ -20,17 +20,18 @@
 
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
-import JoinStep from '@/views/publish/join/JoinStep'
+import StepList from '@/components/common/StepList.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 
 export default {
   components: {
     PageTitle,
-    JoinStep,
+    StepList,
     ButtonCmp
   },
   data() {
     return {
+      stepTitle: ['약관동의', '대행사정보 입력', '회원정보 입력', '가입완료']
     }
   },
   methods: {
