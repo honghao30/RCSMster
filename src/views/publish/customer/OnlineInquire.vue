@@ -16,17 +16,7 @@
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <div class="select">
-                      <select name="" id="selectValue" v-model="form.inquirevalue">
-                        <option value="1">가입</option>
-                        <option value="2">서비스 관리</option>
-                        <option value="3">브랜드 관리</option>
-                        <option value="4">대화방 관리</option>
-                        <option value="5">탬플릿 관리</option>
-                        <option value="6">자동응답 관리</option>
-                        <option value="7">브랜드 소식 관리</option>
-                      </select>
-                    </div>
+                    <Dropdown :options=dropdownOptions />
                   </div>
                   <p class="guide-text error" v-if="inquirevalueErrorMsg">문의 유형을 선택해주세요.</p>
                 </div>
@@ -135,13 +125,15 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
+import Dropdown from '@/components/common/Dropdown.vue'
 
 export default {
   components: {
     PageTitle,
     ButtonCmp,
     PageTitleH3,
-    ModalView
+    ModalView,
+    Dropdown
   },
   data() {
     return {
@@ -166,7 +158,8 @@ export default {
       files: '',
       filesName: '',
       filesName2: '',
-      isModalViewed: false
+      isModalViewed: false,
+      dropdownOptions: ['가입', '서비스 관리', '브랜드 관리', '대화방 관리', '탬플릿 관리', '자동응답 관리', '브랜드 소식 관리']
     }
   },
   methods: {
