@@ -43,7 +43,7 @@ $grayColor: #DDDDDD;
 $errorColor: #FF4830;
 
 //23.05.10 남다현 & 스크롤 스타일 수정 (textarea 안 스크롤 작업으로 인해 변경)
-:-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 10px;
     height: 10px
 }
@@ -66,18 +66,4 @@ $errorColor: #FF4830;
     background: rgba(101,106,118,.3);
     border-radius: 10px;
 }
-.textarea textarea::-webkit-scrollbar {
-    width: 3px
-}
-.textarea textarea::-webkit-scrollbar-button:decrement,.textarea textarea::-webkit-scrollbar-button:end:increment {
-    display: block;
-    height: 0
-}
-.textarea textarea::-webkit-scrollbar-track {
-    background: #dedede
-}
-.textarea textarea::-webkit-scrollbar-thumb {
-    height: 20px;
-    width: 3px;
-    background: #6f6f6f
-}
+
