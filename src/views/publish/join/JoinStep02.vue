@@ -242,14 +242,15 @@ export default {
         this.bizeventErrorMsg = true
         return
       }
-      if (this.form.postcode === '') {
-        this.postcodeErrorMsg = true
-        return
-      }
-      if (this.form.addr2 === '') {
-        this.postcodeErrorMsg = true
-        // return
-      }
+      // if (this.form.postcode === '') {
+      //   this.postcodeErrorMsg = true
+      //   return
+      // }
+      // if (this.form.addr2 === '') {
+      //   this.postcodeErrorMsg = true
+      //   // return
+      // }
+      this.$router.push('./JoinStep03')
     },
     checkCertificate () {
       if (this.form.certificate === '') {

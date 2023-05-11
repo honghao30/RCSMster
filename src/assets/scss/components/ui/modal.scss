@@ -129,10 +129,64 @@
         .modal__content--body {
             height: calc(100% - 50px);
             overflow:hidden;
+            //휴대폰 인증 모달 
+            .phone-cert__title {
+              @include fontoption(28px,#000,700,36px);
+            }
+            .phone-cert__msg {
+              @include fontoption(16px,#000,400,28px);
+              margin:32px 0 10px;
+            }
+            .phone-cert__number {
+              padding:16px 0;
+              background-color: #F4F4F4;
+              border-radius: 8px;
+              @include fontoption(18px,#000,400,38px);
+            }
+            .phone-cert__number-input {
+              position: relative;
+              margin: 32px 0 0;
+              display: flex;
+              justify-content: space-between;      
+              gap: 8px;
+              .input {
+                width: 100%;
+              }        
+              .time {
+                position: absolute;
+                right:150px;
+                top:10px;
+                &.hide {
+                  opacity: 0;
+                }
+                &.active {
+                  color: #FF4830;
+                }
+              }
+              .btn-gray-line {
+                border: 1px solid #4A5567;
+                background-color: #fff;
+                white-space: nowrap;
+                min-width: 129px;
+                padding: 0 24px;
+                height:42px;    
+              }
+            }          
         }
-    } 
+    }    
+    &.Modalmax480 {
+      max-width: 480px;
+      .button__wrap {
+        display: block;
+        text-align: center;
+        button {
+          min-width: 129px;
+          padding: 0 24px;
+          margin:0 4px;
+        }
+      }
+    }
   }
-
   .zipcode__modal {
     max-width:628px;               
     padding:40px;  
@@ -291,6 +345,7 @@
         button {
           flex: none;
           width: 126px;
+          white-space: nowrap;
         }
       }
     }

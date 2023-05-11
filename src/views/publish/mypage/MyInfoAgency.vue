@@ -69,41 +69,42 @@ d<template>
                 <th scope="row"><span class="form-item__label required">휴대폰(담당자)</span></th>
                 <td colspan="3">
                   <div class="form-item__content">
-                      <div class="form-item-row agency-phone">
-                        <div class="input-item">
-                          <span class="inpun-item__title">이름</span>
-                          <span class="input"><input type="text" class="input" placeholder="이름을 입력해주세요."></span>
-                        </div>
-                        <div class="input-item">
-                          <span class="inpun-item__title">휴대폰 번호</span>
-                          <span class="input"><input type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요.​"></span>
-                        </div>
-                        <ButtonCmp
-                          type="btn-default-line"
-                          size="small"
-                        >
-                        삭제
-                        </ButtonCmp>
+                      <div class="form-item-row agency-phone"
+                        v-for="(manage, index) in manageList"
+                        :key="index"
+                      >
+                      <div class="input-item">
+                        <span class="inpun-item__title">이름</span>
+                        <span class="input" v-if="manage.name == ''">
+                          <input type="text" class="input" placeholder="이름을 입력해주세요.">
+                        </span>
+                        <span v-else>
+                          {{ manage.name }}
+                        </span>
                       </div>
-                      <div class="form-item-row agency-phone">
-                        <div class="input-item">
-                          <span class="inpun-item__title">이름</span>
-                          <span class="input"><input type="text" class="input" placeholder="이름을 입력해주세요."></span>
-                        </div>
-                        <div class="input-item">
-                          <span class="inpun-item__title">휴대폰 번호</span>
-                          <span class="input"><input type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요.​"></span>
-                        </div>
+                      <div class="input-item">
+                        <span class="inpun-item__title">휴대폰 번호</span>
+                        <span class="input"
+                          v-if="manage.name == ''"
+                        >
+                          <input type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요.">
+                        </span>
+                        <span v-else>
+                          {{ manage.phone }}
+                        </span>
+                      </div>
                         <ButtonCmp
                           type="btn-default-line"
                           size="small"
+                          @click="removeManage"
                         >
                         삭제
                         </ButtonCmp>
                       </div>
                       <ButtonCmp
-                          type="btn-default-line"
-                          size="small"
+                        type="btn-default-line"
+                        size="small"
+                        @click="AddManager"
                       >
                       추가
                       </ButtonCmp>
@@ -294,7 +295,6 @@ d<template>
           type="btn-line"
         >취소</ButtonCmp>
         <router-link
-          to="/companyinfo"
           class="btn btn-blue-line"
         >기업정보 관리</router-link>
         <ButtonCmp
@@ -332,7 +332,13 @@ export default {
       nameErrorMsg: false,
       phoneErrorMsg: false,
       emailErrorMsg: false,
-      telErrorMsg: false
+      telErrorMsg: false,
+      manageList: [
+        {
+          name: '홍길동',
+          phone: '010-1234-5678'
+        }
+      ]
     }
   },
   methods: {
@@ -353,6 +359,14 @@ export default {
         this.telErrorMsg = true
         // return
       }
+    },
+    AddManager () {
+      if (this.manageList.length < 10) {
+        this.manageList.push({})
+      }
+    },
+    removeManage (index) {
+      this.apiList.splice(index, 1)
     }
   }
 }

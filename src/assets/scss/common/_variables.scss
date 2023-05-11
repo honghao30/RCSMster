@@ -42,28 +42,4 @@ $pointColor: #2F77FB;
 $grayColor: #DDDDDD;
 $errorColor: #FF4830;
 
-//23.05.10 남다현 & 스크롤 스타일 수정 (textarea 안 스크롤 작업으로 인해 변경)
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px
-}
-::-webkit-scrollbar-track,::-webkit-scrollbar-track-piece {
-    background-color: none
-}
-::-webkit-scrollbar-button,::-webkit-scrollbar-thumb {
-    background-color: none
-}
-::-webkit-scrollbar-button:end,::-webkit-scrollbar-button:start {
-    background-color: none
-}
-::-webkit-resizer,::-webkit-scrollbar-corner {
-    background-color: #d3d3d3;
-}
-::-webkit-scrollbar-track {
-    background: #fff
-}
-::-webkit-scrollbar-thumb {
-    background: rgba(101,106,118,.3);
-    border-radius: 10px;
-}
 

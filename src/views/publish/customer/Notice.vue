@@ -2,7 +2,25 @@
   <div class="inner notice">
     <PageTitle pagetitle="공지사항" />
     <TabCategory :category="category" :newTabIndex="newTabIndex"/>
-    <SearchTable v-if="checkBoardLength" listnumber=73 selectable :dropdownOptions="dropdownOptions" />
+    <div class="search-table" v-if="checkBoardLength">
+      <div class="ctrl">
+        <Dropdown :options=dropdownOptions />
+        <div class="input">
+          <input type="text" placeholder="검색어를 입력해 주세요.">
+        </div>
+        <div class="input-m">
+          <input type="text" placeholder="검색어 입력">
+        </div>
+        <ButtonCmp
+          type="btn-search"
+        >
+          검색
+        </ButtonCmp>
+      </div>
+      <p class="list-number">
+        총 73건
+      </p>
+    </div>
     <div class="table__wrap notice-table">
       <table class="table table-list">
         <colgroup>
@@ -12,7 +30,7 @@
         </colgroup>
         <thead>
           <tr>
-            <th scope="col">번호</th>
+            <th scope="col"><span>번호</span></th>
             <th scope="col"><span>제목</span></th>
             <th scope="col"><span>등록일</span></th>
           </tr>
@@ -39,28 +57,42 @@
               <span class="date">{{ item.date }}</span>
             </td>
           </tr>
+          <tr><!-- 검색 결과 없을 시-->
+            <td colspan="3">
+              <div class="notice__search-no-data">
+                <p>검색 결과가 없습니다.</p>
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
     <PagingCmp />
-    <!-- 검색 결과 없을 시 div 띄워주시면 됩니다 -->
-    <div class="notice__search-no-data">
-      <p>검색 결과가 없습니다.</p>
-    </div>
+
   </div>
 </template>
 
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
-import SearchTable from '@/components/common/SearchTable.vue'
 import PagingCmp from '@/components/common/PagingCmp.vue'
 import TabCategory from '@/components/common/TabCategory'
+import Dropdown from '@/components/common/Dropdown.vue'
+import ButtonCmp from '@/components/common/ButtonCmp.vue'
 
 export default {
   name: 'NoticeView',
   data() {
     return {
-      dropdownOptions: ['전체', '제목'],
+      dropdownOptions: [
+        {
+          label: '전체',
+          value: 'all'
+        },
+        {
+          label: '제목',
+          value: 'title'
+        }
+      ],
       category: ['전체', '이벤트', '시스템', '정책', '서식', '업데이트 노트'],
       activeTabIndex: 0,
       newTabIndex: 1,
@@ -151,9 +183,10 @@ export default {
   },
   components: {
     PageTitle,
-    SearchTable,
+    Dropdown,
     PagingCmp,
-    TabCategory
+    TabCategory,
+    ButtonCmp
   },
   computed: {
     checkBoardLength() {
