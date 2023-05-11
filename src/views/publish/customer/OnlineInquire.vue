@@ -18,7 +18,7 @@
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <Dropdown :options=dropdownOptions />
+                    <Dropdown :options="dropdownOptions" placeholder="선택해 주세요."/>
                   </div>
                   <p class="guide-text error" v-if="inquirevalueErrorMsg">문의 유형을 선택해주세요.</p>
                 </div>
@@ -230,7 +230,36 @@ export default {
         memberphone: '',
         membermail: ''
       },
-      dropdownOptions: ['선택하세요.', '가입', '서비스 관리', '브랜드 관리', '대화방 관리', '탬플릿 관리', '자동응답 관리', '브랜드 소식 관리'],
+      dropdownOptions: [
+        {
+          label: '가입',
+          value: 'opt1'
+        },
+        {
+          label: '서비스 관리',
+          value: 'opt2'
+        },
+        {
+          label: '브랜드 관리',
+          value: 'opt3'
+        },
+        {
+          label: '대화방 관리',
+          value: 'opt4'
+        },
+        {
+          label: '탬플릿 관리',
+          value: 'opt5'
+        },
+        {
+          label: '자동응답 관리',
+          value: 'opt6'
+        },
+        {
+          label: '브랜드 소식 관리',
+          value: 'opt7'
+        }
+      ],
       inquirevalueErrorMsg: false,
       inquiretitleErrorMsg: false,
       inquirecontErrorMsg: false,

@@ -31,19 +31,17 @@ export default {
   props: {
     options: Object,
     searchable: Boolean,
-    value: String
+    placeholder: String
   },
   emits: [
     'update:modelValue'
   ],
   mounted() {
     this.filteredOption = this.options
-    this.selectedOption = this.options[0].label
+    this.selectedOption = this.placeholder
   },
   watch: {
-    onValueChange() {
-      this.value = this.selectedOption.value
-    }
+
   },
   computed: {
     filteredOption() {
