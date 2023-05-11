@@ -18,7 +18,10 @@
       </div>
     </div>
     <TitleH3 titleh3="Dropdown" />
-    <Dropdown :options="dropdownOptions" searchable/>  <!-- search 가 필요하시면 searchable 추가해주세요.-->
+    <p>{{ form.dropdown }}</p>
+    <Dropdown searchable :options="dropdownOptions" v-model="form.dropdown">
+    </Dropdown>
+    <!-- search 가 필요하시면 searchable 추가해주세요.-->
     <TitleH3 titleh3="Checkbox" />
     <div class="wsg-guide-content">
       <span class="checkbox">
@@ -155,9 +158,27 @@ export default {
         check: '',
         radio: 1,
         radioGroup: 3,
-        id: ''
+        id: '',
+        dropdown: ''
       },
-      dropdownOptions: ['option1', 'option2', 'option3'],
+      dropdownOptions: [
+        {
+          label: 'all',
+          value: 'all'
+        },
+        {
+          label: 'option1',
+          value: 'option1'
+        },
+        {
+          label: 'option2',
+          value: 'option2'
+        },
+        {
+          label: 'option3',
+          value: 'option3'
+        }
+      ],
       idValidation: true
     }
   },

@@ -98,8 +98,7 @@ $radius: 8px;
       background-color:#ccc;
       border-color:#ccc;
     }
-  }  
-       
+  }      
 }
 .btn-blue-line {
   @include btntype(16px,$pointColor,#fff,$pointColor, 8px,  #fff, #2855A7, #2855A7);               
@@ -122,6 +121,14 @@ $radius: 8px;
       border-color:#ccc;
     }
   }  
+}
+
+.btn-search {
+  @include btntype(14px, #717883, #717883,#fff, 8px, #717883,#fff, #717883);   
+  line-height: 42px;
+  min-width: auto;
+  height: 42px;
+  padding:0 23px;
 }
 
 .btn-default-line {

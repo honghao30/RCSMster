@@ -1,7 +1,9 @@
 <template>
   <div class="online">
-    <PageTitle pagetitle="온라인 문의" />
-    <PageTitleH3 titleh3="문의정보" noticeinfo="필수 입력값" />
+    <div class="online-title__wrap--top">
+      <PageTitle pagetitle="온라인 문의" />
+      <PageTitleH3 titleh3="문의정보" noticeinfo="필수 입력값" />
+    </div>
     <form  ref="form" :model="form">
       <div class="table__wrap">
         <table class="table table-bodyonly form-table">
@@ -68,20 +70,23 @@
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <div class="file-choice">
-                      <input type="file" id="fileUp" class="input" @change="fileChoice">
+                    <!-- <div class="file-choice">
+                      <input type="file" id="fileUp" class="input" >
                       <label for="fileUp" class="btn btn-default-line">파일선택</label>
                       <el-upload
                         class="upload-demo"
                         drag
-                        action="https://jsonplaceholder.typicode.com/posts/"
-                        :on-preview="handlePreview"
-                        :on-remove="handleRemove"
-                        :file-list="fileList"
+                        action
+                        :on-change="handleChange"
+                        :auto-upload="false"
                         multiple>
                         <div class="el-upload__text">Drop file here or </div>
                       </el-upload>
+                      <ul>
+                        <li v-for="(file, i) in fileList" :key="i">{{ file.name }}</li>
+                      </ul>
                     </div>
+                    -->
                   </div>
                   <p class="guide-text black">&middot; 이미지 용량: 최대 50MB</p>
                   <p class="guide-text black">&middot; 파일종류: JPG, PNG, TIFF, PDF, DOC, PPT, PPTX, XLS, XLSX, HWP</p>
@@ -93,7 +98,9 @@
         </table>
       </div>
     </form>
-    <PageTitleH3 titleh3="회원정보" noticeinfo="필수 입력값" />
+    <div class="online-title__wrap--top">
+      <PageTitleH3 titleh3="회원정보" noticeinfo="필수 입력값" />
+    </div>
     <!-- 회원정보 -->
     <form  ref="form" :model="form">
       <div class="table__wrap">
@@ -151,39 +158,22 @@
       </div>
     </form>
     <form  ref="form" :model="form">
-      <div class="agree__wrap">
+      <div class="agree__wrap privacy">
         <h3 class="agree__title">약관동의</h3>
+        <p class="agree__title-sub">개인정보 수집 및 이용 안내 (필수)</p>
         <div class="agree__item">
-          <div class="checkbox">
-            <input type="checkbox" id="chkAll" value="form.agreeAll"/>
-            <label for="chkAll"><span class="checkbox__text">대행사 회원가입 약관에 모두 확인, 동의합니다.</span></label>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" id="service" value="form.serviceAgree"/>
-            <label for="service"><span class="checkbox__text">서비스 이용약관 (필수)</span></label>
-          </div>
           <div class="agree__box">
             <div class="terms">
-              <p class="terms__h1">제 1 장 총 칙</p>
-              <p class="terms__h2">제 1조 목적</p>
-              <p class="terms__text">본 서비스 약관은 주식회사 케이티, 주식회사 에스케이텔레콤, 주식회사 엘지유플러스(이하”이동통신3사”라 한다)가 제공하는 RCS Biz Center 서비스 (이하 "서비스"라 합니다)를 이용함에 있어 필요한 서비스 이용조건 및 절차 등 기타 제반사항을 규정함을 목적으로 합니다.</p>
-
-              <p class="terms__h2">제 2조 약관의 효력 및 변경</p>
-              <p class="terms__text">① 본 약관은 서비스를 이용하고자 하는 모든 “회원”에 대하여 그 효력을 발생합니다.</p>
-              <p class="terms__text">② 본 약관의 내용은 “서비스” 화면에 게시하거나 기타의 방법으로 “회원”에게 공지하고, 이에 동의한 “회원”이 “서비스”에 가입함으로써 효력이 발생합니다.</p>
+              <p class="terms__text">문의 내용 접수 및 처리, 결과 회신을 위하여 최소한의 개인정보를 수집합니다.</p>
+              <br>
+              <p class="terms__text">수집항목 : 이름, 휴대폰번호, 이메일주소</p>
+              <p class="terms__text">보유기간 : 문의 접수 후 3년</p>
             </div>
           </div>
         </div>
-        <div class="agree__item">
-          <div class="checkbox">
+        <div class="checkbox">
             <input type="checkbox" id="delegate" value="form.delegate"/>
-            <label for="delegate"><span class="checkbox__text">신청 위임 동의 (필수)</span></label>
-          </div>
-          <div class="agree__box">
-            <div class="terms">
-              <p class="terms__text">신청자는 기업을 대리하는 자로서 권한 부여 및 등록을 요청합니다. 또한 신청자의 업무처리로 인해 발생하는 모든 책임은 당사자에게 있음을 확인합니다.</p>
-            </div>
-          </div>
+            <label for="delegate"><span class="checkbox__text">개인정보 수집 및 이용에 동의합니다.</span></label>
         </div>
       </div>
     </form>
@@ -194,7 +184,7 @@
       <ButtonCmp
         type="btn-blue"
         @click="onSubmit"
-      >다음</ButtonCmp>
+      >목록</ButtonCmp>
     </div>
     <ModalView
       v-if="isModalViewed" @closeModal="isModalViewed = false"
@@ -236,7 +226,7 @@ export default {
         memberphone: '',
         membermail: ''
       },
-      dropdownOptions: ['선택하세요', '가입', '서비스 관리', '브랜드 관리', '대화방 관리', '탬플릿 관리', '자동응답 관리', '브랜드 소식 관리'],
+      dropdownOptions: ['선택하세요.', '가입', '서비스 관리', '브랜드 관리', '대화방 관리', '탬플릿 관리', '자동응답 관리', '브랜드 소식 관리'],
       inquirevalueErrorMsg: false,
       inquiretitleErrorMsg: false,
       inquirecontErrorMsg: false,
@@ -246,14 +236,19 @@ export default {
       files: '',
       filesName: '',
       filesName2: '',
-      isModalViewed: false
+      isModalViewed: false,
+      fileList: []
+    }
+  },
+  watch: {
+    fileList() {
+      this.handleChangeFileList()
     }
   },
   methods: {
     onSubmit () {
-      if (this.dropdownOptions[0] !== '가입') {
+      if (this.dropdownOptions[0] === '선택하세요') {
         this.inquirevalueErrorMsg = true
-        console.log(this.dropdownOptions[0])
         return
       }
       if (this.form.inquiretitle === '') {
@@ -280,11 +275,11 @@ export default {
       this.isModalViewed = false
       this.isAgencyModal = false
     },
-    fileChoice (e) {
-      const files = e.target.files
-      this.files = files
-      const filesName = files[0].name
-      this.filesName = filesName
+    handleChange(file, fileList) {
+      this.fileList.push(file)
+    },
+    handleChangeFileList() {
+      this.$emit('change', this.fileList)
     }
   }
 }
