@@ -13,8 +13,8 @@
         <thead>
           <tr>
             <th scope="col">번호</th>
-            <th scope="col">제목</th>
-            <th scope="col">등록일</th>
+            <th scope="col"><span>제목</span></th>
+            <th scope="col"><span>등록일</span></th>
           </tr>
         </thead>
         <tbody>

@@ -278,7 +278,8 @@
   // require list
   &.require-list {
     .button__wrap {
-      padding: 0 0 16px 1124px;
+      justify-content: end;
+      padding-bottom: 16px;
     }
     .table-list {
       thead {
@@ -286,60 +287,86 @@
           th:last-child {
             text-align: left;
             padding: 0 0 0 55px;
+            span::before {
+              margin-top: 0;
+              margin-left: -55px;
+            }
           }
         }
       }
     }
     .accordion-list__wrap {
       border-top: 0;
-      width: 100%;
-      .accordion__item {    
-        border-bottom: 1px solid #F0F0F0;
+      .accordion__item {
         a.accordion__title {
-          position: relative;    
-          @include fontoption(16px,#000000,400,24px);
-          display: block;
-          padding: 17px 85px;
+          display: flex;
+          padding: 21px 0 21px 146px;
           &::after {
-            content: '';
-            display: block;
-            position: absolute;
-            right: 40px;
-            top: 40%;
-            transform: translateY(-50%);
-            width: 16px;
-            height:16px;
-            background-image: url('../assets/images/icon/icon_arrow_accordion.png');
-            background-position: center center;
-            background-repeat: no-repeat;
-            transform: rotate(180deg);
-            transition: all 0.3s;
+            right: 46px;
           }
-          &.isOpen {
-            &::after {      
-              transform: rotate(0deg);    
-              transition: all 0.3s;
-            }
-          } 
           .accordion-cate {
+            .require-list__wait {
+              @include fontoption(14px,#999999,700,20px);
+            }
+            .require-list__complete {
+              @include fontoption(14px,#2F77FB,700,20px);
+            }
+          }  
+          .require-list__date {
+            @include fontoption(16px,#888888,400,24px);
             position: absolute;
-            left: 40px;
-            top:50%;
-            transform: translateY(-50%);
-            @include fontoption(16px,#000000,500,24px)
-          }   
+            padding-left: 938px;
+          } 
         }
       }
       .accordion__content {
         position: relative;
-        padding: 20px 85px 40px;
+        padding: 0px 85px 20px;
         background-color: #F8F8F8;
-        .accordion-cate {
-          position: absolute;
-          left: 40px;
-          top:20px;
-          @include fontoption(16px,#2F77FB,500,24px)
-        }    
+        .accordion-question {
+          border-top: 1px solid #f0f0f0;
+          background-color: #ffffff;
+          margin-left: -85px;
+          margin-bottom: -20px;
+          width: 1280px;
+          div {
+            padding: 20px 146px;
+            .accordion-cate {
+              left: 58px;
+              @include fontoption(16px,#000000,500,24px)
+            }
+            .require-list__question {
+              width: 885px;
+              padding-top: 12px;
+              @include fontoption(16px,#000000,400,24px)
+            }
+            .require-list__question-keyword {
+              @include fontoption(16px,#000000,500,24px)
+            }
+          }
+        }
+        .accordion-answer {
+          margin-left: -85px;
+          margin-top: 20px;
+          width: 1280px;
+          div {
+            display: flex;
+            padding: 20px 146px;
+            .accordion-cate {
+              position: inherit;
+              margin: 0 75px 0 -85px;
+              @include fontoption(16px,#2F77FB,500,24px)
+            }
+            .require-list__answer {
+              @include fontoption(16px,#000000,400,24px)
+            }
+            .require-list__answer-date {
+              margin-right: -30px;
+              padding-left: 53px;
+              @include fontoption(16px,#888888,400,24px);
+            }
+          }
+        }
       }
     }
   }
@@ -608,6 +635,89 @@
         }
         .button__wrap {
           padding: 16px 0 24px 0;
+        }
+      }
+    }
+    // require list
+    &.require-list {
+      .button__wrap {
+        padding: 0px 0 24px 0;
+        .btn {
+          width: 100%;
+        }
+      }
+      .table-list {
+        display: none;
+      }
+      .accordion-list__wrap {
+        border-top: 0;
+        .accordion__item {
+          a.accordion__title {
+            display: block;
+            padding: 16px 40px 36px 6px;
+            @include fontoption(14px,#000000,400,21px);
+            &::after {
+              width: 20px;
+              height: 10px;
+              background-image: url('../assets/images/icon/icon_arrow_accordion.png');
+              right: 15px;
+            }
+            .accordion-cate {
+              position: initial;
+              .require-list__wait {
+                @include fontoption(13px,#999999,700,21px);
+              }
+              .require-list__complete {
+                @include fontoption(13px,#2F77FB,700,21px);
+              }
+            }  
+            .require-list__date {
+              padding: 0;
+              @include fontoption(13px,#888888,400,20px);
+            } 
+          }
+        }
+        .accordion__content {
+          padding-bottom: 20px;
+          .accordion-question {
+            margin-bottom: -20px;
+            width:calc(100vw - (#{$contentPaddingM} * 2));
+            div {
+              padding: 12px 8px 16px 27px;
+              .accordion-cate {
+                left: 8px;
+                top: 16px;
+                @include fontoption(13px,#000000,700,21px)
+              }
+              .require-list__question {
+                width: calc(100vw - 85px);
+                padding-top: 8px;
+                @include fontoption(13px,#000000,400,21px)
+              }
+              .require-list__question-keyword {
+                @include fontoption(13px,#000000,500,21px)
+              }
+            }
+          }
+          .accordion-answer {
+            margin-bottom: -20px;
+            width:calc(100vw - (#{$contentPaddingM} * 2));
+            div {
+              display: flex;
+              padding: 16px 8px 32px 8px;
+              .accordion-cate {
+                margin: 0;
+                @include fontoption(13px,#2F77FB,700,21px)
+              }
+              .require-list__answer {
+                padding-left: 8px;
+                @include fontoption(13px,#000000,400,21px)
+              }
+              .require-list__answer-date {
+                display: none;
+              }
+            }
+          }
         }
       }
     }
