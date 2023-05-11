@@ -70,8 +70,8 @@
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <!-- <div class="file-choice">
-                      <input type="file" id="fileUp" class="input" >
+                    <div class="file-choice">
+                      <input type="file" id="fileUp" class="input blind" @change="fileChangeCheck">
                       <label for="fileUp" class="btn btn-default-line">파일선택</label>
                       <el-upload
                         class="upload-demo"
@@ -79,14 +79,18 @@
                         action
                         :on-change="handleChange"
                         :auto-upload="false"
-                        multiple>
+                        multiple
+                        v-if="fileList.length < 1"
+                        >
                         <div class="el-upload__text">Drop file here or </div>
                       </el-upload>
                       <ul>
-                        <li v-for="(file, i) in fileList" :key="i">{{ file.name }}</li>
+                        <li v-for="(file, i) in fileList" :key="i">{{ file.name }}
+                          <button class="btn-file--del" @click="deleteFile(i)">X</button>
+                        </li>
                       </ul>
                     </div>
-                    -->
+
                   </div>
                   <p class="guide-text black">&middot; 이미지 용량: 최대 50MB</p>
                   <p class="guide-text black">&middot; 파일종류: JPG, PNG, TIFF, PDF, DOC, PPT, PPTX, XLS, XLSX, HWP</p>
@@ -277,6 +281,14 @@ export default {
     },
     handleChange(file, fileList) {
       this.fileList.push(file)
+    },
+    fileChangeCheck(e) {
+      let file = e.target.files[0]
+      this.fileList = []
+      this.fileList.push(file)
+    },
+    deleteFile(index) {
+      this.fileList.splice(index, 1)
     },
     handleChangeFileList() {
       this.$emit('change', this.fileList)
