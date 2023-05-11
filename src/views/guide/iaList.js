@@ -118,7 +118,7 @@ const homeList = [
     'depth3': '기업정보 입력',
     'screenId': '',
     'status': '완료',
-    'link': ''
+    'link': '/joinStep02'
   },
   {
     'depth3': '회원정보 입력',
