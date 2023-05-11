@@ -31,7 +31,8 @@ export default {
   props: {
     options: Object,
     searchable: Boolean,
-    placeholder: String
+    placeholder: String,
+    value: String
   },
   emits: [
     'update:modelValue'
@@ -44,9 +45,6 @@ export default {
       this.selectedOption = this.options[0].label
     }
   },
-  watch: {
-
-  },
   computed: {
     filteredOption() {
       return this.options.filter(option => {
@@ -58,6 +56,7 @@ export default {
     selectOption(option) {
       this.selectedOption = option.label
       this.isOpen = false
+      this.$emit('input', option.value)
     },
     toggleSelect() {
       this.isOpen ? this.isOpen = false : this.isOpen = true
