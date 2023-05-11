@@ -214,7 +214,7 @@ let router = new Router({
       path: '/noticecontent',
       component: NoticeContent,
       meta: {
-        tittle: '공지사항'
+        tittle: '공지사항 상세'
       }
     },
     {
@@ -235,7 +235,7 @@ let router = new Router({
       path: '/RequireList',
       component: RequireList,
       meta: {
-        tittle: '온라인 문의'
+        tittle: '온라인 문의 목록'
       }
     },
     // 마이 페이지
