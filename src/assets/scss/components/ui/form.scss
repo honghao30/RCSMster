@@ -446,8 +446,14 @@ $formLabelWidth : 120px;
 
 .search-table {
   display:flex;
-  justify-content:flex-start;
+  justify-content:space-between;
+  align-items:center;
   margin-bottom: 16px;
+  .ctrl {
+    display:flex;
+    align-items:center;
+    gap: 8px;
+  }
   .select {
     width: 120px;
     select {
@@ -465,10 +471,8 @@ $formLabelWidth : 120px;
   }
   .btn {
     width: 74px;
-    margin-left: 8px;
   }
   .list-number {
-    padding: 22px 0 0 732px;
     font-size: 14px;
   }
 }
