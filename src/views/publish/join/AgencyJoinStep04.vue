@@ -12,7 +12,8 @@
     type="btn-blue-line"
     >HOME</ButtonCmp>
     <ButtonCmp
-    type="btn-blue"
+     type="btn-blue"
+     @click="goLogin"
     >로그인</ButtonCmp>
   </div>
   </div>
@@ -35,6 +36,9 @@ export default {
     }
   },
   methods: {
+    goLogin () {
+      this.$router.push('./login')
+    }
   }
 }
 </script>

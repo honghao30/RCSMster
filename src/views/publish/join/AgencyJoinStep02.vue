@@ -58,48 +58,51 @@
             <tr>
               <th scope="row"><span class="form-item__label required">법인명(단체명)</span></th>
               <td>
-                <div class="form-item__content">
+                <div  v-if="joinIng" class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명(단체명)을 입력해주세요." v-model="form.companyname"></span>
+                    <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명(단체명)을 입력해주세요." :disabled="disabled" v-model="form.companyname"></span>
                     </div>
                   </div>
                   <p class="guide-text error" v-if="companynameErrorMsg">법인명(단체명)을 입력해주세요.</p>
                 </div>
+                <div v-else class="form-item__content">더피프티원</div>
               </td>
             </tr>
             <tr>
               <th scope="row"><span class="form-item__label required">업태</span></th>
               <td>
-                <div class="form-item__content">
+                <div v-if="joinIng" class="form-item__content">
                 <div class="form-item-row">
                   <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 업태명을 입력해주세요."  v-model="form.biztype"></span>
+                    <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 업태명을 입력해주세요." :disabled="disabled"  v-model="form.biztype"></span>
                   </div>
                 </div>
                 <p class="guide-text error" v-if="biztypeErrorMsg">사업자등록증에 등록된 첫번째 업태명을 입력해주세요.</p>
                 <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘기업/단체’로 입력해주세요.</p>
                 </div>
+                <div v-else class="form-item__content">서비스업</div>
               </td>
             </tr>
             <tr>
               <th scope="row"><span class="form-item__label required">종목</span></th>
               <td>
-                <div class="form-item__content">
+                <div v-if="joinIng" class="form-item__content">
                 <div class="form-item-row">
                   <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 종목명을 입력해주세요."   v-model="form.bizevent"></span>
+                    <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 종목명을 입력해주세요." :disabled="disabled" v-model="form.bizevent"></span>
                   </div>
                 </div>
                 <p class="guide-text error" v-if="bizeventErrorMsg">사업자등록증에 등록된 첫번째 종목명을 입력해주세요.</p>
                 <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘비영리, 공공/행정, 정치/사회, 복지, 종교, 모임, 기관/단체일반’ 중에서 해당하는 항목을 입력해주세요.</p>
                 </div>
+                <div v-else class="form-item__content">IT</div>
               </td>
             </tr>
             <tr>
               <th scope="row"><span class="form-item__label required">기업주소</span></th>
               <td>
-                <div class="form-item__content">
+                <div v-if="joinIng" class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item post">
                     <span class="input"><input type="text" class="input" v-model="form.postcode"></span>
@@ -117,6 +120,7 @@
                   </div>
                   <p class="guide-text error" v-if="postcodeErrorMsg">기업주소를 입력해주세요.</p>
                 </div>
+                <div v-else class="form-item__content">06128 서울시 강남구 봉은사로 18길</div>
               </td>
             </tr>
           </tbody>
@@ -149,32 +153,16 @@
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <div class="input-item ip">
+                    <div class="input-item ip"
+                      v-for="(item, index) in apiList"
+                      :key="index"
+                    >
                       <span class="input"><input type="text" class="input" v-model="form.ip" placeholder="단일 IP 주소 입력"></span>
                       <span class="input"><input type="text" class="input" v-model="form.ipName" placeholder="항목명"></span>
                       <ButtonCmp
                         type="btn-default-line"
                         size="small"
-                      >
-                      삭제
-                      </ButtonCmp>
-                    </div>
-                    <div class="input-item ip">
-                      <span class="input"><input type="text" class="input" v-model="form.ip" placeholder="단일 IP 주소 입력"></span>
-                      <span class="input"><input type="text" class="input" v-model="form.ipName" placeholder="항목명"></span>
-                      <ButtonCmp
-                        type="btn-default-line"
-                        size="small"
-                      >
-                      삭제
-                      </ButtonCmp>
-                    </div>
-                    <div class="input-item ip">
-                      <span class="input"><input type="text" class="input" v-model="form.ip" placeholder="단일 IP 주소 입력"></span>
-                      <span class="input"><input type="text" class="input" v-model="form.ipName" placeholder="항목명"></span>
-                      <ButtonCmp
-                        type="btn-default-line"
-                        size="small"
+                        @click="deleteApiRow"
                       >
                       삭제
                       </ButtonCmp>
@@ -182,8 +170,9 @@
                     <ButtonCmp
                       type="btn-default-line"
                       size="small"
+                      @click="addApiRow"
                     >
-                    추가
+                      추가
                     </ButtonCmp>
                   </div>
                 </div>
@@ -350,27 +339,76 @@
                     </ul>
                   </div>
                 </div>
+                <p class="guide-text">※ 대행사에서 제공가능한 서비스 범위를 선택하시면 기업에게 대행사를 추천해드립니다.</p>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="form-item__label required">대행사 로고</span></th>
+              <td>
+                <div class="form-item__content">
+                  <div class="form-item-row">
+                    <div class="input-item">
+                    <span class="input"><input type="text" class="input" :value="filesName3"></span>
+                    <input type="file" id="fileUp3" class="input">
+                    <label for="fileUp3" class="btn btn-default-line">파일찾기</label>
+                    </div>
+                  </div>
+                  <p class="guide-text black">&middot; 파일형식: JPG, PNG, PDF, TIFF(최대 5MB)</p>
+                  <p class="guide-text">※ 파트너사 리스트에 노출되는 대행사 로고를 업로드해주세요.</p>
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </form>
-    <p class="guide-text">※ 대행사에서 제공가능한 서비스 범위를 선택하시면 기업에게 대행사를 추천해드립니다.</p>
     <div class="button__wrap">
       <ButtonCmp
         type="btn-blue-line"
-      >취소</ButtonCmp>
+      >이전</ButtonCmp>
       <ButtonCmp
         type="btn-blue"
         @click="onSubmit"
       >다음</ButtonCmp>
     </div>
+    <!-- // 모달 영역 -->
+    <ModalView
+      v-if="isModalViewed" @closeModal="isModalViewed = false"
+    >
+      <ConfirmMsg
+        v-if="certifMessage"
+        @closeModal="isModalViewed = false"
+      >
+        <div slot="msg">
+          <div class="msg">
+            동일한 사업자등록번호로<br> 가입된 회원계정이 있습니다.
+          </div>
+          <div class="msg2">
+            홍*동(hkp***@the-51.com)
+          </div>
+        </div>
+        <div class="button__wrap" slot="button">
+            <ButtonCmp
+              type="btn-blue-line"
+              @click="closeMsg"
+            >닫기
+            </ButtonCmp>
+            <ButtonCmp
+            type="btn-blue"
+            @click="closeMsg"
+            >
+              온라인 문의
+            </ButtonCmp>
+          </div>
+      </ConfirmMsg>
+      <ZipCode v-else />
+    </ModalView>
+    <!--
     <ModalView
       v-if="isModalViewed" @closeModal="isModalViewed = false"
     >
         <CertificateMsg @closeModal="isModalViewed = false" status="ing"/>
-        <!-- 기 가입자일 경우 done, 진행 중인 경우는 ing  -->
+        기 가입자일 경우 done, 진행 중인 경우는 ing
     </ModalView>
 
     <ModalView
@@ -378,7 +416,9 @@
     >
         <AgencyCheckMsg @closeModal="isAgencyModal = false"/>
     </ModalView>
+  -->
     <!-- 중개사 url 정보 입력 확인 팝업 호출 시점 기획 확인 필요-->
+    <!-- // 모달 영역 -->
   </div>
 </template>
 
@@ -387,9 +427,11 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
-import CertificateMsg from '@/views/publish/join/CertificateMsg.vue'
-import AgencyCheckMsg from '@/views/publish/join/AgencyCheckMsg.vue'
+// import CertificateMsg from '@/views/publish/join/CertificateMsg.vue'
+// import AgencyCheckMsg from '@/views/publish/join/AgencyCheckMsg.vue'
 import StepList from '@/components/common/StepList.vue'
+import ConfirmMsg from '@/views/publish/join/ConfirmMsg.vue'
+import ZipCode from '@/views/publish/join/ZipCode.vue'
 
 export default {
   components: {
@@ -397,9 +439,11 @@ export default {
     ButtonCmp,
     PageTitleH3,
     ModalView,
-    CertificateMsg,
+    // CertificateMsg,
     StepList,
-    AgencyCheckMsg
+    // AgencyCheckMsg,
+    ConfirmMsg,
+    ZipCode
   },
   data() {
     return {
@@ -416,6 +460,7 @@ export default {
         serviceRange: [],
         agency: ''
       },
+      apiList: [],
       selecteAuth: ['Auth_1'],
       certificateErrorMsg: false,
       companynameErrorMsg: false,
@@ -428,10 +473,22 @@ export default {
       files: '',
       filesName: '',
       filesName2: '',
+      filesName3: '',
       isModalViewed: false,
+      joinIng: true,
       certificatetemp: '123456789',
       isAgencyModal: false,
-      stepTitle: ['약관동의', '대행사정보 입력', '회원정보 입력', '가입완료']
+      stepTitle: ['약관동의', '대행사정보 입력', '회원정보 입력', '가입완료'],
+      disabled: true
+    }
+  },
+  watch: {
+    isModalViewed () {
+      if (this.isModalViewed) {
+        document.documentElement.style.overflow = 'hidden'
+        return
+      }
+      document.documentElement.style.overflow = 'auto'
     }
   },
   methods: {
@@ -463,24 +520,45 @@ export default {
       if (this.form.agency === '') {
         this.agencyErrorMsg = true
       }
+      this.$router.push('./AgencyJoinStep03')
     },
     checkCertificate () {
       if (this.form.certificate === '') {
         this.certificateErrorMsg = true
-        return
+      } else if (this.form.certificate === '123') {
+        this.isModalViewed = true
+        this.certifMessage = true
+        this.joinIng = false
+      } else {
+        this.showall = false
+        this.disabled = false
       }
-      this.showall = false
-      this.isModalViewed = true
     },
     closeModal () {
       this.isModalViewed = false
       this.isAgencyModal = false
+    },
+    closeMsg  () {
+      this.isModalViewed = false
     },
     onFileChanged (e) {
       const files = e.target.files
       this.files = files
       const filesName = files[0].name
       this.filesName = filesName
+    },
+    findPost () {
+      this.isModalViewed = true
+      this.certifMessage = false
+    },
+    addApiRow () {
+      if (this.apiList.length < 10) {
+        this.apiList.push({})
+        console.log(this.apiList.length < 10)
+      }
+    },
+    deleteApiRow (index) {
+      this.apiList.splice(index, 1)
     }
   }
 }
