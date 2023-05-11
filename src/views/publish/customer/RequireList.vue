@@ -18,7 +18,7 @@
         </colgroup>
         <thead>
           <tr>
-            <th scope="col">상태</th>
+            <th scope="col"><span>상태</span></th>
             <th scope="col"><span>제목</span></th>
             <th scope="col"><span></span>등록일</th>
           </tr>
