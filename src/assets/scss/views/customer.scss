@@ -1,6 +1,6 @@
 .inner {
   // table
-  .notice-table {
+  .table__wrap {
     .table-list {
       table-layout: fixed;
     }
@@ -61,7 +61,7 @@
       background:url('../assets/images/customer/ico_down.png') no-repeat 50% 50%;
     }
   }
-  // search-no-data
+  // search - no data
   .notice__search-no-data {
     text-align: center;
     p{
@@ -173,17 +173,9 @@
       }
     }
   }
-  // faq
-  &.notice-faq {
-    .search-table {
-      .select {
-        display: none;
-      }
-      .list-number {
-        padding: 22px 0 0 852px;
-      }
-    }
-    .accodien-list__wrap {
+  // accordion
+  &.notice-faq, &.require-list {
+    .accordion-list__wrap {
       border-top: 2px solid #2F77FB;
       width: 100%;
       .accordion__item {    
@@ -198,11 +190,11 @@
             display: block;
             position: absolute;
             right: 40px;
-            top: 38%;
+            top: 40%;
             transform: translateY(-50%);
             width: 16px;
             height:16px;
-            background-image: url('../assets/images/icon/icon_arrow_accodien.png');
+            background-image: url('../assets/images/icon/icon_arrow_accordion.png');
             background-position: center center;
             background-repeat: no-repeat;
             transform: rotate(180deg);
@@ -214,7 +206,7 @@
               transition: all 0.3s;
             }
           } 
-          .accodien-cate {
+          .accordion-cate {
             position: absolute;
             left: 40px;
             top:50%;
@@ -227,7 +219,7 @@
         position: relative;
         padding: 20px 85px 40px;
         background-color: #F8F8F8;
-        .accodien-cate {
+        .accordion-cate {
           position: absolute;
           left: 40px;
           top:20px;
@@ -246,13 +238,26 @@
       height: 0 !important;
       opacity: 0;
     }
+  }
+  // faq
+  &.notice-faq {
+    .search-table {
+      .select {
+        display: none;
+      }
+      .input {
+        margin-left: 0;
+      }
+      .list-number {
+        padding: 22px 0 0 860px;
+      }
+    }
     .notice-faq__inquire {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin: 32px auto 0;
       padding: 30px 0px;
-      gap: 20px;
       width: 628px;
       height: 176px;
       background: #F8F8F8;
@@ -264,6 +269,77 @@
         font-size: 16px;
         line-height: 24px;
         text-align: center;
+      }
+      .button__wrap {
+        padding: 20px 0 30px 0;
+      }
+    }
+  }
+  // require list
+  &.require-list {
+    .button__wrap {
+      padding: 0 0 16px 1124px;
+    }
+    .table-list {
+      thead {
+        tr {
+          th:last-child {
+            text-align: left;
+            padding: 0 0 0 55px;
+          }
+        }
+      }
+    }
+    .accordion-list__wrap {
+      border-top: 0;
+      width: 100%;
+      .accordion__item {    
+        border-bottom: 1px solid #F0F0F0;
+        a.accordion__title {
+          position: relative;    
+          @include fontoption(16px,#000000,400,24px);
+          display: block;
+          padding: 17px 85px;
+          &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            right: 40px;
+            top: 40%;
+            transform: translateY(-50%);
+            width: 16px;
+            height:16px;
+            background-image: url('../assets/images/icon/icon_arrow_accordion.png');
+            background-position: center center;
+            background-repeat: no-repeat;
+            transform: rotate(180deg);
+            transition: all 0.3s;
+          }
+          &.isOpen {
+            &::after {      
+              transform: rotate(0deg);    
+              transition: all 0.3s;
+            }
+          } 
+          .accordion-cate {
+            position: absolute;
+            left: 40px;
+            top:50%;
+            transform: translateY(-50%);
+            @include fontoption(16px,#000000,500,24px)
+          }   
+        }
+      }
+      .accordion__content {
+        position: relative;
+        padding: 20px 85px 40px;
+        background-color: #F8F8F8;
+        .accordion-cate {
+          position: absolute;
+          left: 40px;
+          top:20px;
+          @include fontoption(16px,#2F77FB,500,24px)
+        }    
       }
     }
   }
@@ -484,11 +560,14 @@
         .select {
           display: none;
         }
+        .input-m {
+          margin: 0 8px 0 0;
+        } 
         .list-number {
           padding: 68px 0 0 0;
         }
       }
-      .accodien-list__wrap {
+      .accordion-list__wrap {
         width: 100%;
         .accordion__item {
           a.accordion__title {
@@ -498,9 +577,9 @@
               right: 8px;
               width: 20px;
               height: 10px;
-              background-image: url('../assets/images/icon/icon_arrow_accodien.png');
+              background-image: url('../assets/images/icon/icon_arrow_accordion.png');
             }
-            .accodien-cate {
+            .accordion-cate {
               left: 8px;
               top: 25px;
               @include fontoption(13px,#000000,700,21px)
@@ -511,7 +590,7 @@
           padding: 16px 8px 32px 24px;
           @include fontoption(13px,#000000,400,21px);
           background-color: #F8F8F8;
-          .accodien-cate {
+          .accordion-cate {
             left: 8px;
             top: 16px;
             @include fontoption(13px,#2F77FB,700,21px);
@@ -521,12 +600,14 @@
       .notice-faq__inquire {
         margin: 24px auto 0;
         padding: 24px 0px;
-        gap: 16px;
         width:calc(100vw - 48px);
         height: 151px;
         p {
           font-size: 14px;
           line-height: 21px;
+        }
+        .button__wrap {
+          padding: 16px 0 24px 0;
         }
       }
     }

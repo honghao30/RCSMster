@@ -8,13 +8,13 @@
           v-for="item in faqData" :key="item"
         >
           <template slot="accordion-title">
-            <span class="accodien-cate">
+            <span class="accordion-cate">
               Q
             </span>
             <p> {{ item.question }} </p>
           </template>
           <template slot="accordion-content">
-            <span class="accodien-cate">
+            <span class="accordion-cate">
               A
             </span>
             <p> {{ item.answer }} </p>
@@ -28,12 +28,14 @@
     </div>
     <div class="notice-faq__inquire">
       <p>원하시는 답변을 찾지 못하셨나요? <br/> 온라인 문의를 남겨주세요.</p>
-      <ButtonCmp
-        type="btn-blue"
-        @click="clickHandler"
-      >
-        문의하기
-      </ButtonCmp>
+      <div class="button__wrap">
+        <ButtonCmp
+          type="btn-blue"
+          @click="clickHandler"
+        >
+          문의하기
+        </ButtonCmp>
+      </div>
     </div>
   </div>
 </template>

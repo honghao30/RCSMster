@@ -1,5 +1,5 @@
-s<template>
-  <ul class="accodien-list__wrap">
+<template>
+  <ul class="accordion-list__wrap">
     <slot></slot>
   </ul>
 </template>
@@ -13,7 +13,7 @@ export default {
         count: 0,
         active: null
       }
-    };
+    }
   },
   provide() {
     return { Accordion: this.Accordion }
