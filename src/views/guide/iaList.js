@@ -163,6 +163,38 @@ const homeList = [
     'status': '완료',
     'link': '/AgencyJoinStep04'
   },
+  // 마이 페이지
+  {
+    'depth1': '마이페이지',
+    'depth2': '개인회원 정보 관리',
+    'screenId': '',
+    'status': '완료',
+    'link': '/myinfo'
+  },
+  {
+    'depth2': '기업 회원정보 관리',
+    'screenId': '',
+    'status': '완료',
+    'link': '/myinfoagency'
+  },
+  {
+    'depth2': '기업 정보 관리(승인대기)',
+    'screenId': '',
+    'status': '완료',
+    'link': '/corpinfo'
+  },
+  {
+    'depth2': '기업 정보 관리(승인완료후)',
+    'screenId': '',
+    'status': '완료',
+    'link': '/corpinfo-edit'
+  },
+  {
+    'depth2': '회원탈퇴',
+    'screenId': '',
+    'status': '완료',
+    'link': '/withdrawal'
+  },
   // 메인
   {
     'depth1': '메인',
@@ -219,28 +251,6 @@ const homeList = [
   {
     'depth3': '상세',
     'screenId': 'G004_31'
-  },
-  // 마이 페이지
-  {
-    'depth1': '마이페이지',
-    'depth2': '개인정보 관리',
-    'screenId': 'G005_1'
-  },
-  {
-    'depth2': '기업정보 관리',
-    'screenId': 'G005'
-  },
-  {
-    'depth3': '[PopUp] 우편번호 찾기',
-    'screenId': ''
-  },
-  {
-    'depth3': '[PopUp] 회원 탈퇴',
-    'screenId': 'G005_2'
-  },
-  {
-    'depth3': '[PopUp] 대행사 삭제',
-    'screenId': ''
   },
   {
     'depth1': '개인정보처리방침'

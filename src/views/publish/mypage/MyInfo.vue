@@ -136,7 +136,6 @@ d<template>
         type="btn-line"
       >취소</ButtonCmp>
       <router-link
-        to="/companyinfo"
         class="btn btn-blue-line"
       >기업정보 관리</router-link>
       <ButtonCmp
