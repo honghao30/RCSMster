@@ -1,5 +1,5 @@
 <template>
-  <div class="inner">
+  <div class="inner notice">
     <PageTitle pagetitle="공지사항" />
     <TabCategory :category="category" :newTabIndex="newTabIndex"/>
     <SearchTable v-if="checkBoardLength" listnumber=73 selectable :dropdownOptions="dropdownOptions" />
@@ -43,6 +43,10 @@
       </table>
     </div>
     <PagingCmp />
+    <!-- 검색 결과 없을 시 div 띄워주시면 됩니다 -->
+    <div class="notice__search-no-data">
+      <p>검색 결과가 없습니다.</p>
+    </div>
   </div>
 </template>
 

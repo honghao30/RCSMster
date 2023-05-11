@@ -1,7 +1,7 @@
 <template>
   <div class="login login-help">
     <div class="login-title__wrap--top">
-      <PageTitle pagetitle="비밀번호 찾기" />
+      <PageTitle pagetitle="비밀번호 재설정" />
     </div>
     <div class="tab__wrap">
       <ul class="tab-list">

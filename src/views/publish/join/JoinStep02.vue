@@ -17,7 +17,7 @@
                 <div class="form-item__content" v-if="showall">
                   <div class="form-item-row">
                       <div class="input-item">
-                        <span class="input"><input type="text" class="input" placeholder="‘-’없이 10자리 숫자만 입력해주세요." v-model="form.certificate"></span>
+                        <span class="input"><input ref="certificate" type="text" class="input" placeholder="‘-’없이 10자리 숫자만 입력해주세요." v-model="form.certificate"></span>
                         <ButtonCmp
                           type="btn-default-line"
                           @click="checkCertificate"
@@ -45,7 +45,7 @@
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                      <span class="input"><input type="text" class="input" :value="filesName"></span>
+                      <span class="input"><input type="text" class="input" :value="filesName"  :disabled="disabled"></span>
                       <input type="file" id="fileUp" class="input" @change="onFileChanged">
                       <label for="fileUp" class="btn btn-default-line">파일찾기</label>
                     </div>
@@ -59,48 +59,51 @@
             <tr>
               <th scope="row"><span class="form-item__label required">법인명(단체명)</span></th>
               <td>
-                <div class="form-item__content">
+                <div v-if="joinIng" class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                      <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명(단체명)을 입력해주세요." v-model="form.companyname"></span>
+                      <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명(단체명)을 입력해주세요." :disabled="disabled" v-model="form.companyname"></span>
                     </div>
                   </div>
                   <p class="guide-text error" v-if="companynameErrorMsg">법인명(단체명)을 입력해주세요.</p>
                 </div>
+                <div v-else class="form-item__content">더피프티원</div>
               </td>
             </tr>
             <tr>
               <th scope="row"><span class="form-item__label required">업태</span></th>
               <td>
-                <div class="form-item__content">
+                <div v-if="joinIng" class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                      <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 업태명을 입력해주세요."  v-model="form.biztype"></span>
+                      <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 업태명을 입력해주세요."  :disabled="disabled"  v-model="form.biztype"></span>
                     </div>
                   </div>
                   <p class="guide-text error" v-if="biztypeErrorMsg">사업자등록증에 등록된 첫번째 업태명을 입력해주세요.</p>
                   <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘기업/단체’로 입력해주세요.</p>
                 </div>
+                <div v-else class="form-item__content">서비스업</div>
               </td>
             </tr>
             <tr>
               <th scope="row"><span class="form-item__label required">종목</span></th>
               <td>
-                <div class="form-item__content">
+                <div  v-if="joinIng" class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                      <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 종목명을 입력해주세요."   v-model="form.bizevent"></span>
+                      <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 종목명을 입력해주세요." :disabled="disabled" v-model="form.bizevent"></span>
                     </div>
                   </div>
                   <p class="guide-text error" v-if="bizeventErrorMsg">사업자등록증에 등록된 첫번째 종목명을 입력해주세요.</p>
                   <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘비영리, 공공/행정, 정치/사회, 복지, 종교, 모임, 기관/단체일반’ 중에서 해당하는 항목을 입력해주세요.</p>
                 </div>
+                <div v-else class="form-item__content">IT</div>
               </td>
             </tr>
             <tr>
               <th scope="row"><span class="form-item__label required">기업주소</span></th>
               <td>
-                <div class="form-item__content">
+                <div v-if="joinIng" class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item post">
                       <span class="input"><input type="text" class="input" v-model="form.postcode"></span>
@@ -118,50 +121,7 @@
                     </div>
                   </div>
                 </div>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <span class="form-item__label required">권한</span>
-              </th>
-              <td>
-                <div class="form-item__content authority">
-                  <dl class="isSelect">
-                    <dt>
-                      <!-- 체크박스가 아닌 라디오 박스가 맞는거 아닌지 기획 확인필요
-                      두개 동시에 체크 되는 경우는 없으니
-                      기획서는 선택 된 권한 활성화 형태인데 디자인은 체크박스로 되어 있으니 정식으로 디자인 받은 후 확인 필요 -->
-                      <span class="checkbox">
-                        <input type="checkbox"  v-model="selecteAuth" id="Auth_1" value="Auth_1"  />
-                        <label for="Auth_1"><span class="checkbox__text">마스터 권한</span></label>
-                      </span>
-                    </dt>
-                    <dd>
-                      <ul>
-                        <li>사업자등록증 제출 필수 (○)</li>
-                        <li>브랜드를 직접 개설 (○)</li>
-                        <li>브랜드 관리자로 위임을 받음(○)</li>
-                        <li>운영자 승인 없이 바로 가입 완료(○)</li>
-                      </ul>
-                    </dd>
-                  </dl>
-                  <dl>
-                    <dt>
-                      <span class="checkbox">
-                        <input type="checkbox" v-model="selecteAuth" id="Auth_2" value="Auth_2" />
-                        <label for="Auth_2"><span class="checkbox__text">매니저 권한</span></label>
-                      </span>
-                    </dt>
-                    <dd>
-                      <ul>
-                        <li>사업자등록증 제출 필수 (X)</li>
-                        <li>브랜드를 직접 개설 (X)</li>
-                        <li>브랜드 관리자로 위임을 받음(○)</li>
-                        <li>운영자 승인 없이 바로 가입 완료(○)</li>
-                      </ul>
-                    </dd>
-                  </dl>
-                </div>
+                <div v-else class="form-item__content">06128 서울시 강남구 봉은사로 18길</div>
               </td>
             </tr>
           </tbody>
@@ -180,8 +140,33 @@
   <ModalView
     v-if="isModalViewed" @closeModal="isModalViewed = false"
   >
-      <CertificateMsg @closeModal="isModalViewed = false" status="done"/>
-      <!-- 기 가입자일 경우 done, 진행 중인 경우는 ing  -->
+    <ConfirmMsg
+      v-if="certifMessage"
+      @closeModal="isModalViewed = false"
+    >
+      <div slot="msg">
+        <div class="msg">
+          동일한 사업자등록번호로<br> 가입된 회원계정이 있습니다.
+        </div>
+        <div class="msg2">
+          홍*동(hkp***@the-51.com)
+        </div>
+      </div>
+      <div class="button__wrap" slot="button">
+          <ButtonCmp
+            type="btn-blue-line"
+            @click="closeMsg"
+          >닫기
+          </ButtonCmp>
+          <ButtonCmp
+          type="btn-blue"
+          @click="closeMsg"
+          >
+            온라인 문의
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+      <ZipCode v-else />
   </ModalView>
   </div>
 </template>
@@ -191,8 +176,9 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
-import CertificateMsg from '@/views/publish/join/CertificateMsg.vue'
 import StepList from '@/components/common/StepList.vue'
+import ConfirmMsg from '@/views/publish/join/ConfirmMsg.vue'
+import ZipCode from '@/views/publish/join/ZipCode.vue'
 
 export default {
   components: {
@@ -200,8 +186,9 @@ export default {
     ButtonCmp,
     PageTitleH3,
     ModalView,
-    CertificateMsg,
-    StepList
+    StepList,
+    ConfirmMsg,
+    ZipCode
   },
   data() {
     return {
@@ -221,12 +208,15 @@ export default {
       biztypeErrorMsg: false,
       bizeventErrorMsg: false,
       postcodeErrorMsg: false,
+      certifMessage: false,
       showall: true,
       files: '',
       filesName: '',
       isModalViewed: false,
+      joinIng: true,
       certificatetemp: '123456789',
-      stepTitle: ['약관동의', '기업정보 입력', '회원정보 입력', '가입완료']
+      stepTitle: ['약관동의', '기업정보 입력', '회원정보 입력', '가입완료'],
+      disabled: true
     }
   },
   watch: {
@@ -264,15 +254,20 @@ export default {
     checkCertificate () {
       if (this.form.certificate === '') {
         this.certificateErrorMsg = true
-        return
+      } else if (this.form.certificate === '123') {
+        this.isModalViewed = true
+        this.certifMessage = true
+        this.joinIng = false
+      } else {
+        this.showall = false
+        this.disabled = false
       }
-      this.showall = false
-      this.isModalViewed = true
-      // document.body.classList.add('modal-open')
     },
     closeModal () {
       this.isModalViewed = false
-      // document.body.classList.remove('modal-open')
+    },
+    closeMsg  () {
+      this.isModalViewed = false
     },
     onFileChanged (e) {
       const files = e.target.files
@@ -281,7 +276,8 @@ export default {
       this.filesName = filesName
     },
     findPost () {
-      alert('우편번호 잦기')
+      this.isModalViewed = true
+      this.certifMessage = false
     }
   }
 }

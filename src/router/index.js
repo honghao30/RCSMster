@@ -37,10 +37,10 @@ import AgencyJoinStep04 from '@/views/publish/join/AgencyJoinStep04'
 
 // 고객센터
 import NoticeView from '@/views/publish/customer/Notice'
-import NoticeSearch from '@/views/publish/customer/NoticeSearch'
 import NoticeContent from '@/views/publish/customer/NoticeContent'
 import FAQ from '@/views/publish/customer/FAQ'
 import OnlineInquire from '@/views/publish/customer/OnlineInquire'
+import RequireList from '@/views/publish/customer/RequireList'
 
 // 마이페이지
 import MyInfo from '@/views/publish/mypage/MyInfo'
@@ -211,13 +211,6 @@ let router = new Router({
       }
     },
     {
-      path: '/noticesearch',
-      component: NoticeSearch,
-      meta: {
-        tittle: '공지사항'
-      }
-    },
-    {
       path: '/noticecontent',
       component: NoticeContent,
       meta: {
@@ -234,6 +227,13 @@ let router = new Router({
     {
       path: '/OnlineInquire',
       component: OnlineInquire,
+      meta: {
+        tittle: '온라인 문의'
+      }
+    },
+    {
+      path: '/RequireList',
+      component: RequireList,
       meta: {
         tittle: '온라인 문의'
       }

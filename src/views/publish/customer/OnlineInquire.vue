@@ -1,7 +1,9 @@
 <template>
   <div class="online">
-    <PageTitle pagetitle="온라인 문의" />
-    <PageTitleH3 titleh3="문의정보" noticeinfo="필수 입력값" />
+    <div class="online-title__wrap--top">
+      <PageTitle pagetitle="온라인 문의" />
+      <PageTitleH3 titleh3="문의정보" noticeinfo="필수 입력값" />
+    </div>
     <form  ref="form" :model="form">
       <div class="table__wrap">
         <table class="table table-bodyonly form-table">
@@ -68,20 +70,23 @@
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <div class="file-choice">
-                      <input type="file" id="fileUp" class="input" @change="FileChoice">
+                    <!-- <div class="file-choice">
+                      <input type="file" id="fileUp" class="input" >
                       <label for="fileUp" class="btn btn-default-line">파일선택</label>
                       <el-upload
                         class="upload-demo"
                         drag
-                        action="https://jsonplaceholder.typicode.com/posts/"
-                        :on-preview="handlePreview"
-                        :on-remove="handleRemove"
-                        :file-list="fileList"
+                        action
+                        :on-change="handleChange"
+                        :auto-upload="false"
                         multiple>
                         <div class="el-upload__text">Drop file here or </div>
                       </el-upload>
+                      <ul>
+                        <li v-for="(file, i) in fileList" :key="i">{{ file.name }}</li>
+                      </ul>
                     </div>
+                    -->
                   </div>
                   <p class="guide-text black">&middot; 이미지 용량: 최대 50MB</p>
                   <p class="guide-text black">&middot; 파일종류: JPG, PNG, TIFF, PDF, DOC, PPT, PPTX, XLS, XLSX, HWP</p>
@@ -93,8 +98,85 @@
         </table>
       </div>
     </form>
-    <PageTitleH3 titleh3="회원정보" noticeinfo="필수 입력값" />
+    <div class="online-title__wrap--top">
+      <PageTitleH3 titleh3="회원정보" noticeinfo="필수 입력값" />
+    </div>
     <!-- 회원정보 -->
+    <form  ref="form" :model="form">
+      <div class="table__wrap">
+        <table class="table table-bodyonly form-table">
+          <colgroup>
+            <col width="200px">
+            <col />
+          </colgroup>
+          <tbody>
+            <!-- 이름 -->
+            <tr>
+              <th scope="row"><span class="form-item__label required">이름</span></th>
+              <td>
+                <div class="form-item__content">
+                  <div class="form-item-row">
+                    <div class="input-item">
+                    <span class="input"><input type="text" class="input" placeholder="이름을 입력해 주세요." v-model="form.membername"></span>
+                    </div>
+                  </div>
+                  <p class="guide-text error" v-if="membernameErrorMsg">이름을 입력해주세요.</p>
+                </div>
+              </td>
+            </tr>
+            <!-- 휴대폰 -->
+            <tr>
+              <th scope="row"><span class="form-item__label required">휴대폰 번호</span></th>
+              <td>
+                <div class="form-item__content">
+                  <div class="form-item-row">
+                    <div class="input-item">
+                    <span class="input"><input type="text" class="input" placeholder="휴대폰 번호를 입력해주세요." v-model="form.memberphone"></span>
+                    </div>
+                  </div>
+                  <p class="guide-text error" v-if="memberphoneErrorMsg">휴대폰 번호를 입력해주세요.</p>
+                </div>
+              </td>
+            </tr>
+            <!-- 이메일 -->
+            <tr>
+              <th scope="row"><span class="form-item__label required">이메일</span></th>
+              <td>
+                <div class="form-item__content">
+                  <div class="form-item-row">
+                    <div class="input-item">
+                    <span class="input"><input type="text" class="input" placeholder="이메일을 입력해주세요." v-model="form.membermail"></span>
+                    </div>
+                  </div>
+                  <p class="guide-text">※ 문의에 대한 답변을 받을 수 있도록 이메일을 정확히 입력해 주세요.</p>
+                  <p class="guide-text error" v-if="membermailErrorMsg">이메일을 입력해주세요.</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+    <form  ref="form" :model="form">
+      <div class="agree__wrap privacy">
+        <h3 class="agree__title">약관동의</h3>
+        <p class="agree__title-sub">개인정보 수집 및 이용 안내 (필수)</p>
+        <div class="agree__item">
+          <div class="agree__box">
+            <div class="terms">
+              <p class="terms__text">문의 내용 접수 및 처리, 결과 회신을 위하여 최소한의 개인정보를 수집합니다.</p>
+              <br>
+              <p class="terms__text">수집항목 : 이름, 휴대폰번호, 이메일주소</p>
+              <p class="terms__text">보유기간 : 문의 접수 후 3년</p>
+            </div>
+          </div>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox" id="delegate" value="form.delegate"/>
+            <label for="delegate"><span class="checkbox__text">개인정보 수집 및 이용에 동의합니다.</span></label>
+        </div>
+      </div>
+    </form>
     <div class="button__wrap">
       <ButtonCmp
         type="btn-blue-line"
@@ -102,7 +184,7 @@
       <ButtonCmp
         type="btn-blue"
         @click="onSubmit"
-      >다음</ButtonCmp>
+      >목록</ButtonCmp>
     </div>
     <ModalView
       v-if="isModalViewed" @closeModal="isModalViewed = false"
@@ -138,33 +220,34 @@ export default {
   data() {
     return {
       form: {
-        inquirevalue: '',
         inquiretitle: '',
         inquirecont: '',
-        certificate: '',
-        certificateFile: '',
-        biztype: '',
-        bizevent: '',
-        postcode: '',
-        addr1: '',
-        addr2: '',
-        service: [],
-        serviceRange: [],
-        agency: ''
+        membername: '',
+        memberphone: '',
+        membermail: ''
       },
+      dropdownOptions: ['선택하세요.', '가입', '서비스 관리', '브랜드 관리', '대화방 관리', '탬플릿 관리', '자동응답 관리', '브랜드 소식 관리'],
       inquirevalueErrorMsg: false,
       inquiretitleErrorMsg: false,
       inquirecontErrorMsg: false,
+      membernameErrorMsg: false,
+      memberphoneErrorMsg: false,
+      membermailErrorMsg: false,
       files: '',
       filesName: '',
       filesName2: '',
       isModalViewed: false,
-      dropdownOptions: ['가입', '서비스 관리', '브랜드 관리', '대화방 관리', '탬플릿 관리', '자동응답 관리', '브랜드 소식 관리']
+      fileList: []
+    }
+  },
+  watch: {
+    fileList() {
+      this.handleChangeFileList()
     }
   },
   methods: {
     onSubmit () {
-      if (this.form.inquirevalue === '') {
+      if (this.dropdownOptions[0] === '선택하세요') {
         this.inquirevalueErrorMsg = true
         return
       }
@@ -176,35 +259,27 @@ export default {
         this.inquirecontErrorMsg = true
         return
       }
-      if (this.form.biztype === '') {
-        this.biztypeErrorMsg = true
+      if (this.form.membername === '') {
+        this.membernameErrorMsg = true
         return
       }
-      if (this.form.bizevent === '') {
-        this.bizeventErrorMsg = true
+      if (this.form.memberphone === '') {
+        this.memberphoneErrorMsg = true
         return
       }
-      if (this.form.postcode === '' || this.form.addr1 === '' || this.form.addr2 === '') {
-        this.postcodeErrorMsg = true
-        return
-      }
-      if (!this.form.service.length) {
-        this.serviceErrorMsg = true
-        return
-      }
-      if (this.form.agency === '') {
-        this.agencyErrorMsg = true
+      if (this.form.membermail === '') {
+        this.membermailErrorMsg = true
       }
     },
     closeModal () {
       this.isModalViewed = false
       this.isAgencyModal = false
     },
-    FileChoice (e) {
-      const files = e.target.files
-      this.files = files
-      const filesName = files[0].name
-      this.filesName = filesName
+    handleChange(file, fileList) {
+      this.fileList.push(file)
+    },
+    handleChangeFileList() {
+      this.$emit('change', this.fileList)
     }
   }
 }
