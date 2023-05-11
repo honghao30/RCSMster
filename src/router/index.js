@@ -250,7 +250,7 @@ let router = new Router({
       path: '/myinfoagency',
       component: MyInfoAgency,
       meta: {
-        tittle: '개인정보 관리'
+        tittle: '기업정보 관리'
       }
     },
     {
