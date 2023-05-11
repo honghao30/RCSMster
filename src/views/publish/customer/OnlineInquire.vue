@@ -18,7 +18,7 @@
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <Dropdown :options="dropdownOptions" placeholder="선택해 주세요."/>
+                    <Dropdown :options="dropdownOptions" placeholder="선택해 주세요." v-model="form.inquirevalue"/>
                   </div>
                   <p class="guide-text error" v-if="inquirevalueErrorMsg">문의 유형을 선택해주세요.</p>
                 </div>
@@ -71,10 +71,12 @@
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="file-choice">
-                      <input type="file" id="fileUp" class="input blind" @change="fileChangeCheck">
-                      <label for="fileUp" class="btn btn-default-line">파일선택</label>
+                      <div class="file-choice__title">
+                        <input type="file" id="fileUp" class="input blind" @change="fileChangeCheck">
+                        <label for="fileUp" class="btn btn-default-line">파일선택</label>
+                      </div>
                       <el-upload
-                        class="upload-demo"
+                        class="file-upload"
                         drag
                         action
                         :on-change="handleChange"
@@ -82,11 +84,15 @@
                         multiple
                         v-if="fileList.length < 1"
                         >
-                        <div class="el-upload__text">Drop file here or </div>
+                        <span class="file-upload__text">마우스로 파일을 끌어다 놓으세요.</span>
                       </el-upload>
-                      <ul>
-                        <li v-for="(file, i) in fileList" :key="i">{{ file.name }}
-                          <button class="btn-file--del" @click="deleteFile(i)">X</button>
+                      <ul class="file-choice__result" v-if="fileList.length > 0" >
+                        <li v-for="(file, i) in fileList" :key="i">
+                          {{ file.name }}
+                          (
+                          <em class="file_size">{{ file.size }}</em>
+                          )
+                          <button class="btn-file--del" @click="deleteFile(i)"><span>삭제</span></button>
                         </li>
                       </ul>
                     </div>
@@ -224,6 +230,7 @@ export default {
   data() {
     return {
       form: {
+        inquirevalue: '',
         inquiretitle: '',
         inquirecont: '',
         membername: '',
@@ -280,7 +287,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      if (this.dropdownOptions[0] === '선택하세요') {
+      if (this.form.inquirevalue === '') {
         this.inquirevalueErrorMsg = true
         return
       }
@@ -313,7 +320,6 @@ export default {
     },
     fileChangeCheck(e) {
       let file = e.target.files[0]
-      this.fileList = []
       this.fileList.push(file)
     },
     deleteFile(index) {
