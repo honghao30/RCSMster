@@ -18,7 +18,7 @@
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <Dropdown :options=dropdownOptions />
+                    <Dropdown :options="dropdownOptions" placeholder="선택해 주세요." v-model="form.inquirevalue"/>
                   </div>
                   <p class="guide-text error" v-if="inquirevalueErrorMsg">문의 유형을 선택해주세요.</p>
                 </div>
@@ -70,23 +70,33 @@
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <!-- <div class="file-choice">
-                      <input type="file" id="fileUp" class="input" >
-                      <label for="fileUp" class="btn btn-default-line">파일선택</label>
+                    <div class="file-choice">
+                      <div class="file-choice__title">
+                        <input type="file" id="fileUp" class="input blind" @change="fileChangeCheck">
+                        <label for="fileUp" class="btn btn-default-line">파일선택</label>
+                      </div>
                       <el-upload
-                        class="upload-demo"
+                        class="file-upload"
                         drag
                         action
                         :on-change="handleChange"
                         :auto-upload="false"
-                        multiple>
-                        <div class="el-upload__text">Drop file here or </div>
+                        multiple
+                        v-if="fileList.length < 1"
+                        >
+                        <span class="file-upload__text">마우스로 파일을 끌어다 놓으세요.</span>
                       </el-upload>
-                      <ul>
-                        <li v-for="(file, i) in fileList" :key="i">{{ file.name }}</li>
+                      <ul class="file-choice__result" v-if="fileList.length > 0" >
+                        <li v-for="(file, i) in fileList" :key="i">
+                          {{ file.name }}
+                          (
+                          <em class="file_size">{{ file.size }}</em>
+                          )
+                          <button class="btn-file--del" @click="deleteFile(i)"><span>삭제</span></button>
+                        </li>
                       </ul>
                     </div>
-                    -->
+
                   </div>
                   <p class="guide-text black">&middot; 이미지 용량: 최대 50MB</p>
                   <p class="guide-text black">&middot; 파일종류: JPG, PNG, TIFF, PDF, DOC, PPT, PPTX, XLS, XLSX, HWP</p>
@@ -220,13 +230,43 @@ export default {
   data() {
     return {
       form: {
+        inquirevalue: '',
         inquiretitle: '',
         inquirecont: '',
         membername: '',
         memberphone: '',
         membermail: ''
       },
-      dropdownOptions: ['선택하세요.', '가입', '서비스 관리', '브랜드 관리', '대화방 관리', '탬플릿 관리', '자동응답 관리', '브랜드 소식 관리'],
+      dropdownOptions: [
+        {
+          label: '가입',
+          value: 'opt1'
+        },
+        {
+          label: '서비스 관리',
+          value: 'opt2'
+        },
+        {
+          label: '브랜드 관리',
+          value: 'opt3'
+        },
+        {
+          label: '대화방 관리',
+          value: 'opt4'
+        },
+        {
+          label: '탬플릿 관리',
+          value: 'opt5'
+        },
+        {
+          label: '자동응답 관리',
+          value: 'opt6'
+        },
+        {
+          label: '브랜드 소식 관리',
+          value: 'opt7'
+        }
+      ],
       inquirevalueErrorMsg: false,
       inquiretitleErrorMsg: false,
       inquirecontErrorMsg: false,
@@ -247,7 +287,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      if (this.dropdownOptions[0] === '선택하세요') {
+      if (this.form.inquirevalue === '') {
         this.inquirevalueErrorMsg = true
         return
       }
@@ -277,6 +317,13 @@ export default {
     },
     handleChange(file, fileList) {
       this.fileList.push(file)
+    },
+    fileChangeCheck(e) {
+      let file = e.target.files[0]
+      this.fileList.push(file)
+    },
+    deleteFile(index) {
+      this.fileList.splice(index, 1)
     },
     handleChangeFileList() {
       this.$emit('change', this.fileList)

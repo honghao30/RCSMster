@@ -20,13 +20,53 @@ fieldset {margin:0;padding:0;border:0 none;}
 legend {position: absolute;width: 1px;height: 1px;clip: rect(0 0 0 0);overflow: hidden;}
 caption{position: absolute;width: 1px;height: 1px;clip: rect(0 0 0 0);overflow: hidden;}
 .clfx:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
-a[role="button"] {cursor:pointer}
+button {cursor:pointer;outline:none;border:0;}
+a[role="button"] {cursor:pointer;}
 
 .blind,.irtext { position: absolute;width: 1px;height: 1px;clip: rect(0 0 0 0);overflow: hidden;}
 .point {color:$pointColor;font-style:normal}
 
+
+//23.05.10 남다현 & 스크롤 스타일 수정 (textarea 안 스크롤 작업으로 인해 변경)
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px
+}
+::-webkit-scrollbar-track,::-webkit-scrollbar-track-piece {
+    background-color: none
+}
+::-webkit-scrollbar-button,::-webkit-scrollbar-thumb {
+    background-color: none
+}
+::-webkit-scrollbar-button:end,::-webkit-scrollbar-button:start {
+    width:5px;
+    background-color: none
+}
+::-webkit-resizer,::-webkit-scrollbar-corner {
+    background-color: #d3d3d3;
+}
+::-webkit-scrollbar-track {
+    background: #fff
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(101,106,118,.3);
+    border-radius: 10px;
+}
+
+
 @media #{$phone} {
     .m-block{
        display: block;
+    }
+    .m-hidden {
+        display: none !important;
+        width:0;
+    }
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 6px;
     }
 }

@@ -31,6 +31,7 @@ export default {
   props: {
     options: Object,
     searchable: Boolean,
+    placeholder: String,
     value: String
   },
   emits: [
@@ -38,11 +39,10 @@ export default {
   ],
   mounted() {
     this.filteredOption = this.options
-    this.selectedOption = this.options[0].label
-  },
-  watch: {
-    onValueChange() {
-      this.value = this.selectedOption.value
+    if (this.placeholder) {
+      this.selectedOption = this.placeholder
+    } else {
+      this.selectedOption = this.options[0].label
     }
   },
   computed: {
@@ -56,6 +56,7 @@ export default {
     selectOption(option) {
       this.selectedOption = option.label
       this.isOpen = false
+      this.$emit('input', option.value)
     },
     toggleSelect() {
       this.isOpen ? this.isOpen = false : this.isOpen = true
