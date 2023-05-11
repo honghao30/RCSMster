@@ -40,6 +40,7 @@ import NoticeView from '@/views/publish/customer/Notice'
 import NoticeContent from '@/views/publish/customer/NoticeContent'
 import FAQ from '@/views/publish/customer/FAQ'
 import OnlineInquire from '@/views/publish/customer/OnlineInquire'
+import RequireList from '@/views/publish/customer/RequireList'
 
 // 마이페이지
 import MyInfo from '@/views/publish/mypage/MyInfo'
@@ -226,6 +227,13 @@ let router = new Router({
     {
       path: '/OnlineInquire',
       component: OnlineInquire,
+      meta: {
+        tittle: '온라인 문의'
+      }
+    },
+    {
+      path: '/RequireList',
+      component: RequireList,
       meta: {
         tittle: '온라인 문의'
       }
