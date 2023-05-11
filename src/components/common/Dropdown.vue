@@ -8,7 +8,7 @@
         <span class="input search"><input type="text" placeholder="검색어 입력" v-model="searchWord"/></span>
       </div>
       <ul class="drodown__option">
-        <li v-for="(option, i) in filteredOption" :key="i" @click="selectOption(option)">{{  option }}</li>
+        <li v-for="(option, i) in filteredOption" :key="i" @click="selectOption(option)" :data-value="option.value">{{  option.label }}</li>
       </ul>
     </div>
   </div>
@@ -30,28 +30,37 @@ export default {
   },
   props: {
     options: Object,
-    searchable: Boolean
+    searchable: Boolean,
+    value: String
   },
+  emits: [
+    'update:modelValue'
+  ],
   mounted() {
     this.filteredOption = this.options
-    this.selectedOption = this.options[0]
+    this.selectedOption = this.options[0].label
+  },
+  watch: {
+    onValueChange() {
+      this.value = this.selectedOption.value
+    }
   },
   computed: {
     filteredOption() {
       return this.options.filter(option => {
-        return option.toLowerCase().includes(this.searchWord.toLowerCase())
+        return option.label.toLowerCase().includes(this.searchWord.toLowerCase())
       })
     }
   },
   methods: {
-    selectOption: function(option) {
-      this.selectedOption = option
+    selectOption(option) {
+      this.selectedOption = option.label
       this.isOpen = false
     },
-    toggleSelect: function() {
+    toggleSelect() {
       this.isOpen ? this.isOpen = false : this.isOpen = true
     },
-    onClickOutside: function() {
+    onClickOutside() {
       this.isOpen = false
     }
   }
