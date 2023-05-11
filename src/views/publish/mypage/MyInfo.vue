@@ -128,6 +128,7 @@ d<template>
     </form>
     <div class="button__wrap flex-end">
       <ButtonCmp
+        @click="goMemberWithdraw"
         type="btn-default-line inactive"
       >회원 탈퇴</ButtonCmp>
     </div>
@@ -136,7 +137,6 @@ d<template>
         type="btn-line"
       >취소</ButtonCmp>
       <router-link
-        to="/companyinfo"
         class="btn btn-blue-line"
       >기업정보 관리</router-link>
       <ButtonCmp
@@ -195,6 +195,9 @@ export default {
         this.telErrorMsg = true
         // return
       }
+    },
+    goMemberWithdraw () {
+      this.$router.push('./withdrawal')
     }
   }
 }

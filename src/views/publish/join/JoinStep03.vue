@@ -141,7 +141,7 @@
     <div class="button__wrap">
       <ButtonCmp
         type="btn-blue-line"
-      >취소</ButtonCmp>
+      >이전</ButtonCmp>
       <ButtonCmp
         type="btn-blue"
         @click="onSubmit"

@@ -38,7 +38,11 @@ export default {
   ],
   mounted() {
     this.filteredOption = this.options
-    this.selectedOption = this.placeholder
+    if (this.placeholder) {
+      this.selectedOption = this.placeholder
+    } else {
+      this.selectedOption = this.options[0].label
+    }
   },
   watch: {
 

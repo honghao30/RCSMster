@@ -2,7 +2,24 @@
   <div class="inner notice-faq">
     <PageTitle pagetitle="FAQ" />
     <TabCategory :category="category" />
-    <SearchTable listnumber=73 />
+    <div class="search-table">
+      <div class="ctrl">
+        <div class="input">
+          <input type="text" placeholder="검색어를 입력해 주세요.">
+        </div>
+        <div class="input-m">
+          <input type="text" placeholder="검색어 입력">
+        </div>
+        <ButtonCmp
+          type="btn-search"
+        >
+          검색
+        </ButtonCmp>
+      </div>
+      <p class="list-number">
+        총 73건
+      </p>
+    </div>
     <accordion>
         <accordion-item
           v-for="item in faqData" :key="item"
@@ -45,7 +62,6 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import TabCategory from '@/components/common/TabCategory'
 import Accordion from './components/accordion'
 import AccordionItem from './components/accordion-item'
-import SearchTable from '@/components/common/SearchTable.vue'
 import PagingCmp from '@/components/common/PagingCmp.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 
@@ -55,7 +71,6 @@ export default {
     TabCategory,
     Accordion,
     AccordionItem,
-    SearchTable,
     PagingCmp,
     ButtonCmp
   },
