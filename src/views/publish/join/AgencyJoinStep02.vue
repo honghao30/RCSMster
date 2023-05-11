@@ -224,6 +224,7 @@
                       <span class="item-label">중계사 선택</span>
                       <ButtonCmp
                         type="btn-default-line"
+                        @click="agenceySelect"
                       >
                       중계사 선택
                       </ButtonCmp>
@@ -373,7 +374,8 @@
     </div>
     <!-- // 모달 영역 -->
     <ModalView
-      v-if="isModalViewed" @closeModal="isModalViewed = false"
+      v-if="isModalViewed"
+      @closeModal="isModalViewed = false"
     >
       <ConfirmMsg
         v-if="certifMessage"
@@ -399,24 +401,16 @@
             >
               온라인 문의
             </ButtonCmp>
-          </div>
+        </div>
       </ConfirmMsg>
-      <ZipCode v-else />
+      <AgencyCheckMsg
+        v-else-if="AgencyModal"
+        @closeModal="isModalViewed = false"
+      />
+      <ZipCode v-else
+        @closeModal="isModalViewed = false"
+      />
     </ModalView>
-    <!--
-    <ModalView
-      v-if="isModalViewed" @closeModal="isModalViewed = false"
-    >
-        <CertificateMsg @closeModal="isModalViewed = false" status="ing"/>
-        기 가입자일 경우 done, 진행 중인 경우는 ing
-    </ModalView>
-
-    <ModalView
-      v-if="isAgencyModal" @closeModal="isAgencyModal = false"
-    >
-        <AgencyCheckMsg @closeModal="isAgencyModal = false"/>
-    </ModalView>
-  -->
     <!-- 중개사 url 정보 입력 확인 팝업 호출 시점 기획 확인 필요-->
     <!-- // 모달 영역 -->
   </div>
@@ -427,8 +421,7 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
-// import CertificateMsg from '@/views/publish/join/CertificateMsg.vue'
-// import AgencyCheckMsg from '@/views/publish/join/AgencyCheckMsg.vue'
+import AgencyCheckMsg from '@/views/publish/join/AgencyCheckMsg.vue'
 import StepList from '@/components/common/StepList.vue'
 import ConfirmMsg from '@/views/publish/join/ConfirmMsg.vue'
 import ZipCode from '@/views/publish/join/ZipCode.vue'
@@ -439,9 +432,8 @@ export default {
     ButtonCmp,
     PageTitleH3,
     ModalView,
-    // CertificateMsg,
     StepList,
-    // AgencyCheckMsg,
+    AgencyCheckMsg,
     ConfirmMsg,
     ZipCode
   },
@@ -476,6 +468,7 @@ export default {
       filesName3: '',
       isModalViewed: false,
       joinIng: true,
+      AgencyModal: false,
       certificatetemp: '123456789',
       isAgencyModal: false,
       stepTitle: ['약관동의', '대행사정보 입력', '회원정보 입력', '가입완료'],
@@ -559,6 +552,10 @@ export default {
     },
     deleteApiRow (index) {
       this.apiList.splice(index, 1)
+    },
+    agenceySelect () {
+      this.isModalViewed = true
+      this.AgencyModal = true
     }
   }
 }
