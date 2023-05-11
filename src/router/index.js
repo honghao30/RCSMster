@@ -37,7 +37,6 @@ import AgencyJoinStep04 from '@/views/publish/join/AgencyJoinStep04'
 
 // 고객센터
 import NoticeView from '@/views/publish/customer/Notice'
-import NoticeSearch from '@/views/publish/customer/NoticeSearch'
 import NoticeContent from '@/views/publish/customer/NoticeContent'
 import FAQ from '@/views/publish/customer/FAQ'
 import OnlineInquire from '@/views/publish/customer/OnlineInquire'
@@ -206,13 +205,6 @@ let router = new Router({
     {
       path: '/notice',
       component: NoticeView,
-      meta: {
-        tittle: '공지사항'
-      }
-    },
-    {
-      path: '/noticesearch',
-      component: NoticeSearch,
       meta: {
         tittle: '공지사항'
       }

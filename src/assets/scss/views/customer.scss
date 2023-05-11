@@ -61,14 +61,18 @@
       background:url('../assets/images/customer/ico_down.png') no-repeat 50% 50%;
     }
   }
-  // search
-  &.notice-search {
-    .no-data {
-      p{
-        margin: 160px 0;
-        font-size: 16px;
-        color: #888888;
-      }
+  // search-no-data
+  .notice__search-no-data {
+    text-align: center;
+    p{
+      padding: 160px 0;
+      font-family: 'Noto Sans KR';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #888888;
+      border-bottom: 1px solid #ddd;
     }
   }
   // content
@@ -88,7 +92,7 @@
         &.notice-content__date {
           border-bottom: 1px solid #F0F0F0;
           p {
-            border-left: 1px solid #dddddd;
+            border-left: 1px solid #ddd;
             height: 16px;
             font-size: 16px;
             font-weight: 400;
@@ -105,7 +109,7 @@
         .notice-content__file {
           span {
             padding: 3px 38px 3px 47px;
-            border-right: 1px solid #dddddd;
+            border-right: 1px solid #ddd;
             height: 32px;
             line-height: 32px;
             font-size: 14px;
@@ -361,14 +365,13 @@
         }
       }
     }
-    // search
-    &.notice-search {
-      .no-data {
-        width: 100%;
-        p{
-          margin: 100px auto;
-          font-size: 14px;
-        }
+    // search-no-data
+    .notice__search-no-data {
+      text-align: center;
+      p{
+        padding: 100px 0;
+        font-size: 14px;
+        line-height: 21px;
       }
     }
     // content
