@@ -195,6 +195,40 @@ const homeList = [
     'status': '완료',
     'link': '/withdrawal'
   },
+  // 고객센터
+  {
+    'depth1': '고객센터',
+    'depth2': '공지사항',
+    'depth3': '목록',
+    'screenId': '',
+    'status': '완료',
+    'link': '/notice'
+  },
+  {
+    'depth3': '공지사항 상세',
+    'screenId': '',
+    'status': '완료',
+    'link': '/noticecontent'
+  },
+  {
+    'depth2': 'FAQ',
+    'screenId': '',
+    'status': '완료',
+    'link': '/faq'
+  },
+  {
+    'depth2': '온라인 문의',
+    'depth3': '작성',
+    'screenId': '',
+    'status': '완료',
+    'link': '/OnlineInquire'
+  },
+  {
+    'depth3': '목록',
+    'screenId': '',
+    'status': '완료',
+    'link': '/RequireList'
+  },
   // 메인
   {
     'depth1': '메인',
@@ -226,31 +260,6 @@ const homeList = [
     'depth1': '파트너사 소개',
     'screenId': '',
     'link': ''
-  },
-  {
-    'depth1': '고객센터',
-    'depth2': '온라인 문의',
-    'depth3': '목록',
-    'screenId': 'G004_1'
-  },
-  {
-    'depth3': '등록',
-    'screenId': 'G004_11'
-  },
-  {
-    'depth2': 'FAQ',
-    'screenId': 'G004_2',
-    'link': ''
-  },
-  {
-    'depth2': '공지사항',
-    'depth3': '목록',
-    'screenId': 'G004_3',
-    'link': ''
-  },
-  {
-    'depth3': '상세',
-    'screenId': 'G004_31'
   },
   {
     'depth1': '개인정보처리방침'
