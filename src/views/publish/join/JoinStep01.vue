@@ -1,7 +1,7 @@
 <template>
   <div class="join">
     <PageTitle pagetitle="기업담당자 회원가입" />
-    <JoinStep :step="1"/>
+    <StepList :stepActiveIndex="1" :stepTitle="stepTitle" />
     <div class="top-notice--gray">
       원활한 기업담당자 가입신청을 위해서 기업의 사업자등록증 사본을 준비해주세요.
     </div>
@@ -68,19 +68,20 @@
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import JoinStep from '@/views/publish/join/JoinStep'
+import StepList from '@/components/common/StepList.vue'
 
 export default {
   components: {
     PageTitle,
     ButtonCmp,
-    JoinStep
+    StepList
   },
   data() {
     return {
       allSelected: false,
       checkedAgreement1: false,
-      checkedAgreement2: false
+      checkedAgreement2: false,
+      stepTitle: ['약관동의', '기업정보 입력', '회원정보 입력', '가입완료']
     }
   },
   methods: {

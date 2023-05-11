@@ -17,6 +17,11 @@
         </select>
       </div>
     </div>
+    <TitleH3 titleh3="Dropdown" />
+    <p>{{ form.dropdown }}</p>
+    <Dropdown searchable :options="dropdownOptions" v-model="form.dropdown">
+    </Dropdown>
+    <!-- search 가 필요하시면 searchable 추가해주세요.-->
     <TitleH3 titleh3="Checkbox" />
     <div class="wsg-guide-content">
       <span class="checkbox">
@@ -142,6 +147,7 @@
 
 <script>
 import TitleH3 from '../cmp/TitleH3.vue'
+import Dropdown from '@/components/common/Dropdown.vue'
 
 export default {
   data() {
@@ -152,13 +158,33 @@ export default {
         check: '',
         radio: 1,
         radioGroup: 3,
-        id: ''
+        id: '',
+        dropdown: ''
       },
+      dropdownOptions: [
+        {
+          label: 'all',
+          value: 'all'
+        },
+        {
+          label: 'option1',
+          value: 'option1'
+        },
+        {
+          label: 'option2',
+          value: 'option2'
+        },
+        {
+          label: 'option3',
+          value: 'option3'
+        }
+      ],
       idValidation: true
     }
   },
   components: {
-    TitleH3
+    TitleH3,
+    Dropdown
   },
   methods: {
     checkValidation() {

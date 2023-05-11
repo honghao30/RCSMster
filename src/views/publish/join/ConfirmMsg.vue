@@ -1,6 +1,7 @@
 <template>
   <div
     class="modal__content--inner small-message__modal"
+    :class="modalsize"
   >
     <div class="modal__content--body">
       <slot name="msg"></slot>
@@ -14,7 +15,11 @@
 <script>
 export default {
   props: {
-    messages: String
+    messages: String,
+    modalsize: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {}

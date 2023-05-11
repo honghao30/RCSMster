@@ -13,6 +13,7 @@
     font-size: 14px;
     line-height: 16px;
     border-color:#ddd;
+    padding: 16px 0;
   }
   td {
     background-color: #fff;
@@ -38,6 +39,31 @@
   @include tableCommon;
   th, td {
     text-align:center
+  }
+  th {
+    span {
+      display:block;
+      line-height: 16px;
+      position:relative;
+      &:before {
+        content:'';
+        position:absolute;
+        left:0;
+        top:50%;
+        margin-top: -8px;
+        display:inline-block;
+        width:1px;
+        height: 16px;
+        background-color:#ddd;
+      }
+    }
+    &:first-child {
+      span {
+        &:before {
+          display:none
+        }
+      }
+    }
   }
   td {
     padding: 20px  0;

@@ -37,6 +37,12 @@
         기본형
       </ButtonCmp>
       <ButtonCmp
+        type="btn-search"
+        @click="clickHandler"
+      >
+        검색
+      </ButtonCmp>
+      <ButtonCmp
         type="btn-default-line"
         @click="clickHandler"
       >

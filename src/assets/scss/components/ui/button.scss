@@ -43,7 +43,7 @@ $radius: 8px;
 
 .button__wrap {
   position: relative;
-  padding:20px 0 50px;
+  padding:32px 0 0;
   gap: 8px;
   display:flex;
   align-items:center;
@@ -63,6 +63,10 @@ $radius: 8px;
   line-height: 24px;  
   padding:0 48px; 
   &.search {
+    font-size: 14px;
+    font-weight: 700;
+    width: 74px;
+    height: 42px;
     color:#fff;
     background-color:#717883
   }
@@ -94,8 +98,7 @@ $radius: 8px;
       background-color:#ccc;
       border-color:#ccc;
     }
-  }  
-       
+  }      
 }
 .btn-blue-line {
   @include btntype(16px,$pointColor,#fff,$pointColor, 8px,  #fff, #2855A7, #2855A7);               
@@ -120,6 +123,14 @@ $radius: 8px;
   }  
 }
 
+.btn-search {
+  @include btntype(14px, #717883, #717883,#fff, 8px, #717883,#fff, #717883);   
+  line-height: 42px;
+  min-width: auto;
+  height: 42px;
+  padding:0 23px;
+}
+
 .btn-default-line {
   @include btntype(14px,#4A5567,#fff,#4A5567,8px,  #fff,#4A5567, #4A5567);  
   line-height: 42px;
@@ -142,6 +153,7 @@ $iconBsUrl: '../assets/images/icon/';
   min-width:auto;
   height:auto;
   line-height:1;
+  padding:0;
 }
 //icon List
 .icon-eye {
@@ -152,8 +164,14 @@ $iconBsUrl: '../assets/images/icon/';
   background-position: center;
   &.blue{
     background-image: url('#{$iconBsUrl}icon_eye_blue.png');
-  }  
+  }
 }
+.icon-tooltip {
+  width: 16px;
+  height: 16px;
+  background-image: url('#{$iconBsUrl}icon_question.png');
+  background-size: 100%;
+} 
 
 @media #{$phone} {
   .button__wrap {

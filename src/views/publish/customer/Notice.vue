@@ -1,8 +1,8 @@
 <template>
-  <div class="inner">
+  <div class="inner notice">
     <PageTitle pagetitle="공지사항" />
     <TabCategory :category="category" :newTabIndex="newTabIndex"/>
-    <SearchTable v-if="checkBoardLength" listnumber=73 />
+    <SearchTable v-if="checkBoardLength" listnumber=73 selectable :dropdownOptions="dropdownOptions" />
     <div class="table__wrap notice-table">
       <table class="table table-list">
         <colgroup>
@@ -43,6 +43,10 @@
       </table>
     </div>
     <PagingCmp />
+    <!-- 검색 결과 없을 시 div 띄워주시면 됩니다 -->
+    <div class="notice__search-no-data">
+      <p>검색 결과가 없습니다.</p>
+    </div>
   </div>
 </template>
 
@@ -56,6 +60,7 @@ export default {
   name: 'NoticeView',
   data() {
     return {
+      dropdownOptions: ['전체', '제목'],
       category: ['전체', '이벤트', '시스템', '정책', '서식', '업데이트 노트'],
       activeTabIndex: 0,
       newTabIndex: 1,
@@ -152,7 +157,7 @@ export default {
   },
   computed: {
     checkBoardLength() {
-      return !(this.noticeData.length < 10);
+      return !(this.noticeData.length < 10)
     }
   }
 }

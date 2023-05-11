@@ -37,12 +37,17 @@ import AgencyJoinStep04 from '@/views/publish/join/AgencyJoinStep04'
 
 // 고객센터
 import NoticeView from '@/views/publish/customer/Notice'
-import NoticeSearch from '@/views/publish/customer/NoticeSearch'
 import NoticeContent from '@/views/publish/customer/NoticeContent'
 import FAQ from '@/views/publish/customer/FAQ'
+import OnlineInquire from '@/views/publish/customer/OnlineInquire'
+import RequireList from '@/views/publish/customer/RequireList'
 
 // 마이페이지
 import MyInfo from '@/views/publish/mypage/MyInfo'
+import MyInfoAgency from '@/views/publish/mypage/MyInfoAgency'
+import CorpInfo from '@/views/publish/mypage/CorpInfo'
+import CorpInfoEdit from '@/views/publish/mypage/CorpInfoEdit'
+import Withdrawal from '@/views/publish/mypage/Withdrawal'
 
 Vue.use(Router)
 
@@ -206,13 +211,6 @@ let router = new Router({
       }
     },
     {
-      path: '/noticesearch',
-      component: NoticeSearch,
-      meta: {
-        tittle: '공지사항'
-      }
-    },
-    {
       path: '/noticecontent',
       component: NoticeContent,
       meta: {
@@ -226,6 +224,20 @@ let router = new Router({
         tittle: 'FAQ'
       }
     },
+    {
+      path: '/OnlineInquire',
+      component: OnlineInquire,
+      meta: {
+        tittle: '온라인 문의'
+      }
+    },
+    {
+      path: '/RequireList',
+      component: RequireList,
+      meta: {
+        tittle: '온라인 문의'
+      }
+    },
     // 마이 페이지
     {
       path: '/myinfo',
@@ -235,20 +247,33 @@ let router = new Router({
       }
     },
     {
-      path: 'not-found',
-      name: 'NotFound',
-      component: NotFound,
+      path: '/myinfoagency',
+      component: MyInfoAgency,
       meta: {
-        headerView: false
+        tittle: '개인정보 관리'
       }
     },
     {
-      path: '*',
-      component: NotFound,
+      path: '/corpinfo',
+      component: CorpInfo,
       meta: {
-        headerView: false
+        tittle: '기업정보 관리'
       }
-    }  
+    },
+    {
+      path: '/corpinfo-edit',
+      component: CorpInfoEdit,
+      meta: {
+        tittle: '기업정보 관리'
+      }
+    },
+    {
+      path: '/withdrawal',
+      component: Withdrawal,
+      meta: {
+        tittle: '회원 탈퇴'
+      }
+    }
   ]
 })
 
