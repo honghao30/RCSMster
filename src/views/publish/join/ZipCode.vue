@@ -2,7 +2,7 @@
   <div
     class="modal__content--inner zipcode__modal"
   >
-    <!-- <div class="zipcode-step1">
+    <div class="zipcode-step1">
       <div class="modal__content--header">
         <p class="modal-title">우편번호 찾기</p>
       </div>
@@ -79,8 +79,8 @@
           >닫기</ButtonCmp>
         </div>
       </div>
-    </div> -->
-    <div class="zipcode-step2">
+    </div>
+    <!-- <div class="zipcode-step2">
       <div class="modal__content--header">
         <p class="modal-title">상세 주소 입력</p>
       </div>
@@ -112,7 +112,7 @@
           >저장</ButtonCmp>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
 </template>
