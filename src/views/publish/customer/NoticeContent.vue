@@ -27,11 +27,11 @@
               <ul>
                 <li class="l-align title">
                   <p>펨플릿.jpg</p>
-                  <i class="ico-download"></i>
+                  <a href="" download class="ico-download"><span class="blind">다운로드</span></a>
                 </li>
                 <li class="l-align title">
                   <p>Action버튼_데이터 셋_sample_20201103.xlsx</p>
-                  <i class="ico-download"></i>
+                  <a href="" download class="ico-download"><span class="blind">다운로드</span></a>
                 </li>
               </ul>
             </td>
@@ -68,21 +68,24 @@
           <col>
         </colgroup>
         <tbody>
-          <tr
-            v-for="(item, i) in noticeData" :key="i">
-            <td class="table-button">
-              <div class="button__wrap">
-                <button class="ico-up" v-if="item.up"></button>
-                <button class="ico-down" v-if="item.down"></button>
-              </div>
-            </td>
-            <td>
-                <p class="list-data">{{ item.data }}</p>
-            </td>
+          <tr>
+            <td><button class="ico-up"></button></td>
+            <td class="m-hidden"><p class="list-data">이전글</p></td>
             <td>
               <div class="l-align title">
                 <router-link to=""
-                >{{ item.title }}
+                >3rd Party App의 RCS 문자 메시지 인식 3rd Party App의 RCS 문자 메시지 인식
+                </router-link>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><button class="ico-down"></button></td>
+            <td class="m-hidden"><p class="list-data">다음글</p></td>
+            <td>
+              <div class="l-align title">
+                <router-link to=""
+                >3rd Party App의 RCS 문자 메시지 인식...
                 </router-link>
               </div>
             </td>
@@ -101,21 +104,6 @@ export default {
   name: 'NoticeView',
   data() {
     return {
-      noticeData:
-      [
-        {
-          up: true,
-          down: false,
-          data: '이전글',
-          title: '3rd Party App의 RCS 문자 메시지 인식을 위한 개발 가이드'
-        },
-        {
-          up: false,
-          down: true,
-          data: '다음글',
-          title: '[작업] 삼성 MaaP 작업에 따른 RCS Biz Center 서비스 차단 안내 (7월 19일 ~ 20일)'
-        }
-      ]
     }
   },
   components: {
