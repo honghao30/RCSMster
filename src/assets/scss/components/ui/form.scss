@@ -425,7 +425,6 @@ $formLabelWidth : 120px;
     }   
   }
   &.error {
-    margin:10px 0 0;
     @include fontoption(14px,#FF4830,400,24px);    
     display:flex;
     align-items:flex-start;
