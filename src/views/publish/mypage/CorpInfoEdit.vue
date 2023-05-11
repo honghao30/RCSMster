@@ -22,13 +22,37 @@
             <tr>
               <th scope="row"><span class="form-item__label required">사업자등록번호</span></th>
               <td>
-                  <div class="form-item__content">
+                <div class="form-item__content"
+                  v-if="changeCertificate"
+                >
+                  <div class="form-item-row">
+                    <div class="input-item">
+                      <span class="input"><input type="text" class="input" placeholder="‘-’없이 10자리 숫자만 입력해주세요." v-model="form.certificate"></span>
+                      <ButtonCmp
+                        type="btn-default-line"
+                        @click="checkCertificate"
+                      >
+                        인증
+                      </ButtonCmp>
+                      <ButtonCmp
+                        type="btn-default-line"
+                        @click="cancelChange"
+                      >
+                        취소
+                      </ButtonCmp>
+                    </div>
+                    <p class="guide-text error" v-if="certificateErrorMsg">사업자등록번호를 입력해주세요.</p>
+                  </div>
+                </div>
+                  <div class="form-item__content"
+                    v-else
+                  >
                       <div class="form-item-row">
                         <div class="input-item">
                           <span class="input"><input type="text" class="input" placeholder="‘-’없이 10자리 숫자만 입력해주세요." v-model="form.certificate" disabled></span>
                           <ButtonCmp
                             type="btn-default-line"
-                            @click="checkCertificate"
+                            @click="changeCert"
                           >
                           사업자등록번호 변경
                           </ButtonCmp>
@@ -160,12 +184,26 @@ export default {
         addr2: '1층'
       },
       selecteAuth: ['Auth_1'],
-      filesName: '사업자등록증_2023.pdf'
+      filesName: '사업자등록증_2023.pdf',
+      changeCertificate: false,
+      certificateErrorMsg: false
     }
   },
   watch: {
   },
   methods: {
+    changeCert () {
+      this.changeCertificate = true
+      this.form.certificate = ''
+    },
+    cancelChange () {
+      this.changeCertificate = false
+    },
+    checkCertificate () {
+      if (this.form.certificate === '') {
+        this.certificateErrorMsg = true
+      }
+    }
   }
 }
 </script>
