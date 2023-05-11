@@ -100,11 +100,6 @@ export default {
         }
       ]
     }
-  },
-  computed: {
-    checkBoardLength() {
-      return !(this.faqData.length < 5)
-    }
   }
 }
 </script>

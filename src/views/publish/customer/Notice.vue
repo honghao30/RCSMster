@@ -2,7 +2,7 @@
   <div class="inner notice">
     <PageTitle pagetitle="공지사항" />
     <TabCategory :category="category" :newTabIndex="newTabIndex"/>
-    <div class="search-table" v-if="checkBoardLength">
+    <div class="search-table">
       <div class="ctrl">
         <Dropdown :options=dropdownOptions />
         <div class="input">
@@ -187,11 +187,6 @@ export default {
     PagingCmp,
     TabCategory,
     ButtonCmp
-  },
-  computed: {
-    checkBoardLength() {
-      return !(this.noticeData.length < 10)
-    }
   }
 }
 </script>
