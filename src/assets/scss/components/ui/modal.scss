@@ -5,7 +5,7 @@
   }
   .overlay-mask {
     position: fixed;
-    z-index: 10;
+    z-index: 24;
     top: 0;
     left: 0;
     width: 100%;
@@ -22,7 +22,7 @@
     height:auto;
     overflow: hidden;
     position: fixed;
-    z-index: 11;
+    z-index: 30;
     top: 50%;
     left: 50%;
     // width: 500px;
@@ -33,7 +33,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height:60px;
+      // height:60px;
       .modal-title {
         font-size: 24px;
         font-weight: bold;
@@ -52,7 +52,7 @@
       display: flex;
       align-content: center;
       justify-content: center;
-      background: #c9c8c8;
+      // background: #c9c8c8;
       margin-top:32px;
       .button__wrap {
         margin-top:0;
@@ -130,8 +130,172 @@
             height: calc(100% - 50px);
             overflow:hidden;
         }
-    }    
+    } 
   }
+
+  .zipcode__modal {
+    max-width:628px;               
+    padding:40px;  
+    border-radius: 16px;
+    background-color: #fff;    
+    transition: opacity.3s ease;  
+    .modal__content--header {
+      justify-content: center;
+      margin-bottom: 32px;
+      .modal-title {
+        font-size: 28px;
+        line-height: 36px;
+      }
+    }
+    .modal__content--body {
+      display:flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .search-area {
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      .input {
+        flex: auto;
+      }
+    }
+    .guide-box {
+      padding: 16px 24px;
+      border-radius: 8px;
+      background-color:#f9f9f9;
+      .main-text {
+        margin-bottom: 12px;
+      }
+      li {
+        font-size: 14px;
+        line-height: 26px;
+        margin-top: 4px;
+        .sm {
+          display: inline-block;
+          margin-left: 6px;
+          color: #999;
+        }
+      }
+    }
+    .top-ctrl-area {
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      .ctrl {
+        display:inline-flex;
+        align-items:center;
+        justify-content: flex-end;
+        gap: 24px;
+        .pager {
+          display:inline-flex;
+          align-items:center;
+          gap: 8px;
+          a {
+            display:inline-block;
+            width: 32px;
+            height:32px;
+            text-align:center;
+            font-size: 14px;
+            color: #888;
+            border-radius:4px;
+            &.btn-prev {
+              border:1px solid #EAEAEA;
+              background:url('../assets/images/cmp/chevron_left.png') no-repeat 50% 50%;
+            }
+            &.btn-next {
+              border:1px solid #EAEAEA;
+              background:url('../assets/images/cmp/chevron_right.png') no-repeat 50% 50%;
+            }
+          }
+        }
+      }
+    }
+    .search-result__wrap {
+      .table {
+        .addr {
+          p {
+            display:flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            &:before {
+              content:'도로명';
+              width: 54px;
+              display: inline-block;
+              font-size: 12px;
+              font-weight: 500;
+              border:1px solid #ddd;
+              padding:2px 9px;
+              border-radius: 20px;
+              color: #999;
+              margin-right: 8px;
+            }
+            &.place {
+              margin-top: 8px;
+              &:before {
+                content:'지번';
+              }
+            }
+          }
+        }
+        .zipcode {
+          color:$pointColor;
+        }
+      }
+      .result-none {
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        height: 140px;
+      }
+    }
+    .detail-addr {
+      &__wrap {
+        border-top: 2px solid $pointColor
+      }
+      &__list {
+        padding: 16px;
+        border-bottom: 1px solid #f0f0f0;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        dt {
+          flex: 0 0 100px; 
+          font-weight: 500;
+          margin:4px 0;
+        }
+        dd {
+          width: calc(100% - 100px);
+          padding-left: 12px;
+          margin:4px 0;
+        }
+      }
+      &__input {
+        padding: 20px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        .item-label {
+          flex: 0 0 100px; 
+          font-weight: 500;
+        }
+        .input {
+          flex: auto;
+        }
+      }
+    }
+    .modal__content--footer {
+      .button__wrap {
+        button {
+          flex: none;
+          width: 126px;
+        }
+      }
+    }
+  }   
+
 
   //old css
   .modal__container {
@@ -258,3 +422,4 @@
         }    
     }
 }
+
