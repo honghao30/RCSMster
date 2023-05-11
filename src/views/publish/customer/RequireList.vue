@@ -1,7 +1,7 @@
 <template>
   <div class="inner require-list">
     <PageTitle pagetitle="온라인 문의" />
-    <div >
+    <div class="button__wrap">
       <ButtonCmp
         type="btn-blue"
         @click="clickHandler"
@@ -9,26 +9,42 @@
         문의하기
       </ButtonCmp>
     </div>
+    <div class="table__wrap">
+      <table class="table table-list">
+        <colgroup>
+          <col width="10%">
+          <col>
+          <col width="18%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">등록일</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
     <accordion>
         <accordion-item
           v-for="item in faqData" :key="item"
         >
           <template slot="accordion-title">
-            <span class="accodien-cate">
+            <span class="accordion-cate">
               <p class="require-list__wait" v-if="item.wait">답변대기</p>
               <p class="require-list__complete" v-if="item.complete">답변완료</p>
             </span>
             <p> {{ item.title }} </p>
           </template>
           <template slot="accordion-content">
-            <div class="accodien-question">
-              <span class="accodien-cate">
+            <div class="accordion-question">
+              <span class="accordion-cate">
                 Q
               </span>
               <p> {{ item.question }} </p>
             </div>
-            <div class="accodien-answer">
-              <span class="accodien-cate">
+            <div class="accordion-answer">
+              <span class="accordion-cate">
                 A
               </span>
               <p> {{ item.answer }} </p>

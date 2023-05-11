@@ -67,7 +67,8 @@ const homeList = [
     'depth1': '로그인',
     'screenId': '',
     'status': '완료',
-    'link': '/LoginPage'
+    'link': '/LoginPage',
+    'comments': '공통적으로 임의의 값을 입력시 다음 페이지로 넘어감.'
   },
   {
     'depth2': '아이디 찾기',
@@ -112,25 +113,29 @@ const homeList = [
     'depth3': '약관동의',
     'screenId': 'G002',
     'status': '완료',
-    'link': '/joinStep01'
+    'link': '/joinStep01',
+    'comments': '공통적으로 임의의 값을 입력시 다음 페이지로 넘어감.'
   },
   {
     'depth3': '기업정보 입력',
     'screenId': '',
     'status': '완료',
-    'link': '/joinStep02'
+    'link': '/joinStep02',
+    'comments': '사업자등록번호 123 입력시 기압중인 단계 확인 가능.'
   },
   {
     'depth3': '회원정보 입력',
     'screenId': '',
     'status': '완료',
-    'link': ''
+    'link': '/joinStep03',
+    'comments': '휴대폰 번호 1 입력시 심사 중, 123 입력시 인증번호 받기'
   },
   {
     'depth3': '완료',
     'screenId': '',
     'status': '완료',
-    'link': ''
+    'link': '/joinStep04',
+    'comments': '단순 문구만 다른 케이스라, 요청시 지원 예정'
   },
   // 대행사 회원가입
   {
@@ -138,25 +143,25 @@ const homeList = [
     'depth3': '약관동의',
     'screenId': 'G003',
     'status': '완료',
-    'link': ''
+    'link': '/AgencyJoinStep01'
   },
   {
     'depth3': '대행사정보 입력',
     'screenId': '',
     'status': '완료',
-    'link': ''
+    'link': '/AgencyJoinStep02'
   },
   {
     'depth3': '회원정보 입력',
     'screenId': '',
     'status': '완료',
-    'link': ''
+    'link': '/AgencyJoinStep03'
   },
   {
     'depth3': '완료',
     'screenId': '',
     'status': '완료',
-    'link': ''
+    'link': '/AgencyJoinStep04'
   },
   // 메인
   {
@@ -203,13 +208,13 @@ const homeList = [
   {
     'depth2': 'FAQ',
     'screenId': 'G004_2',
-    'link': '/faq'
+    'link': ''
   },
   {
     'depth2': '공지사항',
     'depth3': '목록',
     'screenId': 'G004_3',
-    'link': '/notice'
+    'link': ''
   },
   {
     'depth3': '상세',
