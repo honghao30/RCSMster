@@ -14,11 +14,11 @@
           <ul>
             <li v-for="(item, i) in navMenu" :key="i" class="nav-item">
               <router-link :to="item.to">{{ item.title }}</router-link>
-              <ul class="nav-sub" v-if="item.children">
+              <!-- <ul class="nav-sub" v-if="item.children">
                 <li v-for="(subItem, i) in item.children" :key="i">
                   <router-link :to="subItem.to">{{ subItem.title }}</router-link>
                 </li>
-              </ul>
+              </ul> -->
             </li>
           </ul>
         </div>
@@ -27,10 +27,10 @@
         <router-link to="/dashboard" class="link-dashboard">기업 대시보드</router-link>
         <div class="user">
           <a role="button"><span class="name">홍길동</span>님</a>
-          <ul class="user-menu">
+          <!-- <ul class="user-menu">
             <li><router-link to="/">내 계정관리</router-link></li>
             <li><a role="button">로그아웃</a></li>
-          </ul>
+          </ul> -->
         </div>
         <a role="button" class="alarm">
           <span class="blind">알람</span>
@@ -52,14 +52,14 @@ export default {
     }
   },
   methods: {
-    openNav() {
-      let el = document.querySelector('.nav')
-      el.classList.add('open')
-    },
-    closeNav() {
-      let el = document.querySelector('.nav')
-      el.classList.remove('open')
-    }
+    // openNav() {
+    //   let el = document.querySelector('.nav')
+    //   el.classList.add('open')
+    // },
+    // closeNav() {
+    //   let el = document.querySelector('.nav')
+    //   el.classList.remove('open')
+    // }
   }
 }
 </script>

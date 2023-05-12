@@ -17,43 +17,57 @@ import PubList from '@/views/guide/page/PubList'
 import UiGuides from '@/views/guide/page/UiGuide'
 
 // 로그인
-import LoginPage from '@/views/publish/join/LoginPage'
-import IdFind from '@/views/publish/join/IdFind'
-import pwFind from '@/views/publish/join/pwFind'
-import IdResult from '@/views/publish/join/IdResult'
-import PwReset from '@/views/publish/join/PwReset'
-import PwChange from '@/views/publish/join/PwChange'
-import SignUp from '@/views/publish/join/SignUp'
+import LoginPage from '@/views/join/LoginPage'
+import IdFind from '@/views/join/IdFind'
+import pwFind from '@/views/join/pwFind'
+import IdResult from '@/views/join/IdResult'
+import PwReset from '@/views/join/PwReset'
+import PwChange from '@/views/join/PwChange'
+import SignUp from '@/views/join/SignUp'
 
 // 가입
-import JoinStep01 from '@/views/publish/join/JoinStep01'
-import JoinStep02 from '@/views/publish/join/JoinStep02'
-import JoinStep03 from '@/views/publish/join/JoinStep03'
-import JoinStep04 from '@/views/publish/join/JoinStep04'
-import AgencyJoinStep01 from '@/views/publish/join/AgencyJoinStep01'
-import AgencyJoinStep02 from '@/views/publish/join/AgencyJoinStep02'
-import AgencyJoinStep03 from '@/views/publish/join/AgencyJoinStep03'
-import AgencyJoinStep04 from '@/views/publish/join/AgencyJoinStep04'
+import JoinStep01 from '@/views/join/JoinStep01'
+import JoinStep02 from '@/views/join/JoinStep02'
+import JoinStep03 from '@/views/join/JoinStep03'
+import JoinStep04 from '@/views/join/JoinStep04'
+import AgencyJoinStep01 from '@/views/join/AgencyJoinStep01'
+import AgencyJoinStep02 from '@/views/join/AgencyJoinStep02'
+import AgencyJoinStep03 from '@/views/join/AgencyJoinStep03'
+import AgencyJoinStep04 from '@/views/join/AgencyJoinStep04'
 
 // 고객센터
-import NoticeView from '@/views/publish/customer/Notice'
-import NoticeContent from '@/views/publish/customer/NoticeContent'
-import FAQ from '@/views/publish/customer/FAQ'
-import OnlineInquire from '@/views/publish/customer/OnlineInquire'
-import RequireList from '@/views/publish/customer/RequireList'
+import NoticeView from '@/views/cs/Notice'
+import NoticeContent from '@/views/cs/NoticeContent'
+import FAQ from '@/views/cs/FAQ'
+import OnlineInquire from '@/views/cs/OnlineInquire'
+import RequireList from '@/views/cs/RequireList'
 
 // 마이페이지
-import MyInfo from '@/views/publish/mypage/MyInfo'
-import MyInfoAgency from '@/views/publish/mypage/MyInfoAgency'
-import CorpInfo from '@/views/publish/mypage/CorpInfo'
-import CorpInfoEdit from '@/views/publish/mypage/CorpInfoEdit'
-import Withdrawal from '@/views/publish/mypage/Withdrawal'
+import MyInfo from '@/views/mypage/MyInfo'
+import MyInfoAgency from '@/views/mypage/MyInfoAgency'
+import CorpInfo from '@/views/mypage/CorpInfo'
+import CorpInfoEdit from '@/views/mypage/CorpInfoEdit'
+import Withdrawal from '@/views/mypage/Withdrawal'
 
 Vue.use(Router)
+
+/**
+ * name 작성 시 유념 사항
+ * 1. name은 고유 값이어야 합니다.
+ * 2. router 내 name과 .vue 내부의 name은 동일해야 합니다.
+ */
 
 let router = new Router({
   mode: 'history',
   routes: [
+    {
+      path: '*',
+      component: NotFound,
+      meta: {
+        headerView: false
+      }
+    },
+    // 퍼블 가이드
     {
       path: '/PubGuides',
       component: PubGuides,

@@ -421,10 +421,10 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
-import AgencyCheckMsg from '@/views/publish/join/AgencyCheckMsg.vue'
+import AgencyCheckMsg from '@/views/join/AgencyCheckMsg.vue'
 import StepList from '@/components/common/StepList.vue'
-import ConfirmMsg from '@/views/publish/join/ConfirmMsg.vue'
-import ZipCode from '@/views/publish/join/ZipCode.vue'
+import ConfirmMsg from '@/views/join/ConfirmMsg.vue'
+import ZipCode from '@/views/join/ZipCode.vue'
 
 export default {
   components: {
