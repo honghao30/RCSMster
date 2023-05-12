@@ -68,10 +68,14 @@
                 padding: 8px 16px;
                 border: 1px solid #ddd;
                 border-radius: 8px;
+                overflow: auto;
                 li{
                   @include fontoption(16px,#000,400,26px);
                   position: relative;
                   display: flex;
+                  em{
+                    font-style: normal;
+                  }
                   .btn-file--del{
                     font-size: 0;
                     background-color: transparent;
@@ -211,16 +215,16 @@
               .file-upload{
                 .el-upload{
                   .el-upload-dragger{
+                    height: 108px;
                     .file-upload__text{
                       font-size: 14px;
-                      line-height: 165px;    
+                      line-height: 150px;    
                       &::before{
-                        margin: 0 auto 8px;
                         background: url('#{$iconBsUrl}icon_file_plus_mo.png') no-repeat center;  
                         width: 40px;
                         height: 40px;
                         top: -40px;
-                        left:50%;
+                        left:40%;
                         background-size: 100%;
                       }
                     }
@@ -228,31 +232,19 @@
                 }
               }
               .file-choice__result{
-                width: 100%;
-                height: 120px;
-                padding: 8px 16px;
-                border: 1px solid #ddd;
-                border-radius: 8px;
+                height: 108px;
+                padding: 12px;
                 li{
-                  @include fontoption(16px,#000,400,26px);
-                  position: relative;
-                  display: flex;
+                  font-size: 14px;
+                  line-height: 21px;
                   .btn-file--del{
-                    font-size: 0;
-                    background-color: transparent;
-                    border: none;
-                    cursor: pointer;
                     padding: 0;
                     &::before{
-                      content: '';
-                      position: absolute;
-                      display: block;
-                      margin: 0 auto;
                       background: url('#{$iconBsUrl}icon_file_delete.png') no-repeat center;  
-                      background-size: 50%;
-                      width: 32px;
-                      height: 32px;
-                      top: 0;
+                      background-size: 100%;
+                      width: 16px;
+                      height: 16px;
+                      top: 2px;
                     }
                   }
                 }
