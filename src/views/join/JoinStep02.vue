@@ -177,8 +177,8 @@ import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import StepList from '@/components/common/StepList.vue'
-import ConfirmMsg from '@/views/join/ConfirmMsg.vue'
-import ZipCode from '@/views/join/ZipCode.vue'
+import ConfirmMsg from '@/views/join/components/ConfirmMsg.vue'
+import ZipCode from '@/views/join/components/ZipCode.vue'
 
 export default {
   components: {

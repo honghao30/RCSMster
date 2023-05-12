@@ -82,7 +82,7 @@
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
-import ConfirmMsg from '@/views/join/ConfirmMsg.vue'
+import ConfirmMsg from '@/views/join/components/ConfirmMsg.vue'
 export default {
   components: {
     PageTitle,
