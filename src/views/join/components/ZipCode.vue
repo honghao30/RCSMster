@@ -67,14 +67,14 @@
             </table>
           </div>
         </div>
-        <div class="guide-box">
+        <!-- 최초 출력 <div class="guide-box">
           <p class="main-text">도로명 주소와 건물번호를 함께 입력하면 빠르게 찾을 수 있습니다.</p>
           <ul>
             <li>&middot; 도로명 + 건물번호 <span class="sm">예) 송파대로 570</span></li>
             <li>&middot; 도로명 <span class="sm">예) 강남대로, 중앙1로, 낙산1길</span></li>
             <li>&middot; 건물명, 아파트명 <span class="sm">예) 반포자이아파트</span></li>
           </ul>
-        </div>
+        </div> -->
       </div>
       <div class="modal__content--footer">
         <div class="button__wrap">
