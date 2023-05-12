@@ -465,6 +465,7 @@ $formLabelWidth : 120px;
   border: 1px solid $bordersColor;
   position: relative;
   overflow:hidden;
+  background-color: #fff;
   textarea {
     @include textareaBasic;
     flex: 1;
