@@ -5,17 +5,6 @@ $inputColor: #fafafa;
 $bordersColor: #DDDDDD;
 $textareaHeight: 100px;
 
-@mixin hiddens {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
 @mixin inputBasic {  
     background-color: #fff;    
     border-radius: 8px;
@@ -30,6 +19,15 @@ $textareaHeight: 100px;
     &::placeholder {
       color: #999
     }
+    &:focus {
+      border-color:#4a5567;
+      outline:none;
+    }
+    &:disabled {
+      background-color:#f4f4f4;
+      border-color:$bordersColor;
+      cursor:not-allowed;
+    }
 }
 
 @mixin textareaBasic {
@@ -42,21 +40,19 @@ $textareaHeight: 100px;
   line-height: inherit;
   width: 100%;
   overflow-y: auto;
+  font-family:$font-family;
   &::placeholder {
     @include fontoption(16px,#999,400,26px);
     margin-top: 8px;
+  }
+  &:focus {
+    outline: none;
   }
 }
 
 .input {
   input {
     @include inputBasic;
-    &:disabled {
-      background-color:#f4f4f4;
-      color:#999;
-      border-color:#ddd;
-      cursor:not-allowed;
-    }
   }
   &.search {
     position:relative;
@@ -118,24 +114,16 @@ $textareaHeight: 100px;
   } 
   input[type=checkbox]:checked + label {
     &:before {
-      background-color: $pointColor;
-      border-color: $pointColor;
+      background:url('../assets/images/cmp/checkbox_active.png') 50% 50%;
+      background-size: 24px;
+      border:none;
     }
   }
-  input[type=checkbox]:checked + label {
-    &:after{
-      content:"";
-      border:2px solid #fff;
-      border-width:0 2px 2px 0;
-      height:9px;
-      position:absolute;
-      top:8px;
-      left: 8px;
-      width: 5px;
-      font-size:14px !important;
-      line-height:14px !important;
-      transform: rotate(45deg) scaleY(1)
-    }    
+  input[type=checkbox]:disabled + label {
+    &:before {
+      background:#f4f4f4;
+      border:1px solid #ccc;
+    }
   }
 }
 //radiobox
@@ -163,27 +151,19 @@ $textareaHeight: 100px;
       position:relative;
       top:1px;
     }   
-    &::after {
-      content: '';
-      position: absolute;
-      top: 6px;
-      left: 3px;
-      width: 14px;
-      height: 14px;
-      border-radius: 100%;
-      background: transparent;
-      border-radius:100%;
-      box-shadow: none;
-    }  
   } 
   input[type=radio]:checked + label {
-    &::before {
-      border-color:$pointColor
+    &:before {
+      background:url('../assets/images/cmp/radio_active.png') 50% 50%;
+      background-size: 24px;
+      border:none;
     }
-    &::after {
-      content: '';
-      background: $pointColor;
-    }    
+  }
+  input[type=radio]:disabled + label {
+    &:before {
+      background:#f4f4f4;
+      border:1px solid #ccc;
+    }
   }
 }
 

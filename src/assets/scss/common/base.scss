@@ -23,7 +23,18 @@ caption{position: absolute;width: 1px;height: 1px;clip: rect(0 0 0 0);overflow: 
 button {cursor:pointer;outline:none;border:0;}
 a[role="button"] {cursor:pointer;}
 
-.blind,.irtext { position: absolute;width: 1px;height: 1px;clip: rect(0 0 0 0);overflow: hidden;}
+@mixin hiddens {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+.blind,.irtext { @include hiddens;}
 .point {color:$pointColor;font-style:normal}
 
 
@@ -59,8 +70,7 @@ a[role="button"] {cursor:pointer;}
        display: block;
     }
     .m-hidden {
-        display: none !important;
-        width:0;
+        @include hiddens;
     }
     ::-webkit-scrollbar {
         width: 6px;
