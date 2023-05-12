@@ -14,10 +14,11 @@
               type="btn-search"
             >검색</ButtonCmp>
           </div>
-          <p class="guide-text error">도로명 또는 건물명(아파트)을 입력해주세요.</p>
+          <!-- // validate check error -->
+          <!-- <p class="guide-text error">도로명 또는 건물명(아파트)을 입력해주세요.</p>
           <p class="guide-text error">최소 두 글자 이상 입력해주세요.</p>
           <p class="guide-text error">문자와 숫자를 같이 입력해주세요.</p>
-          <p class="guide-text error">특수문자, 숫자만으로는 검색이 어렵습니다.</p>
+          <p class="guide-text error">특수문자, 숫자만으로는 검색이 어렵습니다.</p> -->
         </div>
         <div class="search-result__wrap">
           <div class="top-ctrl-area">
@@ -43,7 +44,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr
+                  v-for="post in 10"
+                  :key="post"
+                >
                   <td>
                     <div class="addr">
                       <p class="road">서울특별시 강남구 봉은사로 지하102 (역삼동, 신논현역)</p>
@@ -52,13 +56,13 @@
                   </td>
                   <td><span class="zipcode">06120</span></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <td colspan="2">
                       <div class="result-none">
                         <p>검색결과가 없습니다.</p>
                       </div>
                   </td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </div>
