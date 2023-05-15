@@ -84,6 +84,23 @@ $textareaHeight: 100px;
     }
   }
 }
+
+.input-limit{
+  position: relative;
+  input{
+    padding: 0 64px 0 16px;
+  }
+  .input-limit__text{
+    @include fontoption(16px,#000,400,26px); 
+    position: absolute;
+    right: 16px;
+    top:50%;
+    transform: translateY(-50%);
+  }
+  .textarea-limit__text{
+    @include fontoption(16px,#000,400,26px); 
+  }
+}
 //check box
 //input 은 숨겨주기
 //checkbox 는 .checkbox 클래스명의 엘리먼트안에 input 관 label 로 구현
@@ -366,6 +383,9 @@ $formLabelWidth : 120px;
       input {
         flex: 1;
       }
+    }
+    .dropdown {
+      width:100%;
     }
   }
   .btn-default-line {

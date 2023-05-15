@@ -116,7 +116,11 @@
             line-height: 30px;                
             text-align: center;                
             color: #000000;                
-        }        
+        }   
+        .modal__content--title {
+          @include fontoption(28px,#000,700,36px);
+          text-align: center;
+        }     
         .modal__content--footer {
             background-color: #fff;     
             button {
@@ -185,6 +189,9 @@
           margin:0 4px;
         }
       }
+    }
+    &.Max628 {
+      max-width: 628px;
     }
   }
   .zipcode__modal {
@@ -272,6 +279,9 @@
     }
     .search-result__wrap {
       .table {
+        tr {
+          cursor: pointer;
+        }
         .addr {
           p {
             display:flex;

@@ -2,7 +2,9 @@
   <div
     class="modal__content--inner zipcode__modal"
   >
-    <div class="zipcode-step1">
+    <div class="zipcode-step1"
+     v-if="zipcodeStep1"
+    >
       <div class="modal__content--header">
         <p class="modal-title">우편번호 찾기</p>
       </div>
@@ -51,6 +53,7 @@
                 <tr
                   v-for="post in 10"
                   :key="post"
+                  @click="selectAddr"
                 >
                   <td>
                     <div class="addr">
@@ -91,7 +94,9 @@
         </div>
       </div>
     </div>
-    <!-- <div class="zipcode-step2">
+    <div class="zipcode-step2"
+      v-else
+    >
       <div class="modal__content--header">
         <p class="modal-title">상세 주소 입력</p>
       </div>
@@ -117,13 +122,15 @@
         <div class="button__wrap">
           <ButtonCmp
             type="btn-blue-line"
+            @click="$emit('closeModal')"
           >닫기</ButtonCmp>
           <ButtonCmp
             type="btn-blue"
+            @click="$emit('closeModal')"
           >저장</ButtonCmp>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 
 </template>
@@ -136,12 +143,16 @@ export default {
   },
   data() {
     return {
-      postResul: false
+      postResul: false,
+      zipcodeStep1: true
     }
   },
   methods: {
     zipcodeSearch () {
       this.postResul = true
+    },
+    selectAddr () {
+      this.zipcodeStep1 = false
     }
   }
 }

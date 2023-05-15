@@ -166,7 +166,10 @@
           </ButtonCmp>
         </div>
       </ConfirmMsg>
-      <ZipCode v-else />
+      <ZipCode
+        @closeModal="isModalViewed = false"
+        v-else
+       />
   </ModalView>
   </div>
 </template>

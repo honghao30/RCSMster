@@ -1,0 +1,10 @@
+.dashboard__wrap {
+    width: 100%;
+    .dashboard__wrap--inner {
+        padding:24px 0;
+        width: 100%;
+        max-width: 1280;
+        display: flex;
+        justify-content: space-between;
+    }
+}

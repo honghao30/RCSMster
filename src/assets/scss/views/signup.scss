@@ -150,3 +150,51 @@
     }
   }
 }
+// 가입시 중계사 선택
+.agency-list__wrap {
+  .agency-list__search {
+    padding: 32px 0 15px;
+    .form-item__content {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      .input {
+        flex: 1;
+      }
+    }
+  }
+  .agency-list__selelect {
+    border-radius: 16px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    .agency-list__left {
+      width: 50%;
+      border-right:1px solid #ddd;
+      height:214px;
+      overflow: auto;
+      li {
+        margin:6px 0;
+        @include fontoption(15px,#000,400,26px);
+      }
+    }   
+    .agency-list__right {
+      width: 50%;      
+      height:214px;
+      overflow: auto;
+      .nodata {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;          
+        @include fontoption(14px,#999999,400,26px);
+      }      
+      li {
+        position: relative;
+        margin:6px 0;
+        @include fontoption(15px,#000,400,26px);
+      }
+    }           
+  }
+}

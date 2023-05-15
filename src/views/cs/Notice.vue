@@ -91,6 +91,10 @@ export default {
         {
           label: '제목',
           value: 'title'
+        },
+        {
+          label: '내용',
+          value: 'content'
         }
       ],
       category: ['전체', '이벤트', '시스템', '정책', '서식', '업데이트 노트'],

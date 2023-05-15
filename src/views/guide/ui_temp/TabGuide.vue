@@ -7,81 +7,23 @@
         </ul>
       </div>
     </div>
+    <TitleH3 titleh3="Tab(스와이프 형)" />
+    <TabCategory :category="category"/>
     <TitleH3 titleh3="Tab (자동 넓이 꽉차게) " />
-    <div class="wsg-guide-content">
-      <TabCmp>
-        <TabItem title="Tab1">
-          <div>Tab1 내용</div>
-        </TabItem>
-        <TabItem title="Tab2">
-          <div>Tab2 내용</div>
-        </TabItem>
-        <TabItem title="Tab3">
-          <div>Tab3 내용</div>
-        </TabItem>
-        <TabItem title="Tab4">
-          <div>Tab4 내용</div>
-        </TabItem>
-      </TabCmp>
-    </div>
-    <TitleH3 titleh3="Tab (Tab 아이템 넓이 고정)" />
-    <div class="wsg-guide-content">
-      <TabCmp :tabWidth="160">
-        <TabItem title="Tab1">
-          <div>Tab1 내용</div>
-        </TabItem>
-        <TabItem title="Tab2">
-          <div>Tab2 내용</div>
-        </TabItem>
-        <TabItem title="Tab3">
-          <div>Tab3 내용</div>
-        </TabItem>
-        <TabItem title="Tab4">
-          <div>Tab4 내용</div>
-        </TabItem>
-      </TabCmp>
-    </div>
-    <TitleH3 titleh3="Tab (10개 이상 - 가로 스크롤)" />
-    <div class="wsg-guide-content">
-      <TabCmp :tabWidth="180"> <!-- tab width 고정하고 싶을 때는 tabWidth 써주세요.-->
-        <TabItem title="Tab1">
-          <div>Tab1 내용</div>
-        </TabItem>
-        <TabItem title="Tab2">
-          <div>Tab2 내용</div>
-        </TabItem>
-        <TabItem title="Tab3">
-          <div>Tab3 내용</div>
-        </TabItem>
-        <TabItem title="Tab4">
-          <div>Tab4 내용</div>
-        </TabItem>
-        <TabItem title="Tab5">
-          <div>Tab5 내용</div>
-        </TabItem>
-        <TabItem title="Tab6">
-          <div>Tab6 내용</div>
-        </TabItem>
-        <TabItem title="Tab7">
-          <div>Tab7 내용</div>
-        </TabItem>
-        <TabItem title="Tab8">
-          <div>Tab8 내용</div>
-        </TabItem>
-        <TabItem title="Tab9">
-          <div>Tab9 내용</div>
-        </TabItem>
-        <TabItem title="Tab10">
-          <div>Tab10 내용</div>
-        </TabItem>
-        <TabItem title="Tab11">
-          <div>Tab11 내용</div>
-        </TabItem>
-        <TabItem title="Tab12">
-          <div>Tab12 내용</div>
-        </TabItem>
-      </TabCmp>
-    </div>
+    <TabCmp>
+      <TabItem title="Tab1">
+        <div>Tab1 내용</div>
+      </TabItem>
+      <TabItem title="Tab2">
+        <div>Tab2 내용</div>
+      </TabItem>
+      <TabItem title="Tab3">
+        <div>Tab3 내용</div>
+      </TabItem>
+      <TabItem title="Tab4">
+        <div>Tab4 내용</div>
+      </TabItem>
+    </TabCmp>
   </div>
 </template>
 
@@ -89,23 +31,22 @@
 import TitleH3 from '../cmp/TitleH3.vue'
 import TabCmp from '../../../components/common/TabCmp.vue'
 import TabItem from '../../../components/common/TabItem.vue'
+import TabCategory from '@/components/common/TabCategory'
 
 export default {
   data() {
     return {
-      currentTab: 0
+      currentTab: 0,
+      category: ['tab1', 'tab2', 'tab3', 'tab4', 'tab5', 'tab6 긴 이름~~']
     }
   },
   components: {
     TitleH3,
     TabCmp,
-    TabItem
+    TabItem,
+    TabCategory
   },
   methods: {
-    tabCtrl: function(num) {
-      this.currentTab = num
-      this.collapseIdx = NaN
-    }
   }
 }
 </script>

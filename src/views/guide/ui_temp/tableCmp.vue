@@ -50,17 +50,21 @@
     </div>
     <div class="table__wrap">
       <table class="table table-bodyonly">
+        <colgroup>
+          <col width="200px">
+          <col />
+        </colgroup>
         <tbody>
           <tr>
             <th scope="row">이름</th>
             <td>이름</td>
           </tr>
           <tr>
-            <th scope="row">이름</th>
+            <th scope="row">휴대폰번호</th>
             <td>이름</td>
           </tr>
           <tr>
-            <th scope="row">이름</th>
+            <th scope="row">주소</th>
             <td>이름</td>
           </tr>
         </tbody>

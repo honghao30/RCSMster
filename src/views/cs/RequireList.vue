@@ -34,7 +34,7 @@
               <span class="require-list__complete" v-if="item.complete">답변완료</span>
               <span class="require-list__wait" v-if="!item.complete">답변대기</span>
             </span>
-            <span> {{ item.title }} </span>
+            <span class="accordion-title__title"> {{ item.title }} </span>
             <p class="require-list__date"> {{ item.date }} </p>
           </template>
           <template slot="accordion-content">
@@ -88,7 +88,7 @@ export default {
           date: '2023.04.25',
           keyword: '',
           question: '가입 승인이 아직도 안되었어요. 승인 결과 안내 받을 수 있나요?',
-          answer: '',
+          answer: '안녕하세요. 답변 준비중입니다.',
           answerdate: ''
         },
         {

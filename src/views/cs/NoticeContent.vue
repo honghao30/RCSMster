@@ -26,12 +26,16 @@
             <td colspan="2" class="notice-content__list">
               <ul>
                 <li class="l-align title">
-                  <p>펨플릿.jpg</p>
-                  <a href="" download class="ico-download"><span class="blind">다운로드</span></a>
+                  <a href="" download>
+                    펨플릿.jpg
+                    <span class="ico-download"><span class="blind">다운로드</span></span>
+                  </a>
                 </li>
                 <li class="l-align title">
-                  <p>Action버튼_데이터 셋_sample_20201103.xlsx</p>
-                  <a href="" download class="ico-download"><span class="blind">다운로드</span></a>
+                  <a href="" download>
+                    Action버튼_데이터 셋_sample_20201103.xlsx
+                    <span class="ico-download"><span class="blind">다운로드</span></span>
+                  </a>
                 </li>
               </ul>
             </td>
@@ -85,7 +89,7 @@
             <td>
               <div class="l-align title">
                 <router-link to=""
-                >3rd Party App의 RCS 문자 메시지 인식...
+                >[작업] 삼성 MaaP 작업에 따른 RCS Biz Center 서비스 차단 안내 (7월 19일 ~ 20일)
                 </router-link>
               </div>
             </td>

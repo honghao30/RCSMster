@@ -1,7 +1,12 @@
 <template>
   <div class="wrap">
     <HeaderCmp />
-    <div class="contents" id="contents" role="main">
+    <div
+      class="contents"
+      :class="{ bgcontainer: ShowBgcolor }"
+      id="contents"
+      role="main"
+    >
       <BreadCrumb />
       <router-view></router-view>
     </div>
@@ -19,6 +24,17 @@ export default {
     HeaderCmp,
     FooterCmp,
     BreadCrumb
+  },
+  data() {
+    return {
+      ShowBgcolor: false
+    }
+  },
+  mounted() {
+    this.breadcrumbInfo = this.$router.currentRoute.meta.breadcrumb
+    if (this.breadcrumbInfo === false) {
+      this.ShowBgcolor = true
+    }
   }
 }
 </script>

@@ -7,6 +7,11 @@
         </ul>
       </div>
     </div>
+    <TitleH3 titleh3="Input" />
+    <span class="input">
+        <input ref="usrid" type="text" class="input" placeholder="input 입니다.">
+    </span>
+    <!--
     <TitleH3 titleh3="Select" />
     <div class="wsg-guide-content">
       <div class="select">
@@ -17,21 +22,26 @@
         </select>
       </div>
     </div>
+    -->
     <TitleH3 titleh3="Dropdown" />
-    <p>{{ form.dropdown }}</p>
+    <div class="wsg-guide-content">
+      <div class="wsg-note__wrap--gray-box">
+        <ul class="wsg_desc">
+          <li>Dropdown은 option을 데이터 형식으로 넣어줍니다. Dropdown 메뉴 내 검색을 원할 시에는 searchable 을 prop으로 전달하면 됩니다. </li>
+        </ul>
+      </div>
+    </div>
+
     <Dropdown searchable :options="dropdownOptions" v-model="form.dropdown">
     </Dropdown>
     <!-- search 가 필요하시면 searchable 추가해주세요.-->
     <TitleH3 titleh3="Checkbox" />
-    <div class="wsg-guide-content">
-      <span class="checkbox">
-        <input type="checkbox" id="check" value="form.check"/>
-        <label for="check"><span class="checkbox__text">옵션1</span></label>
-      </span>
-    </div>
+    <span class="checkbox">
+      <input type="checkbox" id="check" value="form.check"/>
+      <label for="check"><span class="checkbox__text">옵션1</span></label>
+    </span>
     <TitleH3 titleh3="Radiobox" />
-    <div class="wsg-guide-content">
-      <span class="radiobox">
+    <span class="radiobox">
         <input type="radio" name="radio" id="radio1" />
         <label for="radio1"><span class="radiobox__text">옵션1</span></label>
       </span>
@@ -43,16 +53,24 @@
         <input type="radio" name="radio" id="radio3" />
         <label for="radio3"><span class="radiobox__text">옵션3</span></label>
       </span>
-    </div>
     <TitleH3 titleh3="Datepicker" />
-    <div class="wsg-guide-content">
-      <el-date-picker
+    <el-date-picker
         v-model="form.date"
         type="date"
         placeholder="날짜를 선택하세요">
-      </el-date-picker>
+    </el-date-picker>
+    <TitleH3 titleh3="Textarea" />
+    <div class="input-item input-limit">
+      <div class="textarea">
+        <textarea maxlength="1000" placeholder="문의 내용을 입력해주세요." v-model="form.textarea"></textarea>
+        <div class="textarea-limit__text">
+          <p>
+            {{ form.textarea.length }}/1000자
+          </p>
+        </div>
+      </div>
     </div>
-    <TitleH3 titleh3="Form List" />
+    <!-- <TitleH3 titleh3="Form List" />
     <div class="wsg-guide-content">
       <div class="form-list">
         <div class="form-item">
@@ -72,75 +90,48 @@
         </div>
       </div>
       <button @click="checkValidation">Validation Check</button>
-    </div>
-    <TitleH3 titleh3="Form List(Table 형)" />
-    <div class="wsg-guide-content">
-      <div class="table__wrap">
-        <table class="table table-bodyonly form-table">
-          <colgroup>
-            <col width="200px">
-            <col />
-          </colgroup>
-          <tbody>
-            <tr>
-              <th scope="row"><span class="form-item__label required">사업자등록번호</span></th>
-              <td>
-                105-870-78973
-              </td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="form-item__label required">사업자등록증</span></th>
-              <td>
+    </div> -->
+    <TitleH3 titleh3="Form List(Table형)" />
+    <div class="table__wrap">
+      <table class="table table-bodyonly form-table">
+        <colgroup>
+          <col width="200px">
+          <col />
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="form-item__label required">이름</span></th>
+            <td>
                 <div class="form-item__content">
-                  <div class="form-item-row">
-                    <div class="input-item">
-                      <input type="text" class="input">
-                      <button>파일찾기</button>
+                    <div class="form-item-row">
+                        <div class="input-item">
+                            <span class="input"><input type="text" class="input" placeholder="담당자 이름을 입력해주세요."></span>
+                        </div>
                     </div>
-                    <p class="guide-text">※ 파일형식: JPG, PNG, PDF, TIFF(최대 5MB)</p>
-                  </div>
-                  <p class="guide-text"> ※ 사업자등록증이 없는 경우 사업자등록증명 또는 고유번호증을 등록해주세요. </p>
-                  <p class="guide-text"> ※ 비영리법인/국가기관인 경우 고유번호증을 등록해주세요. </p>
+                    <p class="guide-text error">담당자 이름을 입력해주세요.</p>
                 </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="form-item__label required">업태</span></th>
-              <td>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="form-item__label required">휴대폰 번호</span></th>
+            <td>
                 <div class="form-item__content">
-                  <div class="form-item-row">
-                    <div class="input-item">
-                      <input type="text" class="input">
+                    <div class="form-item-row">
+                        <div class="input-item">
+                            <span class="input"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요."></span>
+                            <ButtonCmp
+                                type="btn-default-line"
+                            >
+                            휴대폰 인증
+                            </ButtonCmp>
+                        </div>
+                        <p class="guide-text error">휴대폰 번호을 입력해주세요.</p>
                     </div>
-                  </div>
-                  <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘기업/단체’로 입력해주세요.</p>
                 </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">주소</th>
-              <td>
-                <div class="form-item__content">
-                  <div class="form-item-row">
-                    <div class="input-item">
-                      <input type="text" class="input">
-                      <button>우편번호</button>
-                    </div>
-                  </div>
-                  <div class="form-item-row">
-                    <div class="input-item">
-                      <input type="text" class="input">
-                    </div>
-                    <div class="input-item">
-                      <input type="text" class="input">
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -148,6 +139,7 @@
 <script>
 import TitleH3 from '../cmp/TitleH3.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
+import ButtonCmp from '@/components/common/ButtonCmp.vue'
 
 export default {
   data() {
@@ -159,7 +151,8 @@ export default {
         radio: 1,
         radioGroup: 3,
         id: '',
-        dropdown: ''
+        dropdown: '',
+        textarea: ''
       },
       dropdownOptions: [
         {
@@ -184,7 +177,8 @@ export default {
   },
   components: {
     TitleH3,
-    Dropdown
+    Dropdown,
+    ButtonCmp
   },
   methods: {
     checkValidation() {

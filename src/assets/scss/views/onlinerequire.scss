@@ -13,22 +13,6 @@
             .dropdown{
               width: 100%;
             }
-            .input-limit{
-              position: relative;
-              input{
-                padding: 0 64px 0 16px;
-              }
-              .input-limit__text{
-                @include fontoption(16px,#000,400,26px); 
-                position: absolute;
-                right: 16px;
-                top:50%;
-                transform: translateY(-50%);
-              }
-              .textarea-limit__text{
-                @include fontoption(16px,#000,400,26px); 
-              }
-            }
             .file-choice{
               display: flex;
               flex-wrap: wrap;

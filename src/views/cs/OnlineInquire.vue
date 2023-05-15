@@ -82,6 +82,7 @@
                         :on-change="handleChange"
                         :auto-upload="false"
                         multiple
+                        :show-file-list ="false"
                         v-if="fileList.length < 1"
                         >
                         <span class="file-upload__text">마우스로 파일을 끌어다 놓으세요.</span>
@@ -92,7 +93,7 @@
                           (
                           <em class="file_size">{{ file.size }}</em>
                           )
-                          <button class="btn-file--del" @click="deleteFile(i)"><span>삭제</span></button>
+                          <a role="button" class="btn-file--del" @click="deleteFile(i)"><span>삭제</span></a>
                         </li>
                       </ul>
                     </div>

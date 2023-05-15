@@ -28,7 +28,7 @@
             <span class="accordion-cate">
               Q
             </span>
-            <p> {{ item.question }} </p>
+            <p class="accordion-title__title"> {{ item.question }} </p>
           </template>
           <template slot="accordion-content">
             <span class="accordion-cate">

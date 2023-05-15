@@ -23,17 +23,27 @@
         본 약관에 명시되지 않은 사항에 대해서는 관련 법령 및 “이동통신3사”가 정한 “서비스”의 세부이용지침 등의 규정에 의합니다.<br>
       </div>
       <div class="modal__content--footer">
-        모달 푸터 영역
+        <ButtonCmp
+          type="btn-blue"
+          @click="$emit('closeModal')"
+        >
+          확인
+        </ButtonCmp>
       </div>
   </div>
 </template>
 
 <script>
+import ButtonCmp from '@/components/common/ButtonCmp.vue'
 export default {
-
+  components: {
+    ButtonCmp
+  }
 }
 </script>
 
-<style>
-.test-content {background: #fff;z-index: 12;}
+<style scoped>
+.test-content {background: #fff;z-index: 25;max-width: 500px;}
+.modal__content--body {padding:20px;}
+
 </style>

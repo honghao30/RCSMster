@@ -51,6 +51,12 @@
         >
           modal
         </ButtonCmp>
+        <ButtonCmp
+          type="blue"
+          @click="goto('sect08')"
+        >
+          아코디언
+        </ButtonCmp>
       </div>
       <SubTitle pagetitle="UI 템플릿" />
       <div ref="sect01">
@@ -81,6 +87,10 @@
         <TitleH3 titleh3="Modal" />
         <ModalGuide />
       </div>
+      <div ref="sect08">
+        <TitleH3 titleh3="아코디언" />
+        <AccoDien />
+      </div>
     </div>
     <button
       ref="topButton"
@@ -99,6 +109,7 @@ import TitleH3 from '@/views/guide/cmp/TitleH3.vue'
 import BemGuide from '@/views/guide/ui_temp/BemGuide.vue'
 import TypoGraphy from '@/views/guide/ui_temp/TypoGuide.vue'
 import ModalGuide from '@/views/guide/ui_temp/ModalGuide.vue'
+import AccoDien from '@/views/guide/ui_temp/AccoDien.vue'
 import TableGuide from '@/views/guide/ui_temp/tableCmp.vue'
 import ButtonGuide from '@/views/guide/ui_temp/ButtonGuide.vue'
 import FormGuide from '@/views/guide/ui_temp/FormGuide.vue'
@@ -119,7 +130,8 @@ export default {
     ButtonCmp,
     ModalGuide,
     TabGuide,
-    HeaterGuide
+    HeaterGuide,
+    AccoDien
   },
   data() {
     return {

@@ -381,13 +381,11 @@
         v-if="certifMessage"
         @closeModal="isModalViewed = false"
       >
-        <div slot="msg">
-          <div class="msg">
-            동일한 사업자등록번호로<br> 가입된 회원계정이 있습니다.
-          </div>
-          <div class="msg2">
-            홍*동(hkp***@the-51.com)
-          </div>
+        <div class="msg">
+          동일한 사업자등록번호로<br> 가입된 회원계정이 있습니다.
+        </div>
+        <div class="msg2">
+          홍*동(hkp***@the-51.com)
         </div>
         <div class="button__wrap" slot="button">
             <ButtonCmp
@@ -403,10 +401,98 @@
             </ButtonCmp>
         </div>
       </ConfirmMsg>
-      <AgencyCheckMsg
+      <ConfirmMsg
         v-else-if="AgencyModal"
         @closeModal="isModalViewed = false"
-      />
+      >
+        <div slot="msg">
+          <div class="msg">
+            중계사 시스템에 메시지에 대한 청약 및 대행사<br> webhook url 정보를 등록하셨나요?
+          </div>
+        </div>
+        <div class="button__wrap" slot="button">
+            <ButtonCmp
+            type="btn-blue-line"
+            @click="closeMsg"
+            >닫기</ButtonCmp>
+            <ButtonCmp
+            type="btn-blue"
+            @click="agencyManagement"
+            >확인</ButtonCmp>
+        </div>
+      </ConfirmMsg>
+      <FormModals
+        v-else-if="AgencyManage"
+        @closeModal="isModalViewed = false"
+        modalsize="Max628"
+      >
+      <div class="modal__content--title" slot="title">
+        중계사 선택
+      </div>
+        <div slot="modal-body">
+          <div class="agency-list__wrap">
+              <div class="agency-list__search">
+                <div class="form-item__content">
+                  <span class="input">
+                      <input type="text" class="input" placeholder="중계사명을 입력해주세요.">
+                    </span>
+                    <ButtonCmp
+                      type="btn-search"
+                    >
+                    검색
+                    </ButtonCmp>
+                </div>
+              </div>
+              <div class="agency-list__selelect">
+                <div class="agency-list__left">
+                  <ul>
+                    <li v-for="(list, index) in agencyList"
+                      :key="index"
+                    >
+                      <div class="checkbox">
+                        <input type="checkbox"
+                         :id="`agency0${index }`"
+                         @click="selectCheck"
+                         v-model="agencyname"
+                         />
+                        <label
+                         :for="`agency0${index }`"
+                        ><span class="checkbox__text">{{ list }}</span></label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="agency-list__right">
+                  <ul
+                    v-if="this.agencyListSelect.length > 0"
+                  >
+                    <li v-for="(list, index) in agencyListSelect"
+                      :key="index"
+                    >
+                      {{ list }}
+                    </li>
+                  </ul>
+                  <p class="nodata"
+                    v-ese
+                  >
+                    중계사를 추가해주세요.
+                  </p>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="button__wrap" slot="button">
+            <ButtonCmp
+            type="btn-blue-line"
+            @click="closeMsg"
+            >닫기</ButtonCmp>
+            <ButtonCmp
+            type="btn-blue"
+            @click="$emit('closeModal')"
+            :disabled="isButtonDisabled"
+            >다음</ButtonCmp>
+        </div>
+      </FormModals>
       <ZipCode v-else
         @closeModal="isModalViewed = false"
       />
@@ -421,9 +507,9 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
-import AgencyCheckMsg from '@/views/join/AgencyCheckMsg.vue'
 import StepList from '@/components/common/StepList.vue'
 import ConfirmMsg from '@/views/join/components/ConfirmMsg.vue'
+import FormModals from '@/views/join/components/FormModals.vue'
 import ZipCode from '@/views/join/components/ZipCode.vue'
 
 export default {
@@ -433,9 +519,9 @@ export default {
     PageTitleH3,
     ModalView,
     StepList,
-    AgencyCheckMsg,
     ConfirmMsg,
-    ZipCode
+    ZipCode,
+    FormModals
   },
   data() {
     return {
@@ -450,7 +536,8 @@ export default {
         addr2: '',
         service: [],
         serviceRange: [],
-        agency: ''
+        agency: '',
+        agencyname: ''
       },
       apiList: [],
       selecteAuth: ['Auth_1'],
@@ -472,7 +559,10 @@ export default {
       certificatetemp: '123456789',
       isAgencyModal: false,
       stepTitle: ['약관동의', '대행사정보 입력', '회원정보 입력', '가입완료'],
-      disabled: true
+      disabled: true,
+      AgencyManage: false,
+      agencyList: ['경민중계', '더피프티원', '더피프티원1', '성문대행', '더피프티원2', '더피프티원3', '더피프티원4', '더피프티원5', '성문대행2', '성문대행3'],
+      agencyListSelect: []
     }
   },
   watch: {
@@ -482,6 +572,11 @@ export default {
         return
       }
       document.documentElement.style.overflow = 'auto'
+    }
+  },
+  computed: {
+    isDisabled() {
+      return this.form.agencyListSelect.length > 0
     }
   },
   methods: {
@@ -556,6 +651,13 @@ export default {
     agenceySelect () {
       this.isModalViewed = true
       this.AgencyModal = true
+    },
+    agencyManagement () {
+      this.AgencyModal = false
+      this.AgencyManage = true
+    },
+    selectCheck () {
+      console.log('이거는')
     }
   }
 }

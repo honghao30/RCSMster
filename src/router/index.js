@@ -49,6 +49,16 @@ import CorpInfo from '@/views/mypage/CorpInfo'
 import CorpInfoEdit from '@/views/mypage/CorpInfoEdit'
 import Withdrawal from '@/views/mypage/Withdrawal'
 
+// 대시보드
+import DashBoard from '@/views/dashboard/dashboard'
+// 알림
+import Notification from '@/views/notification/Notification'
+// 브랜드 소식
+import FeedRegistration from '@/views/brand/feed/FeedRegistration'
+
+// 브랜드 개설
+import BrandCreateStep01 from '@/views/brand/create/BrandCreateStep01'
+
 Vue.use(Router)
 
 /**
@@ -286,6 +296,38 @@ let router = new Router({
       component: Withdrawal,
       meta: {
         tittle: '회원 탈퇴'
+      }
+    },
+    // 대시보드
+    {
+      path: '/DashBoard',
+      component: DashBoard,
+      meta: {
+        tittle: '대시보드',
+        breadcrumb: false
+      }
+    },
+    // 알림
+    {
+      path: '/notification',
+      component: Notification,
+      meta: {
+        tittle: '알림'
+      }
+    },
+    // 브랜드 개설
+    {
+      path: '/brandcreatestep01',
+      component: BrandCreateStep01,
+      meta: {
+        tittle: '브랜드 개설'
+      }
+    },
+    {
+      path: '/feed',
+      component: FeedRegistration,
+      meta: {
+        tittle: '브랜드 소식'
       }
     }
   ]

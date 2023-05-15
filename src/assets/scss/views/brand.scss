@@ -1,0 +1,25 @@
+.brand__wrap {
+    background: #F5F5F5;
+    .page-title {
+        padding-top: 48px;
+    }
+}
+.brand__inner {
+    width: 1280px;
+    margin: 0 auto;
+    display:flex;
+    gap: 32px;
+    padding:24px 0;
+}
+.brand-input__wrap {
+    background-color:#fff;
+    border-radius: 24px;
+    padding: 0 32px 46px;
+    flex:0 0 946px;
+    .radiobox {
+        + .radiobox {
+            display: inline-block;
+            margin-left: 68px;
+        }
+    }
+}

@@ -10,7 +10,7 @@
       .title {
         font-weight: 500;
         color: #204485;
-      }   
+      }
     }
     .title {
       display:flex;
@@ -57,6 +57,11 @@
       height:24px;
       flex-shrink: 0;
       background:url('../assets/images/customer/ico_down.png') no-repeat 50% 50%;
+    }
+  }
+  .notice {
+    .title:hover {
+      text-decoration: underline;
     }
   }
   // search - no data
@@ -124,6 +129,10 @@
           }
           li:last-child {
             margin: 0;
+          }
+          .ico-download {
+            position: absolute;
+            margin-top: 2px;
           }
         }
         .notice-content__contents {
@@ -212,6 +221,9 @@
             top:50%;
             transform: translateY(-50%);
             @include fontoption(16px,#000000,500,24px)
+          }
+          .accordion-title__title:hover {
+            text-decoration: underline;
           }   
         }
       }
@@ -289,7 +301,7 @@
       .accordion__item {
         a.accordion__title {
           display: flex;
-          padding: 21px 0 21px 146px;
+          padding: 21px 250px 21px 146px;
           &::after {
             right: 46px;
           }
@@ -304,7 +316,7 @@
           .require-list__date {
             @include fontoption(16px,#888888,400,24px);
             position: absolute;
-            padding-left: 938px;
+            margin-left: 938px;
           } 
         }
       }

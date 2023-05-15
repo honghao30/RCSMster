@@ -21,6 +21,7 @@
             id="service"
             v-model="checkedAgreement1"
             ref="checkedAgreement1"
+            @click="selectCheck"
           />
           <label for="service"><span class="checkbox__text">서비스 이용약관 (필수)</span></label>
         </div>
@@ -42,6 +43,7 @@
             id="delegate"
             v-model="checkedAgreement2"
             ref="checkedAgreement2"
+            @click="selectCheck"
           />
           <label for="delegate"><span class="checkbox__text">신청 위임 동의 (필수)</span></label>
         </div>
