@@ -1,10 +1,91 @@
 .dashboard__wrap {
-    width: 100%;
-    .dashboard__wrap--inner {
-        padding:24px 0;
-        width: 100%;
-        max-width: 1280;
-        display: flex;
-        justify-content: space-between;
-    }
+	width: 100%;
+	.dashboard__wrap--inner {
+		padding:24px 0;
+		width: 100%;
+		max-width: 1280px;
+		margin:0 auto;
+		display: flex;
+		justify-content: space-between;
+	}
+	.dashBoard-main__content {
+		width: 100%;
+		max-width: 946px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;        
+		gap: 16px;        
+	}
+	.approval-statu__box {
+		width: 100%;           
+		background: linear-gradient(0deg, rgba(255, 131, 16, 0.05), rgba(255, 131, 16, 0.05)), #FFFFFF;
+		border: 1px solid rgba(255, 131, 16, 0.5);
+		border-radius: 16px;  
+		padding:24px 32px;
+
+		strong {
+			@include fontoption(20px,#FF8310,700,32px);
+		}
+		P {
+			@include fontoption(16px,#000,400,28px);
+		}      
+	}
+	.board-main__box--roun-type {
+		width: 100%;
+		padding: 40px 32px;
+		background: #FFFFFF;
+		border: 1px solid #EAEAEA;
+		border-radius: 16px;
+		.page-title__wrap {
+			margin-top: 0;
+			span {
+				@include fontoption(20px,#000,400,22px);
+			}
+		}
+		.pagination__area--top {
+			display: flex;
+			justify-content: space-between;
+			.dropdown {
+				width: 240px;
+			}
+			.pager {
+				display:inline-flex;
+				align-items: end;
+				gap: 8px;
+				.num {
+					@include fontoption(16px,#000,400,26px);
+				}
+				a {
+					display:inline-block;
+					width: 32px;
+					height:32px;
+					text-align:center;
+					font-size: 14px;
+					color: #888;
+					border-radius:4px;
+					&.btn-prev {
+						border:1px solid #EAEAEA;
+						background:url('../assets/images/cmp/chevron_left.png') no-repeat 50% 50%;
+					}
+					&.btn-next {
+						border:1px solid #EAEAEA;
+						background:url('../assets/images/cmp/chevron_right.png') no-repeat 50% 50%;
+					}
+				}
+			}
+		}
+		.table__wrap {
+			margin-top: 16px;
+			thead {
+				tr {
+					height: 58px;
+					th {
+						span {
+							@include fontoption(14px,#000,500,26px);
+						}
+					}
+				}
+			}
+		}
+	}
 }

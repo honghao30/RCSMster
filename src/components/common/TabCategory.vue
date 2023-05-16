@@ -4,7 +4,7 @@
         <li
           v-for="(item, i) in category"
           :key="i"
-          :class="[{active: activeTabIndex === i}, {new: newTabIndex === i}]"
+          :class="[{active: activeTabIndex === i}, {new: newTabIndex.includes(i)}]"
         >
           <a role="button" @click="tabCtrl(i)">{{ item }}</a>
         </li>
@@ -16,7 +16,7 @@
 export default {
   props: {
     category: Object,
-    newTabIndex: Number
+    newTabIndex: Array
   },
   data () {
     return {

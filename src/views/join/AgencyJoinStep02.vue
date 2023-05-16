@@ -434,14 +434,21 @@
               <div class="agency-list__search">
                 <div class="form-item__content">
                   <span class="input">
-                      <input type="text" class="input" placeholder="중계사명을 입력해주세요.">
+                      <input type="text"
+                       name="Search"
+                       class="input"
+                       placeholder="중계사명을 입력해주세요."
+                       v-model="searchWord"
+                      >
                     </span>
                     <ButtonCmp
                       type="btn-search"
+                      @click="search"
                     >
                     검색
                     </ButtonCmp>
                 </div>
+                <p class="guide-text error" v-if="agentErrorMsg">중계사명을 입력해주세요.</p>
               </div>
               <div class="agency-list__selelect">
                 <div class="agency-list__left">
@@ -453,7 +460,7 @@
                         <input type="checkbox"
                          :id="`agency0${index }`"
                          @click="selectCheck"
-                         v-model="agencyname"
+                         :value="list"
                          />
                         <label
                          :for="`agency0${index }`"
@@ -470,10 +477,14 @@
                       :key="index"
                     >
                       {{ list }}
+                      <ButtonCmp
+                      type="btn-only-icon-dell"
+                      @click="removeSelect"
+                      ></ButtonCmp>
                     </li>
                   </ul>
                   <p class="nodata"
-                    v-ese
+                    v-else
                   >
                     중계사를 추가해주세요.
                   </p>
@@ -488,9 +499,65 @@
             >닫기</ButtonCmp>
             <ButtonCmp
             type="btn-blue"
-            @click="$emit('closeModal')"
-            :disabled="isButtonDisabled"
+            @click="nextSelect"
+            :disabled="!isDisabled"
             >다음</ButtonCmp>
+        </div>
+      </FormModals>
+      <FormModals
+        v-else-if="DelegatesManage"
+        @closeModal="isModalViewed = false"
+        modalsize="Max628"
+      >
+      <div class="modal__content--title" slot="title">
+        대표중계사 선택
+      </div>
+        <div slot="modal-body">
+          <div class="agency-guide__graybox">
+            중계사 목록 중에서 대표중계사를 선택해주세요.
+          </div>
+          <div class="agency-list__wrap">
+            <div class="agency-list__select">
+              <dl>
+                <dt>
+                  중계사 이름
+                </dt>
+                <dd>
+                  <ul>
+                      <li v-for="(list, index) in agencyListSelect"
+                        :key="index"
+                      >
+                        <span class="radiobox">
+                          <input type="radio"
+                            :id="`agency0${index }`"
+                            name="DelegatesAgency"
+                            @click="selectRadio"
+                            :value="list"
+                          />
+                          <label
+                            :for="`agency0${index }`"
+                          >
+                            <span class="radiobox__text">{{ list }}</span>
+                          </label>
+                        </span>
+                      </li>
+                    </ul>
+                </dd>
+              </dl>
+            </div>
+
+          </div>
+          <p class="guide-text error" v-if="selectErrorMsg">선택할 수 없는 중계사입니다. 중계사와 별도의 양방향 서비스 사전 청약 후 선택해주세요.</p>
+        </div>
+        <div class="button__wrap" slot="button">
+            <ButtonCmp
+            type="btn-blue-line"
+            @click="closeMsg"
+            >닫기</ButtonCmp>
+            <ButtonCmp
+            type="btn-blue"
+            @click="saveAgent"
+            >저장</ButtonCmp>
         </div>
       </FormModals>
       <ZipCode v-else
@@ -537,7 +604,8 @@ export default {
         service: [],
         serviceRange: [],
         agency: '',
-        agencyname: ''
+        selectedOptions: '',
+        agentName: ''
       },
       apiList: [],
       selecteAuth: ['Auth_1'],
@@ -548,6 +616,8 @@ export default {
       postcodeErrorMsg: false,
       serviceErrorMsg: false,
       agencyErrorMsg: false,
+      agentErrorMsg: false,
+      selectErrorMsg: true,
       showall: true,
       files: '',
       filesName: '',
@@ -562,8 +632,13 @@ export default {
       disabled: true,
       AgencyManage: false,
       agencyList: ['경민중계', '더피프티원', '더피프티원1', '성문대행', '더피프티원2', '더피프티원3', '더피프티원4', '더피프티원5', '성문대행2', '성문대행3'],
-      agencyListSelect: []
+      agencyListSelect: [],
+      searchWord: '',
+      DelegatesManage: false
     }
+  },
+  props: {
+    lists: Object
   },
   watch: {
     isModalViewed () {
@@ -576,7 +651,12 @@ export default {
   },
   computed: {
     isDisabled() {
-      return this.form.agencyListSelect.length > 0
+      return this.agencyListSelect.length > 0
+    },
+    filteredList() {
+      return this.selectedOptions.filter(list => {
+        return list.name.toLowerCase().includes(this.searchWord.toLowerCase())
+      })
     }
   },
   methods: {
@@ -656,8 +736,34 @@ export default {
       this.AgencyModal = false
       this.AgencyManage = true
     },
-    selectCheck () {
-      console.log('이거는')
+    selectCheck (e) {
+      console.log(e.target.value)
+      this.agencyListSelect.push(e.target.value)
+      console.log(e.target.value, this.agencyListSelect)
+    },
+    removeSelect (index) {
+      this.agencyListSelect.splice(index, 1)
+    },
+    nextSelect () {
+      this.DelegatesManage = true
+      this.AgencyManage = false
+    },
+    search () {
+      if (this.form.agentName === '') {
+        this.agentErrorMsg = true
+        return false
+      }
+    },
+    selectRadio (e) {
+      console.log(e.target.value)
+      if (e.target.value === '') {
+        this.selectErrorMsg = true
+        return false
+      }
+    },
+    saveAgent () {
+      this.DelegatesManage = false
+      this.isModalViewed = false
     }
   }
 }

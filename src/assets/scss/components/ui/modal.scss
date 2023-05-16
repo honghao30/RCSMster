@@ -192,6 +192,11 @@
     }
     &.Max628 {
       max-width: 628px;
+      .modal__content--footer {
+        button {
+          flex: none;
+        }
+      }
     }
   }
   .zipcode__modal {
@@ -365,7 +370,16 @@
     }
   }   
 
-
+.modal__wrap {
+  &.topPositon {
+    .overlay-mask {
+      z-index: 42;
+    }
+    .modal__content--inner {
+      z-index: 43;
+    }
+  }
+}
   //old css
   .modal__container {
     display:flex;

@@ -73,8 +73,77 @@
           </ButtonCmp>
         </div>
       </ConfirmMsg>
+     <!-- // 휴대폰 인증 -->
+     <ConfirmMsg
+        @closeModal="isModalViewed = false"
+        modalsize="Modalmax480"
+        v-if="PhoneCertModal"
+      >
+        <div slot="msg">
+          <div class="msg">
+            <div class="phone-cert__title">
+              휴대폰 인증
+            </div>
+            <div class="phone-cert__msg">
+              인증번호를 발송하였습니다.<br>
+              수신 받은 인증번호를 입력해주세요
+            </div>
+            <div class="phone-cert__number">홍*동 010-****-5410</div>
+            <div  class="phone-cert__number-input">
+              <span class="input">
+                <input ref="number" type="text" placeholder="인증번호"  v-model="form.certNumber">
+              </span>
+                <span class="time active" ref="time">{{ TimerStr }}</span>
+                <ButtonCmp
+                  type="btn-gray-line"
+                  :disabled="isButtonDisabled"
+                  @click="start"
+                >
+                  인증번호 재요청
+                </ButtonCmp>
+            </div>
+            <p class="guide-text error" v-if="phoneCheckTimeout">인증 유효시간이 지났습니다.</p>
+          </div>
+        </div>
+        <div class="button__wrap" slot="button">
+            <ButtonCmp
+              type="btn-blue-line"
+              @click="closeMsg"
+            >닫기
+            </ButtonCmp>
+            <ButtonCmp
+              type="btn-blue"
+              :disabled="!isDisabled"
+              @click="closeMsg"
+            >
+              인증
+            </ButtonCmp>
+        </div>
+      </ConfirmMsg>
     </ModalView>
     <!-- //메시지 모달 -->
+    <ModalView
+      :class="{ topPositon : IsTopPos }"
+      v-if="isSendMsgViewed" @closeModal="isSendMsgViewed = false"
+    >
+      <!-- // 문자 발송 -->
+      <ConfirmMsg
+        v-if="SendSmsMsg"
+        @closeModal="isSendMsgViewed = false"
+      >
+        <div class="msg" slot="msg">
+          인증번호가 발송 되었습니다.
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+             type="btn-blue"
+             @click="closeSmsMsg"
+          >
+            확인
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+    </ModalView>
   </div>
 </template>
 
@@ -94,22 +163,36 @@ export default {
     return {
       form: {
         id: '',
-        pw: ''
+        pw: '',
+        certNumber: ''
       },
       idErrorMsg: false,
       pwErrorMsg: false,
       showPassword: false,
       isModalViewed: false,
-      iconName: 'icon-eye'
+      isSendMsgViewed: false,
+      SendSmsMsg: false,
+      PhoneCertModal: false,
+      iconName: 'icon-eye',
+      IsTopPos: true,
+      Timer: null,
+      TimeCounter: 180,
+      TimerStr: '03:00'
     }
   },
   watch: {
     isModalViewed () {
       if (this.isModalViewed) {
         document.documentElement.style.overflow = 'hidden'
+        this.start()
         return
       }
       document.documentElement.style.overflow = 'auto'
+    }
+  },
+  computed: {
+    isDisabled() {
+      return this.form.certNumber.length > 0
     }
   },
   methods: {
@@ -125,7 +208,9 @@ export default {
         this.$refs.usrpw.focus()
         return
       }
-      alert('로그인 되었습니다.')
+      this.isSendMsgViewed = true
+      this.SendSmsMsg = true
+      this.start()
     },
     toggleShow () {
       if (this.showPassword) {
@@ -139,8 +224,44 @@ export default {
       this.$router.push('./pwFind')
       document.documentElement.style.overflow = 'auto'
     },
-    closeMsge () {
+    closeSmsMsg () {
+      this.SendSmsMsg = false
+      this.isSendMsgViewed = false
+    },
+    closeMsg () {
       this.isModalViewed = false
+      this.PhoneCertModal = false
+    },
+    start() {
+      this.isModalViewed = true
+      this.PhoneCertModal = true
+      this.isButtonDisabled = true
+      // 1초에 한번씩 start 호출
+      this.TimeCounter = 180
+      var interval = setInterval(() => {
+        this.TimeCounter-- // 1초씩 감소
+        this.TimerStr = this.prettyTime()
+        if (this.TimeCounter <= 0) this.timerStop(interval)
+      }, 1000)
+      return interval
+    },
+    timerStop: function(Timer) {
+      clearInterval(Timer)
+      this.TimeCounter = 0
+      if (this.form.certNumber === '') {
+        this.phoneCheckTimeout = true
+      }
+    },
+    prettyTime: function() {
+      // 시간 형식으로 변환 리턴
+      let time = this.TimeCounter / 60
+      let minutes = parseInt(time)
+      let secondes = Math.round((time - minutes) * 60)
+      return (
+        minutes.toString().padStart(2, '0') +
+        ':' +
+        secondes.toString().padStart(2, '0')
+      )
     }
   }
 }

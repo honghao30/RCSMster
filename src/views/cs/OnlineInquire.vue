@@ -1,5 +1,5 @@
 <template>
-  <div class="online">
+  <div class="inner online">
     <div class="online-title__wrap--top">
       <PageTitle pagetitle="온라인 문의" />
       <PageTitleH3 titleh3="문의정보" noticeinfo="필수 입력값" />
@@ -197,19 +197,6 @@
         @click="onSubmit"
       >목록</ButtonCmp>
     </div>
-    <ModalView
-      v-if="isModalViewed" @closeModal="isModalViewed = false"
-    >
-        <CertificateMsg @closeModal="isModalViewed = false" status="ing"/>
-        <!-- 기 가입자일 경우 done, 진행 중인 경우는 ing  -->
-    </ModalView>
-
-    <ModalView
-      v-if="isAgencyModal" @closeModal="isAgencyModal = false"
-    >
-        <AgencyCheckMsg @closeModal="isAgencyModal = false"/>
-    </ModalView>
-    <!-- 중개사 url 정보 입력 확인 팝업 호출 시점 기획 확인 필요-->
   </div>
 </template>
 
@@ -217,7 +204,6 @@
 import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import ModalView from '@/components/common/ModalView.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
 
 export default {
@@ -225,7 +211,6 @@ export default {
     PageTitle,
     ButtonCmp,
     PageTitleH3,
-    ModalView,
     Dropdown
   },
   data() {

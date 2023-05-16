@@ -6,28 +6,6 @@
     .table__wrap {
         .form-table {
             .input-item {
-                input[type='file'] {
-                    position: absolute;
-                    width: calc(100% - 110px);
-                    left:0;
-                    top:0;
-                    opacity: 0;
-                    height: 100%;
-                    border-radius: 8px;
-                }
-                &.post {
-                    width:50%;
-                    padding-right: 5px;
-                    input {
-                        background-color: #F4F4F4;
-                    }
-                }
-                &.address {
-                    gap:10px;
-                    input {
-                        background-color: #F4F4F4;
-                    }                    
-                }
                 &.ip {
                     gap: 10px;
                     margin-bottom: 8px;
@@ -185,6 +163,9 @@
     font-size: 16px;
     line-height: 24px;
     border-radius: 8px;
+    +.page-title__wrap {
+        margin-top: 24px;
+    }
 }
 .agree{
     &__wrap {
@@ -268,6 +249,7 @@
     align-items:center;
     gap: 12px;
     font-size:14px;
+    flex-wrap:wrap;
     +.top-notice--gray {
         margin-top: 8px;
     }
@@ -284,10 +266,19 @@
         &.reject {
             background-color: $errorColor;
         }
+        &.ing {
+            background-color:#FF8310;
+        }
     }
     .comment {
+        display: inline-block;
         color:#666;
         padding-left:13px;
+    }
+    .reject-text {
+        display: block;
+        width: 100%;
+        color:#666;
     }
 }
 

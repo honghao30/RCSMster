@@ -112,7 +112,7 @@ $radius: 8px;
   }            
 }
 .btn-line {
-  @include btntype(14px,#999,#fff,#999, 8px,  #fff,#777, #777);       
+  @include btntype(16px,#999,#fff,#999, 8px,  #fff,#777, #777);       
   &:disabled {
     color:#ccc;
     border-color:#ccc;
@@ -129,6 +129,11 @@ $radius: 8px;
   min-width: auto;
   height: 42px;
   padding:0 23px;
+  &:disabled {
+    color:#aaa;
+    border-color:#ccc;
+    background-color: #eaeaea;
+  }
 }
 
 .btn-default-line {

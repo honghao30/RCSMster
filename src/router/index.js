@@ -58,6 +58,12 @@ import FeedRegistration from '@/views/brand/feed/FeedRegistration'
 
 // 브랜드 개설
 import BrandCreateStep01 from '@/views/brand/create/BrandCreateStep01'
+import BrandCreateStep02 from '@/views/brand/create/BrandCreateStep02'
+import BrandCreateStep03 from '@/views/brand/create/BrandCreateStep03'
+import BrandCreateStep04 from '@/views/brand/create/BrandCreateStep04'
+
+// 브랜드 홈
+import BrandHome from '@/views/brand/BrandHome'
 
 Vue.use(Router)
 
@@ -321,6 +327,34 @@ let router = new Router({
       component: BrandCreateStep01,
       meta: {
         tittle: '브랜드 개설'
+      }
+    },
+    {
+      path: '/brandcreatestep02',
+      component: BrandCreateStep02,
+      meta: {
+        tittle: '브랜드 개설'
+      }
+    },
+    {
+      path: '/brandcreatestep03',
+      component: BrandCreateStep03,
+      meta: {
+        tittle: '브랜드 개설'
+      }
+    },
+    {
+      path: '/brandcreatestep04',
+      component: BrandCreateStep04,
+      meta: {
+        tittle: '브랜드 개설'
+      }
+    },
+    {
+      path: '/brand',
+      component: BrandHome,
+      meta: {
+        tittle: '브랜드 홈'
       }
     },
     {

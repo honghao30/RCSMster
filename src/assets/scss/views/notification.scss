@@ -1,5 +1,5 @@
 .notification{
-  .notification-btn{
+  .notification-des{
   &.button__wrap{
     justify-content: space-between;
     align-items: flex-end;
@@ -25,12 +25,13 @@
         padding: 2px 10px;
         border-radius: 20px;
         line-height: 12px;
-        background-color: #2F77FB;
+        background-color: $pointColor;
         @include fontoption(12px,#fff,500,20px);
         &.red{
-          background-color: #FF4830;
+          background-color: $errorColor
         }
         &.gray{
+          // 공통과 달라서 변수사용 못함
           background-color: #ccc;
         }
       }

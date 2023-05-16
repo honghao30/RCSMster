@@ -106,6 +106,8 @@ $textareaHeight: 100px;
 //checkbox 는 .checkbox 클래스명의 엘리먼트안에 input 관 label 로 구현
 //디자인 구현시 이미지 사용 여부등 결정
 .checkbox {
+  display:inline-block;
+  height: 26px;
   input[type=checkbox] {
     @include hiddens;
   }
@@ -114,6 +116,7 @@ $textareaHeight: 100px;
     position: relative;
     display:inline-flex;
     align-items:center;
+    line-height:26px;
     &:before{
       content:"";
       display:inline-block;
@@ -283,14 +286,6 @@ $textareaHeight: 100px;
   
   }
 }
-
-form {
-  +.page-title__wrap {
-    margin-top: 60px;
-  }
-}
-
-
 $formLabelWidth : 120px;
 .form-list {
   .form-item {
@@ -378,6 +373,9 @@ $formLabelWidth : 120px;
         padding-right:0;
       }
     }
+    & + .input-item {
+      margin-top: 12px;
+    }
     .input {
       flex:auto;
       input {
@@ -386,6 +384,38 @@ $formLabelWidth : 120px;
     }
     .dropdown {
       width:100%;
+    }
+    input[type='file'] {
+      position: absolute;
+      width: calc(100% - 110px);
+      left:0;
+      top:0;
+      opacity: 0;
+      height: 100%;
+      border-radius: 8px;
+    }
+    &.post {
+        width:50%;
+        padding-right: 5px;
+        input {
+            background-color: #F4F4F4;
+        }
+    }
+    &.address {
+        gap:10px;
+        input {
+            background-color: #F4F4F4;
+        }                    
+    }
+    &.check-list {
+      flex-wrap: wrap;
+      gap: 0;
+      margin:-10px 0;
+      .checkbox {
+        display: inline-block;
+        margin:10px 0;
+        width: 33.3%;
+      }
     }
   }
   .btn-default-line {
@@ -491,7 +521,7 @@ $formLabelWidth : 120px;
     flex: 1;
     height: 172px;
     width: 100%;
-    border: none
+    border: none;
   }
   .textarea-limit__text{
     @include fontoption(16px,#000,400,26px);
@@ -501,6 +531,23 @@ $formLabelWidth : 120px;
     bottom:8px;
     box-sizing: border-box;
   }
+    /* textarea scroll custom */
+    textarea::-webkit-scrollbar {
+      width: 3px;
+    }
+    textarea::-webkit-scrollbar-button:decrement,.textarea textarea::-webkit-scrollbar-button:end:increment {
+      display: block;
+      height: 0;
+    }
+    textarea::-webkit-scrollbar-track {
+      background: #dedede
+    }
+    textarea::-webkit-scrollbar-thumb {
+      height: 20px;
+      width: 3px;
+      background: #6f6f6f;
+    }
+    /* //textarea scroll custom */
 }
 
 @media #{$phone} {

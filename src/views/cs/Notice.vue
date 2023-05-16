@@ -99,7 +99,7 @@ export default {
       ],
       category: ['전체', '이벤트', '시스템', '정책', '서식', '업데이트 노트'],
       activeTabIndex: 0,
-      newTabIndex: 1,
+      newTabIndex: [1, 2],
       noticeData:
       [
         {

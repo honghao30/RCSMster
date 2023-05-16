@@ -189,12 +189,63 @@
         justify-content: center;
         height: 100%;          
         @include fontoption(14px,#999999,400,26px);
-      }      
+      }    
+      ul {
+        padding:0 16px;
+      }  
       li {
         position: relative;
         margin:6px 0;
         @include fontoption(15px,#000,400,26px);
+        .btn-only-icon-dell {
+          border:0;
+          background: none;
+          padding:0;
+          min-width: 12px;
+          line-height: normal;
+          width:12px;
+          height:12Px;
+          background-image: url('#{$iconBsUrl}/icon_dell.png');
+          background-position: center center;
+          background-repeat: no-repeat;
+          position: absolute;
+          right: 0;
+          top:50%;
+          transform: translateY(-50%);
+        }
       }
     }           
   }
+  .agency-list__select {
+    dl {
+      margin-top: 16px;
+      border-top: 2px solid #2F77FB;
+      dt {
+        padding: 15px;
+        height: 54px;
+        text-align: center;
+        padding: auto;
+        @include fontoption(14px,#000,500,24px);
+      }
+      ul {
+        height: 332px;
+        border-top: 1px solid #dddddd;
+        border-bottom: 1px solid #dddddd;
+        overflow: auto;
+          li {
+            height: 66px;
+            padding: 18px 20px;
+            border-bottom: 1px solid #dddddd;
+            @include fontoption(14px,#000,500,24px);
+          }
+      }
+    }
+  }
+}
+.agency-guide__graybox {
+  padding: 16px 24px;
+  height: 58px;
+  background: #F9F9F9;
+  border-radius: 8px;   
+  margin-top: 24px;
 }

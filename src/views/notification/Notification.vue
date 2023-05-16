@@ -2,11 +2,12 @@
   <div class="inner notification">
     <PageTitle pagetitle="알림" />
     <!-- 스와이프 탭 -->
-    <TabCategory :category="category" :newTabIndex ="newTabIndex.length>3" />
+    <TabCategory :category="category" :newTabIndex ="newTabIndex" />
     <!-- 버튼 및 설명 -->
-    <div class="notification-btn button__wrap">
+    <div class="notification-des button__wrap">
       <p>최근 14일 이내 알림만 노출됩니다.</p>
-      <ButtonCmp type="btn-search" @click="allDimed">모두 읽음 처리</ButtonCmp>
+      <!-- 클릭 시 비활성화 되도록 설정함 / 새로운 알림이 없는 경우에는 : disabled  -->
+      <ButtonCmp type="btn-search" @click="allDimed" :disabled="isActive">모두 읽음 처리</ButtonCmp>
     </div>
     <!-- 알림박스 / 읽음 미처리 -->
     <div class="notification-item" :class="{dimed: isDimed}">
@@ -107,15 +108,17 @@ export default {
   },
   data() {
     return {
-      currentTab: 0,
-      newTabIndex: 1,
+      activeTabIndex: 0,
+      newTabIndex: [1, 3],
       category: ['전체', '승인결과', '운영·관리', '초대'],
-      isDimed: false
+      isDimed: false,
+      isActive: false
     }
   },
   methods: {
     allDimed () {
       this.isDimed = true
+      this.isActive = true
     }
   }
 }

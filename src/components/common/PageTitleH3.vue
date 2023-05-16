@@ -1,7 +1,7 @@
 <template>
   <div class="page-title__wrap">
     <h3>
-      {{ titleh3 }}
+      {{ titleh3 }}<span v-if="totalCount !== null">({{ totalCount }})</span>
     </h3>
     <p v-if="noticeinfo !== null">
       {{ noticeinfo }}
@@ -16,6 +16,10 @@ export default {
     noticeinfo: {
       type: String,
       default: null
+    },
+    totalCount: {
+      type: String,
+      default: null
     }
   }
 }
@@ -26,7 +30,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 32px;
+  margin-top: 60px;
   padding-bottom: 16px;
   h3 {
     font-style: normal;

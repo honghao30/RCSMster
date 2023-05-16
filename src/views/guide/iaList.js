@@ -229,6 +229,13 @@ const homeList = [
     'status': '완료',
     'link': '/RequireList'
   },
+  // 알림
+  {
+    'depth2': '알림',
+    'screenId': '',
+    'status': '완료',
+    'link': '/notification'
+  },
   // 메인
   {
     'depth1': '메인',

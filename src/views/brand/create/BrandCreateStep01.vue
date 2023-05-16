@@ -1,173 +1,199 @@
 <template>
   <div class="brand__wrap">
     <div class="brand__inner">
-      <div class="brand-input__wrap">
+      <div class="brand-info__wrap">
         <PageTitle pagetitle="브랜드 개설" />
         <StepList :stepActiveIndex="1" :stepTitle="stepTitle" />
         <PageTitleH3 titleh3="기본 정보 입력" noticeinfo="필수 입력값" />
         <form  ref="form" :model="form">
-            <div class="table__wrap">
-              <table class="table table-bodyonly form-table">
-                <colgroup>
-                  <col width="230px">
-                  <col />
-                </colgroup>
-                <tbody>
-                  <tr>
-                    <th scope="row"><span class="form-item__label required">브랜드명</span></th>
-                    <td>
-                        <div class="form-item__content">
-                          <div class="form-item-row">
-                            <div class="input-item input-limit">
-                              <span class="input">
-                                <input type="text" class="input" maxlength="20" placeholder="브랜드명을 입력해주세요." v-model="form.brandName">
-                                <p class="input-limit__text">
-                                  {{ form.brandName.length }}/40자
-                                </p>
-                              </span>
-                            </div>
+          <div class="table__wrap">
+            <table class="table table-bodyonly form-table">
+              <colgroup>
+                <col width="230px">
+                <col />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th scope="row"><span class="form-item__label required">브랜드명</span></th>
+                  <td>
+                      <div class="form-item__content">
+                        <div class="form-item-row">
+                          <div class="input-item input-limit">
+                            <span class="input">
+                              <input type="text" class="input" maxlength="20" placeholder="브랜드명을 입력해주세요." v-model="form.brandName">
+                              <p class="input-limit__text">
+                                {{ form.brandName.length }}/40자
+                              </p>
+                            </span>
                           </div>
-                            <p class="guide-text error" v-if="brandNameErrorMsg">브랜드명을 입력해주세요.</p>
                         </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><span class="form-item__label required">브랜드 소개</span></th>
-                    <td>
-                        <div class="form-item__content">
-                          <div class="form-item-row">
-                            <div class="input-item input-limit">
-                              <div class="textarea">
-                                <textarea maxlength="150" placeholder="브랜드의 슬로건이나 브랜드 특징을 나타내는 소개글을 입력해주세요." v-model="form.brandDescription"></textarea>
-                                <div class="textarea-limit__text">
-                                  <p>
-                                    {{ form.brandDescription.length }}/1000자
-                                  </p>
-                                </div>
+                          <p class="guide-text error" v-if="brandNameErrorMsg">브랜드명을 입력해주세요.</p>
+                      </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="form-item__label required">브랜드 소개</span></th>
+                  <td>
+                      <div class="form-item__content">
+                        <div class="form-item-row">
+                          <div class="input-item input-limit">
+                            <div class="textarea">
+                              <textarea maxlength="150" placeholder="브랜드의 슬로건이나 브랜드 특징을 나타내는 소개글을 입력해주세요." v-model="form.brandDescription"></textarea>
+                              <div class="textarea-limit__text">
+                                <p>
+                                  {{ form.brandDescription.length }}/1000자
+                                </p>
                               </div>
                             </div>
                           </div>
-                          <p class="guide-text error" v-if="brandDescriptionErrorMsg">브랜드의 슬로건이나 브랜드 소개를 입력해주세요.</p>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><span class="form-item__label required">백그라운드 이미지</span></th>
-                    <td>
-                      <div class="form-item__content">
-                        <div class="form-item-row">
+                        </div>
+                        <p class="guide-text error" v-if="brandDescriptionErrorMsg">브랜드 소개를 입력해주세요.</p>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="form-item__label required">백그라운드 이미지</span></th>
+                  <td>
+                    <div class="form-item__content">
+                      <div class="form-item-row">
+                        <div class="input-item">
+                          <span class="radiobox">
+                            <input type="radio" name="bgImageChk" id="bgDefault" v-model="form.bgImageType" value="defalut" @change="form.bgImage = 'defalut.png'"/>
+                            <label for="bgDefault"><span class="checkbox__text">기본 이미지 사용</span></label>
+                          </span>
+                          <span class="radiobox">
+                            <input type="radio" name="bgImageChk" id="bgCustom" v-model="form.bgImageType" value="custom" @change="form.bgImage = ''"/>
+                            <label for="bgCustom"><span class="checkbox__text">직접 등록</span></label>
+                          </span>
+                        </div>
+                        <template v-if="form.bgImageType === 'custom'">
                           <div class="input-item">
-                            <span class="radiobox">
-                              <input type="radio" name="bgImage" id="bgDefault" v-model="form.bgImage" value="defalutImage"/>
-                              <label for="bgDefault"><span class="checkbox__text">기본 이미지 사용</span></label>
-                            </span>
-                            <span class="radiobox">
-                              <input type="radio" name="bgImage" id="bgCustom" v-model="form.bgImage" value="customImage"/>
-                              <label for="bgCustom"><span class="checkbox__text">직접 등록</span></label>
-                            </span>
+                            <span class="input"><input type="text" class="input" ref="bgImage" :value="form.bgImage" disabled></span>
+                            <input type="file" id="fileUp" class="input blind" @change="onFileChanged">
+                            <label for="fileUp" class="btn btn-default-line">파일찾기</label>
                           </div>
-                        </div>
-                        <p class="guide-text error"  v-if="bgImageErrorMsg">백그라운드 이미지를 선택하세요.</p>
+                          <p class="guide-text black">&middot; 사이즈 : 388 X 388px ~ 1080 X 1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 5MB)</p>
+                        </template>
                       </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><span class="form-item__label required">프로필 이미지</span></th>
-                    <td>
-                      <div class="form-item__content">
-                        <div class="form-item-row">
+                      <p class="guide-text error"  v-if="bgImageErrorMsg">백그라운드 이미지를 선택하세요.</p>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="form-item__label required">프로필 이미지</span></th>
+                  <td>
+                    <div class="form-item__content">
+                      <div class="form-item-row">
+                        <div class="input-item">
+                          <span class="radiobox">
+                            <input type="radio" name="profileImage" id="profileDefault" v-model="form.profileImageType" value="defalut"/>
+                            <label for="profileDefault"><span class="checkbox__text">기본 이미지 사용</span></label>
+                          </span>
+                          <span class="radiobox">
+                            <input type="radio" name="profileImage" id="profileCustom" v-model="form.profileImageType" value="custom" @change="form.profileImage = ''"/>
+                            <label for="profileCustom"><span class="checkbox__text">직접 등록</span></label>
+                          </span>
+                        </div>
+                        <template v-if="form.profileImageType === 'defalut'">
+                          <ul class="profile-img-list">
+                            <li v-for="(item, i) in categoryOptions" :key="i" @click="pfImageCheck(i, item.value)"
+                            :class="{ active : isActiveNum === i }">
+                              <i :class="`icon-${item.value}`"></i>
+                              <span class="img__text">{{ item.label }}</span>
+                            </li>
+                          </ul>
+                        </template>
+                        <template v-if="form.profileImageType === 'custom'">
                           <div class="input-item">
-                            <span class="radiobox">
-                              <input type="radio" name="profileImage" id="profileDefault" v-model="form.profileImage" value="defalutImage"/>
-                              <label for="profileDefault"><span class="checkbox__text">기본 이미지 사용</span></label>
-                            </span>
-                            <span class="radiobox">
-                              <input type="radio" name="profileImage" id="profileCustom" v-model="form.profileImage" value="customImage"/>
-                              <label for="profileCustom"><span class="checkbox__text">직접 등록</span></label>
-                            </span>
+                            <span class="input"><input type="text" class="input" :value="form.profileImage" disabled></span>
+                            <input type="file" id="fileUp" class="input blind" @change="onFileChanged(profileFile)">
+                            <label for="fileUp" class="btn btn-default-line">파일찾기</label>
                           </div>
-                        </div>
-                        <p class="guide-text error"  v-if="profileImageErrorMsg">프로필 이미지를 선택하세요.</p>
+                          <p class="guide-text black">&middot; 사이즈 : 388 X 388px ~ 1080 X 1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 5MB)</p>
+                        </template>
                       </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><span class="form-item__label required">카테고리</span></th>
-                    <td>
-                      <div class="form-item__content">
-                        <div class="form-item-row">
-                          <div class="input-item">
-                            <Dropdown :options="categoryOptions" placeholder="선택하세요" v-model="form.category" >
-                            </Dropdown>
-                          </div>
-                        </div>
-                        <p class="guide-text error" v-if="categoryErrorMsg" >카테고리를 선택해주세요.</p>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><span class="form-item__label required">전화번호</span></th>
-                    <td>
-                      <div class="form-item__content">
-                        <div class="form-item-row">
-                          <div class="input-item">
-                            <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요."  v-model="form.tel"></span>
-                          </div>
-                        </div>
-                        <p class="guide-text error" v-if="telErrorMsg" >전화번호를 입력해주세요.</p>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><span class="form-item__label">웹사이트</span></th>
-                    <td>
-                      <div class="form-item__content">
-                        <div class="form-item-row">
-                          <div class="input-item">
-                            <span class="input"><input type="text" class="input" placeholder="http://brandportal.com 형식으로 입력해주세요."  v-model="form.url"></span>
-                          </div>
+                      <p class="guide-text error"  v-if="profileImageErrorMsg">프로필 이미지를 선택하세요.</p>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="form-item__label required">카테고리</span></th>
+                  <td>
+                    <div class="form-item__content">
+                      <div class="form-item-row">
+                        <div class="input-item">
+                          <Dropdown :options="categoryOptions" placeholder="선택하세요" v-model="form.category" >
+                          </Dropdown>
                         </div>
                       </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><span class="form-item__label">이메일</span></th>
-                    <td>
-                      <div class="form-item__content">
-                        <div class="form-item-row">
-                          <div class="input-item">
-                            <span class="input"><input type="text" class="input" placeholder="이메일 주소를 입력해주세요."   v-model="form.email"></span>
-                          </div>
+                      <p class="guide-text">※ 보다 좋은 서비스 제공을 위하여 운영자가 임의 변경할 수 있습니다.</p>
+                      <p class="guide-text error" v-if="categoryErrorMsg" >카테고리를 선택해주세요.</p>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="form-item__label required">전화번호</span></th>
+                  <td>
+                    <div class="form-item__content">
+                      <div class="form-item-row">
+                        <div class="input-item">
+                          <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요."  v-model="form.tel"></span>
                         </div>
                       </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><span class="form-item__label required">주소</span></th>
-                    <td>
-                      <div class="form-item__content">
-                        <div class="form-item-row">
-                          <div class="input-item post">
-                            <span class="input"><input type="text" class="input" v-model="form.postcode" disabled></span>
-                            <ButtonCmp
-                                type="btn-default-line"
-                                @click="findPost"
-                            >
-                              우편번호
-                            </ButtonCmp>
-                          </div>
-                        </div>
-                        <div class="form-item-row">
-                          <div class="input-item address">
-                            <span class="input"><input type="text" class="input" v-model="form.addr1" disabled></span> <span class="input"><input type="text" class="input" v-model="form.addr2" disabled></span>
-                          </div>
+                      <p class="guide-text error" v-if="telErrorMsg" >전화번호를 입력해주세요.</p>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="form-item__label">웹사이트</span></th>
+                  <td>
+                    <div class="form-item__content">
+                      <div class="form-item-row">
+                        <div class="input-item">
+                          <span class="input"><input type="text" class="input" placeholder="http://brandportal.com 형식으로 입력해주세요."  v-model="form.url"></span>
                         </div>
                       </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="form-item__label">이메일</span></th>
+                  <td>
+                    <div class="form-item__content">
+                      <div class="form-item-row">
+                        <div class="input-item">
+                          <span class="input"><input type="text" class="input" placeholder="이메일 주소를 입력해주세요."   v-model="form.email"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="form-item__label">주소</span></th>
+                  <td>
+                    <div class="form-item__content">
+                      <div class="form-item-row">
+                        <div class="input-item post">
+                          <span class="input"><input type="text" class="input" v-model="form.postcode" disabled></span>
+                          <ButtonCmp
+                              type="btn-default-line"
+                              @click="findPost"
+                          >
+                            우편번호
+                          </ButtonCmp>
+                        </div>
+                      </div>
+                      <div class="form-item-row">
+                        <div class="input-item address">
+                          <span class="input"><input type="text" class="input" v-model="form.addr1" disabled></span> <span class="input"><input type="text" class="input" v-model="form.addr2" disabled></span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </form>
         <div class="button__wrap">
           <ButtonCmp
@@ -177,8 +203,50 @@
         </div>
       </div>
       <div class="brand-aside">
-        <div class="ctrl-area"></div>
+        <div class="button__wrap">
+          <ButtonCmp
+            type="btn-blue-line"
+          >브랜드 불러오기</ButtonCmp>
+          <ButtonCmp
+            type="btn-blue-line"
+          >브랜드 가이드</ButtonCmp>
+        </div>
         <div class="preview__wrap">
+          <div class="preview__image">
+            <img src="@/assets/images/dummy/brand_image.png" alt="">
+          </div>
+          <div class="contact-icons">
+            <a role="button"><i class="icon-tel"></i></a>
+            <a role="button"><i class="icon-chat"></i></a>
+            <a role="button"><i class="icon-web"></i></a>
+          </div>
+          <div class="brand-title">
+            <span class="logo">
+              <img src="@/assets/images/dummy/brand_logo.png" alt="">
+            </span>
+            <div class="brand-desc">
+              <h4>네스프레소</h4>
+              <p class="brand__text">최상의 품질을 가진 환경에 긍정적인 영향을 줄수있는 커피브랜드 기업</p>
+            </div>
+          </div>
+          <div class="brand-detail">
+            <ul class="tab">
+              <li>소식</li>
+              <li class="active">정보</li>
+            </ul>
+            <dl class="tel">
+              <dt>전화번호</dt>
+              <dl>{{ form.tel }}</dl>
+            </dl>
+            <dl class="web">
+              <dt>웹사이트</dt>
+              <dl>{{ form.url }}</dl>
+            </dl>
+            <dl class="email">
+              <dt>이메일</dt>
+              <dl>contactus@nespresso.com</dl>
+            </dl>
+          </div>
         </div>
       </div>
     </div>
@@ -207,19 +275,24 @@ export default {
         brandDescription: '',
         bgImage: '',
         profileImage: '',
+        bgImageType: '',
+        profileImageType: '',
         category: '',
-        url: '',
-        email: '',
-        tel: '',
+        url: 'http://www.nespresso.com',
+        email: 'contactus@nespresso.com',
+        tel: '080-734-1111',
         postcode: '',
         addr1: '',
-        addr2: ''
+        addr2: '',
+        profileDefaultItem: ''
       },
+      isActiveNum: '',
       brandNameErrorMsg: false,
       brandDescriptionErrorMsg: false,
       bgImageErrorMsg: false,
       profileImageErrorMsg: false,
       categoryErrorMsg: false,
+      telErrorMsg: false,
       categoryOptions: [
         {
           label: 'IT',
@@ -238,7 +311,7 @@ export default {
           value: 'beauty'
         },
         {
-          label: '여행/레저/스포츠',
+          label: '여행',
           value: 'travel'
         },
         {
@@ -278,27 +351,41 @@ export default {
   },
   methods: {
     onSubmit () {
-      if (this.form.name === '') {
-        this.nameErrorMsg = true
+      if (this.form.brandName === '') {
+        this.brandNameErrorMsg = true
         return
       }
-      if (this.form.phone === '') {
-        this.phoneErrorMsg = true
+      if (this.form.brandDescription === '') {
+        this.brandDescriptionErrorMsg = true
         return
       }
-      if (this.form.pass === '') {
-        this.passErrorMsg = true
+      if (this.form.bgImage === '') {
+        this.bgImageErrorMsg = true
         return
       }
-      if (this.form.email === '') {
-        this.emailErrorMsg = true
+      if (this.form.profileImage === '') {
+        this.profileImageErrorMsg = true
+        return
+      }
+      if (this.form.category === '') {
+        this.categoryErrorMsg = true
         return
       }
       if (this.form.tel === '') {
         this.telErrorMsg = true
-        // return
+        return
       }
-      this.$router.push('./JoinStep04')
+      this.$router.push('./brandcreatestep02')
+    },
+    onFileChanged (e, refs) {
+      const files = e.target.files
+      const fileName = files[0].name
+      this.form.bgImage = fileName
+      this.form.profilefile = fileName
+    },
+    pfImageCheck (index, value) {
+      this.isActiveNum = index
+      this.form.profileImage = value
     }
   }
 }
