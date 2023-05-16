@@ -231,6 +231,7 @@ const homeList = [
   },
   // 알림
   {
+    'depth1': '공통',
     'depth2': '알림',
     'screenId': '',
     'status': '완료',
