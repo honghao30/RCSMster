@@ -107,7 +107,6 @@ $textareaHeight: 100px;
 //디자인 구현시 이미지 사용 여부등 결정
 .checkbox {
   display:inline-block;
-  height: 26px;
   input[type=checkbox] {
     @include hiddens;
   }
@@ -115,12 +114,13 @@ $textareaHeight: 100px;
     cursor: pointer;
     position: relative;
     display:inline-flex;
-    align-items:center;
+    align-items:flex-start;
     line-height:26px;
     &:before{
       content:"";
       display:inline-block;
       width:20px;
+      min-width:20px;
       height:20px;
       line-height:17px;
       border:1px solid #000;
@@ -128,7 +128,7 @@ $textareaHeight: 100px;
       background:#fff;
       margin-right:10px;
       position: relative;
-      top:1px;
+      top:3px;
       border-radius:4px;
     }    
   } 
@@ -161,6 +161,7 @@ $textareaHeight: 100px;
       content:"";
       display:inline-block;
       width:20px;
+      min-width:20px;
       height:20px;
       line-height:14px;
       border:1px solid #000;
@@ -286,6 +287,41 @@ $textareaHeight: 100px;
   
   }
 }
+.switch {
+  &__core {
+    display: inline-block;
+    width:46px;
+    height: 24px;
+    border-radius: 12px;
+    position:relative;
+    background-color:#CCCCCC;
+    cursor:pointer;
+    &:after {
+      content:'';
+      display:inline-block;
+      width:20px;
+      height: 20px;
+      border-radius: 100%;
+      background-color:#fff;
+      position:absolute;
+      left:2px;
+      top:2px;
+      transition:all 200ms linear;
+    }
+  }
+  input[type="checkbox"] {
+    @include hiddens;
+    &:checked {
+      +.switch__core {
+        background-color:$pointColor;
+        &:after {
+          left:24px;
+        }
+      }
+    }
+  }
+}
+
 $formLabelWidth : 120px;
 .form-list {
   .form-item {
@@ -330,6 +366,9 @@ $formLabelWidth : 120px;
           line-height: 26px; 
           color: #999999;
       }
+      .text {
+        white-space: normal
+      }
   }
   .form-item__label {
     @include fontoption(16px,#000,500,26px);
@@ -351,6 +390,9 @@ $formLabelWidth : 120px;
       }
       +.align--top {
         align-items: flex-start;
+      }
+      &.no-wrap {
+        flex-wrap:nowrap
       }
     }
   }

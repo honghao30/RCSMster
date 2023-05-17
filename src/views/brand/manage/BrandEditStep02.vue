@@ -1,15 +1,24 @@
 <template>
   <div class="brand__wrap">
     <div class="brand__inner">
+      <BrandLnb />
       <div class="brand-info__wrap">
-        <PageTitle pagetitle="브랜드 개설" />
+        <PageTitle pagetitle="브랜드 홈 수정" />
         <StepList :stepActiveIndex="2" :stepTitle="stepTitle" />
+        <div class="top-progress-area">
+          <span class="flag-progress done">승인완료</span>
+          <p class="date">최종변경 : 2023. 03. 30</p>
+        </div>
+        <div class="top-notice--gray">
+          <p>-신청한 브랜드 정보는 운영자 심사를 거쳐 노출 여부가 결정되며 승인 결과는 문자메시지(SMS) 및 이메일로 알려드립니다.</p>
+          <p>-승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</p>
+        </div>
         <PageTitleH3 titleh3="퀵 버튼 설정" noticeinfo="필수 입력값" />
         <form  ref="form" :model="form">
           <div class="table__wrap">
             <table class="table table-bodyonly form-table">
               <colgroup>
-                <col width="230px">
+                <col width="196px">
                 <col />
               </colgroup>
               <tbody>
@@ -129,10 +138,6 @@
             class="btn btn-blue-line"
           >이전</router-link>
           <ButtonCmp
-              type="btn-line"
-              @click="isModalViewed = true"
-          >임시저장</ButtonCmp>
-          <ButtonCmp
               type="btn-blue"
               @click="onSubmit"
           >다음</ButtonCmp>
@@ -214,6 +219,7 @@
 </template>
 
 <script>
+import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
@@ -225,6 +231,7 @@ import TabCmp from '@/components/common/TabCmp.vue'
 
 export default {
   components: {
+    BrandLnb,
     PageTitle,
     ButtonCmp,
     PageTitleH3,
@@ -237,7 +244,7 @@ export default {
   data() {
     return {
       form: {
-        quickButton: [],
+        quickButton: ['chat', 'call', 'info', 'web'],
         url: 'http://www.nespresso.com',
         email: 'contactus@nespresso.com',
         tel: '080-734-1111',
@@ -287,7 +294,7 @@ export default {
           value: 'store'
         }
       ],
-      stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료'],
+      stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정'],
       isModalViewed: false
     }
   },

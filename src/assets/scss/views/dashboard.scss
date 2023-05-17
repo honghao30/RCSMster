@@ -75,13 +75,66 @@
 			}
 		}
 		.table__wrap {
-			margin-top: 16px;
+			margin: 16px 0 8px 0;
 			thead {
 				tr {
 					height: 58px;
 					th {
 						span {
 							@include fontoption(14px,#000,500,26px);
+						}
+					}
+				}
+			}
+			tbody {
+				tr {
+					td {
+						&.brandname {
+							display: flex;
+							padding: 0;
+							.bookmark {
+								a {
+									margin: 40px 16px;
+									display: inline-block;
+									width: 20px;
+									height: 20px;
+									background-position: 50% 50%;
+									background-repeat: no-repeat;
+									background-size: 100%;
+									&.bookmark__act {
+										background-image:url('../assets/images/icon/icon_bookmark_act.png')
+									}
+									&.bookmark__de-act {
+										background-image:url('../assets/images/icon/icon_bookmark_de_act.png')
+									}
+								}
+							}
+							.brand {
+								display: flex;
+								.brand__logo {
+									margin: 30px 0;
+									display: inline-block;
+									width: 40px;
+									height: 40px;
+								}
+								.brand__title {
+									text-align: left;
+									width: 292px;
+									margin: 37px 0;
+									margin-left: 8px;
+									display: inline-block;
+									@include fontoption(16px,#000,400,26px);
+								}
+								span {
+									&.brand__message {
+										margin: 38px 8px;
+										padding: 2px 8px;
+										@include fontoption(12px,#999,500,22px);
+										border: 1px solid #CCCCCC;
+										border-radius: 20px;
+									}
+								}
+							}
 						}
 					}
 				}

@@ -1,15 +1,16 @@
 <template>
   <div class="brand__wrap">
     <div class="brand__inner">
+      <BrandLnb />
       <div class="brand-info__wrap">
-        <PageTitle pagetitle="브랜드 개설" />
+        <PageTitle pagetitle="브랜드 홈 수정" />
         <StepList :stepActiveIndex="3" :stepTitle="stepTitle" />
         <PageTitleH3 titleh3="브랜드 홈 탭 설정" noticeinfo="필수 입력값" />
         <form  ref="form" :model="form">
           <div class="table__wrap">
             <table class="table table-bodyonly form-table">
               <colgroup>
-                <col width="230px">
+                <col width="196px">
                 <col />
               </colgroup>
               <tbody>
@@ -121,16 +122,13 @@
         </div>
         <div class="button__wrap">
           <router-link
-            to="/brandcreatestep02"
+            to="/brandeditstep02"
             class="btn btn-blue-line"
           >이전</router-link>
           <ButtonCmp
-              type="btn-line"
-          >임시저장</ButtonCmp>
-          <ButtonCmp
               type="btn-blue"
               @click="onSubmit"
-          >승인요청</ButtonCmp>
+          >수정완료</ButtonCmp>
         </div>
       </div>
       <div class="brand-aside">
@@ -188,6 +186,7 @@
 </template>
 
 <script>
+import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
@@ -197,6 +196,7 @@ import TabCmp from '@/components/common/TabCmp.vue'
 
 export default {
   components: {
+    BrandLnb,
     PageTitle,
     ButtonCmp,
     PageTitleH3,
@@ -207,14 +207,14 @@ export default {
   data() {
     return {
       form: {
-        noticeInfo: [],
+        noticeInfo: ['reservation', 'chat', 'appdownload'],
         url: 'http://www.nespresso.com',
         email: 'contactus@nespresso.com',
         tel: '080-734-1111',
         website: '',
-        reservation: '',
-        appdownload: '',
-        chat: '',
+        reservation: 'http://brandportal.com',
+        appdownload: 'market://details?id=com.systemstudios.mail',
+        chat: 'http://www.chatportal/start',
         tab: 'newsTab',
         agree: ''
       },
@@ -245,7 +245,7 @@ export default {
           value: 'chat'
         }
       ],
-      stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료']
+      stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정']
     }
   },
   computed: {

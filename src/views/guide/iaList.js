@@ -141,7 +141,7 @@ const homeList = [
   {
     'depth2': '대행사 회원가입',
     'depth3': '약관동의',
-    'screenId': 'G003',
+    'screenId': '',
     'status': '완료',
     'link': '/AgencyJoinStep01'
   },

@@ -1,5 +1,7 @@
 <template>
-  <div class="tab__wrap">
+  <div class="tab__wrap"
+  :class="tabClass"
+  >
     <ul
       class="tab-list"
       role="tablist"
@@ -28,7 +30,9 @@
 <script>
 export default {
   props: {
-    tabWidth: Number
+    tabWidth: Number,
+    tabClass: String,
+    activeIndex: Number
   },
   data() {
     return {
@@ -40,8 +44,10 @@ export default {
     this.tabs = this.$children
   },
   mounted() {
-    this.tabs[0].isActive = true
-    console.log(this.tabWidth)
+    if (this.activeIndex) {
+      this.activeTabIndex = this.activeIndex
+    }
+    this.tabs[this.activeTabIndex].isActive = true
   },
   methods: {
     tabCtrl: function(num) {

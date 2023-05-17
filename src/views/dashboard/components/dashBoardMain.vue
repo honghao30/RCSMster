@@ -29,11 +29,27 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>이름</td>
-              <td>이름</td>
-              <td>이름</td>
-              <td>이름</td>
+            <tr v-for="item in brandData" :key="item">
+              <td class="brandname">
+                <div class="bookmark">
+                  <a class="bookmark__act" v-if="item.bookmark" @click="bookmarkAct"></a>
+                  <a class="bookmark__de-act" v-if="!item.bookmark" @click="bookmarkDeAct"></a>
+                </div>
+                <div class="brand">
+                  <img :src="item.brandLogo" alt="" class="brand__logo">
+                  <router-link to="" class="brand__title">{{ item.title }}</router-link>
+                  <span class="brand__message" v-if="item.message">메세지 발송 가능</span>
+                </div>
+              </td>
+              <td>
+                <span class="data-chat">{{ item.chatData }}</span>
+              </td>
+              <td>
+                <span class="data-template">{{ item.templateData }}</span>
+              </td>
+              <td>
+                <span class="data-agency">{{ item.agencyData }}</span>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -69,6 +85,53 @@ export default {
         {
           label: '대행사',
           value: ''
+        }
+      ],
+      brandData: [
+        {
+          bookmark: true,
+          brandLogo: require('../../../assets/images/dummy/brand_logo_1.png'),
+          title: '더피프티원',
+          message: true,
+          chatData: 999,
+          templateData: 654,
+          agencyData: 0
+        },
+        {
+          bookmark: true,
+          brandLogo: require('../../../assets/images/dummy/brand_logo_2.png'),
+          title: 'CX hub',
+          message: false,
+          chatData: 275,
+          templateData: 999,
+          agencyData: 3
+        },
+        {
+          bookmark: false,
+          brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
+          title: 'SYSTEM HOMME',
+          message: true,
+          chatData: 102,
+          templateData: 87,
+          agencyData: 2
+        },
+        {
+          bookmark: false,
+          brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
+          title: 'SYSTEM STUDIO HOUSE',
+          message: true,
+          chatData: 714,
+          templateData: 69,
+          agencyData: 1
+        },
+        {
+          bookmark: false,
+          brandLogo: require('../../../assets/images/dummy/brand_logo_4.png'),
+          title: '롯데홈쇼핑',
+          message: false,
+          chatData: 999,
+          templateData: 999,
+          agencyData: 5
         }
       ]
     }

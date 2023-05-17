@@ -57,6 +57,12 @@
         >
           아코디언
         </ButtonCmp>
+        <ButtonCmp
+          type="blue"
+          @click="goto('sect09')"
+        >
+          로딩
+        </ButtonCmp>
       </div>
       <SubTitle pagetitle="UI 템플릿" />
       <div ref="sect01">
@@ -91,6 +97,13 @@
         <TitleH3 titleh3="아코디언" />
         <AccoDien />
       </div>
+      <div ref="sect09">
+        <TitleH3 titleh3="로딩" />
+        <Loading
+          size="50"
+          v-if="isLoading"
+        />
+      </div>
     </div>
     <button
       ref="topButton"
@@ -116,6 +129,7 @@ import FormGuide from '@/views/guide/ui_temp/FormGuide.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import TabGuide from '@/views/guide/ui_temp/TabGuide.vue'
 import HeaterGuide from '../cmp/Header'
+import Loading from '@/components/common/loading.vue'
 
 export default {
   name: 'BasicGuide',
@@ -131,14 +145,16 @@ export default {
     ModalGuide,
     TabGuide,
     HeaterGuide,
-    AccoDien
+    AccoDien,
+    Loading
   },
   data() {
     return {
       scrollY: null,
       isCateSticky: false,
       isScrollTop: false,
-      subCateOffsetTop: null
+      subCateOffsetTop: null,
+      isLoading: true
     }
   },
   watch: {
@@ -180,6 +196,11 @@ export default {
         top: 0,
         behavior: 'smooth'
       })
+    },
+    loaddingStop () {
+      setTimeout(() => {
+        this.isLoading = false
+      }, 7000)
     }
   },
   mounted () {
@@ -194,6 +215,7 @@ export default {
     })
     const subCateOffsetTop = this.$refs.cateMenu.offsetTop
     console.log('콘텐츠 높이', this.$refs.cateMenu, subCateOffsetTop)
+    this.loaddingStop()
   }
 }
 </script>

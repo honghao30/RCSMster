@@ -25,7 +25,8 @@ export default {
     return {
       selectedOption: '',
       isOpen: false,
-      searchWord: ''
+      searchWord: '',
+      valueIndex: ''
     }
   },
   props: {
@@ -38,12 +39,21 @@ export default {
     'update:modelValue'
   ],
   mounted() {
-    this.filteredOption = this.options
-    if (this.placeholder) {
-      this.selectedOption = this.placeholder
+    let $value = this.value
+    if ($value) {
+      this.options.forEach((option, index) => {
+        if (option.value === $value) {
+          this.selectedOption = option.label
+        }
+      })
     } else {
-      this.selectedOption = this.options[0].label
+      if (this.placeholder) {
+        this.selectedOption = this.placeholder
+      } else {
+        this.selectedOption = this.options[0].label
+      }
     }
+    this.filteredOption = this.options
   },
   computed: {
     filteredOption() {

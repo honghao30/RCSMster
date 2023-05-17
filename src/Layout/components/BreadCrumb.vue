@@ -5,7 +5,7 @@
     <div class="inner">
       <ul class="breadcrumb-list">
         <li><router-link to="/">HOME</router-link></li>
-        <li>회원가입</li>
+        <li>{{title}}</li>
       </ul>
     </div>
   </div>
@@ -15,10 +15,12 @@
 export default {
   data() {
     return {
+      title: '',
       Showbreadcrumb: true
     }
   },
   mounted() {
+    this.title = this.$router.currentRoute.meta.tittle
     this.breadcrumbInfo = this.$router.currentRoute.meta.breadcrumb
     if (this.breadcrumbInfo === false) {
       this.Showbreadcrumb = false

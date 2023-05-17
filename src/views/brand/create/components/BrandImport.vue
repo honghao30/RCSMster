@@ -1,6 +1,6 @@
 <template>
   <div
-    class="modal__content--inner brand__modal"
+    class="modal__content--inner brand__modal zipcode__modal"
   >
     <div class="modal__content--header">
       <p class="modal-title">브랜드 불러오기</p>
@@ -10,7 +10,8 @@
         <p>- 불러오실 브랜드를 선택해주세요.</p>
         <p>- 브랜드 명, 전화번호 제외 브랜드 정보가 자동으로 입력됩니다.</p>
       </div>
-      <div class="top-search__wrap">
+      <div class="search-result__wrap">
+        <div class="top-ctrl-area">
         <div class="search-area">
           <span class="input">
             <input type="text" placeholder="브랜드명을 입력하세요."/>
@@ -27,7 +28,6 @@
           </div>
         </div>
       </div>
-      <div class="search-result__wrap">
         <div class="table__wrap">
           <table class="table table-list">
             <colgroup>
@@ -41,11 +41,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr
-                v-for="post in 10"
-                :key="post"
-                @click="selectAddr"
-              >
+              <tr>
                 <td>
                   <div class="brand-item">
                     <span class="radiobox">
@@ -56,7 +52,7 @@
                     <span class="brand-name">브랜드명 1</span>
                   </div>
                 </td>
-                <td><span class="zipcode">2023.04.12</span></td>
+                <td><span class="date">2023.04.12</span></td>
               </tr>
               <!-- <tr>
                 <td colspan="2">
@@ -69,19 +65,19 @@
           </table>
         </div>
       </div>
-    <div class="modal__content--footer">
-      <div class="button__wrap">
-        <ButtonCmp
-          type="btn-blue-line"
-          @click="$emit('closeModal')"
-        >닫기</ButtonCmp>
-        <ButtonCmp
-          type="btn-blue"
-          @click="$emit('closeModal')"
-        >브랜드 불러오기</ButtonCmp>
+      <div class="modal__content--footer">
+        <div class="button__wrap">
+          <ButtonCmp
+            type="btn-blue-line"
+            @click="$emit('closeModal')"
+          >닫기</ButtonCmp>
+          <ButtonCmp
+            type="btn-blue"
+            @click="$emit('closeModal')"
+          >브랜드 불러오기</ButtonCmp>
+        </div>
       </div>
     </div>
-  </div>
 
 </template>
 
@@ -93,17 +89,10 @@ export default {
   },
   data() {
     return {
-      postResul: false,
-      zipcodeStep1: true
+
     }
   },
   methods: {
-    zipcodeSearch () {
-      this.postResul = true
-    },
-    selectAddr () {
-      this.zipcodeStep1 = false
-    }
   }
 }
 </script>

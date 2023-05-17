@@ -70,6 +70,11 @@
         </div>
       </div>
     </div>
+    <TitleH3 titleh3="스위치" />
+    <div class="switch" role="switch">
+      <input type="checkbox" id="switch" v-model="form.switch">
+      <label class="switch__core" for="switch"></label>
+    </div>
     <!-- <TitleH3 titleh3="Form List" />
     <div class="wsg-guide-content">
       <div class="form-list">
@@ -152,7 +157,8 @@ export default {
         radioGroup: 3,
         id: '',
         dropdown: '',
-        textarea: ''
+        textarea: '',
+        switch: ''
       },
       dropdownOptions: [
         {

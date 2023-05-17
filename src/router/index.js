@@ -64,6 +64,13 @@ import BrandCreateStep04 from '@/views/brand/create/BrandCreateStep04'
 
 // 브랜드 홈
 import BrandHome from '@/views/brand/BrandHome'
+import BrandEditHome from '@/views/brand/BrandEditHome'
+
+// 브랜드 수정
+import BrandEditStep01 from '@/views/brand/manage/BrandEditStep01'
+import BrandEditStep02 from '@/views/brand/manage/BrandEditStep02'
+import BrandEditStep03 from '@/views/brand/manage/BrandEditStep03'
+import BrandOperationManage from '@/views/brand/manage/BrandOperationManage'
 
 Vue.use(Router)
 
@@ -326,35 +333,81 @@ let router = new Router({
       path: '/brandcreatestep01',
       component: BrandCreateStep01,
       meta: {
-        tittle: '브랜드 개설'
+        tittle: '브랜드 개설',
+        breadcrumb: false
       }
     },
     {
       path: '/brandcreatestep02',
       component: BrandCreateStep02,
       meta: {
-        tittle: '브랜드 개설'
+        tittle: '브랜드 개설',
+        breadcrumb: false
       }
     },
     {
       path: '/brandcreatestep03',
       component: BrandCreateStep03,
       meta: {
-        tittle: '브랜드 개설'
+        tittle: '브랜드 개설',
+        breadcrumb: false
       }
     },
     {
       path: '/brandcreatestep04',
       component: BrandCreateStep04,
       meta: {
-        tittle: '브랜드 개설'
+        tittle: '브랜드 개설',
+        breadcrumb: false
       }
     },
     {
       path: '/brand',
       component: BrandHome,
       meta: {
-        tittle: '브랜드 홈'
+        tittle: '브랜드 홈',
+        breadcrumb: false
+      }
+    },
+    // 브랜드 수정
+    {
+      path: '/brandeditstep01',
+      component: BrandEditStep01,
+      meta: {
+        tittle: '브랜드 홈 수정',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/brandeditstep02',
+      component: BrandEditStep02,
+      meta: {
+        tittle: '브랜드 홈 수정',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/brandeditstep03',
+      component: BrandEditStep03,
+      meta: {
+        tittle: '브랜드 홈 수정',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/brandedithome',
+      component: BrandEditHome,
+      meta: {
+        tittle: '브랜드 홈',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/BrandOperationManage',
+      component: BrandOperationManage,
+      meta: {
+        tittle: '브랜드 운영관리',
+        breadcrumb: false
       }
     },
     {

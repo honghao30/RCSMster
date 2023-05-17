@@ -1,12 +1,15 @@
 <template>
   <div class="brand__wrap">
     <div class="brand__inner">
+      <BrandLnb />
       <div class="brand-info__wrap">
         <PageTitle pagetitle="브랜드 홈" />
         <div class="top-progress-area">
-          <span class="flag-progress">승인대기</span>
-          <span class="flag-progress ing">처리중</span>
+          <!-- <span class="flag-progress">승인대기</span> -->
+          <!-- <span class="flag-progress ing">처리중</span> -->
           <span class="flag-progress reject">반려</span>
+          <span class="flag-progress">수정 전 데이터 보기</span>
+          <span class="flag-progress ing">삭제 처리중</span>
           <span class="flag-progress done">승인완료</span>
           <p class="date">최종변경 : 2023. 03. 30</p>
           <p class="reject-text">반려사유 : 위법/부적절성 메시지 </p>
@@ -19,7 +22,7 @@
         <div class="table__wrap">
           <table class="table table-bodyonly form-table">
             <colgroup>
-              <col width="230px">
+              <col width="196px">
               <col />
             </colgroup>
             <tbody>
@@ -105,7 +108,7 @@
         <div class="table__wrap">
           <table class="table table-bodyonly form-table">
             <colgroup>
-              <col width="230px">
+              <col width="196px">
               <col />
             </colgroup>
             <tbody>
@@ -140,7 +143,7 @@
         <div class="table__wrap">
           <table class="table table-bodyonly form-table">
             <colgroup>
-              <col width="230px">
+              <col width="196px">
               <col />
             </colgroup>
             <tbody>
@@ -174,13 +177,13 @@
         <div class="button__wrap">
           <ButtonCmp
             type="btn-line"
-          >삭제</ButtonCmp>
+          >수정 전 데이터 보기</ButtonCmp>
           <ButtonCmp
             type="btn-blue-line"
-          >승인 요청 취소</ButtonCmp>
+          >삭제</ButtonCmp>
           <ButtonCmp
             type="btn-blue"
-          >수정</ButtonCmp>
+          >승인 요청 취소</ButtonCmp>
         </div>
       </div>
       <div class="brand-aside">
@@ -230,6 +233,7 @@
 </template>
 
 <script>
+import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
@@ -238,6 +242,7 @@ import TabCmp from '@/components/common/TabCmp.vue'
 
 export default {
   components: {
+    BrandLnb,
     PageTitle,
     ButtonCmp,
     PageTitleH3,

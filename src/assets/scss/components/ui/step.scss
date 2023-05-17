@@ -7,6 +7,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        &.step--03 {
+            li {
+                &:before {
+                    right: 98px;
+                    left: -140px;
+                }
+            }
+        }
     }
     li {
         position: relative;            
@@ -105,7 +113,7 @@
 }
 .step-compt__wrap {
     text-align:center;
-    padding:80px 0 50px;
+    padding:66px 0 72px;
     .title {
         font-size: 28px;
         font-weight: 500;

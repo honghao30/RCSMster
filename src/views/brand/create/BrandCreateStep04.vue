@@ -30,7 +30,7 @@
           <div class="preview__image">
             <img src="@/assets/images/dummy/brand_image.png" alt="">
           </div>
-          <div class="contact-icons">
+          <div class="quick-buttons">
             <a role="button"><i class="icon-tel"></i></a>
             <a role="button"><i class="icon-chat"></i></a>
             <a role="button"><i class="icon-web"></i></a>
@@ -45,22 +45,25 @@
             </div>
           </div>
           <div class="brand-detail">
-            <ul class="tab">
-              <li>소식</li>
-              <li class="active">정보</li>
-            </ul>
-            <dl class="tel">
-              <dt>전화번호</dt>
-              <dl>{{ form.tel }}</dl>
-            </dl>
-            <dl class="web">
-              <dt>웹사이트</dt>
-              <dl>{{ form.url }}</dl>
-            </dl>
-            <dl class="email">
-              <dt>이메일</dt>
-              <dl>contactus@nespresso.com</dl>
-            </dl>
+            <TabCmp tabClass="brand-quick__tab">
+              <TabItem title="소식">
+                <div>소식</div>
+              </TabItem>
+              <TabItem title="정보">
+                <dl class="tel">
+                  <dt>전화번호</dt>
+                  <dd>{{ form.tel }}</dd>
+                </dl>
+                <dl class="web">
+                  <dt>웹사이트</dt>
+                  <dd>{{ form.url }}</dd>
+                </dl>
+                <dl class="email">
+                  <dt>이메일</dt>
+                  <dd>contactus@nespresso.com</dd>
+                </dl>
+              </TabItem>
+            </TabCmp>
           </div>
         </div>
       </div>
@@ -72,12 +75,16 @@
 import PageTitle from '@/components/common/PageTitle.vue'
 import StepList from '@/components/common/StepList.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import TabItem from '@/components/common/TabItem.vue'
+import TabCmp from '@/components/common/TabCmp.vue'
 
 export default {
   components: {
     PageTitle,
     StepList,
-    ButtonCmp
+    ButtonCmp,
+    TabCmp,
+    TabItem
   },
   data() {
     return {

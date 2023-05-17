@@ -1,6 +1,6 @@
 <template>
   <div class="step__wrap">
-    <ol>
+    <ol :class="`step--0${stepTitle.length}`">
       <li v-for="(step, i) in stepTitle"
         :key="i"
         :class="[{ing: activeStep === i}, {end: activeStep > i}]"

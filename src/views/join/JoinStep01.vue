@@ -98,12 +98,12 @@ export default {
     },
     nextStep () {
       if (this.checkedAgreement1 === false) {
+        this.$alertMsg('서비스 이용약관(필수)에 동의 해주세요.')
         this.$refs.checkedAgreement1.focus()
-        alert('서비스 이용약관(필수)')
         return false
       } else if (this.checkedAgreement2 === false) {
+        this.$alertMsg('신청 위임 동의(필수)에 동의 해주세요.')
         this.$refs.checkedAgreement2.focus()
-        alert('신청 위임 동의(필수)')
       } else {
         this.$router.push('./JoinStep02')
       }

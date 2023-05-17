@@ -218,7 +218,7 @@
       flex-direction: column;
       gap: 32px;
       .table__wrap {
-        height: 500px;        
+        max-height: 500px;        
         overflow-y: auto;
       }
     }
@@ -360,15 +360,40 @@
       }
     }
     .modal__content--footer {
+      margin-top:0;
       .button__wrap {
         button {
           flex: none;
-          width: 126px;
           white-space: nowrap;
         }
       }
     }
   }   
+  .brand__modal {
+    .brand-item {
+      display:flex;
+      align-items:center;
+      justify-content: flex-start;
+      gap: 12px;
+      padding-left: 18px;
+      .radiobox {
+        width:20px;
+        height: 20px;
+      }
+      .logo {
+        display:inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        background-color: #D9D9D9;
+        margin-left:6px;
+      }
+    }
+    .date {
+      color:#000
+    }
+  }
+
 
 .modal__wrap {
   &.topPositon {
