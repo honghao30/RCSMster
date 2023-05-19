@@ -219,7 +219,7 @@
           >다음</ButtonCmp>
         </div>
       </div>
-      <div class="brand-aside">
+      <div class="brand-aside  sticky">
         <div class="button__wrap">
           <ButtonCmp
             type="btn-blue-line"
@@ -229,7 +229,7 @@
             type="btn-blue-line"
           >브랜드 가이드</ButtonCmp>
         </div>
-        <div class="preview__wrap">
+        <div class="preview__wrap ">
           <div class="preview__image">
             <img
               v-if="url"
@@ -246,11 +246,11 @@
                 v-if="this.form.profileImage == ''"
                 alt=""
               >
-              <img src="#"
+              <img src="@/assets/images/icon/icon_company_person.png"
                 v-else-if="this.bgImageType"
                 alt=""
               >
-              <img src="#"
+              <img src="@/assets/images/icon/icon_company_person.png"
                 v-else
                 alt=""
               >
@@ -268,7 +268,7 @@
                 <!-- <div>소식</div> -->
               </TabItem>
               <TabItem title="정보">
-                <!-- <dl class="tel">
+                <dl class="tel">
                   <dt>전화번호</dt>
                   <dd>{{ form.tel }}</dd>
                 </dl>
@@ -279,7 +279,7 @@
                 <dl class="email">
                   <dt>이메일</dt>
                   <dd>{{ form.email }}</dd>
-                </dl> -->
+                </dl>
               </TabItem>
             </TabCmp>
           </div>

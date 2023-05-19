@@ -106,7 +106,6 @@ $textareaHeight: 100px;
 //checkbox 는 .checkbox 클래스명의 엘리먼트안에 input 관 label 로 구현
 //디자인 구현시 이미지 사용 여부등 결정
 .checkbox {
-  display:inline-block;
   input[type=checkbox] {
     @include hiddens;
   }
@@ -145,6 +144,13 @@ $textareaHeight: 100px;
       border:1px solid #ccc;
     }
   }
+  input[type=checkbox]:checked:disabled + label {
+    &:before {
+      background:url('../assets/images/cmp/checkbox_active.png') 50% 50%;
+      background-size: 24px;
+      border:none;
+    }
+  }  
 }
 //radiobox
 .radiobox {
@@ -266,6 +272,7 @@ $textareaHeight: 100px;
     li {
       padding:8px 16px;
       line-height: 26px;
+      white-space: nowrap;
       cursor: pointer;
       &:hover {
         background-color:#F4F4F4;
@@ -590,6 +597,58 @@ $formLabelWidth : 120px;
       background: #6f6f6f;
     }
     /* //textarea scroll custom */
+}
+
+// 테이블 상단 컨트롤 영역
+.top-ctrl-area {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  .left-area {
+    display:inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .search-area {
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      .input {
+          flex: auto;
+          max-width: 240px;
+      }
+  }
+  .right-area {
+      display:inline-flex;
+      align-items:flex-end;
+      justify-content: flex-end;
+      gap: 8px;
+      
+  }
+  .pager {
+      display:inline-flex;
+      align-items:center;
+      margin-left:4px;
+      gap: 8px;
+      a {
+          display:inline-block;
+          width: 32px;
+          height:32px;
+          text-align:center;
+          font-size: 14px;
+          color: #888;
+          border-radius:4px;
+          &.btn-prev {
+          border:1px solid #EAEAEA;
+          background:url('../assets/images/cmp/chevron_left.png') no-repeat 50% 50%;
+          }
+          &.btn-next {
+          border:1px solid #EAEAEA;
+          background:url('../assets/images/cmp/chevron_right.png') no-repeat 50% 50%;
+          }
+      }
+  }
 }
 
 @media #{$phone} {

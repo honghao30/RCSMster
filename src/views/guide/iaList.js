@@ -282,17 +282,39 @@ const homeList = [
 
 const dashboardList = [
   {
-    'depth1': '기업 대시보드',
-    'screenId': 'D001'
+    'depth1': '브랜드',
+    'depth2': '브랜드 개설',
+    'depth3': '기본 정보 입력',
+    'screenId': '',
+    'status': '완료',
+    'link': '/brandcreatestep01'
+  },
+  {
+    'depth3': '퀵 버튼 설정',
+    'screenId': '',
+    'status': '완료',
+    'link': '/brandcreatestep02'
+  },
+  {
+    'depth3': '브랜드 홈 탭 설정',
+    'screenId': '',
+    'status': '완료',
+    'link': '/brandcreatestep03'
+  },
+  {
+    'depth3': '브랜드 개설 완료',
+    'screenId': '',
+    'status': '완료',
+    'link': '/brandcreatestep04'
   },
   {
     'depth2': '브랜드 대시보드',
-    'screenId': 'B001'
+    'screenId': ''
   },
   {
     'depth3': '대화방',
     'depth4': '등록',
-    'screenId': 'B002_1'
+    'screenId': ''
   },
   {
     'depth4': '목록',

@@ -41,7 +41,7 @@
     text-align:center
   }
   th {
-    span {
+    span:not(.checkbox) {
       display:block;
       line-height: 16px;
       position:relative;

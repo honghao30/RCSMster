@@ -48,7 +48,6 @@
       overflow-y: scroll;
     }
     .modal__content--footer {
-      height:48px;
       display: flex;
       align-content: center;
       justify-content: center;
@@ -56,7 +55,6 @@
       margin-top:32px;
       .button__wrap {
         margin-top:0;
-        padding-top:0;
         gap: 8px;
         width: 100%;
         button {
@@ -220,6 +218,17 @@
       .table__wrap {
         max-height: 500px;        
         overflow-y: auto;
+        //스크롤 발생 시 table bottom 주기 위해
+        border-bottom: 1px solid #f0f0f0;
+        .table-list{
+          tr{
+            &:last-child{
+              td{
+              border: none;
+              }
+            }
+          }
+        }
       }
     }
     .search-area {
@@ -245,40 +254,6 @@
           display: inline-block;
           margin-left: 6px;
           color: #999;
-        }
-      }
-    }
-    .top-ctrl-area {
-      display:flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      .ctrl {
-        display:inline-flex;
-        align-items:center;
-        justify-content: flex-end;
-        gap: 24px;
-        .pager {
-          display:inline-flex;
-          align-items:center;
-          gap: 8px;
-          a {
-            display:inline-block;
-            width: 32px;
-            height:32px;
-            text-align:center;
-            font-size: 14px;
-            color: #888;
-            border-radius:4px;
-            &.btn-prev {
-              border:1px solid #EAEAEA;
-              background:url('../assets/images/cmp/chevron_left.png') no-repeat 50% 50%;
-            }
-            &.btn-next {
-              border:1px solid #EAEAEA;
-              background:url('../assets/images/cmp/chevron_right.png') no-repeat 50% 50%;
-            }
-          }
         }
       }
     }
@@ -368,6 +343,35 @@
         }
       }
     }
+  }
+  // 내 브랜드 관리 - 브랜드 운영관리
+  .bottom-new--invite{
+    margin-top: 32px;
+    padding: 30px 0;
+    text-align: center;
+    background-color: #F8F8F8;
+    border-radius: 8px;
+  }
+  .new-invite{
+    margin-top: 32px;
+    .new-mail{
+      .new-email-del{
+        display: flex;
+        width: 100%;
+        gap:8px;
+        .input{
+          flex: auto;
+        }
+      }
+      .btn-blue-line{
+        margin-top: 12px;
+        min-width:74px;
+        height: 42px;
+      }
+      .btn{
+        padding: 0 24px;
+      }
+    }
   }   
   .brand__modal {
     .brand-item {
@@ -406,128 +410,127 @@
   }
 }
   //old css
-  .modal__container {
-    display:flex;
-    flex-direction: column;
-    .modal__content--header {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height:60px;
-      .modal-title {
-        font-size: 24px;
-        font-weight: bold;
-        color: #333;
-      }  
-    }
-    .modal__content--inner {
-      height:auto;
-      overflow: hidden;
-      position: fixed;
-      z-index: 11;
-      top: 50%;
-      left: 50%;
-      // width: 500px;
-      // height: 500px;
-      transform: translate(-50%,-50%);
-    }
-    .modal__content--body {
-      height: calc(100% - 50px - 50px);
-      position:relative;
-      width: 100%;       
-      overflow-y: scroll;
-    }
-    .modal__content--footer {
-      height:48px;
-      display: flex;
-      align-content: center;
-      justify-content: center;
-      background: #c9c8c8;
-      margin-top:32px;
-      .button__wrap {
-        margin-top:0;
-        padding-top:0;
-        gap: 8px;
-        width: 100%;
-        button {
-          flex:1;
-          width:auto;
-        }
-      }
-    }
-    .modal-close {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #333;
-        cursor: pointer;
-    }
-  }
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity .2s;
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
-  }
+//   .modal__container {
+//     display:flex;
+//     flex-direction: column;
+//     .modal__content--header {
+//       position: relative;
+//       display: flex;
+//       align-items: center;
+//       justify-content: space-between;
+//       height:60px;
+//       .modal-title {
+//         font-size: 24px;
+//         font-weight: bold;
+//         color: #333;
+//       }  
+//     }
+//     .modal__content--inner {
+//       height:auto;
+//       overflow: hidden;
+//       position: fixed;
+//       z-index: 11;
+//       top: 50%;
+//       left: 50%;
+//       // width: 500px;
+//       // height: 500px;
+//       transform: translate(-50%,-50%);
+//     }
+//     .modal__content--body {
+//       height: calc(100% - 50px - 50px);
+//       position:relative;
+//       width: 100%;       
+//       overflow-y: scroll;
+//     }
+//     .modal__content--footer {
+//       display: flex;
+//       align-content: center;
+//       justify-content: center;
+//       background: #c9c8c8;
+//       margin-top:32px;
+//       .button__wrap {
+//         margin-top:0;
+//         padding-top:0;
+//         gap: 8px;
+//         width: 100%;
+//         button {
+//           flex:1;
+//           width:auto;
+//         }
+//       }
+//     }
+//     .modal-close {
+//         position: absolute;
+//         right: 10px;
+//         top: 10px;
+//         font-size: 14px;
+//         font-weight: bold;
+//         color: #333;
+//         cursor: pointer;
+//     }
+//   }
+//   .fade-enter-active, .fade-leave-active {
+//     transition: opacity .2s;
+//   }
+//   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+//     opacity: 0;
+//   }
 
-  .modal__container {
-    .modal__content--inner {
-        &.small-message__modal {
-            max-width:403px;               
-            padding:40px;  
-            border-radius: 16px;
-            background-color: #fff;    
-            transition: opacity.3s ease;  
-            @media #{$phone} {
-              max-width: 90vw;
-            }
-            &.login-error {
-              width: 100%;
-              max-width: 410px;
-              @media #{$phone} {
-                max-width: 90vw;
-              }              
-              button {
-                white-space: nowrap;
-              }
-            }
-            .msg {
-                text-align: center;
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 26px;
-                text-align: center;
-                color: #000000;
-            }  
-            .msg2 {
-                margin-top: 16px;
-                background: #F4F4F4;
-                border-radius: 8px;
-                text-align: center;
-                padding:16px;
-                font-style: normal;
-                font-weight: 400;
-                font-size: 18px;
-                line-height: 30px;                
-                text-align: center;                
-                color: #000000;                
-            }        
-            .modal__content--footer {
-                background-color: #fff;     
-                button {
-                  &:only-child {
-                    flex: 0;
-                  }
-                }           
-            }
-            .modal__content--body {
-                height: calc(100% - 50px);
-                overflow:hidden;
-            }
-        }    
-    }
-}
+//   .modal__container {
+//     .modal__content--inner {
+//         &.small-message__modal {
+//             max-width:403px;               
+//             padding:40px;  
+//             border-radius: 16px;
+//             background-color: #fff;    
+//             transition: opacity.3s ease;  
+//             @media #{$phone} {
+//               max-width: 90vw;
+//             }
+//             &.login-error {
+//               width: 100%;
+//               max-width: 410px;
+//               @media #{$phone} {
+//                 max-width: 90vw;
+//               }              
+//               button {
+//                 white-space: nowrap;
+//               }
+//             }
+//             .msg {
+//                 text-align: center;
+//                 font-weight: 400;
+//                 font-size: 16px;
+//                 line-height: 26px;
+//                 text-align: center;
+//                 color: #000000;
+//             }  
+//             .msg2 {
+//                 margin-top: 16px;
+//                 background: #F4F4F4;
+//                 border-radius: 8px;
+//                 text-align: center;
+//                 padding:16px;
+//                 font-style: normal;
+//                 font-weight: 400;
+//                 font-size: 18px;
+//                 line-height: 30px;                
+//                 text-align: center;                
+//                 color: #000000;                
+//             }        
+//             .modal__content--footer {
+//                 background-color: #fff;     
+//                 button {
+//                   &:only-child {
+//                     flex: 0;
+//                   }
+//                 }           
+//             }
+//             .modal__content--body {
+//                 height: calc(100% - 50px);
+//                 overflow:hidden;
+//             }
+//         }    
+//     }
+// }
 

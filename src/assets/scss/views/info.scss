@@ -256,23 +256,6 @@
     +.top-notice--gray {
         margin-top: 8px;
     }
-    .flag-progress {
-        padding: 2px 10px;
-        border-radius: 20px;
-        color:#fff;
-        background-color:#ccc;
-        font-size: 12px;
-        line-height:22px;
-        &.done {
-            background-color:$pointColor;
-        }
-        &.reject {
-            background-color: $errorColor;
-        }
-        &.ing {
-            background-color:#FF8310;
-        }
-    }
     .comment {
         display: inline-block;
         color:#666;
@@ -282,6 +265,24 @@
         display: block;
         width: 100%;
         color:#666;
+    }
+}
+
+.flag-progress {
+    padding: 2px 10px;
+    border-radius: 20px;
+    color:#fff;
+    background-color:#999;
+    font-size: 12px;
+    line-height:22px;
+    &.done {
+        background-color:$pointColor;
+    }
+    &.reject {
+        background-color: $errorColor;
+    }
+    &.ing {
+        background-color:#FF8310;
     }
 }
 

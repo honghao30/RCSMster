@@ -1,7 +1,7 @@
 <template>
   <div class="dashBoard-side">
     <!-- 기업정보 -->
-    <div class="side-box">
+    <div class="side-box side-box__info">
       <div class="side-box-top">
         <h4>더피프티원</h4>
         <span class="authority">마스터</span>
@@ -23,7 +23,7 @@
       </ButtonCmp>
     </div>
     <!-- 운영권한 관리 및 신청 내역 -->
-    <div class="side-box">
+    <div class="side-box side-box__authority">
       <div class="side-box-top">
         <h4>운영권한 승인 신청 내역 ({{authorityList.length}})</h4>
       </div>
@@ -40,49 +40,41 @@
             <li class="authority-list-center">
               <ul>
                 <li class="authority-list__phone">{{ item.phone }}</li>
-                <li>/</li>
+                <li>&nbsp;/&nbsp;</li>
                 <li class="authority-list__mail">{{ item.mail }}</li>
               </ul>
             </li>
           </ul>
           <div class="button__wrap">
-          <ButtonCmp
-            type="btn-blue-line"
-          >반려</ButtonCmp>
-          <ButtonCmp
-            type="btn-blue"
-            @click="onSubmit"
-          >승인</ButtonCmp>
-        </div>
+            <ButtonCmp
+              type="btn-line"
+            >반려</ButtonCmp>
+            <ButtonCmp
+              type="btn-blue"
+              @click="onSubmit"
+            >승인</ButtonCmp>
+          </div>
         </div>
       </div>
     </div>
     <!-- 멤버 초대하기 -->
-    <div class="side-box">
+    <div class="side-box side-box__invite">
       <div class="side-box-top">
         <h4>멤버 초대하기</h4>
         <p>함께 관리하고 운영하는 멤버를 초대하세요.</p>
         <p>아직 가입하지 않는 멤버도 초대할 수 있어요.</p>
       </div>
       <div class="side-box-cont">
-        <ol class="invite__step">
+        <ul class="invite__step">
           <li>
-            <div class="invite__step-img">
-              <img src="#" alt="">
-            </div>
-            <div class="invite__step-tit">
-              <p>매니저 초대하기</p>
-            </div>
+            <strong>1</strong>
+            <span>매니저 초대하기</span>
           </li>
           <li>
-            <div class="invite__step-img">
-              <img src="#" alt="">
-            </div>
-            <div class="invite__step-tit">
-              <p>대행사 초대하기</p>
-            </div>
+            <strong>2</strong>
+            <span>대행사 초대하기</span>
           </li>
-        </ol>
+        </ul>
         <div class="invite__addbox">
           <p>대행사가 있으면 챗봇과 같은 다양한 대화방 메뉴 기능을 사용할 수 있어요.</p>
           <div class="button__wrap">
@@ -96,14 +88,15 @@
       </div>
     </div>
     <!-- 가변 배너 -->
-    <div class="side-box banner">
+    <div class="side-box side-box__banner">
       <div class="side-box-top">
-        <h3>챗봇 대행사 필요하지 않으세요?</h3>
+        <h3>챗봇 대행사<br/>필요하지 않으세요?</h3>
+        <p>대행사 보러가기</p>
       </div>
       <div class="side-box-cont"></div>
     </div>
     <!-- 승인 내역 -->
-    <div class="side-box">
+    <div class="side-box side-box__approve">
       <div class="side-box-top">
         <h4>승인 내역</h4>
       </div>

@@ -12,7 +12,7 @@
           :key="i"
           :class="[{active: activeTabIndex === i}, {new: newTabIndex.includes(i)}]"
         >
-          <a role="button" @click="tabCtrl(i, item)">{{ item.codeNm }}</a>
+          <a role="button" @click="tabCtrl(i, item)">{{ item }}</a>
         </li>
       </ul>
     </div>
@@ -26,12 +26,24 @@ export default {
     activeTabIndex: Number,
     newTabIndex: Array
   },
+  created() {
+    if (!this.newTabIndex) {
+      this.newTabIndex = []
+    }
+  },
+  mounted() {
+    if (!this.activeTabIndex && this.allTabUseYn) {
+      this.activeTabIndex = -1
+    } else if (!this.activeTabIndex && !this.allTabUseYn) {
+      this.activeTabIndex = 0
+    }
+  },
   data () {
     return {}
   },
   methods: {
-    tabCtrl: function(index, item) {
-      this.$emit('click', index, item)
+    tabCtrl: function(num) {
+      this.activeTabIndex = num
     }
   }
 }

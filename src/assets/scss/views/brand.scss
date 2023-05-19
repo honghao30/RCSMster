@@ -17,7 +17,9 @@
     border-radius: 24px;
     padding: 0 32px 48px;
     flex:auto;
-    
+    .checkbox {
+        width: auto;
+    }
     .radiobox {
         + .radiobox {
             display: inline-block;
@@ -82,12 +84,86 @@
         border-left:1px solid #888;
         transform: rotate(135deg);
     }
+
+    //브랜드 운영 관리
+    .case-box{
+        display: flex;
+        gap: 12px;
+        .case-box__type{
+            width: 50%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 36px 0 32px;
+            .case-box__type-txt{
+                display: flex;
+                justify-content: center;
+                gap: 12px;
+                img{
+                    width: 64px;
+                    height: 64px;
+                }
+                p{
+                    @include fontoption(18px,#000,500,28px);
+                    span{
+                        color: $pointColor;
+                    }
+                }
+            }
+        }
+    }
+    .authority{
+        .page-title__wrap{
+            margin-top: 24px;
+            padding-bottom: 24px;
+        }
+    }
+    .manage-table{ 
+        .table-list{
+            td{
+                @include fontoption(16px,#000,400,26px);
+            } 
+            .info-right{
+                text-align: initial;
+                padding-left: 15px;
+                span{
+                @include fontoption(14px,#666,400,24px);
+                }
+                .user{
+                    display: block;
+                    font-size: 16px;
+                    color: #000;
+                    line-height: 26px;
+                }
+            }
+            .application-date{
+                padding-left: 15px;
+                span{
+                    font-size: 14px;
+                    color: #999;
+                    line-height: 24px;
+                }
+            }
+            .button__wrap{
+                padding: 0;
+                gap:6px;
+                .btn {
+                padding: 0;
+                }
+            }
+        }
+    }
 }
+
 .brand-aside {
     flex:0 0 302px;
     display:flex;
     flex-direction: column;
     gap: 24px;
+    &.sticky {
+        position: sticky;
+        top: 120px;
+        align-self: flex-start;
+    }
     .button__wrap {
         padding-top: 0;
         .btn {
@@ -126,6 +202,7 @@
                 height: 24px;
                 background-position: 50% 50%;
                 background-repeat: no-repeat;
+                border-radius: 50%;
                 background-size: 100%;
                 &.icon-tel {
                     background-image:url('../assets/images/icon/icon_tel.png')
@@ -136,6 +213,21 @@
                 &.icon-web {
                     background-image:url('../assets/images/icon/icon_web.png')
                 }
+                &.icon-order {
+                    background-color:#666;
+                }
+                &.icon-buy {
+                    background-color:#666;
+                }
+                &.icon-ticket {
+                    background-color:#666;
+                }
+                &.icon-store {
+                    background-color:#666;
+                }
+                &.icon-info {
+                    background-color:#666;
+                }                                                                            
             }
         }
         .brand-title {
@@ -370,3 +462,13 @@
         }
     }
 }
+// 작업 히스토리
+.brand-info__wrap {
+    td {
+        .more-detail {
+            font-size: 14px;
+            color: #999
+        }
+    }
+}
+

@@ -71,6 +71,8 @@ import BrandEditStep01 from '@/views/brand/manage/BrandEditStep01'
 import BrandEditStep02 from '@/views/brand/manage/BrandEditStep02'
 import BrandEditStep03 from '@/views/brand/manage/BrandEditStep03'
 import BrandOperationManage from '@/views/brand/manage/BrandOperationManage'
+import SafetyMarkManage from '@/views/brand/manage/SafetyMarkManage'
+import OperationHistory from '@/views/brand/manage/OperationHistory'
 
 Vue.use(Router)
 
@@ -407,6 +409,22 @@ let router = new Router({
       component: BrandOperationManage,
       meta: {
         tittle: '브랜드 운영관리',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/SafetyMarkManage',
+      component: SafetyMarkManage,
+      meta: {
+        tittle: '안심마크 관리',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/operationhistory',
+      component: OperationHistory,
+      meta: {
+        tittle: '작업 히스토리',
         breadcrumb: false
       }
     },

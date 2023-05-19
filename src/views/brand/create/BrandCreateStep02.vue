@@ -20,7 +20,12 @@
                         <div class="form-item-row">
                           <div class="input-item check-list">
                             <span class="checkbox" v-for="(checkItem, i) in quickComp" :key="i">
-                              <input type="checkbox" :id="checkItem.value" :value="checkItem.value" v-model="form.quickButton"><label :for="checkItem.value">{{ checkItem.label }}</label>
+                              <input type="checkbox"
+                                :id="checkItem.value"
+                                :value="checkItem.value"
+                                v-model="form.quickButton"
+                                :disabled="form.quickButton.length >= 4"
+                              ><label :for="checkItem.value">{{ checkItem.label }}</label>
                             </span>
                           </div>
                         </div>
@@ -33,11 +38,24 @@
                     <div class="form-item__content">
                       <div class="form-item-row">
                         <div class="input-item">
-                          <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요."  v-model="form.tel" disabled ></span>
+                          <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요."  v-model="this.brandInfo.tel" disabled ></span>
                         </div>
                       </div>
                       <p class="guide-text">※ 브랜드 기본정보에서 입력한 값과 동일하게 반영됩니다.</p>
                       <p class="guide-text error" v-if="telErrorMsg" >전화번호를 입력해주세요.</p>
+                    </div>
+                  </td>
+                </tr>
+                <tr v-if="form.quickButton.includes('chat')">
+                  <th scope="row"><span class="form-item__label required">Chat</span></th>
+                  <td>
+                    <div class="form-item__content">
+                      <div class="form-item-row">
+                        <div class="input-item">
+                          <span class="input"><input type="text" class="input" placeholder="Chat 링크를 입력해주세요."  v-model="form.chat" ></span>
+                        </div>
+                      </div>
+                      <p class="guide-text error" v-if="chatErrorMsg" >Chat정보를 입력해주세요.</p>
                     </div>
                   </td>
                 </tr>
@@ -130,7 +148,7 @@
           >이전</router-link>
           <ButtonCmp
               type="btn-line"
-              @click="isModalViewed = true"
+              @click="saveTempData"
           >임시저장</ButtonCmp>
           <ButtonCmp
               type="btn-blue"
@@ -138,7 +156,7 @@
           >다음</ButtonCmp>
         </div>
       </div>
-      <div class="brand-aside">
+      <div class="brand-aside sticky">
         <div class="button__wrap">
           <ButtonCmp
             type="btn-blue-line"
@@ -149,20 +167,28 @@
         </div>
         <div class="preview__wrap">
           <div class="preview__image">
-            <img src="@/assets/images/dummy/brand_image.png" alt="">
+            <img
+              :src='`@/assets/images/dummy/${this.brandInfo.bgImage}`'
+              alt=""
+             >
           </div>
           <div class="quick-buttons">
-            <a role="button"><i class="icon-tel"></i></a>
+            <a role="button" v-if="form.quickButton.includes('call')"><i class="icon-tel"></i></a>
             <a role="button" v-if="form.quickButton.includes('chat')"><i class="icon-chat"></i></a>
             <a role="button" v-if="form.quickButton.includes('web')"><i class="icon-web"></i></a>
+            <a role="button" v-if="form.quickButton.includes('order')"><i class="icon-order"></i></a>
+            <a role="button" v-if="form.quickButton.includes('buy')"><i class="icon-buy"></i></a>
+            <a role="button" v-if="form.quickButton.includes('ticket')"><i class="icon-ticket"></i></a>
+            <a role="button" v-if="form.quickButton.includes('store')"><i class="icon-store"></i></a>
+            <a role="button" v-if="form.quickButton.includes('info')"><i class="icon-info"></i></a>
           </div>
           <div class="brand-title">
             <span class="logo">
               <img src="@/assets/images/dummy/brand_logo.png" alt="">
             </span>
             <div class="brand-desc">
-              <h4>네스프레소</h4>
-              <p class="brand__text">최상의 품질을 가진 환경에 긍정적인 영향을 줄수있는 커피브랜드 기업</p>
+              <h4>{{ this.brandInfo.brandName }}</h4>
+              <p class="brand__text">{{ this.brandInfo.brandDescription }}</p>
             </div>
           </div>
           <div class="brand-detail">
@@ -173,15 +199,15 @@
               <TabItem title="정보">
                 <dl class="tel">
                   <dt>전화번호</dt>
-                  <dd>{{ form.tel }}</dd>
+                  <dd>{{ this.brandInfo.tel }}</dd>
                 </dl>
                 <dl class="web">
                   <dt>웹사이트</dt>
-                  <dd>{{ form.url }}</dd>
+                  <dd>{{ this.brandInfo.url }}</dd>
                 </dl>
                 <dl class="email">
                   <dt>이메일</dt>
-                  <dd>contactus@nespresso.com</dd>
+                  <dd>{{ this.brandInfo.email }}</dd>
                 </dl>
               </TabItem>
             </TabCmp>
@@ -238,9 +264,10 @@ export default {
     return {
       form: {
         quickButton: [],
-        url: 'http://www.nespresso.com',
-        email: 'contactus@nespresso.com',
-        tel: '080-734-1111',
+        url: '',
+        chat: '',
+        email: '',
+        tel: '',
         moreInfoURL: '',
         orderURL: '',
         buyURL: '',
@@ -253,6 +280,7 @@ export default {
       buyErrorMsg: false,
       ticketErrorMsg: false,
       storeErrorMsg: false,
+      chatErrorMsg: false,
       quickComp: [
         {
           label: 'Chat',
@@ -288,9 +316,15 @@ export default {
         }
       ],
       stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료'],
-      isModalViewed: false
+      isModalViewed: false,
+      formData: {},
+      brandInfo: JSON.parse(localStorage.getItem('brand')) || '',
+      quckList: [],
+      getLength: ''
     }
   },
+  watch: {},
+  mounted() {},
   computed: {
   },
   methods: {
@@ -300,7 +334,15 @@ export default {
     closeMsg  () {
       this.isModalViewed = false
     },
+    saveTempData () {
+      localStorage.setItem('brandStep', JSON.stringify(this.form))
+      this.isModalViewed = true
+    },
     onSubmit () {
+      if (this.form.quickButton.includes('chat') && this.form.chat === '') {
+        this.chatErrorMsg = true
+        return
+      }      
       if (this.form.quickButton.includes('tel') && this.form.tel === '') {
         this.telErrorMsg = true
         return
@@ -329,6 +371,7 @@ export default {
         this.storeErrorMsg = true
         return
       }
+      localStorage.setItem('brandStep', JSON.stringify(this.form))
       this.$router.push('./brandcreatestep03')
     }
   }

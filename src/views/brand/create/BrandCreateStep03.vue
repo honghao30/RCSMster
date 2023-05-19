@@ -20,10 +20,10 @@
                         <div class="form-item-row">
                           <div class="input-item">
                             <span class="radiobox">
-                              <input type="radio" id="newsTab" name="'tab" value="newsTab" v-model="form.tab"><label for="newsTab">소식 탭 우선</label>
+                              <input type="radio" id="newsTab" name="'tab" value="newsTab" v-model="form.tab" @input="checkTab"><label for="newsTab">소식 탭 우선</label>
                             </span>
                             <span class="radiobox">
-                              <input type="radio" id="infoTab" name="tab" value="infoTab" v-model="form.tab"><label for="infoTab">정보 탭 우선</label>
+                              <input type="radio" id="infoTab" name="tab" value="infoTab" v-model="form.tab" @input="checkTab"><label for="infoTab">정보 탭 우선</label>
                             </span>
                           </div>
                           <p class="guide-text error" v-if="tabErrorMsg" >우선 노출 탭 설정해주세요.</p>
@@ -38,7 +38,12 @@
                         <div class="form-item-row">
                           <div class="input-item check-list">
                             <span class="checkbox" v-for="(checkItem, i) in noticeInfoCheck" :key="i">
-                              <input type="checkbox" :id="checkItem.value" :value="checkItem.value" v-model="form.noticeInfo"><label :for="checkItem.value">{{ checkItem.label }}</label>
+                              <input type="checkbox"
+                               :id="checkItem.value"
+                               :value="checkItem.value"
+                               v-model="form.noticeInfo"
+                               :disabled="form.noticeInfo.length >= 3"
+                              ><label :for="checkItem.value">{{ checkItem.label }}</label>
                             </span>
                           </div>
                         </div>
@@ -52,7 +57,7 @@
                     <div class="form-item__content">
                       <div class="form-item-row">
                         <div class="input-item">
-                          <span class="input"><input type="text" class="input"  v-model="form.tel" disabled ></span>
+                          <span class="input"><input type="text" class="input"  v-model="brandInfo.tel" disabled ></span>
                         </div>
                       </div>
                     </div>
@@ -126,6 +131,7 @@
           >이전</router-link>
           <ButtonCmp
               type="btn-line"
+              @click="saveTempData"
           >임시저장</ButtonCmp>
           <ButtonCmp
               type="btn-blue"
@@ -133,7 +139,7 @@
           >승인요청</ButtonCmp>
         </div>
       </div>
-      <div class="brand-aside">
+      <div class="brand-aside sticky">
         <div class="button__wrap">
           <ButtonCmp
             type="btn-blue-line"
@@ -147,36 +153,60 @@
             <img src="@/assets/images/dummy/brand_image.png" alt="">
           </div>
           <div class="quick-buttons">
-            <a role="button"><i class="icon-tel"></i></a>
-            <a role="button"><i class="icon-chat"></i></a>
-            <a role="button"><i class="icon-web"></i></a>
+            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('tel')"><i class="icon-tel"></i></a>
+            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('chat')"><i class="icon-chat"></i></a>
+            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('web')"><i class="icon-web"></i></a>
+            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('order')"><i class="icon-order"></i></a>
+            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('buy')"><i class="icon-buy"></i></a>
+            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('ticket')"><i class="icon-ticket"></i></a>
+            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('store')"><i class="icon-store"></i></a>
+            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('More info')"><i class="icon-info"></i></a>
           </div>
           <div class="brand-title">
             <span class="logo">
               <img src="@/assets/images/dummy/brand_logo.png" alt="">
             </span>
             <div class="brand-desc">
-              <h4>네스프레소</h4>
-              <p class="brand__text">최상의 품질을 가진 환경에 긍정적인 영향을 줄수있는 커피브랜드 기업</p>
+              <h4>{{ this.brandInfo.brandName }}</h4>
+              <p class="brand__text">{{ this.brandInfo.brandDescription }}</p>
             </div>
           </div>
           <div class="brand-detail">
-            <TabCmp tabClass="brand-quick__tab" >
+            <TabCmp tabClass="brand-quick__tab" :activeIndex="0">
               <TabItem title="소식">
-                <div>소식</div>
+                <dl class="tel" v-if="form.noticeInfo.includes('call')">
+                  <dt>전화하기</dt>
+                  <dd>{{ this.brandInfo.tel }}</dd>
+                </dl>
+                <dl class="web" v-if="form.noticeInfo.includes('website')">
+                  <dt>웹사이트</dt>
+                  <dd>{{ form.website }}</dd>
+                </dl>
+                <dl class="tel" v-if="form.noticeInfo.includes('reservation')">
+                  <dt>예약하기</dt>
+                  <dd>{{ form.reservation }}</dd>
+                </dl>
+                <dl class="web"  v-if="form.noticeInfo.includes('appdownload')">
+                  <dt>앱 다운로드</dt>
+                  <dd>{{ form.appdownload }}</dd>
+                </dl>
+                <dl class="email" v-if="form.noticeInfo.includes('chat')">
+                  <dt>상담채팅 시작하기</dt>
+                  <dd>{{ form.chat }}</dd>
+                </dl>
               </TabItem>
               <TabItem title="정보">
                 <dl class="tel">
                   <dt>전화번호</dt>
-                  <dd>{{ form.tel }}</dd>
+                  <dd>{{ this.brandInfo.tel }}</dd>
                 </dl>
                 <dl class="web">
                   <dt>웹사이트</dt>
-                  <dd>{{ form.url }}</dd>
+                  <dd>{{ this.brandInfo.url }}</dd>
                 </dl>
                 <dl class="email">
                   <dt>이메일</dt>
-                  <dd>contactus@nespresso.com</dd>
+                  <dd>{{ this.brandInfo.email }}</dd>
                 </dl>
               </TabItem>
             </TabCmp>
@@ -184,6 +214,27 @@
         </div>
       </div>
     </div>
+    <!-- // 모달 영역 -->
+    <ModalView
+      v-if="isModalViewed"
+      @closeModal="isModalViewed = false"
+    >
+      <ConfirmMsg
+          @closeModal="isModalViewed = false"
+        >
+          <div class="msg" slot="msg">
+            입력하신 정보가 임시저장 되었습니다.
+          </div>
+          <div class="button__wrap" slot="button">
+              <ButtonCmp
+              type="btn-blue"
+              @click="closeMsg"
+              >
+                확인
+              </ButtonCmp>
+          </div>
+      </ConfirmMsg>
+    </ModalView>
   </div>
 </template>
 
@@ -194,6 +245,8 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import StepList from '@/components/common/StepList.vue'
 import TabItem from '@/components/common/TabItem.vue'
 import TabCmp from '@/components/common/TabCmp.vue'
+import ModalView from '@/components/common/ModalView.vue'
+import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
 
 export default {
   components: {
@@ -202,26 +255,30 @@ export default {
     PageTitleH3,
     StepList,
     TabItem,
-    TabCmp
+    TabCmp,
+    ModalView,
+    ConfirmMsg
   },
   data() {
     return {
       form: {
         noticeInfo: [],
-        url: 'http://www.nespresso.com',
-        email: 'contactus@nespresso.com',
-        tel: '080-734-1111',
+        url: '',
+        email: '',
+        tel: '',
         website: '',
         reservation: '',
         appdownload: '',
         chat: '',
-        tab: 'newsTab',
+        tab: 'inforTab',
         agree: ''
       },
+      activeIndex: 1,
       tabErrorMsg: false,
       webErrorMsg: false,
       resvErrorMsg: false,
       appErrorMsg: false,
+      isModalViewed: false,
       chatErrorMsg: false,
       noticeInfoCheck: [
         {
@@ -245,12 +302,30 @@ export default {
           value: 'chat'
         }
       ],
-      stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료']
+      stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료'],
+      brandInfo: JSON.parse(localStorage.getItem('brand')) || '',
+      brandInfoStep2: JSON.parse(localStorage.getItem('brandStep')) || '',
+      newNoticeInfo: []
     }
+  },
+  mounted: {
   },
   computed: {
   },
   methods: {
+    closeModal () {
+      this.isModalViewed = false
+    },
+    closeMsg  () {
+      this.isModalViewed = false
+    },
+    checkTab () {
+      console.log(this.form.tab)
+    },
+    saveTempData () {
+      localStorage.setItem('brandStep', JSON.stringify(this.form))
+      this.isModalViewed = true
+    },
     onSubmit () {
       if (this.form.tab === '') {
         this.tabErrorMsg = true
@@ -272,6 +347,7 @@ export default {
         this.chatErrorMsg = true
         return
       }
+      localStorage.setItem('brandStep3', JSON.stringify(this.form))
       this.$router.push('./brandcreatestep04')
     }
   }
