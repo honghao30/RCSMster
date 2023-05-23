@@ -1,105 +1,106 @@
 <template>
-  <div class="inner feed">
-    <div class="registration__wrap">
-      <PageTitle pagetitle="브랜드 소식 등록" />
-      <form  ref="form" :model="form">
-        <div class="table__wrap">
-          <table class="table table-bodyonly form-table">
-            <colgroup>
-              <col width="160px">
-              <col />
-            </colgroup>
-            <tbody>
-              <tr>
-                <th scope="row"><span class="form-item__label required">타입선택</span></th>
-                <td>
+  <div class="brand__wrap">
+    <div class="brand__inner">
+      <div class="registration__wrap">
+        <PageTitle pagetitle="브랜드 소식 등록" />
+        <form  ref="form" :model="form">
+          <div class="table__wrap">
+            <table class="table table-bodyonly form-table">
+              <colgroup>
+                <col width="160px">
+                <col />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th scope="row"><span class="form-item__label required">타입선택</span></th>
+                  <td>
+                      <div class="form-item__content">
+                          <div class="form-item-row">
+                            <div class="input-item">
+                              <span class="radiobox btn-type">
+                                <input type="radio" name="type" id="gallery" value="gallery" v-model="type"/>
+                                <label for="gallery"><span class="radiobox__text">갤러리형</span></label>
+                              </span>
+                              <span class="radiobox btn-type">
+                                <input type="radio" name="type" id="sharing" value="sharing" v-model="type"/>
+                                <label for="sharing"><span class="radiobox__text">쉐어형</span></label>
+                              </span>
+                              <span class="radiobox btn-type">
+                                <input type="radio" name="type" id="slideView" value="slideView" v-model="type"/>
+                                <label for="slideView"><span class="radiobox__text">슬라이드뷰</span></label>
+                              </span>
+                            </div>
+                          </div>
+                      </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="form-item__label">제목</span></th>
+                  <td>
                     <div class="form-item__content">
-                        <div class="form-item-row">
-                          <div class="input-item">
-                            <span class="radiobox btn-type">
-                              <input type="radio" name="type" id="gallery" value="gallery" v-model="type"/>
-                              <label for="gallery"><span class="radiobox__text">갤러리형</span></label>
-                            </span>
-                            <span class="radiobox btn-type">
-                              <input type="radio" name="type" id="sharing" value="sharing" v-model="type"/>
-                              <label for="sharing"><span class="radiobox__text">쉐어형</span></label>
-                            </span>
-                            <span class="radiobox btn-type">
-                              <input type="radio" name="type" id="slideView" value="slideView" v-model="type"/>
-                              <label for="slideView"><span class="radiobox__text">슬라이드뷰</span></label>
-                            </span>
-                          </div>
-                        </div>
-                    </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row"><span class="form-item__label">제목</span></th>
-                <td>
-                  <div class="form-item__content">
-                    <div class="form-item-row">
-                      <div class="input-item input-limit">
-                        <span class="input">
-                          <input type="text" class="input" maxlength="40" placeholder="제목을 입력해주세요.">
-                          <p class="input-limit__text">
-                            /40자
-                          </p>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row"><span class="form-item__label">내용</span></th>
-                <td>
-                  <div class="form-item__content">
-                    <div class="form-item-row">
-                      <div class="input-item input-limit">
-                        <div class="textarea">
-                          <textarea maxlength="1000" placeholder="내용을 입력해주세요."></textarea>
-                          <div class="textarea-limit__text">
-                            <p>
-                              /1000자
+                      <div class="form-item-row">
+                        <div class="input-item input-limit">
+                          <span class="input">
+                            <input type="text" class="input" maxlength="40" placeholder="제목을 입력해주세요.">
+                            <p class="input-limit__text">
+                              /40자
                             </p>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="form-item__label">내용</span></th>
+                  <td>
+                    <div class="form-item__content">
+                      <div class="form-item-row">
+                        <div class="input-item input-limit">
+                          <div class="textarea">
+                            <textarea maxlength="1000" placeholder="내용을 입력해주세요."></textarea>
+                            <div class="textarea-limit__text">
+                              <p>
+                                /1000자
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="slide-drag__area" v-if="type === 'slideView'">
-            <draggable @start="drag=true" @end="onEnd" v-model="slideData">
-              <button v-for="(item, j) in slideData" :key="j" style="cursor:pointer" @click="slideChange(j)">{{ item }}</button>
-            </draggable>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="slide-drag__area" v-if="type === 'slideView'">
+              <draggable @start="drag=true" @end="onEnd" v-model="slideData">
+                <button v-for="(item, j) in slideData" :key="j" style="cursor:pointer" @click="slideChange(j)">{{ item }}</button>
+              </draggable>
+            </div>
+            <table class="table table-bodyonly form-table">
+              <colgroup>
+                <col width="160px">
+                <col />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th scope="row"><span class="form-item__label required">슬라이드유형</span></th>
+                  <td>
+                    <span class="text"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="form-item__label required">연결URL</span></th>
+                  <td>
+                    <span class="text"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <table class="table table-bodyonly form-table">
-            <colgroup>
-              <col width="160px">
-              <col />
-            </colgroup>
-            <tbody>
-              <tr>
-                <th scope="row"><span class="form-item__label required">슬라이드유형</span></th>
-                <td>
-                  <span class="text"></span>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row"><span class="form-item__label required">연결URL</span></th>
-                <td>
-                  <span class="text"></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </form>
-    </div>
-    <div class="preview__wrap">
+        </form>
+      </div>
+      <div class="preview__wrap">
       <div class="preview-box">
         <div class="preview-gallery" v-if="type === 'gallery'">
           갤러리
@@ -125,6 +126,7 @@
             <div class="swiper-pagination"></div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </div>

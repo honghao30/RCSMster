@@ -335,7 +335,7 @@ let router = new Router({
       path: '/brandcreatestep01',
       component: BrandCreateStep01,
       meta: {
-        tittle: '브랜드 개설',
+        tittle: '브랜드 개설 > 기본정보 입력',
         breadcrumb: false
       }
     },
@@ -343,7 +343,7 @@ let router = new Router({
       path: '/brandcreatestep02',
       component: BrandCreateStep02,
       meta: {
-        tittle: '브랜드 개설',
+        tittle: '브랜드 개설 > 퀵버튼 설정',
         breadcrumb: false
       }
     },
@@ -351,7 +351,7 @@ let router = new Router({
       path: '/brandcreatestep03',
       component: BrandCreateStep03,
       meta: {
-        tittle: '브랜드 개설',
+        tittle: '브랜드 개설 > 브랜드 홈 탭 설정',
         breadcrumb: false
       }
     },
@@ -359,7 +359,7 @@ let router = new Router({
       path: '/brandcreatestep04',
       component: BrandCreateStep04,
       meta: {
-        tittle: '브랜드 개설',
+        tittle: '브랜드 개설 > 브랜드 개설 완료',
         breadcrumb: false
       }
     },
@@ -376,7 +376,7 @@ let router = new Router({
       path: '/brandeditstep01',
       component: BrandEditStep01,
       meta: {
-        tittle: '브랜드 홈 수정',
+        tittle: '브랜드 홈 수정 > 기본정보',
         breadcrumb: false
       }
     },
@@ -384,7 +384,7 @@ let router = new Router({
       path: '/brandeditstep02',
       component: BrandEditStep02,
       meta: {
-        tittle: '브랜드 홈 수정',
+        tittle: '브랜드 홈 수정 > 퀵버튼',
         breadcrumb: false
       }
     },
@@ -392,7 +392,7 @@ let router = new Router({
       path: '/brandeditstep03',
       component: BrandEditStep03,
       meta: {
-        tittle: '브랜드 홈 수정',
+        tittle: '브랜드 홈 수정 > 브랜드 홈 탭 설정',
         breadcrumb: false
       }
     },

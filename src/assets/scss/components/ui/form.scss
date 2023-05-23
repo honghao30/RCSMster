@@ -624,7 +624,8 @@ $formLabelWidth : 120px;
       align-items:flex-end;
       justify-content: flex-end;
       gap: 8px;
-      
+      display: flex;
+      align-items: center;
   }
   .pager {
       display:inline-flex;

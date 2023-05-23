@@ -74,7 +74,7 @@
         <tbody>
           <tr>
             <td><button class="ico-up"></button></td>
-            <td class="m-hidden"><p class="list-data">이전글</p></td>
+            <td class="m-hidden"><p class="list-data"><router-link to="#">이전글</router-link></p></td>
             <td>
               <div class="l-align title">
                 <router-link to=""
@@ -85,7 +85,7 @@
           </tr>
           <tr>
             <td><button class="ico-down"></button></td>
-            <td class="m-hidden"><p class="list-data">다음글</p></td>
+            <td class="m-hidden"><p class="list-data"><router-link to="#">다음글</router-link></p></td>
             <td>
               <div class="l-align title">
                 <router-link to=""

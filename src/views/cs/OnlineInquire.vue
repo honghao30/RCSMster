@@ -32,7 +32,7 @@
                   <div class="form-item-row">
                     <div class="input-item input-limit">
                       <span class="input">
-                        <input type="text" class="input" maxlength="40" placeholder="문의 제목을 입력해주세요." v-model="form.inquiretitle">
+                        <input type="text" class="input" maxlength="40" placeholder="문의 제목을 입력해주세요." v-model="form.inquiretitle" @input = "inputHandler">
                         <p class="input-limit__text">
                           {{ form.inquiretitle.length }}/40자
                         </p>

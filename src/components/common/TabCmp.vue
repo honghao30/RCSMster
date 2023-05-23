@@ -1,17 +1,16 @@
 <template>
   <div class="tab__wrap"
-  :class="tabClass"
+  :class="[tabClass, size]"
   >
     <ul
       class="tab-list"
       role="tablist"
-      :class="[{scroll: tabs.length > 10}, {fixed: tabWidth}]"
     >
       <li
         v-for="(tab, i) in tabs"
         :key=i
         class="tab-item"
-        :class="[{active: activeTabIndex === i}]"
+        :class="[{active: activeTabIndex === i}, {new: tab.tabIsNew}]"
         :style="{ width: tabWidth + 'px' }"
       >
         <a role="tab"
@@ -30,9 +29,9 @@
 <script>
 export default {
   props: {
-    tabWidth: Number,
     tabClass: String,
-    activeIndex: Number
+    activeIndex: Number,
+    size: String
   },
   data() {
     return {

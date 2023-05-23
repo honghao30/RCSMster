@@ -170,6 +170,9 @@
               border-right: 1px solid #ddd;
               text-align: left;
               line-height: 24px;
+              a:hover {
+                text-decoration: underline;
+              }
             }
             .title {
               padding-left: 33px;
@@ -329,7 +332,7 @@
           background-color: #ffffff;
           margin-left: -85px;
           margin-bottom: -20px;
-          width: 1280px;
+          width: $contentWidth;
           div {
             padding: 20px 146px;
             .accordion-cate {
@@ -349,7 +352,7 @@
         .accordion-answer {
           margin-left: -85px;
           margin-top: 20px;
-          width: 1280px;
+          width: $contentWidth;
           div {
             display: flex;
             padding: 20px 146px;
@@ -373,7 +376,7 @@
   }
   // onlinerequire
   .online{
-    max-width: 1280px;
+    max-width: $contentWidth;
     margin: 0 auto;
     .online-title__wrap--top{
       .page-title{

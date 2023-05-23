@@ -2,20 +2,22 @@
   <div class="dashBoard-side">
     <!-- 기업정보 -->
     <div class="side-box side-box__info">
-      <div class="side-box-top">
-        <h4>더피프티원</h4>
-        <span class="authority">마스터</span>
-      </div>
-      <div class="side-box-middle">
-        <p class="id">CO.K0803h0r0O</p>
-        <p class="date">2023.03.09</p>
+      <div class="side-box__info-top">
+        <div class="side-box-top">
+          <h4>더피프티원</h4>
+          <span class="authority">마스터</span>
+        </div>
+        <div class="side-box-middle">
+          <span class="id">CO.K0803h0r0O</span>
+          <span class="date">2023.03.09</span>
+        </div>
       </div>
       <div class="side-box-cont">
-        <p>KISA(한국인터넷진흥원)에서 <em>안심마크</em> 활용에 대해 인증 받았습니다.</p>
+        <p>KISA(한국인터넷진흥원)에서 <span>안심마크</span> 활용에 대해 인증 받았습니다.</p>
       </div>
     </div>
     <!-- 버튼 / @click 클릭 시 추가해야함-->
-    <div class="button__wrap">
+    <div class="side-btn">
       <ButtonCmp
         type="btn-blue"
       >
@@ -48,9 +50,11 @@
           <div class="button__wrap">
             <ButtonCmp
               type="btn-line"
+              size="small"
             >반려</ButtonCmp>
             <ButtonCmp
               type="btn-blue"
+              size="small"
               @click="onSubmit"
             >승인</ButtonCmp>
           </div>
@@ -79,7 +83,8 @@
           <p>대행사가 있으면 챗봇과 같은 다양한 대화방 메뉴 기능을 사용할 수 있어요.</p>
           <div class="button__wrap">
             <ButtonCmp
-              type="btn btn-blue-line medium"
+              type="btn btn-blue-line"
+              size="medium"
             >
             챗봇 대행사 보기
             </ButtonCmp>
@@ -101,18 +106,24 @@
         <h4>승인 내역</h4>
       </div>
       <div class="side-box-cont">
-        <TabCmp tabClass="approve-list__tab">
+        <TabCmp size="small">
           <TabItem title="전체">
-            <div class="approve-list__tab-cont" v-for="(item,i) in approveList" :key="i">
-              <div>
-                <ul>
-                  <li><span class="approve-type">{{ item.type }}</span></li>
-                  <li>{{ item.date }}</li>
-                  <li>{{ item.name }}</li>
-                  <li>{{ item.chat }}</li>
-                  <li>{{ item.des }}</li>
-                </ul>
-              </div>
+            <div class="approve-cont" v-for="(item,i) in approveList" :key="i">
+              <ul>
+                <li class="approve-cont-top">
+                  <ul>
+                    <li class="approve-cont__type">{{ item.type }}</li>
+                    <li class="approve-cont__date">{{ item.date }}</li>
+                  </ul>
+                </li>
+                <li class="approve-cont-between">
+                  <ul>
+                    <li class="approve-cont__name">{{ item.name }}</li>
+                    <li class="approve-cont__chat">{{ item.chat }}</li>
+                  </ul>
+                </li>
+                <li class="authority-list-btm">{{ item.des }}</li>
+              </ul>
             </div>
           </TabItem>
           <TabItem title="진행중">

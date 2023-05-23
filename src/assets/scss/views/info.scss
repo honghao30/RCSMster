@@ -1,7 +1,7 @@
 //가입 페이지
 .join {
     width: 100%;
-    max-width: 1280px;
+    max-width: $contentWidth;
     margin: 0 auto;
     .table__wrap {
         .form-table {

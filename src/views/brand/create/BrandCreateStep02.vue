@@ -24,7 +24,7 @@
                                 :id="checkItem.value"
                                 :value="checkItem.value"
                                 v-model="form.quickButton"
-                                :disabled="form.quickButton.length >= 4"
+                                :disabled="form.quickButton.length >= 4 || checkItem.value == 'chat'"
                               ><label :for="checkItem.value">{{ checkItem.label }}</label>
                             </span>
                           </div>
@@ -43,19 +43,6 @@
                       </div>
                       <p class="guide-text">※ 브랜드 기본정보에서 입력한 값과 동일하게 반영됩니다.</p>
                       <p class="guide-text error" v-if="telErrorMsg" >전화번호를 입력해주세요.</p>
-                    </div>
-                  </td>
-                </tr>
-                <tr v-if="form.quickButton.includes('chat')">
-                  <th scope="row"><span class="form-item__label required">Chat</span></th>
-                  <td>
-                    <div class="form-item__content">
-                      <div class="form-item-row">
-                        <div class="input-item">
-                          <span class="input"><input type="text" class="input" placeholder="Chat 링크를 입력해주세요."  v-model="form.chat" ></span>
-                        </div>
-                      </div>
-                      <p class="guide-text error" v-if="chatErrorMsg" >Chat정보를 입력해주세요.</p>
                     </div>
                   </td>
                 </tr>
@@ -263,7 +250,7 @@ export default {
   data() {
     return {
       form: {
-        quickButton: [],
+        quickButton: ['chat'],
         url: '',
         chat: '',
         email: '',

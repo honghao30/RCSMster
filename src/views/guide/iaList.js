@@ -111,7 +111,7 @@ const homeList = [
   {
     'depth2': '기업담당자 회원가입',
     'depth3': '약관동의',
-    'screenId': 'G002',
+    'screenId': '',
     'status': '완료',
     'link': '/joinStep01',
     'comments': '공통적으로 임의의 값을 입력시 다음 페이지로 넘어감.'

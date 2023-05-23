@@ -10,11 +10,15 @@
 <script>
 export default {
   props: {
-    title: String
+    title: String,
+    isNew: Boolean
   },
   computed: {
     tabTitle() {
       return this.title
+    },
+    tabIsNew () {
+      return this.isNew
     }
   },
   data() {

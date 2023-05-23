@@ -214,6 +214,11 @@
         </form>
         <div class="button__wrap">
           <ButtonCmp
+              type="btn-line"
+              @click="saveTempData"
+          >임시저장
+          </ButtonCmp>
+          <ButtonCmp
             type="btn-blue"
             @click="onSubmit"
           >다음</ButtonCmp>
@@ -223,7 +228,7 @@
         <div class="button__wrap">
           <ButtonCmp
             type="btn-blue-line"
-            @click="isModalViewed = true"
+            @click="brandImport"
           >브랜드 불러오기</ButtonCmp>
           <ButtonCmp
             type="btn-blue-line"
@@ -291,9 +296,26 @@
       @closeModal="isModalViewed = false"
     >
       <BrandImport
+          v-if="isBrandImport"
           @closeModal="isModalViewed = false"
         >
       </BrandImport>
+      <ConfirmMsg
+          v-if="isSave"
+          @closeModal="isModalViewed = false"
+        >
+          <div class="msg" slot="msg">
+            입력하신 정보가 임시저장 되었습니다.
+          </div>
+          <div class="button__wrap" slot="button">
+              <ButtonCmp
+              type="btn-blue"
+              @click="closeMsg"
+              >
+                확인
+              </ButtonCmp>
+          </div>
+      </ConfirmMsg>
     </ModalView>
   </div>
 </template>
@@ -305,6 +327,7 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import StepList from '@/components/common/StepList.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
 import ModalView from '@/components/common/ModalView.vue'
+import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
 import BrandImport from '@/views/brand/create/components/BrandImport.vue'
 import TabItem from '@/components/common/TabItem.vue'
 import TabCmp from '@/components/common/TabCmp.vue'
@@ -319,7 +342,8 @@ export default {
     ModalView,
     BrandImport,
     TabItem,
-    TabCmp
+    TabCmp,
+    ConfirmMsg
   },
   data() {
     return {
@@ -349,6 +373,8 @@ export default {
       categoryErrorMsg: false,
       telErrorMsg: false,
       isModalViewed: false,
+      isSave: false,
+      isBrandImport: false,
       quickButtons: [''],
       categoryOptions: [
         {
@@ -436,6 +462,11 @@ export default {
       localStorage.setItem('brand', JSON.stringify(this.form))
       this.$router.push('./brandcreatestep02')
     },
+    saveTempData () {
+      localStorage.setItem('brandStep', JSON.stringify(this.form))
+      this.isModalViewed = true
+      this.isSave = true
+    },
     onFileChanged (e) {
       const files = e.target.files
       const fileName = files[0].name
@@ -456,6 +487,13 @@ export default {
     },
     closeModal () {
       this.isModalViewed = false
+    },
+    closeMsg  () {
+      this.isModalViewed = false
+    },
+    brandImport () {
+      this.isModalViewed = true
+      this.isBrandImport = true
     }
   }
 }

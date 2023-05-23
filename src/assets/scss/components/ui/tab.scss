@@ -1,6 +1,6 @@
 .tab__wrap {
   margin-bottom: 32px;
-  	ul {
+  	.tab-list {
       display:flex;
       align-items:center;
       background-color:#F9F9F9;
@@ -9,47 +9,19 @@
 			flex: 1;
 			border-radius:8px;
 			border:1px solid transparent;
-			&.active {
-				background-color:#DCF2FF;
-				border-color:#ADE2FF;
+			a {
+				display:flex;
+				align-items: center;
+				justify-content:center;
+				height:56px;
+				font-size:16px;
+				font-weight: 500;
+				position:relative;
+				cursor:pointer;
 				span {
-					&:before {
-						display:none;
-					}
+					line-height: 20px;
+					display:block;
 				}
-				+ li {
-					span {
-						&:before {
-							display:none;
-						}
-					}
-				}
-			}
-			&:first-child {
-				span {
-					&:Before {
-						display:none;
-					}
-				}
-			}
-      	}
-		&.fixed { // 넓이 고정 
-			.tab-item {
-				flex:none;
-			}
-		}
-		a {
-			display:flex;
-			align-items: center;
-			justify-content:center;
-			height:56px;
-			font-size:16px;
-			font-weight: 500;
-			position:relative;
-			cursor:pointer;
-			span {
-				line-height: 20px;
-				display:block;
 				&:before {
 					content:'';
 					display:inline-block;
@@ -62,8 +34,70 @@
 					margin-top: -10px;
 				}
 			}
+			&.active {
+				background-color:#DCF2FF;
+				border-color:#ADE2FF;
+				a {
+					&:before {
+						display:none;
+					}
+				}
+				+ li {
+					a {
+						&:before {
+							display:none;
+						}
+					}
+				}
+			}
+			&:first-child {
+				a {
+					&:Before {
+						display:none;
+					}
+				}
+			}
+			&.new {
+				span {
+					position:relative;
+					&:after {
+						content:'';
+						display:inline-block;
+						width: 5px;
+						height: 5px;
+						border-radius: 100%;
+						background-color:$pointColor;
+						position:absolute;
+						right:-5px;
+						top:-2px;
+					}
+				}
+			}
       	}
+		&.fixed { // 넓이 고정 
+			.tab-item {
+				flex:none;
+			}
+		}
+		
   	}
+	&.small {
+		.tab-list {
+			margin-top: 12px;
+			li {
+				a {
+					height: 30px;
+					font-size: 13px;
+					font-weight: 700;
+					line-height: 22px;
+					&:before {
+						height: 12px;
+						margin-top: -6px;
+					}
+				}
+			}
+		}
+	}
 }
 .category-tab {
 	margin-bottom: 32px;

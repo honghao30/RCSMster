@@ -131,7 +131,7 @@
           >수정완료</ButtonCmp>
         </div>
       </div>
-      <div class="brand-aside">
+      <div class="brand-aside  sticky">
         <div class="button__wrap">
           <ButtonCmp
             type="btn-blue-line"

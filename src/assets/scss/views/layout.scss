@@ -1,8 +1,9 @@
 $headerHeight: 100px;
 $contentPaddingM: 16px;
+$contentWidth: 1440px;
 
 .inner { 
-    width:1280px;
+    width:$contentWidth;
     margin:0 auto;
 }
 // 컨텐츠 넓이 조정
@@ -174,7 +175,7 @@ $contentPaddingM: 16px;
     }
     &.bgcontainer {
         background: #F5F5F5;
-;
+        //padding-bottom: 0;
     }
 }
 

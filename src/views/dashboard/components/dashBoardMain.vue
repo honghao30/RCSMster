@@ -7,39 +7,54 @@
     <!-- // 가입 상태 안내 메시지 -->
     <div class="board-main__box--roun-type">
       <PageTitleH3 titleh3="운영중인 브랜드" totalCount="982" />
-      <div class="pagination__area--top">
-        <Dropdown :options=dropdownOptions />
-        <div class="pager">
-          <span class="num">1 / 3</span>
-          <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
-          <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
+      <div class="top-ctrl-area">
+        <div class="left-area">
+          <div class="search-area">
+            <Dropdown searchable :options="dropdownOptions" placeholder="브랜드명">
+            </Dropdown>
+          </div>
+        </div>
+        <div class="right-area">
+          <div class="ctrl">
+            <div class="pager">
+              <span class="num">1/3</span>
+              <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
+              <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="table__wrap">
         <table class="table table-list">
+          <colgroup>
+              <col width="58%">
+              <col>
+              <col>
+              <col>
+            </colgroup>
           <thead>
             <tr>
-              <th width="58%" scope="col"><span>브랜드 명</span></th>
+              <th scope="col"><span>브랜드 명</span></th>
               <th scope="col"><span>대화방</span></th>
               <th scope="col"><span>템플릿</span></th>
               <th scope="col"><span>대행사</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in brandData" :key="item">
-              <td class="brandname">
-                <div class="bookmark">
-                  <a class="bookmark__act" v-if="item.bookmark" @click="bookmarkAct"></a>
-                  <a class="bookmark__de-act" v-if="!item.bookmark" @click="bookmarkDeAct"></a>
-                </div>
-                <div class="brand">
-                  <div class="brand__name">
-                    <img :src="item.brandLogo" alt="" class="brand__logo">
-                    <router-link to="" class="brand__title">{{ item.title }}</router-link>
+            <tr v-for="(item,i) in brandData" :key="i">
+              <td>
+                <div class="brandname">
+                  <div class="brand">
+                    <div class="brand__mark" role="bookmark">
+                      <input type="checkbox" :id="`bookmark+${i+1}`" :checked="item.mark" >
+                      <label class="brand__mark__core" :for="`bookmark+${i+1}`"></label>
+                    </div>
+                    <div class="brand__logo">
+                      <img :src="item.brandLogo" alt="">
+                    </div>
+                    <span class="brand__title"><router-link to="">{{ item.title }}</router-link></span>
                   </div>
-                  <div class="brand__message">
-                    <p v-if="item.message">메세지 발송 가능</p>
-                  </div>
+                  <span class="brand__message" v-if="item.message">메세지 발송 가능</span>
                 </div>
               </td>
               <td>
@@ -59,43 +74,50 @@
     <!-- // 페이지 게이션 -->
     <div class="brand-banner__box">
       <strong>브랜드를 만들고 고객과 연결될 수 있는<br/>RBC의 다양한 기능을 사용하세요.</strong>
-      <div class="button__wrap">
-        <ButtonCmp type="btn-blue">✚ &nbsp;브랜드 개설하기</ButtonCmp>
-      </div>
+      <ButtonCmp type="btn-blue">✚ &nbsp;브랜드 개설하기</ButtonCmp>
     </div>
     <!-- // 브랜드 개설 배너 -->
     <div class="board-main__box--roun-type">
       <PageTitleH3 titleh3="내 기업 브랜드" totalCount="982" />
-      <div class="pagination__area--top">
-        <Dropdown :options=dropdownOptions />
-        <div class="pager">
-          <span class="num">1 / 3</span>
-          <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
-          <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
+      <div class="top-ctrl-area">
+        <div class="left-area">
+          <div class="search-area">
+            <Dropdown searchable :options="dropdownOptions" placeholder="브랜드명">
+            </Dropdown>
+          </div>
+        </div>
+        <div class="right-area">
+          <div class="ctrl">
+            <div class="pager">
+              <span class="num">1/3</span>
+              <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
+              <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="table__wrap">
         <table class="table table-list">
           <thead>
             <tr>
-              <th scope="col" width="40%"><span>브랜드 명</span></th>
-              <th scope="col" width="15%"><span>대화방</span></th>
-              <th scope="col" width="15%"><span>템플릿</span></th>
-              <th scope="col" width="15%"><span>대행사</span></th>
-              <th scope="col" width="15%"><span>운영권한</span></th>
+              <th scope="col" width="50%"><span>브랜드 명</span></th>
+              <th scope="col" width="12.5%"><span>대화방</span></th>
+              <th scope="col" width="12.5%"><span>템플릿</span></th>
+              <th scope="col" width="12.5%"><span>대행사</span></th>
+              <th scope="col" width="12.5%"><span>운영권한</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in myBrandData" :key="item">
-              <td class="brandname">
-                <div class="brand">
-                  <div class="brand__name">
-                    <img :src="item.brandLogo" alt="" class="brand__logo">
-                    <router-link to="" class="brand__title">{{ item.title }}</router-link>
+            <tr v-for="(item,i) in myBrandData" :key="i">
+              <td>
+                <div class="brandname">
+                  <div class="brand">
+                    <div class="brand__logo">
+                      <img :src="item.brandLogo" alt="">
+                    </div>
+                    <span class="brand__title"><router-link to="">{{ item.title }}</router-link></span>
                   </div>
-                  <div class="brand__message">
-                    <p v-if="item.message">메세지 발송 가능</p>
-                  </div>
+                  <span class="brand__message" v-if="item.message">메세지 발송 가능</span>
                 </div>
               </td>
               <td>
@@ -109,8 +131,14 @@
               </td>
               <td>
                 <div class="authority">
-                  <a class="authority__act" v-if="item.authority">권한신청</a>
-                  <a class="authority__de-act" v-if="!item.authority">승인대기</a>
+                  <ButtonCmp
+                    v-if="item.authority"
+                    type="btn-blue"
+                    size="small"
+                  >
+                  권한신청
+                  </ButtonCmp>
+                  <span class="flag-progress" v-if="!item.authority">승인대기</span>
                 </div>
               </td>
             </tr>
@@ -137,25 +165,25 @@ export default {
     return {
       dropdownOptions: [
         {
-          label: '브랜드 명',
-          value: ''
+          label: '브랜드 명 1',
+          value: '01'
         },
         {
-          label: '대화방',
-          value: ''
+          label: '브랜드 명 2',
+          value: '02'
         },
         {
-          label: '템플릿',
-          value: ''
+          label: '브랜드 명 3',
+          value: '03'
         },
         {
-          label: '대행사',
-          value: ''
+          label: '브랜드 명 4',
+          value: '04'
         }
       ],
       brandData: [
         {
-          bookmark: true,
+          mark: true,
           brandLogo: require('../../../assets/images/dummy/brand_logo_1.png'),
           title: '더피프티원',
           message: true,
@@ -164,7 +192,7 @@ export default {
           agencyData: 0
         },
         {
-          bookmark: true,
+          mark: true,
           brandLogo: require('../../../assets/images/dummy/brand_logo_2.png'),
           title: 'CX hub',
           message: false,
@@ -173,7 +201,7 @@ export default {
           agencyData: 3
         },
         {
-          bookmark: false,
+          mark: false,
           brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
           title: 'SYSTEM HOMME',
           message: true,
@@ -182,7 +210,7 @@ export default {
           agencyData: 2
         },
         {
-          bookmark: false,
+          mark: false,
           brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
           title: 'SYSTEM STUDIO HOUSE',
           message: true,
@@ -191,7 +219,7 @@ export default {
           agencyData: 1
         },
         {
-          bookmark: false,
+          mark: false,
           brandLogo: require('../../../assets/images/dummy/brand_logo_4.png'),
           title: '롯데홈쇼핑',
           message: false,
@@ -208,7 +236,7 @@ export default {
           chatData: 872,
           templateData: 654,
           agencyData: 0,
-          authority: true
+          authority: false
         },
         {
           brandLogo: require('../../../assets/images/dummy/brand_logo_2.png'),
@@ -217,7 +245,7 @@ export default {
           chatData: 275,
           templateData: 106,
           agencyData: 3,
-          authority: false
+          authority: true
         },
         {
           brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
@@ -235,7 +263,7 @@ export default {
           chatData: 87,
           templateData: 29,
           agencyData: 2,
-          authority: false
+          authority: true
         },
         {
           brandLogo: require('../../../assets/images/dummy/brand_logo_4.png'),
@@ -244,7 +272,7 @@ export default {
           chatData: 127,
           templateData: 106,
           agencyData: 3,
-          authority: false
+          authority: true
         }
       ]
     }

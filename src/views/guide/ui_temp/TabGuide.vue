@@ -3,7 +3,7 @@
     <div class="wsg-guide-content">
       <div class="wsg-note__wrap--gray-box">
         <ul class="wsg_desc">
-          <li>Tab 요소에 대한 기본 정의 내용 입니다.</li>
+          <li>Tab 요소에 대한 기본 정의 내용 입니다. </li>
         </ul>
       </div>
     </div>
@@ -20,7 +20,21 @@
       <TabItem title="Tab3">
         <div>Tab3 내용</div>
       </TabItem>
-      <TabItem title="Tab4">
+      <TabItem title="Tab4" :isNew="true">
+        <div>Tab4 내용</div>
+      </TabItem>
+    </TabCmp>
+    <TabCmp size="small">
+      <TabItem title="Tab1">
+        <div>Tab1 내용</div>
+      </TabItem>
+      <TabItem title="Tab2">
+        <div>Tab2 내용</div>
+      </TabItem>
+      <TabItem title="Tab3">
+        <div>Tab3 내용</div>
+      </TabItem>
+      <TabItem title="Tab4" :isNew="true">
         <div>Tab4 내용</div>
       </TabItem>
     </TabCmp>
