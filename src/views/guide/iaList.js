@@ -281,208 +281,58 @@ const homeList = [
 ]
 
 const dashboardList = [
+  // 브랜드 개설
   {
     'depth1': '브랜드',
     'depth2': '브랜드 개설',
     'depth3': '기본 정보 입력',
-    'screenId': '',
+    'screenId': 'R-Brand-Open-Reg-01',
     'status': '완료',
     'link': '/brandcreatestep01'
   },
   {
     'depth3': '퀵 버튼 설정',
-    'screenId': '',
+    'screenId': 'R-Brand-Open-Reg-02',
     'status': '완료',
     'link': '/brandcreatestep02'
   },
   {
     'depth3': '브랜드 홈 탭 설정',
-    'screenId': '',
+    'screenId': 'R-Brand-Open-Reg-03',
     'status': '완료',
     'link': '/brandcreatestep03'
   },
   {
     'depth3': '브랜드 개설 완료',
-    'screenId': '',
+    'screenId': 'R-Brand-Open-Reg-04',
     'status': '완료',
     'link': '/brandcreatestep04'
   },
+  // 브랜드 관리
   {
-    'depth2': '브랜드 대시보드',
-    'screenId': ''
+    'depth1': '브랜드 운영 관리',
+    'depth2': '기본정보',
+    'screenId': 'R-Brand-Invi-View-01',
+    'status': '완료',
+    'link': '/brandeditstep01'
   },
   {
-    'depth3': '대화방',
-    'depth4': '등록',
-    'screenId': ''
+    'depth2': '퀵버튼',
+    'screenId': 'R-Brand-Invi-View-01',
+    'status': '완료',
+    'link': '/brandeditstep02'
   },
   {
-    'depth4': '목록',
-    'screenId': 'B002_2'
+    'depth2': '브랜드 홈 탭 설정',
+    'screenId': 'R-Brand-Invi-View-01',
+    'status': '완료',
+    'link': '/brandeditstep03'
   },
   {
-    'depth4': '상세',
-    'screenId': 'B002_21'
-  },
-  {
-    'depth4': '수정',
-    'screenId': ''
-  },
-  {
-    'depth3': '메시지',
-    'depth4': '템플릿 레이아웃',
-    'depth5': '등록',
-    'screenId': ''
-  },
-  {
-    'depth5': '목록',
-    'screenId': ''
-  },
-  {
-    'depth5': '상세',
-    'screenId': ''
-  },
-  {
-    'depth5': '수정',
-    'screenId': ''
-  },
-  {
-    'depth4': '템플릿 메시지',
-    'depth5': '등록',
-    'screenId': ''
-  },
-  {
-    'depth5': '목록',
-    'screenId': ''
-  },
-  {
-    'depth5': '상세',
-    'screenId': ''
-  },
-  {
-    'depth5': '수정',
-    'screenId': ''
-  },
-  {
-    'depth3': '챗봇',
-    'depth4': '챗봇 연결',
-    'screenId': 'B004_1'
-  },
-  {
-    'depth4': '간편챗봇 메시지',
-    'depth5': '등록',
-    'screenId': 'B004_2'
-  },
-  {
-    'depth5': '목록',
-    'screenId': 'B004_3'
-  },
-  {
-    'depth5': '상세',
-    'screenId': ''
-  },
-  {
-    'depth5': '수정',
-    'screenId': ''
-  },
-  {
-    'depth3': '대화방 메뉴',
-    'depth4': '등록',
-    'screenId': 'B005_1'
-  },
-  {
-    'depth4': '목록',
-    'screenId': 'B005_2'
-  },
-  {
-    'depth4': '상세',
-    'screenId': 'B005_21'
-  },
-  {
-    'depth4': '수정',
-    'screenId': 'B005_21'
-  },
-  {
-    'depth3': '브랜드 소식',
-    'depth4': '기본소식',
-    'depth5': '등록',
-    'screenId': 'B006_2'
-  },
-  {
-    'depth4': '브랜드 소식',
-    'depth5': '등록',
-    'screenId': 'B005_2'
-  },
-  {
-    'depth5': '수정',
-    'screenId': ''
-  },
-  {
-    'depth3': '통계',
-    'depth4': '메시지 통계',
-    'depth5': '목록',
-    'screenId': 'B007_1'
-  },
-  {
-    'depth5': '상세',
-    'screenId': 'B007_11'
-  },
-  {
-    'depth4': '대화방 메뉴 통계',
-    'depth5': '목록',
-    'screenId': 'B007_2'
-  },
-  {
-    'depth5': '상세',
-    'screenId': 'B007_21'
-  },
-  {
-    'depth4': '브랜드 소식 통계',
-    'depth5': '목록',
-    'screenId': 'B007_3'
-  },
-  {
-    'depth5': '상세',
-    'screenId': 'B007_31'
-  },
-  {
-    'depth3': '내 브랜드 관리',
-    'depth4': '브랜드 홈 수정'
-  },
-  {
-    'depth4': '대행사 관리'
-  },
-  {
-    'depth4': '안심마크 관리'
-  },
-  {
-    'depth4': '작업 히스토리'
-  },
-  {
-    'depth1': '브랜드 개설',
-    'depth2': '상세',
-    'screenId': 'D002'
-  },
-  {
-    'depth2': '수정',
-    'screenId': ''
-  },
-  {
-    'depth3': '[Popup] 브랜드 삭제',
-    'screenId': ''
-  },
-  {
-    'depth3': '[Popup] 브랜드 불러오기',
-    'screenId': ''
-  },
-  {
-    'depth1': '브랜드 목록',
-    'screenId': ''
-  },
-  {
-    'depth1': '브랜드 운영관리',
-    'depth2': '운영 권한 초대',
-    'screenId': 'D003'
+    'depth1': '기업 히스토리',
+    'screenId': 'R-Comp-Mgt-List-01',
+    'status': '',
+    'link': ''
   }
 ]
 

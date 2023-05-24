@@ -63,6 +63,12 @@
         >
           로딩
         </ButtonCmp>
+        <ButtonCmp
+          type="blue"
+          @click="goto('sect10')"
+        >
+          툴팁
+        </ButtonCmp>
       </div>
       <SubTitle pagetitle="UI 템플릿" />
       <div ref="sect01">
@@ -104,6 +110,10 @@
           v-if="isLoading"
         />
       </div>
+      <div ref="sect10">
+        <TitleH3 titleh3="툴팁" />
+        <TooltipGuid />
+      </div>
     </div>
     <button
       ref="topButton"
@@ -130,6 +140,7 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import TabGuide from '@/views/guide/ui_temp/TabGuide.vue'
 import HeaterGuide from '../cmp/Header'
 import Loading from '@/components/common/loading.vue'
+import TooltipGuid from '@/views/guide/ui_temp/TooltipGuid.vue'
 
 export default {
   name: 'BasicGuide',
@@ -146,7 +157,8 @@ export default {
     TabGuide,
     HeaterGuide,
     AccoDien,
-    Loading
+    Loading,
+    TooltipGuid
   },
   data() {
     return {

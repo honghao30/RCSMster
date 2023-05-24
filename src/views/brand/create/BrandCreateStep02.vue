@@ -155,7 +155,7 @@
         <div class="preview__wrap">
           <div class="preview__image">
             <img
-              :src='`@/assets/images/dummy/${this.brandInfo.bgImage}`'
+              src='@/assets/images/dummy/brand_image.png'
               alt=""
              >
           </div>
@@ -174,27 +174,27 @@
               <img src="@/assets/images/dummy/brand_logo.png" alt="">
             </span>
             <div class="brand-desc">
-              <h4>{{ this.brandInfo.brandName }}</h4>
-              <p class="brand__text">{{ this.brandInfo.brandDescription }}</p>
+              <h4>브랜드명</h4>
+              <p class="brand__text">브랜드명에 대한 설명이 들어가는 영역 입니다.</p>
             </div>
           </div>
           <div class="brand-detail">
             <TabCmp tabClass="brand-quick__tab" :activeIndex="1">
               <TabItem title="소식">
-                <div>소식</div>
+                <div>디자인 없음</div>
               </TabItem>
               <TabItem title="정보">
                 <dl class="tel">
                   <dt>전화번호</dt>
-                  <dd>{{ this.brandInfo.tel }}</dd>
+                  <dd>010-2223-5858</dd>
                 </dl>
                 <dl class="web">
                   <dt>웹사이트</dt>
-                  <dd>{{ this.brandInfo.url }}</dd>
+                  <dd>www.the-51.com</dd>
                 </dl>
                 <dl class="email">
                   <dt>이메일</dt>
-                  <dd>{{ this.brandInfo.email }}</dd>
+                  <dd>abcd@abcde.com</dd>
                 </dl>
               </TabItem>
             </TabCmp>
@@ -305,7 +305,6 @@ export default {
       stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료'],
       isModalViewed: false,
       formData: {},
-      brandInfo: JSON.parse(localStorage.getItem('brand')) || '',
       quckList: [],
       getLength: ''
     }
@@ -322,14 +321,9 @@ export default {
       this.isModalViewed = false
     },
     saveTempData () {
-      localStorage.setItem('brandStep', JSON.stringify(this.form))
       this.isModalViewed = true
     },
     onSubmit () {
-      if (this.form.quickButton.includes('chat') && this.form.chat === '') {
-        this.chatErrorMsg = true
-        return
-      }      
       if (this.form.quickButton.includes('tel') && this.form.tel === '') {
         this.telErrorMsg = true
         return
@@ -358,7 +352,6 @@ export default {
         this.storeErrorMsg = true
         return
       }
-      localStorage.setItem('brandStep', JSON.stringify(this.form))
       this.$router.push('./brandcreatestep03')
     }
   }

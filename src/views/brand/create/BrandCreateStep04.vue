@@ -31,60 +31,41 @@
             <img src="@/assets/images/dummy/brand_image.png" alt="">
           </div>
           <div class="quick-buttons">
-            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('tel')"><i class="icon-tel"></i></a>
-            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('chat')"><i class="icon-chat"></i></a>
-            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('web')"><i class="icon-web"></i></a>
-            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('order')"><i class="icon-order"></i></a>
-            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('buy')"><i class="icon-buy"></i></a>
-            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('ticket')"><i class="icon-ticket"></i></a>
-            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('store')"><i class="icon-store"></i></a>
-            <a role="button" v-if="this.brandInfoStep2.quickButton.includes('More info')"><i class="icon-info"></i></a>
+            <a role="button" v-if="form.quickButton.includes('tel')"><i class="icon-tel"></i></a>
+            <a role="button" v-if="form.quickButton.includes('chat')"><i class="icon-chat"></i></a>
+            <a role="button" v-if="form.quickButton.includes('web')"><i class="icon-web"></i></a>
+            <a role="button" v-if="form.quickButton.includes('order')"><i class="icon-order"></i></a>
+            <a role="button" v-if="form.quickButton.includes('buy')"><i class="icon-buy"></i></a>
+            <a role="button" v-if="form.quickButton.includes('ticket')"><i class="icon-ticket"></i></a>
+            <a role="button" v-if="form.quickButton.includes('store')"><i class="icon-store"></i></a>
+            <a role="button" v-if="form.quickButton.includes('More info')"><i class="icon-info"></i></a>
           </div>
           <div class="brand-title">
             <span class="logo">
               <img src="@/assets/images/dummy/brand_logo.png" alt="">
             </span>
             <div class="brand-desc">
-              <h4>{{ this.brandInfo.brandName }}</h4>
-              <p class="brand__text">{{ this.brandInfo.brandDescription }}</p>
+              <h4>네스프레소</h4>
+              <p class="brand__text">최상의 품질을 가진 환경에 긍정적인 영향을 줄수있는 커피브랜드 기업</p>
             </div>
           </div>
           <div class="brand-detail">
             <TabCmp tabClass="brand-quick__tab">
               <TabItem title="소식">
-                <dl class="tel" v-if="this.brandInfoStep3.noticeInfo.includes('call')">
-                  <dt>전화하기</dt>
-                  <dd>{{ this.brandInfo.tel }}</dd>
-                </dl>
-                <dl class="web" v-if="this.brandInfoStep3.noticeInfo.includes('website')">
-                  <dt>웹사이트</dt>
-                  <dd>{{ this.brandInfoStep3.website }}</dd>
-                </dl>
-                <dl class="tel" v-if="this.brandInfoStep3.noticeInfo.includes('reservation')">
-                  <dt>예약하기</dt>
-                  <dd>{{ this.brandInfoStep3.reservation }}</dd>
-                </dl>
-                <dl class="web"  v-if="this.brandInfoStep3.noticeInfo.includes('appdownload')">
-                  <dt>앱 다운로드</dt>
-                  <dd>{{ this.brandInfoStep3.appdownload }}</dd>
-                </dl>
-                <dl class="email" v-if="this.brandInfoStep3.noticeInfo.includes('chat')">
-                  <dt>상담채팅 시작하기</dt>
-                  <dd>{{ this.brandInfoStep3.chat }}</dd>
-                </dl>
+                <div>소식 디자인 없음</div>
               </TabItem>
               <TabItem title="정보">
                 <dl class="tel">
                   <dt>전화번호</dt>
-                  <dd>{{ this.brandInfo.tel }}</dd>
+                  <dd>010-2223-5858</dd>
                 </dl>
                 <dl class="web">
                   <dt>웹사이트</dt>
-                  <dd>{{ this.brandInfo.url }}</dd>
+                  <dd>www.the-51.com</dd>
                 </dl>
                 <dl class="email">
                   <dt>이메일</dt>
-                  <dd>{{ this.brandInfo.email }}</dd>
+                  <dd>abcd@abcde.com</dd>
                 </dl>
               </TabItem>
             </TabCmp>
@@ -112,10 +93,10 @@ export default {
   },
   data() {
     return {
+      form: {
+        quickButton: ['tel', 'web']
+      },
       stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료'],
-      brandInfo: JSON.parse(localStorage.getItem('brand')) || '',
-      brandInfoStep2: JSON.parse(localStorage.getItem('brandStep')) || '',
-      brandInfoStep3: JSON.parse(localStorage.getItem('brandStep3')) || ''
     }
   },
   methods: {

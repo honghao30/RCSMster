@@ -459,11 +459,9 @@ export default {
         this.telErrorMsg = true
         return false
       }
-      localStorage.setItem('brand', JSON.stringify(this.form))
       this.$router.push('./brandcreatestep02')
     },
     saveTempData () {
-      localStorage.setItem('brandStep', JSON.stringify(this.form))
       this.isModalViewed = true
       this.isSave = true
     },
