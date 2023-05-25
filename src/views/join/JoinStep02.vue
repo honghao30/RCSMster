@@ -94,7 +94,7 @@
                       <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 종목명을 입력해주세요." :disabled="disabled" v-model="form.bizevent"></span>
                     </div>
                   </div>
-                  <p class="guide-text error" v-if="bizeventErrorMsg">사업자등록증에 등록된 첫번째 종목명을 입력해주세요.</p>
+                  <p class="guide-text error" v-if="bizeventErrorMsg">종목을 입력해주세요.</p>
                   <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘비영리, 공공/행정, 정치/사회, 복지, 종교, 모임, 기관/단체일반’ 중에서 해당하는 항목을 입력해주세요.</p>
                 </div>
                 <div v-else class="form-item__content">IT</div>
@@ -114,13 +114,14 @@
                         우편번호
                       </ButtonCmp>
                     </div>
-                    <p class="guide-text error" v-if="postcodeErrorMsg">기업주소를 입력해주세요.</p>
+                    <!-- <p class="guide-text error">ⓘ 도로명 또는 건물명(아파트)을 입력해주세요.</p> -->
                   </div>
                   <div class="form-item-row">
                     <div class="input-item address">
                       <span class="input"><input type="text" class="input" v-model="form.addr1"></span> <span class="input"><input type="text" class="input" v-model="form.addr2"></span>
                     </div>
                   </div>
+                  <p class="guide-text error" v-if="postcodeErrorMsg">기업주소를 입력해주세요.</p>
                 </div>
                 <div v-else class="form-item__content">06128 서울시 강남구 봉은사로 18길</div>
               </td>
