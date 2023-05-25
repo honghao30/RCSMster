@@ -18,7 +18,7 @@
           </ul>
         </div>
       </div>
-      <TitleH3 titleh3="퍼블리싱 현황" />
+      <!-- <TitleH3 titleh3="퍼블리싱 현황" />
       <div class="wsg-guide-content">
         <StausDisplay
           title="Guide"
@@ -32,7 +32,7 @@
           title="대시보드"
           :list="dashboardList"
         />
-      </div>
+      </div> -->
       <TitleH3 titleh3="퍼블리싱 리스트" />
       <PubComponent
         :list="guideList"

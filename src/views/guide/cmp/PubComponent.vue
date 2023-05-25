@@ -2,11 +2,11 @@
   <div class="ia__list">
     <div :class="{ collapse : collapse }"  class="ia__list__header" @click="toggleList();">
       <h2 class="ia__list__title">{{ title }}</h2>
-      <div class="ia__list__legend">
+      <!-- <div class="ia__list__legend">
         <span>총 페이지: {{list.length}}</span> /
         <span>완료: {{ comptNum }}</span> /
         <span>진척률: {{ Math.round(comptNum / list.length * 100) }} %</span>
-      </div>
+      </div> -->
     </div>
     <div class="ia__list__content" v-if="!collapse">
       <table class="ia__list__table">
