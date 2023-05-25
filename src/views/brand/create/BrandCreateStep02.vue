@@ -19,8 +19,11 @@
                       <div class="form-item__content">
                         <div class="form-item-row">
                           <div class="input-item check-list">
+                            <span class="checkbox">
+                              <input type="checkbox" id="chat"  value="chat"  checked disabled><label for="chat">Chat</label>
+                            </span>
                             <span class="checkbox" v-for="(checkItem, i) in quickComp" :key="i">
-                              <input type="checkbox" :id="checkItem.value"  :value="checkItem.value" v-model="form.quickButton"><label :for="checkItem.value">{{ checkItem.label }}</label>
+                              <input type="checkbox" :id="checkItem.value"  :value="checkItem.value" @change="changeMenuCheck($event, checkItem.value)" v-model="checkedMenus" ref="menuItem"><label :for="checkItem.value">{{ checkItem.label }}</label>
                             </span>
                           </div>
                         </div>
@@ -258,10 +261,6 @@ export default {
       storeErrorMsg: false,
       quickComp: [
         {
-          label: 'Chat',
-          value: 'chat'
-        },
-        {
           label: 'Call',
           value: 'call'
         },
@@ -294,6 +293,7 @@ export default {
       stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료'],
       isModalViewed: false,
       checked: [],
+      checkedMenus: [],
       disabled: false
     }
   },
@@ -307,6 +307,35 @@ export default {
   computed: {
   },
   methods: {
+    checkQuckBtn (event) {
+      console.log('체크했니')
+      for (let i = 0; i > 4; i++) {
+        alert('왜')
+        // if (this.form.quickButton[i] !== event.target.value) {
+        //   console.log(this.form.quickButton[i])
+        //   this.form.quickButton.splice(i, 4)
+        // }
+      }
+    },
+    changeMenuCheck(e, targetMenu) {
+      if (this.checkedMenus.length > 3) {
+        alert('퀵 버튼은 3개까지만 선택 가능합니다.')
+        // 메뉴아이템 선택 한 것이 상한에 걸릴경우 체크박스 처리.
+        this.$nextTick(() => {
+          this.checkedMenus.splice(this.checkedMenus.indexOf(targetMenu), 1)
+        })
+      } else {
+        let target = _.find(this.checkedMenuDatas, { code: targetMenu })
+        if (this.checkedMenus.indexOf(targetMenu) !== -1) {
+          target.visible = true
+        } else {
+          target.visible = false
+          target.values.forEach(v => {
+            v.value = ''
+          })
+        }
+      }
+    },
     closeModal () {
       this.isModalViewed = false
     },

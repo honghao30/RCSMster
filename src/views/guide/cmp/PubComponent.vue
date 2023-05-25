@@ -16,7 +16,6 @@
               <col style="width:10%;">
               <col style="width:10%;">
               <col style="width:6%;">
-              <col style="width:6%;">
               <col style="width:8%;">
               <col style="width:10%;">
               <col style="width:14%;">
@@ -30,8 +29,7 @@
               <th>4 depth</th>
               <th>5 depth</th>
               <th>화면ID</th>
-              <th>상태</th>
-              <th>날짜</th>
+              <th>작업이력</th>
               <th>Link</th>
               <th>비고</th>
             </tr>
@@ -44,10 +42,23 @@
               <td><span v-if="item.depth4">{{ item.depth4 }}</span></td>
               <td><span v-if="item.depth5">{{ item.depth5 }}</span></td>
               <td style="text-align:center"><span v-if="item.screenId">{{ item.screenId }}</span></td>
-              <td style="text-align:center"><span v-if="item.status">{{ item.status }}</span></td>
-              <td  style="text-align:center"><span v-if="item.date">{{ item.date }}</span></td>
+              <td style="text-align:center">
+                <span v-if="item.status">
+                <p
+                 v-for="status in item.status"
+                 :key="status"
+                >
+                  - {{ status }}
+                </p>
+              </span></td>
               <td><span v-if="item.link"><router-link :to="item.link" target="_blank">{{item.link}}</router-link></span></td>
-              <td><span v-if="item.comments">{{ item.comments }}</span></td>
+              <td><span v-if="item.comments">
+                <p
+                  v-for="item in item.comments"
+                  :key="item">
+                  - {{ item }}
+                </p>
+              </span></td>
             </tr>
           </tbody>
       </table>
