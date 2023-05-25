@@ -252,7 +252,7 @@ const homeList = [
     'depth2': 'RCS 도입사례',
     'screenId': ''
   },
-  {
+  { 
     'depth2': 'RBC 이용 안내',
     'screenId': ''
   },
@@ -281,58 +281,90 @@ const homeList = [
 ]
 
 const dashboardList = [
+  {
+    'depth1': '기업',
+    'depth2': '기업대시보드',
+    'screenId': 'R-Comp-Dash-View-01',
+    'status': '완료',
+    'link': '/DashBoard'
+  },
+  {
+    'depth1': '브랜드 홈',
+    'screenId': 'R-Brand-Open-Reg-01',
+    'status': '완료',
+    'link': '/brand'
+  },
   // 브랜드 개설
   {
-    'depth1': '브랜드',
-    'depth2': '브랜드 개설',
-    'depth3': '기본 정보 입력',
+    'depth1': '브랜드 개설',
+    'depth2': '기본 정보 입력',
     'screenId': 'R-Brand-Open-Reg-01',
     'status': '완료',
     'link': '/brandcreatestep01'
   },
   {
-    'depth3': '퀵 버튼 설정',
+    'depth2': '퀵 버튼 설정',
     'screenId': 'R-Brand-Open-Reg-02',
     'status': '완료',
     'link': '/brandcreatestep02'
   },
   {
-    'depth3': '브랜드 홈 탭 설정',
+    'depth2': '브랜드 홈 탭 설정',
     'screenId': 'R-Brand-Open-Reg-03',
     'status': '완료',
     'link': '/brandcreatestep03'
   },
   {
-    'depth3': '브랜드 개설 완료',
+    'depth2': '브랜드 개설 완료',
     'screenId': 'R-Brand-Open-Reg-04',
     'status': '완료',
     'link': '/brandcreatestep04'
   },
   // 브랜드 관리
   {
-    'depth1': '브랜드 운영 관리',
-    'depth2': '기본정보',
+    'depth3': '내 브랜드 관리',
+    'depth4': '브랜드 홈수정',
+    'depth5': '기본정보',
     'screenId': 'R-Brand-Invi-View-01',
     'status': '완료',
     'link': '/brandeditstep01'
   },
   {
-    'depth2': '퀵버튼',
+    'depth5': '퀵버튼',
     'screenId': 'R-Brand-Invi-View-01',
     'status': '완료',
     'link': '/brandeditstep02'
   },
   {
-    'depth2': '브랜드 홈 탭 설정',
+    'depth5': '브랜드 홈 탭 설정',
     'screenId': 'R-Brand-Invi-View-01',
     'status': '완료',
     'link': '/brandeditstep03'
   },
   {
+    'depth4': '안심마크 관리',
+    'screenId': 'R-Brand-Mgt-Mod-04',
+    'status': '',
+    'link': '/SafetyMarkManage'
+  },
+  // 브랜드 소식
+  // {
+  //   'depth3': '브랜드 소식',
+  //   'screenId': 'R-Comp-Mgt-List-01',
+  //   'status': '완료',
+  //   'link': '/feed'
+  // },
+  {
+    'depth3': '브랜드 운영관리',
+    'screenId': 'R-Brand-Mgt-List-01',
+    'status': '완료',
+    'link': '/BrandOperationManage'
+  },
+  {
     'depth1': '기업 히스토리',
     'screenId': 'R-Comp-Mgt-List-01',
-    'status': '',
-    'link': ''
+    'status': '완료',
+    'link': '/operationhistory'
   }
 ]
 

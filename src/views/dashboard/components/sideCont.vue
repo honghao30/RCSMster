@@ -13,16 +13,12 @@
         </div>
       </div>
       <div class="side-box-cont">
-        <p>KISA(한국인터넷진흥원)에서 <span>안심마크</span> 활용에 대해 인증 받았습니다.</p>
+        <p>KISA(한국인터넷진흥원)에서 <a role="button" class="safetymark">안심마크</a> 활용에 대해 인증 받았습니다.</p>
       </div>
     </div>
-    <!-- 버튼 / @click 클릭 시 추가해야함-->
+    <!-- router -->
     <div class="side-btn">
-      <ButtonCmp
-        type="btn-blue"
-      >
-      전체 브랜드 운영 관리
-      </ButtonCmp>
+      <a class="btn btn-blue"><router-link to="">전체 브랜드 운영 관리</router-link></a>
     </div>
     <!-- 운영권한 관리 및 신청 내역 -->
     <div class="side-box side-box__authority">
@@ -72,22 +68,17 @@
         <ul class="invite__step">
           <li>
             <strong>1</strong>
-            <span>매니저 초대하기</span>
+            <a>매니저 초대하기</a>
           </li>
           <li>
             <strong>2</strong>
-            <span>대행사 초대하기</span>
+            <a class="step-more"><router-link to="">대행사 초대하기</router-link></a>
           </li>
         </ul>
         <div class="invite__addbox">
           <p>대행사가 있으면 챗봇과 같은 다양한 대화방 메뉴 기능을 사용할 수 있어요.</p>
-          <div class="button__wrap">
-            <ButtonCmp
-              type="btn btn-blue-line"
-              size="medium"
-            >
-            챗봇 대행사 보기
-            </ButtonCmp>
+          <div class="invite__addbox-btn">
+            <a class="btn btn-blue-line medium"><router-link to="">챗봇 대행사 보기</router-link></a>
           </div>
         </div>
       </div>
@@ -96,9 +87,8 @@
     <div class="side-box side-box__banner">
       <div class="side-box-top">
         <h3>챗봇 대행사<br/>필요하지 않으세요?</h3>
-        <p>대행사 보러가기</p>
+        <a class="side-company-btn"><router-link to="">대행사 보러가기</router-link></a>
       </div>
-      <div class="side-box-cont"></div>
     </div>
     <!-- 승인 내역 -->
     <div class="side-box side-box__approve">
@@ -112,7 +102,7 @@
               <ul>
                 <li class="approve-cont-top">
                   <ul>
-                    <li class="approve-cont__type">{{ item.type }}</li>
+                    <li class="approve-cont__type" :class="{redline: !item.blueline, blueline: item.blueline}">{{ item.type }}</li>
                     <li class="approve-cont__date">{{ item.date }}</li>
                   </ul>
                 </li>
@@ -125,10 +115,13 @@
                 <li class="authority-list-btm">{{ item.des }}</li>
               </ul>
             </div>
+            <div class="approve-cont-more">
+              <a role="button" :class="{open: isOpen}" @click="toggleMore">더보기</a>
+            </div>
           </TabItem>
           <TabItem title="진행중">
           </TabItem>
-          <TabItem title="완료">
+          <TabItem title="완료" :isNew="true">
           </TabItem>
       </TabCmp>
       </div>
@@ -175,6 +168,7 @@ export default {
       approveList: [
         {
           type: '반려',
+          blueline: false,
           date: '2023.03.09 17:12',
           name: 'SYSTEM HOMME',
           chat: '대화방',
@@ -182,6 +176,7 @@ export default {
         },
         {
           type: '승인완료',
+          blueline: true,
           date: '2023.03.09 17:12',
           name: 'SYSTEM HOMME',
           chat: '템플릿',
@@ -189,12 +184,19 @@ export default {
         },
         {
           type: '반려',
+          blueline: false,
           date: '2023.03.09 17:12',
           name: 'SYSTEM HOMME',
           chat: '대화방',
           des: 'CX hub (인터넷 광고 금지 메시지)'
         }
-      ]
+      ],
+      isOpen: false
+    }
+  },
+  methods: {
+    toggleMore () {
+      this.isOpen = !this.isOpen
     }
   }
 }

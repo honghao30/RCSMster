@@ -409,128 +409,37 @@
     }
   }
 }
-  //old css
-//   .modal__container {
-//     display:flex;
-//     flex-direction: column;
-//     .modal__content--header {
-//       position: relative;
-//       display: flex;
-//       align-items: center;
-//       justify-content: space-between;
-//       height:60px;
-//       .modal-title {
-//         font-size: 24px;
-//         font-weight: bold;
-//         color: #333;
-//       }  
-//     }
-//     .modal__content--inner {
-//       height:auto;
-//       overflow: hidden;
-//       position: fixed;
-//       z-index: 11;
-//       top: 50%;
-//       left: 50%;
-//       // width: 500px;
-//       // height: 500px;
-//       transform: translate(-50%,-50%);
-//     }
-//     .modal__content--body {
-//       height: calc(100% - 50px - 50px);
-//       position:relative;
-//       width: 100%;       
-//       overflow-y: scroll;
-//     }
-//     .modal__content--footer {
-//       display: flex;
-//       align-content: center;
-//       justify-content: center;
-//       background: #c9c8c8;
-//       margin-top:32px;
-//       .button__wrap {
-//         margin-top:0;
-//         padding-top:0;
-//         gap: 8px;
-//         width: 100%;
-//         button {
-//           flex:1;
-//           width:auto;
-//         }
-//       }
-//     }
-//     .modal-close {
-//         position: absolute;
-//         right: 10px;
-//         top: 10px;
-//         font-size: 14px;
-//         font-weight: bold;
-//         color: #333;
-//         cursor: pointer;
-//     }
-//   }
-//   .fade-enter-active, .fade-leave-active {
-//     transition: opacity .2s;
-//   }
-//   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-//     opacity: 0;
-//   }
-
-//   .modal__container {
-//     .modal__content--inner {
-//         &.small-message__modal {
-//             max-width:403px;               
-//             padding:40px;  
-//             border-radius: 16px;
-//             background-color: #fff;    
-//             transition: opacity.3s ease;  
-//             @media #{$phone} {
-//               max-width: 90vw;
-//             }
-//             &.login-error {
-//               width: 100%;
-//               max-width: 410px;
-//               @media #{$phone} {
-//                 max-width: 90vw;
-//               }              
-//               button {
-//                 white-space: nowrap;
-//               }
-//             }
-//             .msg {
-//                 text-align: center;
-//                 font-weight: 400;
-//                 font-size: 16px;
-//                 line-height: 26px;
-//                 text-align: center;
-//                 color: #000000;
-//             }  
-//             .msg2 {
-//                 margin-top: 16px;
-//                 background: #F4F4F4;
-//                 border-radius: 8px;
-//                 text-align: center;
-//                 padding:16px;
-//                 font-style: normal;
-//                 font-weight: 400;
-//                 font-size: 18px;
-//                 line-height: 30px;                
-//                 text-align: center;                
-//                 color: #000000;                
-//             }        
-//             .modal__content--footer {
-//                 background-color: #fff;     
-//                 button {
-//                   &:only-child {
-//                     flex: 0;
-//                   }
-//                 }           
-//             }
-//             .modal__content--body {
-//                 height: calc(100% - 50px);
-//                 overflow:hidden;
-//             }
-//         }    
-//     }
-// }
-
+//툴팁 임시 위치
+.tooltip-el {
+  position: relative;
+   .btn-icon-tooltip {
+    padding:0;
+    background: url('../assets/images/icon/icon_question_small.png') no-repeat;
+    border:0;
+    border-radius: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 0;
+    min-width: auto;
+    line-height: 12px;
+   }
+  .tool-tip__wrap {
+    position: absolute;        
+    .message__innerbox {
+      padding:10px;
+      border-radius: 6px;
+    }
+    &.top {
+      top: 24px;    
+      left: auto;
+    }
+    &.dark {
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+    }
+    &.light {
+      background-color: rgba(255, 255, 255, .5);
+      color:#000;
+    }
+  }
+}

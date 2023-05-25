@@ -6,7 +6,10 @@
     </div>
     <!-- // 가입 상태 안내 메시지 -->
     <div class="board-main__box--roun-type">
-      <PageTitleH3 titleh3="운영중인 브랜드" totalCount="982" />
+      <div class="dash-tit">
+        <h3>운영중인 브랜드</h3>
+        <span>(<em>982</em>)</span>
+      </div>
       <div class="top-ctrl-area">
         <div class="left-area">
           <div class="search-area">
@@ -18,8 +21,8 @@
           <div class="ctrl">
             <div class="pager">
               <span class="num">1/3</span>
-              <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
-              <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
+              <a role="button" class="btn-prev"><span class="blind">이전으로</span></a>
+              <a role="button" class="btn-next"><span class="blind">다음으로</span></a>
             </div>
           </div>
         </div>
@@ -46,13 +49,14 @@
                 <div class="brandname">
                   <div class="brand">
                     <div class="brand__mark" role="bookmark">
-                      <input type="checkbox" :id="`bookmark+${i+1}`" :checked="item.mark" >
-                      <label class="brand__mark__core" :for="`bookmark+${i+1}`"></label>
+                      <input type="checkbox" :id="`bookmark${i}`" :checked="item.mark" >
+                      <label class="brand__mark__core" :for="`bookmark${i}`"></label>
                     </div>
                     <div class="brand__logo">
                       <img :src="item.brandLogo" alt="">
                     </div>
                     <span class="brand__title"><router-link to="">{{ item.title }}</router-link></span>
+                    <span class="brnad__new" v-if="item.new">NEW</span>
                   </div>
                   <span class="brand__message" v-if="item.message">메세지 발송 가능</span>
                 </div>
@@ -74,11 +78,14 @@
     <!-- // 페이지 게이션 -->
     <div class="brand-banner__box">
       <strong>브랜드를 만들고 고객과 연결될 수 있는<br/>RBC의 다양한 기능을 사용하세요.</strong>
-      <ButtonCmp type="btn-blue">✚ &nbsp;브랜드 개설하기</ButtonCmp>
+      <a class="btn btn-blue"><router-link to="">브랜드 개설하기</router-link></a>
     </div>
     <!-- // 브랜드 개설 배너 -->
     <div class="board-main__box--roun-type">
-      <PageTitleH3 titleh3="내 기업 브랜드" totalCount="982" />
+      <div class="dash-tit">
+        <h3>내 기업 브랜드</h3>
+        <span>(<em>982</em>)</span>
+      </div>
       <div class="top-ctrl-area">
         <div class="left-area">
           <div class="search-area">
@@ -90,8 +97,8 @@
           <div class="ctrl">
             <div class="pager">
               <span class="num">1/3</span>
-              <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
-              <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
+              <a role="button" class="btn-prev"><span class="blind">이전으로</span></a>
+              <a role="button" class="btn-next"><span class="blind">다음으로</span></a>
             </div>
           </div>
         </div>
@@ -110,7 +117,7 @@
           <tbody>
             <tr v-for="(item,i) in myBrandData" :key="i">
               <td>
-                <div class="brandname">
+                <div class="brandname mybrandname">
                   <div class="brand">
                     <div class="brand__logo">
                       <img :src="item.brandLogo" alt="">
@@ -130,16 +137,14 @@
                 <span class="data-agency">{{ item.agencyData }}</span>
               </td>
               <td>
-                <div class="authority">
-                  <ButtonCmp
-                    v-if="item.authority"
-                    type="btn-blue"
-                    size="small"
-                  >
-                  권한신청
-                  </ButtonCmp>
-                  <span class="flag-progress" v-if="!item.authority">승인대기</span>
-                </div>
+                <ButtonCmp
+                  v-if="item.authority"
+                  type="btn-blue"
+                  size="small"
+                >
+                권한신청
+                </ButtonCmp>
+                <span class="flag-progress" v-if="!item.authority">승인대기</span>
               </td>
             </tr>
           </tbody>
@@ -152,13 +157,11 @@
 
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
 
 export default {
   components: {
     ButtonCmp,
-    PageTitleH3,
     Dropdown
   },
   data() {
@@ -185,7 +188,8 @@ export default {
         {
           mark: true,
           brandLogo: require('../../../assets/images/dummy/brand_logo_1.png'),
-          title: '더피프티원',
+          title: '더피프티원더피프티원더피프티원더피프티원...',
+          new: true,
           message: true,
           chatData: 999,
           templateData: 654,
@@ -195,6 +199,7 @@ export default {
           mark: true,
           brandLogo: require('../../../assets/images/dummy/brand_logo_2.png'),
           title: 'CX hub',
+          new: false,
           message: false,
           chatData: 275,
           templateData: 999,
@@ -204,6 +209,7 @@ export default {
           mark: false,
           brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
           title: 'SYSTEM HOMME',
+          new: false,
           message: true,
           chatData: 102,
           templateData: 87,
@@ -213,6 +219,7 @@ export default {
           mark: false,
           brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
           title: 'SYSTEM STUDIO HOUSE',
+          new: false,
           message: true,
           chatData: 714,
           templateData: 69,
@@ -222,6 +229,7 @@ export default {
           mark: false,
           brandLogo: require('../../../assets/images/dummy/brand_logo_4.png'),
           title: '롯데홈쇼핑',
+          new: false,
           message: false,
           chatData: 999,
           templateData: 999,

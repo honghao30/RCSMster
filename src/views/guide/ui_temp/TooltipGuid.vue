@@ -9,46 +9,36 @@
       </div>
       <TitleH3 titleh3="툴팁" />
       <div class="tepmfor-toolip">
-        <ButtonCmp
-            type="btn-blue-line"
-            @click="handleTooltip"
+        <!-- 툴팁 검토넌트 -->
+        <!-- 추후 반영 예정: 디자인 적용 && 위치 자동 계산 && 모션 && 멀티 셋팅  -->
+        <ToolTipEl
+          direction="top"
+          width="280"
+          mode="dark"
         >
-            툴팁 클릭형
-        </ButtonCmp>
-        <ToolTipView>
-            툴팁1
-        </ToolTipView>
-        <ButtonCmp
-            type="btn-blue-line"
-            @:mouseover="handleTooltipHover(event)"
-        >
-            툴팁
-        </ButtonCmp>
-        <ToolTipView>
-            툴팁2
-        </ToolTipView>
+          <template slot="tooltip-message">
+            <div class="message__innerbox"
+            >
+              그룹ID는 분석하고자 하는 메시지별로 설정하는 것을 권장합니다.
+            </div>
+          </template>
+        </ToolTipEl>
+         <!-- 툴팁 검토넌트 -->
       </div>
     </div>
   </template>
 
 <script>
 import TitleH3 from '../cmp/TitleH3.vue'
-import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import ToolTipView from '@/components/common/Tooltip.vue'
+import ToolTipEl from '@/components/common/Tooltip.vue'
 
 export default {
   components: {
     TitleH3,
-    ButtonCmp,
-    ToolTipView
+    ToolTipEl
   },
-  methods: {
-    handleTooltip () {
-      alert('aa')
-    },
-    handleTooltipHover (event) {
-      console.log('dd')
-    }
+  data () {
+    return { }
   }
 }
 </script>

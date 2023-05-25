@@ -69,12 +69,7 @@
     text-align: center;
     p{
       padding: 160px 0;
-      font-family: 'Noto Sans KR';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
-      color: #888888;
+      @include fontoption(16px,#888,400,24px);
     }
   }
   // content
@@ -86,19 +81,15 @@
           border-bottom: 1px solid #F0F0F0;
           p{
             text-align: left;
-            font-size: 20px;
-            font-weight: 500;
-            line-height: 32px;
+            @include fontoption(20px,#000,500,32px);
           }
         }
         &.notice-content__date {
           border-bottom: 1px solid #F0F0F0;
           p {
             border-left: 1px solid #ddd;
+            @include fontoption(16px,#888,400,24px);
             height: 16px;
-            font-size: 16px;
-            font-weight: 400;
-            color: #888888;
           }
         }
       }
@@ -113,18 +104,15 @@
             padding: 3px 38px 3px 47px;
             border-right: 1px solid #ddd;
             height: 32px;
-            line-height: 32px;
-            font-size: 14px;
-            font-weight: 500;
+            @include fontoption(14px,#000,500,26px);
           }
         }
         .notice-content__list {
           padding: 20px 33px 20px;
           li {
             margin: 0px 0px 12px;
-            a{
-              font-size: 16px;
-              line-height: 26px;
+            a{    
+            @include fontoption(16px,#000,400,26px);
             }
           }
           li:last-child {
@@ -139,8 +127,7 @@
           text-align: left;
           padding: 32px 24px;
           p {
-            font-size: 16px;
-            line-height: 26px;
+            @include fontoption(16px,#000,400,28px);
           }
         }
       }
@@ -267,11 +254,7 @@
       background: #F8F8F8;
       border-radius: 8px;
       p {
-        font-family: 'Noto Sans KR';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
+        @include fontoption(16px,#000,400,24px);
         text-align: center;
       }
       .button__wrap {
@@ -582,8 +565,7 @@
     text-align: center;
     p{
       padding: 100px 0;
-      font-size: 14px;
-      line-height: 21px;
+      @include fontoption(14px,#888,400,21px);
     }
   }
   // content
@@ -600,16 +582,14 @@
               border-bottom: 0;
               p {
               text-align: left;
-              font-size: 16px;
-              font-weight: 500;
-              line-height: 23px;
+              @include fontoption(16px,#000,500,23px);
               }
             }
             &.notice-content__date {
               padding: 4px 8px 20px;
               p {
               border-left: 0;
-              font-size: 13px;
+              @include fontoption(13px,#888,400,24px);
               }
             }
           }
@@ -629,8 +609,7 @@
             li {
               margin: 0px 0px 8px;
               a{
-                font-size: 16px;
-                line-height: 21px;
+                @include fontoption(16px,#000,400,21px);
               }
             }
             li:last-child {
@@ -640,8 +619,7 @@
           .notice-content__contents {
             padding: 8px;
             p {
-              font-size: 14px;
-              line-height: 21px;
+              @include fontoption(14px,#000,400,21px);
             }
           }
         }
@@ -823,8 +801,7 @@
       width:calc(100vw - 48px);
       height: 151px;
       p {
-        font-size: 14px;
-        line-height: 21px;
+        @include fontoption(14px,#000000,400,21px);
       }
       .button__wrap {
         padding: 16px 0 24px 0;
