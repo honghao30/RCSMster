@@ -28,7 +28,7 @@
         </div>
         <div class="search-result__wrap" v-if="postResul">
           <div class="top-ctrl-area">
-            <p class="total">총 <strong>1,294</strong>건이 검색되었습니다.​</p>
+            <p class="total">총 <strong>1,294</strong>건이 검색되었습니다.</p>
             <div class="ctrl">
               <div class="pager">
                 <span class="num">1/3</span>

@@ -284,6 +284,16 @@
     &.ing {
         background-color:#FF8310;
     }
+    &.temporary {
+        border: 1px solid #999;
+        background-color: transparent;
+        color:#999;
+    }
+    &.wait {
+        border: 1px solid #999;
+        background-color: transparent;
+        color:#999;
+    }
 }
 
 .withdrawal-text__wrap {

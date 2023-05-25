@@ -53,7 +53,7 @@
         <div class="form-item">
           <span class="form-item__label">인증번호</span>
           <div class="form-item__content">
-            <span class="input"><input ref="number" type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요."  v-model="form.number"></span>
+            <span class="input"><input ref="number" type="text" class="input" placeholder=""  v-model="form.number"></span>
             <span class="time" ref="time">{{ TimerStr }}</span>
           </div>
           <p class="guide-text error" v-if="numberErrorMsg">인증번호를 입력해주세요.</p>
@@ -174,7 +174,7 @@ export default {
       if (this.form.number === '') {
         this.numberErrorMsg = true
         this.$refs.number.focus()
-        // return
+        return
       }
       this.$router.push('./PwChange')
     },

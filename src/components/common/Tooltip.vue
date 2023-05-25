@@ -2,10 +2,10 @@
     <div class="tooltip-el"
       @mouseenter="mouseover"
       @mouseleave="toolTipHide"
-      @click="calcPosOfBox"
-    >{{ posBoxA }}{{ posBoxB }}{{ selfHeight }}
+    >
       <ButtonCmp
         type="btn-icon-tooltip"
+        ref="trigger"
       >
         <span class="irtext">툴팁</span>
       </ButtonCmp>
@@ -41,18 +41,6 @@ export default {
       selfHeight: 10
     }
   },
-  // watch: {
-  //   isTooltip(newValue, oldValue) {
-  //     if (this.isTooltip === true) {
-  //       alert('떳다')
-  //       this.posBoxA = this.$refs.tooltipMsg.getBoundingClientRect().x
-  //     }
-  //     this.posBoxA = this.$refs.tooltipMsg.getBoundingClientRect().x
-  //   }
-  // },
-  // mounted () {
-  //   this.calcPosOfBox()
-  // },
   methods: {
     mouseover () {
       this.isTooltip = true

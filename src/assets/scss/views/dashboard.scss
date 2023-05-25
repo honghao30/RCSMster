@@ -116,7 +116,6 @@
 								@include fontoption(12px,#999,500,22px);
 								border: 1px solid #CCC;
 								border-radius: 20px;
-								box-sizing: border-box;
 								min-width: 103px;
 							}
 						}
@@ -196,6 +195,7 @@
 				.side-box-top {
 					h4{
 						margin-bottom: 2px;
+						line-height: 24px;
 					}
 				}
 			}
@@ -277,9 +277,10 @@
 									content:'';
 									display:inline-block;
 									position:absolute;
-									top:0;
-									width:20px;
-									height: 20px;
+									top:50%;
+									transform: translateY(-50%);
+									width:16px;
+									height: 16px;
 									background: url('../assets/images/icon/icon_arrow-next.png') no-repeat 50% 50%;
 									cursor: pointer;
 								}
@@ -317,6 +318,7 @@
 							width: 137px;
               padding: 0;
 							font-weight: 400;
+							line-height: 20.27px;
 						}
 					}
 				}
@@ -396,20 +398,21 @@
 									display: flex;
 									justify-content: space-between;
 									align-items: center;
-									@include fontoption(12px,$pointColor,700,18px);
-									.approve-cont__type{
+									.flag-progress {
+										padding: 1px 6px;
 										border-radius: 11px;
-										text-align: center;
-										&.redline{
-											border: 1px solid $errorColor;
-											min-width: 37px;
+										background-color:transparent;
+										font-size: 12px;
+										line-height:18px;
+										&.done {
+											border:1px solid $pointColor;
+											color: $pointColor;
+										}
+										&.reject {
+											border:1px solid $errorColor;
 											color: $errorColor;
 										}
-										&.blueline{
-											border: 1px solid $pointColor;
-											min-width: 61px;
-										}
-									}
+								}
 									.approve-cont__date{
 										@include fontoption(12px,#888,400,18px);
 									}
@@ -419,7 +422,7 @@
 								ul{
 									display: flex;
 									align-items: center;
-									margin-top: 6px;
+									margin-top: 4px;
 									.approve-cont__name{
 										@include fontoption(12px,#000,700,22px);
 									}

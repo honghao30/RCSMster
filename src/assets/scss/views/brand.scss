@@ -474,4 +474,128 @@
         }
     }
 }
+//대화방 목록
+.brand-info__wrap {
+    .page-title{
+        margin-bottom: 32px;
+    }
+    .chatroom-graybox{
+        padding: 16px 24px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        background-color: #F8F8F8;
+        border-radius: 8px;
+        margin-bottom: 32px;
+    }
+    .chat_title{
+        display: flex;
+        gap: 8px;
+        margin-left: 18px;
+        .large{
+            display: inline-block;
+            height: 24px;
+            min-width: 39px;
+            padding: 0 8px;
+            background-color: rgba(47, 119, 251, 0.08);
+            @include fontoption(12px,$pointColor,400,24px);
+        }
+    }
+    .chat-status{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .temporary-date{
+            display: inline-block;
+            @include fontoption(12px,$errorColor,400,24px);
+        }
+    }
+    .chatroom-none{
+        border-top: 2px solid #BCBCBC;
+        border-bottom: 1px solid #BCBCBC;
+        padding: 160px 0;
+        text-align: center;
+        ul{
+            li{
+            @include fontoption(14px,#999,400,26px);
+            }
+        }
+    }
+}
+
+// 브랜드 대시보드
+.brand-dash__wrap {
+  width: 100%;
+  flex:auto;
+  .brand-dash__list {
+    display: flex;
+    gap: 16px;
+  }
+  .brand-dash__content {
+    padding: 24px 20px 28px;
+  }
+}
+.brand-dash__state {
+  width: 391.5px;
+  background: #FFFFFF;
+  border: 1px solid #EAEAEA;
+  border-radius: 16px;
+  padding: 24px 20px 28px;
+  .brand-dash-tit {
+    display: flex;
+    p {
+      @include fontoption(18px,#000,700,26px);
+    }
+    span {
+      padding: 4px 0 0 4px;
+      @include fontoption(14px,#000,700,22px);
+    }
+  }
+  ul {
+    display: flex;
+    justify-content: space-between;
+    li {
+      text-align: center;
+      padding-top: 16px;
+      p {
+        width: 72px;
+        padding: 24px 0;
+        border-radius: 100%;
+        background: rgba(217, 217, 217, 0.3);
+        @include fontoption(16px,#333,700,24px);
+      }
+      span {
+        padding-top: 6px;
+        @include fontoption(12px,#333,700,18px);
+      }
+      &:nth-child(2) {
+        p {
+          background: rgba(217, 217, 217, 0.2);
+          @include fontoption(16px,#777,700,24px);
+        }
+        span {
+          @include fontoption(12px,#777,700,18px);
+        }
+      }
+      &:nth-child(3) {
+        p {
+          background: rgba(253, 85, 62, 0.08);
+          @include fontoption(16px,#FD553E,700,24px);
+        }
+        span {
+          @include fontoption(12px,#FD553E,700,18px);
+        }
+      }
+      &:nth-child(4) {
+        p {
+          background: rgba(38, 130, 238, 0.08);
+          @include fontoption(16px,#2682EE,700,24px);
+        }
+        span {
+          @include fontoption(12px,#2682EE,700,18px);
+        }
+      }
+    }
+  }
+}
 

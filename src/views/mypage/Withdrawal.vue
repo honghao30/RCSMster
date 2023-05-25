@@ -47,7 +47,7 @@
           <ButtonCmp
               type="btn-blue-line"
               @click="closeMsg"
-            >닫기
+            >아니요
             </ButtonCmp>
             <ButtonCmp
             type="btn-blue"

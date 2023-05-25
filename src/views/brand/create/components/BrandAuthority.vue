@@ -81,7 +81,7 @@
         <ButtonCmp
           type="btn-blue"
           @click="$emit('closeModal')"
-          disabled
+          :disabled="this.checkList.length < 1"
         >초대</ButtonCmp>
       </div>
     </div>

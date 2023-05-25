@@ -121,7 +121,7 @@
                         <span class="input"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요."   v-model="form.tel"></span>
                       </div>
                     </div>
-                    <p class="guide-text error" v-if="telErrorMsg">전화번호 이메일을 입력해주세요.</p>
+                    <p class="guide-text error" v-if="telErrorMsg">담당자 연락처를 입력해주세요.</p>
                   </div>
                 </td>
                 <th scope="row"><span class="form-item__label">내선번호</span></th>
@@ -294,6 +294,10 @@ export default {
         this.phoneErrorMsg = true
         return
       }
+      if (this.form.id === '') {
+        this.idErrorMsg = true
+        return
+      }
       if (this.form.pass === '') {
         this.passErrorMsg = true
         return
@@ -304,7 +308,7 @@ export default {
       }
       if (this.form.tel === '') {
         this.telErrorMsg = true
-        // return
+        return
       }
       this.$router.push('./AgencyJoinStep04')
     },

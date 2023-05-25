@@ -29,7 +29,7 @@
                         <div class="form-item-row">
                           <div class="input-item check-list">
                             <span class="checkbox" v-for="(checkItem, i) in quickComp" :key="i">
-                              <input type="checkbox" :id="checkItem.value" :value="checkItem.value" v-model="form.quickButton"><label :for="checkItem.value">{{ checkItem.label }}</label>
+                              <input type="checkbox" :id="checkItem.value" :value="checkItem.value" v-model="form.quickButton" :disabled="form.quickButton.length >= 4 || checkItem.value == 'chat'"><label :for="checkItem.value">{{ checkItem.label }}</label>
                             </span>
                           </div>
                         </div>
@@ -308,7 +308,7 @@ export default {
       this.isModalViewed = false
     },
     onSubmit () {
-      if (this.form.quickButton.includes('tel') && this.form.tel === '') {
+      if (this.form.quickButton.includes('call') && this.form.tel === '') {
         this.telErrorMsg = true
         return
       }

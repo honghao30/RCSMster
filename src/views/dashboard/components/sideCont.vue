@@ -102,7 +102,7 @@
               <ul>
                 <li class="approve-cont-top">
                   <ul>
-                    <li class="approve-cont__type" :class="{redline: !item.blueline, blueline: item.blueline}">{{ item.type }}</li>
+                    <li class="flag-progress" :class="item.status">{{ item.statusText }}</li>
                     <li class="approve-cont__date">{{ item.date }}</li>
                   </ul>
                 </li>
@@ -167,24 +167,24 @@ export default {
       ],
       approveList: [
         {
-          type: '반려',
-          blueline: false,
+          status: 'reject',
+          statusText: '반려',
           date: '2023.03.09 17:12',
           name: 'SYSTEM HOMME',
           chat: '대화방',
           des: 'CX hub (사업자등록증과 업종 등록안내등등'
         },
         {
-          type: '승인완료',
-          blueline: true,
+          status: 'done',
+          statusText: '승인완료',
           date: '2023.03.09 17:12',
           name: 'SYSTEM HOMME',
           chat: '템플릿',
           des: '5월 청구서 템플릿'
         },
         {
-          type: '반려',
-          blueline: false,
+          status: 'reject',
+          statusText: '반려',
           date: '2023.03.09 17:12',
           name: 'SYSTEM HOMME',
           chat: '대화방',
@@ -197,6 +197,14 @@ export default {
   methods: {
     toggleMore () {
       this.isOpen = !this.isOpen
+    },
+    labelStatus(status) {
+      if (status === 'done') {
+        return 'done'
+      }
+      if (status === 'reject') {
+        return 'reject'
+      }
     }
   }
 }

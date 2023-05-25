@@ -1,6 +1,6 @@
 <template>
   <h2 class="page-title">
-    {{ pagetitle }} <span class="num" v-if="num">({{ num }})</span>
+    {{ pagetitle }}<span>({{num}})</span>
   </h2>
 </template>
 

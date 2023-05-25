@@ -44,7 +44,7 @@
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                    <span class="input"><input type="text" class="input" :value="filesName"></span>
+                    <span class="input"><input type="text" class="input" :value="filesName" :disabled="disabled" placeholder="사업자등록증을 등록해주세요."></span>
                     <input type="file" id="fileUp" class="input" @change="onFileChanged">
                     <label for="fileUp" class="btn btn-default-line">파일찾기</label>
                     </div>
@@ -243,11 +243,12 @@
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                    <span class="input"><input type="text" class="input" :value="filesName2"></span>
-                    <input type="file" id="fileUp2" class="input">
+                    <span class="input"><input type="text" class="input" :value="filesName2" :disabled="disabled" placeholder="특수부가통신 사업자등록증을 등록해주세요." v-model="form.files"></span>
+                    <input type="file" id="fileUp2" class="input" >
                     <label for="fileUp2" class="btn btn-default-line">파일찾기</label>
                     </div>
                   </div>
+                  <p class="guide-text error" v-if="filesErrorMsg">특수부가통신 사업자등록증을 등록해주세요.</p>
                   <p class="guide-text black">&middot; 파일형식: JPG, PNG, PDF, TIFF(최대 5MB)</p>
                   <p class="guide-text"> ※ 사업자등록증이 없는 경우 사업자등록증명 또는 고유번호증을 등록해주세요. </p>
                   <p class="guide-text"> ※ 비영리법인/국가기관인 경우 고유번호증을 등록해주세요. </p>
@@ -344,12 +345,12 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">대행사 로고</span></th>
+              <th scope="row"><span class="form-item__label">대행사 로고</span></th>
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                    <span class="input"><input type="text" class="input" :value="filesName3"></span>
+                    <span class="input"><input type="text" class="input" :value="filesName3" :disabled="disabled"></span>
                     <input type="file" id="fileUp3" class="input">
                     <label for="fileUp3" class="btn btn-default-line">파일찾기</label>
                     </div>
@@ -374,31 +375,32 @@
     </div>
     <!-- // 모달 영역 -->
     <ModalView
-      v-if="isModalViewed"
+      v-if="isModalViewed" @closeModal="isModalViewed = false">
+      <ConfirmMsg
+      v-if="certifMessage"
       @closeModal="isModalViewed = false"
     >
-      <ConfirmMsg
-        v-if="certifMessage"
-        @closeModal="isModalViewed = false"
-      >
+      <div slot="msg">
         <div class="msg">
-          동일한 사업자등록번호로<br> 가입된 회원계정이 있습니다.
+          동일한 사업자등록번호로<br /> 회원가입을 진행하고 있습니다. <br /><br />
+          최초의 회원가입 완료 후<br /> 추가 회원가입이 가능합니다.
         </div>
         <div class="msg2">
           홍*동(hkp***@the-51.com)
         </div>
-        <div class="button__wrap" slot="button">
-            <ButtonCmp
-              type="btn-blue-line"
-              @click="closeMsg"
-            >닫기
-            </ButtonCmp>
-            <ButtonCmp
-            type="btn-blue"
+      </div>
+      <div class="button__wrap" slot="button">
+          <ButtonCmp
+            type="btn-blue-line"
             @click="closeMsg"
-            >
-              온라인 문의
-            </ButtonCmp>
+          >닫기
+          </ButtonCmp>
+          <ButtonCmp
+          type="btn-blue"
+          @click="closeMsg"
+          >
+            온라인 문의
+          </ButtonCmp>
         </div>
       </ConfirmMsg>
       <ConfirmMsg
@@ -414,11 +416,11 @@
             <ButtonCmp
             type="btn-blue-line"
             @click="closeMsg"
-            >닫기</ButtonCmp>
+            >아니오</ButtonCmp>
             <ButtonCmp
             type="btn-blue"
             @click="agencyManagement"
-            >확인</ButtonCmp>
+            >예</ButtonCmp>
         </div>
       </ConfirmMsg>
       <FormModals
@@ -605,7 +607,8 @@ export default {
         serviceRange: [],
         agency: '',
         selectedOptions: '',
-        agentName: ''
+        agentName: '',
+        files: ''
       },
       apiList: [],
       selecteAuth: ['Auth_1'],
@@ -617,6 +620,7 @@ export default {
       serviceErrorMsg: false,
       agencyErrorMsg: false,
       agentErrorMsg: false,
+      filesErrorMsg: false,
       selectErrorMsg: true,
       showall: true,
       files: '',
@@ -661,6 +665,7 @@ export default {
   },
   methods: {
     onSubmit () {
+      console.log(this.form.files)
       if (this.form.certificate === '') {
         this.certificateErrorMsg = true
         return
@@ -687,6 +692,11 @@ export default {
       }
       if (this.form.agency === '') {
         this.agencyErrorMsg = true
+        return
+      }
+      if (this.form.files === '') {
+        this.filesErrorMsg = true
+        return
       }
       this.$router.push('./AgencyJoinStep03')
     },

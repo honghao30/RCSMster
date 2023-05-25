@@ -293,6 +293,10 @@ export default {
         this.phoneErrorMsg = true
         return
       }
+      if (this.form.id === '') {
+        this.idErrorMsg = true
+        return
+      }
       if (this.form.pass === '') {
         this.passErrorMsg = true
         return
@@ -303,7 +307,7 @@ export default {
       }
       if (this.form.tel === '') {
         this.telErrorMsg = true
-        // return
+        return
       }
       this.$router.push('./JoinStep04')
     },

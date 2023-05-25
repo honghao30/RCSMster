@@ -75,28 +75,20 @@ d<template>
                       >
                       <div class="input-item">
                         <span class="inpun-item__title">이름</span>
-                        <span class="input" v-if="manage.name == ''">
+                        <span class="input">
                           <input type="text" class="input" placeholder="이름을 입력해주세요.">
-                        </span>
-                        <span v-else>
-                          {{ manage.name }}
                         </span>
                       </div>
                       <div class="input-item">
                         <span class="inpun-item__title">휴대폰 번호</span>
-                        <span class="input"
-                          v-if="manage.name == ''"
-                        >
+                        <span class="input">
                           <input type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요.">
-                        </span>
-                        <span v-else>
-                          {{ manage.phone }}
                         </span>
                       </div>
                         <ButtonCmp
                           type="btn-default-line"
                           size="small"
-                          @click="removeManage"
+                          @click="removeManager"
                         >
                         삭제
                         </ButtonCmp>
@@ -365,8 +357,8 @@ export default {
         this.manageList.push({})
       }
     },
-    removeManage (index) {
-      this.apiList.splice(index, 1)
+    removeManager (index) {
+      this.manageList.splice(index, 1)
     }
   }
 }

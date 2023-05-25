@@ -74,6 +74,12 @@ import BrandOperationManage from '@/views/brand/manage/BrandOperationManage'
 import SafetyMarkManage from '@/views/brand/manage/SafetyMarkManage'
 import OperationHistory from '@/views/brand/manage/OperationHistory'
 
+// 대화방
+import ChatRoomList from '@/views/brand/autoreply/ChatRoomList'
+
+// 브랜드 대시보드
+import BrandDashboard from '@/views/brand/dashboard/BrandDashboard'
+
 Vue.use(Router)
 
 /**
@@ -433,6 +439,24 @@ let router = new Router({
       component: FeedRegistration,
       meta: {
         tittle: '브랜드 소식'
+      }
+    },
+    // 대화방
+    {
+      path: '/ChatRoomList',
+      component: ChatRoomList,
+      meta: {
+        tittle: '대화방 목록',
+        breadcrumb: false
+      }
+    },
+    // 브랜드 대시보드
+    {
+      path: '/BrandDashboard',
+      component: BrandDashboard,
+      meta: {
+        tittle: '브랜드 대시보드',
+        breadcrumb: false
       }
     }
   ]

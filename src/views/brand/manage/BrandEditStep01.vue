@@ -326,7 +326,7 @@ export default {
         category3: '시스템 스튜디오',
         url: 'http://systemstudios.com',
         email: 'studios.daum.com',
-        tel: '080-734-1111',
+        tel: '0807341111',
         postcode: '06128',
         addr1: '서울특별시 강남구 봉은사로 18길 58',
         addr2: '더피프티원'

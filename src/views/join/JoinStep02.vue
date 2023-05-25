@@ -45,7 +45,7 @@
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                      <span class="input"><input type="text" class="input" :value="filesName"  :disabled="disabled"></span>
+                      <span class="input"><input type="text" class="input" :value="filesName" :disabled="disabled" placeholder="사업자등록증을 등록해주세요."></span>
                       <input type="file" id="fileUp" class="input" @change="onFileChanged">
                       <label for="fileUp" class="btn btn-default-line">파일찾기</label>
                     </div>
@@ -114,6 +114,7 @@
                         우편번호
                       </ButtonCmp>
                     </div>
+                    <p class="guide-text error" v-if="postcodeErrorMsg">기업주소를 입력해주세요.</p>
                   </div>
                   <div class="form-item-row">
                     <div class="input-item address">
@@ -146,7 +147,8 @@
     >
       <div slot="msg">
         <div class="msg">
-          동일한 사업자등록번호로<br> 가입된 회원계정이 있습니다.
+          동일한 사업자등록번호로<br /> 회원가입을 진행하고 있습니다. <br /><br />
+          최초의 회원가입 완료 후<br /> 추가 회원가입이 가능합니다.
         </div>
         <div class="msg2">
           홍*동(hkp***@the-51.com)
@@ -169,7 +171,7 @@
       <ZipCode
         @closeModal="isModalViewed = false"
         v-else
-       />
+      />
   </ModalView>
   </div>
 </template>
@@ -237,21 +239,25 @@ export default {
         this.certificateErrorMsg = true
         return
       }
+      if (this.form.companyname === '') {
+        this.companynameErrorMsg = true
+        return
+      }
       if (this.form.biztype === '') {
         this.biztypeErrorMsg = true
         return
       }
-      if (this.form.bizeventErrorMsg === '') {
+      if (this.form.bizevent === '') {
         this.bizeventErrorMsg = true
         return
       }
-      // if (this.form.postcode === '') {
-      //   this.postcodeErrorMsg = true
-      //   return
-      // }
+      if (this.form.postcode === '') {
+        this.postcodeErrorMsg = true
+        return
+      }
       // if (this.form.addr2 === '') {
       //   this.postcodeErrorMsg = true
-      //   // return
+      //   return
       // }
       this.$router.push('./JoinStep03')
     },

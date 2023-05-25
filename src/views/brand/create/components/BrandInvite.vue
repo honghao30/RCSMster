@@ -84,18 +84,19 @@
         <ButtonCmp
           type="btn-blue"
           @click="$emit('closeModal')"
-          disabled
+          :disabled="this.checkList.length < 1"
         >초대</ButtonCmp>
       </div>
     </div>
-    <div class="bottom-new--invite">
+    <!-- // 검색 결과 없을 시 화면 주석 -->
+    <!-- <div class="bottom-new--invite">
       찾는 회원이 없다면 이메일로 회원을 초대하세요
       <div class="button__wrap">
         <ButtonCmp
           type="btn-blue"
         >신규 회원 초대</ButtonCmp>
       </div>
-    </div>
+    </div> -->
     <!-- case02.신규 회원 운영권한 초대 팝업 -->
     <!-- <div class="modal__content--body">
       <div class="search-result__wrap">
@@ -143,7 +144,7 @@
         >닫기</ButtonCmp>
         <ButtonCmp
           type="btn-blue"
-          disabled
+          :disabled="this.checkList.length < 1"
         >초대</ButtonCmp>
       </div>
     </div> -->
@@ -163,6 +164,7 @@ export default {
     return {
       isAllChecked: false,
       checkList: [],
+      isBtnDisabled: true,
       dropdownOptions: [
         {
           label: '이름',
