@@ -54,7 +54,7 @@
 import SubTitle from './SubTitle.vue'
 import TitleH3 from './TitleH3.vue'
 import PubComponent from './PubComponent.vue'
-import StausDisplay from './StausDisplay.vue'
+// import StausDisplay from './StausDisplay.vue'
 import { guideList, homeList, dashboardList } from '../iaList'
 
 export default {
@@ -62,8 +62,8 @@ export default {
   components: {
     SubTitle,
     TitleH3,
-    PubComponent,
-    StausDisplay
+    PubComponent
+    // StausDisplay
   },
   data () {
     return {

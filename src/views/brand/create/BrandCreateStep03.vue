@@ -38,7 +38,7 @@
                         <div class="form-item-row">
                           <div class="input-item check-list">
                             <span class="checkbox" v-for="(checkItem, i) in noticeInfoCheck" :key="i">
-                              <input type="checkbox" :id="checkItem.value" :value="checkItem.value" v-model="form.noticeInfo"><label :for="checkItem.value">{{ checkItem.label }}</label>
+                              <input type="checkbox" :id="checkItem.value" :value="checkItem.value" @change="changeMenuCheck($event, checkItem.value)" v-model="checkedMenus" ><label :for="checkItem.value">{{ checkItem.label }}</label>
                             </span>
                           </div>
                         </div>
@@ -245,12 +245,32 @@ export default {
           value: 'chat'
         }
       ],
+      checkedMenus: [],
       stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료']
     }
   },
   computed: {
   },
   methods: {
+    changeMenuCheck(e, targetMenu) {
+      if (this.checkedMenus.length > 3) {
+        alert('퀵 버튼은 3개까지만 선택 가능합니다.')
+        // 메뉴아이템 선택 한 것이 상한에 걸릴경우 체크박스 처리.
+        this.$nextTick(() => {
+          this.checkedMenus.splice(this.checkedMenus.indexOf(targetMenu), 1)
+        })
+      } else {
+        let target = _.find(this.checkedMenuDatas, { code: targetMenu })
+        if (this.checkedMenus.indexOf(targetMenu) !== -1) {
+          target.visible = true
+        } else {
+          target.visible = false
+          target.values.forEach(v => {
+            v.value = ''
+          })
+        }
+      }
+    },
     onSubmit () {
       if (this.form.tab === '') {
         this.tabErrorMsg = true

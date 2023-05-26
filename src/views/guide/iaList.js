@@ -281,13 +281,13 @@ const dashboardList = [
     'depth1': '기업',
     'depth2': '기업대시보드',
     'screenId': 'R-Comp-Dash-View-01',
-    'status': ['0524: 기획 공유'],
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/DashBoard'
   },
   {
     'depth1': '브랜드 홈',
     'screenId': 'R-Brand-Open-Reg-01',
-    'status': ['0524: 기획 공유'],
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brand'
   },
   // 브랜드 개설
@@ -295,25 +295,25 @@ const dashboardList = [
     'depth1': '브랜드 개설',
     'depth2': '기본 정보 입력',
     'screenId': 'R-Brand-Open-Reg-01',
-    'status': ['0524: 기획 공유'],
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandcreatestep01'
   },
   {
     'depth2': '퀵 버튼 설정',
     'screenId': 'R-Brand-Open-Reg-02',
-    'status': ['0524: 기획 공유'],
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandcreatestep02'
   },
   {
     'depth2': '브랜드 홈 탭 설정',
     'screenId': 'R-Brand-Open-Reg-03',
-    'status': ['0524: 기획 공유'],
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandcreatestep03'
   },
   {
     'depth2': '브랜드 개설 완료',
     'screenId': 'R-Brand-Open-Reg-04',
-    'status': ['0524: 기획 공유'],
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandcreatestep04'
   },
   // 브랜드 관리
@@ -322,25 +322,25 @@ const dashboardList = [
     'depth4': '브랜드 홈수정',
     'depth5': '기본정보',
     'screenId': 'R-Brand-Invi-View-01',
-    'status': ['0524: 기획 공유'],
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandeditstep01'
   },
   {
     'depth5': '퀵버튼',
     'screenId': 'R-Brand-Invi-View-01',
-    'status': ['0524: 기획 공유'],
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandeditstep02'
   },
   {
     'depth5': '브랜드 홈 탭 설정',
     'screenId': 'R-Brand-Invi-View-01',
-    'status': ['0524: 기획 공유'],
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandeditstep03'
   },
   {
     'depth4': '안심마크 관리',
     'screenId': 'R-Brand-Mgt-Mod-04',
-    'status': ['0524: 기획 공유'],
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/SafetyMarkManage'
   },
   // 브랜드 소식
@@ -353,13 +353,13 @@ const dashboardList = [
   {
     'depth3': '브랜드 운영관리',
     'screenId': 'R-Brand-Mgt-List-01',
-    'status': ['0524: 기획 공유'],
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/BrandOperationManage'
   },
   {
     'depth1': '기업 히스토리',
     'screenId': 'R-Comp-Mgt-List-01',
-    'status': ['0524: 기획 공유'],
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/operationhistory'
   }
 ]

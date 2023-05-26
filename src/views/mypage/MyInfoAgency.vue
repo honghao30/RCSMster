@@ -70,21 +70,28 @@ d<template>
                 <td colspan="3">
                   <div class="form-item__content">
                       <div class="form-item-row agency-phone"
-                        v-for="(manage, index) in manageList"
+                        v-for="(manager, index) in manageList"
                         :key="index"
                       >
-                      <div class="input-item">
-                        <span class="inpun-item__title">이름</span>
-                        <span class="input">
-                          <input type="text" class="input" placeholder="이름을 입력해주세요.">
-                        </span>
-                      </div>
-                      <div class="input-item">
-                        <span class="inpun-item__title">휴대폰 번호</span>
-                        <span class="input">
-                          <input type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요.">
-                        </span>
-                      </div>
+                      <template v-if="manager.num != null">
+                        <div class="input-item">
+                          <span class="inpun-item__title">이름</span> {{ manager.name }} <span class="inpun-item__title">휴대폰 번호</span> {{ manager.phone }}
+                        </div>
+                      </template>
+                      <template v-else>
+                        <div class="input-item">
+                          <span class="inpun-item__title">이름</span>
+                          <span class="input">
+                            <input type="text" class="input" placeholder="이름을 입력해주세요.">
+                          </span>
+                        </div>
+                        <div class="input-item">
+                          <span class="inpun-item__title">휴대폰 번호</span>
+                          <span class="input">
+                            <input type="text" class="input" placeholder="‘-’없이 숫자만 입력해주세요.">
+                          </span>
+                        </div>
+                      </template>
                         <ButtonCmp
                           type="btn-default-line"
                           size="small"
@@ -327,6 +334,7 @@ export default {
       telErrorMsg: false,
       manageList: [
         {
+          num: 1,
           name: '홍길동',
           phone: '010-1234-5678'
         }

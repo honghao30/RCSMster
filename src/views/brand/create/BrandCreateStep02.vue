@@ -158,9 +158,14 @@
             >
           </div>
           <div class="quick-buttons">
-            <a role="button"><i class="icon-tel"></i></a>
-            <a role="button" v-if="form.quickButton.includes('chat')"><i class="icon-chat"></i></a>
-            <a role="button" v-if="form.quickButton.includes('web')"><i class="icon-web"></i></a>
+            <a role="button"><i class="icon-chat"></i></a>
+            <a role="button" v-if="checkedMenus.includes('call')"><i class="icon-tel"></i></a>
+            <a role="button" v-if="checkedMenus.includes('web')"><i class="icon-web"></i></a>
+            <a role="button" v-if="checkedMenus.includes('info')"><i class="icon-info"></i></a>
+            <a role="button" v-if="checkedMenus.includes('order')"><i class="icon-order"></i></a>
+            <a role="button" v-if="checkedMenus.includes('buy')"><i class="icon-buy"></i></a>
+            <a role="button" v-if="checkedMenus.includes('ticket')"><i class="icon-ticket"></i></a>
+            <a role="button" v-if="checkedMenus.includes('store')"><i class="icon-store"></i></a>
           </div>
           <div class="brand-title">
             <span class="logo">
@@ -292,7 +297,6 @@ export default {
       newQuickButton: ['chat'],
       stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료'],
       isModalViewed: false,
-      checked: [],
       checkedMenus: [],
       disabled: false
     }
