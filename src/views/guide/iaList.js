@@ -284,11 +284,49 @@ const dashboardList = [
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/DashBoard'
   },
+  // 대화방
+  {
+    'depth3': '대화방',
+    'depth4': '대화방 목록',
+    'screenId': 'R-Brand-Room-List-01',
+    'status': ['0601: 기획 공유'],
+    'link': '/ChatRoomList'
+  },
+  {
+    'depth4': '대화방 등록',
+    'screenId': 'R-Brand-Room-Reg-01',
+    'status': ['0601: 기획 공유'],
+    'link': '/ChatRoomRegistration'
+  },
+  {
+    'depth5': '대화방 등록 완료(개별)',
+    'screenId': 'R-Brand-Room-Reg-02',
+    'status': ['0601: 기획 공유'],
+    'link': '/ChatRoomRegistrationComplete'
+  },
+  {
+    'depth5': '대화방 등록 완료(대량)',
+    'screenId': 'R-Brand-Room-Reg-04',
+    'status': ['0601: 기획 공유'],
+    'link': '/ChatRoomLargeRegistrationComplete'
+  },
   {
     'depth1': '브랜드 홈',
     'screenId': 'R-Brand-Open-Reg-01',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brand'
+  },
+  {
+    'depth3': '브랜드 운영관리',
+    'screenId': 'R-Brand-Mgt-List-01',
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
+    'link': '/BrandOperationManage'
+  },
+  {
+    'depth1': '기업 히스토리',
+    'screenId': 'R-Comp-Mgt-List-01',
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
+    'link': '/operationhistory'
   },
   // 브랜드 개설
   {
@@ -342,7 +380,7 @@ const dashboardList = [
     'screenId': 'R-Brand-Mgt-Mod-04',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/SafetyMarkManage'
-  },
+  }
   // 브랜드 소식
   // {
   //   'depth3': '브랜드 소식',
@@ -350,43 +388,6 @@ const dashboardList = [
   //   'status': '완료',
   //   'link': '/feed'
   // },
-  {
-    'depth3': '브랜드 운영관리',
-    'screenId': 'R-Brand-Mgt-List-01',
-    'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/BrandOperationManage'
-  },
-  {
-    'depth1': '기업 히스토리',
-    'screenId': 'R-Comp-Mgt-List-01',
-    'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/operationhistory'
-  },
-  {
-    'depth3': '대화방',
-    'depth4': '대화방 목록',
-    'screenId': 'R-Brand-Room-List-01',
-    'status': ['0601: 기획 공유'],
-    'link': '/ChatRoomList'
-  },
-  {
-    'depth4': '대화방 등록',
-    'screenId': 'R-Brand-Room-Reg-01',
-    'status': ['0601: 기획 공유'],
-    'link': '/ChatRoomRegistration'
-  },
-  {
-    'depth5': '대화방 등록 완료(개별)',
-    'screenId': 'R-Brand-Room-Reg-02',
-    'status': ['0601: 기획 공유'],
-    'link': '/ChatRoomRegistrationComplete'
-  },
-  {
-    'depth5': '대화방 등록 완료(대량)',
-    'screenId': 'R-Brand-Room-Reg-04',
-    'status': ['0601: 기획 공유'],
-    'link': '/ChatRoomLargeRegistrationComplete'
-  }
 ]
 
 export { guideList, homeList, dashboardList }
