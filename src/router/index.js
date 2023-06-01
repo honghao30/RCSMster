@@ -53,8 +53,6 @@ import Withdrawal from '@/views/mypage/Withdrawal'
 import DashBoard from '@/views/dashboard/dashboard'
 // 알림
 import Notification from '@/views/notification/Notification'
-// 브랜드 소식
-import FeedRegistration from '@/views/brand/feed/FeedRegistration'
 
 // 브랜드 개설
 import BrandCreateStep01 from '@/views/brand/create/BrandCreateStep01'
@@ -75,10 +73,20 @@ import SafetyMarkManage from '@/views/brand/manage/SafetyMarkManage'
 import OperationHistory from '@/views/brand/manage/OperationHistory'
 
 // 대화방
-import ChatRoomList from '@/views/brand/autoreply/ChatRoomList'
+import ChatRoomList from '@/views/brand/chatroom/ChatRoomList'
+import ChatRoomRegistration from '@/views/brand/chatroom/ChatRoomRegistration'
+import ChatRoomRegistrationComplete from '@/views/brand/chatroom/ChatRoomRegistrationComplete'
+import ChatRoomLargeRegistrationComplete from '@/views/brand/chatroom/ChatRoomLargeRegistrationComplete'
+
+// 브랜드 소식
+import FeedRegistrationBasic from '@/views/brand/feed/FeedRegistrationBasic'
+import FeedRegistration from '@/views/brand/feed/FeedRegistration'
 
 // 브랜드 대시보드
 import BrandDashboard from '@/views/brand/dashboard/BrandDashboard'
+
+// 템플릿
+import Template from '@/views/brand/template/Template'
 
 Vue.use(Router)
 
@@ -435,13 +443,46 @@ let router = new Router({
       }
     },
     {
-      path: '/feed',
+      path: '/FeedRegistrationBasic',
+      component: FeedRegistrationBasic,
+      meta: {
+        tittle: '브랜드 소식',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/FeedRegistration',
       component: FeedRegistration,
       meta: {
-        tittle: '브랜드 소식'
+        tittle: '브랜드 소식',
+        breadcrumb: false
       }
     },
     // 대화방
+    {
+      path: '/ChatRoomRegistration',
+      component: ChatRoomRegistration,
+      meta: {
+        tittle: '대화방 등록',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/ChatRoomRegistrationComplete',
+      component: ChatRoomRegistrationComplete,
+      meta: {
+        tittle: '대화방 등록 완료',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/ChatRoomLargeRegistrationComplete',
+      component: ChatRoomLargeRegistrationComplete,
+      meta: {
+        tittle: '대화방 대량 등록 완료',
+        breadcrumb: false
+      }
+    },
     {
       path: '/ChatRoomList',
       component: ChatRoomList,
@@ -456,6 +497,15 @@ let router = new Router({
       component: BrandDashboard,
       meta: {
         tittle: '브랜드 대시보드',
+        breadcrumb: false
+      }
+    },
+    // 템플릿
+    {
+      path: '/template',
+      component: Template,
+      meta: {
+        tittle: '템플릿',
         breadcrumb: false
       }
     }

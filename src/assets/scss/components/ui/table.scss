@@ -67,6 +67,9 @@
   }
   td {
     padding: 20px  0;
+    &.l-align {
+      text-align: left;
+    }    
   }
   tr:last-child {
     td {
@@ -91,7 +94,7 @@
     text-align:left
   }
   td {
-    padding: 23px 20px 23px 0;
+    padding: 23px 16px 23px 0;
   }
 }
 

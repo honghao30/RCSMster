@@ -24,9 +24,9 @@
                         <div class="form-item-row">
                           <div class="input-item input-limit">
                             <span class="input">
-                              <input type="text" class="input" maxlength="20" placeholder="브랜드명을 입력해주세요." v-model="form.brandName">
+                              <input type="text" class="input" maxlength="20" placeholder="브랜드명을 입력해주세요." v-model="form.name">
                               <p class="input-limit__text">
-                                {{ form.brandName.length }}/20자
+                                {{ form.name.length }}/20자
                               </p>
                             </span>
                           </div>
@@ -42,10 +42,10 @@
                         <div class="form-item-row">
                           <div class="input-item input-limit">
                             <div class="textarea">
-                              <textarea maxlength="150" placeholder="브랜드의 슬로건이나 브랜드 특징을 나타내는 소개글을 입력해주세요." v-model="form.brandDescription"></textarea>
+                              <textarea maxlength="150" placeholder="브랜드의 슬로건이나 브랜드 특징을 나타내는 소개글을 입력해주세요." v-model="form.desc"></textarea>
                               <div class="textarea-limit__text">
                                 <p>
-                                  {{ form.brandDescription.length }}/150자
+                                  {{ form.desc.length }}/150자
                                 </p>
                               </div>
                             </div>
@@ -72,7 +72,7 @@
                         </div>
                         <template v-if="form.bgImageType === 'custom'">
                           <div class="input-item">
-                            <span class="input"><input type="text" class="input" :value="form.bgImage" disabled></span>
+                            <span class="input"><input type="text" class="input" :value="form.bgImgFileUrl" disabled></span>
                             <input type="file" id="fileUp" class="input blind" @change="onFileChanged">
                             <label for="fileUp" class="btn btn-default-line">파일찾기</label>
                           </div>
@@ -109,7 +109,7 @@
                         </template>
                         <template v-if="form.profileImageType === 'custom'">
                           <div class="input-item">
-                            <span class="input"><input type="text" class="input" :value="form.profileImage" disabled></span>
+                            <span class="input"><input type="text" class="input" :value="form.profileImgFileUrl" disabled></span>
                             <input type="file" id="fileUp" class="input blind" @change="onProfileFileChange()">
                             <label for="fileUp" class="btn btn-default-line">파일찾기</label>
                           </div>
@@ -224,7 +224,7 @@
           >다음</ButtonCmp>
         </div>
       </div>
-      <div class="brand-aside  sticky">
+      <div class="brand-aside sticky">
         <div class="button__wrap">
           <ButtonCmp
             type="btn-blue-line"
@@ -234,61 +234,7 @@
             type="btn-blue-line"
           >브랜드 가이드</ButtonCmp>
         </div>
-        <div class="preview__wrap ">
-          <div class="preview__image">
-            <img
-              v-if="url"
-              :src="url"
-             />
-             <img src="@/assets/images/dummy/brand_image.png"
-              v-else
-              alt=""
-             >
-          </div>
-          <div class="brand-title">
-            <span class="logo">
-              <img src="@/assets/images/dummy/brand_logo.png"
-                v-if="this.form.profileImage == ''"
-                alt=""
-              >
-              <img src="@/assets/images/icon/icon_company_person.png"
-                v-else-if="this.bgImageType"
-                alt=""
-              >
-              <img src="@/assets/images/icon/icon_company_person.png"
-                v-else
-                alt=""
-              >
-            </span>
-            <div class="brand-desc">
-              <h4 v-if="this.form.brandName == ''">브랜드명</h4>
-              <h4 v-else>{{ this.form.brandName }}</h4>
-              <p class="brand__text" v-if="this.form.brandDescription == ''">브랜드 소개글이 노출 됩니다. 최대 150자까지 입력하세요.</p>
-              <p class="brand__text" v-else>{{ this.form.brandDescription }}</p>
-            </div>
-          </div>
-          <div class="brand-detail">
-            <TabCmp tabClass="brand-quick__tab" :activeIndex="1">
-              <TabItem title="소식">
-                <!-- <div>소식</div> -->
-              </TabItem>
-              <TabItem title="정보">
-                <dl class="tel">
-                  <dt>전화번호</dt>
-                  <dd>{{ form.tel }}</dd>
-                </dl>
-                <dl class="web">
-                  <dt>웹사이트</dt>
-                  <dd>{{ form.url }}</dd>
-                </dl>
-                <dl class="email">
-                  <dt>이메일</dt>
-                  <dd>{{ form.email }}</dd>
-                </dl>
-              </TabItem>
-            </TabCmp>
-          </div>
-        </div>
+        <BrandEmulator :brandInfoData="form" curTab="info"/>
       </div>
     </div>
     <ModalView
@@ -329,8 +275,7 @@ import Dropdown from '@/components/common/Dropdown.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
 import BrandImport from '@/views/brand/create/components/BrandImport.vue'
-import TabItem from '@/components/common/TabItem.vue'
-import TabCmp from '@/components/common/TabCmp.vue'
+import BrandEmulator from '@/views/brand/components/BrandEmulator.vue'
 
 export default {
   components: {
@@ -341,17 +286,16 @@ export default {
     Dropdown,
     ModalView,
     BrandImport,
-    TabItem,
-    TabCmp,
+    BrandEmulator,
     ConfirmMsg
   },
   data() {
     return {
       form: {
-        brandName: '',
-        brandDescription: '',
-        bgImage: '',
-        profileImage: '',
+        name: '',
+        desc: '',
+        bgImgFileUrl: '',
+        profileImgFileUrl: '',
         bgImageType: '',
         profileImageType: '',
         category1: '',

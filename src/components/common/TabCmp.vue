@@ -10,8 +10,7 @@
         v-for="(tab, i) in tabs"
         :key=i
         class="tab-item"
-        :class="[{active: activeTabIndex === i}, {new: tab.tabIsNew}]"
-        :style="{ width: tabWidth + 'px' }"
+        :class="[{active: activeIndex === i}, {new: tab.tabIsNew}]"
       >
         <a role="tab"
           @click="tabCtrl(i)"
@@ -30,29 +29,28 @@
 export default {
   props: {
     tabClass: String,
-    activeIndex: Number,
+    activeIndex: {
+      type: Number,
+      default: 0
+    },
     size: String
   },
   data() {
     return {
-      tabs: [],
-      activeTabIndex: 0
+      tabs: []
     }
   },
   created() {
     this.tabs = this.$children
   },
   mounted() {
-    if (this.activeIndex) {
-      this.activeTabIndex = this.activeIndex
-    }
-    this.tabs[this.activeTabIndex].isActive = true
+    this.tabs[this.activeIndex].isActive = true
   },
   methods: {
     tabCtrl: function(num) {
-      this.activeTabIndex = num
+      this.activeIndex = num
       this.tabs.forEach((tab, index) => {
-        tab.isActive = (index === this.activeTabIndex)
+        tab.isActive = (index === this.activeIndex)
       })
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="brand__lnb">
+  <div class="brand-lnb">
     <div class="brand-info">
       <div class="brand-info__inner">
         <span class="logo">

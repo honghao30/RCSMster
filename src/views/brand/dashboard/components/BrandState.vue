@@ -1,5 +1,5 @@
 <template>
-  <div class="brand-dash__list">
+  <div>
     <div v-for="(item, i) in data" :key="i" class="brand-dash__state">
       <div class="brand-dash-tit">
         <p>{{ item.title }} </p>

@@ -3,17 +3,17 @@
       @mouseenter="mouseover"
       @mouseleave="toolTipHide"
     >
-      <ButtonCmp
-        type="btn-icon-tooltip"
-        ref="trigger"
-      >
-        <span class="irtext">툴팁</span>
-      </ButtonCmp>
+       <span ref="trigger">
+        <ButtonCmp
+          type="btn-icon-tooltip"
+        >
+          <span class="irtext">툴팁</span>
+        </ButtonCmp>
+       </span>
       <div
         class="tool-tip__wrap"
-        v-if="isTooltip"
-        :style="{ 'width': width + 'px' }"
-        :class="[mode, direction]"
+        :style="{'width': width + 'px'}"
+        :class="[mode, direction, elAlign, {'active': isActive}]"
         ref="tooltipMsg"
       >
         <slot name="tooltip-message"></slot>
@@ -28,33 +28,29 @@ export default {
   props: {
     direction: String,
     width: String,
-    mode: String
+    mode: String,
+    elAlign: String
   },
   components: {
     ButtonCmp
   },
   data () {
     return {
-      isTooltip: false,
-      posBoxA: 0,
-      posBoxB: 0,
-      selfHeight: 10
+      isActive: false,
+      selHeight: '',
+      topPos: '',
+      bottomPos: ''
     }
   },
   methods: {
     mouseover () {
-      this.isTooltip = true
+      this.isActive = true
+      this.$nextTick()
     },
     toolTipHide () {
-      this.isTooltip = false
-      // setTimeout(() => { this.isTooltip = false }, 500)
+      // this.isActive = true
+      setTimeout(() => { this.isActive = false }, 300)
     }
-    // calcPosOfBox () {
-    //   this.posBoxA = this.$refs.tooltipMsg.getBoundingClientRect().x
-    //   this.posBoxB = this.$refs.tooltipMsg.getBoundingClientRect().y
-    //   this.selfHeight = this.$refs.tooltipMsg.clientHeight
-    //   console.log(this.$refs.tooltipMsg1)
-    // }
   }
 }
 </script>

@@ -21,10 +21,10 @@
                         <div class="form-item-row">
                           <div class="input-item">
                             <span class="radiobox">
-                              <input type="radio" id="newsTab" name="'tab" value="newsTab" v-model="form.tab"><label for="newsTab">소식 탭 우선</label>
+                              <input type="radio" id="feed" name="'tab" value="feed" v-model="form.curTab"><label for="feed">소식 탭 우선</label>
                             </span>
                             <span class="radiobox">
-                              <input type="radio" id="infoTab" name="tab" value="infoTab" v-model="form.tab"><label for="infoTab">정보 탭 우선</label>
+                              <input type="radio" id="info" name="tab" value="info" v-model="form.curTab"><label for="info">정보 탭 우선</label>
                             </span>
                           </div>
                           <p class="guide-text error" v-if="tabErrorMsg" >우선 노출 탭 설정해주세요.</p>
@@ -140,46 +140,8 @@
             type="btn-blue-line"
           >브랜드 가이드</ButtonCmp>
         </div>
-        <div class="preview__wrap">
-          <div class="preview__image">
-            <img src="@/assets/images/dummy/brand_image.png" alt="">
-          </div>
-          <div class="quick-buttons">
-            <a role="button"><i class="icon-tel"></i></a>
-            <a role="button"><i class="icon-chat"></i></a>
-            <a role="button"><i class="icon-web"></i></a>
-          </div>
-          <div class="brand-title">
-            <span class="logo">
-              <img src="@/assets/images/dummy/brand_logo.png" alt="">
-            </span>
-            <div class="brand-desc">
-              <h4>네스프레소</h4>
-              <p class="brand__text">최상의 품질을 가진 환경에 긍정적인 영향을 줄수있는 커피브랜드 기업</p>
-            </div>
-          </div>
-          <div class="brand-detail">
-            <TabCmp tabClass="brand-quick__tab" >
-              <TabItem title="소식">
-                <div>소식</div>
-              </TabItem>
-              <TabItem title="정보">
-                <dl class="tel">
-                  <dt>전화번호</dt>
-                  <dd>{{ form.tel }}</dd>
-                </dl>
-                <dl class="web">
-                  <dt>웹사이트</dt>
-                  <dd>{{ form.url }}</dd>
-                </dl>
-                <dl class="email">
-                  <dt>이메일</dt>
-                  <dd>contactus@nespresso.com</dd>
-                </dl>
-              </TabItem>
-            </TabCmp>
-          </div>
-        </div>
+        <BrandEmulator :brandInfoData="form"
+        curTab="form.curTab"/>
       </div>
     </div>
   </div>
@@ -191,8 +153,7 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import StepList from '@/components/common/StepList.vue'
-import TabItem from '@/components/common/TabItem.vue'
-import TabCmp from '@/components/common/TabCmp.vue'
+import BrandEmulator from '@/views/brand/components/BrandEmulator.vue'
 
 export default {
   components: {
@@ -201,13 +162,17 @@ export default {
     ButtonCmp,
     PageTitleH3,
     StepList,
-    TabItem,
-    TabCmp
+    BrandEmulator
   },
   data() {
     return {
       form: {
         noticeInfo: ['reservation', 'chat', 'appdownload'],
+        quickButton: ['chat'],
+        name: '네스프레소',
+        desc: '최상의 품질을 가진 환경에 긍정적인 영향을 줄수있는 커피브랜드 기업',
+        bgImgFileUrl: 'dummy/brand_image.png',
+        profileImgFileUrl: 'dummy/brand_logo.png',
         url: 'http://www.nespresso.com',
         email: 'contactus@nespresso.com',
         tel: '080-734-1111',
@@ -215,7 +180,7 @@ export default {
         reservation: 'http://brandportal.com',
         appdownload: 'market://details?id=com.systemstudios.mail',
         chat: 'http://www.chatportal/start',
-        tab: 'newsTab',
+        curTab: 'info',
         agree: ''
       },
       tabErrorMsg: false,

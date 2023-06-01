@@ -94,7 +94,7 @@
                       <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 종목명을 입력해주세요." :disabled="disabled" v-model="form.bizevent"></span>
                     </div>
                   </div>
-                  <p class="guide-text error" v-if="bizeventErrorMsg">종목을 입력해주세요.</p>
+                  <p class="guide-text error" v-if="bizeventErrorMsg">사업자등록증에 등록된 첫번째 종목명을 입력해주세요.</p>
                   <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘비영리, 공공/행정, 정치/사회, 복지, 종교, 모임, 기관/단체일반’ 중에서 해당하는 항목을 입력해주세요.</p>
                 </div>
                 <div v-else class="form-item__content">IT</div>

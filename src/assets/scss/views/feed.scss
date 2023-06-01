@@ -1,0 +1,296 @@
+// 브랜드 소식 
+.feed__wrap {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 32px;
+    .feed__inner {
+        flex: auto;
+        .page-title__wrap {
+            margin-top:0;
+        }
+        .tab__wrap {
+            margin-top:0;
+            }
+        .feed__textarea {
+            textarea {
+                height: 70px;
+            }
+        }
+        .notice-tip__wrap {
+            .page-title__wrap {
+                padding-top: 32px;
+            }
+            .notice-tip__box {
+                display: flex;
+                justify-content: space-between;
+                li {
+                    width: 237px;
+                    text-align: center;
+                    border: 1px solid #DDDDDD;
+                    border-radius: 8px;
+                    i {
+                        margin: 24px 0 12px;
+                        display: inline-block;
+                        width: 64px;
+                        height: 64px;
+                        background-position: 50% 50%;
+                        background-repeat: no-repeat;
+                        border-radius: 50%;
+                        background-size: 100%;
+                        &.icon-time {
+                            background-image:url('../assets/images/icon/icon_time.png')
+
+                        }
+                        &.icon-calendar {
+                            background-image:url('../assets/images/icon/icon_calendar.png')
+
+                        }
+                        &.icon-pen {
+                            background-image:url('../assets/images/icon/icon_pen.png')
+
+                        }
+                    }
+                    h5 {
+                        @include fontoption(18px,#2F77FB,700,28px);
+                    }
+                    p {
+                        padding-top: 8px;
+                        @include fontoption(14px,#000,400,22px);
+                    }
+                    .notice-tip__example {
+                        padding: 13px 11px 13px 12px;
+                        margin: 25px 14px;
+                        border: 1px solid #EEEEEE;
+                        border-radius: 8px;
+                        text-align: left;
+                        strong {
+                            @include fontoption(12px,#888,700,19px);
+                        }
+                        p {
+                            padding-top: 4px;
+                            @include fontoption(13px,#333,400,19px);
+                        }
+                    }
+                }
+            }
+        }
+        .form-item__content {
+            .form-item-row  {
+                justify-content: space-between;
+                gap: 8px;
+                align-items: flex-start;
+            } 
+        }
+        .button-list {
+            li {
+                display:flex;
+                align-items:center;
+                font-size:14px;
+                color:#fff;
+                line-height: 24px;
+                font-weight: 500;
+                padding:2px 12px ;
+                background-color:#aaa;
+                border-radius: 4px;
+                .btn-del {
+                    margin-left: 10px
+                }
+            }
+        }
+    }
+    .slide-card__wrap {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px 0 12px;
+        border-bottom: 1px solid #ddd;
+        .slide-card__inner {
+            display:flex;
+            align-items: center;
+            gap: 8px;     
+        }
+        .card-list {
+            display:flex;
+            gap: 8px; 
+        }
+        .card-item {
+            width: 60px;
+            height: 60px;
+            border:1px solid #ddd;
+            border-radius: 8px;
+            display:inline-flex;
+            align-items:center;
+            justify-content: center;
+            color: #666;
+            position:relative;
+            cursor: pointer;
+            &.active {
+                border-color: #000;
+                color: #000;
+            }
+            .btn-del {
+                position:absolute;
+                right: -10px;
+                top: -10px;
+                z-index:10;
+            }
+        }
+        .btn-add {
+            width: 32px;
+            height: 32px;
+            font-size:24px;
+            border:1px solid #ddd;
+            border-radius: 100%;
+            text-align:center;
+            line-height: 28px;
+        }
+    }
+}
+.brand-button__wrap {
+    padding-top: 32px;
+    float: right;
+}
+
+.feed-emulator__wrap {
+    flex:0 0 360px;
+    width: 360px;
+    min-height: 560px;
+    position:sticky;
+    border-radius:16px;
+    border:1px solid #eaeaea;
+    background-color:#fff;
+    padding:16px;
+    
+}
+.feed-emulator {
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+    .emulator-header {
+        flex:0 0 60px;
+        border-bottom: 1px solid #eaeaea;
+        display:flex;
+        align-items: flex-start;
+        &__inner {
+            display:flex;
+            align-items:center;
+            gap: 8px;
+            height: 48px;
+        }
+        .profile {
+            display:flex;
+            align-items: center;
+            gap:4px;
+            &__image {
+                width: 32px;
+                height: 32px;
+                img {
+                    width:100%;
+                    height: 100%;
+                }
+            } 
+            .brand-name {
+                padding-left:4px;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 24px;
+            }
+        }
+        button {
+            width: 24px;
+            height: 24px;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            &.btn-back {
+                background-image:url('../assets/images/cmp/btn_prev.png')
+            }
+            &.btn-more {
+                background-image:url('../assets/images/cmp/btn_more.png')
+            }
+            &.btn-down {
+                background-image:url('../assets/images/cmp/chevron_down.png')
+            }
+        }
+    }
+    .emulator-body {
+        padding: 20px 0;
+        .feed-date {
+            font-size: 13px;
+            line-height: 19px;
+            color: #999;
+            margin-bottom: 14px; 
+        }
+        .feed-title {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        .feed-content {
+            margin-top: 8px;
+            font-size: 14px;
+            line-height: 22px;
+            white-space: pre-wrap;
+        }
+        div[class^="preview"] {
+            margin-top: 12px;
+        }
+
+        .item--none {
+            width:100%;
+            height:328px;
+            border-radius: 12px;
+            background-color: #F4F4F4;
+            display: flex;
+            align-items:center;
+            justify-content: center;
+            p {
+                color:#999;
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                line-height: 22px;
+                &:before {
+                    content:'';
+                    width: 64px;
+                    height: 64px;
+                    background-position: 50% top;
+                    background-repeat: no-repeat;
+                }
+                &.img:before {
+                    background-image: url('../assets/images/icon/icon_no_img.png')
+                }
+                &.url:before {
+                    background-image: url('../assets/images/icon/icon_no_cont.png')
+                }
+            }
+        }
+        .preview-slideview {
+            .swiper-container {
+                margin: 0 -16px;
+                padding: 0 16px;
+            }
+            
+            .swiper-slide {
+                width: 258px !important;
+                border-radius:12px;
+                border:1px solid #ddd;
+                .item--none  {
+                    height: 258px;
+                    border-radius:12px 12px 0 0;
+                }
+                .slide-content {
+                    padding: 16px;
+                    font-size: 14px;
+                    line-height:22px;
+                    .title {
+                        font-weight: 500;
+                    }
+                    .description {
+                       margin-top: 8px;
+                    }
+                }
+            }
+        }
+    }
+}

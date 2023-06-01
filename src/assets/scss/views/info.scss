@@ -169,6 +169,14 @@
     +.step__wrap {
         margin-top: 24px;
     }
+    &.gray-btn {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        margin-bottom: 32px;
+        @include fontoption(14px,#000,400,26px); 
+
+    }
 }
 .agree{
     &__wrap {
@@ -266,33 +274,48 @@
         width: 100%;
         color:#666;
     }
+    .flag-progress {
+        color:#fff;
+        background-color:#999;
+        border:0;
+        line-height:20px;
+        height: 26px;
+        &.done {
+            color:#fff;
+            background-color:$pointColor;
+        }
+        &.reject {
+            color:#fff;
+            background-color: $errorColor;
+        }
+        &.ing {
+            color:#fff;
+            background-color:#FF8310;
+        }
+    }
 }
 
 .flag-progress {
     padding: 2px 10px;
-    border-radius: 20px;
-    color:#fff;
-    background-color:#999;
+    border-radius: 15px;
+    font-weight: 500;
+    color:#999;
+    background-color:transparent;
     font-size: 12px;
-    line-height:22px;
+    line-height:18px;
+    border:1px solid #999;
+    height: 24px;
     &.done {
-        background-color:$pointColor;
+        border-color:$pointColor;
+        color:$pointColor;
     }
     &.reject {
-        background-color: $errorColor;
+        border-color: $errorColor;
+        color:$errorColor;
     }
     &.ing {
-        background-color:#FF8310;
-    }
-    &.temporary {
-        border: 1px solid #999;
-        background-color: transparent;
-        color:#999;
-    }
-    &.wait {
-        border: 1px solid #999;
-        background-color: transparent;
-        color:#999;
+        border-color:#FF8310;
+        color:#FF8310;
     }
 }
 

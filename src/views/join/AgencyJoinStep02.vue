@@ -463,6 +463,7 @@
                          :id="`agency0${index }`"
                          @click="selectCheck"
                          :value="list"
+                         v-model="selectedAgencyList"
                          />
                         <label
                          :for="`agency0${index }`"
@@ -473,9 +474,9 @@
                 </div>
                 <div class="agency-list__right">
                   <ul
-                    v-if="this.agencyListSelect.length > 0"
+                    v-if="this.selectedAgencyList.length > 0"
                   >
-                    <li v-for="(list, index) in agencyListSelect"
+                    <li v-for="(list, index) in selectedAgencyList"
                       :key="index"
                     >
                       {{ list }}
@@ -638,7 +639,8 @@ export default {
       agencyList: ['경민중계', '더피프티원', '더피프티원1', '성문대행', '더피프티원2', '더피프티원3', '더피프티원4', '더피프티원5', '성문대행2', '성문대행3'],
       agencyListSelect: [],
       searchWord: '',
-      DelegatesManage: false
+      DelegatesManage: false,
+      selectedAgencyList: [],
     }
   },
   props: {

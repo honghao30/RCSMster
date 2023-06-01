@@ -404,11 +404,11 @@ $formLabelWidth : 120px;
     }
   }
   .input-item {
-    width: 100%;
     display:flex;
     align-items:center;
     gap: 10px;
     position: relative;
+    flex: auto;
     &.justify {
       justify-content:space-between;
     }

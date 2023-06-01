@@ -41,9 +41,9 @@
                         <div class="form-item-row no-wrap">
                           <div class="input-item input-limit">
                             <span class="input">
-                              <input type="text" class="input" maxlength="20" placeholder="브랜드명을 입력해주세요." v-model="form.brandName">
+                              <input type="text" class="input" maxlength="20" placeholder="브랜드명을 입력해주세요." v-model="form.name">
                               <p class="input-limit__text">
-                                {{ form.brandName.length }}/20자
+                                {{ form.name.length }}/20자
                               </p>
                             </span>
                           </div>
@@ -60,10 +60,10 @@
                         <div class="form-item-row">
                           <div class="input-item input-limit">
                             <div class="textarea">
-                              <textarea maxlength="150" placeholder="브랜드의 슬로건이나 브랜드 특징을 나타내는 소개글을 입력해주세요." v-model="form.brandDescription"></textarea>
+                              <textarea maxlength="150" placeholder="브랜드의 슬로건이나 브랜드 특징을 나타내는 소개글을 입력해주세요." v-model="form.desc"></textarea>
                               <div class="textarea-limit__text">
                                 <p>
-                                  {{ form.brandDescription.length }}/150자
+                                  {{ form.desc.length }}/150자
                                 </p>
                               </div>
                             </div>
@@ -247,44 +247,7 @@
             type="btn-blue-line"
           >브랜드 가이드</ButtonCmp>
         </div>
-        <div class="preview__wrap">
-          <div class="preview__image">
-            <img src="@/assets/images/dummy/brand_image.png" alt="">
-          </div>
-          <div class="quick-buttons">
-            <a role="button"><i class="icon-tel"></i></a>
-          </div>
-          <div class="brand-title">
-            <span class="logo">
-              <img src="@/assets/images/dummy/brand_logo.png" alt="">
-            </span>
-            <div class="brand-desc">
-              <h4>네스프레소</h4>
-              <p class="brand__text">최상의 품질을 가진 환경에 긍정적인 영향을 줄수있는 커피브랜드 기업</p>
-            </div>
-          </div>
-          <div class="brand-detail">
-            <TabCmp tabClass="brand-quick__tab" :activeIndex="1">
-              <TabItem title="소식">
-                <div>소식</div>
-              </TabItem>
-              <TabItem title="정보">
-                <dl class="tel">
-                  <dt>전화번호</dt>
-                  <dd>{{ form.tel }}</dd>
-                </dl>
-                <dl class="web">
-                  <dt>웹사이트</dt>
-                  <dd>{{ form.url }}</dd>
-                </dl>
-                <dl class="email">
-                  <dt>이메일</dt>
-                  <dd>contactus@nespresso.com</dd>
-                </dl>
-              </TabItem>
-            </TabCmp>
-          </div>
-        </div>
+        <BrandEmulator :brandInfoData="form" curTab="info"/>
       </div>
     </div>
   </div>
@@ -298,9 +261,7 @@ import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import StepList from '@/components/common/StepList.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
-import TabItem from '@/components/common/TabItem.vue'
-import TabCmp from '@/components/common/TabCmp.vue'
-
+import BrandEmulator from '@/views/brand/components/BrandEmulator.vue'
 export default {
   components: {
     PageTitle,
@@ -308,25 +269,24 @@ export default {
     PageTitleH3,
     StepList,
     Dropdown,
-    TabItem,
-    TabCmp,
-    BrandLnb
+    BrandLnb,
+    BrandEmulator
   },
   data() {
     return {
       form: {
-        brandName: 'SYSTEM STUDIOS',
-        brandDescription: '모던함과 세련된 터치가 돋보이는 SYSTEM STUDIOS',
-        bgImage: 'SYSTEM STUDIOS_bg.png',
-        profileImage: 'finance',
+        name: '네스프레소',
+        desc: '최상의 품질을 가진 환경에 긍정적인 영향을 줄수있는 커피브랜드 기업',
+        bgImgFileUrl: 'dummy/brand_image.png',
+        profileImgFileUrl: 'dummy/brand_logo.png',
+        url: 'http://www.nespresso.com',
+        email: 'contactus@nespresso.com',
+        tel: '080-734-1111',
         bgImageType: 'custom',
         profileImageType: 'defalut',
         category1: 'travel',
         category2: 'service',
         category3: '시스템 스튜디오',
-        url: 'http://systemstudios.com',
-        email: 'studios.daum.com',
-        tel: '0807341111',
         postcode: '06128',
         addr1: '서울특별시 강남구 봉은사로 18길 58',
         addr2: '더피프티원'
@@ -339,7 +299,7 @@ export default {
       categoryErrorMsg: false,
       telErrorMsg: false,
       isModalViewed: false,
-      quickButtons: ['call'],
+      quickButtons: ['chat'],
       categoryOptions: [
         {
           label: 'IT',

@@ -22,11 +22,19 @@ const brandLnbList = [
     'to': '',
     'children': [
       {
-        'label': '등록',
+        'label': '일반상품 레이아웃 등록',
         'to': ''
       },
       {
-        'label': '목록',
+        'label': '일반상품 레이아웃 목록',
+        'to': ''
+      },
+      {
+        'label': '템플릿상품 레이아웃 등록',
+        'to': ''
+      },
+      {
+        'label': '템플릿상품 레이아웃 목록',
         'to': ''
       }
     ]
@@ -36,11 +44,15 @@ const brandLnbList = [
     'to': '',
     'children': [
       {
-        'label': '등록',
+        'label': '챗봇 연결',
         'to': ''
       },
       {
-        'label': '목록',
+        'label': '간편챗봇 메시지 등록',
+        'to': ''
+      },
+      {
+        'label': '간편챗봇 메시지 목록',
         'to': ''
       }
     ]
@@ -50,11 +62,11 @@ const brandLnbList = [
     'to': '',
     'children': [
       {
-        'label': '등록',
+        'label': '대화방 메뉴 등록',
         'to': ''
       },
       {
-        'label': '목록',
+        'label': '대화방 메뉴 목록',
         'to': ''
       }
     ]
@@ -64,11 +76,11 @@ const brandLnbList = [
     'to': '',
     'children': [
       {
-        'label': '등록',
+        'label': '브랜드 기본 소식 등록',
         'to': ''
       },
       {
-        'label': '목록',
+        'label': '브랜드 소식 등록',
         'to': ''
       }
     ]
@@ -78,11 +90,37 @@ const brandLnbList = [
     'to': '',
     'children': [
       {
-        'label': '등록',
+        'label': '메시지 통계',
         'to': ''
       },
       {
-        'label': '목록',
+        'label': '대화방 메뉴 통계',
+        'to': ''
+      },
+      {
+        'label': '브랜드 소식 통계',
+        'to': ''
+      }
+    ]
+  },
+  {
+    'label': '내 브랜드 관리',
+    'to': '',
+    'children': [
+      {
+        'label': '브랜드 홈 수정',
+        'to': ''
+      },
+      {
+        'label': '브랜드 운영 관리',
+        'to': ''
+      },
+      {
+        'label': '안심마크 관리',
+        'to': ''
+      },
+      {
+        'label': '작업 히스토리',
         'to': ''
       }
     ]
