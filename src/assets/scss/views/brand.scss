@@ -524,7 +524,7 @@
         }
     }
 }
-//대화방 등록
+//대화방 등록 && 수정
 .brand-info__wrap {
     .chatroom__wrap{
         display: flex;
@@ -537,7 +537,6 @@
                 margin-bottom: 0;
             }
             .table__wrap{
-                border-top: none;
                 .form-table{
                     .chattype-des{
                         margin-bottom: 8px;
@@ -626,6 +625,11 @@
                 margin-top: 8px;
                 }
             }
+            &.editmod {
+              .table__wrap{
+                border-top: 2px solid #2f77fb;
+              }
+            }
         }
         .exception-txt{
             @include fontoption(14px,#000,400,24px);
@@ -654,7 +658,7 @@
                 margin: 0 32px 16px 0;
                 text-align: end;
             }
-        }
+        }      
     }
     .registration__complete{
         text-align: center;
@@ -667,6 +671,21 @@
             @include fontoption(18px,#000,400,28px);
         }
     }
+}
+.top-progress-area+.chatroom__wrap {
+   margin-top:32px;
+}
+.chatroom-modify__title {
+  position: relative;
+  .switch {
+    position: absolute;
+    right: 0;
+    top:65px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    @include fontoption(14px,#999,400,26px);
+  }
 }
 //대화방 목록
 .brand-info__wrap {
@@ -714,6 +733,41 @@
         ul{
             li{
             @include fontoption(14px,#999,400,26px);
+            }
+        }
+    }
+}
+//대화방 목록 > 개별등록 상세
+.brand-info__wrap {
+    .chatroom__wrap{
+        &.view-box{
+            margin-top: 32px;
+            .form-table{
+                &.table-bodyonly{
+                    td{
+                        font-size: 14px;
+                        line-height: 26px;
+                        a{
+                            &.text{
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                    .inner__input{
+                        margin-top: 0;
+                        .inner__input-box{
+                            align-items: start;
+                            margin-top: 12px;
+                            gap: 0;
+                            .form-item__label{
+                                min-width: 100px;
+                            }
+                            .input{
+                                @include fontoption(14px,#000,400,26px);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -1038,7 +1092,7 @@ ul {
             align-items: center;
             gap:4px;
             &__image {
-                width: 32px;
+                min-width: 32px;
                 height: 32px;
                 img {
                     width:100%;
@@ -1050,6 +1104,16 @@ ul {
                 font-size: 16px;
                 font-weight: 700;
                 line-height: 24px;
+            }
+            .name {
+                padding-left:4px;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 24px;
+                &.short{
+                    @include ellipsis($line: 2);
+                    -webkit-line-clamp: 1;
+                }
             }
         }
         button {

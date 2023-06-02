@@ -1,5 +1,5 @@
 <template>
-  <div class="brand__wrap">
+  <div class="brand__wrap brand__feed">
     <div class="brand__inner">
       <BrandLnb />
       <div class="brand-info__wrap">
@@ -10,7 +10,7 @@
               <div class="table__wrap">
                 <table class="table table-bodyonly form-table">
                   <colgroup>
-                    <col width="160px">
+                    <col width="196px">
                     <col />
                   </colgroup>
                   <tbody>
@@ -44,9 +44,9 @@
                           <div class="form-item-row">
                             <div class="input-item input-limit">
                               <span class="input">
-                                <input type="text" class="input" maxlength="40" placeholder="제목을 입력해주세요." v-model="form.feedTitle">
+                                <input type="text" class="input" maxlength="40" placeholder="제목을 입력해주세요." v-model="form.feedTitle" :disabled="isCardEdit">
                                 <p class="input-limit__text">
-                                  /40자
+                                  {{ form.feedTitle.length }}/40자
                                 </p>
                               </span>
                             </div>
@@ -63,7 +63,7 @@
                 <template v-if="form.type !== 'slideView'">
                   <table class="table table-bodyonly form-table">
                     <colgroup>
-                      <col width="160px">
+                      <col width="196px">
                       <col />
                     </colgroup>
                     <tbody>
@@ -246,18 +246,22 @@
                         >
                           <span v-text="`카드${slide.slideIndex}`" class="card-text"></span>
                           <a role="button" @click="removeCard(j)" class="btn-del" v-if="isCardEdit
-                          ">삭제</a>
+                          "><span class="blind">삭제</span></a>
                         </div>
                       </draggable>
-                      <a role="button" class="btn-add" @click="addSlide(slideData.length)">+<span class="blind">추가</span></a>
+                      <a role="button" class="btn-add" @click="addSlide(slideData.length)" v-if="slideData.length < 10">+<span class="blind">추가</span></a>
                     </div>
                     <a role="button" class="btn small btn-line" @click="isCardEdit = true" v-if="!isCardEdit">편집</a>
                     <a role="button" class="btn small btn-blue" v-if="isCardEdit" @click="saveCardEdit">저장</a>
+                    <div class="guide-box" v-if="isCardEdit">
+                      <p class="guide-text black">&middot; 선택한 슬라이드는 드래그로 순서 변경이 가능합니다.</p>
+                      <p class="guide-text black">&middot; 첫번째로 위치한 카드는 삭제 불가합니다.</p>
+                    </div>
                   </div>
                   <template v-for="(slide, j) in slideData">
                     <table class="table table-bodyonly form-table" v-if="slide.isActive" :key="j">
                       <colgroup>
-                        <col width="160px">
+                        <col width="196px">
                         <col />
                       </colgroup>
                       <tbody>
@@ -268,11 +272,11 @@
                               <div class="form-item-row">
                                 <div class="input-item">
                                   <span class="radiobox">
-                                    <input type="radio" name="slideType" id="slideTypeImg" value="gallery" v-model="slide.slideType"/>
+                                    <input type="radio" name="slideType" id="slideTypeImg" value="image" v-model="slide.slideType" :disabled="isCardEdit"/>
                                     <label for="slideTypeImg"><span class="radiobox__text">이미지</span></label>
                                   </span>
                                   <span class="radiobox">
-                                    <input type="radio" name="slideType" id="url" value="slideTypeUrl" v-model="slide.slideType"/>
+                                    <input type="radio" name="slideType" id="slideTypeUrl" value="url" v-model="slide.slideType" :disabled="isCardEdit"/>
                                     <label for="slideTypeUrl"><span class="radiobox__text">URL 연결</span></label>
                                   </span>
                                 </div>
@@ -287,7 +291,9 @@
                               <div class="form-item-row">
                                 <div class="input-item input-limit">
                                   <span class="input">
-                                    <input type="text" class="input" maxlength="40" placeholder="제목을 입력해주세요." v-model="slide.slideTitle">
+                                    <input type="text" class="input" maxlength="40" placeholder="제목을 입력해주세요." v-model="slide.slideTitle"
+                                    :disabled="isCardEdit"
+                                    >
                                     <p class="input-limit__text">
                                       {{ slide.slideTitle.length }}/34자
                                     </p>
@@ -295,6 +301,7 @@
                                 </div>
                                 <ButtonCmp
                                       type="btn-default-line"
+                                      :disabled="isCardEdit"
                                   >특수문자
                                 </ButtonCmp>
                               </div>
@@ -307,8 +314,12 @@
                             <div class="form-item__content">
                               <div class="form-item-row">
                                 <div class="input-item input-limit">
-                                  <div class="textarea">
-                                    <textarea maxlength="200" placeholder="내용을 입력해주세요."  v-model="slide.slideDescription"></textarea>
+                                  <div class="textarea"
+                                    :class="{ 'disabled' : isCardEdit }"
+                                  >
+                                    <textarea maxlength="200" placeholder="내용을 입력해주세요."  v-model="slide.slideDescription"
+                                    :disabled="isCardEdit"
+                                    ></textarea>
                                     <div class="textarea-limit__text">
                                       <p>
                                         {{ slide.slideDescription.length }}/126자
@@ -318,10 +329,149 @@
                                 </div>
                                 <ButtonCmp
                                       type="btn-default-line"
+                                      :disabled="isCardEdit"
                                   >특수문자
                                 </ButtonCmp>
                               </div>
                             </div>
+                          </td>
+                        </tr>
+                        <tr v-if="slide.slideType == 'slideTypeImage'">
+                          <th scope="row">
+                            <span class="form-item__label required">이미지</span>
+                          </th>
+                          <td>
+                            <div class="form-item__content">
+                              <div class="form-item-row">
+                                <div class="input-item">
+                                  <span class="input">
+                                    <input type="text" disabled placeholder="이미지를 등록해주세요." >
+                                  </span>
+                                  <ButtonCmp
+                                    type="btn-default-line"
+                                  >
+                                    이미지 등록 / 편집
+                                  </ButtonCmp>
+                                </div>
+                                <p class="guide-text black">&middot; 사이즈 : 388 X 388px ~ 1080 X 1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 5MB)</p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr v-if="slide.slideType == 'slideTypeUrl'">
+                          <th scope="row"><span class="form-item__label required">연결 URL</span></th>
+                          <td>
+                            <div class="form-item__content">
+                              <div class="form-item-row">
+                                <div class="input-item">
+                                  <span class="input">
+                                    <input type="text" :disabled="isCardEdit">
+                                  </span>
+                                  <ButtonCmp
+                                    type="btn-default-line"
+                                  >
+                                    적용
+                                  </ButtonCmp>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><span class="form-item__label required">버튼</span></th>
+                          <td>
+                            <div class="form-item__content">
+                                <div class="form-item-row">
+                                  <div class="input-item">
+                                    <span class="radiobox">
+                                      <input type="radio" name="btnUse" id="btnUseN" value="btnUseN" v-model="form.btnUse" :disabled="isCardEdit"/>
+                                      <label for="btnUseN"><span class="radiobox__text">미사용</span></label>
+                                    </span>
+                                    <span class="radiobox">
+                                      <input type="radio" name="btnUse" id="btnUseY" value="btnUseY" v-model="form.btnUse" :disabled="isCardEdit"/>
+                                      <label for="btnUseY"><span class="radiobox__text">사용</span></label>
+                                    </span>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="form-item__content" v-if="form.btnUse == 'btnUseY'">
+                              <div class="form-item-row">
+                                <div class="input-item input-limit">
+                                  <span class="input">
+                                    <input type="text" class="input" maxlength="17" placeholder="버튼명을 입력하세요." v-model="form.btnCnt.btnName" :disabled="isCardEdit">
+                                    <p class="input-limit__text">
+                                      {{ }}/17자
+                                    </p>
+                                  </span>
+                                </div>
+                                <ButtonCmp
+                                      type="btn-default-line"
+                                  >특수문자
+                                </ButtonCmp>
+                              </div>
+                              <div class="form-item-row">
+                                <div class="input-item">
+                                  <Dropdown :options=btnTypeOption v-model="form.btnCnt.btnType" placeholder="선택" :disabled="isCardEdit"></Dropdown>
+                                </div>
+                              </div>
+                              <div class="form-item-row">
+                                <ButtonCmp
+                                      type="btn-default-line"
+                                      :disabled="isCardEdit"
+                                  >버튼추가
+                                </ButtonCmp>
+                              </div>
+                              <div class="form-item-row">
+                                <ul class="button-list">
+                                  <li v-for="(btn, k) in form.btnCnt" :key="k">
+                                    <span class="button-name">{{ btn.btnName }}</span>
+                                    <a role="button" class="btn-del">x<span class="blind">삭제</span></a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><span class="form-item__label required">게시방법</span></th>
+                          <td>
+                              <div class="form-item__content">
+                                  <div class="form-item-row">
+                                    <div class="input-item">
+                                      <span class="radiobox">
+                                        <input type="radio" name="publish" id="publish" value="publish" v-model="form.publishType" :disabled="isCardEdit"/>
+                                        <label for="publish"><span class="radiobox__text">즉시게시</span></label>
+                                      </span>
+                                      <span class="radiobox">
+                                        <input type="radio" name="publish" id="resv" value="resv" v-model="form.publishType" :disabled="isCardEdit"/>
+                                        <label for="resv"><span class="radiobox__text">예약게시</span></label>
+                                      </span>
+                                      <span class="radiobox">
+                                        <input type="radio" name="publish" id="hidden" value="hidden" v-model="form.publishType" :disabled="isCardEdit"/>
+                                        <label for="hidden"><span class="radiobox__text">숨김(URL)게시</span></label>
+                                      </span>
+                                    </div>
+                                    <p class="guide-text black">&middot; [숨김 게시]는 브랜드 소식내에는 노출되지 않습니다.</p>
+                                    <p class="guide-text black">&middot; RCS 메시지 발송 시, 메시지에 URL을 기재하는 용도로 사용됩니다. </p>
+                                    <p class="guide-text black">&middot; [저장] 또는 [비공개] 상태일 경우, [게시] 상태가 아니므로 URL에 연결된 소식을 볼 수 없습니다.</p>
+                                    <p class="guide-text black">&middot; [예약 게시]는 지정된 [게시]상태로 전환되므로 [게시] 이전에는 URL에 연결된 소식을 볼 수 없습니다.</p>
+                                  </div>
+                              </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><span class="form-item__label">상단고정</span></th>
+                          <td>
+                              <div class="form-item__content">
+                                  <div class="form-item-row">
+                                    <div class="input-item">
+                                      <span class="checkbox">
+                                        <input type="checkbox" id="pinY" v-model="form.pinYn" :disabled="isCardEdit"/>
+                                        <label for="pinY"><span class="radiobox__text">상단 고정 등록</span></label>
+                                      </span>
+                                    </div>
+                                  </div>
+                              </div>
                           </td>
                         </tr>
                       </tbody>
@@ -347,53 +497,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="emulator-body">
-                      <p class="feed-date">4월 19일 오후 3:00</p>
-                      <h4 class="feed-title">
-                        <span v-if="form.feedTitle">{{ form.feedTitle }}</span>
-                        <span v-else>제목을 입력해주세요.</span>
-                      </h4>
-                      <p class="feed-content" v-if="form.type !== 'slideView'">
-                        <span v-if="form.feedContent" v-html="form.feedContent"></span>
-                        <span v-else>내용을 입력해주세요.</span>
-                      </p>
-                      <div class="preview-gallery" v-if="form.type === 'gallery'">
-                        <div class="item--none">
-                          <p class="img">이미지를 등록해주세요.</p>
-                        </div>
-                      </div>
-                      <div class="preview-sharing" v-if="form.type === 'sharing'">
-                        <div class="item--none">
-                          <p class="url">URL 입력해주세요.</p>
-                        </div>
-                      </div>
-                      <div class="preview-slideview" v-if="form.type === 'slideView'">
-                        <div class="preview__inner">
-                          <swiper
-                            :options="swiperOption"
-                            ref="mySwiper"
-                          >
-                            <swiper-slide v-for="(slide, i) in slideData" :key="i">
-                                <div class="" v-if="slide.slideType == 'gallery'">
-                                  <div class="item--none">
-                                    <p class="img">이미지를 등록해주세요.</p>
-                                  </div>
-                                </div>
-                                <div class="slide-content">
-                                  <p class="title">
-                                    <span v-if="slide.slideTitle">{{ slide.slideTitle }}</span>
-                                    <span v-else>슬라이드 제목을 입력해주세요.</span>
-                                  </p>
-                                  <p class="description">
-                                    <span v-if="slide.slideDescription">{{ slide.slideDescription }}</span>
-                                    <span v-else>슬라이드 내용을 입력해주세요.</span>
-                                  </p>
-                                </div>
-                            </swiper-slide>
-                          </swiper>
-                        </div>
-                      </div>
-                    </div>
+                    <feedEmulator :slideData="slideData" :feedInfoData="form"/>
                   </div>
                 </div>
               </TabItem>
@@ -417,13 +521,61 @@
               type="btn-blue"
           >등록</ButtonCmp>
         </div>
+        <div class="feed-list">
+          <div class="feed-list__filter">
+            <div class="filter-row">
+              <span class="filter-row__title">상태</span>
+              <ul class="scope-list">
+                <li v-for="(option, l) in statusOption" :key="l"
+                @click="getStatusOption(option)"
+                :class="{'active': option.isActive}"
+                >{{ option.label }}</li>
+              </ul>
+            </div>
+            <div class="filter-row">
+              <span class="filter-row__title">유형</span>
+              <ul class="scope-list">
+                <li v-for="(option, l) in typeOption" :key="l"
+                @click="getTypeOption(option)"
+                :class="{'active': option.isActive}"
+                >{{ option.label }}</li>
+              </ul>
+            </div>
+            <div class="filter-row ctrl">
+              <div class="date-range">
+                <el-date-picker
+                  v-model="filterOption.dateRange"
+                  type="daterange"
+                  unlink-panels
+                  range-separator="~"
+                  prefix-icon=""
+                  :start-placeholder="todayFormat"
+                  :end-placeholder="todayFormat"
+                  format="yyyy.MM.dd"
+                />
+              </div>
+              <div class="search-area">
+                <Dropdown :options=serchCategory v-model="filterOption.searchCategory" placeholder="선택"></Dropdown>
+                <span class="input">
+                  <input type="text" v-model="filterOption.searchWord" placeholder="검색어를 입력해 주세요.">
+                </span>
+                <ButtonCmp
+                  type="btn-only-icon"
+                  iconname='icon-search'
+                >
+              </ButtonCmp>
+              </div>
+            </div>
+          </div>
+          <feedViewItem v-for="( feed, m ) in feedViewData" :feedData="feed" :key="m"/>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+
 import PageTitle from '@/components/common/PageTitle.vue'
 import draggable from 'vuedraggable'
 import 'swiper/css/swiper.css'
@@ -432,24 +584,28 @@ import TabItem from '@/components/common/TabItem.vue'
 import TabCmp from '@/components/common/TabCmp.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
+import feedEmulator from '@/views/brand/feed/components/feedEmulator.vue'
+import feedViewItem from '@/views/brand/feed/components/feedViewItem.vue'
+import moment from 'moment'
 
 export default {
   components: {
     PageTitle,
     draggable,
-    Swiper,
-    SwiperSlide,
     TabItem,
     TabCmp,
     BrandLnb,
     ButtonCmp,
-    Dropdown
+    Dropdown,
+    feedEmulator,
+    feedViewItem
   },
   data() {
     return {
       form: {
         type: 'gallery',
         feedTitle: '',
+        feedDate: '4월 19일 오후 3:00​',
         feedContent: '',
         btnUse: '',
         publishType: '',
@@ -461,7 +617,7 @@ export default {
       },
       slideData: [{
         slideIndex: '1',
-        slideType: 'gallery',
+        slideType: 'image',
         slideTitle: '',
         slideDescription: '',
         isActive: true
@@ -486,20 +642,117 @@ export default {
       ],
       slideActiveIndex: 0,
       isCardEdit: false,
-      swiperOption: {
-        spaceBetween: 10,
-        slidesPerView: 'auto'
-      }
+      listFilterDate: '',
+      filterOption: {
+        status: [],
+        type: [],
+        dateRange: '',
+        searchCategory: '',
+        searchWord: ''
+      },
+      statusOption: [
+        {
+          label: '게시',
+          value: 'publish',
+          isActive: false
+        },
+        {
+          label: '예약',
+          value: 'reservation',
+          isActive: false
+        },
+        {
+          label: '숨김(URL)',
+          value: 'internet',
+          isActive: false
+        },
+        {
+          label: '임시저장',
+          value: 'temporarySave',
+          isActive: false
+        },
+        {
+          label: '미노출',
+          value: 'hidden',
+          isActive: false
+        },
+        {
+          label: '고정소식',
+          value: 'fix',
+          isActive: false
+        },
+        {
+          label: '내가 등록한 소식',
+          value: 'myNews',
+          isActive: false
+        }
+      ],
+      typeOption: [
+        {
+          label: '갤러리',
+          value: 'gallery',
+          isActive: false
+        },
+        {
+          label: '쉐어링',
+          value: 'sharing',
+          isActive: false
+        },
+        {
+          label: '슬라이드',
+          value: 'slideView',
+          isActive: false
+        }
+      ],
+      todayFormat: '',
+      serchCategory: [{
+        label: '소식제목',
+        value: 'feedTitle'
+      },
+      {
+        label: '소식 ID',
+        value: 'feedId'
+      }],
+      feedViewData: [
+        {
+          feedId: 1222213,
+          feedType: '갤러리',
+          feedStatus: '숨김(URL)',
+          feedAuthor: '김미미',
+          feedDate: '2023.04.09',
+          feedPublishDate: '2023.04.09 05:56',
+          feedItem: {
+            feeddate: '4월 19일 오후 3:00',
+            type: 'gallery',
+            feedTitle: 'SK 텔레콤의 스마트한 제안',
+            feedContent: 'SK텔레콤을 다양하게 만나보세요! #SKT Insight · SK텔레콤 네이버 포스트 스크랩 · SK텔레콤 페이스북 #Facebook · SK텔레콤 유튜브 #YouTube ​'
+          }
+        },
+        {
+          feedId: 1222213,
+          feedType: '쉐어형',
+          feedStatus: '게시',
+          feedAuthor: '김미미',
+          feedDate: '2023.04.09',
+          feedPublishDate: '2023.04.09 05:56',
+          feedItem: {
+            feeddate: '4월 19일 오후 3:00',
+            type: 'gallery',
+            feedTitle: 'SK 텔레콤의 스마트한 제안',
+            feedContent: 'SK텔레콤을 다양하게 만나보세요! #SKT Insight · SK텔레콤 네이버 포스트 스크랩 · SK텔레콤 페이스북 #Facebook · SK텔레콤 유튜브 #YouTube ​'
+          }
+        }
+      ]
     }
   },
   created() {
-
+    this.todayFormat = moment().format('YYYY.MM.DD')
   },
   methods: {
     addSlide () {
       let slideData = {
         slideIndex: (this.slideData.length + 1),
-        slideType: 'gallery',
+        slideType: 'image',
         slideTitle: '',
         slideDescription: '',
         isActive: false
@@ -530,6 +783,38 @@ export default {
         }
       })
       this.isCardEdit = false
+    },
+    getStatusOption(option) {
+      if (!option.isActive) {
+        this.filterOption.status.push(option.value)
+        option.isActive = true
+      } else {
+        let i = 0
+        while (i < this.filterOption.status.length) {
+          if (this.filterOption.status[i] === option.value) {
+            this.filterOption.status.splice(i, 1)
+          } else {
+            i++
+          }
+        }
+        option.isActive = false
+      }
+    },
+    getTypeOption(option) {
+      if (!option.isActive) {
+        this.filterOption.type.push(option.value)
+        option.isActive = true
+      } else {
+        let i = 0
+        while (i < this.filterOption.type.length) {
+          if (this.filterOption.type[i] === option.value) {
+            this.filterOption.type.splice(i, 1)
+          } else {
+            i++
+          }
+        }
+        option.isActive = false
+      }
     }
   }
 }

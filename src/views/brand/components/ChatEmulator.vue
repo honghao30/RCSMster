@@ -8,11 +8,12 @@
             <div class="profile__image">
               <img src="@/assets/images/dummy/brand_logo.png" alt="">
             </div>
-            <p class="chatroom-name">{{ chatName }}</p>
-            <button class="btn-down"></button>
+            <p class="chatroom-name" v-if="largerTitle">브랜드명</p>
+            <p v-else :class="{name: true, short: isShort}">{{ chatName }}</p>
+            <button class="btn-down" :class="{open: isOpen}" @click="btnToggle"></button>
           </div>
         </div>
-        <button class="btn-more"><span class="blind">정보</span></button>
+        <button class="btn-more" :class="{open: isBlind}"><span class="blind">정보</span></button>
       </div>
       <div class="emulator-body">
         <p class="chat-date">{{ todayData }}</p>
@@ -103,6 +104,10 @@ export default {
     chatName: {
       type: String,
       default: '대화방 명'
+    },
+    largerTitle: {
+      type: Boolean,
+      required: true
     }
   },
   data () {
@@ -112,7 +117,10 @@ export default {
       },
       todayDateFull: '',
       todayData: '',
-      currentTime: ''
+      currentTime: '',
+      isOpen: false,
+      isBlind: false,
+      isShort: true
     }
   },
   mounted() {
@@ -132,6 +140,13 @@ export default {
     },
     defautFooter(newValue) {
       // update DOM here
+    }
+  },
+  methods: {
+    btnToggle () {
+      this.isOpen = !this.isOpen
+      this.isBlind = !this.isBlind
+      this.isShort = !this.isShort
     }
   }
 }

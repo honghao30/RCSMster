@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown" :class="{ open: isOpen }" v-click-outside="onClickOutside">
+  <div class="dropdown" :class="[{ 'open': isOpen }, { 'disabled' : disabled }]" v-click-outside="onClickOutside">
     <a role="button"
       class="dropdown__trigger"
       @click="toggleSelect">{{ selectedOption }}</a>
@@ -33,7 +33,8 @@ export default {
     options: Object,
     searchable: Boolean,
     placeholder: String,
-    value: String
+    value: String,
+    disabled: Boolean
   },
   emits: [
     'update:modelValue'
@@ -69,7 +70,9 @@ export default {
       this.$emit('input', option.value)
     },
     toggleSelect() {
-      this.isOpen ? this.isOpen = false : this.isOpen = true
+      if (!this.disabled) {
+        this.isOpen ? this.isOpen = false : this.isOpen = true
+      }
     },
     onClickOutside() {
       this.isOpen = false

@@ -308,7 +308,32 @@ const dashboardList = [
     'depth5': '대화방 등록 완료(대량)',
     'screenId': 'R-Brand-Room-Reg-04',
     'status': ['0601: 기획 공유'],
-    'link': '/ChatRoomLargeRegistrationComplete'
+    'link': '/ChatRoomLargeRegistrationComplete',
+    'comments': ['개별등록과 대량등록 하나의 버튼을 공유하는듯 한데, 퍼블에서 승인요청 크릭후 뜨는 팝업에서 아니요를 클릭하면 대량등록 완료 페이지로 이동.']
+  },
+  {
+    'depth5': '대화방 수정',
+    'screenId': 'R-Brand-Room-Reg-02',
+    'status': ['0602: 기획 공유'],
+    'link': '/ChatRoomModified'
+  },
+  {
+    'depth5': '대화방 수정(대량)',
+    'screenId': 'R-Brand-Room-Reg-02',
+    'status': ['0602: 기획 공유'],
+    'link': '/ChatRoomLargeModified'
+  },
+  {
+    'depth5': '대화방 상세',
+    'screenId': 'R-Brand-Room-View-01',
+    'status': ['0602: 기획 공유'],
+    'link': '/ChatRoomListView'
+  },
+  {
+    'depth5': '대화방 상세(대량)',
+    'screenId': 'R-Brand-Room-View-01',
+    'status': ['0602: 기획 공유'],
+    'link': '/ChatRoomListLargeView'
   },
   {
     'depth1': '브랜드 홈',

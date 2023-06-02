@@ -258,6 +258,14 @@ $textareaHeight: 100px;
       transform: rotate(135deg) translate(-50%, -50%);
     }
   }
+  &.disabled {
+    .dropdown__trigger {
+      background-color:#f4f4f4;
+      color:#999;
+      border-color:#ddd;
+      cursor:not-allowed;
+    }
+  }
   &__menu {
     position: absolute;
     left:0;
@@ -328,6 +336,165 @@ $textareaHeight: 100px;
     }
   }
 }
+// element ui datapicker custom  
+.el-picker-panel {
+  border-radius: 12px;
+  &.el-date-range-picker {
+    width:632px;
+  } 
+  .popper__arrow {
+    display: none;
+  }
+  .el-picker-panel__content {
+    padding: 28px 24px 18px 12px;
+    &.is-left {
+      border: none;
+      padding: 28px 12px 18px 24px;
+    }
+    
+  }
+  .el-date-range-picker__header{
+    height: 32px;
+    position:relative;
+    .el-picker-panel__icon-btn {
+      float: none;
+      margin-top: 0;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      margin-top: -12px;
+      width: 24px;
+      height: 24px;
+      text-align:center;
+      &.el-icon-arrow-right {
+        right:0;
+        left: auto;
+      }
+      &:before {
+        font-size:16px;
+        color: #555555;
+        font-weight: 700;
+        line-height:24px;
+      }
+    }
+    .el-icon-d-arrow-left {
+      display: none;
+    }
+    .el-icon-d-arrow-right {
+      display: none;
+    }
+    > div {
+      color: #0A0A0A;
+      font-size: 18px;
+      line-height: 32px;
+      margin:0;
+      text-align:center;
+      font-weight: 700;
+    }
+  }
+  .el-date-table {
+    th {
+      color: #0a0a0a;
+      font-size: 14px;
+      font-weight: 700;
+      border-color: #F0F0F0;
+      &:first-child, &:last-child {
+        color: #FF3B30;
+      }
+    }
+    td {
+      color: #0a0a0a;
+      font-size: 14px;
+      padding:0;
+      height: 40px;
+      width: 40px;
+      > div {
+        padding:0;
+        height: 40px;
+      }
+      span {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+      }
+      &:first-child, &:last-child {
+        color: #FF3B30;
+      }
+      &.prev-month, &.next-month {
+        span {
+          display: none;
+        }
+      }
+      &.start-date {
+        div {
+          border-radius:40px 0 0 40px;
+        }
+        span {
+          background-color:#000000;
+        }
+      }
+      &.end-date {
+        div {
+          border-radius:0 40px 40px 0;
+        }
+        span {
+          background-color: $pointColor;
+        }
+      }
+      &.in-range {
+        div {
+          background-color: #F8F8F8;
+        }
+      }
+      &.today {
+        color: $pointColor;
+      }
+      &.available:hover {
+        color: $pointColor;
+      }
+    }
+  }
+}
+.el-range-editor {
+  &.el-input__inner {
+    width: 250px;
+    height: $inputHeight;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    position: relative;
+    padding: 4px 60px 4px 16px;
+    .el-range-input {
+      flex: 1;
+      &::placeholder {
+        color:#999;
+      }
+    }
+    .el-range-separator {
+      padding:0;
+      flex-shrink: 0;
+      width: auto;
+      line-height: 32px;
+    }
+    .el-icon-date {
+      position:absolute;
+      right:16px;
+      top:50%;
+      margin-top:- 10px;
+      width: 20px;
+      height: 20px;
+      background: url('../assets/images/icon/icon_date.png') no-repeat 50% 50%;
+      &:before {
+        display:none;
+      }
+      &:after {
+        display: none;
+      }
+    }
+    .el-range__close-icon {
+      display: none;
+    }
+  }
+}
 
 $formLabelWidth : 120px;
 .form-list {
@@ -388,6 +555,9 @@ $formLabelWidth : 120px;
     }
   }
   .form-item__content {
+    +.form-item__content  {
+      margin-top: 20px;
+    }
     .form-item-row {
       display:flex;
       flex-wrap:wrap;
@@ -478,9 +648,9 @@ $formLabelWidth : 120px;
 .guide-text {
   margin-top:8px;
   width: 100%;
-  @include fontoption(14px,#2F77FB,400,24px);   
+  @include fontoption(12px,#2F77FB,400,22px);   
   +.guide-text {
-    margin-top: 4px;
+    margin-top: 2px;
   }
   &.black {
       color: #000;
@@ -565,12 +735,23 @@ $formLabelWidth : 120px;
   position: relative;
   overflow:hidden;
   background-color: #fff;
+  &.disabled {
+    background-color:#f4f4f4;
+    color:#999;
+    cursor:not-allowed;
+    border-color:#ddd
+  }
   textarea {
     @include textareaBasic;
     flex: 1;
     height: 172px;
     width: 100%;
     border: none;
+    &:disabled {
+      background-color:#f4f4f4;
+      color:#999;
+    }
+
   }
   .textarea-limit__text{
     @include fontoption(16px,#000,400,26px);

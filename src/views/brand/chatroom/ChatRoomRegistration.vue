@@ -240,7 +240,7 @@
                                                 <textarea maxlength="150" placeholder="브랜드의 슬로건이나 브랜드 특징을 나타내는 소개글을 입력해주세요." v-model="form.searchIntro"></textarea>
                                                 <div class="textarea-limit__text">
                                                   <p>
-                                                    /150자
+                                                    {{ form.searchIntro.length }} /150자
                                                   </p>
                                                 </div>
                                               </div>

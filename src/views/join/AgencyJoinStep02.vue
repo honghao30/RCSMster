@@ -749,9 +749,7 @@ export default {
       this.AgencyManage = true
     },
     selectCheck (e) {
-      console.log(e.target.value)
       this.agencyListSelect.push(e.target.value)
-      console.log(e.target.value, this.agencyListSelect)
     },
     removeSelect (index) {
       this.agencyListSelect.splice(index, 1)
@@ -767,7 +765,6 @@ export default {
       }
     },
     selectRadio (e) {
-      console.log(e.target.value)
       if (e.target.value === '') {
         this.selectErrorMsg = true
         return false

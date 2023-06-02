@@ -77,6 +77,10 @@ import ChatRoomList from '@/views/brand/chatroom/ChatRoomList'
 import ChatRoomRegistration from '@/views/brand/chatroom/ChatRoomRegistration'
 import ChatRoomRegistrationComplete from '@/views/brand/chatroom/ChatRoomRegistrationComplete'
 import ChatRoomLargeRegistrationComplete from '@/views/brand/chatroom/ChatRoomLargeRegistrationComplete'
+import ChatRoomModified from '@/views/brand/chatroom/ChatRoomModified'
+import ChatRoomLargeModified from '@/views/brand/chatroom/ChatRoomLargeModified'
+import ChatRoomListView from '@/views/brand/chatroom/ChatRoomListView'
+import ChatRoomListLargeView from '@/views/brand/chatroom/ChatRoomListLargeView'
 
 // 브랜드 소식
 import FeedRegistrationBasic from '@/views/brand/feed/FeedRegistrationBasic'
@@ -488,6 +492,38 @@ let router = new Router({
       component: ChatRoomList,
       meta: {
         tittle: '대화방 목록',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/ChatRoomModified',
+      component: ChatRoomModified,
+      meta: {
+        tittle: '대화방 수정',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/ChatRoomLargeModified',
+      component: ChatRoomLargeModified,
+      meta: {
+        tittle: '대화방 대량 수정',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/ChatRoomListView',
+      component: ChatRoomListView,
+      meta: {
+        tittle: '대화방 목록 개별등록 상세',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/ChatRoomListLargeView',
+      component: ChatRoomListLargeView,
+      meta: {
+        tittle: '대화방 목록 대량등록 상세',
         breadcrumb: false
       }
     },

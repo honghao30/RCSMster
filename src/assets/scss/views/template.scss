@@ -353,13 +353,20 @@
             background-repeat: no-repeat;
             background-position: 50% 50%;
             &.btn-back {
-                background-image:url('../assets/images/cmp/btn_prev.png')
+                background-image:url('../assets/images/cmp/btn_prev.png');
             }
             &.btn-more {
-                background-image:url('../assets/images/cmp/btn_more.png')
+                background-image:url('../assets/images/cmp/btn_more.png');
+                &.open {
+									background-image: none;
+								}
             }
             &.btn-down {
-                background-image:url('../assets/images/cmp/chevron_down.png')
+                background-image:url('../assets/images/cmp/chevron_down.png');
+								&.open {
+									transform: rotate(180deg);    
+									transition: all 0.3s;
+								}
             }
         }
     }
