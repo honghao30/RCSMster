@@ -16,7 +16,7 @@
             <Dropdown :options="TitleOptions" />
             <div class="search-area">
               <span class="input">
-                <input type="text" placeholder="브랜드명을 입력하세요."/>
+                <input type="text" placeholder="검색어를 입력하세요."/>
               </span>
               <ButtonCmp
                 type="btn-search"
@@ -24,15 +24,10 @@
             </div>
           </div>
           <div class="right-area">
-            <Dropdown :options="RcsOptions" />
-            <Dropdown :options="SortOptions" />
+            <Dropdown :options="RcsOptions" placeholder="RCS 사용"/>
+            <Dropdown :options="SortOptions" placeholder="구분"/>
             <Dropdown :options="NewOptions" />
             <Dropdown :options="NumberOptions" />
-            <div class="pager">
-              <span class="num">1/3</span>
-              <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
-              <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
-            </div>
           </div>
         </div>
         <div class="table__wrap chatroom__table">
@@ -75,9 +70,14 @@
                   </span>
                 </td>
                 <td>
-                  <div class="chat_title">
+                  <div class="chat_title__wrap">
+                    <div class="chat_title">
                     <span class="large" v-if="item.large">대량</span>
                     {{ item.chatTitle }}
+                    </div>
+                    <div class="chat_title-sub">
+                      <span v-if="item.statusText === '임시저장'" class="temporary-date">{{ item.date }}</span>
+                    </div>
                   </div>
                 </td>
                 <td>
@@ -105,7 +105,6 @@
                     >
                       {{ item.statusText }}
                     </span>
-                    <span v-if="item.statusText === '임시저장'" class="temporary-date">{{ item.date }}</span>
                   </div>
                 </td>
               </tr>
@@ -130,6 +129,7 @@
             <li>대화방을 등록하셔야 RBC의 다양한 기능을 사용할 수 있습니다.</li>
           </ul>
         </div>
+        <PagingCmp />
       </div>
     </div>
   </div>
@@ -141,13 +141,15 @@ import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
+import PagingCmp from '@/components/common/PagingCmp.vue'
 
 export default {
   components: {
     PageTitle,
     BrandLnb,
     ButtonCmp,
-    Dropdown
+    Dropdown,
+    PagingCmp
   },
   data() {
     return {
@@ -242,22 +244,26 @@ export default {
       ],
       RcsOptions: [
         {
-          label: '대화방 명',
-          value: 'chatroom'
-        },
-        {
-          label: '챗봇 ID',
-          value: 'chatbot'
-        }
-      ],
-      SortOptions: [
-        {
           label: '사용',
           value: 'use'
         },
         {
           label: '미사용',
           value: 'notuse'
+        }
+      ],
+      SortOptions: [
+        {
+          label: 'MO',
+          value: 'mo'
+        },
+        {
+          label: '기본',
+          value: 'basic'
+        },
+        {
+          label: '챗봇연결',
+          value: 'chatconnect'
         }
       ],
       NewOptions: [

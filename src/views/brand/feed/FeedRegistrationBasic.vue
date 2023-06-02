@@ -138,7 +138,7 @@
       v-if="isModalViewed"
       @closeModal="isModalViewed = false"
     >
-      <ConfirmMsg
+      <!-- <ConfirmMsg
           @closeModal="isModalViewed = false"
         >
         <div class="msg brand-info__msg" slot="msg">
@@ -156,31 +156,18 @@
             <li>이미지는 필수 1장, 최대 10장까지 등록 가능 합니다.</li>
           </ul>
           <draggable
+            class="msg__image-container"
             v-model="fileList"
-            class="file-list"
-            draggable=".file--draggable"
           >
             <div
-              v-for="(slide, j) in fileList" :key="j"
-              class="file-item"
-              :class="[{'active': slide.isActive}, {'file--draggable': isfileEdit}]"
-              @click="slideActive(j)"
+              v-for="imgFile in fileList" :key="imgFile"
+              class="msg__image-item"
             >
+              {{ imgFile }}
             </div>
           </draggable>
-          <div class="msg__image-container">
-            <div class="msg__image-item"><p>1</p></div>
-            <div class="msg__image-item"><p>2</p></div>
-            <div class="msg__image-item"><p>3</p></div>
-            <div class="msg__image-item"><p>4</p></div>
-            <div class="msg__image-item"><p>5</p></div>
-            <div class="msg__image-item"><p>6</p></div>
-            <div class="msg__image-item"><p>7</p></div>
-            <div class="msg__image-item"><p>8</p></div>
-            <div class="msg__image-item"><p>9</p></div>
-            <div class="msg__image-item"><p>10</p></div>
-          </div>
         </div>
+
         <div class="button__wrap" slot="button">
             <ButtonCmp
             type="btn-line"
@@ -195,7 +182,8 @@
               저장
             </ButtonCmp>
         </div>
-      </ConfirmMsg>
+      </ConfirmMsg> -->
+      <feedModal />
     </ModalView>
   </div>
 </template>
@@ -207,8 +195,9 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
-import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
-import draggable from 'vuedraggable'
+// import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
+// import draggable from 'vuedraggable'
+import feedModal from '@/views/brand/feed/components/feedModal.vue'
 
 export default {
   components: {
@@ -218,8 +207,9 @@ export default {
     PageTitleH3,
     ButtonCmp,
     ModalView,
-    ConfirmMsg,
-    draggable
+    // ConfirmMsg,
+    // draggable
+    feedModal
   },
   data () {
     return {

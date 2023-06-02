@@ -2,7 +2,7 @@
   {
     "menuId": "M0100",
     "parentMenuId": "#",
-    "path": "/intro/service",
+    "path": "#",
     "level": 1,
     "sort": 1,
     "name": "서비스 소개"
@@ -34,10 +34,10 @@
   {
     "menuId": "M0200",
     "parentMenuId": "#",
-    "path": "/service/dashboard",
+    "path": "",
     "level": 1,
     "sort": 2,
-    "name": "서비스 관리"
+    "name": "파트너사"
   },
   {
     "menuId": "M0201",
@@ -58,10 +58,10 @@
   {
     "menuId": "M0300",
     "parentMenuId": "#",
-    "path": "/feed/dashboard",
+    "path": "/notice",
     "level": 1,
     "sort": 2,
-    "name": "브랜드 소식 관리"
+    "name": "고객센터"
   },
   {
     "menuId": "M0301",
@@ -90,18 +90,18 @@
   {
     "menuId": "M0400",
     "parentMenuId": "#",
-    "path": "/cs/notice",
+    "path": "#",
     "level": 1,
     "sort": 3,
-    "name": "고객센터"
+    "name": "기술지원"
   },
   {
     "menuId": "M0401",
     "parentMenuId": "M0400",
-    "path": "/cs/notice",
+    "path": "",
     "level": 2,
     "sort": 1,
-    "name": "공지사항"
+    "name": "기술지원"
   },
   {
     "menuId": "M0402",

@@ -8,7 +8,7 @@ export function getTodayDate() {
   let minutes = today.getMinutes()
   let dayOfWeek = weekdays[today.getDay()]
   month = month < 10 ? '0' + month : month
-  day = day < 10 ? '0' + day : day;
+  day = day < 10 ? '0' + day : day
   let timeOfDay = hours < 12 ? '오전' : '오후'
   hours = hours % 12 || 12
   minutes = minutes < 10 ? '0' + minutes : minutes

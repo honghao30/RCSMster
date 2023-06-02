@@ -298,7 +298,6 @@
                 color: #666;
             }
         }
-          
     }
     .brand-detail {
         border-top: 1px solid #eaeaea;
@@ -626,9 +625,9 @@
                 }
             }
             &.editmod {
-              .table__wrap{
+                .table__wrap{
                 border-top: 2px solid #2f77fb;
-              }
+                }
             }
         }
         .exception-txt{
@@ -673,11 +672,23 @@
     }
 }
 .top-progress-area+.chatroom__wrap {
-   margin-top:32px;
+    margin-top:32px;
 }
 .chatroom-modify__title {
-  position: relative;
-  .switch {
+    position: relative;
+    margin-bottom: 32px;
+    padding-top: 48px;
+    .chatroom-modify__title-use{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        .page-title{
+            margin-bottom: 0;
+            padding-top: 0;
+        }
+    }
+    .switch {
     position: absolute;
     right: 0;
     top:65px;
@@ -685,7 +696,7 @@
     align-items: center;
     gap: 10px;
     @include fontoption(14px,#999,400,26px);
-  }
+    }
 }
 //대화방 목록
 .brand-info__wrap {
@@ -700,27 +711,31 @@
                         border-bottom: none;
                     }
                 }
-                .chat_title{
-                    display: flex;
-                    gap: 8px;
-                    margin-left: 18px;
-                    .large{
-                        display: inline-block;
-                        height: 24px;
-                        min-width: 39px;
-                        padding: 0 8px;
-                        background-color: rgba(47, 119, 251, 0.08);
-                        @include fontoption(12px,$pointColor,400,24px);
+                .chat_title__wrap{
+                    padding-left: 18px;
+                    .chat_title{
+                        float: left;
+                        .large{
+                            display: inline-block;
+                            height: 24px;
+                            min-width: 39px;
+                            padding: 0 8px;
+                            background-color: rgba(47, 119, 251, 0.08);
+                            @include fontoption(12px,$pointColor,400,24px);
+                        }
+                    }
+                    .chat_title-sub{
+                        float: right;
+                        .temporary-date{
+                            display: inline-block;
+                            @include fontoption(12px,$errorColor,400,24px);
+                        }
                     }
                 }
                 .chat-status{
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    .temporary-date{
-                        display: inline-block;
-                        @include fontoption(12px,$errorColor,400,24px);
-                    }
                 }
             }    
         }

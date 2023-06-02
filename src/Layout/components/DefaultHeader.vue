@@ -12,13 +12,8 @@
         <div class="nav__inner">
           <a role="button" @click="closeNav()" class="nav__button--close">닫기</a>
           <ul>
-            <li v-for="(item, i) in navMenu" :key="i" class="nav-item">
-              <router-link :to="item.to">{{ item.title }}</router-link>
-              <!-- <ul class="nav-sub" v-if="item.children">
-                <li v-for="(subItem, i) in item.children" :key="i">
-                  <router-link :to="subItem.to">{{ subItem.title }}</router-link>
-                </li>
-              </ul>  -->
+            <li v-for="menu in level1Menus" :key="menu.menuId" class="nav-item">
+              <router-link :to="menu.path">{{ menu.name }}</router-link>
             </li>
           </ul>
         </div>
@@ -43,23 +38,40 @@
 </template>
 <script>
 import navMenu from './nav'
+import { getMenus } from '@/api/common/menu'
 
 export default {
   name: 'DefaultHeader',
   data() {
     return {
-      navMenu
+      navMenu,
+      menus: []
+    }
+  },
+  created() {
+    this.init()
+  },
+  computed: {
+    level1Menus() {
+      let level1Menus = []
+      if (this.menus.length > 0) {
+        level1Menus = this.menus.filter(m => m.level === 1)
+      }
+      return level1Menus
     }
   },
   methods: {
-    // openNav() {
-    //   let el = document.querySelector('.nav')
-    //   el.classList.add('open')
-    // },
-    // closeNav() {
-    //   let el = document.querySelector('.nav')
-    //   el.classList.remove('open')
-    // }
+    init() {
+      getMenus().then(res => {
+        this.menus = res
+        console.log(this.menus)
+      })
+    },
+    getLevel2Menus(level1Menu) {
+      return this.menus.filter(m => {
+        return m.parentMenuId === level1Menu.menuId
+      })
+    }
   }
 }
 </script>

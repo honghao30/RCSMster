@@ -94,7 +94,6 @@
             </div>
             <ChatEmulator
               :chatName="form.chatTitle"
-              :largerTitle="true"
               :saftyMark="form.saftyMark"
               :allowMsg="form.allowMsg"
             />
@@ -125,29 +124,6 @@
       v-if="isModalViewed"
       @closeModal="isModalViewed = false"
     >
-      <!-- 입력된 데이터가 있는 상태에서 개별/대량 등록 변경 시 -->
-      <ConfirmMsg
-        @closeModal="isModalViewed = false"
-        v-if="cancelReg"
-      >
-        <div class="msg" slot="msg">
-          대화방 개별 등록을 취소 하시겠습니까?<br>입력하신 정보가 모두 초기화됩니다.
-        </div>
-        <div class="button__wrap" slot="button">
-          <ButtonCmp
-          type="btn-line"
-          @click="closeMsg"
-          >
-            취소
-          </ButtonCmp>
-          <ButtonCmp
-          type="btn-blue"
-          @click="closeMsg"
-          >
-            확인
-          </ButtonCmp>
-        </div>
-      </ConfirmMsg>
       <!-- 임시저장 -->
       <ConfirmMsg
         @closeModal="isModalViewed = false"
@@ -165,40 +141,6 @@
           </ButtonCmp>
         </div>
       </ConfirmMsg>
-      <!-- 승인 요청 -->
-      <ConfirmMsg
-        @closeModal="isModalViewed = false"
-        v-if="isModalApprove"
-      >
-        <div class="msg" slot="msg">
-          입력하신 정보로 대화방을 등록합니다.
-        </div>
-        <div class="button__wrap" slot="button">
-          <!-- 원래 @click="closeMsg" 이나 대량등록 후 결과알림 팝업 및 대량등록완료 페이지 구현을 위해 @click="LargeResult" 작성함 -->
-          <ButtonCmp
-          type="btn-line"
-          @click="LargeResult"
-          >
-            취소
-          </ButtonCmp>
-          <router-link
-            to="/ChatRoomRegistrationComplete"
-            class="btn btn-blue"
-          >승인요청</router-link>
-        </div>
-      </ConfirmMsg>
-      <!-- 대화방 유형 > 번호 선택 시 -->
-      <SelectPhoneNum
-        @closeModal="isModalViewed = false"
-        v-if="isPhoneNumber"
-      >
-      </SelectPhoneNum>
-      <!-- 대량등록 후 결과 알림  -->
-      <LargeRegistationResult
-        @closeModal="isModalViewed = false"
-        v-if="isLargeResult"
-      >
-      </LargeRegistationResult>
     </ModalView>
     <!-- //모달  -->
   </div>
@@ -211,8 +153,6 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
-import SelectPhoneNum from '@/views/brand/chatroom/SelectPhoneNum.vue'
-import LargeRegistationResult from '@/views/brand/chatroom/LargeRegistationResult.vue'
 import ChatEmulator from '@/views/brand/components/ChatEmulator.vue'
 
 export default {
@@ -222,9 +162,7 @@ export default {
     ButtonCmp,
     ModalView,
     ConfirmMsg,
-    SelectPhoneNum,
-    ChatEmulator,
-    LargeRegistationResult
+    ChatEmulator
   },
   data() {
     return {
@@ -248,11 +186,7 @@ export default {
         }
       ],
       isModalViewed: false,
-      isModalSave: false,
-      cancelReg: false,
-      isPhoneNumber: false,
-      isModalApprove: false,
-      isLargeResult: false
+      isModalSave: false
     }
   },
   computed: {
@@ -276,25 +210,9 @@ export default {
       this.isModalViewed = true
       this.isModalSave = true
     },
-    SelectPhoneNumModal () {
-      this.isModalViewed = true
-      this.isPhoneNumber = true
-    },
     closeMsg () {
       this.isModalViewed = false
       this.isModalSave = false
-    },
-    onSubmit () {
-      this.isModalViewed = true
-      this.isModalApprove = true
-    },
-    RegistrationChange () {
-      this.isModalViewed = true
-      this.cancelReg = true
-    },
-    LargeResult () {
-      this.isModalViewed = true
-      this.isLargeResult = true
     },
     btnRemove () {
       alert('대화방을 삭제하시겠습니까?')

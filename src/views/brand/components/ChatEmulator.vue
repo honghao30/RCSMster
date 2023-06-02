@@ -8,23 +8,23 @@
             <div class="profile__image">
               <img src="@/assets/images/dummy/brand_logo.png" alt="">
             </div>
-            <p class="chatroom-name" v-if="largerTitle">브랜드명</p>
-            <p v-else :class="{name: true, short: isShort}">{{ chatName }}</p>
+            <p :class="{name: true, short: isShort}"><span v-if="chatName !== ''">{{ chatName }}</span><span v-else>대화방 명</span></p>
             <button class="btn-down" :class="{open: isOpen}" @click="btnToggle"></button>
           </div>
         </div>
         <button class="btn-more" :class="{open: isBlind}"><span class="blind">정보</span></button>
       </div>
       <div class="emulator-body">
-        <p class="chat-date">{{ todayData }}</p>
-
-        <p class="safty-icon" v-if="showSaftyMark">확인된 발신번호</p>
-        <div class="chat-bubble__wrap sender">
-          <div class="chat-bubble">
-            <p>{{ chatName }} 가입을 환영합니다.<br>더 풍부해진 문자서비스를 지금 만나보세요!</p>
+        <template v-if="showChatWelcome">
+          <p class="chat-date">{{ todayData }}</p>
+          <p class="safty-icon" v-if="showSaftyMark">확인된 발신번호</p>
+          <div class="chat-bubble__wrap sender">
+            <div class="chat-bubble">
+              <p>{{ chatName }} 가입을 환영합니다.<br>더 풍부해진 문자서비스를 지금 만나보세요!</p>
+            </div>
+            <span class="chat-time">{{ currentTime }}</span>
           </div>
-          <span class="chat-time">{{ currentTime }}</span>
-        </div>
+        </template>
         <!-- <div class="chat-bubble__wrap receiver">
           <div class="chat-bubble">
             <p>가입을 환영합니다.<br>더 풍부해진 문자서비스를 지금 만나보세요!</p>
@@ -102,12 +102,7 @@ export default {
       default: 'Y'
     },
     chatName: {
-      type: String,
-      default: '대화방 명'
-    },
-    largerTitle: {
-      type: Boolean,
-      required: true
+      type: String
     }
   },
   data () {
@@ -132,6 +127,9 @@ export default {
     },
     defautFooter() {
       return this.allowMsg === 'Y'
+    },
+    showChatWelcome() {
+      return this.chatName !== ''
     }
   },
   watch: {

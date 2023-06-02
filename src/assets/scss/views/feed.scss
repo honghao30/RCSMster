@@ -242,10 +242,8 @@
                 background: #FFFFFF;
                 border: 1px dashed #DDDDDD;
                 border-radius: 8px;
-                p {
-                    padding: 34px;
-                    @include fontoption(14px,#666,400,24px);
-                }
+                padding: 34px 0;
+                @include fontoption(14px,#666,400,24px);
             }
         }
     }

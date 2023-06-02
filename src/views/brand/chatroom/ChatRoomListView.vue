@@ -3,7 +3,12 @@
     <div class="brand__inner">
       <BrandLnb />
       <div class="brand-info__wrap">
-        <PageTitle pagetitle="SYSTEM STUDIOS 대화방" />
+        <div class="chatroom-modify__title">
+          <div class="chatroom-modify__title-use">
+            <span class="flag-progress done">사용</span>
+            <PageTitle pagetitle="SYSTEM STUDIOS 대화방" />
+          </div>
+        </div>
         <div class="top-progress-area">
           <span class="flag-progress done">승인완료</span>
           <span class="flag-progress">미사용</span>
@@ -72,7 +77,7 @@
                         <div class="form-item__content">
                           <div class="form-item-row">
                             <div class="input-item">
-                              <a class="text" download>통신서비스가입증명원.pdf</a>
+                              <a class="text" href="" download>통신서비스가입증명원.pdf</a>
                               <span class="flag-progress">승인필요</span>
                             </div>
                           </div>
