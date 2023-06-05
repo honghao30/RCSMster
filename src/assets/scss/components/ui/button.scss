@@ -146,9 +146,15 @@ $radius: 8px;
   &.small {
     height: 42px;
   }
-  &.inactive {
-    color:#999;
-    border-color:#999;
+  &.inactive, &:disabled {
+    color:#ccc;
+    border-color:#ddd;
+    background-color:#f4f4f4;
+    &:hover {
+      color:#ccc;
+      border-color:#ddd;
+      background-color:#f4f4f4;
+    }
   }
 }
 

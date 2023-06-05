@@ -1,13 +1,15 @@
 <template>
   <div class="feed-view__wrap">
     <div class="feed-view__top">
-      <ul>
-        <li class="id"><span class="title">소식 ID</span> <em>{{ feedData.feedId }}</em></li>
+      <ul class="feed-view__info">
+        <li class="id"><span class="label">소식 ID</span>{{ feedData.feedId }}</li>
         <li class="type">{{ feedData.feedType }}</li>
         <li class="status">{{ feedData.feedStatus }}</li>
-        <li class="author"><span class="title">등록자</span>{{ feedData.feedAuthor }}</li>
-        <li class="date"><span class="title">최종 작업일</span>{{ feedData.feedDate }}</li>
-        <li class="date"><span class="title">게시(예약)일</span>{{ feedData.feedPublishDate }}</li>
+      </ul>
+      <ul class="feed-view__info">
+        <li class="author"><span class="label">등록자</span>{{ feedData.feedAuthor }}</li>
+        <li class="date"><span class="label">최종 작업일</span>{{ feedData.feedDate }}</li>
+        <li class="date"><span class="label">게시(예약)일</span>{{ feedData.feedPublishDate }}</li>
       </ul>
       <ul class="ctrl">
         <li>

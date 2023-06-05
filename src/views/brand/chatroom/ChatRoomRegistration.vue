@@ -300,11 +300,11 @@
                                   <div class="input-item">
                                     <span class="radiobox">
                                       <input type="radio" name="receptionSms" id="receptionSmsN" v-model="form.receptionSms" value="defalut"/>
-                                      <label for="receptionSmsN"><span class="checkbox__text">입력 불가능</span></label>
+                                      <label for="receptionSmsN"><span class="checkbox__text">미사용</span></label>
                                     </span>
                                     <span class="radiobox">
                                       <input type="radio" name="receptionSms" id="receptionSmsY" v-model="form.receptionSms" value="use" />
-                                      <label for="receptionSmsY"><span class="checkbox__text">입력 가능</span></label>
+                                      <label for="receptionSmsY"><span class="checkbox__text">사용</span></label>
                                     </span>
                                   </div>
                                 </div>

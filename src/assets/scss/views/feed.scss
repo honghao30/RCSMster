@@ -85,9 +85,16 @@
                         margin-top:-6px;
                     }
                 }
+                .input-item {
+                    +.input-item {
+                        margin-top:0;
+                    }
+                }
             } 
         }
         .button-list {
+            display:flex;
+            gap: 8px;
             li {
                 display:flex;
                 align-items:center;
@@ -98,8 +105,12 @@
                 padding:2px 12px ;
                 background-color:#aaa;
                 border-radius: 4px;
+                cursor:pointer;
                 .btn-del {
                     margin-left: 10px
+                }
+                &.active {
+                    background-color:$pointColor
                 }
             }
         }
@@ -481,6 +492,47 @@ div[class^="feed"] {
         padding: 32px 0;
         .feed-view__top {
             position:relative;
+            display:flex;
+            flex-direction: column;
+            gap: 4px;
+            .feed-view__info {
+                display:flex;
+                flex-direction: row;
+                align-items: center;
+                li {
+                    display:inline-flex;
+                    align-items:center;
+                    line-height: 26px;
+                    .label {
+                        display: inline-block;
+                        font-weight: 700;
+                        margin-right:6px;
+                    }
+                    &:before {
+                        content:'';
+                        display: inline-block;
+                        width:1px;
+                        height: 12px;
+                        background-color: #ddd;
+                        margin:0 12px;
+                    }
+                    &:first-child {
+                        &:before {
+                            display: none;
+                        }
+                    }
+                    &.id {
+                        font-weight: 700;
+                    }
+                    &.type {
+                        font-weight: 500;
+                    }
+                    &.status {
+                        color: $pointColor;
+                        font-weight: 500;
+                    }
+                }
+            }
             .ctrl {
                 position:absolute;
                 right:0;

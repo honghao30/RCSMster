@@ -25,7 +25,7 @@
           :options="swiperOption"
           ref="mySwiper"
         >
-          <swiper-slide v-for="(slide, i) in slideData" :key="i">
+          <swiper-slide v-for="(slide, i) in feedInfoData.slideData" :key="i">
               <div class="" v-if="slide.slideType == 'image'">
                 <div class="item--none">
                   <p class="img">이미지를 등록해주세요.</p>
@@ -61,9 +61,6 @@ export default {
     SwiperSlide
   },
   props: {
-    slideData: {
-      type: Array
-    },
     feedInfoData: {
       type: Object
     }
