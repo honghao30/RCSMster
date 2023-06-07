@@ -31,9 +31,17 @@
         </ul>
       </div>
     </div>
-
     <Dropdown searchable :options="dropdownOptions" v-model="form.dropdown">
     </Dropdown>
+    <!-- dropdown 옆에 붙어있는 search input -->
+    <div class="dropdown-search__wrap">
+      <Dropdown :options="TitleOptions"/>
+      <div class="search-area">
+        <span class="input search">
+          <input type="text" placeholder="검색어를 입력하세요."/>
+        </span>
+      </div>
+    </div>
     <!-- search 가 필요하시면 searchable 추가해주세요.-->
     <TitleH3 titleh3="Checkbox" />
     <span class="checkbox">
@@ -176,6 +184,16 @@ export default {
         {
           label: 'option3',
           value: 'option3'
+        }
+      ],
+      TitleOptions: [
+        {
+          label: '대화방 명',
+          value: 'chatroom'
+        },
+        {
+          label: '챗봇 ID',
+          value: 'chatbot'
         }
       ],
       idValidation: true

@@ -42,7 +42,7 @@
     </div>
     <div class="feed-view">
       <div class="feed-view__box">
-        <feedEmulator :feedInfoData="feedData.feedItem" >
+        <feedEmulator :feedInfoData="feedData.feedItem" />
       </div>
     </div>
   </div>

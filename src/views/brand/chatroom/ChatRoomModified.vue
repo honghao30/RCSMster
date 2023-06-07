@@ -341,7 +341,7 @@
             <li>- 등록 방법 변경 시, 입력한 데이터가 초기화됩니다.</li>
           </ul>
         </div>
-        <div class="button__wrap">
+        <div class="button__wrap flex-end">
           <ButtonCmp
               type="btn-blue-line"
               @click="btnRemove"

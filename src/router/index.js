@@ -82,6 +82,9 @@ import ChatRoomLargeModified from '@/views/brand/chatroom/ChatRoomLargeModified'
 import ChatRoomListView from '@/views/brand/chatroom/ChatRoomListView'
 import ChatRoomListLargeView from '@/views/brand/chatroom/ChatRoomListLargeView'
 
+// 대화방 메뉴
+import ChatRoomMenuAdd from '@/views/brand/chatroom/ChatRoomMenuAdd'
+
 // 브랜드 소식
 import FeedRegistrationBasic from '@/views/brand/feed/FeedRegistrationBasic'
 import FeedRegistration from '@/views/brand/feed/FeedRegistration'
@@ -524,6 +527,14 @@ let router = new Router({
       component: ChatRoomListLargeView,
       meta: {
         tittle: '대화방 목록 대량등록 상세',
+        breadcrumb: false
+      }
+    },
+    {
+      path: '/ChatRoomMenuAdd',
+      component: ChatRoomMenuAdd,
+      meta: {
+        tittle: '대화방 메뉴 등록',
         breadcrumb: false
       }
     },

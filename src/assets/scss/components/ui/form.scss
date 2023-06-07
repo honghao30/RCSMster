@@ -1,6 +1,6 @@
 //폼 공통요소
-$inputHeight: 42px;
-$font-tsize: 16px;
+$inputHeight: 36px;
+$font-tsize: 14px;
 $inputColor: #fafafa;
 $bordersColor: #DDDDDD;
 $textareaHeight: 100px;
@@ -13,14 +13,14 @@ $textareaHeight: 100px;
     display: inline-block;
     font-size: $font-tsize;
     height: $inputHeight;
-    line-height: $inputHeight;    
+    line-height: $defaultLineHeight;    
     padding: 0 16px;    
     width: 100%;
     &::placeholder {
-      color: #999
+      color: #999;
     }
     &:focus {
-      border-color:#4a5567;
+      border-color:$pointColor;
       outline:none;
     }
     &:disabled {
@@ -42,7 +42,7 @@ $textareaHeight: 100px;
   overflow-y: auto;
   font-family:$font-family;
   &::placeholder {
-    @include fontoption(16px,#999,400,26px);
+    color: #999;
     margin-top: 8px;
   }
   &:focus {
@@ -64,13 +64,13 @@ $textareaHeight: 100px;
     &::after {
       content:'';
       display:inline-block;
-      width:24px;
-      height: 24px;
+      width:20px;
+      height: 20px;
       background: url('../assets/images/icon/icon_search.png') no-repeat 50% 50%;
       position:absolute;
       right:16px;
       top:50%;
-      margin-top: -12px;
+      margin-top: -10px;
     }
     input {
       padding-right:40px;
@@ -96,14 +96,10 @@ $textareaHeight: 100px;
     padding: 0 64px 0 16px;
   }
   .input-limit__text{
-    @include fontoption(16px,#000,400,26px); 
     position: absolute;
     right: 16px;
     top:50%;
     transform: translateY(-50%);
-  }
-  .textarea-limit__text{
-    @include fontoption(16px,#000,400,26px); 
   }
 }
 
@@ -137,7 +133,6 @@ $textareaHeight: 100px;
 
   }
   .textarea-limit__text{
-    @include fontoption(16px,#000,400,26px);
     position: absolute;
     text-align: end;
     width:calc(100% - 32px);
@@ -365,6 +360,44 @@ $textareaHeight: 100px;
   
   }
 }
+// dropdown 옆에 붙어있는 search input
+.dropdown-search__wrap{
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  .dropdown{
+      .dropdown__trigger{
+        border-color: transparent;
+        border-radius: 0;
+          &::before{
+              content: '';
+              position: absolute;
+              width: 1px;
+              height: 12px;
+              background-color: #ddd;
+              display: inline-block;
+              right: 0;
+          }
+      }
+      &.open{
+          .dropdown__trigger{
+              border-color: #4a5567;
+              border-radius: 8px 8px 0 0;
+              &::before{
+                display: none;
+              }
+          }
+      }
+  }
+  .input{
+      input{
+          border: 0;
+      }
+  }
+  .search-area{
+    width: 100%;
+  }
+}
 .switch {
   &__core {
     display: inline-block;
@@ -402,6 +435,7 @@ $textareaHeight: 100px;
 // element ui datapicker custom  
 .el-picker-panel {
   border-radius: 12px;
+  width:328px;
   &.el-date-range-picker {
     width:632px;
   } 
@@ -409,51 +443,71 @@ $textareaHeight: 100px;
     display: none;
   }
   .el-picker-panel__content {
-    padding: 28px 24px 18px 12px;
+    padding: 0 24px 18px;
+    margin:0;
+    width:328px;
     &.is-left {
+      width: 306px;
       border: none;
-      padding: 28px 12px 18px 24px;
+      padding: 24px 12px 18px 24px;
+    }
+    &.is-right {
+      width: 306px;
+      padding: 24px 24px 18px 12px;
     }
     
   }
   .el-date-range-picker__header{
-    height: 32px;
+    height: 40px;
     position:relative;
-    .el-picker-panel__icon-btn {
-      float: none;
-      margin-top: 0;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      margin-top: -12px;
-      width: 24px;
-      height: 24px;
-      text-align:center;
-      &.el-icon-arrow-right {
-        right:0;
-        left: auto;
-      }
-      &:before {
-        font-size:16px;
-        color: #555555;
-        font-weight: 700;
-        line-height:24px;
-      }
-    }
-    .el-icon-d-arrow-left {
-      display: none;
-    }
-    .el-icon-d-arrow-right {
-      display: none;
-    }
-    > div {
+  }
+  .el-date-picker__header{
+    height: 40px;
+    position:relative;
+    margin:24px 24px 0 24px;
+    .el-date-picker__header-label {
       color: #0A0A0A;
       font-size: 18px;
-      line-height: 32px;
+      line-height: 38px;
       margin:0;
       text-align:center;
       font-weight: 700;
     }
+  }
+  .el-picker-panel__icon-btn {
+    float: none;
+    margin-top: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -12px;
+    width: 24px;
+    height: 24px;
+    text-align:center;
+    &.el-icon-arrow-right {
+      right:0;
+      left: auto;
+    }
+    &:before {
+      font-size:16px;
+      color: #555555;
+      font-weight: 700;
+      line-height:24px;
+    }
+  }
+  .el-icon-d-arrow-left {
+    display: none;
+  }
+  .el-icon-d-arrow-right {
+    display: none;
+  }
+  > div {
+    color: #0A0A0A;
+    font-size: 18px;
+    line-height: 38px;
+    margin:0;
+    text-align:center;
+    font-weight: 700;
   }
   .el-date-table {
     th {
@@ -483,11 +537,6 @@ $textareaHeight: 100px;
       &:first-child, &:last-child {
         color: #FF3B30;
       }
-      &.prev-month, &.next-month {
-        span {
-          display: none;
-        }
-      }
       &.start-date {
         div {
           border-radius:40px 0 0 40px;
@@ -504,13 +553,21 @@ $textareaHeight: 100px;
           background-color: $pointColor;
         }
       }
+      &.prev-month, &.next-month {
+        span {
+          opacity: 0.5;
+        }
+      }
       &.in-range {
         div {
           background-color: #F8F8F8;
         }
       }
       &.today {
-        color: $pointColor;
+        span {
+          color: $pointColor;
+        }
+        
       }
       &.available:hover {
         color: $pointColor;
@@ -518,16 +575,26 @@ $textareaHeight: 100px;
     }
   }
 }
-.el-range-editor {
+.el-date-editor {
+  position: relative;
+  &.w--full {
+    width: 100%;
+  }
+  .el-input__inner {
+    height: 36px;
+    line-height: 34px;
+    text-align:left;
+    padding-left: 16px;
+  }
   &.el-input__inner {
     width: 250px;
     height: $inputHeight;
     border: 1px solid #ddd;
     border-radius: 6px;
-    position: relative;
-    padding: 4px 60px 4px 16px;
+    padding: 4px 40px 4px 16px;
     .el-range-input {
       flex: 1;
+      text-align:left;
       &::placeholder {
         color:#999;
       }
@@ -535,27 +602,36 @@ $textareaHeight: 100px;
     .el-range-separator {
       padding:0;
       flex-shrink: 0;
-      width: auto;
-      line-height: 32px;
+      width:12px;
+      line-height: 26px;
     }
-    .el-icon-date {
-      position:absolute;
-      right:16px;
-      top:50%;
-      margin-top:- 10px;
-      width: 20px;
-      height: 20px;
-      background: url('../assets/images/icon/icon_date.png') no-repeat 50% 50%;
-      &:before {
-        display:none;
-      }
-      &:after {
-        display: none;
-      }
+    
+  }
+  .el-input__prefix {
+    left:auto;
+    right:0;
+  }
+  .el-icon-date {
+    position:absolute;
+    right:16px;
+    left: auto; 
+    top:50%;
+    margin-top:- 10px;
+    width: 20px;
+    height: 20px;
+    background: url('../assets/images/icon/icon_date.png') no-repeat 50% 50%;
+    &:before {
+      display:none;
     }
-    .el-range__close-icon {
+    &:after {
       display: none;
     }
+  }
+  .el-input__suffix {
+    right:36px;
+  }
+  .el-range__close-icon {
+    line-height:26px;
   }
 }
 
@@ -591,7 +667,7 @@ $formLabelWidth : 120px;
   th {
     text-align: left;
     border-bottom: 1px solid #F0F0F0;          
-    @include fontoption(16px,#000,500,26px);
+    @include fontoption(16px,#000,500,28px);
     vertical-align: top;     
     padding:28px 0 28px 16px;        
   }
@@ -599,8 +675,6 @@ $formLabelWidth : 120px;
       border-bottom: 1px solid #F0F0F0;
       padding-right:20px;
       input::placeholder {
-          font-size: 16px;
-          line-height: 26px; 
           color: #999999;
       }
       .text {
@@ -608,7 +682,7 @@ $formLabelWidth : 120px;
       }
   }
   .form-item__label {
-    @include fontoption(16px,#000,500,26px);
+    @include fontoption(16px,#000,500,28px);
     &.required:after {
       content:'*';
       color: $pointColor;
@@ -715,16 +789,13 @@ $formLabelWidth : 120px;
   margin-top:8px;
   width: 100%;
   @include fontoption(12px,#2F77FB,400,22px);   
-  +.guide-text {
-    margin-top: 2px;
-  }
   &.black {
-      color: #000;
+    color: #000;
   }
   &.validation {
-      margin:10px 0 0;
-      display:flex;
-      align-items:flex-start;
+    margin:10px 0 0;
+    display:flex;
+    align-items:flex-start;
     &:before {
       content:'';
       display:inline-block;
@@ -737,10 +808,10 @@ $formLabelWidth : 120px;
       background-position: 50% 50%;
       background-size: 100%;
       margin-right:4px; 
-    }   
+    }
   }
   &.error {
-    @include fontoption(14px,#FF4830,400,24px);    
+    color: $errorColor;
     display:flex;
     align-items:flex-start;
     &:before {
@@ -756,6 +827,9 @@ $formLabelWidth : 120px;
       background-size: 100%;
       margin-right:4px;
     }
+  }
+  +.guide-text {
+    margin-top: 2px;
   }
 }
 
@@ -788,7 +862,6 @@ $formLabelWidth : 120px;
     width: 74px;
   }
   .list-number {
-    font-size: 14px;
     white-space:nowrap
   }
 }
@@ -859,7 +932,7 @@ $formLabelWidth : 120px;
     padding: 0 12px;    
     width: 100%;
     &::placeholder {
-      @include fontoption(16px,#999,400,26px);      
+      color: #999;     
     }
     &:disabled, 
     &:read-only {

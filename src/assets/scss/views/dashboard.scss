@@ -59,14 +59,13 @@
 			thead {
 				th {
 					span {
-						@include fontoption(14px,#000,500,26px);
+						font-weight: 500;
 					}
 				}
 			}
 			tbody {
 				tr {
 					td {
-						@include fontoption(16px,#000,400,24px);
 						.brandname {
 							padding: 0px 16px;
 							display: flex;
@@ -102,9 +101,6 @@
 									min-width: 40px;
 									height: 40px;
 									margin:0 16px;
-								}
-								.brand__title{
-									@include fontoption(16px,#000,400,26px);
 								}
 								.brnad__new{
 									@include fontoption(12px,$pointColor,700,26px);
@@ -203,7 +199,7 @@
 				display: flex;
 				padding: 12px 0 15px 0;
 				.id {
-					@include fontoption(14px,#000,400,22px);
+					line-height: 22px;
 				}
 				.date {
 					@include fontoption(12px,#888,400,18px);
@@ -234,7 +230,8 @@
 							display: flex;
 							justify-content: space-between;
 							.authority-list__name{
-								@include fontoption(14px,#333,400,22px);
+								color: #333;
+								line-height: 22px;
 							}
 							.authority-list__date{
 								padding: 0 2px;
@@ -247,7 +244,8 @@
 						ul {
 							display: flex;
 							li {
-								@include fontoption(14px,#333,400,22px);
+								color: #333;
+								line-height: 22px;
 							}
 						}
 					}
@@ -265,12 +263,15 @@
 							position: relative;
 							z-index: 1;
 							font-family: 'Century Gothic';
-							@include fontoption(14px,#2F77FB,700,22px);
+							color: $pointColor;
+							font-weight: 700;
+							line-height: 22px;
 						}
 						a {
 							padding-left: 8px;
 							position: relative;
-							@include fontoption(14px,#333,400,22px);
+							color: #333;
+								line-height: 22px;
 							&.step-more{
 								padding-left: 0px;
 								&::after {
@@ -293,9 +294,9 @@
 						&::after {
 							content: "";
 							display: inline-block;
-							height: 10px;
+							height: 16px;
 							position: relative;
-							top: 22px;
+							top: 26px;
 							left: -124px;
 							z-index: 0;
 							border: 2px solid #c0e1ff;
@@ -306,9 +307,6 @@
 					background: #F8F8F8;
 					border-radius: 8px;
 					padding: 12px; 
-					p {
-						@include fontoption(12px,#000,400,18px);
-					}
 					.invite__addbox-btn{
 						display: flex;
 						justify-content: center;
@@ -358,7 +356,9 @@
 					display: block;
 					margin-top: 25px;
 					position: relative;
-					@include fontoption(14px,#2F77FB,700,22px);
+					color: $pointColor;
+					font-weight: 700;
+					line-height: 22px;
 					&::after {
 						content:'';
 						display:inline-block;

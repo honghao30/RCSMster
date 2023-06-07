@@ -173,11 +173,11 @@
                                   <div class="input-item">
                                     <span class="radiobox">
                                       <input type="radio" name="agencyConnect" id="connectDefault" v-model="form.agencyConnect" value="defalut"/>
-                                      <label for="connectDefault"><span class="checkbox__text">미사용</span></label>
+                                      <label for="connectDefault"><span class="checkbox__text">입력 불가능</span></label>
                                     </span>
                                     <span class="radiobox">
                                       <input type="radio" name="agencyConnect" id="connectUse" v-model="form.agencyConnect" value="use" />
-                                      <label for="connectUse"><span class="checkbox__text">사용</span></label>
+                                      <label for="connectUse"><span class="checkbox__text">입력 가능</span></label>
                                     </span>
                                   </div>
                                   <template v-if="form.agencyConnect === 'use'">
@@ -213,7 +213,7 @@
                               </div>
                             </td>
                           </tr>
-                          <tr class="search-allow__wrap">
+                          <tr class="search-allow__wrap"  v-if="form.agencyConnect === 'use'">
                             <th scope="row"><span class="form-item__label required">검색 허용</span></th>
                             <td>
                               <div class="form-item__content">
@@ -453,7 +453,7 @@
             <li>- 등록 방법 변경 시, 입력한 데이터가 초기화됩니다.</li>
           </ul>
         </div>
-        <div class="button__wrap">
+        <div class="button__wrap flex-end">
           <ButtonCmp
               type="btn-blue-line"
               @click="saveTemp"
@@ -586,12 +586,12 @@ export default {
         chatTitle: '',
         chatRegistrationType: 'phone',
         serviceDocument: '',
-        agencyConnect: '',
-        allowSearch: '',
-        searchIntro: '',
+        agencyConnect: 'defalut',
+        allowSearch: 'no',
+        searchIntro: 'N',
         allowMsg: 'Y',
-        receptionSms: '',
-        saftyMark: ''
+        receptionSms: 'defalut',
+        saftyMark: 'N'
       },
       viewMode: false,
       connectOptions: [

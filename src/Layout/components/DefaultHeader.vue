@@ -64,7 +64,6 @@ export default {
     init() {
       getMenus().then(res => {
         this.menus = res
-        console.log(this.menus)
       })
     },
     getLevel2Menus(level1Menu) {

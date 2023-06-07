@@ -9,9 +9,6 @@
     .page-title {
       margin-bottom:12px;
     } 
-    p {
-      @include fontoption(16px,#000,400,26px);
-    }
   }
   .signup__wrap {
     display: flex;
@@ -72,7 +69,8 @@
         padding: 32px 0 24px;
         border-radius: 0 0 8px 8px;
         p{
-          @include fontoption(14px,#666,400,22px);
+          color: #666;
+          line-height: 22px;
         }
       }
     }
@@ -88,8 +86,7 @@
         margin-bottom:10px;
       } 
       p {
-        font-size: 14px;
-        line-height: 24px;
+        line-height: 20px;
       }
     }
     .signup__wrap {

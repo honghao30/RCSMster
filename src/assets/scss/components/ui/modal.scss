@@ -52,7 +52,6 @@
       align-content: center;
       justify-content: center;
       // background: #c9c8c8;
-      margin-top:32px;
       .button__wrap {
         margin-top:0;
         gap: 8px;
@@ -96,11 +95,6 @@
         }
         .msg {
             text-align: center;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 26px;
-            text-align: center;
-            color: #000000;
         }  
         .msg2 {
             margin-top: 16px;
@@ -136,14 +130,12 @@
               @include fontoption(28px,#000,700,36px);
             }
             .phone-cert__msg {
-              @include fontoption(16px,#000,400,28px);
               margin:32px 0 10px;
             }
             .phone-cert__number {
               padding:16px 0;
               background-color: #F4F4F4;
               border-radius: 8px;
-              @include fontoption(18px,#000,400,38px);
             }
             .phone-cert__number-input {
               position: relative;

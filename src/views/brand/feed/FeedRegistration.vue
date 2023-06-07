@@ -41,7 +41,7 @@
                     <!-- //타입선택 -->
                     <!-- 제목 -->
                     <tr>
-                      <th scope="row"><span class="form-item__label">제목</span></th>
+                      <th scope="row"><span class="form-item__label required">제목</span></th>
                       <td>
                         <div class="form-item__content">
                           <div class="form-item-row">
@@ -74,7 +74,7 @@
                     <tbody>
                       <!-- 내용 -->
                       <tr>
-                        <th scope="row"><span class="form-item__label">내용</span></th>
+                        <th scope="row"><span class="form-item__label required">내용</span></th>
                         <td>
                           <div class="form-item__content">
                             <div class="form-item-row">
@@ -111,6 +111,7 @@
                                 </span>
                                 <ButtonCmp
                                   type="btn-default-line"
+                                  @click="imageModal"
                                 >
                                   이미지 등록 / 편집
                                 </ButtonCmp>
@@ -163,95 +164,8 @@
                               </div>
                           </div>
                           <template v-if="form.btnUse == 'btnUseY'">
-                            <div class="form-item__content" v-for="(btn, k) in form.buttons" :key="k">
-                              <template v-if="btn.isActive">
-                                <div class="form-item-row">
-                                  <div class="input-item input-limit">
-                                    <span class="input">
-                                      <input type="text" class="input" maxlength="17" placeholder="버튼명을 입력하세요." v-model="btn.btnName" :disabled="form.isSavedbuttonList.length == 2">
 
-                                      <p class="input-limit__text">
-                                        {{ btn.btnName.length }}/17자
-                                      </p>
-                                    </span>
-                                  </div>
-                                  <ButtonCmp
-                                        type="btn-default-line"
-                                        :disabled="form.isSavedbuttonList.length == 2"
-                                    >특수문자
-                                  </ButtonCmp>
-                                </div>
-                                <div class="form-item-row">
-                                  <div class="input-item">
-                                    <Dropdown :options=btnTypeOption v-model="btn.btnType" placeholder="선택" :disabled="form.isSavedbuttonList.length == 2"></Dropdown>
-                                  </div>
-                                </div>
-                                <div class="form-item-row" v-if="btn.btnType == 'url'">
-                                  <div class="input-item">
-                                    <span class="input">
-                                        <input type="text" class="input" maxlength="40" placeholder="http://형식으로 입력해주세요." v-model="btn.url">
-                                    </span>
-                                  </div>
-                                </div>
-                                <div class="form-item-row" v-if="btn.btnType == 'app'">
-                                  <div class="input-item w--full">
-                                    <span class="input">
-                                        <input type="text" class="input" maxlength="40" placeholder="http://형식으로 입력해주세요." v-model="btn.app.url">
-                                    </span>
-                                  </div>
-                                  <div class="input-item w--full">
-                                    <span class="input">
-                                        <input type="text" class="input" maxlength="40" placeholder="Package name을 입력해주세요." v-model="btn.app.packageName">
-                                    </span>
-                                  </div>
-                                  <div class="input-item w--full">
-                                    <span class="input">
-                                        <input type="text" class="input" maxlength="40" placeholder="Scheme을 입력해주세요." v-model="btn.app.scheme">
-                                    </span>
-                                  </div>
-                                </div>
-                                <div class="form-item-row" v-if="btn.btnType == 'chat'">
-                                  <div class="input-item">
-                                    <span class="input">
-                                        <input type="text" class="input" maxlength="40" placeholder="대화방을 선택해주세요." v-model="btn.chatRoom" disabled>
-                                    </span>
-                                  </div>
-                                  <ButtonCmp
-                                        type="btn-default-line"
-                                    >대화방 선택
-                                  </ButtonCmp>
-                                </div>
-                                <div class="form-item-row" v-if="btn.btnType == 'call'">
-                                  <div class="input-item">
-                                    <span class="input">
-                                        <input type="text" class="input" maxlength="40" placeholder="‘-’없이 숫자만 입력해주세요." v-model="btn.call">
-                                    </span>
-                                  </div>
-                                </div>
-                                <div class="form-item-row">
-                                  <ButtonCmp
-                                        type="btn-default-line"
-                                        @click="addBtn(btn)"
-                                        :disabled="form.isSavedbuttonList.length == 2"
-                                    >버튼추가
-                                  </ButtonCmp>
-                                </div>
-                              </template>
-                            </div>
-                            <div class="form-item__content">
-                              <div class="form-item-row">
-                                <ul class="button-list">
-                                  <li
-                                    v-for="(item, i) in form.isSavedbuttonList" :key="i"
-                                    @click="btnInfoEdit(i)"
-                                    :class="{ 'active' : item.isActive}"
-                                  >
-                                    <span class="button-name">{{ item.btnName }}</span>
-                                    <a role="button" class="btn-del">x<span class="blind">삭제</span></a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
+                            <feedButtonReg :Buttons="form.buttons" />
                           </template>
                         </td>
                       </tr>
@@ -276,11 +190,21 @@
                                       <label for="hidden"><span class="radiobox__text">숨김(URL)게시</span></label>
                                     </span>
                                   </div>
-                                  <p class="guide-text black">&middot; [숨김 게시]는 브랜드 소식내에는 노출되지 않습니다.</p>
-                                  <p class="guide-text black">&middot; RCS 메시지 발송 시, 메시지에 URL을 기재하는 용도로 사용됩니다. </p>
-                                  <p class="guide-text black">&middot; [저장] 또는 [비공개] 상태일 경우, [게시] 상태가 아니므로 URL에 연결된 소식을 볼 수 없습니다.</p>
-                                  <p class="guide-text black">&middot; [예약 게시]는 지정된 [게시]상태로 전환되므로 [게시] 이전에는 URL에 연결된 소식을 볼 수 없습니다.</p>
                                 </div>
+                                <div class="form-item-row" v-if="form.publishType === 'resv'">
+                                  <div class="input-item">
+                                    <el-date-picker
+                                      v-model="form.resvDate"
+                                      type="date"
+                                      class="w--full"
+                                    />
+                                  </div>
+                                  <Dropdown :options="timeOption" v-model="form.resvTime"></Dropdown>
+                                </div>
+                                <p class="guide-text black">&middot; [숨김 게시]는 브랜드 소식내에는 노출되지 않습니다.</p>
+                                <p class="guide-text black">&middot; RCS 메시지 발송 시, 메시지에 URL을 기재하는 용도로 사용됩니다. </p>
+                                <p class="guide-text black">&middot; [저장] 또는 [비공개] 상태일 경우, [게시] 상태가 아니므로 URL에 연결된 소식을 볼 수 없습니다.</p>
+                                <p class="guide-text black">&middot; [예약 게시]는 지정된 [게시]상태로 전환되므로 [게시] 이전에는 URL에 연결된 소식을 볼 수 없습니다.</p>
                             </div>
                         </td>
                       </tr>
@@ -421,7 +345,7 @@
                             <div class="form-item__content">
                               <div class="form-item-row">
                                 <div class="input-item">
-                                  <span class="input"><input type="text" :value="filesName" :disabled="disabled" placeholder="이미지를 등록해주세요."></span>
+                                  <span class="input"><input type="text" :value="filesName" disabled placeholder="이미지를 등록해주세요."></span>
                                   <input type="file" id="fileUp" class="input" @change="onFileChanged" :disabled="isSlideCardEdit">
                                   <label for="fileUp"
                                     class="btn btn-default-line"
@@ -473,90 +397,7 @@
                               </div>
                             </div>
                             <template v-if="slide.btnUse == 'btnUseY'">
-                              <div class="form-item__content"
-                                v-for="(btn, l) in slide.buttons" :key="l">
-                                <template v-if="!btn.isSaved">
-                                  <div class="form-item-row">
-                                    <div class="input-item input-limit">
-                                      <span class="input">
-                                        <input type="text" class="input" maxlength="17" placeholder="버튼명을 입력하세요." v-model="btn.btnName" :disabled="isSlideCardEdit || form.isSavedbuttonList.length > 2">
-                                        <p class="input-limit__text">
-                                          {{ btn.btnName.length }}/17자
-                                        </p>
-                                      </span>
-                                    </div>
-                                    <ButtonCmp
-                                          type="btn-default-line"
-                                          :disabled="isSlideCardEdit || form.isSavedbuttonList.length > 2"
-                                      >특수문자
-                                    </ButtonCmp>
-                                  </div>
-                                  <div class="form-item-row">
-                                    <div class="input-item">
-                                      <Dropdown :options=btnTypeOption v-model="btn.btnType" placeholder="선택" :disabled="isSlideCardEdit || form.isSavedbuttonList.length > 2"></Dropdown>
-                                    </div>
-                                  </div>
-                                  <div class="form-item-row" v-if="btn.btnType == 'url'">
-                                    <div class="input-item">
-                                      <span class="input">
-                                          <input type="text" class="input" maxlength="40" placeholder="http://형식으로 입력해주세요." v-model="btn.url">
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div class="form-item-row" v-if="btn.btnType == 'app'">
-                                    <div class="input-item w--full">
-                                      <span class="input">
-                                          <input type="text" class="input" maxlength="40" placeholder="http://형식으로 입력해주세요." v-model="btn.app.url">
-                                      </span>
-                                    </div>
-                                    <div class="input-item w--full">
-                                      <span class="input">
-                                          <input type="text" class="input" maxlength="40" placeholder="Package name을 입력해주세요." v-model="btn.app.packageName">
-                                      </span>
-                                    </div>
-                                    <div class="input-item w--full">
-                                      <span class="input">
-                                          <input type="text" class="input" maxlength="40" placeholder="Scheme을 입력해주세요." v-model="btn.app.scheme">
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div class="form-item-row" v-if="btn.btnType == 'chat'">
-                                    <div class="input-item">
-                                      <span class="input">
-                                          <input type="text" class="input" maxlength="40" placeholder="대화방을 선택해주세요." v-model="btn.chatRoom" disabled>
-                                      </span>
-                                    </div>
-                                    <ButtonCmp
-                                          type="btn-default-line"
-                                      >대화방 선택
-                                    </ButtonCmp>
-                                  </div>
-                                  <div class="form-item-row" v-if="btn.btnType == 'call'">
-                                    <div class="input-item">
-                                      <span class="input">
-                                          <input type="text" class="input" maxlength="40" placeholder="‘-’없이 숫자만 입력해주세요." v-model="btn.call">
-                                      </span>
-                                    </div>
-                                  </div>
-                                </template>
-                              </div>
-                              <div class="form-item__content">
-                                <div class="form-item-row">
-                                  <ButtonCmp
-                                        type="btn-default-line"
-                                        :disabled="isSlideCardEdit"
-                                    >버튼추가
-                                  </ButtonCmp>
-                                </div>
-                                <div class="form-item-row">
-                                  <ul class="button-list">
-                                    <li>
-                                      <span class="button-name"></span>
-                                      <a role="button" class="btn-del">x<span class="blind">삭제</span></a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
+                              <feedButtonReg :Buttons="slide.buttons" />
                             </template>
                           </td>
                         </tr>
@@ -579,11 +420,21 @@
                                         <label for="hidden"><span class="radiobox__text">숨김(URL)게시</span></label>
                                       </span>
                                     </div>
-                                    <p class="guide-text black">&middot; [숨김 게시]는 브랜드 소식내에는 노출되지 않습니다.</p>
-                                    <p class="guide-text black">&middot; RCS 메시지 발송 시, 메시지에 URL을 기재하는 용도로 사용됩니다. </p>
-                                    <p class="guide-text black">&middot; [저장] 또는 [비공개] 상태일 경우, [게시] 상태가 아니므로 URL에 연결된 소식을 볼 수 없습니다.</p>
-                                    <p class="guide-text black">&middot; [예약 게시]는 지정된 [게시]상태로 전환되므로 [게시] 이전에는 URL에 연결된 소식을 볼 수 없습니다.</p>
                                   </div>
+                                  <div class="form-item-row" v-if="slide.publishType === 'resv'">
+                                    <div class="input-item">
+                                      <el-date-picker
+                                        v-model="slide.resvDate"
+                                        type="date"
+                                        class="w--full"
+                                      />
+                                    </div>
+                                    <Dropdown :options="timeOption" v-model="slide.resvTime"></Dropdown>
+                                  </div>
+                                  <p class="guide-text black">&middot; [숨김 게시]는 브랜드 소식내에는 노출되지 않습니다.</p>
+                                  <p class="guide-text black">&middot; RCS 메시지 발송 시, 메시지에 URL을 기재하는 용도로 사용됩니다. </p>
+                                  <p class="guide-text black">&middot; [저장] 또는 [비공개] 상태일 경우, [게시] 상태가 아니므로 URL에 연결된 소식을 볼 수 없습니다.</p>
+                                  <p class="guide-text black">&middot; [예약 게시]는 지정된 [게시]상태로 전환되므로 [게시] 이전에는 URL에 연결된 소식을 볼 수 없습니다.</p>
                               </div>
                           </td>
                         </tr>
@@ -683,16 +534,13 @@
                   format="yyyy.MM.dd"
                 />
               </div>
-              <div class="search-area">
-                <Dropdown :options=serchCategoryOption v-model="filterOption.searchCategory" placeholder="선택"></Dropdown>
-                <span class="input">
-                  <input type="text" v-model="filterOption.searchWord" placeholder="검색어를 입력해 주세요.">
-                </span>
-                <ButtonCmp
-                  type="btn-only-icon"
-                  iconname='icon-search'
-                >
-              </ButtonCmp>
+              <div class="dropdown-search__wrap">
+                <Dropdown :options=serchCategoryOption v-model="filterOption.searchCategory" placeholder="선택" />
+                <div class="search-area">
+                  <span class="input search">
+                    <input type="text" placeholder="검색어를 입력하세요."/>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -701,6 +549,20 @@
         <!-- // 이전 피드 -->
       </div>
     </div>
+    <!-- 모달 영역 -->
+    <ModalView
+      v-if="isModalViewed"
+      @closeModal="isModalViewed = false"
+    >
+      <!-- 이미지 드래그 모달 -->
+      <feedModal
+        @closeModal=closeModal
+        @modalSave=modalSave
+        v-if="isModalImage"
+        :fileList="fileList"
+        >
+      </feedModal>
+    </ModalView>
   </div>
 </template>
 
@@ -717,6 +579,9 @@ import Dropdown from '@/components/common/Dropdown.vue'
 import feedEmulator from '@/views/brand/feed/components/feedEmulator.vue'
 import feedViewItem from '@/views/brand/feed/components/feedViewItem.vue'
 import moment from 'moment'
+import feedButtonReg from '@/views/brand/feed/components/feedButtonReg.vue'
+import ModalView from '@/components/common/ModalView.vue'
+import feedModal from '@/views/brand/feed/components/feedModal.vue'
 
 export default {
   components: {
@@ -728,7 +593,10 @@ export default {
     ButtonCmp,
     Dropdown,
     feedEmulator,
-    feedViewItem
+    feedViewItem,
+    feedButtonReg,
+    ModalView,
+    feedModal
   },
   data() {
     return {
@@ -752,11 +620,12 @@ export default {
           },
           chatRoom: '',
           call: '',
-          isActive: true,
-          isSaved: false
+          isActive: true
         }],
         isSavedbuttonList: [],
         publishType: 'publish',
+        resvDate: '',
+        resvTime: '',
         pinYn: false,
         slideData: [{
           slideIndex: '1',
@@ -778,10 +647,12 @@ export default {
             },
             chatRoom: '',
             call: '',
-            isSaved: false
+            isActive: true
           }],
           publishType: 'publish',
-          pinYn: false
+          pinYn: false,
+          resvDate: '',
+          resvTime: ''
         }]
       },
       btnTypeOption: [
@@ -804,6 +675,20 @@ export default {
       ],
       slideActiveIndex: 0,
       isSlideCardEdit: false,
+      timeOption: [
+        {
+          label: '00시',
+          value: '00'
+        },
+        {
+          label: '01시',
+          value: '01'
+        },
+        {
+          label: '02시',
+          value: '02'
+        }
+      ],
       listFilterDate: '',
       filterOption: {
         status: [],
@@ -904,7 +789,10 @@ export default {
             feedContent: 'SK텔레콤을 다양하게 만나보세요! #SKT Insight · SK텔레콤 네이버 포스트 스크랩 · SK텔레콤 페이스북 #Facebook · SK텔레콤 유튜브 #YouTube ​'
           }
         }
-      ]
+      ],
+      fileList: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+      isModalViewed: false,
+      isModalImage: false
     }
   },
   created() {
@@ -933,8 +821,7 @@ export default {
           },
           chatRoom: '',
           call: '',
-          isActive: false,
-          isSelected: false
+          isActive: true
         }],
         publishType: 'publish',
         pinYn: false
@@ -993,38 +880,21 @@ export default {
         option.isSelected = false
       }
     },
-    // 버튼 추가 (수정 중)
-    addBtn(target) {
-      let btn = {
-        btnName: '',
-        btnType: '',
-        url: '',
-        app: {
-          url: '',
-          packageName: '',
-          scheme: ''
-        },
-        chatRoom: '',
-        call: '',
-        isSaved: false,
-        isActive: true
-      }
-      let buttonList = this.form.isSavedbuttonList
-      let listLength = buttonList.length
-      let btnItem = target
-      if (listLength < 2) {
-        btnItem.isActive = false
-        buttonList.push(btnItem)
-        this.form.buttons.push(btn)
-      }
+    // 모달 버튼
+    modalSave () {
+      this.isModalViewed = false
+      this.isModalImage = false
+      this.isModalChat = false
     },
-    // 버튼  (수정 중)
-    btnInfoEdit (index) {
-      this.form.isSavedbuttonList[index].isActive = true
-      this.form.buttons.forEach((btn) => {
-        btn.isActive = false
-      })
-      this.form.buttons[index].isActive = true
+    closeModal () {
+      this.isModalViewed = false
+      this.isModalImage = false
+      this.isModalChat = false
+    },
+    imageModal () {
+      this.isModalViewed = true
+      this.isModalImage = true
+      this.isModalChat = false
     }
   }
 }

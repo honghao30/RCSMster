@@ -30,7 +30,7 @@
                       </div>
                   </td>
                 </tr>
-                <tr v-if="form.quickButton.includes('call')">
+                <tr v-if="checkedMenus.includes('call')">
                   <th scope="row"><span class="form-item__label required">Call</span></th>
                   <td>
                     <div class="form-item__content">
@@ -44,7 +44,7 @@
                     </div>
                   </td>
                 </tr>
-                <tr v-if="form.quickButton.includes('info')">
+                <tr v-if="checkedMenus.includes('info')">
                   <th scope="row"><span class="form-item__label required">More info</span></th>
                   <td>
                     <div class="form-item__content">
@@ -57,7 +57,7 @@
                     </div>
                   </td>
                 </tr>
-                <tr v-if="form.quickButton.includes('order')">
+                <tr v-if="checkedMenus.includes('order')">
                   <th scope="row"><span class="form-item__label required">Order</span></th>
                   <td>
                     <div class="form-item__content">
@@ -70,7 +70,7 @@
                     </div>
                   </td>
                 </tr>
-                <tr v-if="form.quickButton.includes('buy')">
+                <tr v-if="checkedMenus.includes('buy')">
                   <th scope="row"><span class="form-item__label required">Buy</span></th>
                   <td>
                     <div class="form-item__content">
@@ -83,7 +83,7 @@
                     </div>
                   </td>
                 </tr>
-                <tr v-if="form.quickButton.includes('ticket')">
+                <tr v-if="checkedMenus.includes('ticket')">
                   <th scope="row"><span class="form-item__label required">Ticket</span></th>
                   <td>
                     <div class="form-item__content">
@@ -96,7 +96,7 @@
                     </div>
                   </td>
                 </tr>
-                <tr v-if="form.quickButton.includes('web')">
+                <tr v-if="checkedMenus.includes('web')">
                   <th scope="row"><span class="form-item__label required">Web</span></th>
                   <td>
                     <div class="form-item__content">
@@ -109,7 +109,7 @@
                     </div>
                   </td>
                 </tr>
-                <tr v-if="form.quickButton.includes('store')">
+                <tr v-if="checkedMenus.includes('store')">
                   <th scope="row"><span class="form-item__label required">Store</span></th>
                   <td>
                     <div class="form-item__content">
@@ -267,11 +267,11 @@ export default {
           this.checkedMenus.splice(this.checkedMenus.indexOf(targetMenu), 1)
         })
       } else {
-        let target = _.find(this.checkedMenuDatas, { code: targetMenu })
+        let target = _.find(this.checkedMenus, { code: targetMenu })
         if (this.checkedMenus.indexOf(targetMenu) !== -1) {
-          target.visible = true
+          // target.visible = true
         } else {
-          target.visible = false
+          // target.visible = false
           target.values.forEach(v => {
             v.value = ''
           })

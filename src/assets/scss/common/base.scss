@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 
 $font-family:'Noto Sans KR', 'Malgun Gothic', '맑은고딕', sans-serif;
-body, html {box-sizing: border-box;margin: 0; padding: 0; border: 0; font-family: $font-family;color:#000;}
+body, html {box-sizing: border-box;margin: 0; padding: 0; border: 0; font-family: $font-family; @include fontoption($defaultFontSize,$defaultColor,400,$defaultLineHeight);}
 blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul {margin:0;padding:0;box-sizing: border-box}
 h1, h2, h3, h4, h5, h6 {font-size:100%;font-weight:400}
 ul {list-style:none}

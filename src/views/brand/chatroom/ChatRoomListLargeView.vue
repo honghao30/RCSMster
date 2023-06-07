@@ -150,7 +150,7 @@
             <li>- 승인심사는 48시간 이내이며, 내부 사정상 지연될 수 있습니다.</li>
           </ul>
         </div>
-        <div class="button__wrap">
+        <div class="button__wrap flex-end">
           <ButtonCmp
               type="btn-blue"
           >수정</ButtonCmp>

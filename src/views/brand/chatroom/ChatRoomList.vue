@@ -13,14 +13,13 @@
         </div>
         <div class="top-ctrl-area">
           <div class="left-area">
-            <Dropdown :options="TitleOptions" />
-            <div class="search-area">
-              <span class="input">
-                <input type="text" placeholder="검색어를 입력하세요."/>
-              </span>
-              <ButtonCmp
-                type="btn-search"
-              >검색</ButtonCmp>
+            <div class="dropdown-search__wrap">
+              <Dropdown :options="TitleOptions"/>
+              <div class="search-area">
+                <span class="input search">
+                  <input type="text" placeholder="검색어를 입력하세요."/>
+                </span>
+              </div>
             </div>
           </div>
           <div class="right-area">
@@ -157,6 +156,7 @@ export default {
       checkList: [],
       large: false,
       disabled: false,
+      isOpen: false,
       chatRoomList: [
         {
           large: true,

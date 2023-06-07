@@ -125,9 +125,9 @@ $radius: 8px;
 
 .btn-search {
   @include btntype(14px, #717883, #717883,#fff, 8px, #717883,#fff, #717883);   
-  line-height: 42px;
+  line-height: 36px;
   min-width: auto;
-  height: 42px;
+  height: 36px;
   padding:0 23px;
   &:disabled {
     color:#aaa;
@@ -138,9 +138,9 @@ $radius: 8px;
 
 .btn-default-line {
   @include btntype(14px,#4A5567,#fff,#4A5567,8px,  #fff,#4A5567, #4A5567);  
-  line-height: 42px;
+  line-height: 36px;
   min-width: auto;
-  height: 42px;
+  height: 36px;
   padding:0 23px;
   cursor: pointer;
   &.small {

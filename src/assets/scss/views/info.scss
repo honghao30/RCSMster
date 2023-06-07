@@ -71,6 +71,12 @@
                     &__title {
                         margin-right: 8px;
                     }
+                    +.input-item{
+                        margin-top: 0px;
+                    }
+                    .inpun-item__title{
+                        font-weight: 500;;
+                    }
                 }
             }
             .agency-key {
@@ -196,7 +202,6 @@
         .checkbox {
             margin-bottom: 16px;
             &__text {
-                font-size: 16px;
                 font-weight: 700; 
             }
         }
@@ -212,17 +217,17 @@
         overflow-y:auto;
         .terms {
             color: #666;
-            font-size: 16px;
+            font-size: 14px;
             line-height: 26px;
             &__h1 {
                 font-weight: 700;
-                font-size: 20px;
+                font-size: 18px;
                 line-height: 30px;
                 
             }
             &__h2 {
                 font-weight: 500;
-                font-size: 18px;
+                font-size: 16px;
                 line-height: 28px;
             }
             &__text {
