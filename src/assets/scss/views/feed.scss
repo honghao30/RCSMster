@@ -274,12 +274,18 @@
             border: 1px solid #DDDDDD;
             border-radius: 8px;
             .msg__image-item {
+                position: relative;
                 height: 92px;
                 background: #FFFFFF;
                 border: 1px dashed #DDDDDD;
                 border-radius: 8px;
-                padding: 34px 0;
+                // padding: 34px 0;
                 @include fontoption(14px,#666,400,24px);
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: move;
             }
         }
     }

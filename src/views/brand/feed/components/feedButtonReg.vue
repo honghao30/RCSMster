@@ -176,7 +176,7 @@ export default {
       let buttonList = this.isSavedButtonList
       let listLength = buttonList.length
       let btnItem = target
-      if (listLength < 2) {
+      if (listLength < 2 && btnItem.btnName !== '') {
         btnItem.isActive = false
         buttonList.push(btnItem)
         this.Buttons.push(btn)

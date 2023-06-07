@@ -288,7 +288,7 @@
       .accordion__item {
         a.accordion__title {
           display: flex;
-          padding: 21px 250px 21px 146px;
+          padding: 21px 0 21px 146px;
           &::after {
             right: 46px;
           }
@@ -303,7 +303,7 @@
           .require-list__date {
             @include fontoption(16px,#888888,400,24px);
             position: absolute;
-            margin-left: 938px;
+            right: 135px;
           } 
         }
       }
@@ -845,6 +845,8 @@
           }  
           .require-list__date {
             padding: 0;
+            right: inherit;
+            margin-top: 8px;
             @include fontoption(13px,#888888,400,20px);
           } 
         }
