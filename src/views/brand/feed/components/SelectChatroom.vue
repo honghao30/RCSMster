@@ -25,9 +25,9 @@
             </colgroup>
             <thead>
               <tr>
-                <th scope="col"></th>
+                <th scope="col">&nbsp;</th>
                 <th scope="col">대화방명</th>
-                <th scope="col"><span>발신번호/챗봇ID</span></th>
+                <th scope="col">발신번호/챗봇ID</th>
               </tr>
             </thead>
             <tbody>

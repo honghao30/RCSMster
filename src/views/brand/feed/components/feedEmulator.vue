@@ -10,7 +10,19 @@
       <span v-else>내용을 입력해주세요.</span>
     </p>
     <div class="preview-gallery" v-if="feedInfoData.type === 'gallery'">
-      <div class="item--none">
+      <ul v-if="feedInfoData.imgFiles.length > 0"
+          class="img-list"
+          :class="{'more' : feedInfoData.imgFiles.length > 4 }"
+        >
+        <template v-for="(imgUrl, i) in feedInfoData.imgFiles">
+          <li v-if="i < 4" :key="i"
+            :class="{'more-link' : i === 3}"
+          ><img :src="require('@/assets/images/' + imgUrl)" alt="">
+            <a role="button" v-if="i === 3"><span>더보기</span></a>
+          </li>
+        </template>
+      </ul>
+      <div class="item--none" v-else>
         <p class="img">이미지를 등록해주세요.</p>
       </div>
     </div>

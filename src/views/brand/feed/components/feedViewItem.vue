@@ -1,5 +1,5 @@
 <template>
-  <div class="feed-view__wrap">
+  <div class="feed-view__item">
     <div class="feed-view__top">
       <ul class="feed-view__info">
         <li class="id"><span class="label">소식 ID</span>{{ feedData.feedId }}</li>
@@ -16,6 +16,7 @@
           <ButtonCmp
             type="btn-only-icon"
             iconname='icon-pin'
+            v-if="feedData.isFixed"
           >
           </ButtonCmp>
         </li>

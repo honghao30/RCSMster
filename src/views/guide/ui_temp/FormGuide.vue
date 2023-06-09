@@ -37,8 +37,13 @@
     <div class="dropdown-search__wrap">
       <Dropdown :options="TitleOptions"/>
       <div class="search-area">
-        <span class="input search">
+        <span class="input search-box">
           <input type="text" placeholder="검색어를 입력하세요."/>
+          <ButtonCmp
+            type="btn-only-icon"
+            iconname='icon-search'
+          >
+          </ButtonCmp>
         </span>
       </div>
     </div>

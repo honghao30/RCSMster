@@ -1,9 +1,9 @@
 <template>
   <div class="image-area" :class="{'full' : compInfo.full}">
     <div class="image-item">
-      <span class="image"
-        :style="{backgroundImage: `url(${require('@/assets/images/'+ compInfo.imageSrc)})`}"
-      ></span>
+      <span class="image">
+      <img :src="require('@/assets/images/'+ compInfo.imageSrc)"/>
+    </span>
     </div>
   </div>
 </template>

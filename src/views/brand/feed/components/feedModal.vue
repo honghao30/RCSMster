@@ -23,14 +23,18 @@
           v-model="fileList"
         >
           <div
-            v-for="imgFile in displayedFileList" :key="imgFile"
-            class="msg__image-item"
+            v-for="(imgFile, index) in displayedFileList" :key="imgFile"
           >
-            <img
-             :src="imgFile.url"
-             alt=""
-            />
-            <span class="irtext">{{ imgFile.fileName }}</span>
+            <div class="msg__image-delete" v-if="imgFile.url !== ''">
+              <button class="delete-button" @click="deleteImage(index)"></button>
+            </div>
+            <div class="msg__image-item">
+              <img
+              :src="imgFile.url"
+              alt=""
+              />
+              <span class="irtext">{{ imgFile.fileName }}</span>
+            </div>
           </div>
         </draggable>
       </div>
@@ -77,26 +81,26 @@ export default {
   computed: {
     displayedFileList() {
       const emptyFileList = Array(10).fill({ fileName: '', url: '' })
-      return this.fileList.length
-        ? this.fileList
-        : emptyFileList
+      const paddedFileList = [...this.fileList, ...emptyFileList].slice(0, 10)
+      return paddedFileList
     }
   },
   methods: {
     onFileChanged (e) {
       const files = e.target.files
       const file = e.target.files[0]
-      this.fileName = files[0].name
-      this.url = URL.createObjectURL(file)
-      if (this.fileList.length < 10) {
-        this.fileList.push({
-          fileName: this.fileName,
-          url: this.url
-        })
+      const fileName = files[0].name
+      const url = URL.createObjectURL(file)
+      const newFile = { fileName, url }
+      if (this.fileList.length < 11) {
+        this.fileList.push(newFile)
+        this.$emit('fileListUpdated', this.fileList)
       } else {
-        alert('파일은 10개만 올릴수 있습니다.')
+        alert('이미지는 10개만 추가할수 있습니다.')
       }
-      console.log(this.upfileList)
+    },
+    deleteImage(index) {
+      this.fileList.splice(index, 1)
     }
   }
 }

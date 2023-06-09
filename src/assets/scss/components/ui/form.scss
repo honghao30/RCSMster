@@ -74,7 +74,6 @@ $textareaHeight: 100px;
     }
     input {
       padding-right:40px;
-
     }
   }
 }
@@ -392,10 +391,24 @@ $textareaHeight: 100px;
   .input{
       input{
           border: 0;
+          padding-right: 0;
       }
   }
   .search-area{
     width: 100%;
+    .search-box{
+      display: flex;
+      align-items: center;
+      .btn-only-icon{
+        padding:0 16px;
+        .icon-search {
+          display:inline-block;
+          width:20px;
+          height: 20px;
+          background: url('../assets/images/icon/icon_search.png') no-repeat 50% 50%;
+        }
+      }
+    }
   }
 }
 .switch {
@@ -447,13 +460,13 @@ $textareaHeight: 100px;
     margin:0;
     width:328px;
     &.is-left {
-      width: 306px;
+      width: 310px;
       border: none;
-      padding: 24px 12px 18px 24px;
+      padding: 24px 11px 18px 23px;
     }
     &.is-right {
-      width: 306px;
-      padding: 24px 24px 18px 12px;
+      width: 310px;
+      padding: 24px 23px 18px 11px;
     }
     
   }
@@ -497,9 +510,11 @@ $textareaHeight: 100px;
   }
   .el-icon-d-arrow-left {
     display: none;
+    transition:none;
   }
   .el-icon-d-arrow-right {
     display: none;
+    transition:none;
   }
   > div {
     color: #0A0A0A;
@@ -566,8 +581,12 @@ $textareaHeight: 100px;
       &.today {
         span {
           color: $pointColor;
-        }
-        
+        }      
+        &.end-date, &.start-date {
+          span {
+            color: #fff;
+          }
+        }  
       }
       &.available:hover {
         color: $pointColor;
@@ -593,8 +612,8 @@ $textareaHeight: 100px;
     border-radius: 6px;
     padding: 4px 40px 4px 16px;
     .el-range-input {
-      flex: 1;
       text-align:left;
+      width:calc(50% - 10px);
       &::placeholder {
         color:#999;
       }
@@ -602,10 +621,12 @@ $textareaHeight: 100px;
     .el-range-separator {
       padding:0;
       flex-shrink: 0;
-      width:12px;
+      width:20px;
       line-height: 26px;
     }
-    
+    .el-range__close-icon {
+      display: none;
+    }
   }
   .el-input__prefix {
     left:auto;
@@ -692,6 +713,9 @@ $formLabelWidth : 120px;
     }
   }
   .form-item__content {
+    &.is-emoji {
+        position: relative;
+    }
     +.form-item__content  {
       margin-top: 20px;
     }
@@ -1007,5 +1031,4 @@ $formLabelWidth : 120px;
       }
     }
   }
-  
 }

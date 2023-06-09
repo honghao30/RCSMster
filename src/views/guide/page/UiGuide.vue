@@ -210,7 +210,9 @@ export default {
       })
     },
     loaddingStop () {
+      document.body.classList.add('is-loading')
       setTimeout(() => {
+        document.body.classList.remove('is-loading')
         this.isLoading = false
       }, 7000)
     }

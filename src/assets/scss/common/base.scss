@@ -23,6 +23,12 @@ caption{position: absolute;width: 1px;height: 1px;clip: rect(0 0 0 0);overflow: 
 button {cursor:pointer;outline:none;border:0;background-color:transparent}
 a[role="button"] {cursor:pointer;}
 
+body {
+    &.is-loading {
+      height:100%;
+      overflow: hidden;
+    }
+}
 @mixin hiddens {
     position: absolute;
     width: 1px;

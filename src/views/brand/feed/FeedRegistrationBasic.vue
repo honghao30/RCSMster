@@ -22,17 +22,17 @@
                             <div class="form-item-row">
                               <div class="input-item">
                                 <span class="radiobox">
-                                  <input type="radio" id="noticeUseN" name="notice" value="noticeUseN" v-model="form.notice"><label for="noticeUseN">미사용</label>
+                                  <input type="radio" id="noticeUseN" name="notice" value="noticeUseN" v-model="form.notice" @click="noticeUseN"><label for="noticeUseN">미사용</label>
                                 </span>
                                 <span class="radiobox">
-                                  <input type="radio" id="noticeUseY" name="notice" value="noticeUseY" v-model="form.notice"><label for="noticeUseY">사용</label>
+                                  <input type="radio" id="noticeUseY" name="notice" value="noticeUseY" v-model="form.notice" @click="noticeUseY"><label for="noticeUseY">사용</label>
                                 </span>
                               </div>
                             </div>
                           </div>
                       </td>
                     </tr>
-                    <tr>
+                    <tr v-if="noticeUse">
                       <th scope="row"><span class="form-item__label required">제목</span></th>
                       <td>
                         <div class="form-item__content">
@@ -50,7 +50,7 @@
                           </div>
                       </td>
                     </tr>
-                    <tr>
+                    <tr v-if="noticeUse">
                       <th scope="row"><span class="form-item__label required">내용</span></th>
                       <td>
                         <div class="form-item__content">
@@ -74,7 +74,7 @@
                 </table>
               </div>
             </form>
-            <div class="notice-tip__wrap">
+            <div  v-if="noticeUse" class="notice-tip__wrap">
               <PageTitleH3 titleh3="알림 활용 Tip!"/>
               <ul class="notice-tip__box">
                 <li>
@@ -166,11 +166,18 @@ export default {
         title: '',
         content: ''
       },
+      noticeUse: false,
       brandTitleErrorMsg: false,
       brandContentErrorMsg: false
     }
   },
   methods: {
+    noticeUseN () {
+      this.noticeUse = false
+    },
+    noticeUseY () {
+      this.noticeUse = true
+    },
     onSubmit () {
       console.log(this.form.notice)
       if (this.form.notice === 'noticeUseY') {

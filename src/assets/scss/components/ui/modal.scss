@@ -28,6 +28,12 @@
     // width: 500px;
     // height: 500px;
     transform: translate(-50%,-50%);
+    &.dublicate-chatroom {
+      max-width: 880px;
+      .modal__content--body {
+        gap:0;
+      }      
+    }    
     .modal__content--header {
       position: relative;
       display: flex;

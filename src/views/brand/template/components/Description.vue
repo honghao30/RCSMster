@@ -1,6 +1,6 @@
 <template>
   <div class="desc-area">
-    <p class="subtitle" v-if="compInfo.subTitle">{{ compInfo.subTitle }}</p>
+    <p class="subtitle" v-if="compInfo.subTitle" v-html="compInfo.subTitle"></p>
     <div class="description">
       <p v-html="compInfo.description"></p>
     </div>

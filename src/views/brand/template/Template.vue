@@ -81,8 +81,8 @@ export default {
           id: 1,
           type: 'MainImage',
           compInfo: {
-            full: false,
-            imageSrc: 'dummy/template_image.png'
+            full: true,
+            imageSrc: 'dummy/template_image_02.png'
           },
           inActive: false
         },
@@ -99,8 +99,8 @@ export default {
           id: 3,
           type: 'Description',
           compInfo: {
-            subTitle: 'RCS메시지는 어떻게 만들죠?',
-            description: '브랜드의 성공적인 비즈니스를 위하여 RCS Biz Centert에서 다양한 메시지를 만들어보세요. <br><br>고객들에게 보다 멋지고 효과적으로 정보를 전달하고, 반응도 알 수 있답니다~!'
+            subTitle: '미리 만나는 프리썸머 페스타',
+            description: '쿨~한 여름을 준비하는 아이템을 소개 합니다. 10종의 다채로운 상품을 지금 만나보세요.'
           },
           inActive: false
         },
@@ -109,19 +109,19 @@ export default {
           type: 'SubDescription',
           compInfo: {
             type: 'title',
-            subTitle: '브랜드 마케팅을 도와드려요.',
+            subTitle: '2주간 즐기는 프리미엄 특별혜택!',
             description: [
               {
-                title: '프로필',
-                desc: '브랜드 프로필!<br>고객의 문자앱에서 브랜드 프로필이 나와요.'
+                title: '행사기간',
+                desc: '2022.07.01 ~ 2022.07.31'
               },
               {
-                title: '소식',
-                desc: '브랜드 소식!<br>메시지에 추가적인 컨텐츠를 연결해보세요.'
+                title: '참여대상',
+                desc: '프리미엄 등급 고객'
               },
               {
-                title: '간편챗봇',
-                desc: '대화방메뉴!<br>간단한 고객 응대는 이제 대화방에서 해결하세요.'
+                title: '제공혜택',
+                desc: '22% 추가적립 + 무료배송'
               }
             ]
           },
@@ -132,19 +132,15 @@ export default {
           type: 'SubDescription',
           compInfo: {
             type: 'thum',
-            subTitle: '브랜드 마케팅을 도와드려요.',
+            subTitle: '',
             description: [
               {
-                thumSrc: 'dummy/template_image.png',
-                desc: '브랜드 프로필!<br>고객의 문자앱에서 브랜드 프로필이 나와요.'
+                thumSrc: 'dummy/template_thum_01.png',
+                desc: '달콤한 컬러의 시원한 미니 선풍기,<br>달달함은 덤!'
               },
               {
-                thumSrc: 'dummy/template_image.png',
-                desc: '브랜드 소식!<br>메시지에 추가적인 컨텐츠를 연결해보세요.'
-              },
-              {
-                thumSrc: 'dummy/template_image.png',
-                desc: '대화방메뉴!<br>간단한 고객 응대는 이제 대화방에서 해결하세요.'
+                thumSrc: 'dummy/template_thum_02.png',
+                desc: '쿨링 키보드로 무더운 여름 손가락<br>끝까지 시원하게'
               }
             ]
           },
@@ -221,7 +217,7 @@ export default {
           id: 11,
           type: 'Buttons',
           compInfo: {
-            buttons: ['버튼 라벨', '버튼 라벨']
+            buttons: ['자세히 보러가기']
           },
           inActive: false
         },

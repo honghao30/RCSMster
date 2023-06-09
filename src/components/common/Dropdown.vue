@@ -68,6 +68,7 @@ export default {
       this.selectedOption = option.label
       this.isOpen = false
       this.$emit('input', option.value)
+      this.$emit('change', option.value)
     },
     toggleSelect() {
       if (!this.disabled) {

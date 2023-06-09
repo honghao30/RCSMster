@@ -217,13 +217,11 @@ export default {
     // 모달 버튼
     closeModal () {
       this.isModalViewed = false
-      this.isModalImage = false
       this.isModalChat = false
     },
     selectChatModal () {
       this.isModalViewed = true
       this.isModalChat = true
-      this.isModalImage = false
     }
   }
 }

@@ -43,7 +43,7 @@
                     <tr>
                       <th scope="row"><span class="form-item__label required">제목</span></th>
                       <td>
-                        <div class="form-item__content">
+                        <div class="form-item__content is-emoji">
                           <div class="form-item-row">
                             <div class="input-item input-limit">
                               <span class="input">
@@ -55,9 +55,13 @@
                             </div>
                             <ButtonCmp
                                   type="btn-default-line"
+
+                                  @click="showSpecialCharTitle = !showSpecialCharTitle"
                               >특수문자
                             </ButtonCmp>
+                            <emoji-picker id="emojiPicker" @emoji-click="onSelectEmoji($event, 'feedTitle')" v-show="showSpecialCharTitle" class="light emoji-wrap"></emoji-picker>
                           </div>
+                          <p class="guide-text error"  v-if="feedTitleErrorMsg">제목을 입력해주세요.</p>
                         </div>
                       </td>
                     </tr>
@@ -76,7 +80,7 @@
                       <tr>
                         <th scope="row"><span class="form-item__label required">내용</span></th>
                         <td>
-                          <div class="form-item__content">
+                          <div class="form-item__content  is-emoji">
                             <div class="form-item-row">
                               <div class="input-item input-limit">
                                 <div class="textarea">
@@ -90,9 +94,12 @@
                               </div>
                               <ButtonCmp
                                   type="btn-default-line"
+                                  @click="showSpecialCharTextArea = !showSpecialCharTextArea"
                               >특수문자
                               </ButtonCmp>
+                              <emoji-picker id="emojiPicker" @emoji-click="onSelectEmoji($event, 'feedContent')" v-show="showSpecialCharTextArea" class="light emoji-wrap"></emoji-picker>
                             </div>
+                            <p class="guide-text error"  v-if="feedContentErrorMsg">내용을 입력해주세요.</p>
                           </div>
                         </td>
                       </tr>
@@ -118,6 +125,7 @@
                               </div>
                               <p class="guide-text black">&middot; 소식 메인화면에 노출되는 이미지는 700px * 700px이며, 초과 시 central crop하여 노출됩니다.</p>
                             </div>
+                            <p class="guide-text error"  v-if="feedImageFileErrorMsg">이미지를 등록해주세요.</p>
                           </div>
                         </td>
                       </tr>
@@ -138,9 +146,10 @@
                                   적용
                                 </ButtonCmp>
                               </div>
-                              <p class="guide-text black">&middot; 연결 URL은 You Tube만 등록 가능합니다.</p>
-                              <p class="guide-text black">&middot; 연결된 URL의 타이틀과 대표이미지(썸네일)가 자동으로 노출됩니다.</p>
                             </div>
+                            <p class="guide-text black">&middot; 연결 URL은 You Tube만 등록 가능합니다.</p>
+                            <p class="guide-text black">&middot; 연결된 URL의 타이틀과 대표이미지(썸네일)가 자동으로 노출됩니다.</p>
+                            <p class="guide-text error"  v-if="feedUrlFileErrorMsg">연결 URL을 입력해주세요.</p>
                           </div>
                         </td>
                       </tr>
@@ -164,68 +173,12 @@
                               </div>
                           </div>
                           <template v-if="form.btnUse == 'btnUseY'">
-
                             <feedButtonReg :Buttons="form.buttons" />
                           </template>
+                          <p class="guide-text error"  v-if="feedBtnErrorMsg">버튼을 입력해주세요.</p>
                         </td>
                       </tr>
                       <!-- //버튼 -->
-                      <!-- 게시방법 -->
-                      <tr>
-                        <th scope="row"><span class="form-item__label required">게시방법</span></th>
-                        <td>
-                            <div class="form-item__content">
-                                <div class="form-item-row">
-                                  <div class="input-item">
-                                    <span class="radiobox">
-                                      <input type="radio" name="publish" id="publish" value="publish" v-model="form.publishType"/>
-                                      <label for="publish"><span class="radiobox__text">즉시게시</span></label>
-                                    </span>
-                                    <span class="radiobox">
-                                      <input type="radio" name="publish" id="resv" value="resv" v-model="form.publishType"/>
-                                      <label for="resv"><span class="radiobox__text">예약게시</span></label>
-                                    </span>
-                                    <span class="radiobox">
-                                      <input type="radio" name="publish" id="hidden" value="hidden" v-model="form.publishType"/>
-                                      <label for="hidden"><span class="radiobox__text">숨김(URL)게시</span></label>
-                                    </span>
-                                  </div>
-                                </div>
-                                <div class="form-item-row" v-if="form.publishType === 'resv'">
-                                  <div class="input-item">
-                                    <el-date-picker
-                                      v-model="form.resvDate"
-                                      type="date"
-                                      class="w--full"
-                                    />
-                                  </div>
-                                  <Dropdown :options="timeOption" v-model="form.resvTime"></Dropdown>
-                                </div>
-                                <p class="guide-text black">&middot; [숨김 게시]는 브랜드 소식내에는 노출되지 않습니다.</p>
-                                <p class="guide-text black">&middot; RCS 메시지 발송 시, 메시지에 URL을 기재하는 용도로 사용됩니다. </p>
-                                <p class="guide-text black">&middot; [저장] 또는 [비공개] 상태일 경우, [게시] 상태가 아니므로 URL에 연결된 소식을 볼 수 없습니다.</p>
-                                <p class="guide-text black">&middot; [예약 게시]는 지정된 [게시]상태로 전환되므로 [게시] 이전에는 URL에 연결된 소식을 볼 수 없습니다.</p>
-                            </div>
-                        </td>
-                      </tr>
-                      <!-- //게시방법 -->
-                      <!-- 상단고정 -->
-                      <tr>
-                        <th scope="row"><span class="form-item__label">상단고정</span></th>
-                        <td>
-                            <div class="form-item__content">
-                                <div class="form-item-row">
-                                  <div class="input-item">
-                                    <span class="checkbox">
-                                      <input type="checkbox" id="pinY" v-model="form.pinYn"/>
-                                      <label for="pinY"><span class="radiobox__text">상단 고정 등록</span></label>
-                                    </span>
-                                  </div>
-                                </div>
-                            </div>
-                        </td>
-                      </tr>
-                      <!-- // 상단고정 -->
                     </tbody>
                   </table>
                 </template>
@@ -303,9 +256,12 @@
                                 <ButtonCmp
                                       type="btn-default-line"
                                       :disabled="isSlideCardEdit"
+                                      @click="showSpecialCharSlide = !showSpecialCharSlide"
                                   >특수문자
                                 </ButtonCmp>
+                                <emoji-picker id="emojiPicker" @emoji-click="onSelectEmoji($event, 'slideTitle', j)" v-show="showSpecialCharSlide" class="light emoji-wrap"></emoji-picker>
                               </div>
+                              <p class="guide-text error"  v-if="slideTitleErrorMsg">슬라이드 제목을 입력해주세요.</p>
                             </div>
                           </td>
                         </tr>
@@ -330,10 +286,12 @@
                                 </div>
                                 <ButtonCmp
                                       type="btn-default-line"
-                                      :disabled="isSlideCardEdit"
+                                      @click="showSpecialCharSlideTextArea = !showSpecialCharSlideTextArea"
                                   >특수문자
                                 </ButtonCmp>
+                                <emoji-picker id="emojiPicker" @emoji-click="onSelectEmoji($event, 'slideContent', j)" v-show="showSpecialCharSlideTextArea" class="light emoji-wrap"></emoji-picker>
                               </div>
+                              <p class="guide-text error"  v-if="slideContentErrorMsg">슬라이드 내용을 입력해주세요.</p>
                             </div>
                           </td>
                         </tr>
@@ -355,6 +313,7 @@
                                 <p class="guide-text black">&middot; 이미지 사이즈 / 용량 : 700px * 700px, 최대 1080px * 1080px / 최대 3MB</p>
                                 <p class="guide-text black">&middot; 파일종류: JPG, PNG, GIF</p>
                               </div>
+                              <p class="guide-text error"  v-if="slideImageErrorMsg">슬라이드 이미지를 등록해주세요.</p>
                             </div>
                           </td>
                         </tr>
@@ -373,9 +332,10 @@
                                     적용
                                   </ButtonCmp>
                                 </div>
-                                <p class="guide-text black">&middot; 연결 URL은 You Tube만 등록 가능합니다.</p>
-                              <p class="guide-text black">&middot; 연결된 URL의 타이틀과 대표이미지(썸네일)가 자동으로 노출됩니다.</p>
                               </div>
+                              <p class="guide-text black">&middot; 연결 URL은 You Tube만 등록 가능합니다.</p>
+                              <p class="guide-text black">&middot; 연결된 URL의 타이틀과 대표이미지(썸네일)가 자동으로 노출됩니다.</p>
+                              <p class="guide-text error"  v-if="slideUrlErrorMsg">Youtube URL 주소만 입력해주세요.</p>
                             </div>
                           </td>
                         </tr>
@@ -399,65 +359,80 @@
                             <template v-if="slide.btnUse == 'btnUseY'">
                               <feedButtonReg :Buttons="slide.buttons" />
                             </template>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row"><span class="form-item__label required">게시방법</span></th>
-                          <td>
-                              <div class="form-item__content">
-                                  <div class="form-item-row">
-                                    <div class="input-item">
-                                      <span class="radiobox">
-                                        <input type="radio" name="publish" id="publish" value="publish" v-model="slide.publishType" :disabled="isSlideCardEdit"/>
-                                        <label for="publish"><span class="radiobox__text">즉시게시</span></label>
-                                      </span>
-                                      <span class="radiobox">
-                                        <input type="radio" name="publish" id="resv" value="resv" v-model="slide.publishType" :disabled="isSlideCardEdit"/>
-                                        <label for="resv"><span class="radiobox__text">예약게시</span></label>
-                                      </span>
-                                      <span class="radiobox">
-                                        <input type="radio" name="publish" id="hidden" value="hidden" v-model="slide.publishType" :disabled="isSlideCardEdit"/>
-                                        <label for="hidden"><span class="radiobox__text">숨김(URL)게시</span></label>
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div class="form-item-row" v-if="slide.publishType === 'resv'">
-                                    <div class="input-item">
-                                      <el-date-picker
-                                        v-model="slide.resvDate"
-                                        type="date"
-                                        class="w--full"
-                                      />
-                                    </div>
-                                    <Dropdown :options="timeOption" v-model="slide.resvTime"></Dropdown>
-                                  </div>
-                                  <p class="guide-text black">&middot; [숨김 게시]는 브랜드 소식내에는 노출되지 않습니다.</p>
-                                  <p class="guide-text black">&middot; RCS 메시지 발송 시, 메시지에 URL을 기재하는 용도로 사용됩니다. </p>
-                                  <p class="guide-text black">&middot; [저장] 또는 [비공개] 상태일 경우, [게시] 상태가 아니므로 URL에 연결된 소식을 볼 수 없습니다.</p>
-                                  <p class="guide-text black">&middot; [예약 게시]는 지정된 [게시]상태로 전환되므로 [게시] 이전에는 URL에 연결된 소식을 볼 수 없습니다.</p>
-                              </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row"><span class="form-item__label">상단고정</span></th>
-                          <td>
-                              <div class="form-item__content">
-                                  <div class="form-item-row">
-                                    <div class="input-item">
-                                      <span class="checkbox">
-                                        <input type="checkbox" id="pinY" v-model="slide.pinYn" :disabled="isSlideCardEdit"/>
-                                        <label for="pinY"><span class="radiobox__text">상단 고정 등록</span></label>
-                                      </span>
-                                    </div>
-                                  </div>
-                              </div>
+                            <p class="guide-text error"  v-if="slideBtnErrorMsg">슬라이드 버튼을 입력해주세요.</p>
                           </td>
                         </tr>
                       </tbody>
                     </table>
                   </template>
+
                 </template>
                 <!-- // 슬라이드 타입 -->
+                <table class="table table-bodyonly form-table">
+                  <colgroup>
+                    <col width="196px">
+                    <col />
+                  </colgroup>
+                  <tbody>
+                    <!-- 게시방법 -->
+                  <tr>
+                    <th scope="row"><span class="form-item__label required">게시방법</span></th>
+                    <td>
+                        <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item">
+                                <span class="radiobox">
+                                  <input type="radio" name="publish" id="publish" value="publish" v-model="form.publishType"/>
+                                  <label for="publish"><span class="radiobox__text">즉시게시</span></label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="publish" id="resv" value="resv" v-model="form.publishType"/>
+                                  <label for="resv"><span class="radiobox__text">예약게시</span></label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="publish" id="hidden" value="hidden" v-model="form.publishType"/>
+                                  <label for="hidden"><span class="radiobox__text">숨김(URL)게시</span></label>
+                                </span>
+                              </div>
+                            </div>
+                            <div class="form-item-row" v-if="form.publishType === 'resv'">
+                              <div class="input-item">
+                                <el-date-picker
+                                  v-model="form.resvDate"
+                                  type="date"
+                                  class="w--full"
+                                />
+                              </div>
+                              <Dropdown :options="timeOption" v-model="form.resvTime"></Dropdown>
+                            </div>
+                            <p class="guide-text black">&middot; [숨김 게시]는 브랜드 소식내에는 노출되지 않습니다.</p>
+                            <p class="guide-text black">&middot; RCS 메시지 발송 시, 메시지에 URL을 기재하는 용도로 사용됩니다. </p>
+                            <p class="guide-text black">&middot; [저장] 또는 [비공개] 상태일 경우, [게시] 상태가 아니므로 URL에 연결된 소식을 볼 수 없습니다.</p>
+                            <p class="guide-text black">&middot; [예약 게시]는 지정된 [게시]상태로 전환되므로 [게시] 이전에는 URL에 연결된 소식을 볼 수 없습니다.</p>
+                        </div>
+                        <p class="guide-text error"  v-if="feedResvErrorMsg">게시일을 선택해주세요.</p>
+                    </td>
+                  </tr>
+                  <!-- //게시방법 -->
+                  <!-- 상단고정 -->
+                  <tr>
+                    <th scope="row"><span class="form-item__label">상단고정</span></th>
+                    <td>
+                        <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item">
+                                <span class="checkbox">
+                                  <input type="checkbox" id="pinY" v-model="form.pinYn"/>
+                                  <label for="pinY"><span class="radiobox__text">상단 고정 등록</span></label>
+                                </span>
+                              </div>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                  <!-- // 상단고정 -->
+                  </tbody>
+                </table>
               </div>
             </form>
           </div>
@@ -483,6 +458,9 @@
                 </div>
               </TabItem>
               <TabItem title="소식메인 보기">
+                <div class="feed-emulator__wrap">
+                  <feedEmulator :feedInfoData="form"/>
+                </div>
               </TabItem>
             </TabCmp>
           </div>
@@ -498,55 +476,10 @@
           >임시 저장</ButtonCmp>
           <ButtonCmp
               type="btn-blue"
+              @click="onSubmit"
           >등록</ButtonCmp>
         </div>
-        <!-- 이전 피드 -->
-        <div class="feed-list">
-          <div class="feed-list__filter">
-            <div class="filter-row">
-              <span class="filter-row__title">상태</span>
-              <ul class="scope-list">
-                <li v-for="(option, l) in statusOption" :key="l"
-                @click="getfilterOption(option, filterOption.status)"
-                :class="{'active': option.isSelected}"
-                >{{ option.label }}</li>
-              </ul>
-            </div>
-            <div class="filter-row">
-              <span class="filter-row__title">유형</span>
-              <ul class="scope-list">
-                <li v-for="(option, l) in typeOption" :key="l"
-                @click="getfilterOption(option, filterOption.type)"
-                :class="{'active': option.isSelected}"
-                >{{ option.label }}</li>
-              </ul>
-            </div>
-            <div class="filter-row ctrl">
-              <div class="date-range">
-                <el-date-picker
-                  v-model="filterOption.dateRange"
-                  type="daterange"
-                  unlink-panels
-                  range-separator="~"
-                  prefix-icon=""
-                  :start-placeholder="todayFormat"
-                  :end-placeholder="todayFormat"
-                  format="yyyy.MM.dd"
-                />
-              </div>
-              <div class="dropdown-search__wrap">
-                <Dropdown :options=serchCategoryOption v-model="filterOption.searchCategory" placeholder="선택" />
-                <div class="search-area">
-                  <span class="input search">
-                    <input type="text" placeholder="검색어를 입력하세요."/>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <feedViewItem v-for="( feed, m ) in feedViewData" :feedData="feed" :key="m"/>
-        </div>
-        <!-- // 이전 피드 -->
+        <feedList :feedViewData="feedViewData"/>
       </div>
     </div>
     <!-- 모달 영역 -->
@@ -567,7 +500,6 @@
 </template>
 
 <script>
-
 import PageTitle from '@/components/common/PageTitle.vue'
 import draggable from 'vuedraggable'
 import 'swiper/css/swiper.css'
@@ -577,11 +509,12 @@ import TabCmp from '@/components/common/TabCmp.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
 import feedEmulator from '@/views/brand/feed/components/feedEmulator.vue'
-import feedViewItem from '@/views/brand/feed/components/feedViewItem.vue'
 import moment from 'moment'
 import feedButtonReg from '@/views/brand/feed/components/feedButtonReg.vue'
+import feedList from '@/views/brand/feed/feedList.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import feedModal from '@/views/brand/feed/components/feedModal.vue'
+import 'emoji-picker-element'
 
 export default {
   components: {
@@ -593,10 +526,10 @@ export default {
     ButtonCmp,
     Dropdown,
     feedEmulator,
-    feedViewItem,
     feedButtonReg,
     ModalView,
-    feedModal
+    feedModal,
+    feedList
   },
   data() {
     return {
@@ -608,7 +541,6 @@ export default {
         btnUse: 'btnUseN',
         imgFiles: [],
         url: '',
-        buttonCount: 0,
         buttons: [{
           btnName: '',
           btnType: '',
@@ -648,11 +580,7 @@ export default {
             chatRoom: '',
             call: '',
             isActive: true
-          }],
-          publishType: 'publish',
-          pinYn: false,
-          resvDate: '',
-          resvTime: ''
+          }]
         }]
       },
       btnTypeOption: [
@@ -689,77 +617,6 @@ export default {
           value: '02'
         }
       ],
-      listFilterDate: '',
-      filterOption: {
-        status: [],
-        type: [],
-        dateRange: '',
-        searchCategory: '',
-        searchWord: ''
-      },
-      statusOption: [
-        {
-          label: '게시',
-          value: 'publish',
-          isSelected: false
-        },
-        {
-          label: '예약',
-          value: 'reservation',
-          isSelected: false
-        },
-        {
-          label: '숨김(URL)',
-          value: 'internet',
-          isSelected: false
-        },
-        {
-          label: '임시저장',
-          value: 'temporarySave',
-          isSelected: false
-        },
-        {
-          label: '미노출',
-          value: 'hidden',
-          isSelected: false
-        },
-        {
-          label: '고정소식',
-          value: 'fix',
-          isSelected: false
-        },
-        {
-          label: '내가 등록한 소식',
-          value: 'myNews',
-          isSelected: false
-        }
-      ],
-      typeOption: [
-        {
-          label: '갤러리',
-          value: 'gallery',
-          isSelected: false
-        },
-        {
-          label: '쉐어링',
-          value: 'sharing',
-          isSelected: false
-        },
-        {
-          label: '슬라이드',
-          value: 'slideView',
-          isSelected: false
-        }
-      ],
-      todayFormat: '',
-      serchCategoryOption: [{
-        label: '소식제목',
-        value: 'feedTitle'
-      },
-      {
-        label: '소식 ID',
-        value: 'feedId'
-      }],
       feedViewData: [
         {
           feedId: 1222213,
@@ -768,20 +625,23 @@ export default {
           feedAuthor: '김미미',
           feedDate: '2023.04.09',
           feedPublishDate: '2023.04.09 05:56',
+          isFixed: true,
           feedItem: {
             feedDate: '4월 19일 오후 3:00',
             type: 'gallery',
             feedTitle: 'SK 텔레콤의 스마트한 제안',
-            feedContent: 'SK텔레콤을 다양하게 만나보세요! #SKT Insight · SK텔레콤 네이버 포스트 스크랩 · SK텔레콤 페이스북 #Facebook · SK텔레콤 유튜브 #YouTube ​'
+            feedContent: 'SK텔레콤을 다양하게 만나보세요! #SKT Insight · SK텔레콤 네이버 포스트 스크랩 · SK텔레콤 페이스북 #Facebook · SK텔레콤 유튜브 #YouTube ​',
+            imgFiles: ['dummy/feed_image.png', 'dummy/feed_image_02.png', 'dummy/feed_image_03.png', 'dummy/feed_image.png', 'dummy/feed_image_02.png']
           }
         },
         {
           feedId: 1222213,
-          feedType: '쉐어형',
+          feedType: '쉐어링',
           feedStatus: '게시',
           feedAuthor: '김미미',
           feedDate: '2023.04.09',
           feedPublishDate: '2023.04.09 05:56',
+          isFixed: false,
           feedItem: {
             feedDate: '4월 19일 오후 3:00',
             type: 'sharing',
@@ -792,7 +652,18 @@ export default {
       ],
       fileList: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
       isModalViewed: false,
-      isModalImage: false
+      isModalImage: false,
+      feedTitleErrorMsg: false,
+      feedContentErrorMsg: false,
+      feedImageFileErrorMsg: false,
+      feedUrlFileErrorMsg: false,
+      feedBtnErrorMsg: false,
+      feedResvErrorMsg: false,
+      slideTitleErrorMsg: false,
+      showSpecialCharTextArea: false,
+      showSpecialCharTitle: false, // 특수문자 선택창 show 여부
+      showSpecialCharSlide: false,
+      showSpecialCharSlideTextArea: false
     }
   },
   created() {
@@ -822,9 +693,7 @@ export default {
           chatRoom: '',
           call: '',
           isActive: true
-        }],
-        publishType: 'publish',
-        pinYn: false
+        }]
       }
       this.form.slideData.push(slideData)
     },
@@ -863,38 +732,66 @@ export default {
       const filesName = files[0].name
       this.filesName = filesName
     },
-    // 필터 활성화
-    getfilterOption(option, targetKey) {
-      if (!option.isSelected) {
-        targetKey.push(option.value)
-        option.isSelected = true
-      } else {
-        let i = 0
-        while (i < targetKey.length) {
-          if (targetKey[i] === option.value) {
-            targetKey.splice(i, 1)
-          } else {
-            i++
-          }
-        }
-        option.isSelected = false
-      }
-    },
     // 모달 버튼
     modalSave () {
       this.isModalViewed = false
       this.isModalImage = false
-      this.isModalChat = false
     },
     closeModal () {
       this.isModalViewed = false
       this.isModalImage = false
-      this.isModalChat = false
     },
     imageModal () {
       this.isModalViewed = true
       this.isModalImage = true
-      this.isModalChat = false
+    },
+    onSelectEmoji(e, field, index) {
+      let code = e.detail.unicode
+      if (field === 'feedTitle') {
+        this.form.feedTitle += code
+      } else if (field === 'feedContent') {
+        this.form.feedContent += code
+      } else if (field === 'slideTitle') {
+        this.form.slideData[index].slideTitle += code
+      } else if (field === 'slideContent') {
+        this.form.slideData[index].slideDescription += code
+      }
+    },
+    onSubmit () {
+      if (!this.form.feedTitle) {
+        this.feedTitleErrorMsg = true
+        return
+      }
+      // if (this.form.type === 'sharing' && this.form.imgFiles.length < 1) {
+      //   this.feedImageFileErrorMsg = true
+      //   return
+      // }
+      if (this.form.type === 'sharing' && !this.form.url) {
+        this.feedUrlFileErrorMsg = true
+        return
+      }
+      if (this.form.type !== 'slideView') {
+        if (!this.form.feedContent) {
+          this.feedContentErrorMsg = true
+          return
+        }
+        if (this.form.btnUse === 'btnUseY') {
+          if (this.form.buttons.length < 2 || !this.form.buttons[0].btnName) {
+            this.feedBtnErrorMsg = true
+            return
+          }
+        }
+        if (this.form.publishType === 'resv') {
+          if (!this.form.resvDate) {
+            this.feedResvErrorMsg = true
+            return
+          }
+        }
+      }
+      if (this.form.type === 'slideView') {
+
+      }
+      this.$router.push('./')
     }
   }
 }

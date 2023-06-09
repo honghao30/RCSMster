@@ -21,7 +21,12 @@
               <p class="chat-date">{{ todayData }}</p>
               <p class="safty-icon" v-if="showSaftyMark">확인된 발신번호</p>
               <div class="chat-bubble__wrap sender">
-                <div class="chat-bubble">
+                <div class="chat-bubble" v-if="mode === 'views'">
+                  <p>문의사항이 있으시다면 채팅방에 문의 내용과 성함/연락처를 남겨주세요.<br>
+                    {{ chatName }}의 MD팀이 최대한 빠르게 답변 드리도록 하겠습니다!
+                  </p>
+                </div>
+                <div class="chat-bubble" v-else>
                   <p>{{ chatName }} 가입을 환영합니다.<br>더 풍부해진 문자서비스를 지금 만나보세요!</p>
                 </div>
                 <span class="chat-time">{{ currentTime }}</span>
@@ -62,12 +67,12 @@
             >
               <span class="irtext">토글</span>
             </ButtonCmp>
-            <ul class="contac-msg">
+            <ul class="chat-menu__list-inemul">
               <li
                 v-for="list in chatMenuList"
                 :key="list"
               >
-                <router-link to="#">{{ list }}</router-link>
+                <router-link to="#">{{ list.label }}</router-link>
               </li>
             </ul>
           </div>
@@ -89,12 +94,12 @@
             >
               <span class="irtext">토글</span>
             </ButtonCmp>
-            <ul class="contac-msg">
+            <ul class="chat-menu__list-inemul">
               <li
                 v-for="(list, index) in chatMenuList"
                 :key="index"
               >
-                <router-link to="#">{{ list }}</router-link>
+                <router-link to="#">{{ list.label }}</router-link>
               </li>
             </ul>
           </div>
@@ -123,6 +128,7 @@ export default {
   },
   props: {
     saftyMark: String,
+    mode: String,
     allowMsg: {
       type: String,
       default: 'Y'

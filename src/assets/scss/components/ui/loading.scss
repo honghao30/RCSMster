@@ -1,0 +1,47 @@
+.loading {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 99;
+}
+.loading-inner {
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+}
+.loading-icon {
+    width: 100%;
+    height: 100%;
+    border: 3px solid #DCF2FF;
+    border-radius: 50%;
+    position: relative;
+    z-index: 5;
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      border-top: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      border-left: 3px solid transparent;
+      border-right: 3px solid #2F77FB;
+      border-radius: 50%;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      animation: circle-rotate .80s both linear infinite;
+    }
+  }
+  @keyframes circle-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+  }

@@ -404,6 +404,7 @@
     background-color: #fff;
     border-radius: 16px;
     padding:16px 0;
+    border:1px solid #eaeaea;
     .brand-info {
         padding: 0 20px;
         &__inner {
@@ -485,7 +486,6 @@
                         width:6px;
                         height:6px;
                         position:relative;
-                        top: -2px;
                         border-top:1px solid #000;
                         border-left:1px solid #000;
                         transform: rotate(135deg);
@@ -524,25 +524,113 @@
     }
 }
 //대화방 메뉴 등록
+.switch-status{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
 .chatroom__select--top {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    .chatroom-list {
-      width: 100%;
-      max-width: 400px;
+    .dropdown{
+        min-width: 523px;
+    }   
+}
+.card-box{
+    td{
+        padding: 0;
+        .slide-card__wrap {
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            flex: 1;
+            padding: 32px 0 12px 0;
+            border-bottom: 1px solid #ddd;
+            .slide-card__inner {
+                display:flex;
+                align-items: center;
+                gap: 8px;     
+            }
+            .card-list {
+                display:flex;
+                gap: 8px; 
+            }
+            .card-item {
+                width: 60px;
+                height: 60px;
+                border:1px solid #ddd;
+                border-radius: 8px;
+                display:inline-flex;
+                align-items:center;
+                justify-content: center;
+                color: #666;
+                position:relative;
+                cursor: pointer;
+                &.active {
+                    border-color: #000;
+                    color: #000;
+                }
+                .btn-del {
+                    position:absolute;
+                    right: -4px;
+                    top: -4px;
+                    width: 12px;
+                    height: 12px;
+                    color: #fff;
+                    background-color: #000;
+                    border-radius: 100%;
+                    &:before {
+                        content:'';
+                        display:inline-block;
+                        width:1px;
+                        height:7px;
+                        background-color: #fff;
+                        transform:rotate(45deg);
+                        position:absolute;
+                        left:50%;
+                        top:50%;
+                        margin:-4px 0 0 -1px;
+                    }
+                    &:after {
+                        content:'';
+                        display:inline-block;
+                        width:1px;
+                        height:7px;
+                        background-color: #fff;
+                        transform:rotate(-45deg);
+                        position:absolute;
+                        left:50%;
+                        top:50%;
+                        margin:-4px 0 0 -1px;
+                    }
+                }
+            }
+            .btn-add {
+                width: 32px;
+                height: 32px;
+                font-size:24px;
+                border:1px solid #ddd;
+                border-radius: 100%;
+                text-align:center;
+                line-height: 28px;
+            }
+            .guide-box {
+                width: 100%;
+                padding: 16px;
+                background-color: #f4f4f4;
+                margin:12px 0 -12px;
+            }
+        }
     }
-    .chatroom-btn {
-        display: flex;
-        gap:5px;
-    }
-  &+.chatroom-menu__wrap--add {
-    margin-top:30px;
-  }
 }
 .chartroom-menu-add {
     .form-item__content {
+        &.is-emoji {
+           position: relative;
+        }
         &.chatroom-menu {
          padding-left:20px;
          padding-right:4px;
@@ -585,7 +673,67 @@
          }   
      }
 }
-
+.wid-auto {
+    width: auto !important;
+}
+.chatroom-list-left {
+    .drodown__option li {text-align: left;}
+}
+.chatroom__wrap--view {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 32px;    
+    border-top: 3px solid #BCBCBC;
+    border-bottom: 3px solid #BCBCBC;
+    padding:0 0 16px;
+    .chatroom-menu__view {
+        flex: 1;
+        .table__wrap {
+            &:first-child {
+                border-top: 0;
+            }      
+            &:last-child {
+                table {
+                    tr {
+                        &:last-child {
+                            th,
+                            td {border-bottom:0;}
+                        }
+                    }
+                }
+            }
+            border-top: 3px solid #BCBCBC;      
+        }
+        .chatroom-menu__list {
+            li {
+                @include fontoption(14px,#000,400,26px);
+                &+li {
+                    margin-top:12px;
+                }
+            }
+        }
+    }
+    .chatroom-emulator {
+        padding-top: 16px;
+    }
+    .chatroom-munu__h3-wrap {
+        position: relative;
+        button {
+            position: absolute;
+            left: 127px;
+            top: 5px;
+        }
+    }
+    .not-user-msg {
+        display: block;
+        @include fontoption(14px,#000,400,26px);
+        margin-top:8px;
+        a {
+            text-decoration: underline;
+        }
+    }
+}
 //대화방 등록 && 수정
 .brand-info__wrap {
     .chatroom__wrap{
@@ -1284,6 +1432,7 @@ ul {
             p {
                 font-size: 14px;
                 line-height: 22px;
+                font-weight: 400;
             }
         }
     }
@@ -1307,7 +1456,17 @@ ul {
               line-height: 0;
               background: #D9D9D9;
               border-radius: 2px;
-            }            
+            }       
+            .chat-menu__list-inemul {
+                padding:0 16px;
+                li {
+                 @include fontoption(16px, #000, 400, 24px);
+                 text-align: left;
+                 &+li {
+                    margin-top:18px;
+                 }
+                }
+            }     
             .emulator-footer__allow-input {
                 padding: 16px;
                 display:flex;
@@ -1369,5 +1528,10 @@ ul {
     }
 }
 
-
-
+// 이모지 
+.emoji-wrap {
+    position: absolute;
+    right:0;
+    top:50px;
+    z-index: 15;
+}
