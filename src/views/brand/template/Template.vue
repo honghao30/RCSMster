@@ -38,7 +38,6 @@
                 :deleteable="true"
                 :draghandle="true"
                 @onDelete="removeComp(j)"
-                :class="'item' + (j+1)"
               />
             </draggable>
           </div>
@@ -72,7 +71,6 @@ export default {
           id: 0,
           type: 'MainImage',
           compInfo: {
-            full: true,
             imageSrc: 'dummy/template_image.png'
           },
           inActive: false
@@ -81,7 +79,6 @@ export default {
           id: 1,
           type: 'MainImage',
           compInfo: {
-            full: true,
             imageSrc: 'dummy/template_image_02.png'
           },
           inActive: false

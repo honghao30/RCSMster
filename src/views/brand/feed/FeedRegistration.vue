@@ -440,27 +440,17 @@
           <div class="brand-aside sticky">
             <TabCmp tabClass="brand-tab"  size="small">
               <TabItem title="상세보기">
-                <div class="feed-emulator__wrap">
-                  <div class="feed-emulator">
-                    <div class="emulator-header">
-                      <div class="emulator-header__inner">
-                        <button class="btn-back"><span class="blind">이전으로</span></button>
-                        <div class="profile">
-                          <div class="profile__image">
-                            <img src="@/assets/images/dummy/brand_logo.png" alt="">
-                          </div>
-                          <p class="brand-name">SYSTEM STUDIOS</p>
-                        </div>
-                      </div>
-                    </div>
-                    <feedEmulator :feedInfoData="form"/>
-                  </div>
-                </div>
+                <feedEmulator
+                  :brandInfoData="brandInfoData"
+                  :feedInfoData="form"
+                  :showBrandHeader="true"
+                />
               </TabItem>
               <TabItem title="소식메인 보기">
-                <div class="feed-emulator__wrap">
-                  <feedEmulator :feedInfoData="form"/>
-                </div>
+                <feedEmulator
+                  :feedInfoData="form"
+                  :show-profile="false"
+                />
               </TabItem>
             </TabCmp>
           </div>
@@ -583,6 +573,10 @@ export default {
           }]
         }]
       },
+      brandInfoData: {
+        name: 'SYSTEM STUDIOS',
+        profileImgFileUrl: 'dummy/brand_logo.png'
+      },
       btnTypeOption: [
         {
           label: 'URL 연결',
@@ -631,7 +625,7 @@ export default {
             type: 'gallery',
             feedTitle: 'SK 텔레콤의 스마트한 제안',
             feedContent: 'SK텔레콤을 다양하게 만나보세요! #SKT Insight · SK텔레콤 네이버 포스트 스크랩 · SK텔레콤 페이스북 #Facebook · SK텔레콤 유튜브 #YouTube ​',
-            imgFiles: ['dummy/feed_image.png', 'dummy/feed_image_02.png', 'dummy/feed_image_03.png', 'dummy/feed_image.png', 'dummy/feed_image_02.png']
+            imgFiles: ['dummy/feed_image_02.png', 'dummy/feed_image.png', 'dummy/feed_image_03.png', 'dummy/feed_image.png', 'dummy/feed_image_02.png']
           }
         },
         {

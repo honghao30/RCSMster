@@ -42,9 +42,10 @@
       </ul>
     </div>
     <div class="feed-view">
-      <div class="feed-view__box">
-        <feedEmulator :feedInfoData="feedData.feedItem" />
-      </div>
+      <feedEmulator
+        :feedInfoData="feedData.feedItem"
+        :showBrandHeader="false"
+      />
     </div>
   </div>
 </template>

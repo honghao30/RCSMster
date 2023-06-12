@@ -534,3 +534,46 @@
     @include fontoption(16px,#000,500,28px);
   }
 }
+//대화방 메뉴 등록 - 브랜드 소식 연결 팝업
+.select_menu{
+  max-width: 1080px;
+  .modal__content--body{
+    .search__wrap{
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 32px;
+      .search-result__wrap{
+        flex: 1;
+        .top-ctrl-area{
+          .search-area{
+            .input{
+              min-width: 400px;
+            }
+          }
+        }
+        .table__wrap{
+          min-height: 740px;
+        }
+      }
+      .empty-emulator{
+        background-color: #FCFCFC;
+        border: 1px solid #EAEAEA;
+        flex:0 0 360px;
+        width: 360px;
+        min-height: 740px;
+        position:sticky;
+        border-radius:16px;
+        border:1px solid #eaeaea;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .feed-emulator__wrap{
+        min-height: 740px;
+      }
+    }
+  }
+  .modal__content--footer{
+    flex-wrap: wrap;
+  }
+}

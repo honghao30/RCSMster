@@ -246,3 +246,52 @@
   border-radius: 8px;   
   margin-top: 24px;
 }
+
+// 약관 내용
+.inner_agree {
+  .h3_title {
+    @include fontoption(18px,#666,700,30px);
+  }
+  span {
+    @include fontoption(16px,#666,500,28px);
+  }
+  ul {
+    margin-bottom: 30px;
+    li {
+      display: flex;
+      flex-wrap: wrap;
+      .list_num {
+        width: 20px;
+      }
+      span {
+        width: calc(100% - 30px);
+        @include fontoption(14px,#666,400,26px);
+      }
+    }
+    .sub_text {
+      width: 100%;
+      margin-bottom: 0;
+      padding: 0 20px;
+    }
+    .bullet_list {
+      width: 100%;
+      margin-bottom: 0;
+      padding: 0 20px;
+      li:before {
+        display: block;
+        content: "";
+        position: relative;
+        margin-top: 13px;
+        margin-right: 5px;
+        width: 5px;
+        height: 1px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #666;
+      }
+    }
+  }
+  .h5_desc {
+    @include fontoption(14px,#666,600,26px);
+  }
+}

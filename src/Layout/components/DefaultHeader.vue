@@ -18,7 +18,11 @@
           </ul>
         </div>
       </nav>
-      <div class="header__util">
+      <div class="header__util" v-if="login">
+        <router-link to="#" class="is-login">로그인</router-link>
+        <router-link to="/SignUp">회원가입</router-link>
+      </div>
+      <div class="header__util" v-else>
         <router-link to="/dashboard" class="link-dashboard">기업 대시보드</router-link>
         <div class="user">
           <a role="button"><span class="name">홍길동</span>님</a>
@@ -45,7 +49,8 @@ export default {
   data() {
     return {
       navMenu,
-      menus: []
+      menus: [],
+      login: false
     }
   },
   created() {

@@ -1,7 +1,7 @@
 [
   {
     "menuId": "M0100",
-    "parentMenuId": "#",
+    "parentMenuId": "",
     "path": "#",
     "level": 1,
     "sort": 1,
@@ -10,26 +10,18 @@
   {
     "menuId": "M0101",
     "parentMenuId": "M0100",
-    "path": "/intro/service",
+    "path": "#",
     "level": 2,
     "sort": 1,
-    "name": "RCS 서비스"
+    "name": "마케팅 메시지"
   },
   {
     "menuId": "M0102",
     "parentMenuId": "M0100",
-    "path": "/intro/serviceuse",
+    "path": "",
     "level": 2,
     "sort": 2,
-    "name": "서비스 이용안내"
-  },
-  {
-    "menuId": "M0103",
-    "parentMenuId": "M0100",
-    "path": "/intro/miricanvas",
-    "level": 2,
-    "sort": 3,
-    "name": "이벤트"
+    "name": "서비스 이용 가이드"
   },
   {
     "menuId": "M0200",
@@ -57,7 +49,7 @@
   },
   {
     "menuId": "M0300",
-    "parentMenuId": "#",
+    "parentMenuId": "",
     "path": "/notice",
     "level": 1,
     "sort": 2,
@@ -66,57 +58,33 @@
   {
     "menuId": "M0301",
     "parentMenuId": "M0300",
-    "path": "/feed/dashboard",
+    "path": "/notice",
     "level": 2,
     "sort": 1,
-    "name": "대시보드"
+    "name": "공지사항"
   },
   {
     "menuId": "M0302",
     "parentMenuId": "M0300",
-    "path": "/feed/list",
-    "level": 2,
-    "sort": 2,
-    "name": "소식목록"
-  },
-  {
-    "menuId": "M0303",
-    "parentMenuId": "M0300",
-    "path": "/feed/stat",
-    "level": 2,
-    "sort": 3,
-    "name": "통계"
-  },
-  {
-    "menuId": "M0400",
-    "parentMenuId": "#",
-    "path": "#",
-    "level": 1,
-    "sort": 3,
-    "name": "기술지원"
-  },
-  {
-    "menuId": "M0401",
-    "parentMenuId": "M0400",
-    "path": "",
-    "level": 2,
-    "sort": 1,
-    "name": "기술지원"
-  },
-  {
-    "menuId": "M0402",
-    "parentMenuId": "M0400",
-    "path": "/cs/faq",
+    "path": "/faq",
     "level": 2,
     "sort": 2,
     "name": "FAQ"
   },
   {
-    "menuId": "M0403",
-    "parentMenuId": "M0400",
-    "path": "/cs/qna",
+    "menuId": "M0303",
+    "parentMenuId": "M0300",
+    "path": "/OnlineInquire",
     "level": 2,
     "sort": 3,
-    "name": "온라인 문의"
+    "name": "온라인문의"
+  },
+  {
+    "menuId": "M0400",
+    "parentMenuId": "",
+    "path": "",
+    "level": 1,
+    "sort": 1,
+    "name": "기술지원"
   }
 ]

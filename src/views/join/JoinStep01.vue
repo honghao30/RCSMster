@@ -27,13 +27,7 @@
         </div>
         <div class="agree__box">
           <div class="terms">
-            <p class="terms__h1">제 1 장 총 칙</p>
-            <p class="terms__h2">제 1조 목적</p>
-            <p class="terms__text">본 서비스 약관은 주식회사 케이티, 주식회사 에스케이텔레콤, 주식회사 엘지유플러스(이하”이동통신3사”라 한다)가 제공하는 RCS Biz Center 서비스 (이하 "서비스"라 합니다)를 이용함에 있어 필요한 서비스 이용조건 및 절차 등 기타 제반사항을 규정함을 목적으로 합니다.</p>
-
-            <p class="terms__h2">제 2조 약관의 효력 및 변경</p>
-            <p class="terms__text">① 본 약관은 서비스를 이용하고자 하는 모든 “회원”에 대하여 그 효력을 발생합니다.</p>
-            <p class="terms__text">② 본 약관의 내용은 “서비스” 화면에 게시하거나 기타의 방법으로 “회원”에게 공지하고, 이에 동의한 “회원”이 “서비스”에 가입함으로써 효력이 발생합니다.</p>
+            <div class="inner_agree" v-html="tosCtn1"></div>
           </div>
         </div>
       </div>
@@ -49,7 +43,7 @@
         </div>
         <div class="agree__box">
           <div class="terms">
-            <p class="terms__text">신청자는 기업을 대리하는 자로서 권한 부여 및 등록을 요청합니다. 또한 신청자의 업무처리로 인해 발생하는 모든 책임은 당사자에게 있음을 확인합니다.</p>
+            <div class="inner_agree" v-html="tosCtn4"></div>
           </div>
         </div>
       </div>
@@ -71,6 +65,7 @@
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import StepList from '@/components/common/StepList.vue'
+import { getAgreementList } from '@/api/common/agreement'
 
 export default {
   components: {
@@ -83,8 +78,39 @@ export default {
       allSelected: false,
       checkedAgreement1: false,
       checkedAgreement2: false,
+      agreements: [],
+      tosItemCd: '',
+      tosCtn1: this.tosCtn1,
+      tosCtn4: this.tosCtn4,
       stepTitle: ['약관동의', '기업정보 입력', '회원정보 입력', '가입완료']
     }
+  },
+  created() {
+    getAgreementList()
+      .then(res => {
+        this.tosItemList = []
+        res.result.map(item => {
+          let setValue = {
+            tosItemCd: item.tosItemCd,
+            seq: item.seq
+          }
+          this.tosItemList.push(setValue)
+        })
+        res.result.forEach(tosItem => {
+          if (tosItem.tosItemCd === 'S1') {
+            // 서비스 이용약관
+            this.tosCtn1 = tosItem.tosCtn
+          } else if (tosItem.tosItemCd === 'A1') {
+            // 신청 위임 동의
+            this.tosCtn4 = tosItem.tosCtn
+          }
+        })
+      })
+      .catch(() => {
+        // console.log('error', error)
+        // 코드가 적용되지 않아 오류 발생 - 임시로 막아둠
+        // this.$alertMsg(error.message, '알림', '확인')
+      })
   },
   methods: {
     selectAll() {

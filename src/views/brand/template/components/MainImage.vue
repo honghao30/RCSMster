@@ -1,5 +1,5 @@
 <template>
-  <div class="image-area" :class="{'full' : compInfo.full}">
+  <div class="image-area">
     <div class="image-item">
       <span class="image">
       <img :src="require('@/assets/images/'+ compInfo.imageSrc)"/>

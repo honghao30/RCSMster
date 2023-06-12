@@ -538,8 +538,9 @@
         min-width: 523px;
     }   
 }
-.card-box{
-    td{
+
+td{
+    &.card-box{
         padding: 0;
         .slide-card__wrap {
             display:flex;
@@ -627,51 +628,77 @@
     }
 }
 .chartroom-menu-add {
-    .form-item__content {
-        &.is-emoji {
-           position: relative;
-        }
-        &.chatroom-menu {
-         padding-left:20px;
-         padding-right:4px;
-         .radiobox {
-             margin:0 110px 0px 0;
-             &+.radiobox {
-                 margin-top: 10px;
-             }
-         }
-        }
-        .form-item-row {
-            border: 1px solid #EAEAEA;
-            border-radius: 6px;
-            height:30px;
-            padding:0 10px;
+    .input-limit{
+        .input{
+            display: flex;
             align-items: center;
-            input {
-             border:0;
-             padding:0;
-             @include fontoption(14px,#999,400,26px);
-             height:auto;
-             &::placeholder {
-                 @include fontoption(14px,#999,400,26px);
-             }
+            position: relative;
+            input{
+                padding: 0 86px 0 16px;
             }
-            .title-cout {
-              @include fontoption(14px,#000,400,26px);
-            }
+        }
+        .chat-emoticon{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 66px;
             .btn-only-icon {
-             padding:0;
-             .icon-emoticon {
-                 width: 15px;
-                 height:15px;
-                 background-image: url('../assets/images/icon/icon_emoticon.png');
-                 background-repeat: no-repeat;
-                 background-position: center;
-                 background-size: 100% auto;
-             }
+                padding:0;
+                .icon-emoticon {
+                    width: 20px;
+                    height:20px;
+                    background-image: url('../assets/images/icon/icon_emoticon.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: 100% auto;
+                }
             }
-         }   
-     }
+        }
+        .input-limit__text{
+            right: 16px;
+        }
+    }
+    .chatroom-menu {
+        display: flex;
+        flex-wrap: wrap;
+        .radiobox {
+            width: 50%;
+            &+.radiobox{
+                margin-left: 0;
+            }
+            &::nth-child(3){
+                margin-top: 9px;
+            }
+            &::nth-child(4){
+                margin-top: 9px;
+            }
+        }
+    }
+    .row-gap{
+        gap: 8px;
+    }
+    .notchat__wrap{
+        .notchat-des{
+            margin-top: 8px;
+            position: relative;
+            text-decoration: underline;
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                transform: translateY(-50%);
+                width: 16px;
+                height:16px;
+                background-image: url('../assets/images/icon/icon_more.png');
+                background-position: center center;
+                background-repeat: no-repeat;
+                transform: rotate(-90deg);
+                cursor: pointer;
+                top: 2px;
+                right: -20px;
+            }
+        }
+    }
 }
 .wid-auto {
     width: auto !important;

@@ -44,8 +44,8 @@
                         </div>
                       </td>
                     </tr>
-                    <tr class="card-box">
-                      <td colspan="2">
+                    <tr>
+                      <td colspan="2" class="card-box">
                         <div class="form-item__content">
                           <div class="form-item-row">
                             <div class="slide-card__wrap">
@@ -76,149 +76,132 @@
                               </div>
                             </div>
                             <template v-for="(slide, j) in form.slideData">
-                              <table class="table table-bodyonly form-table" v-if="slide.isActive" :key="j">
+                              <table class="table table-bodyonly form-table chartroom-menu-add" v-if="slide.isActive" :key="j">
                                 <colgroup>
                                   <col width="196px">
                                   <col />
                                 </colgroup>
                                 <tbody>
                                   <tr>
-                                    <th scope="row"><span class="form-item__label required">슬라이드 유형</span></th>
+                                    <th scope="row"><span class="form-item__label">메뉴</span></th>
                                     <td>
                                       <div class="form-item__content">
-                                        <div class="form-item-row">
-                                          <div class="input-item">
-                                            <span class="radiobox">
-                                              <input type="radio" name="slideType" id="slideTypeImg" value="image" v-model="slide.slideType" :disabled="isSlideCardEdit"/>
-                                              <label for="slideTypeImg"><span class="radiobox__text">이미지</span></label>
-                                            </span>
-                                            <span class="radiobox">
-                                              <input type="radio" name="slideType" id="slideTypeUrl" value="url" v-model="slide.slideType" :disabled="isSlideCardEdit"/>
-                                              <label for="slideTypeUrl"><span class="radiobox__text">URL 연결</span></label>
-                                            </span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row"><span class="form-item__label required">슬라이드 제목</span></th>
-                                    <td>
-                                      <div class="form-item__content">
-                                        <div class="form-item-row">
-                                          <div class="input-item input-limit">
-                                            <span class="input">
-                                              <input type="text" class="input" maxlength="40" placeholder="제목을 입력해주세요." v-model="slide.slideTitle"
-                                              :disabled="isSlideCardEdit"
-                                              >
-                                              <p class="input-limit__text">
-                                                {{ slide.slideTitle.length }}/34자
-                                              </p>
-                                            </span>
-                                          </div>
-                                          <ButtonCmp
-                                                type="btn-default-line"
-                                                :disabled="isSlideCardEdit"
-                                            >특수문자
-                                          </ButtonCmp>
-                                        </div>
-                                        <p class="guide-text error"  v-if="slideTitleErrorMsg">슬라이드 제목을 입력해주세요.</p>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row"><span class="form-item__label required">슬라이드 내용</span></th>
-                                    <td>
-                                      <div class="form-item__content">
-                                        <div class="form-item-row">
-                                          <div class="input-item input-limit">
-                                            <div class="textarea"
-                                              :class="{ 'disabled' : isSlideCardEdit }"
-                                            >
-                                              <textarea maxlength="200" placeholder="내용을 입력해주세요."  v-model="slide.slideDescription"
-                                              :disabled="isSlideCardEdit"
-                                              ></textarea>
-                                              <div class="textarea-limit__text">
-                                                <p>
-                                                  {{ slide.slideDescription.length }}/126자
+                                        <div class="form-item__content">
+                                          <div class="form-item-row">
+                                            <div class="input-item input-limit">
+                                              <span class="input">
+                                                <input type="text" class="input" maxlength="17"
+                                                  v-model="slide.slideTitle"
+                                                  :placeholder="'메뉴명을 입력해주세요'"
+                                                >
+                                                <span class="chat-emoticon">
+                                                  <ButtonCmp
+                                                    type="btn-only-icon"
+                                                    @click="showSpecialCharTitle = !showSpecialCharTitle"
+                                                    ><i class="icon-emoticon"></i>
+                                                  </ButtonCmp>
+                                                  <emoji-picker id="emojiPicker" @emoji-click="onSelectEmoji($event, 'slideTitle', j)" v-show="showSpecialCharTitle" class="light emoji-wrap"></emoji-picker>
+                                                </span>
+                                                <p class="input-limit__text">
+                                                  {{ slide.slideTitle.length }}/17자
                                                 </p>
-                                              </div>
+                                              </span>
                                             </div>
                                           </div>
-                                          <ButtonCmp
-                                                type="btn-default-line"
-                                            >특수문자
-                                          </ButtonCmp>
                                         </div>
-                                        <p class="guide-text error"  v-if="slideContentErrorMsg">슬라이드 내용을 입력해주세요.</p>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr v-if="slide.slideType == 'image'">
-                                    <th scope="row">
-                                      <span class="form-item__label required">이미지</span>
-                                    </th>
-                                    <td>
-                                      <div class="form-item__content">
-                                        <div class="form-item-row">
-                                          <div class="input-item">
-                                            <span class="input"><input type="text" :value="filesName" disabled placeholder="이미지를 등록해주세요."></span>
-                                            <input type="file" id="fileUp" class="input" @change="onFileChanged" :disabled="isSlideCardEdit">
-                                            <label for="fileUp"
-                                              class="btn btn-default-line"
-                                              :class="{'inactive' : isSlideCardEdit }"
-                                            >파일찾기</label>
-                                          </div>
-                                          <p class="guide-text black">&middot; 이미지 사이즈 / 용량 : 700px * 700px, 최대 1080px * 1080px / 최대 3MB</p>
-                                          <p class="guide-text black">&middot; 파일종류: JPG, PNG, GIF</p>
-                                        </div>
-                                        <p class="guide-text error"  v-if="slideImageErrorMsg">슬라이드 이미지를 등록해주세요.</p>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr v-if="slide.slideType == 'url'">
-                                    <th scope="row"><span class="form-item__label required">연결 URL</span></th>
-                                    <td>
-                                      <div class="form-item__content">
-                                        <div class="form-item-row">
-                                          <div class="input-item">
-                                            <span class="input">
-                                              <input type="text" :disabled="isSlideCardEdit" v-model="slide.url" placeholder="http://형식으로 입력해주세요.">
-                                            </span>
-                                            <ButtonCmp
-                                              type="btn-default-line"
-                                            >
-                                              적용
-                                            </ButtonCmp>
-                                          </div>
-                                        </div>
-                                        <p class="guide-text black">&middot; 연결 URL은 You Tube만 등록 가능합니다.</p>
-                                        <p class="guide-text black">&middot; 연결된 URL의 타이틀과 대표이미지(썸네일)가 자동으로 노출됩니다.</p>
-                                        <p class="guide-text error"  v-if="slideUrlErrorMsg">Youtube URL 주소만 입력해주세요.</p>
                                       </div>
                                     </td>
                                   </tr>
                                   <tr>
-                                    <th scope="row"><span class="form-item__label required">버튼</span></th>
+                                    <th scope="row"><span class="form-item__label">연결항목</span></th>
+                                    <td>
+                                        <div class="form-item__content chatroom-menu">
+                                          <span class="radiobox">
+                                            <input type="radio" name="chatroomMenu" value="call" v-model="slide.checkItem" id="radio1" />
+                                            <label for="radio1"><span class="radiobox__text">전화 연결</span></label>
+                                          </span>
+                                          <span class="radiobox">
+                                            <input type="radio" name="chatroomMenu" value="web" v-model="slide.checkItem" id="radio2"  />
+                                            <label for="radio2"><span class="radiobox__text">홈페이지 연결</span></label>
+                                          </span>
+                                          <span class="radiobox">
+                                            <input type="radio" name="chatroomMenu" value="news" v-model="slide.checkItem" id="radio3" />
+                                            <label for="radio3"><span class="radiobox__text">브랜드 소식 연결</span></label>
+                                          </span>
+                                          <span class="radiobox">
+                                            <input type="radio" name="chatroomMenu" value="chatbot" v-model="slide.checkItem" id="radio4" />
+                                            <label for="radio4"><span class="radiobox__text">간편 챗봇 메시지 연결</span></label>
+                                          </span>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                  <tr v-if="slide.checkItem === 'call'">
+                                    <th scope="row"><span class="form-item__label">전화 연결</span></th>
                                     <td>
                                       <div class="form-item__content">
                                         <div class="form-item-row">
                                           <div class="input-item">
-                                            <span class="radiobox">
-                                              <input type="radio" name="btnUse" id="btnUseN" value="btnUseN" v-model="slide.btnUse" :disabled="isSlideCardEdit"/>
-                                              <label for="btnUseN"><span class="radiobox__text">미사용</span></label>
-                                            </span>
-                                            <span class="radiobox">
-                                              <input type="radio" name="btnUse" id="btnUseY" value="btnUseY" v-model="slide.btnUse" :disabled="isSlideCardEdit"/>
-                                              <label for="btnUseY"><span class="radiobox__text">사용</span></label>
-                                            </span>
+                                            <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요." v-model="slide.tel"></span>
                                           </div>
                                         </div>
+                                        <p class="guide-text error" v-if="telErrorMsg">전화번호를 입력해주세요.</p>
                                       </div>
-                                      <template v-if="slide.btnUse == 'btnUseY'">
-                                        <feedButtonReg :Buttons="slide.buttons" />
-                                      </template>
-                                      <p class="guide-text error"  v-if="slideBtnErrorMsg">슬라이드 버튼을 입력해주세요.</p>
+                                    </td>
+                                  </tr>
+                                  <tr v-if="slide.checkItem === 'web'">
+                                    <th scope="row"><span class="form-item__label">URL</span></th>
+                                    <td>
+                                      <div class="form-item__content">
+                                        <div class="form-item-row">
+                                          <div class="input-item">
+                                            <span class="input"><input type="text" class="input" placeholder="http://로 된 주소를 입력해주세요." v-model="slide.web"></span>
+                                          </div>
+                                        </div>
+                                        <p class="guide-text error" v-if="webErrorMsg">http://로 된 주소를 입력해주세요.</p>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr v-if="slide.checkItem === 'news'">
+                                    <th scope="row"><span class="form-item__label">URL</span></th>
+                                    <td>
+                                      <div class="form-item__content">
+                                        <div class="form-item-row row-gap">
+                                          <div class="input-item">
+                                            <span class="input"><input type="text" class="input" placeholder="연결할 브랜드 소식을 선택하세요." v-model="slide.news" disabled></span>
+                                          </div>
+                                          <ButtonCmp
+                                            type="btn-default-line"
+                                            @click="barndNewsSelect"
+                                          >등록</ButtonCmp>
+                                        </div>
+                                        <p class="guide-text error" v-if="newsErrorMsg">연결할 브랜드 소식을 선택하세요.</p>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr v-if="slide.checkItem === 'chatbot'">
+                                    <th scope="row"><span class="form-item__label">URL</span></th>
+                                    <td>
+                                      <div class="form-item__content">
+                                        <div class="form-item-row row-gap">
+                                          <div class="input-item">
+                                            <span class="input"><input type="text" class="input" placeholder="연결할 간편챗봇 메시지를 선택하세요." v-model="slide.chatbot" disabled></span>
+                                          </div>
+                                          <ButtonCmp
+                                            type="btn-default-line"
+                                            @click="chatBotSelect"
+                                          >등록</ButtonCmp>
+                                        </div>
+                                        <!-- 연결된 대행사가 없는 경우 -->
+                                        <div class="form-item-row notchat__wrap">
+                                          <ul>
+                                            <li>현재 연결된 양방향 대행사가 없습니다.</li>
+                                            <li>대행사 연결 후 간편 챗봇 메시지를 등록할 수 있습니다.</li>
+                                          </ul>
+                                          <a class="notchat-des"><router-link to="">RBC의 파트너 대행사를 확인해보세요.</router-link></a>
+                                        </div>
+                                        <!-- //연결된 대행사가 없는 경우 -->
+                                        <p class="guide-text error" v-if="chatbotErrorMsg">연결할 간편챗봇 메시지를 선택하세요.</p>
+                                      </div>
                                     </td>
                                   </tr>
                                 </tbody>
@@ -238,28 +221,19 @@
               <router-link to="">대화방 등록 가이드</router-link>
             </div>
             <ChatEmulator
-              :chatName="form.chatTitle"
-              :saftyMark="form.saftyMark"
-              :allowMsg="form.allowMsg"
             />
           </div>
         </div>
-        <div class="top-notice--gray gray-btn">
-          <ul>
-            <li>- 승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</li>
-            <li>- 등록 방법 변경 시, 입력한 데이터가 초기화됩니다.</li>
-          </ul>
-        </div>
         <div class="button__wrap flex-end">
           <ButtonCmp
-              type="btn-blue-line"
-              @click="saveTemp"
+            type="btn-blue-line"
+            @click="saveTemp"
           >임시 저장</ButtonCmp>
           <ButtonCmp
-              type="btn-blue"
-              :disabled = "isDisabled"
-              @click="onSubmit"
-          >승인 요청</ButtonCmp>
+            type="btn-blue"
+            :disabled = "isDisabled"
+            @click="onSubmit"
+          >저장</ButtonCmp>
         </div>
       </div>
     </div>
@@ -294,6 +268,135 @@
         </div>
       </ConfirmMsg>
       <!-- //대화방 변경 시 alert -->
+      <!-- 메뉴 편집 버튼 삭제 시 alert -->
+      <ConfirmMsg
+      v-if="isRemoveSlide"
+        @closeModal="isModalViewed = false"
+      >
+        <div class="msg" slot="msg">
+          삭제하는 경우 해당 메뉴에 입력된 내용이<br>
+          모두 삭제됩니다.<br>
+          메뉴를 삭제 하시겠습니까?
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+          type="btn-line"
+          @click="closeMsg"
+          >
+            아니요
+          </ButtonCmp>
+          <ButtonCmp
+          type="btn-blue"
+          @click="DoneremoveSlide"
+          >
+            예
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+      <!-- //메뉴 편집 버튼 삭제 시 alert -->
+      <!-- 브랜드 소식 연결 선택 버튼 : 클릭 시 -->
+      <!-- case01. 등록된 브랜드 소식이 없는 경우(아니요 클릭 시 case02로 진입함) -->
+      <ConfirmMsg
+      v-if="isBrandNews"
+        @closeModal="isModalViewed = false"
+      >
+        <div class="msg" slot="msg">
+          등록된 브랜드 소식이 없습니다.<br>
+          등록중인 대화방 메뉴를 임시저장하고<br>
+          브랜드 소식을 등록 하시겠습니까?
+        </div>
+        <div class="button__wrap" slot="button">
+          <!-- 원래 아니요 클릭 시 case02 페이지 구현을 위해 만듦-->
+          <!-- 실제 구현 시 필요 -->
+          <!-- <ButtonCmp
+          type="btn-line"
+          @click="closeMsg"
+          >
+            아니요
+          </ButtonCmp> -->
+          <!-- 실제 구현 시 필요 -->
+          <!-- 실제 구현 시 불필요 -->
+          <ButtonCmp
+          type="btn-line"
+          @click="doneBarndNewsModal"
+          >
+            아니요
+          </ButtonCmp>
+          <!-- // 실제 구현 시 불필요 -->
+          <router-link
+            to="/FeedRegistration"
+            class="btn btn-blue"
+          >예</router-link>
+        </div>
+      </ConfirmMsg>
+      <!-- case02. 등록된 브랜드 소식이 있는 경우 -->
+      <DonebarndNewsSelect
+        @closeModal="isModalViewed = false"
+        v-if="isDoneBrandNews"
+      >
+      </DonebarndNewsSelect>
+      <!-- //브랜드 소식 연결 선택 버튼 : 클릭 시 -->
+      <!-- 간편챗봇 메시지 연결 선택 버튼 : 클릭 시 -->
+      <!-- case01. 등록된 간편챗봇 메시지가 없는 경우(아니요 클릭 시 case02로 진입함) -->
+      <ConfirmMsg
+        v-if="isChatBotConnect"
+          @closeModal="isModalViewed = false"
+      >
+        <div class="msg" slot="msg">
+          등록된 간편챗봇 메시지가 없습니다.<br>
+          등록중인 대화방 메뉴를 임시저장하고<br>
+          간편챗봇 메시지를 등록 하시겠습니까?
+        </div>
+        <div class="button__wrap" slot="button">
+          <!-- 원래 아니요 클릭 시 case02 페이지 구현을 위해 만듦-->
+          <!-- 실제 구현 시 필요 -->
+          <!-- <ButtonCmp
+          type="btn-line"
+          @click="closeMsg"
+          >
+            아니요
+          </ButtonCmp> -->
+          <!-- 실제 구현 시 필요 -->
+          <!-- 실제 구현 시 불필요 -->
+          <ButtonCmp
+          type="btn-line"
+          @click="doneChatBotModal"
+          >
+            아니요
+          </ButtonCmp>
+          <!-- // 실제 구현 시 불필요 -->
+          <!-- 기획서 > 예 버튼 클릭 시 경로 이동에 관한 내용 없음 -->
+          <router-link
+            to=""
+            class="btn btn-blue"
+          >예</router-link>
+        </div>
+      </ConfirmMsg>
+      <!-- case02. 등록된 간편챗봇 메시지가 있는 경우 -->
+      <DoneChatBotMsgSelect
+        @closeModal="isModalViewed = false"
+        v-if="isDoneChatBotConnect"
+      >
+      </DoneChatBotMsgSelect>
+      <!-- //간편챗봇 메시지 연결 선택 버튼 : 클릭 시 -->
+      <!-- 임시저장 -->
+      <ConfirmMsg
+        @closeModal="isModalViewed = false"
+        v-if="isModalSave"
+      >
+        <div class="msg" slot="msg">
+          임시저장 되었습니다.
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+          type="btn-blue"
+          @click="closeMsg"
+          >
+            확인
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+      <!-- //임시저장 -->
       </ModalView>
       <!-- //모달 -->
     </div>
@@ -309,6 +412,8 @@ import Dropdown from '@/components/common/Dropdown.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
 import ChatEmulator from '@/views/brand/components/ChatEmulator.vue'
+import DonebarndNewsSelect from '@/views/brand/chatroom/DonebarndNewsSelect.vue'
+import DoneChatBotMsgSelect from '@/views/brand/chatroom/DoneChatBotMsgSelect.vue'
 import 'swiper/css/swiper.css'
 import 'emoji-picker-element'
 
@@ -321,34 +426,24 @@ export default {
     Dropdown,
     ModalView,
     ConfirmMsg,
-    ChatEmulator
+    ChatEmulator,
+    DonebarndNewsSelect,
+    DoneChatBotMsgSelect
   },
   data() {
     return {
+      removeSlideIndex: undefined,
       form: {
         switch: true,
         slideData: [{
           slideIndex: '1',
-          slideType: 'image',
           slideTitle: '',
-          slideDescription: '',
           isActive: true,
-          imgFile: '',
-          url: '',
-          btnUse: 'btnUseN',
-          buttons: [{
-            btnName: '',
-            btnType: '',
-            url: '',
-            app: {
-              url: '',
-              packageName: '',
-              scheme: ''
-            },
-            chatRoom: '',
-            call: '',
-            isActive: true
-          }]
+          checkItem: [],
+          tel: '',
+          web: '',
+          news: '',
+          chatbot: ''
         }]
       },
       dropdownOptions: [
@@ -367,9 +462,19 @@ export default {
       ],
       isModalViewed: false,
       isChatRoomChange: false,
+      isBrandNews: false,
+      isDoneBrandNews: false,
+      isChatBotConnect: false,
+      isDoneChatBotConnect: false,
+      isModalSave: false,
       selectedOption: 'chatRoomMenu01',
       slideActiveIndex: 0,
-      isSlideCardEdit: false
+      isSlideCardEdit: false,
+      showSpecialCharTitle: false, // 특수문자 선택창 show 여부
+      telErrorMsg: false,
+      webErrorMsg: false,
+      newsErrorMsgErrorMsg: false,
+      chatbotErrorMsg: false
     }
   },
   methods: {
@@ -381,41 +486,81 @@ export default {
         this.isChatRoomChange = false
       }
     },
+    barndNewsSelect() {
+      this.isModalViewed = true
+      this.isBrandNews = true
+    },
+    doneBarndNewsModal() {
+      this.isModalViewed = true
+      this.isDoneBrandNews = true
+    },
+    chatBotSelect() {
+      this.isModalViewed = true
+      this.isChatBotConnect = true
+    },
+    doneChatBotModal() {
+      this.isModalViewed = true
+      this.isDoneChatBotConnect = true
+    },
     closeMsg () {
       this.isModalViewed = false
       this.isChatRoomChange = false
+      this.isBrandNews = false
+      this.isDoneBrandNews = false
+      this.isRemoveSlideModal = false
+      this.isChatBotConnect = false
+    },
+    saveTemp () {
+      this.isModalViewed = true
+      this.isModalSave = true
+    },
+    onSubmit () {
+      this.form.slideData.forEach((slide) => {
+        if (slide.checkItem === 'call' && !slide.tel) {
+          this.telErrorMsg = true
+          return
+        }
+        if (slide.checkItem === 'web' && !slide.web) {
+          this.webErrorMsg = true
+          return
+        }
+        if (slide.checkItem === 'news' && !slide.news) {
+          this.newsErrorMsg = true
+          return
+        }
+        if (slide.checkItem === 'chatbot' && !slide.chatbot) {
+          this.chatbotErrorMsg = true
+        }
+      })
     },
     // 슬라이드 추가
     addSlide () {
       let slideData = {
         slideIndex: (this.form.slideData.length + 1),
-        slideType: 'image',
         slideTitle: '',
-        slideDescription: '',
         isActive: false,
-        imgFile: '',
-        url: '',
-        btnUse: 'btnUseN',
-        buttons: [{
-          btnName: '',
-          btnType: '',
-          url: '',
-          app: {
-            url: '',
-            packageName: '',
-            scheme: ''
-          },
-          chatRoom: '',
-          call: '',
-          isActive: true
-        }]
+        checkItem: [],
+        tel: '',
+        web: '',
+        news: '',
+        chatbot: ''
       }
       this.form.slideData.push(slideData)
     },
     // 슬라이드 삭제
-    removeSlide (idx) {
+    removeSlide (index) {
+      this.removeSlideIndex = index
+      this.isModalViewed = true
+      this.isRemoveSlide = true
+    },
+    // 슬라이드 삭제 팝업
+    DoneremoveSlide () {
       if (this.form.slideData.length > 1) {
-        this.form.slideData.splice(idx, 1)
+        this.isModalViewed = false
+        this.isRemoveSlide = false
+        this.form.slideData.splice(this.removeSlideIndex, 1)
+        this.removeSlideIndex = undefined
+        this.form.slideData[0].isActive = true
       }
     },
     // 슬라이드 활성화
@@ -439,6 +584,12 @@ export default {
         }
       })
       this.isSlideCardEdit = false
+    },
+    onSelectEmoji(e, field, index) {
+      let code = e.detail.unicode
+      if (field === 'slideTitle') {
+        this.form.slideData[index].slideTitle += code
+      }
     }
   }
 }

@@ -8,7 +8,7 @@ $contentWidth: 1440px;
 }
 // 컨텐츠 넓이 조정
 .header {
-    position:fixed;
+    // position:fixed;
     width:100%;
     border-bottom:1px solid #eaeaea;
     height:$headerHeight;
@@ -89,9 +89,36 @@ $contentWidth: 1440px;
 
 }
 .header__util {
+    position: relative;
     display:flex;
     align-items:center;
     margin-left:48px;
+    padding-left:48px;
+    &::before {
+        content: '';
+        display: block;
+        width:1px;
+        height:18px;
+        background-color: #ddd;
+        position: absolute;
+        left:0;
+        top:50%;
+        transform: translateY(-50%);
+    }
+    a {
+        &.is-login {
+            &::after {
+                content: '';
+                display: inline-block;
+                vertical-align: middle;
+                width: 3px;
+                height: 3px;            
+                background: #D9D9D9;
+                border-radius: 50%;
+                margin:0 24px;
+            }
+        }
+    }
     .link-dashboard {
         border:1px solid #000;
         width:118px;
@@ -161,7 +188,7 @@ $contentWidth: 1440px;
     }
 }
 .contents {
-    padding-top: $headerHeight;
+    // padding-top: $headerHeight;
     position: relative;
     min-height:880px;
     padding-bottom: 80px;
