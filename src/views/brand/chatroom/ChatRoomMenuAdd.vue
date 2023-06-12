@@ -51,32 +51,32 @@
                             <div class="slide-card__wrap">
                               <div class="slide-card__inner">
                                 <draggable
-                                  v-model="form.slideData"
+                                  v-model="form.chatMenuData"
                                   class="card-list"
                                   draggable=".card--draggable"
                                 >
                                   <div
-                                    v-for="(slide, j) in form.slideData" :key="j"
+                                    v-for="(menu, j) in form.chatMenuData" :key="j"
                                     class="card-item"
-                                    :class="[{'active': slide.isActive}, {'card--draggable': isSlideCardEdit}]"
-                                    @click="slideActive(j)"
+                                    :class="[{'active': menu.isActive}, {'card--draggable': isMenuEdit}]"
+                                    @click="menuActive(j)"
                                   >
-                                    <span v-text="`카드${slide.slideIndex}`" class="card-text"></span>
-                                    <a role="button" @click="removeSlide(j)" class="btn-del" v-if="isSlideCardEdit
+                                    <span v-text="`카드${menu.menuIndex}`" class="card-text"></span>
+                                    <a role="button" @click="removeMenu(j)" class="btn-del" v-if="isMenuEdit
                                     "><span class="blind">삭제</span></a>
                                   </div>
                                 </draggable>
-                                <a role="button" class="btn-add" @click="addSlide(form.slideData.length)" v-if="form.slideData.length < 5">+<span class="blind">추가</span></a>
+                                <a role="button" class="btn-add" @click="addSlide(form.chatMenuData.length)" v-if="form.chatMenuData.length < 5">+<span class="blind">추가</span></a>
                               </div>
-                              <a role="button" class="btn small btn-line" @click="isSlideCardEdit = true" v-if="!isSlideCardEdit">편집</a>
-                              <a role="button" class="btn small btn-blue" v-if="isSlideCardEdit" @click="saveCardEdit">저장</a>
-                              <div class="guide-box" v-if="isSlideCardEdit">
+                              <a role="button" class="btn small btn-line" @click="isMenuEdit = true" v-if="!isMenuEdit">편집</a>
+                              <a role="button" class="btn small btn-blue" v-if="isMenuEdit" @click="saveMenuEdit">저장</a>
+                              <div class="guide-box" v-if="isMenuEdit">
                                 <p class="guide-text black">&middot; 선택한 슬라이드는 드래그로 순서 변경이 가능합니다.</p>
                                 <p class="guide-text black">&middot; 첫번째로 위치한 카드는 삭제 불가합니다.</p>
                               </div>
                             </div>
-                            <template v-for="(slide, j) in form.slideData">
-                              <table class="table table-bodyonly form-table chartroom-menu-add" v-if="slide.isActive" :key="j">
+                            <template v-for="(menu, j) in form.chatMenuData">
+                              <table class="table table-bodyonly form-table chartroom-menu-add" v-if="menu.isActive" :key="j">
                                 <colgroup>
                                   <col width="196px">
                                   <col />
@@ -91,7 +91,7 @@
                                             <div class="input-item input-limit">
                                               <span class="input">
                                                 <input type="text" class="input" maxlength="17"
-                                                  v-model="slide.slideTitle"
+                                                  v-model="menu.menuTitle"
                                                   :placeholder="'메뉴명을 입력해주세요'"
                                                 >
                                                 <span class="chat-emoticon">
@@ -100,10 +100,10 @@
                                                     @click="showSpecialCharTitle = !showSpecialCharTitle"
                                                     ><i class="icon-emoticon"></i>
                                                   </ButtonCmp>
-                                                  <emoji-picker id="emojiPicker" @emoji-click="onSelectEmoji($event, 'slideTitle', j)" v-show="showSpecialCharTitle" class="light emoji-wrap"></emoji-picker>
+                                                  <emoji-picker id="emojiPicker" @emoji-click="onSelectEmoji($event, 'menuTitle', j)" v-show="showSpecialCharTitle" class="light emoji-wrap"></emoji-picker>
                                                 </span>
                                                 <p class="input-limit__text">
-                                                  {{ slide.slideTitle.length }}/17자
+                                                  {{ menu.menuTitle.length }}/17자
                                                 </p>
                                               </span>
                                             </div>
@@ -117,57 +117,57 @@
                                     <td>
                                         <div class="form-item__content chatroom-menu">
                                           <span class="radiobox">
-                                            <input type="radio" name="chatroomMenu" value="call" v-model="slide.checkItem" id="radio1" />
+                                            <input type="radio" name="chatroomMenu" value="call" v-model="menu.checkItem" id="radio1" />
                                             <label for="radio1"><span class="radiobox__text">전화 연결</span></label>
                                           </span>
                                           <span class="radiobox">
-                                            <input type="radio" name="chatroomMenu" value="web" v-model="slide.checkItem" id="radio2"  />
+                                            <input type="radio" name="chatroomMenu" value="web" v-model="menu.checkItem" id="radio2"  />
                                             <label for="radio2"><span class="radiobox__text">홈페이지 연결</span></label>
                                           </span>
                                           <span class="radiobox">
-                                            <input type="radio" name="chatroomMenu" value="news" v-model="slide.checkItem" id="radio3" />
+                                            <input type="radio" name="chatroomMenu" value="news" v-model="menu.checkItem" id="radio3" />
                                             <label for="radio3"><span class="radiobox__text">브랜드 소식 연결</span></label>
                                           </span>
                                           <span class="radiobox">
-                                            <input type="radio" name="chatroomMenu" value="chatbot" v-model="slide.checkItem" id="radio4" />
+                                            <input type="radio" name="chatroomMenu" value="chatbot" v-model="menu.checkItem" id="radio4" />
                                             <label for="radio4"><span class="radiobox__text">간편 챗봇 메시지 연결</span></label>
                                           </span>
                                         </div>
                                     </td>
                                   </tr>
-                                  <tr v-if="slide.checkItem === 'call'">
+                                  <tr v-if="menu.checkItem === 'call'">
                                     <th scope="row"><span class="form-item__label">전화 연결</span></th>
                                     <td>
                                       <div class="form-item__content">
                                         <div class="form-item-row">
                                           <div class="input-item">
-                                            <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요." v-model="slide.tel"></span>
+                                            <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요." v-model="menu.tel"></span>
                                           </div>
                                         </div>
                                         <p class="guide-text error" v-if="telErrorMsg">전화번호를 입력해주세요.</p>
                                       </div>
                                     </td>
                                   </tr>
-                                  <tr v-if="slide.checkItem === 'web'">
+                                  <tr v-if="menu.checkItem === 'web'">
                                     <th scope="row"><span class="form-item__label">URL</span></th>
                                     <td>
                                       <div class="form-item__content">
                                         <div class="form-item-row">
                                           <div class="input-item">
-                                            <span class="input"><input type="text" class="input" placeholder="http://로 된 주소를 입력해주세요." v-model="slide.web"></span>
+                                            <span class="input"><input type="text" class="input" placeholder="http://로 된 주소를 입력해주세요." v-model="menu.web"></span>
                                           </div>
                                         </div>
                                         <p class="guide-text error" v-if="webErrorMsg">http://로 된 주소를 입력해주세요.</p>
                                       </div>
                                     </td>
                                   </tr>
-                                  <tr v-if="slide.checkItem === 'news'">
+                                  <tr v-if="menu.checkItem === 'news'">
                                     <th scope="row"><span class="form-item__label">URL</span></th>
                                     <td>
                                       <div class="form-item__content">
                                         <div class="form-item-row row-gap">
                                           <div class="input-item">
-                                            <span class="input"><input type="text" class="input" placeholder="연결할 브랜드 소식을 선택하세요." v-model="slide.news" disabled></span>
+                                            <span class="input"><input type="text" class="input" placeholder="연결할 브랜드 소식을 선택하세요." v-model="menu.news" disabled></span>
                                           </div>
                                           <ButtonCmp
                                             type="btn-default-line"
@@ -178,13 +178,13 @@
                                       </div>
                                     </td>
                                   </tr>
-                                  <tr v-if="slide.checkItem === 'chatbot'">
+                                  <tr v-if="menu.checkItem === 'chatbot'">
                                     <th scope="row"><span class="form-item__label">URL</span></th>
                                     <td>
                                       <div class="form-item__content">
                                         <div class="form-item-row row-gap">
                                           <div class="input-item">
-                                            <span class="input"><input type="text" class="input" placeholder="연결할 간편챗봇 메시지를 선택하세요." v-model="slide.chatbot" disabled></span>
+                                            <span class="input"><input type="text" class="input" placeholder="연결할 간편챗봇 메시지를 선택하세요." v-model="menu.chatbot" disabled></span>
                                           </div>
                                           <ButtonCmp
                                             type="btn-default-line"
@@ -287,7 +287,7 @@
           </ButtonCmp>
           <ButtonCmp
           type="btn-blue"
-          @click="DoneremoveSlide"
+          @click="DoneremoveMenu"
           >
             예
           </ButtonCmp>
@@ -432,12 +432,12 @@ export default {
   },
   data() {
     return {
-      removeSlideIndex: undefined,
+      removeMenuIndex: undefined,
       form: {
         switch: true,
-        slideData: [{
-          slideIndex: '1',
-          slideTitle: '',
+        chatMenuData: [{
+          menuIndex: '1',
+          menuTitle: '',
           isActive: true,
           checkItem: [],
           tel: '',
@@ -468,8 +468,8 @@ export default {
       isDoneChatBotConnect: false,
       isModalSave: false,
       selectedOption: 'chatRoomMenu01',
-      slideActiveIndex: 0,
-      isSlideCardEdit: false,
+      menuActiveIndex: 0,
+      isMenuEdit: false,
       showSpecialCharTitle: false, // 특수문자 선택창 show 여부
       telErrorMsg: false,
       webErrorMsg: false,
@@ -505,39 +505,36 @@ export default {
     closeMsg () {
       this.isModalViewed = false
       this.isChatRoomChange = false
-      this.isBrandNews = false
-      this.isDoneBrandNews = false
       this.isRemoveSlideModal = false
-      this.isChatBotConnect = false
     },
     saveTemp () {
       this.isModalViewed = true
       this.isModalSave = true
     },
     onSubmit () {
-      this.form.slideData.forEach((slide) => {
-        if (slide.checkItem === 'call' && !slide.tel) {
+      this.form.chatMenuData.forEach((menu) => {
+        if (menu.checkItem === 'call' && !menu.tel) {
           this.telErrorMsg = true
           return
         }
-        if (slide.checkItem === 'web' && !slide.web) {
+        if (menu.checkItem === 'web' && !menu.web) {
           this.webErrorMsg = true
           return
         }
-        if (slide.checkItem === 'news' && !slide.news) {
+        if (menu.checkItem === 'news' && !menu.news) {
           this.newsErrorMsg = true
           return
         }
-        if (slide.checkItem === 'chatbot' && !slide.chatbot) {
+        if (menu.checkItem === 'chatbot' && !menu.chatbot) {
           this.chatbotErrorMsg = true
         }
       })
     },
     // 슬라이드 추가
     addSlide () {
-      let slideData = {
-        slideIndex: (this.form.slideData.length + 1),
-        slideTitle: '',
+      let chatMenuData = {
+        menuIndex: (this.form.chatMenuData.length + 1),
+        menuTitle: '',
         isActive: false,
         checkItem: [],
         tel: '',
@@ -545,50 +542,50 @@ export default {
         news: '',
         chatbot: ''
       }
-      this.form.slideData.push(slideData)
+      this.form.chatMenuData.push(chatMenuData)
     },
     // 슬라이드 삭제
-    removeSlide (index) {
-      this.removeSlideIndex = index
+    removeMenu (index) {
+      this.removeMenuIndex = index
       this.isModalViewed = true
       this.isRemoveSlide = true
     },
     // 슬라이드 삭제 팝업
-    DoneremoveSlide () {
-      if (this.form.slideData.length > 1) {
+    DoneremoveMenu () {
+      if (this.form.chatMenuData.length > 1) {
         this.isModalViewed = false
         this.isRemoveSlide = false
-        this.form.slideData.splice(this.removeSlideIndex, 1)
-        this.removeSlideIndex = undefined
-        this.form.slideData[0].isActive = true
+        this.form.chatMenuData.splice(this.removeMenuIndex, 1)
+        this.removeMenuIndex = undefined
+        this.form.chatMenuData[0].isActive = true
       }
     },
     // 슬라이드 활성화
-    slideActive (idx) {
-      this.slideActiveIndex = idx
-      this.form.slideData.forEach((slide, index) => {
+    menuActive (idx) {
+      this.menuActiveIndex = idx
+      this.form.chatMenuData.forEach((menu, index) => {
         if (idx !== index) {
-          slide.isActive = false
+          menu.isActive = false
         } else {
-          slide.isActive = true
+          menu.isActive = true
         }
       })
     },
     // 슬라이드 편집 활성화
-    saveCardEdit() {
-      this.form.slideData.forEach((slide, index) => {
+    saveMenuEdit() {
+      this.form.chatMenuData.forEach((menu, index) => {
         if (index === 0) {
-          slide.isActive = true
+          menu.isActive = true
         } else {
-          slide.isActive = false
+          menu.isActive = false
         }
       })
-      this.isSlideCardEdit = false
+      this.isMenuEdit = false
     },
     onSelectEmoji(e, field, index) {
       let code = e.detail.unicode
-      if (field === 'slideTitle') {
-        this.form.slideData[index].slideTitle += code
+      if (field === 'menuTitle') {
+        this.form.chatMenuData[index].menuTitle += code
       }
     }
   }

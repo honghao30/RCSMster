@@ -141,23 +141,23 @@
         }
         
     }
-    .slide-card__wrap {
+    .item-reg__wrap {
         display:flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
         padding: 24px 0 12px;
         border-bottom: 1px solid #ddd;
-        .slide-card__inner {
+        .item-reg__inner {
             display:flex;
             align-items: center;
             gap: 8px;     
         }
-        .card-list {
+        .item-reg__list {
             display:flex;
             gap: 8px; 
         }
-        .card-item {
+        .item {
             width: 60px;
             height: 60px;
             border:1px solid #ddd;

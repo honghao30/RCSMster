@@ -49,11 +49,11 @@
             </table>
           </div>
         </div>
-        <div class="empty-emulator" v-if="!radiochk">
+        <div class="empty-emulator" v-if="radiochk.length === 0">
           <p>브랜드 소식을 선택해주세요.</p>
         </div>
         <feedEmulator
-          v-if="radiochk"
+          v-else
           :brandInfoData="brandInfoData"
           :feedInfoData="form"
           :showBrandHeader="true"
@@ -71,7 +71,7 @@
         <ButtonCmp
           type="btn-blue"
           @click="$emit('closeModal')"
-          :disabled="radiochk === null"
+          :disabled="radiochk.length === 0"
         >브랜드 소식 연결</ButtonCmp>
         <!-- //브랜드 소식 연결 버튼 클릭 시 브랜드 소식 명 출력 및 연결 처리 -->
       </div>
@@ -93,7 +93,7 @@ export default {
   data() {
     return {
       isAllChecked: false,
-      radiochk: null, // 배열이 아닌 단일 값으로 선언
+      radiochk: [],
       barndNewsList: [
         {
           name: 'SK 텔레콤의 스마트한 제안',

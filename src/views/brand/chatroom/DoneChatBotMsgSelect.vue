@@ -54,12 +54,12 @@
             </table>
           </div>
         </div>
-        <div class="empty-emulator" v-if="!radiochk">
+        <div class="empty-emulator" v-if="radiochk">
           <p>브랜드 소식을 선택해주세요.</p>
         </div>
         <!-- 간편챗봇 컴포넌트 완성되면 연결해야함 임시로 피드에뮬레이터 컴포넌트 사용함 -->
         <feedEmulator
-          v-if="radiochk"
+          v-if="!radiochk"
           :brandInfoData="brandInfoData"
           :feedInfoData="form"
           :showBrandHeader="true"
@@ -77,7 +77,7 @@
         <ButtonCmp
           type="btn-blue"
           @click="$emit('closeModal')"
-          :disabled="radiochk === null"
+          :disabled="radiochk.length === 0"
         >간편챗봇 메시지 연결</ButtonCmp>
         <!-- //간편챗봇 메시지 연결 버튼 클릭 시 간편챗봇 명 출력 및 연결 처리 -->
       </div>
@@ -99,7 +99,7 @@ export default {
   data() {
     return {
       isAllChecked: false,
-      radiochk: null,
+      radiochk: [],
       chatbotMsgList: [
         {
           name: '상담 직원 연결',

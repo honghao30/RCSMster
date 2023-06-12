@@ -335,6 +335,20 @@ const dashboardList = [
     'status': ['0602: 기획 공유', '0605: 개발 공유'],
     'link': '/ChatRoomListLargeView'
   },
+  // 대화방 메뉴
+  {
+    'depth3': '대화방 메뉴',
+    'depth4': '대화방 메뉴 목록',
+    'screenId': 'R-Brand-Menu-List-01',
+    'status': ['0612: 기획 공유', '0613: 개발 공유'],
+    'link': '/ChatRoomMenuList'
+  },
+  {
+    'depth6': '대화방 메뉴 상세',
+    'screenId': 'R-Brand-Menu-View-01',
+    'status': ['0612: 기획 공유', '0613: 개발 공유'],
+    'link': '/ChatRoomMenuView'
+  },
   {
     'depth1': '브랜드 홈',
     'screenId': 'R-Brand-Open-Reg-01',

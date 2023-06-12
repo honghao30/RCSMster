@@ -185,20 +185,20 @@
                 <!-- // 갤러리 타입 & 쉐이링 타입 -->
                 <!-- 슬라이드 타입 -->
                 <template v-else>
-                  <div class="slide-card__wrap">
-                    <div class="slide-card__inner">
+                  <div class="item-reg__wrap">
+                    <div class="item-reg__inner">
                       <draggable
                         v-model="form.slideData"
-                        class="card-list"
-                        draggable=".card--draggable"
+                        class="item-reg__list"
+                        draggable=".item--draggable"
                       >
                         <div
                           v-for="(slide, j) in form.slideData" :key="j"
-                          class="card-item"
-                          :class="[{'active': slide.isActive}, {'card--draggable': isSlideCardEdit}]"
+                          class="item"
+                          :class="[{'active': slide.isActive}, {'item--draggable': isSlideCardEdit}]"
                           @click="slideActive(j)"
                         >
-                          <span v-text="`카드${slide.slideIndex}`" class="card-text"></span>
+                          <span v-text="`카드${slide.slideIndex}`" class="item-text"></span>
                           <a role="button" @click="removeSlide(j)" class="btn-del" v-if="isSlideCardEdit
                           "><span class="blind">삭제</span></a>
                         </div>
