@@ -57,6 +57,9 @@ $radius: 8px;
   &.flex-start {
     justify-content: flex-start;
   }
+  &.space-between {
+    justify-content: space-between;
+  }
 }
 
 .btn {

@@ -341,13 +341,29 @@ const dashboardList = [
     'depth4': '대화방 메뉴 목록',
     'screenId': 'R-Brand-Menu-List-01',
     'status': ['0612: 기획 공유', '0613: 개발 공유'],
-    'link': '/ChatRoomMenuList'
+    'link': '/ChatRoomMenuList',
+    'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
     'depth6': '대화방 메뉴 상세',
     'screenId': 'R-Brand-Menu-View-01',
     'status': ['0612: 기획 공유', '0613: 개발 공유'],
-    'link': '/ChatRoomMenuView'
+    'link': '/ChatRoomMenuView',
+    'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
+  },
+  {
+    'depth6': '대화방 메뉴 등록',
+    'screenId': 'R-Brand-Menu-Reg-02',
+    'status': ['0613: 기획 공유', '0613: 개발 공유'],
+    'link': '/ChatRoomMenuAdd',
+    'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
+  },
+  {
+    'depth6': '대화방 메뉴 수정',
+    'screenId': 'R-Brand-Menu-Reg-02',
+    'status': ['0613: 기획 공유', '0613: 개발 공유'],
+    'link': '/ChatRoomMenuViewModified',
+    'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
     'depth1': '브랜드 홈',

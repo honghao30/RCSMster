@@ -241,7 +241,7 @@
             />
           </div>
         </div>
-        <div class="button__wrap flex-end">
+        <div class="button__wrap space-between">
           <router-link
             to="/ChatRoomMenuList"
             class="btn btn-line"
