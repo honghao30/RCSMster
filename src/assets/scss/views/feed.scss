@@ -1,4 +1,88 @@
 // 브랜드 소식 
+.item-reg__wrap {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 24px 0 12px;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    .item-reg__inner {
+        display:flex;
+        align-items: center;
+        gap: 8px;  
+        flex: auto;   
+    }
+    .item-reg__list {
+        display:flex;
+        gap: 8px; 
+    }
+    .item {
+        width: 60px;
+        height: 60px;
+        border:1px solid #ddd;
+        border-radius: 8px;
+        display:inline-flex;
+        align-items:center;
+        justify-content: center;
+        color: #666;
+        position:relative;
+        cursor: pointer;
+        &.active {
+            border-color: #000;
+            color: #000;
+        }
+        .btn-del {
+            position:absolute;
+            right: -4px;
+            top: -4px;
+            width: 12px;
+            height: 12px;
+            color: #fff;
+            background-color: #000;
+            border-radius: 100%;
+            &:before {
+                content:'';
+                display:inline-block;
+                width:1px;
+                height:7px;
+                background-color: #fff;
+                transform:rotate(45deg);
+                position:absolute;
+                left:50%;
+                top:50%;
+                margin:-4px 0 0 -1px;
+            }
+            &:after {
+                content:'';
+                display:inline-block;
+                width:1px;
+                height:7px;
+                background-color: #fff;
+                transform:rotate(-45deg);
+                position:absolute;
+                left:50%;
+                top:50%;
+                margin:-4px 0 0 -1px;
+            }
+        }
+    }
+    .btn-add {
+        width: 32px;
+        height: 32px;
+        font-size:24px;
+        border:1px solid #ddd;
+        border-radius: 100%;
+        text-align:center;
+        line-height: 28px;
+    }
+    .guide-box {
+        width: 100%;
+        padding: 16px;
+        background-color: #f4f4f4;
+        margin:12px 0 -12px;
+    }
+}
 .feed__wrap {
     display: flex;
     gap: 32px;
@@ -140,88 +224,6 @@
             }
         }
         
-    }
-    .item-reg__wrap {
-        display:flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        padding: 24px 0 12px;
-        border-bottom: 1px solid #ddd;
-        .item-reg__inner {
-            display:flex;
-            align-items: center;
-            gap: 8px;     
-        }
-        .item-reg__list {
-            display:flex;
-            gap: 8px; 
-        }
-        .item {
-            width: 60px;
-            height: 60px;
-            border:1px solid #ddd;
-            border-radius: 8px;
-            display:inline-flex;
-            align-items:center;
-            justify-content: center;
-            color: #666;
-            position:relative;
-            cursor: pointer;
-            &.active {
-                border-color: #000;
-                color: #000;
-            }
-            .btn-del {
-                position:absolute;
-                right: -4px;
-                top: -4px;
-                width: 12px;
-                height: 12px;
-                color: #fff;
-                background-color: #000;
-                border-radius: 100%;
-                &:before {
-                    content:'';
-                    display:inline-block;
-                    width:1px;
-                    height:7px;
-                    background-color: #fff;
-                    transform:rotate(45deg);
-                    position:absolute;
-                    left:50%;
-                    top:50%;
-                    margin:-4px 0 0 -1px;
-                }
-                &:after {
-                    content:'';
-                    display:inline-block;
-                    width:1px;
-                    height:7px;
-                    background-color: #fff;
-                    transform:rotate(-45deg);
-                    position:absolute;
-                    left:50%;
-                    top:50%;
-                    margin:-4px 0 0 -1px;
-                }
-            }
-        }
-        .btn-add {
-            width: 32px;
-            height: 32px;
-            font-size:24px;
-            border:1px solid #ddd;
-            border-radius: 100%;
-            text-align:center;
-            line-height: 28px;
-        }
-        .guide-box {
-            width: 100%;
-            padding: 16px;
-            background-color: #f4f4f4;
-            margin:12px 0 -12px;
-        }
     }
 }
 .brand__feed {

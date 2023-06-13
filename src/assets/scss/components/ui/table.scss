@@ -41,7 +41,7 @@
   th {
     span:not(.checkbox) {
       display:block;
-      line-height: 16px;
+      // line-height: 16px;
       position:relative;
       &:before {
         content:'';
@@ -64,7 +64,7 @@
     }
   }
   td {
-    padding: 20px  0;
+    padding: 15px 0;
     &.l-align {
       text-align: left;
     }    
@@ -99,7 +99,7 @@
 .table__wrap {
   width: 100%;
   position: relative;
-  border-top: 2px solid $pointColor;
+  border-top: 2px solid #BCBCBC;
 }
 .table-list {
   @include tableListType;

@@ -5,20 +5,19 @@
     <div class="search-table">
       <div class="ctrl">
         <Dropdown :options=dropdownOptions />
-        <div class="input">
-          <input type="text" placeholder="검색어를 입력해 주세요.">
+        <div class="search-area">
+          <span class="input search">
+            <input type="text" placeholder="텍스트 영역"/>
+          </span>
         </div>
-        <div class="input-m">
-          <input type="text" placeholder="검색어 입력">
+        <div class="search-area">
+          <span class="input-m search">
+            <input type="text" placeholder="검색어 입력"/>
+          </span>
         </div>
-        <ButtonCmp
-          type="btn-search"
-        >
-          검색
-        </ButtonCmp>
       </div>
       <p class="list-number">
-        총 73건
+        총 <span>73</span>건
       </p>
     </div>
     <div class="table__wrap notice-table">
@@ -77,10 +76,15 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import PagingCmp from '@/components/common/PagingCmp.vue'
 import TabCategory from '@/components/common/TabCategory'
 import Dropdown from '@/components/common/Dropdown.vue'
-import ButtonCmp from '@/components/common/ButtonCmp.vue'
 
 export default {
   name: 'NoticeView',
+  components: {
+    PageTitle,
+    Dropdown,
+    PagingCmp,
+    TabCategory
+  },
   data() {
     return {
       dropdownOptions: [
@@ -184,13 +188,6 @@ export default {
         }
       ]
     }
-  },
-  components: {
-    PageTitle,
-    Dropdown,
-    PagingCmp,
-    TabCategory,
-    ButtonCmp
   }
 }
 </script>

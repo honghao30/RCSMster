@@ -34,7 +34,10 @@ export default {
     searchable: Boolean,
     placeholder: String,
     value: String,
-    disabled: Boolean
+    disabled: Boolean,
+    beforeChange: {
+      type: Function
+    }
   },
   emits: [
     'update:modelValue'
@@ -65,10 +68,14 @@ export default {
   },
   methods: {
     selectOption(option) {
+      let $value = this.value
       this.selectedOption = option.label
-      this.isOpen = false
+      if ($value !== option.value) {
+        this.$emit('beforeChange')
+        this.$emit('change', option.value)
+      }
       this.$emit('input', option.value)
-      this.$emit('change', option.value)
+      this.isOpen = false
     },
     toggleSelect() {
       if (!this.disabled) {

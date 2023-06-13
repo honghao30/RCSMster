@@ -185,7 +185,7 @@
             </form>
           </div>
           <div class="chatroom-emulator sticky">
-            <ChatEmulator/>
+            <ChatEmulator :chatInfoData="chatInfoData"/>
           </div>
         </div>
         <!-- 임시저장,승인대기,검수중 top-notice--gray 사용 -->
@@ -262,7 +262,12 @@ export default {
   data() {
     return {
       isModalViewed: false,
-      isModalChatRoomCopy: false
+      isModalChatRoomCopy: false,
+      chatInfoData: {
+        chatRoomName: 'TOMMY JEANS 외 69건',
+        allowMsg: 'Y',
+        saftyMark: 'Y'
+      }
     }
   },
   methods: {

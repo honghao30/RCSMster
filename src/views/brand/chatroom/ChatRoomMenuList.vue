@@ -178,7 +178,7 @@ export default {
       isAllChecked: false,
       isModalViewed: false,
       checkList: [],
-      chatroomList,
+      chatroomList: chatroomList,
       TitleOptions: [
         {
           label: '대화방 명',

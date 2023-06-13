@@ -385,7 +385,7 @@ $contentWidth: 1440px;
         display:none;
     }
     .contents {
-        padding-top: $headerHeight;
+        // padding-top: $headerHeight;
         padding-bottom: 56px;
         min-height:calc(100vh - 176px);
         .inner {

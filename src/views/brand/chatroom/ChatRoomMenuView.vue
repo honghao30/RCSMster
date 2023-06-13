@@ -36,7 +36,7 @@
                       <div class="form-item__content">
                         <div class="form-item-row">
                           <div class="input-item">
-                            <span class="text">{{ chatroomList[0].chatTitle }}</span>
+                            <span class="text">{{ chatroomList[0].chatRoomName }}</span>
                           </div>
                         </div>
                       </div>
@@ -110,10 +110,8 @@
           </div>
           <div class="chatroom-emulator sticky">
             <ChatEmulator
-              :chatName="chatroomList[0].chatTitle"
+              :chatInfoData="chatroomList[0]"
               :chatMenuList="chatroomList[0].list"
-              :saftyMark="chatroomList[0].saftyMark"
-              :mode="isMode"
             />
           </div>
         </div>
@@ -163,15 +161,15 @@ export default {
   },
   data() {
     return {
-      isMode: 'views',
       isModalViewed: false,
       chatroomList: [
         {
-          chatTitle: 'SYSTEMSTUDIO',
+          chatRoomName: 'SYSTEMSTUDIO',
           phoneNUm: '010-5151-5151',
           chatID: 'bot-i7ke7f30e6c',
           status: '사용',
           saftyMark: 'Y',
+          allowMsg: 'N',
           list: [
             {
               label: '자주 묻는 질문✋',

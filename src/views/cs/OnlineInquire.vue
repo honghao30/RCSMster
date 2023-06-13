@@ -73,7 +73,7 @@
                     <div class="file-choice">
                       <div class="file-choice__title">
                         <input type="file" id="fileUp" class="input blind" @change="fileChangeCheck">
-                        <label for="fileUp" class="btn btn-default-line">파일선택</label>
+                        <label for="fileUp" class="btn btn-line">파일선택</label>
                       </div>
                       <el-upload
                         class="file-upload"
@@ -183,9 +183,10 @@
           </div>
         </div>
         <div class="checkbox">
-            <input type="checkbox" id="delegate" value="form.delegate"/>
+            <input type="checkbox" id="delegate" value="form.delegate" v-model="form.membercheckbox"/>
             <label for="delegate"><span class="checkbox__text">개인정보 수집 및 이용에 동의합니다.</span></label>
         </div>
+        <p class="guide-text error" v-if="membercheckboxErrorMsg">개인정보 수집 및 이용 약관에 동의해주세요.</p>
       </div>
     </form>
     <div class="button__wrap">
@@ -195,8 +196,59 @@
       <ButtonCmp
         type="btn-blue"
         @click="onSubmit"
-      >목록</ButtonCmp>
+      >등록</ButtonCmp>
     </div>
+    <!-- 모달  -->
+    <ModalView
+      v-if="isModalViewed"
+      @closeModal="isModalViewed = false"
+    >
+      <!-- 로그인 -->
+      <ConfirmMsg
+        @closeModal="isModalViewed = false"
+        v-if="isModalLogin"
+      >
+        <div class="msg" slot="msg">
+          <strong>로그인 하시겠습니까?</strong>
+          <p>로그인 후 문의를 작성하시면 답변 내용을<br/>
+          사이트에서도 확인하실 수 있습니다.<br/>
+          (로그인하지 않으셔도 문의 가능합니다.)</p>
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+          type="btn-line"
+          @click="closeMsg"
+          >
+            아니오
+          </ButtonCmp>
+          <ButtonCmp
+          type="btn-blue"
+          @click="loginMsg"
+          >
+            예
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+      <!-- 접수 완료 -->
+      <ConfirmMsg
+        @closeModal="isModalViewed = false"
+        v-if="isModalRegister"
+      >
+        <div class="msg" slot="msg">
+          <strong>온라인 문의가 접수되었습니다.</strong>
+          <p>문의 답변은 입력하신 이메일로 전달드립니다.</p>
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+          type="btn-blue"
+          @click="closeMsg"
+          >
+            닫기
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+    </ModalView>
+    <!-- //모달  -->
   </div>
 </template>
 
@@ -205,13 +257,17 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
+import ModalView from '@/components/common/ModalView.vue'
+import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
 
 export default {
   components: {
     PageTitle,
     ButtonCmp,
     PageTitleH3,
-    Dropdown
+    Dropdown,
+    ModalView,
+    ConfirmMsg
   },
   data() {
     return {
@@ -259,10 +315,13 @@ export default {
       membernameErrorMsg: false,
       memberphoneErrorMsg: false,
       membermailErrorMsg: false,
+      membercheckboxErrorMsg: false,
       files: '',
       filesName: '',
       filesName2: '',
-      isModalViewed: false,
+      isModalViewed: true,
+      isModalRegister: false,
+      isModalLogin: true,
       fileList: []
     }
   },
@@ -273,6 +332,7 @@ export default {
   },
   methods: {
     onSubmit () {
+      console.log(this.form.membercheckbox)
       if (this.form.inquirevalue === '') {
         this.inquirevalueErrorMsg = true
         return
@@ -295,11 +355,24 @@ export default {
       }
       if (this.form.membermail === '') {
         this.membermailErrorMsg = true
+        return
       }
+      if (this.form.membercheckbox === undefined) {
+        this.membercheckboxErrorMsg = true
+        return
+      }
+      this.isModalViewed = true
+      this.isModalRegister = true
     },
-    closeModal () {
+    closeMsg () {
       this.isModalViewed = false
-      this.isAgencyModal = false
+      this.isModalRegister = false
+      this.isModalLogin = false
+    },
+    loginMsg () {
+      this.isModalViewed = false
+      this.isModalRegister = false
+      this.isModalLogin = false
     },
     handleChange(file, fileList) {
       this.fileList.push(file)

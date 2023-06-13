@@ -86,6 +86,7 @@ import ChatRoomListLargeView from '@/views/brand/chatroom/ChatRoomListLargeView'
 import ChatRoomMenuAdd from '@/views/brand/chatroom/ChatRoomMenuAdd'
 import ChatRoomMenuList from '@/views/brand/chatroom/ChatRoomMenuList'
 import ChatRoomMenuView from '@/views/brand/chatroom/ChatRoomMenuView'
+import ChatRoomMenuViewModified from '@/views/brand/chatroom/ChatRoomMenuViewModified'
 
 // 브랜드 소식
 import FeedRegistrationBasic from '@/views/brand/feed/FeedRegistrationBasic'
@@ -96,6 +97,9 @@ import BrandDashboard from '@/views/brand/dashboard/BrandDashboard'
 
 // 템플릿
 import Template from '@/views/brand/template/Template'
+
+// 챗봇
+import ChatbotRegistration from '@/views/brand/chatbot/ChatbotRegistration'
 
 Vue.use(Router)
 
@@ -557,6 +561,14 @@ let router = new Router({
         breadcrumb: false
       }
     },
+    {
+      path: '/ChatRoomMenuViewModified',
+      component: ChatRoomMenuViewModified,
+      meta: {
+        tittle: '대화방 메뉴 수정',
+        breadcrumb: false
+      }
+    },
     // 브랜드 대시보드
     {
       path: '/BrandDashboard',
@@ -572,6 +584,15 @@ let router = new Router({
       component: Template,
       meta: {
         tittle: '템플릿',
+        breadcrumb: false
+      }
+    },
+    // 챗봇
+    {
+      path: '/ChatbotRegistration',
+      component: ChatbotRegistration,
+      meta: {
+        tittle: '간편챗봇',
         breadcrumb: false
       }
     }

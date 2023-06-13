@@ -4,20 +4,19 @@
     <TabCategory :category="category" />
     <div class="search-table">
       <div class="ctrl">
-        <div class="input">
-          <input type="text" placeholder="검색어를 입력해 주세요.">
+        <div class="search-area">
+          <span class="input search">
+            <input type="text" placeholder="검색어를 입력해 주세요."/>
+          </span>
         </div>
-        <div class="input-m">
-          <input type="text" placeholder="검색어 입력">
+        <div class="search-area">
+          <span class="input-m search">
+            <input type="text" placeholder="검색어 입력"/>
+          </span>
         </div>
-        <ButtonCmp
-          type="btn-search"
-        >
-          검색
-        </ButtonCmp>
       </div>
       <p class="list-number">
-        총 73건
+        총 <span>73</span>건
       </p>
     </div>
     <accordion>

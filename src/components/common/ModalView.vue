@@ -10,3 +10,14 @@
     </div>
   </transition>
 </template>
+
+<script>
+export default {
+  mounted() {
+    document.body.classList.add('modal-open')
+  },
+  beforeDestroy() {
+    document.body.classList.remove('modal-open')
+  }
+}
+</script>

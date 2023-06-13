@@ -41,9 +41,9 @@
                               <div class="form-item-row">
                                   <div class="input-item input-limit">
                                     <span class="input">
-                                        <input type="text" class="input" maxlength="20" placeholder="대화방 명을 입력해주세요." v-model="form.chatTitle">
+                                        <input type="text" class="input" maxlength="20" placeholder="대화방 명을 입력해주세요." v-model="form.chatRoomName">
                                         <p class="input-limit__text">
-                                        {{ form.chatTitle.length }}/20자
+                                        {{ form.chatRoomName.length }}/20자
                                         </p>
                                     </span>
                                     <ButtonCmp
@@ -329,9 +329,7 @@
               <router-link to="">대화방 등록 가이드</router-link>
             </div>
             <ChatEmulator
-              :chatName="form.chatTitle"
-              :saftyMark="form.saftyMark"
-              :allowMsg="form.allowMsg"
+              :chatInfoData="form"
             />
           </div>
         </div>
@@ -408,7 +406,7 @@ export default {
   data() {
     return {
       form: {
-        chatTitle: 'SYSTEM STUDIOS',
+        chatRoomName: 'SYSTEM STUDIOS',
         chatRegistrationType: 'phone',
         serviceDocument: 'SYSTEMSTUDIO_통신서비스가입증명원.zip​',
         agencyConnect: 'use',
@@ -433,10 +431,10 @@ export default {
   computed: {
     isDisabled() {
       // 버튼 활성화에 대한 예시
-      return this.form.chatTitle.length <= 0
+      return this.form.chatRoomName.length <= 0
     },
     pageTitle() {
-      return `${this.form.chatTitle + '대화방 수정'}`
+      return `${this.form.chatRoomName + '대화방 수정'}`
     }
   },
   methods: {

@@ -15,31 +15,48 @@
                   </colgroup>
                   <tbody>
                     <tr>
-                      <th scope="row"><span class="form-item__label">사용여부</span>
-                      </th>
-                      <td>
+                      <th scope="row"><span class="form-item__label">사용 여부</span></th>
+                      <td colspan="2">
                         <div class="form-item__content">
                           <div class="form-item-row">
-                            <div class="switch switch-status" role="switch">
-                              사용 여부
-                              <input type="checkbox" id="switch" v-model="form.switch" checked>
-                              <label class="switch__core" for="switch"></label>
+                            <div class="input-item">
+                              <span class="text">{{ chatroomList[0].status }}</span>
                             </div>
                           </div>
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row"><span class="form-item__label">대화방</span>
-                      </th>
-                      <td>
+                      <th scope="row"><span class="form-item__label">대화방 명</span></th>
+                      <td colspan="2">
                         <div class="form-item__content">
                           <div class="form-item-row">
-                            <div class="chatroom__select--top">
-                              <Dropdown :options="dropdownOptions" @beforeChange="isChange"
-                              v-model="form.chatRoom"
-                              >
-                              </Dropdown>
+                            <div class="input-item">
+                              <span class="text">{{ chatInfoData.chatRoomName }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><span class="form-item__label">발신번호/회신번호</span></th>
+                      <td colspan="2">
+                        <div class="form-item__content">
+                          <div class="form-item-row">
+                            <div class="input-item">
+                              <span class="text">{{ chatroomList[0].phoneNUm }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><span class="form-item__label">대화방 ID</span></th>
+                      <td colspan="2">
+                        <div class="form-item__content">
+                          <div class="form-item-row">
+                            <div class="input-item">
+                              <span class="text">{{ chatroomList[0].chatID }}</span>
                             </div>
                           </div>
                         </div>
@@ -49,7 +66,7 @@
                       <td colspan="2" class="card-box">
                         <div class="form-item__content">
                           <div class="form-item-row">
-                            <div class="item-reg__wrap">
+                            <div class="item-reg__wrap modify-box">
                               <div class="item-reg__inner">
                                 <draggable
                                   v-model="form.chatMenuData"
@@ -225,10 +242,10 @@
           </div>
         </div>
         <div class="button__wrap flex-end">
-          <ButtonCmp
-            type="btn-blue-line"
-            @click="saveTemp"
-          >임시 저장</ButtonCmp>
+          <router-link
+            to="/ChatRoomMenuList"
+            class="btn btn-line"
+          >취소</router-link>
           <ButtonCmp
             type="btn-blue"
             :disabled = "isDisabled"
@@ -379,24 +396,6 @@
       >
       </DoneChatBotMsgSelect>
       <!-- //간편챗봇 메시지 연결 선택 버튼 : 클릭 시 -->
-      <!-- 임시저장 -->
-      <ConfirmMsg
-        @closeModal="isModalViewed = false"
-        v-if="isModalSave"
-      >
-        <div class="msg" slot="msg">
-          임시저장 되었습니다.
-        </div>
-        <div class="button__wrap" slot="button">
-          <ButtonCmp
-          type="btn-blue"
-          @click="closeMsg"
-          >
-            확인
-          </ButtonCmp>
-        </div>
-      </ConfirmMsg>
-      <!-- //임시저장 -->
       </ModalView>
       <!-- //모달 -->
     </div>
@@ -408,7 +407,6 @@ import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import draggable from 'vuedraggable'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import Dropdown from '@/components/common/Dropdown.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
 import ChatEmulator from '@/views/brand/components/ChatEmulator.vue'
@@ -423,7 +421,6 @@ export default {
     draggable,
     BrandLnb,
     ButtonCmp,
-    Dropdown,
     ModalView,
     ConfirmMsg,
     ChatEmulator,
@@ -433,20 +430,35 @@ export default {
   data() {
     return {
       removeMenuIndex: undefined,
+      chatroomList: [
+        {
+          phoneNUm: '010-5151-5151',
+          chatID: 'DKJDSK423',
+          status: '사용'
+        }
+      ],
       form: {
         switch: true,
         chatMenuData: [{
           menuIndex: '1',
-          menuTitle: '',
+          menuTitle: '🍉나에게 맞는 상품은?🍓',
           isActive: true,
           checkItem: [],
           tel: '',
           web: '',
           news: '',
           chatbot: ''
-        }],
-        chatRoom: 'chatRoomMenu01'
-
+        },
+        {
+          menuIndex: '2',
+          menuTitle: '🎀상담직원 연결👋',
+          isActive: false,
+          checkItem: [],
+          tel: '',
+          web: '',
+          news: '',
+          chatbot: ''
+        }]
       },
       dropdownOptions: [
         {
@@ -463,13 +475,10 @@ export default {
         }
       ],
       isModalViewed: false,
-      isChatRoomChange: false,
       isBrandNews: false,
       isDoneBrandNews: false,
       isChatBotConnect: false,
       isDoneChatBotConnect: false,
-      isModalSave: false,
-      selectOption: 'chatRoomMenu01',
       menuActiveIndex: 0,
       isMenuEdit: false,
       showSpecialCharTitle: false, // 특수문자 선택창 show 여부
@@ -484,10 +493,6 @@ export default {
     }
   },
   methods: {
-    isChange(option) {
-      this.isModalViewed = true
-      this.isChatRoomChange = true
-    },
     barndNewsSelect() {
       this.isModalViewed = true
       this.isBrandNews = true
@@ -510,12 +515,7 @@ export default {
     },
     closeMsg () {
       this.isModalViewed = false
-      this.isChatRoomChange = false
       this.isRemoveSlideModal = false
-    },
-    saveTemp () {
-      this.isModalViewed = true
-      this.isModalSave = true
     },
     onSubmit () {
       this.form.chatMenuData.forEach((menu) => {

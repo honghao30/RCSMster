@@ -101,6 +101,10 @@
         }
         .msg {
             text-align: center;
+            strong {
+              @include fontoption(20px,#000,700,30px);
+              margin-bottom: 8px;
+            }
         }  
         .msg2 {
             margin-top: 16px;

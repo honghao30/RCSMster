@@ -31,7 +31,12 @@
         </ul>
       </div>
     </div>
-    <Dropdown searchable :options="dropdownOptions" v-model="form.dropdown">
+    <Dropdown
+      searchable
+      :options="dropdownOptions"
+      v-model="form.dropdown"
+      @beforeChange="dropdownBeforeChange"
+      >
     </Dropdown>
     <!-- dropdown 옆에 붙어있는 search input -->
     <div class="dropdown-search__wrap">
@@ -212,6 +217,9 @@ export default {
   methods: {
     checkValidation() {
       this.idValidation = false
+    },
+    dropdownBeforeChange(e) {
+      alert('aaaa')
     }
   }
 

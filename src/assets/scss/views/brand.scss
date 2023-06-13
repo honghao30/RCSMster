@@ -542,7 +542,7 @@
 td{
     &.card-box{
         padding: 0;
-        .slide-card__wrap {
+        .item-reg__wrap {
             display:flex;
             justify-content: space-between;
             align-items: center;
@@ -550,16 +550,16 @@ td{
             flex: 1;
             padding: 32px 0 12px 0;
             border-bottom: 1px solid #ddd;
-            .slide-card__inner {
+            .item-reg__inner {
                 display:flex;
                 align-items: center;
                 gap: 8px;     
             }
-            .card-list {
+            .item-reg__list {
                 display:flex;
                 gap: 8px; 
             }
-            .card-item {
+            .item {
                 width: 60px;
                 height: 60px;
                 border:1px solid #ddd;
@@ -641,7 +641,8 @@ td{
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            right: 66px;
+            margin-right: 8px;
+            right: 0;
             .btn-only-icon {
                 padding:0;
                 .icon-emoticon {
@@ -700,6 +701,7 @@ td{
         }
     }
 }
+//대화방 메뉴 목록
 .wid-auto {
     width: auto !important;
 }
@@ -761,6 +763,17 @@ td{
         }
     }
 }
+//대화방 메뉴 수정
+.card-box{
+    .item-reg__wrap{
+        &.modify-box{
+        border-top: 2px solid #DDD;
+        border-bottom: 2px solid #DDD;
+        }
+    }
+    
+}
+
 //대화방 등록 && 수정
 .brand-info__wrap {
     .chatroom__wrap{
@@ -1311,248 +1324,6 @@ ul {
     }
     }
 }
-}
-.chat-emulator__wrap {
-    flex:0 0 360px;
-    width: 360px;
-    height: 740px;
-    position:sticky;
-    border-radius:16px;
-    border:1px solid #eaeaea;
-    background-color:#FCFCFC;
-    padding:0px !important;
-    align-self: flex-start;
-    top: 150px;    
-    &.sticky {
-        position: sticky;
-        top: 124px;
-        align-self: flex-start;
-    }    
-}
-.chat-emulator {
-    display:flex;
-    flex-direction: column;
-    height: 100%;
-    .emulator-header {
-        flex:0 0 60px;
-        border-bottom: 1px solid #eaeaea;
-        display:flex;
-        justify-content: space-between;
-        align-items: center;
-        padding:16px;
-        &__inner {
-            display:flex;
-            align-items:center;
-            gap: 8px;
-        }
-        .profile {
-            display:flex;
-            align-items: center;
-            gap:4px;
-            &__image {
-                min-width: 32px;
-                height: 32px;
-                img {
-                    width:100%;
-                    height: 100%;
-                }
-            } 
-            .chatroom-name {
-                padding-left:4px;
-                font-size: 16px;
-                font-weight: 700;
-                line-height: 24px;
-            }
-            .name {
-                padding-left:4px;
-                font-size: 16px;
-                font-weight: 700;
-                line-height: 24px;
-                &.short{
-                    @include ellipsis($line: 2);
-                    -webkit-line-clamp: 1;
-                }
-            }
-        }
-        button {
-            width: 24px;
-            height: 24px;
-            background-repeat: no-repeat;
-            background-position: 50% 50%;
-            &.btn-back {
-                background-image:url('../assets/images/cmp/btn_prev.png')
-            }
-            &.btn-more {
-                background-image:url('../assets/images/cmp/btn_more.png')
-            }
-            &.btn-down {
-                background-image:url('../assets/images/cmp/chevron_down.png')
-            }
-        }
-    }
-    .bodyshow-enter-active,
-    .bodyshow-leave-active {
-        transition: opacity 0.5s ease;
-    }
-    .bodyshow-enter,
-    .bodyshow-leave-to {
-        opacity: 0;
-    }
-    .emulator-body {
-        flex: auto;
-        padding:28px 16px !important;
-        .chat-date {
-            font-size:12px;
-            line-height: 18px;
-            color:#888;
-            text-align:center;
-            margin-bottom:20px;
-        }
-        .chat-bubble__wrap {
-            display:flex;
-            align-items:flex-end;
-            justify-content: flex-start;
-            margin:20px 0;
-            .chat-time {
-                font-size:12px;
-                color:#888;
-                line-height: 18px;
-                flex-shrink: 0;
-                margin-left:4px;
-            }
-            &.receiver {
-                justify-content: flex-end;
-                flex-direction: row-reverse;
-                .chat-time {
-                    margin:0 4px 0 0;
-                }
-            }
-            .swiper-slide {
-                width: auto;
-            }
-            
-        }
-        .safty-icon {
-            display: block;
-            @include fontoption(12px,#888,400,18px);
-            &::before {
-                content: '';
-                display: inline-block;
-                margin-right: 10px;
-                width:12px;
-                height:12px;
-                background-image: url('../assets/images/icon/icon_safty.png');
-                background-position: center center;
-                background-repeat: no-repeat;
-            }
-            &+.sender {
-                margin-top:10px;
-            }
-        }
-        .chat-bubble {
-            padding: 16px;
-            border:1px solid #eaeaea;
-            background-color:#fff;
-            border-radius: 16px;
-            width: 258px;
-            box-sizing: border-box;
-            p {
-                font-size: 14px;
-                line-height: 22px;
-                font-weight: 400;
-            }
-        }
-    }
-    .emulator-footer {
-        flex: 0 0 54px;
-        display:flex;
-        align-items: center;
-        &__inner {
-            flex-direction: column;
-            .emulator-footer__top {
-                width: 100%;
-                background-color: #fff;
-                text-align: center;
-                padding: 0px 0 12px 0;
-            }
-            .btn-bar-toggle {
-              width: 20px;
-              height:2px;
-              padding:0;
-              min-width: fit-content;
-              line-height: 0;
-              background: #D9D9D9;
-              border-radius: 2px;
-            }       
-            .chat-menu__list-inemul {
-                padding:0 16px;
-                li {
-                 @include fontoption(16px, #000, 400, 24px);
-                 text-align: left;
-                 &+li {
-                    margin-top:18px;
-                 }
-                }
-            }     
-            .emulator-footer__allow-input {
-                padding: 16px;
-                display:flex;
-                align-items:center;
-                width:100%;
-                gap: 8px;        
-                .input {
-                    position:relative;
-                    flex: auto;
-                    input {
-                        height: 38px;
-                        border-radius: 100px;
-                        padding:8px 36px 8px 16px;
-                    }
-                    
-                }
-                button {
-                    width: 24px;
-                    height: 24px;
-                    background-repeat: no-repeat;
-                    background-position: 50% 50%;
-                    background-color:transparent;
-                    &.btn-photo {
-                        background-image:url('../assets/images/icon/icon_emulator_photo.png')
-                    }
-                    &.btn-camera {
-                        background-image:url('../assets/images/icon/icon_emulator_camera.png')
-                    }
-                    &.btn-plus {
-                        background-image:url('../assets/images/icon/icon_emulator_plus.png')
-                    }
-                    &.btn-emoji {
-                        position:absolute;
-                        right: 8px;
-                        top: 7px;
-                        background-image:url('../assets/images/icon/icon_emulator_emoji.png')
-                    }
-                }                        
-            }
-            &.chat-dissable {
-                position: relative;                
-                border-top: 1px solid #F0F0F0;                
-                border-radius: 16px 16px 0px 0px;
-                flex-direction: column;
-                gap: 0;
-            }
-            .contac-msg {
-              @include fontoption(14px,#000,400,20px);
-              width: 100%;
-              padding: 0 16px 8px;
-              text-align: left;
-            }
-            .form-item__content {
-                border-top: 1px solid #EAEAEA;                
-                padding: 8px 16px 24px;
-                width: 100%;
-            }
-        }
-    }
 }
 
 // 이모지 

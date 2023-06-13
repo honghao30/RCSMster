@@ -33,7 +33,7 @@
                           <div class="form-item__content exception">
                             <div class="form-item-row">
                               <div class="input-item">
-                                {{ form.chatTitle }}
+                                {{ form.chatRoomName }}
                               </div>
                             </div>
                           </div>
@@ -93,9 +93,7 @@
               <router-link to="">대화방 등록 가이드</router-link>
             </div>
             <ChatEmulator
-              :chatName="form.chatTitle"
-              :saftyMark="form.saftyMark"
-              :allowMsg="form.allowMsg"
+              :chatInfoData="form"
             />
           </div>
         </div>
@@ -167,7 +165,7 @@ export default {
   data() {
     return {
       form: {
-        chatTitle: 'TOMMY JEANS 외 69건 대화방 수정​',
+        chatRoomName: 'TOMMY JEANS 외 69건 대화방 수정​',
         chatRegistrationType: 'phone',
         serviceDocument: 'SYSTEMSTUDIO_통신서비스가입증명원.zip​',
         agencyConnect: 'use',

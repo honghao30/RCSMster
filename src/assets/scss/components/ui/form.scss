@@ -87,6 +87,23 @@ $textareaHeight: 100px;
       cursor:not-allowed;
     }
   }
+  &.search {
+    position:relative;
+    &::after {
+      content:'';
+      display:inline-block;
+      width:20px;
+      height: 20px;
+      background: url('../assets/images/icon/icon_search.png') no-repeat 50% 50%;
+      position:absolute;
+      right:16px;
+      top:50%;
+      margin-top: -10px;
+    }
+    input {
+      padding-right:40px;
+    }
+  }
 }
 
 .input-limit{
@@ -99,6 +116,19 @@ $textareaHeight: 100px;
     right: 16px;
     top:50%;
     transform: translateY(-50%);
+  }
+  .btn {
+    position:absolute;
+    right: 68px;
+    top: 50%;
+    margin-top:-13px;
+    width: 26px;
+    height: 26px;
+    .icon-emoji {
+      width: 24px;
+      height: 24px;
+      background:url('../assets/images/icon/icon_emoji.png') no-repeat 50% 50%;
+    }
   }
 }
 
@@ -876,7 +906,7 @@ $formLabelWidth : 120px;
   }
   .input {
     display: block;
-    width: 240px;
+    width: 280px;
     font-size: 16px;
   }
   .input-m {
@@ -886,7 +916,10 @@ $formLabelWidth : 120px;
     width: 74px;
   }
   .list-number {
-    white-space:nowrap
+    white-space: nowrap;
+    span {
+      font-weight: 700;
+    }
   }
 }
 
@@ -1014,6 +1047,9 @@ $formLabelWidth : 120px;
     .list-number {
       margin-top: 24px;
       width: 100%;
+      span {
+        font-weight: 700;
+      }
     }
   }
   .guide-text {
