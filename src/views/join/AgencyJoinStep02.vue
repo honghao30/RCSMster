@@ -6,7 +6,7 @@
     <form  ref="form" :model="form">
       <div class="table__wrap">
         <table class="table table-bodyonly form-table">
-        <!-- 0620: 고객 요청 반영 - colgroup width값 수정 -->
+        <!-- 0620: 디자인 1차 수정 - colgroup width값 수정 -->
           <colgroup>
             <col width="230px">
             <col />
@@ -134,7 +134,7 @@
     <form  ref="form" :model="form">
       <div class="table__wrap">
         <table class="table table-bodyonly form-table">
-        <!-- 0620: 고객 요청 반영 - colgroup width값 수정 -->
+        <!-- 0620: 디자인 1차 수정 - colgroup width값 수정 -->
           <colgroup>
             <col width="230px">
             <col />
@@ -187,7 +187,7 @@
                 <td>
                   <div class="form-item__content">
                     <div class="form-item-row">
-                      <!-- 0620: 고객 요청 반영 - 'w--half' -> 'input-half' class명 수정 -->
+                      <!-- 0620: 디자인 1차 수정 - 'w--half' -> 'input-half' class명 수정 -->
                       <div class="input-item service input-half">
                         <div class="checkbox">
                           <input type="checkbox" id="A2P" v-model="form.service" value="A2P"/>
@@ -209,7 +209,7 @@
                 <td>
                   <div class="form-item__content agency">
                     <div class="form-item-row">
-                      <!-- 0620: 고객 요청 반영 - 'w--half' -> 'input-half' class명 수정 -->
+                      <!-- 0620: 디자인 1차 수정 - 'w--half' -> 'input-half' class명 수정 -->
                       <div class="input-item input-half">
                         <div class="radiobox">
                           <input type="radio" name="agency" id="agencyY" v-model="form.agency" value="agencyY"/>
@@ -220,14 +220,14 @@
                           <label for="agencyN"><span class="checkbox__text">중계사 아님</span></label>
                         </div>
                       </div>
-                      <!-- 0620: 고객 요청 반영 - 'w--half' -> 'w--full' class명 수정 -->
+                      <!-- 0620: 디자인 1차 수정 - 'w--half' -> 'w--full' class명 수정 -->
                       <div class="input-item w--full"  v-if="form.agency === 'agencyY'">
                         <label for="url" class="item-label">대화방 수신 URL</label>
                         <span class="input">
                           <input type="text" id="url" />
                         </span>
                       </div>
-                      <!-- 0620: 고객 요청 반영 - 'w--half' -> 'w--full' class명 수정 -->
+                      <!-- 0620: 디자인 1차 수정 - 'w--half' -> 'w--full' class명 수정 -->
                       <div class="input-item w--full"  v-if="form.agency === 'agencyN'">
                         <span class="item-label">중계사 선택</span>
                         <ButtonCmp
@@ -270,7 +270,7 @@
                 <td>
                   <div class="form-item__content service-range">
                     <div class="form-item-row">
-                      <!-- 0620: 고객 요청 반영 - '인하우스 개발' 삭제 및 넘버링 변경 -->
+                      <!-- 0620: 디자인 1차 수정 - '인하우스 개발' 삭제 및 넘버링 변경 -->
                       <span class="form-item-row__title">제공서비스</span>
                       <ul class="service-list">
                         <li>
@@ -288,7 +288,7 @@
                       </ul>
                     </div>
                     <div class="form-item-row">
-                      <!-- 0620: 고객 요청 반영 - '단기 계약','선거용 RVS 메시지 계약' 삭제 및 넘버링 변경 -->
+                      <!-- 0620: 디자인 1차 수정 - '단기 계약','선거용 RVS 메시지 계약' 삭제 및 넘버링 변경 -->
                       <span class="form-item-row__title">계약가능 서비스</span>
                       <ul class="service-list">
                         <li>
@@ -306,7 +306,7 @@
                       </ul>
                     </div>
                     <div class="form-item-row align--top">
-                      <!-- 0620: 고객 요청 반영 - 'RCS SMS/LMS/MMS','이미지 템플릿 계약','챗봇','자동응답' 삭제 및 넘버링 변경 -->
+                      <!-- 0620: 디자인 1차 수정 - 'RCS SMS/LMS/MMS','이미지 템플릿 계약','챗봇','자동응답' 삭제 및 넘버링 변경 -->
                       <span class="form-item-row__title">제공 상품(템플릿)</span>
                       <ul class="service-list">
                         <li>

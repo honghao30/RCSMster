@@ -492,8 +492,7 @@ export default {
       chatbotErrorMsg: false,
       chatInfoData: {
         chatRoomName: 'SYSTEM STUDIOS',
-        allowMsg: 'Y',
-        showInputFooter: true
+        allowMsg: 'Y'
       }
     }
   },
@@ -610,7 +609,7 @@ export default {
     onSelectEmoji(e, target, idx) {
       let emoji = e
       let refName = target
-      this.$refs[refName][idx].value += emoji
+      this.$refs[refName][0].value += emoji
     }
   }
 }

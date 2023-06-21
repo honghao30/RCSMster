@@ -62,6 +62,9 @@
 						font-weight: 500;
 					}
 				}
+				&+.table__wrap {
+					border-top: 0;
+				}
 			}
 			tbody {
 				tr {

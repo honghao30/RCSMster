@@ -6,7 +6,7 @@
     <form  ref="form" :model="form">
         <div class="table__wrap">
           <table class="table table-bodyonly form-table">
-            <!-- 0620: 고객 요청 반영 - colgroup width값 수정 -->
+            <!-- 0620: 디자인 1차 수정 - colgroup width값 수정 -->
             <colgroup>
               <col width="230px">
               <col width="390px">

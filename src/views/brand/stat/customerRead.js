@@ -20,6 +20,14 @@ export default {
       barPercentage: 0.9, // 막대의 너비 비율을 조정
       categoryPercentage: 0.3, // 카테고리 간의 간격 비율을 조정
       order: 2
+    },
+    {
+      type: 'line',
+      label: '전체평균',
+      backgroundColor: '#F87B35',
+      data: [45, 83, 63, 58, 37, 29],
+      borderColor: '#145BDD',
+      order: 1
     }
   ]
 }

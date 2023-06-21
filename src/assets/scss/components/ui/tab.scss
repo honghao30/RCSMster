@@ -62,13 +62,20 @@
 			margin-top: 12px;
 			li {
 				a {
-					height: 30px;
+					height: 34px;
 					font-size: 13px;
 					font-weight: 700;
 					line-height: 22px;
+					border: none;
+					background:none;
 					&:before {
 						height: 12px;
 						margin-top: -6px;
+					}
+				}
+				&.active {
+					a {
+						border-radius: 108px;
 					}
 				}
 			}

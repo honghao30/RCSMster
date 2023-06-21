@@ -192,17 +192,17 @@ export default {
       SortOptions: [
         {
           label: '최신순',
-          value: 'newest'
+          codeNm: 'newest'
         },
         {
           label: '이름순',
-          value: 'name'
+          codeNm: 'name'
         }
       ],
       NumberOptions: [
         {
           label: '10개씩',
-          value: '10'
+          codeNm: '10'
         },
         {
           label: '20개씩',

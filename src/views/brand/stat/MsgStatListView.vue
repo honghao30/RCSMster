@@ -29,13 +29,15 @@
         </div>
         <PageTitleH3 titleh3="누적 결과"/>
         <div class="stat-box">
-          <bar-line-chart
-            :chart-options="chartOptions"
-            :chart-data="AccumulatedResults"
-            :chart-id="chartId"
-            :dataset-id-key="datasetIdKey"
-            :width="1063"
-            :height="391"
+          <statList
+          v-model="barLine"
+          :chType="barLine.chType"
+          :chart-options="barLine.chartOptions"
+          :chart-data="barLine.AccumulatedResults"
+          :chart-id="barLine.chartId"
+          :dataset-id-key="barLine.datasetIdKey"
+          :width="1063"
+          :height="391"
           />
         </div>
         <ul class="stat-result">
@@ -167,24 +169,54 @@
         <div class="customer-type">
           <div class="two-box">
             <div class="two-box__inner">
-              <Bar
-              :chart-options="sendNumOptions"
-              :chart-data="customerSendNum"
-              :chart-id="chartId"
-              :dataset-id-key="datasetIdKey"
-              :width="503"
-              :height="272"
-              />
+              <statList
+                v-model="sendBar"
+                :chType="sendBar.chType"
+                :chart-options="sendBar.sendNumOptions"
+                :chart-data="sendBar.customerSendNum"
+                :chart-id="sendBar.chartId"
+                :dataset-id-key="sendBar.datasetIdKey"
+                :width="503"
+                :height="272"
+                />
             </div>
             <div class="two-box__inner">
-              <bar-line-chart
-              :chart-options="sendSuccessOptions"
-              :chart-data="customerSendSuccess"
-              :chart-id="chartId"
-              :dataset-id-key="datasetIdKey"
-              :width="503"
-              :height="272"
-              />
+              <statList
+                v-model="successBar"
+                :chType="successBar.chType"
+                :chart-options="successBar.sendSuccessOptions"
+                :chart-data="successBar.customerSendSuccess"
+                :chart-id="successBar.chartId"
+                :dataset-id-key="successBar.datasetIdKey"
+                :width="503"
+                :height="272"
+                />
+            </div>
+          </div>
+          <div class="two-box">
+            <div class="two-box__inner">
+              <statList
+                v-model="readBarLine"
+                :chType="readBarLine.chType"
+                :chart-options="readBarLine.readOptions"
+                :chart-data="readBarLine.customerRead"
+                :chart-id="readBarLine.chartId"
+                :dataset-id-key="readBarLine.datasetIdKey"
+                :width="503"
+                :height="272"
+                />
+            </div>
+            <div class="two-box__inner">
+              <statList
+                v-model="btnBarLine"
+                :chType="btnBarLine.chType"
+                :chart-options="btnBarLine.sendSuccessOptions"
+                :chart-data="btnBarLine.customerSendSuccess"
+                :chart-id="btnBarLine.chartId"
+                :dataset-id-key="btnBarLine.datasetIdKey"
+                :width="503"
+                :height="272"
+                />
             </div>
           </div>
         </div>
@@ -204,24 +236,11 @@ import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import PagingCmp from '@/components/common/PagingCmp.vue'
-import { Bar, Line } from 'vue-chartjs/legacy'
 import AccumulatedResults from '@/views/brand/stat/AccumulatedResults.js'
 import customerSendNum from '@/views/brand/stat/customerSendNum.js'
 import customerSendSuccess from '@/views/brand/stat/customerSendSuccess.js'
-
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  LineElement,
-  LinearScale,
-  CategoryScale,
-  PointElement
-} from 'chart.js'
-
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, PointElement, LineElement)
+import customerRead from '@/views/brand/stat/customerRead.js'
+import StatList from '@/views/brand/stat/components/StatList.vue'
 
 export default {
   components: {
@@ -229,97 +248,225 @@ export default {
     BrandLnb,
     PageTitleH3,
     PagingCmp,
-    BarLineChart: {
-      extends: Bar,
-      mixins: [Line],
-      props: ['chartData', 'options', 'width', 'height'],
-      mounted() {
-        this.renderChart(
-          this.chartData,
-          this.options,
-          this.width,
-          this.height
-        )
-      }
-    },
-    Bar
-  },
-  props: {
-    data: {
-      type: Object
-    },
-    chartId: {
-      type: String,
-      default: 'bar-chart'
-    },
-    datasetIdKey: {
-      type: String,
-      default: 'label'
-    },
-    width: {
-      type: Number
-    },
-    height: {
-      type: Number
-    }
+    StatList
   },
   data() {
     return {
-      type: 'bar',
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            grid: {
-              display: false // 세로 그리드 라인 숨김
+      barLine: {
+        chType: 'bl-chart',
+        chartId: 'bar-line-chart',
+        datasetIdKey: 'label',
+        chartOptions: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              grid: {
+                display: false // 세로 그리드 라인 숨김
+              }
+            },
+            y: {
+              suggestedMin: 0,
+              suggestedMax: 900,
+              position: 'left',
+              textAlign: 'left',
+              title: {
+                display: false,
+                text: '건수'
+              },
+              ticks: {
+                stepSize: 100
+              }
+            },
+            y1: {
+              suggestedMin: 0,
+              suggestedMax: 90,
+              position: 'right',
+              textAlign: 'right',
+              title: {
+                display: false,
+                text: '퍼센트'
+              },
+              ticks: {
+                stepSize: 10,
+                callback: function(value) {
+                  return value + '%'
+                }
+              }
             }
           },
-          y: {
-            suggestedMin: 0,
-            suggestedMax: 900,
-            position: 'left',
-            textAlign: 'left',
-            title: {
-              display: false,
-              text: '건수'
-            },
-            ticks: {
-              stepSize: 100
-            }
-          },
-          y1: {
-            suggestedMin: 0,
-            suggestedMax: 90,
-            position: 'right',
-            textAlign: 'right',
-            title: {
-              display: false,
-              text: '퍼센트'
-            },
-            ticks: {
-              stepSize: 10,
-              callback: function(value) {
-                return value + '%'
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                usePointStyle: true,
+                boxWidth: 12,
+                position: 'top',
+                font: {
+                  size: 12
+                }
               }
             }
           }
         },
-        plugins: {
-          legend: {
-            display: true,
-            labels: {
-              usePointStyle: true,
-              boxWidth: 12,
-              position: 'top',
-              font: {
-                size: 12
+        AccumulatedResults: AccumulatedResults
+      },
+      sendBar: {
+        chType: 'b-chart',
+        chartId: 'bar-chart',
+        datasetIdKey: 'label',
+        sendNumOptions: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              grid: {
+                display: false // 세로 그리드 라인 숨김
+              }
+            },
+            y: {
+              suggestedMin: 0,
+              suggestedMax: 100,
+              position: 'left',
+              textAlign: 'left',
+              title: {
+                display: false,
+                text: '발송 건수'
+              },
+              ticks: {
+                stepSize: 20,
+                callback: function(value) {
+                  return value + '만'
+                }
               }
             }
+          },
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                usePointStyle: true,
+                boxWidth: 12,
+                position: 'top',
+                font: {
+                  size: 12
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: '발송 건수',
+              position: 'top'
+            }
           }
-        }
+        },
+        customerSendNum: customerSendNum
       },
-      AccumulatedResults: AccumulatedResults,
+      successBar: {
+        chType: 'b-chart',
+        chartId: 'bar-chart',
+        datasetIdKey: 'label',
+        sendSuccessOptions: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              grid: {
+                display: false // 세로 그리드 라인 숨김
+              }
+            },
+            y: {
+              suggestedMin: 0,
+              suggestedMax: 100,
+              position: 'left',
+              textAlign: 'left',
+              title: {
+                display: false,
+                text: '발송 성공률'
+              },
+              ticks: {
+                stepSize: 20,
+                callback: function(value) {
+                  return value + '%'
+                }
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                usePointStyle: true,
+                boxWidth: 12,
+                position: 'top',
+                font: {
+                  size: 12
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: '발송 성공률',
+              position: 'top'
+            }
+          }
+        },
+        customerSendSuccess: customerSendSuccess
+      },
+      readBarLine: {
+        chType: 'bl-chart',
+        chartId: 'bar-line-chart',
+        datasetIdKey: 'label',
+        readOptions: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              grid: {
+                display: false // 세로 그리드 라인 숨김
+              }
+            },
+            y: {
+              suggestedMin: 0,
+              suggestedMax: 100,
+              position: 'left',
+              textAlign: 'left',
+              title: {
+                display: false,
+                text: 'RCS 읽음 확인율'
+              },
+              ticks: {
+                stepSize: 20,
+                callback: function(value) {
+                  return value + '%'
+                }
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                usePointStyle: true,
+                boxWidth: 12,
+                position: 'top',
+                font: {
+                  size: 12
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: 'RCS 읽음 확인율',
+              position: 'top'
+            }
+          }
+        },
+        customerRead: customerRead
+      },
+      btnBarLine: {
+
+      },
       dateDetailStat: [
         {
           date: '2023.03.01',
@@ -365,99 +512,7 @@ export default {
           customerActionTwo: '(카드2) 버튼1 : URL연결',
           customerClickTwo: 54320
         }
-      ],
-      sendNumOptions: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            grid: {
-              display: false // 세로 그리드 라인 숨김
-            }
-          },
-          y: {
-            suggestedMin: 0,
-            suggestedMax: 100,
-            position: 'left',
-            textAlign: 'left',
-            title: {
-              display: false,
-              text: '발송 건수'
-            },
-            ticks: {
-              stepSize: 20,
-              callback: function(value) {
-                return value + '만'
-              }
-            }
-          }
-        },
-        plugins: {
-          legend: {
-            display: true,
-            labels: {
-              usePointStyle: true,
-              boxWidth: 12,
-              position: 'top',
-              font: {
-                size: 12
-              }
-            }
-          },
-          title: {
-            display: true,
-            text: '발송 건수',
-            position: 'top'
-          }
-        }
-      },
-      sendSuccessOptions: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            grid: {
-              display: false // 세로 그리드 라인 숨김
-            }
-          },
-          y: {
-            suggestedMin: 0,
-            suggestedMax: 100,
-            position: 'left',
-            textAlign: 'left',
-            title: {
-              display: false,
-              text: '발송 성공률'
-            },
-            ticks: {
-              stepSize: 20,
-              callback: function(value) {
-                return value + '%'
-              }
-            }
-          }
-        },
-        plugins: {
-          legend: {
-            display: true,
-            labels: {
-              usePointStyle: true,
-              boxWidth: 12,
-              position: 'top',
-              font: {
-                size: 12
-              }
-            }
-          },
-          title: {
-            display: true,
-            text: '발송 성공률',
-            position: 'top'
-          }
-        }
-      },
-      customerSendNum: customerSendNum,
-      customerSendSuccess: customerSendSuccess
+      ]
     }
   },
   computed: {

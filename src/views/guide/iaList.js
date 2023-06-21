@@ -175,50 +175,52 @@ const homeList = [
     'screenId': 'R-Mem-My-Reg-01',
     'status': ['0512: 개발 공유', '0620: 파일명 변경 MyInfo = > MyInfoEdit', '0621: 개발 2차 공유'],
     'link': '/myinfoedit',
-    'comments': ['0620: 파일 명 변경 된 페이지 (기존 파일 명:MyInfo.vue ) 매니저,마스터_개인정보 관리 편집']
+    'comments': ['0620: 파일 명 변경 된 페이지 (기존 파일 명:MyInfo.vue ) - 매니저,마스터_개인정보 관리 편집']
   },
   {
-    'depth2': '비즈니스 정보 관리',
+    'depth2': '대행사_개인정보 관리',
     'depth3': '상세',
     'screenId': 'R-Mem-My-Mod-02',
     'status': ['0620: 신규 추가', '0621: 개발 공유'],
     'link': '/agencymyinfo',
-    'comments': ['0620: 추가 된 페이지 대행사_개인정보 관리']
+    'comments': ['0620: 추가 된 페이지 - 대행사_개인정보 관리']
   },
   {
     'depth3': '수정',
     'screenId': 'R-Mem-My-Reg-02',
     'status': ['0620: 파일명 변경 MyInfoAgency > agencymyinfoedit', '0621: 개발 공유'],
     'link': '/agencymyinfoedit',
-    'comments': ['0620: 파일 명 변경 된 페이지 (기존 파일 명:MyInfoAgency.vue ) 대행사_개인정보 관리 편집']
+    'comments': ['0620: 파일 명 변경 된 페이지 (기존 파일 명:MyInfoAgency.vue ) - 대행사_개인정보 관리 편집']
   },
   {
-    'depth3': '',
+    'depth2': '마스터_비지니스 정보 관리',
+    'depth3': '상세',
     'screenId': '',
     'status': ['0620: 신규 추가', '0621: 개발 공유'],
     'link': '/corpinfo',
     'comments': ['0620: 추가 된 페이지 매니저,마스터_비지니스 정보 관리 (기존 CorpInfo.vue -> AgencyCorpInfoEdit.vue)', '0620: 모든 페이지 "기업 정보" -> "비지니스 정보" 로 수정']
   },
   {
-    'depth3': '',
+    'depth3': '수정',
     'screenId': '',
     'status': [''],
     'link': '/corpinfoedit',
-    'comments': ['0620: 기존 파일 명 사용 매니저,마스터_비지니스 정보 관리 편집']
+    'comments': ['0620: 기존 파일 명 사용 - 매니저,마스터_비지니스 정보 관리 편집']
   },
   {
-    'depth3': '',
+    'depth2': '대행사_비지니스 정보 관리',
+    'depth3': '상세',
     'screenId': '',
     'status': ['0620: 신규 추가', '0621: 개발 공유'],
     'link': '/agencycorpinfo',
-    'comments': ['0620: 추가 된 페이지 대행사_비지니스 정보 관리']
+    'comments': ['0620: 추가 된 페이지 - 대행사_비지니스 정보 관리']
   },
   {
-    'depth3': '',
+    'depth3': '수정',
     'screenId': '',
     'status': [''],
     'link': '/agencycorpinfoedit',
-    'comments': ['0620: 파일 명 변경 된 페이지 (기존 파일 명:CorpInfo.vue ) 대행사_비지니스 정보 관리 편집']
+    'comments': ['0620: 파일 명 변경 된 페이지 (기존 파일 명:CorpInfo.vue ) - 대행사_비지니스 정보 관리 편집']
   },
   {
     'depth2': '회원탈퇴',
@@ -433,6 +435,27 @@ const dashboardList = [
     'screenId': 'R-Brand-News-Reg-02',
     'status': ['0607: 기획 공유'],
     'link': '/FeedRegistration'
+  },
+  // 챗붓
+  {
+    'depth3': '챗붓',
+    'depth4': '챗봇 연결',
+    'depth5': '목록',
+    'screenId': 'R-Brand-Chat-List-02',
+    'status': ['0621: 기획 공유'],
+    'link': '/ChatbotList'
+  },
+  {
+    'depth5': '상세',
+    'screenId': 'R-Brand-Menu-View-01',
+    'status': ['0621: 기획 공유'],
+    'link': '/ChatbotView'
+  },
+  {
+    'depth5': '등록',
+    'screenId': 'R-Brand-Chat-Reg-02',
+    'status': ['0621: 기획 공유'],
+    'link': '/ChatbotRegistration'
   },
   // 브랜드 개설
   {

@@ -448,7 +448,7 @@ $textareaHeight: 100px;
     min-width: 100px;
       .dropdown__trigger{
         border-color: transparent;
-        border-radius: 0;
+        // border-radius: 0;
           &::before{
               content: '';
               position: absolute;
@@ -1043,9 +1043,11 @@ $formLabelWidth : 120px;
   width:20px;
   height:20px;
   display: inline-flex;
+  align-items: center;
   .emoji-trigger {
     height: 20px;
     display:inline-flex;
+    align-items: center;
   }
   .icon-emoticon {
     width: 20px;

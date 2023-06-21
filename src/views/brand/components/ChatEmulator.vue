@@ -108,10 +108,13 @@
           <div class="emulator-footer__top">
             <ButtonCmp
               type="btn-bar-toggle"
+              @click="btnToggleMenu"
             >
               <span class="irtext">토글</span>
             </ButtonCmp>
-            <ul class="chat-menu__list-inemul">
+            <ul class="chat-menu__list-inemul"
+              :class="{ collapse : collapse }"
+            >
               <li
                 v-for="list in chatMenuList"
                 :key="list"
@@ -155,10 +158,13 @@
           <div class="emulator-footer__top">
             <ButtonCmp
               type="btn-bar-toggle"
+              @click="btnToggleMenu"
             >
               <span class="irtext">토글</span>
             </ButtonCmp>
-            <ul class="chat-menu__list-inemul">
+            <ul class="chat-menu__list-inemul"
+              :class="{ collapse : collapse }"
+            >
               <li
                 v-for="list in chatMenuList"
                 :key="list"
@@ -248,7 +254,8 @@ export default {
       swiperOption: {
         spaceBetween: 10,
         slidesPerView: 'auto'
-      }
+      },
+      collapse: false
     }
   },
   mounted() {
@@ -259,6 +266,9 @@ export default {
       this.isOpen = !this.isOpen
       this.isBlind = !this.isBlind
       this.isShort = !this.isShort
+    },
+    btnToggleMenu () {
+      this.collapse = !this.collapse
     }
   }
 }

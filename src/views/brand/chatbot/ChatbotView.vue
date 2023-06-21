@@ -101,6 +101,7 @@
           <div class="right">
             <ButtonCmp
                 type="btn-line"
+                @click="openDeleteMsg"
             >삭제</ButtonCmp>
             <ButtonCmp
                 type="btn-blue"
@@ -109,6 +110,34 @@
         </div>
       </div>
     </div>
+    <ModalView
+      v-if="isModalViewed"
+      @closeModal="isModalViewed = false"
+    >
+      <ConfirmMsg
+        v-if="isChabotDeleteMsg"
+        @closeModal="isModalViewed = false"
+      >
+        <div class="msg" slot="msg">
+          연결된 간편챗봇 연결이 모두 삭제됩니다. <br>
+          간편챗봇을 삭제 하시겠습니까?
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+          type="btn-line"
+          @click="closeMsg"
+          >
+            아니요
+          </ButtonCmp>
+          <ButtonCmp
+          type="btn-blue"
+          @click="closeMsg"
+          >
+            예
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+    </ModalView>
   </div>
 </template>
 
@@ -118,17 +147,21 @@ import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ChatEmulator from '@/views/brand/components/ChatEmulator.vue'
-
+import ModalView from '@/components/common/ModalView.vue'
+import ConfirmMsg from '@/views/join/components/ConfirmMsg.vue'
 export default {
   components: {
     PageTitle,
     BrandLnb,
     ButtonCmp,
-    ChatEmulator
+    ChatEmulator,
+    ModalView,
+    ConfirmMsg
   },
   data() {
     return {
       isModalViewed: false,
+      isChabotDeleteMsg: false,
       chatroomList: [
         {
           chatRoomName: 'SYSTEMSTUDIO',
@@ -195,6 +228,14 @@ export default {
   methods: {
     copyChatRoom () {
       this.isModalViewed = true
+    },
+    openDeleteMsg() {
+      this.isModalViewed = true
+      this.isChabotDeleteMsg = true
+    },
+    closeMsg () {
+      this.isModalViewed = false
+      this.isChabotDeleteMsg = false
     }
   }
 }

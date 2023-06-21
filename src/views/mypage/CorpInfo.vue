@@ -1,4 +1,4 @@
-<!-- 0620: 추가 된 페이지 매니저,마스터_비지니스 정보 관리 (기존 CorpInfo.vue -> AgencyCorpInfoEdit.vue)-->
+<!-- 0620: 추가 된 페이지 매니저,마스터_비지니스 정보 관리 (기존 CorpInfo.vue -> AgencyCorpInfoEdit.vue) -->
 <template>
   <div class="join">
     <PageTitle pagetitle="비지니스 정보 관리" />

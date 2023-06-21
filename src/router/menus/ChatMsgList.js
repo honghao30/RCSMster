@@ -50,7 +50,7 @@ export default [
     path: '/ChatbotRegistration',
     component: ChatbotRegistration,
     meta: {
-      tittle: '간편챗봇',
+      tittle: '간편챗봇 등록',
       breadcrumb: false
     }
   },
@@ -66,7 +66,7 @@ export default [
     path: '/ChatbotView',
     component: ChatbotView,
     meta: {
-      tittle: '간편챗봇',
+      tittle: '간편챗봇 상세',
       breadcrumb: false
     }
   }

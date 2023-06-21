@@ -29,6 +29,7 @@
     .table__wrap {
         .btn {
             height: 32px;
+            line-height: 100%;
         }
     }
     .profile-img-list {
@@ -665,6 +666,9 @@ td{
                 }
             }
             border-top: 3px solid #BCBCBC;      
+            // &+.table__wrap {
+            //     border-top: 0;
+            // }            
         }
         .chatroom-menu__list {
             li {

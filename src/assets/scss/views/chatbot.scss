@@ -311,6 +311,10 @@
                   margin-top:18px;
                }
               }
+             &.collapse {
+              height:80px;
+              overflow: hidden;
+             }
           }  
           .input {
             position:relative;

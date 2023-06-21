@@ -58,6 +58,7 @@
                               </div>
                             </div>
                           </div>
+                          <p class="guide-text error">간편챗봇 메시지 이름 입력해주세요.</p>
                         </div>
                       </td>
                     </tr>
@@ -266,7 +267,7 @@
                                 </div>
                               </div>
                             </div>
-                            <p class="guide-text error"  v-if="feedContentErrorMsg">내용을 입력해주세요.</p>
+                            <p class="guide-text error">내용을 입력해주세요.</p>
                           </div>
                         </td>
                       </tr>
@@ -330,7 +331,7 @@
                                     <textarea maxlength="1300" placeholder="내용을 입력해주세요."  v-model="msg.cardContent"
                                     style="height: 200px;"
                                     ref="cardContent"
-                                    ></textarea>"
+                                    ></textarea>
                                     <div class="textarea-limit__text">
                                       <Emoji @input="onSelectEmoji($event, 'cardContent', j)" />
                                       <p>
@@ -625,7 +626,7 @@ export default {
       let emoji = e
       let refName = target
       if (idx !== undefined) {
-        this.$refs[refName][idx].value += emoji
+        this.$refs[refName][0].value += emoji
       } else {
         this.$refs[refName].value += emoji
       }
