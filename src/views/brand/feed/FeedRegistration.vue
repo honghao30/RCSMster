@@ -46,20 +46,16 @@
                         <div class="form-item__content is-emoji">
                           <div class="form-item-row">
                             <div class="input-item input-limit">
-                              <span class="input">
-                                <input type="text"  maxlength="40" placeholder="제목을 입력해주세요." v-model="form.feedTitle" :disabled="isSlideCardEdit">
-                                <p class="input-limit__text">
-                                  {{ form.feedTitle.length }}/40자
-                                </p>
-                              </span>
+                              <div class="input">
+                                <input type="text"  maxlength="40"
+                                ref="feedTitle"
+                                placeholder="제목을 입력해주세요." v-model="form.feedTitle" :disabled="isSlideCardEdit">
+                                <div class="input-limit__text">
+                                  <Emoji @input="onSelectEmoji($event, 'feedTitle')"/>
+                                  <p>{{ form.feedTitle.length }}/40자</p>
+                                </div>
+                              </div>
                             </div>
-                            <ButtonCmp
-                                  type="btn-default-line"
-
-                                  @click="showSpecialCharTitle = !showSpecialCharTitle"
-                              >특수문자
-                            </ButtonCmp>
-                            <emoji-picker id="emojiPicker" @emoji-click="onSelectEmoji($event, 'feedTitle')" v-show="showSpecialCharTitle" class="light emoji-wrap"></emoji-picker>
                           </div>
                           <p class="guide-text error"  v-if="feedTitleErrorMsg">제목을 입력해주세요.</p>
                         </div>
@@ -84,20 +80,17 @@
                             <div class="form-item-row">
                               <div class="input-item input-limit">
                                 <div class="textarea">
-                                  <textarea maxlength="200" placeholder="내용을 입력해주세요."  v-model="form.feedContent"></textarea>
+                                  <textarea maxlength="200" placeholder="내용을 입력해주세요."  v-model="form.feedContent"
+                                  ref="feedContent"
+                                  ></textarea>
                                   <div class="textarea-limit__text">
+                                    <Emoji @input="onSelectEmoji($event, 'feedContent')"/>
                                     <p>
                                       {{ form.feedContent.length }}/200자
                                     </p>
                                   </div>
                                 </div>
                               </div>
-                              <ButtonCmp
-                                  type="btn-default-line"
-                                  @click="showSpecialCharTextArea = !showSpecialCharTextArea"
-                              >특수문자
-                              </ButtonCmp>
-                              <emoji-picker id="emojiPicker" @emoji-click="onSelectEmoji($event, 'feedContent')" v-show="showSpecialCharTextArea" class="light emoji-wrap"></emoji-picker>
                             </div>
                             <p class="guide-text error"  v-if="feedContentErrorMsg">내용을 입력해주세요.</p>
                           </div>
@@ -173,7 +166,7 @@
                               </div>
                           </div>
                           <template v-if="form.btnUse == 'btnUseY'">
-                            <feedButtonReg :Buttons="form.buttons" />
+                            <feedButtonReg :buttons="form.buttons" />
                           </template>
                           <p class="guide-text error"  v-if="feedBtnErrorMsg">버튼을 입력해주세요.</p>
                         </td>
@@ -205,8 +198,20 @@
                       </draggable>
                       <a role="button" class="btn-add" @click="addSlide(form.slideData.length)" v-if="form.slideData.length < 10">+<span class="blind">추가</span></a>
                     </div>
-                    <a role="button" class="btn small btn-line" @click="isSlideCardEdit = true" v-if="!isSlideCardEdit">편집</a>
-                    <a role="button" class="btn small btn-blue" v-if="isSlideCardEdit" @click="saveCardEdit">저장</a>
+                    <div class="ctrl-btns">
+                      <ButtonCmp
+                        type="btn-line"
+                        size="small"
+                        @click="isSlideCardEdit = true"
+                        v-if="!isSlideCardEdit"
+                      >편집</ButtonCmp>
+                      <ButtonCmp
+                        type="btn-blue"
+                        size="small"
+                        @click="saveCardEdit"
+                        v-if="isSlideCardEdit"
+                      >저장</ButtonCmp>
+                    </div>
                     <div class="guide-box" v-if="isSlideCardEdit">
                       <p class="guide-text black">&middot; 선택한 슬라이드는 드래그로 순서 변경이 가능합니다.</p>
                       <p class="guide-text black">&middot; 첫번째로 위치한 카드는 삭제 불가합니다.</p>
@@ -241,25 +246,20 @@
                         <tr>
                           <th scope="row"><span class="form-item__label required">슬라이드 제목</span></th>
                           <td>
-                            <div class="form-item__content">
+                            <div class="form-item__content is-emoji">
                               <div class="form-item-row">
                                 <div class="input-item input-limit">
-                                  <span class="input">
+                                  <div class="input">
                                     <input type="text" class="input" maxlength="40" placeholder="제목을 입력해주세요." v-model="slide.slideTitle"
                                     :disabled="isSlideCardEdit"
+                                    ref="slideTitle"
                                     >
-                                    <p class="input-limit__text">
-                                      {{ slide.slideTitle.length }}/34자
-                                    </p>
-                                  </span>
+                                    <div class="input-limit__text">
+                                      <Emoji @input="onSelectEmoji($event, 'slideTitle', j)"/>
+                                      <p>{{ slide.slideTitle.length }}/34자</p>
+                                    </div>
+                                  </div>
                                 </div>
-                                <ButtonCmp
-                                      type="btn-default-line"
-                                      :disabled="isSlideCardEdit"
-                                      @click="showSpecialCharSlide = !showSpecialCharSlide"
-                                  >특수문자
-                                </ButtonCmp>
-                                <emoji-picker id="emojiPicker" @emoji-click="onSelectEmoji($event, 'slideTitle', j)" v-show="showSpecialCharSlide" class="light emoji-wrap"></emoji-picker>
                               </div>
                               <p class="guide-text error"  v-if="slideTitleErrorMsg">슬라이드 제목을 입력해주세요.</p>
                             </div>
@@ -268,7 +268,7 @@
                         <tr>
                           <th scope="row"><span class="form-item__label required">슬라이드 내용</span></th>
                           <td>
-                            <div class="form-item__content">
+                            <div class="form-item__content is-emoji">
                               <div class="form-item-row">
                                 <div class="input-item input-limit">
                                   <div class="textarea"
@@ -276,20 +276,16 @@
                                   >
                                     <textarea maxlength="200" placeholder="내용을 입력해주세요."  v-model="slide.slideDescription"
                                     :disabled="isSlideCardEdit"
+                                    ref="slideContent"
                                     ></textarea>
                                     <div class="textarea-limit__text">
+                                      <Emoji @input="onSelectEmoji($event, 'slideContent', j)"/>
                                       <p>
                                         {{ slide.slideDescription.length }}/126자
                                       </p>
                                     </div>
                                   </div>
                                 </div>
-                                <ButtonCmp
-                                      type="btn-default-line"
-                                      @click="showSpecialCharSlideTextArea = !showSpecialCharSlideTextArea"
-                                  >특수문자
-                                </ButtonCmp>
-                                <emoji-picker id="emojiPicker" @emoji-click="onSelectEmoji($event, 'slideContent', j)" v-show="showSpecialCharSlideTextArea" class="light emoji-wrap"></emoji-picker>
                               </div>
                               <p class="guide-text error"  v-if="slideContentErrorMsg">슬라이드 내용을 입력해주세요.</p>
                             </div>
@@ -357,7 +353,7 @@
                               </div>
                             </div>
                             <template v-if="slide.btnUse == 'btnUseY'">
-                              <feedButtonReg :Buttons="slide.buttons" />
+                              <feedButtonReg :buttons="slide.buttons" />
                             </template>
                             <p class="guide-text error"  v-if="slideBtnErrorMsg">슬라이드 버튼을 입력해주세요.</p>
                           </td>
@@ -504,6 +500,7 @@ import feedButtonReg from '@/views/brand/feed/components/feedButtonReg.vue'
 import feedList from '@/views/brand/feed/feedList.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import feedModal from '@/views/brand/feed/components/feedModal.vue'
+import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
 
 export default {
@@ -519,7 +516,8 @@ export default {
     feedButtonReg,
     ModalView,
     feedModal,
-    feedList
+    feedList,
+    Emoji
   },
   data() {
     return {
@@ -531,19 +529,7 @@ export default {
         btnUse: 'btnUseN',
         imgFiles: [],
         url: '',
-        buttons: [{
-          btnName: '',
-          btnType: '',
-          url: '',
-          app: {
-            url: '',
-            packageName: '',
-            scheme: ''
-          },
-          chatRoom: '',
-          call: '',
-          isActive: true
-        }],
+        buttons: [],
         isSavedbuttonList: [],
         publishType: 'publish',
         resvDate: '',
@@ -558,19 +544,7 @@ export default {
           imgFile: '',
           url: '',
           btnUse: 'btnUseN',
-          buttons: [{
-            btnName: '',
-            btnType: '',
-            url: '',
-            app: {
-              url: '',
-              packageName: '',
-              scheme: ''
-            },
-            chatRoom: '',
-            call: '',
-            isActive: true
-          }]
+          buttons: []
         }]
       },
       brandInfoData: {
@@ -739,16 +713,13 @@ export default {
       this.isModalViewed = true
       this.isModalImage = true
     },
-    onSelectEmoji(e, field, index) {
-      let code = e.detail.unicode
-      if (field === 'feedTitle') {
-        this.form.feedTitle += code
-      } else if (field === 'feedContent') {
-        this.form.feedContent += code
-      } else if (field === 'slideTitle') {
-        this.form.slideData[index].slideTitle += code
-      } else if (field === 'slideContent') {
-        this.form.slideData[index].slideDescription += code
+    onSelectEmoji(e, target, idx) {
+      let emoji = e
+      let refName = target
+      if (idx !== undefined) {
+        this.$refs[refName][idx].value += emoji
+      } else {
+        this.$refs[refName].value += emoji
       }
     },
     onSubmit () {

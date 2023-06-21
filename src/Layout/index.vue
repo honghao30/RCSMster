@@ -7,7 +7,7 @@
       id="contents"
       role="main"
     >
-      <BreadCrumb />
+      <!-- <BreadCrumb /> -->
       <router-view></router-view>
     </div>
     <FooterCmp />
@@ -17,13 +17,13 @@
 <script>
 import HeaderCmp from '@/Layout/components/DefaultHeader'
 import FooterCmp from '@/Layout/components/DefaultFooter'
-import BreadCrumb from '@/Layout/components/BreadCrumb'
+// import BreadCrumb from '@/Layout/components/BreadCrumb'
 export default {
   name: 'DefaultLayout',
   components: {
     HeaderCmp,
     FooterCmp,
-    BreadCrumb
+    // BreadCrumb
   },
   data() {
     return {
@@ -31,10 +31,10 @@ export default {
     }
   },
   mounted() {
-    this.breadcrumbInfo = this.$router.currentRoute.meta.breadcrumb
-    if (this.breadcrumbInfo === false) {
-      this.ShowBgcolor = true
-    }
+    // this.breadcrumbInfo = this.$router.currentRoute.meta.breadcrumb
+    // if (this.breadcrumbInfo === false) {
+    //   this.ShowBgcolor = true
+    // }
   }
 }
 </script>

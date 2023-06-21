@@ -18,7 +18,8 @@
     </div>
     <!-- router -->
     <div class="side-btn">
-      <a class="btn btn-blue"><router-link to="">전체 브랜드 운영 관리</router-link></a>
+      <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
+      <router-link to="" class="btn btn-blue">전체 브랜드 운영 관리</router-link>
     </div>
     <!-- 운영권한 관리 및 신청 내역 -->
     <div class="side-box side-box__authority">
@@ -72,13 +73,15 @@
           </li>
           <li>
             <strong>2</strong>
-            <a class="step-more"><router-link to="">대행사 초대하기</router-link></a>
+            <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
+            <router-link to="" class="step-more">대행사 초대하기</router-link>
           </li>
         </ul>
         <div class="invite__addbox">
           <p>대행사가 있으면 챗봇과 같은 다양한 대화방 메뉴 기능을 사용할 수 있어요.</p>
           <div class="invite__addbox-btn">
-            <a class="btn btn-blue-line medium"><router-link to="">챗봇 대행사 보기</router-link></a>
+            <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
+            <router-link to=""  class="btn btn-blue-line medium">챗봇 대행사 보기</router-link>
           </div>
         </div>
       </div>

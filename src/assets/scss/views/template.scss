@@ -1,3 +1,360 @@
+// 템플릿 목록
+.btn__area--top {
+  display: flex;
+  justify-content: flex-end;
+}
+.template__wrap {
+  margin-top: 32px;  
+  .tab-list { 
+    li {      
+      border-radius: 0;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      border-bottom: 2px solid #2F77FB;
+      span {
+        @include fontoption(20px,#999999,500,24px);
+      }
+      &.active {
+        background-color: #fff;
+        border: 2px solid #2F77FB;
+        border-bottom: transparent;
+        span {
+          color: #000000;
+        }
+      }
+    }
+  }
+}
+.template__wrap--inner {
+  padding-top: 16px;
+  .top-ctrl-area {
+    .right-area {
+      &:only-child {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+  }
+  .page-title__wrap {
+    margin:16px 0 0;
+  }
+}
+.template__preview--wrap {
+  border-top: 2px solid #BCBCBC;
+  border-bottom: 2px solid #BCBCBC;
+  padding:22px 0 32px;
+  .template__preview--inner {
+    display: flex;
+    justify-content: flex-start;    
+    flex-wrap: wrap;
+  }
+  &+.page-title__wrap {
+    margin-top: 60px;
+  }
+  .template-item {
+    width: calc(100% / 4);
+    .tit {
+      @include fontoption(16px,#000, 400,28px);
+      margin-bottom: 6px;
+    }
+    .button-wrap {
+      margin-top: 46px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+// 템플릿
+.templet__wrap {
+  border: 1px solid #EAEAEA;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 264px;
+  &.is-text {
+    padding: 16px;
+    .text-title {
+      display: flex;
+      justify-content: space-between;    
+      border-bottom: 2px solid #111111;  
+      padding-bottom: 12px;
+      &.title-point {
+        position: relative;
+        display: block;
+        h4 {
+          font-size: 24px;
+        }
+      }
+      h4 {
+        @include fontoption(16px,#000,700,23px);
+      }
+      .top-text {
+        @include fontoption(12px,#949494,400,23px);
+      }
+      .sub-text {
+        color:#2F77FB;
+      }
+      &.title-select {
+        h4 {
+          &::before {
+            content: '';
+            display: inline-block;
+            width:15px;
+            height:15px;
+            background-color: #B7B7B7;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right:5px;
+          }
+        }
+      }
+      &.title-point {
+        border-bottom: 0;
+      }
+      &+.template-table {
+        margin-top: 15px;
+      } 
+      &+.template-text {
+        margin-top: 15px;
+        .title {
+          @include fontoption(16px,#000,700,23px);
+          margin-bottom:8px;
+        }
+      }
+      &+.template-footer {
+        margin-top: 15px;
+      }             
+    }
+    .template-text {
+      @include fontoption(14px,#111,400,20px);
+      &+.template-footer {
+        margin-top: 15px;
+      }       
+    }
+    .template-table {
+      th, td {
+        @include fontoption(14px,#111,400,20px);
+        padding: 3px 0;
+        vertical-align: top;
+      }
+      th {
+        text-align: left;
+      }
+      td {
+        text-align: right;        
+      }
+      &+.template-text {
+        margin-top: 15px;
+      }
+      &+.template-footer {
+        margin-top: 15px;
+      }      
+    }
+    .template-footer {
+      display: flex;
+      justify-content: center;
+      button {
+        background-color: #EAEAEA;
+        border: 1px solid #EAEAEA;
+        border-radius: 6px;
+        height:42px;
+        line-height: 24px;
+        @include fontoption(14px,#111,400,20px);
+        &:only-child {
+          display: block;
+          width: 100%;
+        }
+      }
+    }    
+  }
+  &.is-lms {
+    padding: 16px;
+    .text-title {
+      display: flex;
+      justify-content: space-between;    
+      border-bottom: 2px solid #111111;  
+      padding-bottom: 12px;
+      &.title-point {
+        position: relative;
+        display: block;
+        h4 {
+          font-size: 24px;
+        }
+      }
+      h4 {
+        @include fontoption(16px,#000,700,23px);
+      }
+      .top-text {
+        @include fontoption(12px,#949494,400,23px);
+      }
+      .sub-text {
+        color:#2F77FB;
+      }
+      h4 {
+        &::before {
+          content: '';
+          display: inline-block;
+          width:15px;
+          height:15px;
+          background-color: #B7B7B7;
+          border-radius: 50%;
+          vertical-align: middle;
+          margin-right:5px;
+        }
+      }
+      &.title-point {
+        border-bottom: 0;
+      }
+      &+.template-table {
+        margin-top: 15px;
+      } 
+      &+.template-text {
+        margin-top: 15px;
+        .title {
+          @include fontoption(16px,#000,700,23px);
+          margin-bottom:8px;
+        }
+      }
+      &+.template-footer {
+        margin-top: 15px;
+      }             
+    }
+    .template-text {
+      @include fontoption(14px,#111,400,20px);
+      &+.template-footer {
+        margin-top: 15px;
+      }       
+    }
+    .template-table {
+      th, td {
+        @include fontoption(14px,#111,400,20px);
+        padding: 3px 0;
+        vertical-align: top;
+      }
+      th {
+        text-align: left;
+      }
+      td {
+        text-align: right;        
+      }
+      &+.template-text {
+        margin-top: 15px;
+      }
+      &+.template-footer {
+        margin-top: 15px;
+      }      
+    }    
+    .template-footer {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      &.column {
+        flex-direction: column;        
+      }
+      &.rows {
+        justify-content: space-between;
+        gap:0;
+        button {
+          min-width: calc(50% - 5px);
+          padding:0;
+          margin: 0;
+        }
+      }      
+      button {
+        background-color: #EAEAEA;
+        border: 1px solid #EAEAEA;
+        border-radius: 6px;
+        height:42px;
+        line-height: 24px;
+        @include fontoption(14px,#111,400,20px);
+        &:only-child {
+          display: block;
+          width: 100%;
+        }
+      }
+    }  
+  }
+}
+
+// 템플릿 등록
+.template__wrap-add {
+  display: flex;
+  width: 100%;
+  gap: 32px;
+  margin: 32px 0;
+  .is-edit {position: relative;}
+  .page-title__wrap {margin-top: 0;}
+  .template__register--wrap {
+    flex: 1;
+  }
+  .top-notice--gray {
+    margin-top:32px;
+  }
+  .page-title__wrap {
+    margin-top: 50px;
+  }
+  .form-item-row {
+    gap: 8px;
+  }
+  .template__setting--table {
+    width: 100%;
+    dt {
+      border-top: 1px solid #BCBCBC;
+      border-bottom: 1px solid #BCBCBC;
+      background-color: #f8f8f8;
+      ul {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        padding: 10px 0;        
+      }
+    }
+    dd {
+      .tableColSelect {
+        .radiobox+.radiobox {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .table__wrap {
+    &.no-line {
+      border-top:0;
+      margin-top: 0;
+    }
+  }
+}
+.emulator__wrap {
+  display: flex;
+  &.sticky {
+    position: sticky;
+    top:100px;
+    align-self: flex-start;
+  }
+}
+.customFomat {
+  position: absolute;
+  width: 100%;
+  top:30px;
+  left:50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-around;
+  .radiobox+.radiobox {
+    margin-left:0;
+  }
+}
+
+.colorbox {
+  width:20px;
+  height:20px;
+}
+
+
+
+
+
+
 .template-area {
     display:flex;
     gap: 50px;
@@ -32,7 +389,7 @@
         }
     }
 }
-  
+
 .template-preview {
   position:sticky;
   top:124px;
@@ -282,162 +639,7 @@
   }
 }
 
-
-  // .chat-emulator__wrap {
-  //   flex:0 0 360px;
-  //   width: 360px;
-  //   height: 740px;
-  //   position:sticky;
-  //   border-radius:16px;
-  //   border:1px solid #eaeaea;
-  //   background-color:#FCFCFC;
-  //   padding:16px;
-  // }
-//   .chat-emulator {
-//     display:flex;
-//     flex-direction: column;
-//     height: 100%;
-//     .emulator-header {
-//         flex:0 0 60px;
-//         border-bottom: 1px solid #eaeaea;
-//         display:flex;
-//         justify-content: space-between;
-//         align-items: center;
-//         &__inner {
-//             display:flex;
-//             align-items:center;
-//             gap: 8px;
-//         }
-//         .profile {
-//             display:flex;
-//             align-items: center;
-//             gap:4px;
-//             &__image {
-//                 width: 32px;
-//                 height: 32px;
-//                 img {
-//                     width:100%;
-//                     height: 100%;
-//                 }
-//             } 
-//             .chatroom-name {
-//                 padding-left:4px;
-//                 font-size: 16px;
-//                 font-weight: 700;
-//                 line-height: 24px;
-//             }
-//         }
-//         button {
-//             width: 24px;
-//             height: 24px;
-//             background-repeat: no-repeat;
-//             background-position: 50% 50%;
-//             &.btn-back {
-//                 background-image:url('../assets/images/cmp/btn_prev.png');
-//             }
-//             &.btn-more {
-//                 background-image:url('../assets/images/cmp/btn_more.png');
-//                 &.open {
-// 									background-image: none;
-// 								}
-//             }
-//             &.btn-down {
-//                 background-image:url('../assets/images/cmp/chevron_down.png');
-// 								&.open {
-// 									transform: rotate(180deg);    
-// 									transition: all 0.3s;
-// 								}
-//             }
-//         }
-//     }
-//     .emulator-body {
-//         flex: auto;
-//         padding:12px 0;
-//         .chat-date {
-//             font-size:12px;
-//             line-height: 18px;
-//             color:#888;
-//             text-align:center;
-//             margin-bottom:20px;
-//         }
-//         .chat-bubble__wrap {
-//             display:flex;
-//             align-items:flex-end;
-//             justify-content: flex-start;
-//             margin:20px 0;
-//             .chat-time {
-//                 font-size:12px;
-//                 color:#888;
-//                 line-height: 18px;
-//                 flex-shrink: 0;
-//                 margin-left:4px;
-//             }
-//             &.receiver {
-//                 justify-content: flex-end;
-//                 flex-direction: row-reverse;
-//                 .chat-time {
-//                     margin:0 4px 0 0;
-//                 }
-//             }
-//             .swiper-slide {
-//                 width: auto;
-//             }
-            
-//         }
-//         .chat-bubble {
-//             padding: 16px;
-//             border:1px solid #eaeaea;
-//             background-color:#fff;
-//             border-radius: 16px;
-//             width: 258px;
-//             box-sizing: border-box;
-//             p {
-//                 font-size: 14px;
-//                 line-height: 22px;
-//             }
-//         }
-//     }
-//     .emulator-footer {
-//         flex: 0 0 54px;
-//         display:flex;
-//         align-items: center;
-//         &__inner {
-//             display:flex;
-//             align-items:center;
-//             width:100%;
-//             gap: 8px;
-//             .input {
-//                 position:relative;
-//                 flex: auto;
-//                 input {
-//                     height: 38px;
-//                     border-radius: 100px;
-//                     padding:8px 36px 8px 16px;
-//                 }
-                
-//             }
-//             button {
-//                 width: 24px;
-//                 height: 24px;
-//                 background-repeat: no-repeat;
-//                 background-position: 50% 50%;
-//                 background-color:transparent;
-//                 &.btn-photo {
-//                     background-image:url('../assets/images/icon/icon_emulator_photo.png')
-//                 }
-//                 &.btn-camera {
-//                     background-image:url('../assets/images/icon/icon_emulator_camera.png')
-//                 }
-//                 &.btn-plus {
-//                     background-image:url('../assets/images/icon/icon_emulator_plus.png')
-//                 }
-//                 &.btn-emoji {
-//                     position:absolute;
-//                     right: 8px;
-//                     top: 7px;
-//                     background-image:url('../assets/images/icon/icon_emulator_emoji.png')
-//                 }
-//             }
-//         }
-//     }
-// }
+/* 텝플릿 */
+.tpl__wrap {
+  color: red;
+}

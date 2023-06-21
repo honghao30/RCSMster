@@ -6,7 +6,9 @@
         :class="[{ing: activeStep === i}, {end: activeStep > i}]"
       >
         <div class="step__inner">
-          <span>{{ step }}</span>
+          <i class="step__icon" v-if="activeStep > i"></i>
+          <span class="step__num" v-if="activeStep <= i">{{ i + 1 }}</span>
+          <span class="step__text">{{ step }}</span>
         </div>
       </li>
     </ol>
@@ -15,15 +17,19 @@
 <script>
 export default {
   props: {
-    stepActiveIndex: Number,
+    stepActiveIndex: {
+      type: Number,
+      default: 0
+    },
     stepTitle: Object
+  },
+  mounted() {
+    this.activeStep = this.stepActiveIndex - 1
   },
   data() {
     return {
-      activeStep: this.stepActiveIndex - 1
+      activeStep: undefined
     }
-  },
-  mounted () {
   }
 }
 </script>

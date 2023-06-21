@@ -11,14 +11,11 @@
       <div class="modal__content--body">
         <div class="top-search__wrap">
           <div class="search-area">
-            <span class="input">
+            <span class="input search">
               <input type="text" placeholder="도로명 또는 건물명(아파트)을 입력해주세요."
                 @focusin="zipcodeSearch"
               />
             </span>
-            <ButtonCmp
-              type="btn-search"
-            >검색</ButtonCmp>
           </div>
           <!-- // validate check error -->
           <!-- <p class="guide-text error" >도로명 또는 건물명(아파트)을 입력해주세요.</p>

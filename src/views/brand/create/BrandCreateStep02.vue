@@ -1,10 +1,10 @@
 <template>
-  <div class="brand__wrap">
+  <div class="brand__wrap brand_create">
     <div class="brand__inner">
       <div class="brand-info__wrap">
         <PageTitle pagetitle="브랜드 개설" />
         <StepList :stepActiveIndex="2" :stepTitle="stepTitle" />
-        <PageTitleH3 titleh3="퀵 버튼 설정" noticeinfo="필수 입력값" />
+        <PageTitleH3 titleh3="퀵 버튼 설정"/>
         <form  ref="form" :model="form">
           <div class="table__wrap">
             <table class="table table-bodyonly form-table">
@@ -124,6 +124,17 @@
                 </tr>
               </tbody>
             </table>
+            <div class="brand-aside">
+              <div class="button__wrap">
+                <ButtonCmp
+                  type="btn-blue-line"
+                >브랜드 불러오기</ButtonCmp>
+                <ButtonCmp
+                  type="btn-blue-line"
+                >브랜드 가이드</ButtonCmp>
+              </div>
+              <BrandEmulator :brandInfoData="form" curTab="info"/>
+            </div>
           </div>
         </form>
         <div class="button__wrap">
@@ -140,17 +151,6 @@
               @click="onSubmit"
           >다음</ButtonCmp>
         </div>
-      </div>
-      <div class="brand-aside">
-        <div class="button__wrap">
-          <ButtonCmp
-            type="btn-blue-line"
-          >브랜드 불러오기</ButtonCmp>
-          <ButtonCmp
-            type="btn-blue-line"
-          >브랜드 가이드</ButtonCmp>
-        </div>
-        <BrandEmulator :brandInfoData="form" curTab="info"/>
       </div>
     </div>
     <!-- // 모달 영역 -->

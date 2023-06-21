@@ -5,26 +5,29 @@
         <span class="logo">
           <img src="@/assets/images/dummy/brand_logo.png" alt="">
         </span>
+        <Dropdown :options="brandList" />
         <ul class="auth">
           <li>마스터 : 홍길동</li>
           <li>RCS메시지 전송 가능</li>
         </ul>
-        <Dropdown :options="brandList" />
       </div>
     </div>
     <nav>
       <ul>
+        <!-- 현재 페이지는 클래스 current 추가 해주세요. -->
         <li class="menu-item"
-          :class="{ active : activeIndex === i }"
+          :class="{ 'active' :  activeIndex === i}"
           v-for="(item, i) in brandLnbList" :key="i"
         >
           <a role="button" v-if="item.children" @click="handleOpen(i)">{{ item.label }}</a>
           <router-link :to="item.to" v-if="!item.children">{{ item.label }}</router-link>
-          <ul class="sub-menu" v-if="item.children">
-            <li v-for="(sub, j) in item.children" :key="j">
-              <router-link :to="sub.to">{{ sub.label }}</router-link>
-            </li>
-          </ul>
+          <Transition name="slide">
+            <ul class="sub-menu" v-if="activeIndex === i"> <!-- 현재 페이지는 클래스 current 추가 해주세요. -->
+              <li v-for="(sub, j) in item.children" :key="j">
+                <router-link :to="sub.to">{{ sub.label }}</router-link>
+              </li>
+            </ul>
+          </Transition>
         </li>
       </ul>
     </nav>

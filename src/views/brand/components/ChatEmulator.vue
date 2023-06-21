@@ -1,6 +1,6 @@
 <template>
   <div class="chat-emulator__wrap">
-    <div class="chat-emulator sticky">
+    <div class="chat-emulator">
       <div class="emulator-header">
         <div class="emulator-header__inner">
           <button class="btn-back"><span class="blind">이전으로</span></button>
@@ -14,19 +14,19 @@
         </div>
         <button class="btn-more" :class="{open: isBlind}"><span class="blind">정보</span></button>
       </div>
-      <div class="emulator-body">
+      <!--<div class="emulator-body" v-if="chatInfoData.mode !== 'registration'">
         <transition name="bodyshow">
-          <template v-if="this.chatInfoData.chatRoomName">
-            <div>
+           <template v-if="chatInfoData.chatRoomName">
+            <div class="chat-item__wrap">
               <p class="chat-date">{{ todayData }}</p>
               <p class="safty-icon" v-if="chatInfoData.saftyMark == 'Y'">확인된 발신번호</p>
               <div class="chat-bubble__wrap sender">
-                <div class="chat-bubble" v-if="chatInfoData.mode === 'views'">
+                <div class="chat-bubble">
                   <p>문의사항이 있으시다면 채팅방에 문의 내용과 성함/연락처를 남겨주세요.<br>
                     {{ chatInfoData.chatRoomName }}의 MD팀이 최대한 빠르게 답변 드리도록 하겠습니다!
                   </p>
                 </div>
-                <div class="chat-bubble" v-else>
+                <div class="chat-bubble">
                   <p>{{ chatInfoData.chatRoomName }} 가입을 환영합니다.<br>더 풍부해진 문자서비스를 지금 만나보세요!</p>
                 </div>
                 <span class="chat-time">{{ currentTime }}</span>
@@ -34,6 +34,66 @@
             </div>
           </template>
         </transition>
+      </div>-->
+      <div class="emulator-body">
+        <transition name="bodyshow">
+          <div class="chat-item__wrap">
+            <p class="safty-icon" v-if="chatInfoData.saftyMark == 'Y'">확인된 발신번호</p>
+
+            <div class="chat-bubble__wrap sender" v-if="chatMsgData.chatType == 'chatBubble'">
+              <div class="chat-bubble message">
+                <!-- <p>문의사항이 있으시다면 채팅방에 문의 내용과 성함/연락처를 남겨주세요.<br>
+                    {{ chatInfoData.chatRoomName }}의 MD팀이 최대한 빠르게 답변 드리도록 하겠습니다!
+                </p> -->
+                <p v-if="!chatMsgData.bubbleContent">내용을 입력해주세요.</p>
+                <p v-else v-html="chatMsgData.bubbleContent"> </p>
+              </div>
+            </div>
+            <div class="chat-bubble__wrap carousel"  v-if="chatMsgData.chatType == 'card'">
+              <swiper
+                ref="carousel"
+                :options="swiperOption"
+                :class="{'inactive': chatMsgData.msgData.length < 2}"
+              >
+                <swiper-slide v-for="(msg, i) in chatMsgData.msgData" :key="i">
+                  <div class="chat-bubble">
+                    <div
+                      v-if="msg.imgFile" class="image-area"
+                      :class="{'full' : chatMsgData.imgSize == 'full'}"
+                    >
+                      <span class="image" :style="{backgroundImage: `url(${require('@/assets/images/'+ msg.imgFile)})`}"></span>
+                    </div>
+
+                    <div class="item--none" v-else>
+                      <p class="img">이미지를 등록해주세요.</p>
+                    </div>
+                    <div class="text-area" v-if="msg.title || msg.cardContent">
+                      <p class="msg-title" v-html="msg.title"></p>
+                      <p class="msg-text" v-html="msg.cardContent"></p>
+                    </div>
+                    <div class="btn-area"
+                      v-if="msg.buttons.length"
+                      :class="{'column' : msg.btnDirection === 'column'}"
+                    >
+                      <template v-for="(btn, k) in msg.buttons" >
+                        <a href="" :key="k" v-if="btn.btnName">{{ btn.btnName }}</a>
+                      </template>
+                    </div>
+                  </div>
+                </swiper-slide>
+              </swiper>
+            </div>
+            <ul class="chip-buttons">
+              <template v-if="chatMsgData.chipButtons.length">
+                <li v-for="(btn, k) in chatMsgData.chipButtons" :key="k" >
+                  <a href="">{{ btn.btnName }}</a>
+                </li>
+              </template>
+              <li v-else>
+                <span>응답버튼을 등록해주세요.</span>
+              </li>
+            </ul>
+          </div>
           <!-- <div class="chat-bubble__wrap receiver">
             <div class="chat-bubble">
               <p>가입을 환영합니다.<br>더 풍부해진 문자서비스를 지금 만나보세요!</p>
@@ -41,25 +101,9 @@
             <span class="chat-time">오후 5:22</span>
           </div> -->
           <!-- carousel case -->
-          <!-- <div class="chat-bubble__wrap carousel">
-            <swiper
-              ref="carousel"
-              :options="swiperOption"
-            >
-              <swiper-slide>
-                <div class="chat-bubble">
-                  <p>가입을 환영합니다.<br>더 풍부해진 문자서비스를 지금 만나보세요!</p>
-                </div>
-              </swiper-slide>
-              <swiper-slide>
-                <div class="chat-bubble">
-                  <p>가입을 환영합니다.<br>더 풍부해진 문자서비스를 지금 만나보세요!</p>
-                </div>
-              </swiper-slide>
-            </swiper>
-          </div> -->
-        </div>
-      <div class="emulator-footer">
+        </transition>
+      </div>
+      <div class="emulator-footer" v-if="!chatInfoData.hideInputFooter">
         <div class="emulator-footer__inner" v-if="this.chatInfoData.allowMsg === 'Y'">
           <div class="emulator-footer__top">
             <ButtonCmp
@@ -116,8 +160,8 @@
             </ButtonCmp>
             <ul class="chat-menu__list-inemul">
               <li
-                v-for="(list, index) in chatMenuList"
-                :key="index"
+                v-for="list in chatMenuList"
+                :key="list"
               >
                 <router-link to="#">{{ list.label }}</router-link>
               </li>
@@ -137,13 +181,13 @@
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import { getTodayDate } from '@/utils/time.js'
-// import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
 export default {
   components: {
-    ButtonCmp
-    // Swiper,
-    // SwiperSlide
+    ButtonCmp,
+    Swiper,
+    SwiperSlide
   },
   props: {
     mode: String,
@@ -158,7 +202,34 @@ export default {
           chatRoomName: '',
           allowMsg: 'Y',
           saftyMark: 'N',
-          mode: ''
+          mode: 'views',
+          chatType: '',
+          hideInputFooter: false
+        }
+      }
+    },
+    chatMsgData: {
+      type: Object,
+      default: () => {
+        return {
+          chatbotMsgName: '',
+          btnUse: 'btnUseN',
+          copyMsg: 'Y',
+          chipBtnUse: 'N',
+          chipButtons: [],
+          msgData: [{
+            index: 0,
+            imgFile: '',
+            title: '',
+            cardContent: '',
+            btnUse: 'N',
+            btnDirection: 'row',
+            buttons: [{
+              btnName: '',
+              btnEvent: '',
+              isActive: true
+            }]
+          }]
         }
       }
     }
@@ -173,7 +244,11 @@ export default {
       currentTime: '',
       isOpen: false,
       isBlind: false,
-      isShort: true
+      isShort: true,
+      swiperOption: {
+        spaceBetween: 10,
+        slidesPerView: 'auto'
+      }
     }
   },
   mounted() {

@@ -1,6 +1,6 @@
 <template>
   <div class="join">
-    <PageTitle pagetitle="기업담당자 회원가입" />
+    <PageTitle pagetitle="운영자 회원가입" />
     <StepList :stepActiveIndex="1" :stepTitle="stepTitle" />
     <div class="top-notice--gray">
       원활한 기업담당자 가입신청을 위해서 기업의 사업자등록증 사본을 준비해주세요.
@@ -14,7 +14,7 @@
             v-model="allSelected"
             @click="selectAll"
           />
-          <label for="chkAll"><span class="checkbox__text">기업담당자 회원가입 약관에 모두 확인, 동의합니다.</span></label>
+          <label for="chkAll"><span class="checkbox__text chkAll">운영자 회원가입 약관에 모두 확인, 동의합니다.</span></label>
         </div>
         <div class="checkbox">
           <input type="checkbox"
@@ -48,14 +48,14 @@
         </div>
       </div>
     </div>
-    <div class="button__wrap">
-    <ButtonCmp
-      type="btn-blue-line"
-    >취소</ButtonCmp>
-    <ButtonCmp
-      type="btn-blue"
-      @click="nextStep"
-    >다음</ButtonCmp>
+    <div class="button__wrap space-between">
+      <ButtonCmp
+        type="btn-line"
+      >취소</ButtonCmp>
+      <ButtonCmp
+        type="btn-blue"
+        @click="nextStep"
+      >다음</ButtonCmp>
     </div>
   </form>
   </div>
@@ -82,7 +82,7 @@ export default {
       tosItemCd: '',
       tosCtn1: this.tosCtn1,
       tosCtn4: this.tosCtn4,
-      stepTitle: ['약관동의', '기업정보 입력', '회원정보 입력', '가입완료']
+      stepTitle: ['약관동의', '비지니스 정보 입력', '회원정보 입력', '가입완료']
     }
   },
   created() {

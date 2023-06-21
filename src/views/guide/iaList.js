@@ -58,13 +58,13 @@ const guideList = [
 ]
 
 const homeList = [
-  // 로그인 & 아이디 찾기 & 비밀번호 재설정
+  // 로그인 & 아이디 찾기 & 비밀번호 찾기
   {
     'depth1': '로그인',
     'screenId': 'R-Mem-Lgin-View-01',
     'status': ['0512: 개발 공유'],
     'link': '/LoginPage',
-    'comments': ['공통적으로 임의의 값을 입력시 다음 페이지로 넘어감.']
+    'comments': ['공통적으로 임의의 값을 입력시 다음 페이지로 넘어감.','0613: 버튼 여섯 번 클릭 시 비밀번호 변경 모달 창 켜짐']
   },
   {
     'depth2': '아이디 찾기',
@@ -91,7 +91,7 @@ const homeList = [
     'link': '/PwReset'
   },
   {
-    'depth3': '비밀번호 재설정',
+    'depth3': '비밀번호 찾기',
     'screenId': '',
     'status': ['0512: 개발 공유'],
     'link': '/PwChange'
@@ -113,7 +113,7 @@ const homeList = [
     'comments': ['공통적으로 임의의 값을 입력시 다음 페이지로 넘어감.']
   },
   {
-    'depth3': '기업정보 입력',
+    'depth3': '비지니스 정보 입력',
     'screenId': 'R-Mem-Join-Reg-02',
     'status': ['0512: 개발 공유'],
     'link': '/joinStep02',
@@ -131,7 +131,7 @@ const homeList = [
     'screenId': 'R-Mem-Join-Reg-04',
     'status': ['0512: 개발 공유'],
     'link': '/joinStep04',
-    'comments': ['단순 문구만 다른 케이스라, 요청시 지원 예정']
+    'comments': ['단순 문구만 다른 케이스라, 요청시 지원 예정','0613: 회원가입 완료시 상황에 따른 화면 추가. 각 상황 앞에 주석 달아두었습니다.']
   },
   // 대행사 회원가입
   {
@@ -157,39 +157,75 @@ const homeList = [
     'depth3': '완료',
     'screenId': 'R-Mem-Join-Reg-08',
     'status': ['0512: 개발 공유'],
-    'link': '/AgencyJoinStep04'
+    'link': '/AgencyJoinStep04',
+    'comments': ['0613: 회원가입 완료시 상황에 따른 화면 추가. 각 상황 앞에 주석 달아두었습니다.']
   },
   // 마이 페이지
   {
     'depth1': '마이페이지',
     'depth2': '개인회원 정보 관리',
+    'depth3': '상세',
     'screenId': 'R-Mem-My-Mod-01',
-    'status': ['0512: 개발 공유'],
-    'link': '/myinfo'
+    'status': ['0620: 추가', '0621: 개발 공유'],
+    'link': '/myinfo',
+    'comments': ['0620: 추가 된 페이지 매니저,마스터_개인정보 관리 (기존 MyInfo.vue -> MyInfoEdit.vue)', 'view 페이지와 edit 분리로 인해 파일명 변경']
   },
   {
-    'depth2': '기업 회원정보 관리',
+    'depth3': '수정',
+    'screenId': 'R-Mem-My-Reg-01',
+    'status': ['0512: 개발 공유', '0620: 파일명 변경 MyInfo = > MyInfoEdit', '0621: 개발 2차 공유'],
+    'link': '/myinfoedit',
+    'comments': ['0620: 파일 명 변경 된 페이지 (기존 파일 명:MyInfo.vue ) 매니저,마스터_개인정보 관리 편집']
+  },
+  {
+    'depth2': '비즈니스 정보 관리',
+    'depth3': '상세',
     'screenId': 'R-Mem-My-Mod-02',
-    'status': ['0512: 개발 공유'],
-    'link': '/myinfoagency'
+    'status': ['0620: 신규 추가', '0621: 개발 공유'],
+    'link': '/agencymyinfo',
+    'comments': ['0620: 추가 된 페이지 대행사_개인정보 관리']
   },
   {
-    'depth2': '기업 정보 관리(승인대기)',
-    'screenId': '',
-    'status': ['0512: 개발 공유'],
-    'link': '/corpinfo'
+    'depth3': '수정',
+    'screenId': 'R-Mem-My-Reg-02',
+    'status': ['0620: 파일명 변경 MyInfoAgency > agencymyinfoedit', '0621: 개발 공유'],
+    'link': '/agencymyinfoedit',
+    'comments': ['0620: 파일 명 변경 된 페이지 (기존 파일 명:MyInfoAgency.vue ) 대행사_개인정보 관리 편집']
   },
   {
-    'depth2': '기업 정보 관리(승인완료후)',
+    'depth3': '',
     'screenId': '',
-    'status': ['0512: 개발 공유'],
-    'link': '/corpinfo-edit'
+    'status': ['0620: 신규 추가', '0621: 개발 공유'],
+    'link': '/corpinfo',
+    'comments': ['0620: 추가 된 페이지 매니저,마스터_비지니스 정보 관리 (기존 CorpInfo.vue -> AgencyCorpInfoEdit.vue)', '0620: 모든 페이지 "기업 정보" -> "비지니스 정보" 로 수정']
+  },
+  {
+    'depth3': '',
+    'screenId': '',
+    'status': [''],
+    'link': '/corpinfoedit',
+    'comments': ['0620: 기존 파일 명 사용 매니저,마스터_비지니스 정보 관리 편집']
+  },
+  {
+    'depth3': '',
+    'screenId': '',
+    'status': ['0620: 신규 추가', '0621: 개발 공유'],
+    'link': '/agencycorpinfo',
+    'comments': ['0620: 추가 된 페이지 대행사_비지니스 정보 관리']
+  },
+  {
+    'depth3': '',
+    'screenId': '',
+    'status': [''],
+    'link': '/agencycorpinfoedit',
+    'comments': ['0620: 파일 명 변경 된 페이지 (기존 파일 명:CorpInfo.vue ) 대행사_비지니스 정보 관리 편집']
   },
   {
     'depth2': '회원탈퇴',
     'screenId': 'R-Mem-My-Mod-03',
     'status': ['0512: 개발 공유'],
-    'link': '/withdrawal'
+    'link': '/withdrawal',
+    'comments': ['']
   },
   // 고객센터
   {
@@ -217,7 +253,8 @@ const homeList = [
     'depth3': '작성',
     'screenId': 'R-Cust-Inqur-Reg-01',
     'status': ['0512: 개발 공유'],
-    'link': '/OnlineInquire'
+    'link': '/OnlineInquire',
+    'comments': ['0613: <온라인 접수> 와 <로그인> 모달 창 추가']
   },
   {
     'depth3': '목록',
@@ -248,7 +285,7 @@ const homeList = [
     'depth2': 'RCS 도입사례',
     'screenId': ''
   },
-  { 
+  {
     'depth2': 'RBC 이용 안내',
     'screenId': ''
   },

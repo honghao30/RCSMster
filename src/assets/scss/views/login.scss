@@ -14,12 +14,15 @@
     }
   }
   .form-list {
-    border-top:2px solid $pointColor;
+    border-top:2px solid #BCBCBC;
     margin:32px 0 0 0;
     .form-item {
       border-bottom:1px solid #F0F0F0;
       padding: 20px 20px 20px 10px;
       margin:0;
+      &.form-item:last-child {
+        border-bottom:2px solid #dddddd;
+      }
       .form-item__label {           
         flex: 0 0 200px;
         @include fontoption(16px,$defaultColor,500,26px);
@@ -70,7 +73,7 @@
             display: block;
             width:1px;
             height: 10px;
-            background: #D7D0D0;
+            background-image: url('../assets/images/icon/icon_tel.png');
             position: absolute;
             right:0;
             top:50%;
@@ -84,6 +87,9 @@
     }
   }
   &.login-help {
+    .form-list {
+      margin: 0;
+    }
     .form-item__content {
       .input {
         flex: 1;
@@ -106,7 +112,7 @@
     .login-result__wrap{
       margin-top: 32px;
       border-top: 2px solid #2f77fb;
-      border-bottom: 1px solid #DDDDDD;
+      border-bottom: 2px solid #DDDDDD;
       padding: 132px 0;
       text-align: center;
       .login-result__id{
@@ -135,7 +141,6 @@
       }
     }
     .form-list {
-      margin: 32px 0 0 0;
       .form-item {
         font-size: 14px;
         padding: 16px 0;
@@ -169,8 +174,7 @@
       font-size: 14px;
     }
     &.login-help {
-      .form-list {
-        margin-top: 0;
+      .form-list { 
         .form-item__content {
           .btn-default-line{
             margin-left: 8px;

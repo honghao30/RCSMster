@@ -159,7 +159,8 @@
                                             </Dropdown>
                                         </span>
                                         <!-- 선택 시, 파트너사 페이지 새창으로 연결(확인 필요) -->
-                                        <a class="btn btn-default-line medium"><router-link to="">챗봇 연결 가능한 대행사</router-link></a>
+                                        <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
+                                        <router-link to="" class="btn btn-default-line medium">챗봇 연결 가능한 대행사</router-link>
                                         </div>
                                         <span class="input"><input type="text" placeholder="" value="https://chatbot.com/autolink/001" disabled/></span>
                                         <!-- 연결 대행사 無 -->
@@ -168,7 +169,8 @@
                                             <input type="text" placeholder="현재 등록가능한 대행사가 없습니다." disabled/>
                                         </span>
                                         주석처리 해야함 / 선택 시, 파트너사 페이지 새창으로 연결(확인 필요)
-                                        <a class="btn btn-default-line medium"><router-link to="">챗봇 연결 가능한 대행사</router-link></a>
+                                        230616 [a태그 + router-link태그] →  [router-link태그] 수정
+                                        <router-link to="" class="btn btn-default-line medium">챗봇 연결 가능한 대행사</router-link>
                                         </div>
                                         <span class="input connect-box"><input type="text" placeholder="" disabled/></span> -->
                                     </div>

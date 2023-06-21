@@ -175,6 +175,13 @@
         margin:6px 0;
         @include fontoption(15px,#000,400,26px);
       }
+      .nodata {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;          
+        @include fontoption(14px,#999999,400,26px);
+      } 
     }   
     .agency-list__right {
       width: 50%;      

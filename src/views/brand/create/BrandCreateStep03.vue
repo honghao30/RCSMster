@@ -1,10 +1,10 @@
 <template>
-  <div class="brand__wrap">
+  <div class="brand__wrap brand_create">
     <div class="brand__inner">
       <div class="brand-info__wrap">
         <PageTitle pagetitle="브랜드 개설" />
         <StepList :stepActiveIndex="3" :stepTitle="stepTitle" />
-        <PageTitleH3 titleh3="브랜드 홈 탭 설정" noticeinfo="필수 입력값" />
+        <PageTitleH3 titleh3="브랜드 홈 탭 설정"/>
         <form  ref="form" :model="form">
           <div class="table__wrap">
             <table class="table table-bodyonly form-table">
@@ -112,6 +112,17 @@
                 </tr>
               </tbody>
             </table>
+            <div class="brand-aside  sticky">
+              <div class="button__wrap">
+                <ButtonCmp
+                  type="btn-blue-line"
+                >브랜드 불러오기</ButtonCmp>
+                <ButtonCmp
+                  type="btn-blue-line"
+                >브랜드 가이드</ButtonCmp>
+              </div>
+              <BrandEmulator :brandInfoData="form" :curTab="form.curTab"/>
+            </div>
           </div>
         </form>
         <div class="agree__area">
@@ -132,17 +143,6 @@
               @click="onSubmit"
           >승인요청</ButtonCmp>
         </div>
-      </div>
-      <div class="brand-aside  sticky">
-        <div class="button__wrap">
-          <ButtonCmp
-            type="btn-blue-line"
-          >브랜드 불러오기</ButtonCmp>
-          <ButtonCmp
-            type="btn-blue-line"
-          >브랜드 가이드</ButtonCmp>
-        </div>
-        <BrandEmulator :brandInfoData="form" :curTab="form.curTab"/>
       </div>
     </div>
   </div>

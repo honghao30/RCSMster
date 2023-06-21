@@ -29,12 +29,15 @@
         @click="memberLeave"
       >회원탈퇴</ButtonCmp>
     </div>
+    <!-- 0620: 디자인 1차 수정 - 모달 루트 추가 -->
     <!-- 모달 창 -->
     <ModalView
       v-if="isModalViewed" @closeModal="isModalViewed = false"
     >
+      <!-- 0620: 디자인 1차 수정 v-if 추가 -->
       <ConfirmMsg
         @closeModal="isModalViewed = false"
+        v-if="withdrawalModal1"
       >
         <div slot="msg">
           <div class="msg">
@@ -49,11 +52,31 @@
               @click="closeMsg"
             >아니요
             </ButtonCmp>
+            <!-- 0620: @click 명 변경 -->
             <ButtonCmp
             type="btn-blue"
-            @click="closeMsg"
+            @click="nextMsg"
             >
               예
+            </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+      <!-- 0620: 디자인 1차 수정 - 모달 추가 -->
+      <ConfirmMsg
+        @closeModal="isModalViewed = false"
+        v-if="withdrawalModal2"
+      >
+        <div slot="msg">
+          <div class="msg">
+            탈퇴 처리가 완료되었습니다.<br>
+            서비스를 이용해 주셔서 감사합니다.
+          </div>
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+              type="btn-blue"
+              @click="closeMsg"
+            >닫기
             </ButtonCmp>
         </div>
       </ConfirmMsg>
@@ -77,7 +100,9 @@ export default {
   data() {
     return {
       checkedAgreement1: false,
-      isModalViewed: false
+      isModalViewed: false,
+      withdrawalModal1: false,
+      withdrawalModal2: false
     }
   },
   watch: {
@@ -97,9 +122,17 @@ export default {
   methods: {
     memberLeave () {
       this.isModalViewed = true
+      this.withdrawalModal1 = true
+      this.withdrawalModal2 = false
     },
     closeMsg () {
       this.isModalViewed = false
+      this.withdrawalModal1 = false
+      this.withdrawalModal2 = false
+    },
+    nextMsg() {
+      this.withdrawalModal1 = false
+      this.withdrawalModal2 = true
     }
   }
 }

@@ -76,7 +76,20 @@ $textareaHeight: 100px;
       padding-right:40px;
     }
   }
+  &.input-email {
+    max-width: 246px;
+  }
+  &.input-tel {
+    max-width: 111px;
+  }
+  &.input-info {
+    max-width: 385px;
+  }
+  &.input-post {
+    max-width: 277.5px;
+  }
 }
+
 .input-m {
   input {
     @include inputBasic;
@@ -105,29 +118,34 @@ $textareaHeight: 100px;
     }
   }
 }
-
+// input-limit
 .input-limit{
-  position: relative;
-  input{
-    padding: 0 64px 0 16px;
+  .input{
+    position: relative;
+    input{
+      padding: 0 72px 0 16px;
+    }
+    .input-limit__text{
+      position: absolute;
+      right: 16px;
+      top: 0;
+      display:flex;
+      align-items:center;
+      justify-content: flex-end;
+      gap: 8px;
+      line-height: 36px;
+    }
   }
-  .input-limit__text{
-    position: absolute;
-    right: 16px;
-    top:50%;
-    transform: translateY(-50%);
-  }
-  .btn {
-    position:absolute;
-    right: 68px;
-    top: 50%;
-    margin-top:-13px;
-    width: 26px;
-    height: 26px;
-    .icon-emoji {
-      width: 24px;
-      height: 24px;
-      background:url('../assets/images/icon/icon_emoji.png') no-repeat 50% 50%;
+}
+// 이모지 있는 input
+.is-emoji {
+  width: 100%;
+  position:relative;
+  .input-limit{ 
+    .input{
+      input{
+        padding: 0 94px 0 16px;
+      }
     }
   }
 }
@@ -138,7 +156,6 @@ $textareaHeight: 100px;
   border-radius: 8px;
   border: 1px solid $bordersColor;
   position: relative;
-  overflow:hidden;
   background-color: #fff;
   &.disabled {
     background-color:#f4f4f4;
@@ -159,32 +176,34 @@ $textareaHeight: 100px;
         color: #999;
       }
     }
-
   }
   .textarea-limit__text{
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    align-items: center;
     position: absolute;
-    text-align: end;
     width:calc(100% - 32px);
     bottom:8px;
     box-sizing: border-box;
   }
-    /* textarea scroll custom */
-    textarea::-webkit-scrollbar {
-      width: 3px;
-    }
-    textarea::-webkit-scrollbar-button:decrement,.textarea textarea::-webkit-scrollbar-button:end:increment {
-      display: block;
-      height: 0;
-    }
-    textarea::-webkit-scrollbar-track {
-      background: #dedede
-    }
-    textarea::-webkit-scrollbar-thumb {
-      height: 20px;
-      width: 3px;
-      background: #6f6f6f;
-    }
-    /* //textarea scroll custom */
+  /* textarea scroll custom */
+  textarea::-webkit-scrollbar {
+    width: 3px;
+  }
+  textarea::-webkit-scrollbar-button:decrement,.textarea textarea::-webkit-scrollbar-button:end:increment {
+    display: block;
+    height: 0;
+  }
+  textarea::-webkit-scrollbar-track {
+    background: #dedede
+  }
+  textarea::-webkit-scrollbar-thumb {
+    height: 20px;
+    width: 3px;
+    background: #6f6f6f;
+  }
+  /* //textarea scroll custom */
 }
 //check box
 //input 은 숨겨주기
@@ -279,6 +298,16 @@ $textareaHeight: 100px;
       border:1px solid #ccc;
     }
   }
+  input[type=radio]:disabled:checked + label {
+    color: #999;
+    &:before {
+      background:url('../assets/images/cmp/radio_active.png') 50% 50%;
+      background-size: 24px;
+      border:none;
+      opacity: 0.8;
+      filter: grayscale(1);
+    }
+  }  
 }
 
 .select {
@@ -321,27 +350,34 @@ $textareaHeight: 100px;
   position: relative;
   min-width: 120px;
   &__trigger {
-    display:inline-flex;
+    display:flex;
+    width: 100%;
     align-items:center;
     justify-content:space-between;
     position:relative;
     border:1px solid $bordersColor;
     padding:0 12px;
-    color: #666;
     border-radius: 8px;
-    padding:8px 24px 8px 16px;
+    padding:8px 18px 8px 15px;
     color:#000;
+    background-color:#fff;
     height:$inputHeight;
-    width:100%;
+    .selected-text {
+      flex: auto;
+      width:100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow:hidden;
+    }
     &::after {
       content:'';
       display:inline-block;
-      width: 10px; 
-      height: 10px; 
+      min-width: 8px; 
+      height: 8px; 
       position:relative;
-      top:-1px;
+      top:-2px;
       border: 1px solid #888; 
-      border-width: 2px 2px 0 0; 
+      border-width: 2px 2px 0 0;
       transform: rotate(135deg) translate(-50%, -50%);
     }
   }
@@ -358,9 +394,8 @@ $textareaHeight: 100px;
     left:0;
     top:$inputHeight;
     background-color:#fff;
-    width:100%;
+    min-width:100%;
     border:1px solid #4A5567;
-    border-width:0 1px 1px 1px;
     border-radius:0 0 8px 8px;
     z-index:10;
     overflow:hidden;
@@ -372,6 +407,9 @@ $textareaHeight: 100px;
       &:hover {
         background-color:#F4F4F4;
       }
+      &.active {
+        background-color:#F4F4F4;
+      }
     }
     .search__area {
       padding:8px 16px;
@@ -381,12 +419,23 @@ $textareaHeight: 100px;
     .dropdown__trigger {
       border-color: #4A5567;
       border-radius:8px 8px 0 0;
+      border-width:1px 1px 0 1px;
       &::after {
-        top: 4px;
+        top: 2px;
         transform: rotate(-45deg) translate(50%, 50%);
       }
     }
   
+  }
+}
+.dropdown-email {
+  .dropdown {
+      min-width: 246px;
+  }
+}
+.dropdown-tel {
+  .dropdown {
+      min-width: 111px;
   }
 }
 // dropdown 옆에 붙어있는 search input
@@ -395,6 +444,8 @@ $textareaHeight: 100px;
   border: 1px solid #ddd;
   border-radius: 8px;
   .dropdown{
+    width: 100px;
+    min-width: 100px;
       .dropdown__trigger{
         border-color: transparent;
         border-radius: 0;
@@ -626,9 +677,7 @@ $textareaHeight: 100px;
 }
 .el-date-editor {
   position: relative;
-  &.w--full {
-    width: 100%;
-  }
+  
   .el-input__inner {
     height: 36px;
     line-height: 34px;
@@ -636,6 +685,9 @@ $textareaHeight: 100px;
     padding-left: 16px;
   }
   &.el-input__inner {
+    &.w--full {
+      width: 100%;
+    }
     width: 250px;
     height: $inputHeight;
     border: 1px solid #ddd;
@@ -743,9 +795,6 @@ $formLabelWidth : 120px;
     }
   }
   .form-item__content {
-    &.is-emoji {
-        position: relative;
-    }
     +.form-item__content  {
       margin-top: 20px;
     }
@@ -767,7 +816,7 @@ $formLabelWidth : 120px;
   .input-item {
     display:flex;
     align-items:center;
-    gap: 10px;
+    gap: 8px;
     position: relative;
     flex: auto;
     &.w--full {
@@ -788,6 +837,17 @@ $formLabelWidth : 120px;
     }
     & + .input-item {
       margin-top: 12px;
+    }
+    &.input-list {
+      gap: 33px;
+      .input-list__title::after{
+        content: "";
+        position: absolute;
+        border-right: 1px solid #ddd;
+        height: 12px;
+        padding-left: 16px;
+        margin-top: 8px;
+      }
     }
     .input {
       flex:auto;
@@ -886,6 +946,9 @@ $formLabelWidth : 120px;
     margin-top: 2px;
   }
 }
+.error {
+  color: $errorColor;
+}
 
 .search-table {
   display:flex;
@@ -973,6 +1036,30 @@ $formLabelWidth : 120px;
           background:url('../assets/images/cmp/chevron_right.png') no-repeat 50% 50%;
           }
       }
+  }
+}
+.emoji-el {
+  position:relative;
+  width:20px;
+  height:20px;
+  display: inline-flex;
+  .emoji-trigger {
+    height: 20px;
+    display:inline-flex;
+  }
+  .icon-emoticon {
+    width: 20px;
+    height:20px;
+    background-image: url('../assets/images/icon/icon_emoticon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+  }
+  .emoji-wrap {
+    position: absolute;
+    right:0;
+    top:50px;
+    z-index: 15;
   }
 }
 

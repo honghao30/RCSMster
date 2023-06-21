@@ -78,7 +78,8 @@
     <!-- // 페이지 게이션 -->
     <div class="brand-banner__box">
       <strong>브랜드를 만들고 고객과 연결될 수 있는<br/>RBC의 다양한 기능을 사용하세요.</strong>
-      <a class="btn btn-blue"><router-link to="">브랜드 개설하기</router-link></a>
+      <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
+      <router-link to="" class="btn btn-blue">브랜드 개설하기</router-link>
     </div>
     <!-- // 브랜드 개설 배너 -->
     <div class="board-main__box--roun-type">

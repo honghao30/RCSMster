@@ -18,8 +18,9 @@
         gap: 8px; 
     }
     .item {
-        width: 60px;
+        min-width: 60px;
         height: 60px;
+        padding:0 11px;
         border:1px solid #ddd;
         border-radius: 8px;
         display:inline-flex;
@@ -31,6 +32,18 @@
         &.active {
             border-color: #000;
             color: #000;
+            font-weight: 700;
+            .icon-copy {
+                background-image: url('../assets/images/icon/icon_copy_active.png');
+            }
+        }
+        .btn {
+            margin-left: 8px;
+        }
+        .icon-copy {
+            width: 24px;
+            height: 24px;
+            background:url('../assets/images/icon/icon_copy.png') no-repeat 50% 50%;
         }
         .btn-del {
             position:absolute;
@@ -67,6 +80,10 @@
             }
         }
     }
+    .ctrl-btns {
+        display:inline-flex;
+        gap: 8px;
+    }
     .btn-add {
         width: 32px;
         height: 32px;
@@ -75,6 +92,9 @@
         border-radius: 100%;
         text-align:center;
         line-height: 28px;
+        &.inactive {
+            color:#ccc;
+        }
     }
     .guide-box {
         width: 100%;
@@ -176,54 +196,60 @@
                 }
             } 
         }
-        .button-list {
-            display:flex;
-            gap: 8px;
-            margin-top: 12px;
-            li {
-                display:flex;
-                align-items:center;
-                font-size:14px;
-                color:#fff;
-                line-height: 24px;
-                font-weight: 500;
-                padding:2px 8px 2px 12px ;
-                background-color:#aaa;
-                border-radius: 4px;
-                cursor:pointer;
-                .btn-del {
-                    width:20px;
-                    display:inline-flex;
-                    align-items:center;
-                    justify-content: center;
-                    position:relative;
-                    &:before {
-                        content:'';
-                        width: 11px;
-                        height: 1px;
-                        background-color:#fff;
-                        transform:rotate(45deg);
-                        position:absolute;
-                        left:50%;
-                        margin-left:-5px;
-                    }
-                    &:after {
-                        content:'';
-                        width: 11px;
-                        height: 1px;
-                        background-color:#fff;
-                        transform:rotate(-45deg);
-                        position:absolute;
-                        left:50%;
-                        margin-left:-5px;
-                    }
-                }
-                &.active {
-                    background-color:$pointColor
-                }
+       
+        
+    }
+}
+.button-reg {
+    +.form-item-row {
+        margin-top: 10px;
+    }
+}
+.button-reg-list {
+    display:flex;
+    gap: 8px;
+    margin-top: 12px;
+    li {
+        display:flex;
+        align-items:center;
+        font-size:14px;
+        color:#fff;
+        line-height: 24px;
+        font-weight: 500;
+        padding:2px 8px 2px 12px ;
+        background-color:#aaa;
+        border-radius: 4px;
+        cursor:pointer;
+        .btn-del {
+            width:20px;
+            display:inline-flex;
+            align-items:center;
+            justify-content: center;
+            position:relative;
+            &:before {
+                content:'';
+                width: 11px;
+                height: 1px;
+                background-color:#fff;
+                transform:rotate(45deg);
+                position:absolute;
+                left:50%;
+                margin-left:-5px;
+            }
+            &:after {
+                content:'';
+                width: 11px;
+                height: 1px;
+                background-color:#fff;
+                transform:rotate(-45deg);
+                position:absolute;
+                left:50%;
+                margin-left:-5px;
             }
         }
-        
+        &.active {
+            background-color:$pointColor
+        }
     }
 }
 .brand__feed {

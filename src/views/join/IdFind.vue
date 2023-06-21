@@ -16,7 +16,7 @@
             <router-link
               to="/pwFind"
             >
-            <span>비밀번호 재설정</span>
+            <span>비밀번호 찾기</span>
           </router-link>
         </li>
         </ul>
@@ -57,6 +57,7 @@
               <span class="time" ref="time">{{ TimerStr }}</span>
             </div>
             <p class="guide-text error" v-if="numberErrorMsg">인증번호를 입력해주세요.</p>
+            <p class="guide-text error" v-if="numberErrorMsg">인증 유효시간이 지났습니다.</p>
           </div>
       </div>
       <div class="button__wrap">
@@ -65,6 +66,7 @@
           @click="onSubmit"
         >아이디 찾기</ButtonCmp>
       </div>
+      <p class="guide-text error" v-if="numberErrorMsg">입력하신 정보와 일치하는 계정이 없습니다.</p>
   </form>
     <!-- 메시지 모달 -->
     <ModalView

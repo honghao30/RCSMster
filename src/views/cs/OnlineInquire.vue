@@ -1,8 +1,8 @@
 <template>
-  <div class="inner online">
+  <div class="inner notice online">
     <div class="online-title__wrap--top">
       <PageTitle pagetitle="온라인 문의" />
-      <PageTitleH3 titleh3="문의정보" noticeinfo="필수 입력값" />
+      <PageTitleH3 titleh3="문의정보" />
     </div>
     <form  ref="form" :model="form">
       <div class="table__wrap">
@@ -110,7 +110,7 @@
       </div>
     </form>
     <div class="online-title__wrap--top">
-      <PageTitleH3 titleh3="회원정보" noticeinfo="필수 입력값" />
+      <PageTitleH3 titleh3="회원정보" />
     </div>
     <!-- 회원정보 -->
     <form  ref="form" :model="form">
@@ -128,7 +128,7 @@
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder="이름을 입력해 주세요." v-model="form.membername"></span>
+                    <span class="input input-info"><input type="text" class="input" placeholder="이름을 입력해 주세요." v-model="form.membername"></span>
                     </div>
                   </div>
                   <p class="guide-text error" v-if="membernameErrorMsg">이름을 입력해주세요.</p>
@@ -142,7 +142,7 @@
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder="휴대폰 번호를 입력해주세요." v-model="form.memberphone"></span>
+                    <span class="input input-info"><input type="text" class="input" placeholder="휴대폰 번호를 입력해주세요." v-model="form.memberphone"></span>
                     </div>
                   </div>
                   <p class="guide-text error" v-if="memberphoneErrorMsg">휴대폰 번호를 입력해주세요.</p>
@@ -156,7 +156,7 @@
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder="이메일을 입력해주세요." v-model="form.membermail"></span>
+                      <span class="input input-info"><input type="text" class="input" placeholder="이메일을 입력해 주세요." v-model="form.membermail"></span>
                     </div>
                   </div>
                   <p class="guide-text">※ 문의에 대한 답변을 받을 수 있도록 이메일을 정확히 입력해 주세요.</p>

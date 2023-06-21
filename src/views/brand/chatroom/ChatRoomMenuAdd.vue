@@ -67,10 +67,23 @@
                                     "><span class="blind">삭제</span></a>
                                   </div>
                                 </draggable>
-                                <a role="button" class="btn-add" @click="addSlide(form.chatMenuData.length)" v-if="form.chatMenuData.length < 5">+<span class="blind">추가</span></a>
+
+                                <a role="button" class="btn-add" @click="addSlide(form.chatMenuData.length)" v-if="form.chatMenuData.length < 5">+<span class="blind"></span></a>
                               </div>
-                              <a role="button" class="btn small btn-line" @click="isMenuEdit = true" v-if="!isMenuEdit">편집</a>
-                              <a role="button" class="btn small btn-blue" v-if="isMenuEdit" @click="saveMenuEdit">저장</a>
+                              <div class="ctrl-btns">
+                                <ButtonCmp
+                                  type="btn-line"
+                                  size="small"
+                                  @click="isMenuEdit = true"
+                                  v-if="!isMenuEdit"
+                                >편집</ButtonCmp>
+                                <ButtonCmp
+                                  type="btn-blue"
+                                  size="small"
+                                  @click="saveMenuEdit"
+                                  v-if="isMenuEdit"
+                                >저장</ButtonCmp>
+                              </div>
                               <div class="guide-box" v-if="isMenuEdit">
                                 <p class="guide-text black">&middot; 선택한 슬라이드는 드래그로 순서 변경이 가능합니다.</p>
                                 <p class="guide-text black">&middot; 첫번째로 위치한 카드는 삭제 불가합니다.</p>
@@ -89,25 +102,24 @@
                                       <div class="form-item__content">
                                         <div class="form-item__content">
                                           <div class="form-item-row">
-                                            <div class="input-item input-limit">
-                                              <span class="input">
-                                                <input type="text" class="input" maxlength="17"
-                                                  v-model="menu.menuTitle"
-                                                  :placeholder="'메뉴명을 입력해주세요'"
-                                                >
-                                                <span class="chat-emoticon">
-                                                  <ButtonCmp
-                                                    type="btn-only-icon"
-                                                    @click="showSpecialCharTitle = !showSpecialCharTitle"
-                                                    ><i class="icon-emoticon"></i>
-                                                  </ButtonCmp>
-                                                  <emoji-picker id="emojiPicker" @emoji-click="onSelectEmoji($event, 'menuTitle', j)" v-show="showSpecialCharTitle" class="light emoji-wrap"></emoji-picker>
-                                                </span>
-                                                <p class="input-limit__text">
-                                                  {{ menu.menuTitle.length }}/17자
-                                                </p>
-                                              </span>
+                                            <!-- 23.06.13 input 이모션 공통으로 인해 is-emoji 클래스 추가 / .chat-emoticon 삭제 / .input-limit__text 위치수정 -->
+                                            <div class="is-emoji">
+                                              <div class="input-item input-limit">
+                                                <div class="input">
+                                                  <input type="text" class="input" maxlength="17"
+                                                    v-model="menu.menuTitle"
+                                                    :placeholder="'메뉴명을 입력해주세요'"
+                                                    ref="menuName"
+                                                  >
+
+                                                  <div class="input-limit__text">
+                                                    <Emoji @input="onSelectEmoji($event, 'menuName', j)"/>
+                                                    <p>{{ menu.menuTitle.length }}/17자</p>
+                                                  </div>
+                                                </div>
+                                              </div>
                                             </div>
+                                            <!-- // 23.06.13 input 이모션 공통으로 인해 is-emoji 클래스 추가 / .chat-emoticon 삭제  / .input-limit__text 위치수정 -->
                                           </div>
                                         </div>
                                       </div>
@@ -414,6 +426,7 @@ import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
 import ChatEmulator from '@/views/brand/components/ChatEmulator.vue'
 import DonebarndNewsSelect from '@/views/brand/chatroom/DonebarndNewsSelect.vue'
 import DoneChatBotMsgSelect from '@/views/brand/chatroom/DoneChatBotMsgSelect.vue'
+import Emoji from '@/components/common/Emoji.vue'
 import 'swiper/css/swiper.css'
 import 'emoji-picker-element'
 
@@ -428,7 +441,8 @@ export default {
     ConfirmMsg,
     ChatEmulator,
     DonebarndNewsSelect,
-    DoneChatBotMsgSelect
+    DoneChatBotMsgSelect,
+    Emoji
   },
   data() {
     return {
@@ -446,7 +460,6 @@ export default {
           chatbot: ''
         }],
         chatRoom: 'chatRoomMenu01'
-
       },
       dropdownOptions: [
         {
@@ -479,7 +492,8 @@ export default {
       chatbotErrorMsg: false,
       chatInfoData: {
         chatRoomName: 'SYSTEM STUDIOS',
-        allowMsg: 'Y'
+        allowMsg: 'Y',
+        showInputFooter: true
       }
     }
   },
@@ -593,12 +607,10 @@ export default {
       })
       this.isMenuEdit = false
     },
-    onSelectEmoji(e, field, index) {
-      let code = e.detail.unicode
-      if (field === 'menuTitle') {
-        this.form.chatMenuData[index].menuTitle += code
-        this.showSpecialCharTitle = false
-      }
+    onSelectEmoji(e, target, idx) {
+      let emoji = e
+      let refName = target
+      this.$refs[refName][idx].value += emoji
     }
   }
 }

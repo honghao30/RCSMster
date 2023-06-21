@@ -5,7 +5,7 @@
       <div class="brand-info__wrap">
         <PageTitle pagetitle="브랜드 홈 수정" />
         <StepList :stepActiveIndex="3" :stepTitle="stepTitle" />
-        <PageTitleH3 titleh3="브랜드 홈 탭 설정" noticeinfo="필수 입력값" />
+        <PageTitleH3 titleh3="브랜드 홈 탭 설정"/>
         <form  ref="form" :model="form">
           <div class="table__wrap">
             <table class="table table-bodyonly form-table">

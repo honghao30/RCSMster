@@ -14,7 +14,7 @@
             v-model="allSelected"
             @click="selectAll"
           />
-          <label for="chkAll"><span class="checkbox__text">대행사 회원가입 약관에 모두 확인, 동의합니다.</span></label>
+          <label for="chkAll"><span class="checkbox__text chkAll">대행사 회원가입 약관에 모두 확인, 동의합니다.</span></label>
         </div>
         <div class="checkbox">
           <input type="checkbox" id="service"
@@ -52,14 +52,14 @@
         </div>
       </div>
     </div>
-    <div class="button__wrap">
-    <ButtonCmp
-      type="btn-blue-line"
-    >취소</ButtonCmp>
-    <ButtonCmp
-      type="btn-blue"
-      @click="nextStep"
-    >다음</ButtonCmp>
+    <div class="button__wrap space-between">
+      <ButtonCmp
+        type="btn-line"
+      >취소</ButtonCmp>
+      <ButtonCmp
+        type="btn-blue"
+        @click="nextStep"
+      >다음</ButtonCmp>
     </div>
   </form>
   </div>

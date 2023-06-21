@@ -1,5 +1,5 @@
 <template>
-  <div class="inner require-list">
+  <div class="inner notice require-list">
     <PageTitle pagetitle="온라인 문의" />
     <div class="button__wrap">
       <ButtonCmp
@@ -12,15 +12,15 @@
     <div class="table__wrap">
       <table class="table table-list">
         <colgroup>
-          <col width="10%">
-          <col>
-          <col width="18%">
+          <col width="112px">
+          <col />
+          <col width="233px">
         </colgroup>
         <thead>
           <tr>
             <th scope="col"><span>상태</span></th>
             <th scope="col"><span>제목</span></th>
-            <th scope="col"><span></span>등록일</th>
+            <th scope="col"><span>등록일</span></th>
           </tr>
         </thead>
       </table>

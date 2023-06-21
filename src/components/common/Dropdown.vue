@@ -2,13 +2,15 @@
   <div class="dropdown" :class="[{ 'open': isOpen }, { 'disabled' : disabled }]" v-click-outside="onClickOutside">
     <a role="button"
       class="dropdown__trigger"
-      @click="toggleSelect">{{ selectedOption }}</a>
+      @click="toggleSelect">
+        <span class="selected-text">{{ selectedOption }}</span>
+      </a>
     <div class="dropdown__menu" v-if="isOpen">
       <div class="search__area" v-if="searchable">
         <span class="input search"><input type="text" placeholder="검색어 입력" v-model="searchWord"/></span>
       </div>
       <ul class="drodown__option">
-        <li v-for="(option, i) in filteredOption" :key="i" @click="selectOption(option)" :data-value="option.value">{{  option.label }}</li>
+        <li v-for="(option, i) in filteredOption" :key="i" @click="selectOption(option, i)" :data-value="option.value" :class="{'active' : isSelectedIndex == i}">{{  option.label }}</li>
       </ul>
     </div>
   </div>
@@ -26,7 +28,8 @@ export default {
       selectedOption: '',
       isOpen: false,
       searchWord: '',
-      valueIndex: ''
+      valueIndex: '',
+      isSelectedIndex: undefined
     }
   },
   props: {
@@ -47,6 +50,7 @@ export default {
     if ($value) {
       this.options.forEach((option, index) => {
         if (option.value === $value) {
+          this.isSelectedIndex = index
           this.selectedOption = option.label
         }
       })
@@ -55,6 +59,7 @@ export default {
         this.selectedOption = this.placeholder
       } else {
         this.selectedOption = this.options[0].label
+        this.isSelectedIndex = 0
       }
     }
     this.filteredOption = this.options
@@ -67,15 +72,16 @@ export default {
     }
   },
   methods: {
-    selectOption(option) {
+    selectOption(option, idx) {
       let $value = this.value
       this.selectedOption = option.label
       if ($value !== option.value) {
         this.$emit('beforeChange')
-        this.$emit('change', option.value)
       }
       this.$emit('input', option.value)
+      this.$emit('change', option.value)
       this.isOpen = false
+      this.isSelectedIndex = idx
     },
     toggleSelect() {
       if (!this.disabled) {

@@ -25,7 +25,7 @@ export default {
     return {}
   },
   methods: {
-    moveChage () {
+    moveChange () {
       this.$router.push('./pwFind')
     }
   }

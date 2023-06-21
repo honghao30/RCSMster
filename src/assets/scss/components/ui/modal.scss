@@ -20,6 +20,7 @@
     flex-direction: column;
     width: 100%;
     height:auto;
+    max-height: calc(100% - 40px);
     overflow: hidden;
     position: fixed;
     z-index: 30;
@@ -85,7 +86,7 @@
         padding:40px;  
         border-radius: 16px;
         background-color: #fff;    
-        transition: opacity.3s ease;  
+        transition: opacity .3s ease;  
         @media #{$phone} {
           max-width: 90vw;
         }
@@ -159,7 +160,7 @@
               .time {
                 position: absolute;
                 right:150px;
-                top:10px;
+                top:5px;
                 &.hide {
                   opacity: 0;
                 }
@@ -204,7 +205,7 @@
     padding:40px;  
     border-radius: 16px;
     background-color: #fff;    
-    transition: opacity.3s ease;  
+    transition: opacity .3s ease;  
     .modal__content--header {
       justify-content: center;
       margin-bottom: 32px;
@@ -306,7 +307,7 @@
     }
     .detail-addr {
       &__wrap {
-        border-top: 2px solid $pointColor
+        border-top: 2px solid #BCBCBC;
       }
       &__list {
         padding: 16px;
@@ -500,7 +501,19 @@
             top: -8px;
             width: 0;
             z-index: 0;
-          }       
+          }
+          //메시지 통계 툴팁
+          .message__innerbox-each{
+            h5{
+              @include fontoption(12px,#000,700,24px); 
+            }
+            p{
+              @include fontoption(12px,#000,400,24px); 
+            }
+            &+.message__innerbox-each{
+              margin-top: 16px;
+            }
+          }     
         }      
       }
     }  
@@ -574,6 +587,9 @@
       }
       .feed-emulator__wrap{
         min-height: 740px;
+      }
+      .chat-emulator__wrap {
+        position: static;
       }
     }
   }

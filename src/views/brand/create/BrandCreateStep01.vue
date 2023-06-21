@@ -1,14 +1,10 @@
 <template>
-  <div class="brand__wrap">
+  <div class="brand__wrap brand_create">
     <div class="brand__inner">
       <div class="brand-info__wrap">
         <PageTitle pagetitle="브랜드 개설" />
         <StepList :stepActiveIndex="1" :stepTitle="stepTitle" />
-        <div class="top-notice--gray">
-          <p>-신청한 브랜드 정보는 운영자 심사를 거쳐 노출 여부가 결정되며 승인 결과는 문자메시지(SMS) 및 이메일로 알려드립니다.</p>
-          <p>-승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</p>
-        </div>
-        <PageTitleH3 titleh3="기본 정보 입력" noticeinfo="필수 입력값" />
+        <PageTitleH3 titleh3="기본 정보 입력"/>
         <form  ref="form" :model="form">
           <div class="table__wrap">
             <table class="table table-bodyonly form-table">
@@ -210,8 +206,24 @@
                 </tr>
               </tbody>
             </table>
+            <div class="brand-aside sticky">
+              <div class="button__wrap">
+                <ButtonCmp
+                  type="btn-blue-line"
+                  @click="brandImport"
+                >브랜드 불러오기</ButtonCmp>
+                <ButtonCmp
+                  type="btn-blue-line"
+                >브랜드 가이드</ButtonCmp>
+              </div>
+              <BrandEmulator :brandInfoData="form" curTab="info"/>
+            </div>
           </div>
         </form>
+        <div class="top-notice--gray">
+          <p>-신청한 브랜드 정보는 운영자 심사를 거쳐 노출 여부가 결정되며 승인 결과는 문자메시지(SMS) 및 이메일로 알려드립니다.</p>
+          <p>-승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</p>
+        </div>
         <div class="button__wrap">
           <ButtonCmp
               type="btn-line"
@@ -223,18 +235,6 @@
             @click="onSubmit"
           >다음</ButtonCmp>
         </div>
-      </div>
-      <div class="brand-aside sticky">
-        <div class="button__wrap">
-          <ButtonCmp
-            type="btn-blue-line"
-            @click="brandImport"
-          >브랜드 불러오기</ButtonCmp>
-          <ButtonCmp
-            type="btn-blue-line"
-          >브랜드 가이드</ButtonCmp>
-        </div>
-        <BrandEmulator :brandInfoData="form" curTab="info"/>
       </div>
     </div>
     <ModalView

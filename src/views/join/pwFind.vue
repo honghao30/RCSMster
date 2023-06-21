@@ -1,7 +1,8 @@
+<!-- 0620: 모든 페이지 '비밀번호 재설정' -> '비밀번호 찾기' 로 수정  -->
 <template>
   <div class="login login-help">
     <div class="login-title__wrap--top">
-      <PageTitle pagetitle="비밀번호 재설정" />
+      <PageTitle pagetitle="비밀번호 찾기" />
     </div>
     <div class="tab__wrap">
       <ul class="tab-list">
@@ -16,7 +17,7 @@
             <router-link
               to="IdFind"
             >
-            <span>비밀번호 재설정</span>
+            <span>비밀번호 찾기</span>
           </router-link>
         </li>
       </ul>
@@ -49,6 +50,7 @@
             </ButtonCmp>
           </div>
           <p class="guide-text error" v-if="phoneErrorMsg">휴대폰번호를 입력해주세요.</p>
+          <p class="guide-text error" v-if="phoneErrorMsg">가입된 아이디와 휴대폰번호가 일치하지 않습니다. 다시 확인해주세요.</p>
         </div>
         <div class="form-item">
           <span class="form-item__label">인증번호</span>
@@ -57,13 +59,14 @@
             <span class="time" ref="time">{{ TimerStr }}</span>
           </div>
           <p class="guide-text error" v-if="numberErrorMsg">인증번호를 입력해주세요.</p>
+          <p class="guide-text error" v-if="numberErrorMsg">인증 유효시간이 지났습니다.</p>
         </div>
       </div>
       <div class="button__wrap">
         <ButtonCmp
           type="btn-blue btn-help"
           @click="onSubmit"
-        >비밀번호 재설정</ButtonCmp>
+        >비밀번호 찾기</ButtonCmp>
       </div>
   </form>
     <!-- 메시지 모달 -->

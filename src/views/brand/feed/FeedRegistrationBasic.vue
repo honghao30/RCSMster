@@ -35,15 +35,16 @@
                     <tr v-if="form.notice === 'noticeUseY'">
                       <th scope="row"><span class="form-item__label required">제목</span></th>
                       <td>
-                        <div class="form-item__content">
+                        <div class="form-item__content is-emoji">
                             <div class="form-item-row">
                               <div class="input-item input-limit">
-                                <span class="input">
-                                  <input type="text" class="input" maxlength="20" placeholder="알림 제목을 입력해주세요." v-model="form.title">
-                                  <p class="input-limit__text">
-                                    {{ form.title.length }}/20자
-                                  </p>
-                                </span>
+                                <div class="input">
+                                  <input type="text" class="input" maxlength="20" placeholder="알림 제목을 입력해주세요." v-model="form.title" ref="title">
+                                  <div class="input-limit__text">
+                                    <Emoji @input="onSelectEmoji($event, 'title')"/>
+                                    <p>{{ form.title.length }}/20자</p>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                               <p class="guide-text error" v-if="brandTitleErrorMsg">알림 제목을 입력해주세요.</p>
@@ -53,12 +54,13 @@
                     <tr v-if="form.notice === 'noticeUseY'">
                       <th scope="row"><span class="form-item__label required">내용</span></th>
                       <td>
-                        <div class="form-item__content">
+                        <div class="form-item__content is-emoji">
                             <div class="form-item-row">
                               <div class="input-item input-limit">
                                 <div class="textarea feed__textarea" >
-                                  <textarea maxlength="150" placeholder="알림 내용을 입력해주세요." v-model="form.content"></textarea>
+                                  <textarea maxlength="150" placeholder="알림 내용을 입력해주세요." v-model="form.content" ref="content"></textarea>
                                   <div class="textarea-limit__text">
+                                    <Emoji @input="onSelectEmoji($event, 'content')"/>
                                     <p>
                                       {{ form.content.length }}/200자
                                     </p>
@@ -137,6 +139,7 @@ import BrandEmulator from '@/views/brand/components/BrandEmulator.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import Emoji from '@/components/common/Emoji.vue'
 
 export default {
   components: {
@@ -144,7 +147,8 @@ export default {
     BrandEmulator,
     PageTitle,
     PageTitleH3,
-    ButtonCmp
+    ButtonCmp,
+    Emoji
   },
   data () {
     return {
@@ -172,6 +176,11 @@ export default {
     }
   },
   methods: {
+    onSelectEmoji(e, target) {
+      let emoji = e
+      let refName = target
+      this.$refs[refName].value += emoji
+    },
     onSubmit () {
       console.log(this.form.notice)
       if (this.form.notice === 'noticeUseY') {

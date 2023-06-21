@@ -1,5 +1,5 @@
 <template>
-  <div class="inner notice-faq">
+  <div class="inner notice notice-faq">
     <PageTitle pagetitle="FAQ" />
     <TabCategory :category="category" />
     <div class="search-table">

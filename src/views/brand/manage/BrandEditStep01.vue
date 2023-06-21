@@ -13,7 +13,7 @@
           <p>-승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</p>
         </div>
         <StepList :stepActiveIndex="1" :stepTitle="stepTitle" />
-        <PageTitleH3 titleh3="기본 정보 입력" noticeinfo="필수 입력값" />
+        <PageTitleH3 titleh3="기본 정보 입력"/>
         <form  ref="form" :model="form">
           <div class="table__wrap">
             <table class="table table-bodyonly form-table">

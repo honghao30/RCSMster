@@ -22,7 +22,8 @@
           <ul>
             <li>- 대화방 메뉴는 사용자의 요청에 대해 기업에서 실시간으로 응답할 수 있는 대화방입니다.</li>
           </ul>
-          <a class="btn btn-blue"><router-link to="">대화방 메뉴 등록</router-link></a>
+          <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
+          <router-link to="" class="btn btn-blue">대화방 메뉴 등록</router-link>
         </div>
         <div class="top-ctrl-area">
           <div class="left-area">

@@ -2,12 +2,13 @@
   <div class="join">
     <PageTitle pagetitle="대행사 회원가입" />
     <StepList :stepActiveIndex="2" :stepTitle="stepTitle" />
-    <PageTitleH3 titleh3="대행사정보 입력" noticeinfo="필수 입력값" />
+    <PageTitleH3 titleh3="대행사정보 입력" />
     <form  ref="form" :model="form">
       <div class="table__wrap">
         <table class="table table-bodyonly form-table">
+        <!-- 0620: 고객 요청 반영 - colgroup width값 수정 -->
           <colgroup>
-            <col width="200px">
+            <col width="230px">
             <col />
           </colgroup>
           <tbody>
@@ -17,7 +18,7 @@
                 <div class="form-item__content" v-if="showall">
                   <div class="form-item-row">
                     <div class="input-item">
-                      <span class="input"><input type="text" class="input" placeholder="‘-’없이 10자리 숫자만 입력해주세요." v-model="form.certificate"></span>
+                      <span class="input input-info"><input type="text" class="input" placeholder="‘-’없이 10자리 숫자만 입력해주세요." v-model="form.certificate"></span>
                       <ButtonCmp
                         type="btn-default-line"
                         @click="checkCertificate">
@@ -26,15 +27,16 @@
                     </div>
                   </div>
                   <p class="guide-text error" v-if="certificateErrorMsg">사업자등록번호를 입력해주세요.</p>
-                  <p class="guide-text">※ 사업자등록번호 인증 후 회원가입을 진행 할 수 있습니다.</p>
+                  <p class="guide-text black">&bull; 사업자등록번호 인증 후 회원가입을 진행 할 수 있습니다.</p>
+                  <p class="guide-text black guide-text__link">선거 후보자/정치/공인입니다. <a href="./FAQ">FAQ</a>    <a href="./OnlineInquire">온라인 문의</a></p>
                 </div>
                 <div class="form-item__content" v-else>
                   <div class="form-item-row">
                     <div class="input-item">
-                      <span class="input"><input type="text" class="input" :value="certificatetemp" disabled></span>
+                      <span class="input input-info"><input type="text" class="input" :value="certificatetemp" disabled></span>
                     </div>
                   </div>
-                  <p class="guide-text black">※ 사업자등록번호 인증이 완료되었습니다.</p>
+                  <p class="guide-text validation">사업자등록번호 인증이 완료되었습니다.</p>
                 </div>
               </td>
             </tr>
@@ -44,14 +46,15 @@
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                    <span class="input"><input type="text" class="input" :value="filesName" :disabled="disabled" placeholder="사업자등록증을 등록해주세요."></span>
+                    <span class="input input-info"><input type="text" class="input" :value="filesName" :disabled="disabled" placeholder="사업자등록증을 등록해주세요."></span>
                     <input type="file" id="fileUp" class="input" @change="onFileChanged">
                     <label for="fileUp" class="btn btn-default-line">파일찾기</label>
                     </div>
                   </div>
-                  <p class="guide-text black">&middot; 파일형식: JPG, PNG, PDF, TIFF(최대 5MB)</p>
-                  <p class="guide-text"> ※ 사업자등록증이 없는 경우 사업자등록증명 또는 고유번호증을 등록해주세요. </p>
-                  <p class="guide-text"> ※ 비영리법인/국가기관인 경우 고유번호증을 등록해주세요. </p>
+                  <p class="guide-text black">&bull; 사업자등록증이 없는 경우 사업자등록증명 또는 고유번호증을 등록해주세요.</p>
+                  <p class="guide-text black">&bull; 비영리법인/국가기관인 경우 고유번호증을 등록해주세요.</p>
+                  <p class="guide-text black">&bull; 사업자등록증 제출: 마스터 권한 / 사업자등록증 미 제출: 매니저 권한</p>
+                  <p class="guide-text black">&bull; 파일형식: JPG, PNG, PDF, TIFF(최대 5MB)</p>
                 </div>
               </td>
             </tr>
@@ -61,7 +64,7 @@
                 <div  v-if="joinIng" class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명(단체명)을 입력해주세요." :disabled="disabled" v-model="form.companyname"></span>
+                    <span class="input input-info"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명(단체명)을 입력해주세요." :disabled="disabled" v-model="form.companyname"></span>
                     </div>
                   </div>
                   <p class="guide-text error" v-if="companynameErrorMsg">법인명(단체명)을 입력해주세요.</p>
@@ -75,11 +78,11 @@
                 <div v-if="joinIng" class="form-item__content">
                 <div class="form-item-row">
                   <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 업태명을 입력해주세요." :disabled="disabled"  v-model="form.biztype"></span>
+                    <span class="input input-info"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 업태명을 입력해주세요." :disabled="disabled"  v-model="form.biztype"></span>
                   </div>
                 </div>
                 <p class="guide-text error" v-if="biztypeErrorMsg">사업자등록증에 등록된 첫번째 업태명을 입력해주세요.</p>
-                <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘기업/단체’로 입력해주세요.</p>
+                <p class="guide-text black">&bull; 비영리법인/국가기관인 경우 ‘기업/단체’로 입력해주세요.</p>
                 </div>
                 <div v-else class="form-item__content">서비스업</div>
               </td>
@@ -90,11 +93,11 @@
                 <div v-if="joinIng" class="form-item__content">
                 <div class="form-item-row">
                   <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 종목명을 입력해주세요." :disabled="disabled" v-model="form.bizevent"></span>
+                    <span class="input input-info"><input type="text" class="input" placeholder="사업자등록증에 등록된 첫번째 종목명을 입력해주세요." :disabled="disabled" v-model="form.bizevent"></span>
                   </div>
                 </div>
                 <p class="guide-text error" v-if="bizeventErrorMsg">사업자등록증에 등록된 첫번째 종목명을 입력해주세요.</p>
-                <p class="guide-text">※ 비영리법인/국가기관인 경우 ‘비영리, 공공/행정, 정치/사회, 복지, 종교, 모임, 기관/단체일반’ 중에서 해당하는 항목을 입력해주세요.</p>
+                <p class="guide-text black">&bull; 비영리법인/국가기관인 경우 ‘비영리, 공공/행정, 정치/사회, 복지, 종교, 모임, 기관/단체일반’ 중에서 해당하는 항목을 입력해주세요.</p>
                 </div>
                 <div v-else class="form-item__content">IT</div>
               </td>
@@ -105,7 +108,7 @@
                 <div v-if="joinIng" class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item post">
-                    <span class="input"><input type="text" class="input" v-model="form.postcode"></span>
+                    <span class="input input-post"><input type="text" class="input" v-model="form.postcode"></span>
                     <ButtonCmp
                       type="btn-default-line"
                       @click="findPost">
@@ -115,7 +118,7 @@
                   </div>
                   <div class="form-item-row">
                     <div class="input-item address">
-                    <span class="input"><input type="text" class="input" v-model="form.addr1"></span> <span class="input"><input type="text" class="input" v-model="form.addr2"></span>
+                    <span class="input input-info"><input type="text" class="input" v-model="form.addr1"></span> <span class="input input-info"><input type="text" class="input" v-model="form.addr2"></span>
                     </div>
                   </div>
                   <p class="guide-text error" v-if="postcodeErrorMsg">기업주소를 입력해주세요.</p>
@@ -127,250 +130,231 @@
         </table>
       </div>
     </form>
-    <PageTitleH3 titleh3="서비스정보 입력" noticeinfo="필수 입력값" />
+    <PageTitleH3 titleh3="서비스정보 입력" />
     <form  ref="form" :model="form">
       <div class="table__wrap">
         <table class="table table-bodyonly form-table">
-        <colgroup>
-          <col width="200px">
-          <col />
-        </colgroup>
-        <tbody>
-          <tr>
-            <th scope="row"><span class="form-item__label">수신서버 URL</span></th>
-            <td>
-              <div class="form-item__content">
-                <div class="form-item-row">
-                  <div class="input-item">
-                    <span class="input"><input type="text" class="input" placeholder=""></span>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
+        <!-- 0620: 고객 요청 반영 - colgroup width값 수정 -->
+          <colgroup>
+            <col width="230px">
+            <col />
+          </colgroup>
+          <tbody>
             <tr>
-              <th scope="row"><span class="form-item__label">API Client IP</span></th>
+              <th scope="row"><span class="form-item__label">수신서버 URL</span></th>
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
-                    <div class="input-item ip"
-                      v-for="(item, index) in apiList"
-                      :key="index"
-                    >
-                      <span class="input"><input type="text" class="input" v-model="form.ip" placeholder="단일 IP 주소 입력"></span>
-                      <span class="input"><input type="text" class="input" v-model="form.ipName" placeholder="항목명"></span>
+                    <div class="input-item">
+                      <span class="input"><input type="text" class="input" placeholder=""></span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+              <tr>
+                <th scope="row"><span class="form-item__label">API Client IP</span></th>
+                <td>
+                  <div class="form-item__content">
+                    <div class="form-item-row">
+                      <div class="input-item ip"
+                        v-for="(item, index) in apiList"
+                        :key="index"
+                      >
+                        <span class="input"><input type="text" class="input" v-model="form.ip" placeholder="단일 IP 주소 입력"></span>
+                        <span class="input"><input type="text" class="input" v-model="form.ipName" placeholder="항목명"></span>
+                        <ButtonCmp
+                          type="btn-default-line"
+                          size="small"
+                          @click="deleteApiRow"
+                        >
+                        삭제
+                        </ButtonCmp>
+                      </div>
                       <ButtonCmp
                         type="btn-default-line"
                         size="small"
-                        @click="deleteApiRow"
+                        @click="addApiRow"
                       >
-                      삭제
+                        추가
                       </ButtonCmp>
                     </div>
-                    <ButtonCmp
-                      type="btn-default-line"
-                      size="small"
-                      @click="addApiRow"
-                    >
-                      추가
-                    </ButtonCmp>
                   </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="form-item__label required">제공 서비스</span></th>
-              <td>
-                <div class="form-item__content">
-                  <div class="form-item-row">
-                    <div class="input-item service  w--half">
-                      <div class="checkbox">
-                        <input type="checkbox" id="A2P" v-model="form.service" value="A2P"/>
-                        <label for="A2P"><span class="checkbox__text">RCS A2P</span></label>
-                      </div>
-                      <div class="checkbox">
-                        <input type="checkbox" id="chatbot" value="chatbot" v-model="form.service"/>
-                        <label for="chatbot"><span class="checkbox__text">RCS 챗봇(양방향)</span></label>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="form-item__label required">제공 서비스</span></th>
+                <td>
+                  <div class="form-item__content">
+                    <div class="form-item-row">
+                      <!-- 0620: 고객 요청 반영 - 'w--half' -> 'input-half' class명 수정 -->
+                      <div class="input-item service input-half">
+                        <div class="checkbox">
+                          <input type="checkbox" id="A2P" v-model="form.service" value="A2P"/>
+                          <label for="A2P"><span class="checkbox__text">RCS A2P</span></label>
+                        </div>
+                        <div class="checkbox">
+                          <input type="checkbox" id="chatbot" value="chatbot" v-model="form.service"/>
+                          <label for="chatbot"><span class="checkbox__text">RCS 챗봇(양방향)</span></label>
+                        </div>
                       </div>
                     </div>
+                    <p class="guide-text error" v-if="serviceErrorMsg">제공 서비스를 선택해 주세요.</p>
                   </div>
-                  <p class="guide-text error" v-if="serviceErrorMsg">제공 서비스를 선택해 주세요.</p>
-                </div>
-              </td>
-            </tr>
+                </td>
+              </tr>
 
-            <tr>
-              <th scope="row"><span class="form-item__label required">중계사</span></th>
-              <td>
-                <div class="form-item__content agency">
-                  <div class="form-item-row">
-                    <div class="input-item w--half">
-                      <div class="radiobox">
-                        <input type="radio" name="agency" id="agencyY" v-model="form.agency" value="agencyY"/>
-                        <label for="agencyY"><span class="checkbox__text">중계사임</span></label>
+              <tr>
+                <th scope="row"><span class="form-item__label required">중계사</span></th>
+                <td>
+                  <div class="form-item__content agency">
+                    <div class="form-item-row">
+                      <!-- 0620: 고객 요청 반영 - 'w--half' -> 'input-half' class명 수정 -->
+                      <div class="input-item input-half">
+                        <div class="radiobox">
+                          <input type="radio" name="agency" id="agencyY" v-model="form.agency" value="agencyY"/>
+                          <label for="agencyY"><span class="checkbox__text">중계사임</span></label>
+                        </div>
+                        <div class="radiobox">
+                          <input type="radio" name="agency" id="agencyN" value="agencyN" v-model="form.agency"/>
+                          <label for="agencyN"><span class="checkbox__text">중계사 아님</span></label>
+                        </div>
                       </div>
-                      <div class="radiobox">
-                        <input type="radio" name="agency" id="agencyN" value="agencyN" v-model="form.agency"/>
-                        <label for="agencyN"><span class="checkbox__text">중계사 아님</span></label>
+                      <!-- 0620: 고객 요청 반영 - 'w--half' -> 'w--full' class명 수정 -->
+                      <div class="input-item w--full"  v-if="form.agency === 'agencyY'">
+                        <label for="url" class="item-label">대화방 수신 URL</label>
+                        <span class="input">
+                          <input type="text" id="url" />
+                        </span>
+                      </div>
+                      <!-- 0620: 고객 요청 반영 - 'w--half' -> 'w--full' class명 수정 -->
+                      <div class="input-item w--full"  v-if="form.agency === 'agencyN'">
+                        <span class="item-label">중계사 선택</span>
+                        <ButtonCmp
+                          type="btn-default-line"
+                          @click="agenceySelect"
+                        >
+                        중계사 선택
+                        </ButtonCmp>
+                        <span class="result-text">선택 중계사 <em class="point">4</em>개</span>
                       </div>
                     </div>
-                    <div class="input-item w--half"  v-if="form.agency === 'agencyY'">
-                      <label for="url" class="item-label">대화방 수신 URL</label>
-                      <span class="input">
-                        <input type="text" id="url" />
-                      </span>
+                    <p class="guide-text black">&bull; 중계사를 선택해주세요.</p>
+                    <!-- <p class="guide-text error" v-if="agencyErrorMsg">중계사를 선택해주세요.</p> -->
+                    <p class="guide-text black" v-if="form.agency === 'agencyY'">※ 중계사 지정 안내<br>중계사로 지정된 브랜드의 모든 메시지 및 자동응답메시지의 트래픽이 모두 중계사에게 부과됩니다.<br>대행사가 중계사로 지정되는 경우 해당 대행사가 메시지 청약 및 과금을 대행한다는 것에 대한 동의 절차를 진행해야 합니다.</p>
+                    <p class="guide-text black" v-if="form.agency === 'agencyN'">※ 중계사 선택 안내<br>반드시 청약이 완료된 중계사를 선택해야 하며 메시지를 수신하기 위한 webhook.url 정보를 해당 중계사의 시스템에 등록해야 합니다. </p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="form-item__label required">특수부가통신<br>사업자등록증</span></th>
+                <td>
+                  <div class="form-item__content">
+                    <div class="form-item-row">
+                      <div class="input-item">
+                      <span class="input input-info"><input type="text" class="input" :value="filesName2" :disabled="disabled" placeholder="특수부가통신 사업자등록증을 등록해주세요." v-model="form.files"></span>
+                      <input type="file" id="fileUp2" class="input" >
+                      <label for="fileUp2" class="btn btn-default-line">파일찾기</label>
+                      </div>
                     </div>
-                    <div class="input-item w--half"  v-if="form.agency === 'agencyN'">
-                      <span class="item-label">중계사 선택</span>
-                      <ButtonCmp
-                        type="btn-default-line"
-                        @click="agenceySelect"
-                      >
-                      중계사 선택
-                      </ButtonCmp>
-                      <span class="result-text">선택 중계사 <em class="point">4</em>개</span>
+                    <p class="guide-text error" v-if="filesErrorMsg">특수부가통신 사업자등록증을 등록해주세요.</p>
+                    <p class="guide-text black">&bull; 사업자등록증이 없는 경우 사업자등록증명 또는 고유번호증을 등록해주세요.</p>
+                    <p class="guide-text black">&bull; 비영리법인/국가기관인 경우 고유번호증을 등록해주세요.</p>
+                    <p class="guide-text black">&bull; 파일형식: JPG, PNG, PDF, TIFF(최대 5MB)</p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <!-- 0620: 대행사 서비스 범위 체크 박스의 텍스트 '가능' 삭제 -->
+                <th scope="row"><span class="form-item__label">대행사 서비스 범위</span></th>
+                <td>
+                  <div class="form-item__content service-range">
+                    <div class="form-item-row">
+                      <!-- 0620: 고객 요청 반영 - '인하우스 개발' 삭제 및 넘버링 변경 -->
+                      <span class="form-item-row__title">제공서비스</span>
+                      <ul class="service-list">
+                        <li>
+                          <span class="checkbox">
+                            <input type="checkbox" id="service1" value="service1" v-model="form.serviceRange"/>
+                            <label for="service1"><span class="checkbox__text">웹 발송</span></label>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="checkbox">
+                            <input type="checkbox" id="service2" value="service2" v-model="form.serviceRange"/>
+                            <label for="service2"><span class="checkbox__text">API 연동</span></label>
+                          </span>
+                        </li>
+                      </ul>
                     </div>
-                  </div>
-                  <p class="guide-text error" v-if="agencyErrorMsg">중계사를 선택해주세요.</p>
-                  <p class="guide-text" v-if="form.agency === 'agencyY'">※ 중계사 지정 안내<br>중계사로 지정된 브랜드의 모든 메시지 및 자동응답메시지의 트래픽이 모두 중계사에게 부과됩니다.<br>대행사가 중계사로 지정되는 경우 해당 대행사가 메시지 청약 및 과금을 대행한다는 것에 대한 동의 절차를 진행해야 합니다.</p>
-                  <p class="guide-text" v-if="form.agency === 'agencyN'">※ 중계사 선택 안내<br>반드시 청약이 완료된 중계사를 선택해야 하며 메시지를 수신하기 위한 webhook.url 정보를 해당 중계사의 시스템에 등록해야 합니다. </p>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="form-item__label required">특수부가통신<br>사업자등록증</span></th>
-              <td>
-                <div class="form-item__content">
-                  <div class="form-item-row">
-                    <div class="input-item">
-                    <span class="input"><input type="text" class="input" :value="filesName2" :disabled="disabled" placeholder="특수부가통신 사업자등록증을 등록해주세요." v-model="form.files"></span>
-                    <input type="file" id="fileUp2" class="input" >
-                    <label for="fileUp2" class="btn btn-default-line">파일찾기</label>
+                    <div class="form-item-row">
+                      <!-- 0620: 고객 요청 반영 - '단기 계약','선거용 RVS 메시지 계약' 삭제 및 넘버링 변경 -->
+                      <span class="form-item-row__title">계약가능 서비스</span>
+                      <ul class="service-list">
+                        <li>
+                          <span class="checkbox">
+                            <input type="checkbox" id="service3" value="service3" v-model="form.serviceRange"/>
+                            <label for="service3"><span class="checkbox__text">소량발송</span></label>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="checkbox">
+                            <input type="checkbox" id="service4" value="service4" v-model="form.serviceRange"/>
+                            <label for="service4"><span class="checkbox__text">대량발송</span></label>
+                          </span>
+                        </li>
+                      </ul>
                     </div>
-                  </div>
-                  <p class="guide-text error" v-if="filesErrorMsg">특수부가통신 사업자등록증을 등록해주세요.</p>
-                  <p class="guide-text black">&middot; 파일형식: JPG, PNG, PDF, TIFF(최대 5MB)</p>
-                  <p class="guide-text"> ※ 사업자등록증이 없는 경우 사업자등록증명 또는 고유번호증을 등록해주세요. </p>
-                  <p class="guide-text"> ※ 비영리법인/국가기관인 경우 고유번호증을 등록해주세요. </p>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="form-item__label">대행사 서비스 범위</span></th>
-              <td>
-                <div class="form-item__content service-range">
-                  <div class="form-item-row">
-                    <span class="form-item-row__title">제공서비스</span>
-                    <ul class="service-list">
-                      <li>
-                        <span class="checkbox">
-                          <input type="checkbox" id="service1" value="service1" v-model="form.serviceRange"/>
-                          <label for="service1"><span class="checkbox__text">웹 발송 가능</span></label>
-                        </span>
-                      </li>
-                      <li>
-                        <span class="checkbox">
-                          <input type="checkbox" id="service2" value="service2" v-model="form.serviceRange"/>
-                          <label for="service2"><span class="checkbox__text">API 연동 가능</span></label>
-                        </span>
-                      </li>
-                      <li>
-                        <span class="checkbox">
-                          <input type="checkbox" id="service3" value="service3" v-model="form.serviceRange"/>
-                          <label for="service3"><span class="checkbox__text">인하우스 개발 가능</span></label>
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="form-item-row">
-                    <span class="form-item-row__title">계약가능 서비스</span>
-                    <ul class="service-list">
-                      <li>
-                        <span class="checkbox">
-                          <input type="checkbox" id="service4" value="service4" v-model="form.serviceRange"/>
-                          <label for="service4"><span class="checkbox__text">소량발송 계약 가능</span></label>
-                        </span>
-                      </li>
-                      <li>
-                        <span class="checkbox">
-                          <input type="checkbox" id="service5" value="service5" v-model="form.serviceRange"/>
-                          <label for="service5"><span class="checkbox__text">단기 계약 가능</span></label>
-                        </span>
-                      </li>
-                      <li>
-                        <span class="checkbox">
-                          <input type="checkbox" id="service6" value="service6" v-model="form.serviceRange"/>
-                          <label for="service6"><span class="checkbox__text">선거용 RVS 메시지 계약 가능</span></label>
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="form-item-row align--top">
-                    <span class="form-item-row__title">제공 상품(템플릿)</span>
-                    <ul class="service-list">
-                      <li>
-                        <span class="checkbox">
-                          <input type="checkbox" id="service7" value="service7" v-model="form.serviceRange"/>
-                          <label for="service7"><span class="checkbox__text">RCS SMS/LMS/MMS</span></label>
-                        </span>
-                      </li>
-                      <li>
-                        <span class="checkbox">
-                          <input type="checkbox" id="service8" value="service8" v-model="form.serviceRange"/>
-                          <label for="service8"><span class="checkbox__text">텍스트 템플릿</span></label>
-                        </span>
-                      </li>
-                      <li>
-                        <span class="checkbox">
-                          <input type="checkbox" id="service9" value="service9"  v-model="form.serviceRange"/>
-                          <label for="service9"><span class="checkbox__text">이미지 템플릿 계약 가능</span></label>
-                        </span>
-                      </li>
-                      <li>
-                        <span class="checkbox">
-                          <input type="checkbox" id="service10" value="service10" v-model="form.serviceRange" />
-                          <label for="service10"><span class="checkbox__text">챗봇</span></label>
-                        </span>
-                      </li>
-                      <li>
-                        <span class="checkbox">
-                          <input type="checkbox" id="service11" value="service11" v-model="form.serviceRange"/>
-                          <label for="service11"><span class="checkbox__text">자동응답</span></label>
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <p class="guide-text">※ 대행사에서 제공가능한 서비스 범위를 선택하시면 기업에게 대행사를 추천해드립니다.</p>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="form-item__label">대행사 로고</span></th>
-              <td>
-                <div class="form-item__content">
-                  <div class="form-item-row">
-                    <div class="input-item">
-                    <span class="input"><input type="text" class="input" :value="filesName3" :disabled="disabled"></span>
-                    <input type="file" id="fileUp3" class="input">
-                    <label for="fileUp3" class="btn btn-default-line">파일찾기</label>
+                    <div class="form-item-row align--top">
+                      <!-- 0620: 고객 요청 반영 - 'RCS SMS/LMS/MMS','이미지 템플릿 계약','챗봇','자동응답' 삭제 및 넘버링 변경 -->
+                      <span class="form-item-row__title">제공 상품(템플릿)</span>
+                      <ul class="service-list">
+                        <li>
+                          <span class="checkbox">
+                            <input type="checkbox" id="service5" value="service5" v-model="form.serviceRange"/>
+                            <label for="service5"><span class="checkbox__text">텍스트 템플릿</span></label>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="checkbox">
+                            <input type="checkbox" id="service6" value="service6"  v-model="form.serviceRange"/>
+                            <label for="service6"><span class="checkbox__text">이미지 템플릿</span></label>
+                          </span>
+                        </li>
+                      </ul>
                     </div>
                   </div>
-                  <p class="guide-text black">&middot; 파일형식: JPG, PNG, PDF, TIFF(최대 5MB)</p>
-                  <p class="guide-text">※ 파트너사 리스트에 노출되는 대행사 로고를 업로드해주세요.</p>
-                </div>
-              </td>
-            </tr>
+                  <p class="guide-text black">&bull; 대행사에서 제공가능한 서비스 범위를 선택하시면 기업에게 대행사를 추천해드립니다.</p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="form-item__label">대행사 로고</span></th>
+                <td>
+                  <div class="form-item__content">
+                    <div class="form-item-row">
+                      <div class="input-item">
+                      <span class="input input-info"><input type="text" class="input" :value="filesName3" :disabled="disabled"></span>
+                      <input type="file" id="fileUp3" class="input">
+                      <label for="fileUp3" class="btn btn-default-line">파일찾기</label>
+                      </div>
+                    </div>
+                  <p class="guide-text black">&bull; 파트너사 리스트에 노출되는 대행사 로고를 업로드해주세요.</p>
+                  <p class="guide-text black">&bull; 파일형식: JPG, PNG, PDF, TIFF(최대 5MB)</p>
+                  </div>
+                </td>
+              </tr>
           </tbody>
         </table>
       </div>
     </form>
-    <div class="button__wrap">
+    <div class="button__wrap space-between">
       <ButtonCmp
-        type="btn-blue-line"
+        type="btn-line"
       >이전</ButtonCmp>
       <ButtonCmp
         type="btn-blue"
-        @click="onSubmit"
+        @click="nextStep"
+        :disabled="disabled"
       >다음</ButtonCmp>
     </div>
     <!-- // 모달 영역 -->
@@ -382,8 +366,9 @@
     >
       <div slot="msg">
         <div class="msg">
-          동일한 사업자등록번호로<br /> 회원가입을 진행하고 있습니다. <br /><br />
-          최초의 회원가입 완료 후<br /> 추가 회원가입이 가능합니다.
+          동일한 사업자등록번호로 회원가입을<br />
+          진행하고 있습니다. 최초의 회원가입 완료 후<br />
+          추가 회원가입이 가능합니다.
         </div>
         <div class="msg2">
           홍*동(hkp***@the-51.com)
@@ -435,20 +420,15 @@
           <div class="agency-list__wrap">
               <div class="agency-list__search">
                 <div class="form-item__content">
-                  <span class="input">
-                      <input type="text"
-                       name="Search"
-                       class="input"
-                       placeholder="중계사명을 입력해주세요."
-                       v-model="searchWord"
-                      >
-                    </span>
-                    <ButtonCmp
-                      type="btn-search"
+                  <span class="input search">
+                    <input type="text"
+                      name="Search"
+                      class="input"
+                      placeholder="중계사명을 입력해주세요."
+                      v-model="searchWord"
                       @click="search"
                     >
-                    검색
-                    </ButtonCmp>
+                  </span>
                 </div>
                 <p class="guide-text error" v-if="agentErrorMsg">중계사명을 입력해주세요.</p>
               </div>
@@ -471,6 +451,8 @@
                       </div>
                     </li>
                   </ul>
+                  <!-- 검색 결과가 없을 때 -->
+                  <p class="nodata">검색 결과가 없습니다.</p>
                 </div>
                 <div class="agency-list__right">
                   <ul
@@ -527,28 +509,27 @@
                 </dt>
                 <dd>
                   <ul>
-                      <li v-for="(list, index) in agencyListSelect"
-                        :key="index"
-                      >
-                        <span class="radiobox">
-                          <input type="radio"
-                            :id="`agency0${index }`"
-                            name="DelegatesAgency"
-                            @click="selectRadio"
-                            :value="list"
-                          />
-                          <label
-                            :for="`agency0${index }`"
-                          >
-                            <span class="radiobox__text">{{ list }}</span>
-                          </label>
-                        </span>
-                      </li>
-                    </ul>
+                    <li v-for="(list, index) in agencyListSelect"
+                      :key="index"
+                    >
+                      <span class="radiobox">
+                        <input type="radio"
+                          :id="`agency0${index }`"
+                          name="DelegatesAgency"
+                          @click="selectRadio"
+                          :value="list"
+                        />
+                        <label
+                          :for="`agency0${index }`"
+                        >
+                          <span class="radiobox__text">{{ list }}</span>
+                        </label>
+                      </span>
+                    </li>
+                  </ul>
                 </dd>
               </dl>
             </div>
-
           </div>
           <p class="guide-text error" v-if="selectErrorMsg">선택할 수 없는 중계사입니다. 중계사와 별도의 양방향 서비스 사전 청약 후 선택해주세요.</p>
         </div>
@@ -604,9 +585,9 @@ export default {
         postcode: '',
         addr1: '',
         addr2: '',
-        service: [],
+        service: ['A2P', 'chatbot'],
         serviceRange: [],
-        agency: '',
+        agency: 'agencyY',
         selectedOptions: '',
         agentName: '',
         files: ''
@@ -640,7 +621,7 @@ export default {
       agencyListSelect: [],
       searchWord: '',
       DelegatesManage: false,
-      selectedAgencyList: [],
+      selectedAgencyList: []
     }
   },
   props: {
@@ -666,7 +647,7 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
+    nextStep () {
       console.log(this.form.files)
       if (this.form.certificate === '') {
         this.certificateErrorMsg = true
@@ -700,6 +681,7 @@ export default {
         this.filesErrorMsg = true
         return
       }
+      this.disabled = false
       this.$router.push('./AgencyJoinStep03')
     },
     checkCertificate () {

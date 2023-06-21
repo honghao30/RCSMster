@@ -9,17 +9,25 @@
             <li>- 대화방을 등록하면 고객에게 단방향 문자 발송 및 대행사 등록 후 챗봇 등을 활용한 실시간 응답이 가능합니다.</li>
             <li>- 발신번호로 생성한 대화방이 1개 이상 있는 경우, Bot ID로 대화방 등록이 가능합니다.</li>
           </ul>
-          <a class="btn btn-blue"><router-link to="">대화방 등록하기</router-link></a>
+          <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
+          <router-link to="" class="btn btn-blue">대화방 등록하기</router-link>
         </div>
         <div class="top-ctrl-area">
           <div class="left-area">
             <div class="dropdown-search__wrap">
               <Dropdown :options="TitleOptions"/>
+              <!-- 230616 search-area 공통으로 인해 변경 -->
               <div class="search-area">
-                <span class="input search">
+                <span class="input search-box">
                   <input type="text" placeholder="검색어를 입력하세요."/>
+                  <ButtonCmp
+                    type="btn-only-icon"
+                    iconname='icon-search'
+                  >
+                  </ButtonCmp>
                 </span>
               </div>
+              <!-- // 230616 search-area 공통으로 인해 변경 -->
             </div>
           </div>
           <div class="right-area">

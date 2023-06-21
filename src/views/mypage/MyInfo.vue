@@ -1,12 +1,13 @@
-d<template>
+<!-- 0620: 추가 된 페이지 매니저,마스터_개인정보 관리 (기존 MyInfo.vue -> MyInfoEdit.vue)-->
+<template>
   <div class="join">
     <PageTitle pagetitle="개인정보 관리" />
-    <PageTitleH3 titleh3="내 계정 정보" noticeinfo="필수 입력값" />
+    <PageTitleH3 titleh3="내 계정 정보" />
     <form  ref="form" :model="form">
       <div class="table__wrap">
         <table class="table table-bodyonly form-table">
           <colgroup>
-            <col width="200px">
+            <col width="230px">
             <col />
             <col width="85px">
             <col />
@@ -29,83 +30,67 @@ d<template>
               <td colspan="3">
                 <div class="form-item__content">
                   <div class="form-item-row">
+                  <!-- 0620: 디자인 1차 수정 - 마스터,매니저 부분 추가 -->
+                    <!-- 마스터일 때 -->
+                    <div class="input-item">
+                      <span class="text">마스터</span>
+                    </div>
+                    <!-- 매니저일 때 -->
                     <div class="input-item">
                       <span class="text">매니저</span>
                       <ButtonCmp
                         type="btn-default-line"
                       >
-                      계정 변경요청
-                    </ButtonCmp>
+                      마스터 변경요청
+                      </ButtonCmp>
+                    </div>
                   </div>
                 </div>
-                </div>
-
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">이름</span></th>
+              <th scope="row"><span class="form-item__label">이름</span></th>
               <td colspan="3">
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                      <span class="input"><input type="text" class="input" placeholder="이름을 입력해주세요." v-model="form.name"></span>
+                      <span class="text">{{ form.name }}</span>
                     </div>
-                    <p class="guide-text error" v-if="nameErrorMsg">이름을 입력해주세요.</p>
                   </div>
                 </div>
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">휴대폰 번호</span></th>
+              <th scope="row"><span class="form-item__label">휴대폰 번호</span></th>
               <td colspan="3">
                   <div class="form-item__content">
                       <div class="form-item-row">
                           <div class="input-item">
-                              <span class="input"><input type="text" class="input" value="010-1234-5678" disabled v-model="form.phone"></span>
-                              <ButtonCmp
-                                  type="btn-default-line"
-                                  @click="phoneCertificate"
-                              >
-                              휴대폰 번호 변경
-                              </ButtonCmp>
+                              <span class="text">{{ form.phone }}</span>
                           </div>
-                          <p class="guide-text black">※ 휴대폰번호 변경 시 본인인증은 필수입니다.</p>
-                          <p class="guide-text error" v-if="phoneErrorMsg">휴대폰 번호를 입력해주세요.</p>
                       </div>
                   </div>
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">담당자 이메일</span></th>
+              <th scope="row"><span class="form-item__label">담당자 이메일</span></th>
               <td colspan="3">
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                      <span class="input"><input type="text" class="input" placeholder="담당자 이메일을 입력해주세요."   v-model="form.email"></span>
+                      <span class="text">{{ form.email }}</span>
                     </div>
                   </div>
-                  <p class="guide-text error" v-if="emailErrorMsg">담당자 이메일을 입력해주세요.</p>
                 </div>
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">담당자 연락처</span></th>
-              <td>
+              <th scope="row"><span class="form-item__label">담당자 연락처</span></th>
+              <td colspan="3">
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
-                      <span class="input"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요."   v-model="form.tel"></span>
-                    </div>
-                  </div>
-                  <p class="guide-text error" v-if="telErrorMsg">전화번호 이메일을 입력해주세요.</p>
-                </div>
-              </td>
-              <th scope="row"><span class="form-item__label">내선번호</span></th>
-              <td class="align--top">
-                <div class="form-item__content">
-                  <div class="form-item-row">
-                    <div class="input-item">
-                      <span class="input"><input type="text" class="input" placeholder="내선번호를 입력해주세요."   v-model="form.extNum"></span>
+                      <span class="text">{{ form.tel }}</span>
                     </div>
                   </div>
                 </div>
@@ -129,26 +114,24 @@ d<template>
     <div class="button__wrap flex-end">
       <ButtonCmp
         @click="goMemberWithdraw"
-        type="btn-default-line inactive"
+        type="btn-line medium"
       >회원 탈퇴</ButtonCmp>
     </div>
-    <div class="button__wrap">
+    <div class="button__wrap space-between">
       <ButtonCmp
         type="btn-line"
       >취소</ButtonCmp>
-      <router-link
-        class="btn btn-blue-line"
-      >기업정보 관리</router-link>
-      <ButtonCmp
-        type="btn-blue"
-        @click="onSubmit"
-      >저장</ButtonCmp>
+      <div class="button__wrap button__left">
+        <ButtonCmp
+          type="btn btn-line"
+          @click="corpInfo"
+        >비즈니스 정보 관리</ButtonCmp>
+        <ButtonCmp
+          type="btn-blue"
+          @click="onSubmit"
+        >수정</ButtonCmp>
+      </div>
     </div>
-    <ModalView
-      v-if="isModalViewed" @closeModal="isModalViewed = false"
-    >
-      <CertificateMsg @closeModal="isModalViewed = false" />
-    </ModalView>
   </div>
 </template>
 
@@ -156,6 +139,7 @@ d<template>
 import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+
 export default {
   components: {
     PageTitle,
@@ -167,34 +151,17 @@ export default {
       form: {
         name: '홍길동',
         phone: '010-1234-5678',
-        email: '',
-        tel: '',
-        extNum: ''
-      },
-      nameErrorMsg: false,
-      phoneErrorMsg: false,
-      emailErrorMsg: false,
-      telErrorMsg: false
+        email: 'hahahaha123456@the-51.com',
+        tel: '010-1234-5678'
+      }
     }
   },
   methods: {
     onSubmit () {
-      if (this.form.name === '') {
-        this.nameErrorMsg = true
-        return
-      }
-      if (this.form.phone === '') {
-        this.phoneErrorMsg = true
-        return
-      }
-      if (this.form.email === '') {
-        this.emailErrorMsg = true
-        return
-      }
-      if (this.form.tel === '') {
-        this.telErrorMsg = true
-        // return
-      }
+      this.$router.push('./MyInfoEdit')
+    },
+    corpInfo () {
+      this.$router.push('./CorpInfo')
     },
     goMemberWithdraw () {
       this.$router.push('./withdrawal')

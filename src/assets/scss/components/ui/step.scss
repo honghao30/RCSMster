@@ -1,110 +1,95 @@
 .step__wrap {        
     width: 100%;
-    max-width: 898px;
-    margin: 0px auto 38px;
-    padding-top:4px;
+    max-width: 760px;
+    margin: 0px auto 48px;
     ol {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        &.step--03 {
-            li {
-                &:before {
-                    right: 110px;
-                    left: -180px;
-                }
-            }
-        }
     }
     li {
         position: relative;            
         list-style: none;
         text-align: center;
-        @include fontoption(18px,#666666,500,28px);
-        width: calc(100% / 4 );
+        width: 25%;
         display: flex;
         justify-content: center; 
-        span {
-            white-space: nowrap;
-        }           
-        .step__inner {
-            position: relative;
-            width: 120px; 
-            z-index: 5;                
-            &::before {
-                content: '';
-                display:block;
-                position: relative;
-                width: 41px;
-                height: 40px;                            
-                margin: 0 auto;
-                background-image: url('../assets/images/icon/icon_exclude_join_step.png');
-                background-repeat: no-repeat;
-                background-position: center center;
-                z-index: 3;
-                margin-bottom: 10px;
+        &:after {
+            content:'';
+            width: calc(100% - 22px);
+            height:3px;
+            background-color:#ddd;
+            position:absolute;
+            right:calc(-50% + 11px);
+            top:14px;
+        }
+        &:last-child {
+            &:after {
+                display: none;
             }
         }
-        &:nth-child(2) {
-            &::before {
-                content: '';
-                display: block;
-                position: absolute;
-                left: -97px;
-                right: 120px;
-                z-index: 1;
-                top:20px;            
-                height:4px;
-                background-color: #f5f5f5;                    
+        &.ing {
+            &:before {
+                background-color: #2855A7
             }
         }
-        &:nth-child(3) {
-            &::before {
-                content: '';
-                display: block;
-                position: absolute;
-                left: -97px;
-                right: 120px;
-                z-index: 1;
-                top:20px;            
-                height:4px;
-                background-color: #f5f5f5;                    
+        .step__inner {  
+            z-index: 5;
+            display:inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between; 
+            height:68px; 
+            position:relative;
+            .step__icon {
+                display:inline-block;
+                width: 24px;
+                height: 24px;
+                margin-top: 4px;
+                border-radius: 100%;
+                background: url('../assets/images/icon/icon_exclude_join_step_end.png') no-repeat 50% 50%;
             }
-        }  
-        &:nth-child(4) {
-            &::before {
-                content: '';
-                display: block;
-                position: absolute;
-                left: -97px;
-                right: 120px;
-                z-index: 1;
-                top:20px;            
-                height:4px;
-                background-color: #f5f5f5;                    
+            .step__num {
+                font-size: 18px;
+                font-weight: 700;
+                color:#fff;
+                background-color: #d9d9d9;
+                width:28px;
+                height:28px;
+                line-height:26px;
+                text-align: center;
+                border-radius: 100%;
+                margin-top:2px;
             }
-        }    
+            .step__text {
+                white-space: nowrap;
+                @include fontoption(18px,#666666,500,30px);
+            } 
+        }
         &.end {
-            color:#2855A7;
             .step__inner {
-                &::before {
-                    background-image: url('../assets/images/icon/icon_exclude_join_step_end.png');
+                .step__text {
+                    color:#2855A7;
                 }
             }
-            &::before {
+            &::after {
                 background-color: #2855A7;   
             }
         }   
         &.ing {
-            color: #2F77FB;
-            .step__inner {
-                &::before {
-                    background-image: url('../assets/images/icon/icon_exclude_join_step_ing.png');
+            .step__inner { 
+                .step__num {
+                   width: 32px;
+                   height: 32px; 
+                   margin-top:0;
+                   line-height:30px;
+                   background-color: $pointColor;
+                }
+                .step__text {
+                    color: $pointColor;
                 }
             }
-            &::before {
-                background-color: #2F77FB;   
-            }
+            
         }                              
     } 
     +.page-title__wrap {

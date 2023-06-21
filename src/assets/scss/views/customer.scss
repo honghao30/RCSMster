@@ -65,6 +65,9 @@
     }
   }
   .notice {
+    width: 100%;
+    max-width: $contentWidth2;
+    margin: 0 auto;
     .title:hover {
       text-decoration: underline;
     }
@@ -108,7 +111,7 @@
         }
         .notice-content__file {
           span {
-            padding: 3px 38px 3px 47px;
+            padding: 3px 33px 3px 47px;
             border-right: 1px solid #ddd;
             height: 32px;
             font-weight: 500;
@@ -154,7 +157,7 @@
               }
             }
             .list-data {
-              padding: 0 33px 0 17px;
+              padding-left: 21px;
               border-right: 1px solid #ddd;
               text-align: left;
               line-height: 24px;
@@ -176,7 +179,7 @@
   // accordion
   .notice-faq, .require-list {
     .accordion-list__wrap {
-      border-top: 2px solid #2F77FB;
+      border-top: 2px solid #BCBCBC;
       width: 100%;
       .accordion__item {    
         border-bottom: 1px solid #F0F0F0;
@@ -208,7 +211,7 @@
           } 
           .accordion-cate {
             position: absolute;
-            left: 40px;
+            left: 30px;
             top:50%;
             transform: translateY(-50%);
             @include fontoption(16px,#000000,500,24px)
@@ -224,7 +227,7 @@
         background-color: #F8F8F8;
         .accordion-cate {
           position: absolute;
-          left: 40px;
+          left: 33px;
           top:20px;
           @include fontoption(16px,#2F77FB,500,24px)
         }    
@@ -276,7 +279,6 @@
             text-align: left;
             padding: 0 0 0 55px;
             span::before {
-              margin-top: 0;
               margin-left: -55px;
             }
           }
@@ -288,9 +290,9 @@
       .accordion__item {
         a.accordion__title {
           display: flex;
-          padding: 21px 0 21px 146px;
+          padding: 21px 0 21px 130px;
           &::after {
-            right: 46px;
+            right: 12px;
           }
           .accordion-cate {
             .require-list__wait {
@@ -303,7 +305,7 @@
           .require-list__date {
             @include fontoption(16px,#888888,400,24px);
             position: absolute;
-            right: 135px;
+            right: 115px;
           } 
         }
       }
@@ -316,11 +318,11 @@
           background-color: #ffffff;
           margin-left: -85px;
           margin-bottom: -20px;
-          width: $contentWidth;
+          width: $contentWidth2;
           div {
-            padding: 20px 146px;
+            padding: 20px 130px;
             .accordion-cate {
-              left: 58px;
+              left: 49.5px;
               @include fontoption(16px,#000000,500,24px)
             }
             .require-list__question {
@@ -336,21 +338,21 @@
         .accordion-answer {
           margin-left: -85px;
           margin-top: 20px;
-          width: $contentWidth;
+          width: $contentWidth2;
           div {
             display: flex;
-            padding: 20px 146px;
+            padding: 20px 130px;
             .accordion-cate {
               position: inherit;
-              margin: 0 75px 0 -85px;
+              margin: 0 67.5px 0 -76.5px;
               @include fontoption(16px,#2F77FB,500,24px)
             }
             .require-list__answer {
               @include fontoption(16px,#000000,400,24px)
             }
             .require-list__answer-date {
-              margin-right: -30px;
-              padding-left: 53px;
+              margin-right: -14px;
+              padding-left: 58px;
               @include fontoption(16px,#888888,400,24px);
             }
           }
@@ -360,7 +362,7 @@
   }
   // onlinerequire
   .online{
-    max-width: $contentWidth;
+    max-width: $contentWidth2;
     margin: 0 auto;
     .online-title__wrap--top{
       .page-title{
@@ -642,7 +644,7 @@
           td {
             padding: 0;
             display: block;
-            width: calc(100% -52px);
+            width: calc(100% - 52px);
             &.table-button {
               padding: 2px 16px 0 12px;
               &::after {

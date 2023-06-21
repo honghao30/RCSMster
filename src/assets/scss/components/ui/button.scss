@@ -59,6 +59,13 @@ $radius: 8px;
   }
   &.space-between {
     justify-content: space-between;
+    button+button {
+      margin-left:10px;
+    }
+  }
+  > div {
+    display:flex;
+    gap: 8px;
   }
 }
 

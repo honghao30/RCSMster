@@ -9,8 +9,25 @@
     </div>
     <TitleH3 titleh3="Input" />
     <span class="input">
-        <input ref="usrid" type="text" class="input" placeholder="input 입니다.">
+      <input ref="usrid" type="text" class="input" placeholder="input 입니다.">
     </span>
+    <!-- 이모지 미사용 : ButtonCmp,emoji-picker 제거 -->
+    <div class="is-emoji">
+      <div class="input-item input-limit">
+        <div class="input">
+          <input type="text" class="input" maxlength="17"
+            v-model="form.guideInputEmoji"
+            :placeholder="'메뉴명을 입력해주세요'"
+            ref="menuName"
+          >
+          <div class="input-limit__text">
+            <Emoji @input="onSelectEmoji($event, 'menuName')"/>
+            <p>{{ form.guideInputEmoji.length }}/17자</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 이모지 미사용 : ButtonCmp,emoji-picker 제거 -->
     <!--
     <TitleH3 titleh3="Select" />
     <div class="wsg-guide-content">
@@ -71,6 +88,10 @@
         <input type="radio" name="radio" id="radio3" />
         <label for="radio3"><span class="radiobox__text">옵션3</span></label>
       </span>
+      <span class="radiobox">
+        <input type="radio" name="radio2" id="radio1" disabled checked />
+        <label for="radio1"><span class="radiobox__text">옵션4</span></label>
+      </span>
     <TitleH3 titleh3="Datepicker" />
     <el-date-picker
         v-model="form.date"
@@ -78,16 +99,24 @@
         placeholder="날짜를 선택하세요">
     </el-date-picker>
     <TitleH3 titleh3="Textarea" />
-    <div class="input-item input-limit">
-      <div class="textarea">
-        <textarea maxlength="1000" placeholder="문의 내용을 입력해주세요." v-model="form.textarea"></textarea>
-        <div class="textarea-limit__text">
-          <p>
-            {{ form.textarea.length }}/1000자
-          </p>
+    <!-- 이모지 미사용 : ButtonCmp,emoji-picker 제거 -->
+    <div class="is-emoji">
+      <div class="input-item input-limit">
+        <div class="textarea">
+          <textarea maxlength="1000" placeholder="문의 내용을 입력해주세요." v-model="form.textarea" ref="quest"></textarea>
+          <div class="textarea-limit__text">
+            <Emoji @input="onSelectEmoji($event, 'quest')"/>
+            <p>
+              {{ form.textarea.length }}/1000자
+            </p>
+          </div>
         </div>
       </div>
     </div>
+    <TitleH3 titleh3="이모지" />
+    <Emoji  @input="onSelectEmoji($event, 'ref이름' )" />
+    {{ emojiCode }}
+    <!-- // 이모지 미사용 : ButtonCmp,emoji-picker 제거 -->
     <TitleH3 titleh3="스위치" />
     <div class="switch" role="switch">
       <input type="checkbox" id="switch" v-model="form.switch">
@@ -118,21 +147,20 @@
     <div class="table__wrap">
       <table class="table table-bodyonly form-table">
         <colgroup>
-          <col width="200px">
+          <col width="230px">
           <col />
         </colgroup>
         <tbody>
           <tr>
             <th scope="row"><span class="form-item__label required">이름</span></th>
             <td>
-                <div class="form-item__content">
-                    <div class="form-item-row">
-                        <div class="input-item">
-                            <span class="input"><input type="text" class="input" placeholder="담당자 이름을 입력해주세요."></span>
-                        </div>
+              <div class="form-item__content">
+                <div class="form-item-row">
+                    <div class="input-item">
+                      <span class="input"><input type="text" class="input" placeholder="담당자 이름을 입력해주세요."></span>
                     </div>
-                    <p class="guide-text error">담당자 이름을 입력해주세요.</p>
                 </div>
+              </div>
             </td>
           </tr>
           <tr>
@@ -163,6 +191,8 @@
 import TitleH3 from '../cmp/TitleH3.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import Emoji from '@/components/common/Emoji.vue'
+import 'emoji-picker-element'
 
 export default {
   data() {
@@ -176,8 +206,12 @@ export default {
         id: '',
         dropdown: '',
         textarea: '',
-        switch: ''
+        switch: '',
+        guideInputEmoji: ''
       },
+      emojiCode: '',
+      showSpecialCharTitle: false, // 특수문자 선택창 show 여부
+      showSpecialTextarea: false, // 특수문자 선택창 show 여부
       dropdownOptions: [
         {
           label: 'all',
@@ -196,7 +230,7 @@ export default {
           value: 'option3'
         }
       ],
-      TitleOptions: [
+      TitleOptargettions: [
         {
           label: '대화방 명',
           value: 'chatroom'
@@ -212,9 +246,26 @@ export default {
   components: {
     TitleH3,
     Dropdown,
-    ButtonCmp
+    ButtonCmp,
+    Emoji
   },
   methods: {
+    // Emoji method 01
+    onSelectEmoji(e, target) {
+      let emoji = e
+      let refName = target
+      this.$refs[refName].value += emoji
+    },
+    // Emoji method 02(object 안에 object 경우)
+    // onSelectEmoji(e, target, idx) {
+    //   let emoji = e
+    //   let refName = target
+    //   if (idx !== undefined) {
+    //     this.$refs[refName][idx].value += emoji
+    //   } else {
+    //     this.$refs[refName].value += emoji
+    //   }
+    // },
     checkValidation() {
       this.idValidation = false
     },

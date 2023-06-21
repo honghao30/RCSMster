@@ -8,10 +8,20 @@
     padding: 8px;
     border-bottom: 1px solid #F0F0F0;
   }
+  .tr__border {
+    th,
+    td {
+      border-bottom: 2px solid #DDDDDD;
+    }
+  }
+  tr:last-child {
+    th,
+    td {
+      border-bottom: 2px solid #DDDDDD;
+    }
+  }
   th {
     font-weight: 500;
-    font-size: 16px;
-    line-height: 26px;
     border-color:#ddd;
     padding: 16px 0;
   }
@@ -87,12 +97,17 @@
     }
   }  
   th {
-    padding:23px 0 23px 16px;
+    @include fontoption(16px,#000,500,28px); 
+    padding:16px 0 16px 16px;
     border-color:#F0F0F0;
-    text-align:left
+    text-align:left;
+    line-height: 28px;
   }
   td {
-    padding: 23px 16px 23px 0;
+    padding: 16px 16px 16px 0;
+    .text {
+      line-height: 26px;
+    }
   }
 }
 
@@ -100,12 +115,23 @@
   width: 100%;
   position: relative;
   border-top: 2px solid #BCBCBC;
+  + .table__wrap {
+    margin-top: 32px;
+  }
 }
 .table-list {
   @include tableListType;
 }
 .table-bodyonly {
   @include tableBodyType;
+  &.form-table {
+    th {
+      padding:23px 0 23px 16px;
+    }
+    td {
+      padding: 23px 16px 23px 0;
+    }
+  }
 }
 
 .paging {

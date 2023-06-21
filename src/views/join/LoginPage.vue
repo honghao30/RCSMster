@@ -26,15 +26,10 @@
             </span>
           </div>
           <p class="guide-text error" v-if="pwErrorMsg">비밀번호를 입력해주세요.</p>
+          <p class="guide-text error" v-if="pwChangeErrorMsg">아이디 또는 비밀번호가 맞지 않습니다. 비밀번호를 5회 이상 잘못 입력하는 경우 로그인이 제한됩니다.</p>
         </div>
       </div>
-      <div class="button__wrap">
-        <ButtonCmp
-          type="btn-blue btn-login"
-          @click="onSubmit"
-        >로그인</ButtonCmp>
-      </div>
-  </form>
+    </form>
     <div class="help-menu__wrap--bottom">
       <div class="autosave">
         <span class="checkbox">
@@ -44,15 +39,22 @@
       </div>
       <div class="idfind">
         <router-link to="/IdFind">아이디 찾기</router-link>
-        <router-link to="/pwFind">비밀번호 재설정</router-link>
+        <router-link to="/pwFind">비밀번호 찾기</router-link>
       </div>
+    </div>
+    <div class="button__wrap">
+      <ButtonCmp
+        type="btn-blue btn-login"
+        @click="onSubmit"
+      >로그인</ButtonCmp>
     </div>
     <!-- 메시지 모달 -->
     <ModalView
-      v-if="isModalViewed" @closeModal="isModalViewed = false"
+      v-if="pwChangeModalViewed" @closeModal="isModalViewed = false"
     >
       <ConfirmMsg
         @closeModal="isModalViewed = false"
+        v-if="pwChangeModal"
       >
         <div class="msg" slot="msg">
           5회 이상 아이디 또는 비밀번호를 잘못<br />
@@ -61,13 +63,13 @@
         <div class="button__wrap" slot="button">
           <ButtonCmp
              type="btn-blue-line"
-             @click="closeMsge"
+             @click="closeMsg"
           >
             닫기
           </ButtonCmp>
           <ButtonCmp
              type="btn-blue"
-             @click="moveChage"
+             @click="moveChange"
           >
             비밀번호 변경
           </ButtonCmp>
@@ -168,16 +170,20 @@ export default {
       },
       idErrorMsg: false,
       pwErrorMsg: false,
+      pwChangeErrorMsg: false,
       showPassword: false,
       isModalViewed: false,
+      pwChangeModalViewed: false,
       isSendMsgViewed: false,
       SendSmsMsg: false,
       PhoneCertModal: false,
+      pwChangeModal: false,
       iconName: 'icon-eye',
       IsTopPos: true,
       Timer: null,
       TimeCounter: 180,
-      TimerStr: '03:00'
+      TimerStr: '03:00',
+      count: 0
     }
   },
   watch: {
@@ -197,10 +203,15 @@ export default {
   },
   methods: {
     onSubmit () {
+      this.count++
+      if (this.count > 5) {
+        this.pwChangeModalViewed = true
+        this.pwChangeModal = true
+        this.pwChangeErrorMsg = true
+      }
       if (this.form.id === '') {
         this.idErrorMsg = true
         this.$refs.usrid.focus()
-        this.isModalViewed = true
         return
       }
       if (this.form.pw === '') {
@@ -220,7 +231,7 @@ export default {
       }
       this.showPassword = !this.showPassword
     },
-    moveChage () {
+    moveChange () {
       this.$router.push('./pwFind')
       document.documentElement.style.overflow = 'auto'
     },
@@ -230,7 +241,9 @@ export default {
     },
     closeMsg () {
       this.isModalViewed = false
+      this.pwChangeModalViewed = false
       this.PhoneCertModal = false
+      this.pwChangeModal = false
     },
     start() {
       this.isModalViewed = true

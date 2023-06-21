@@ -13,7 +13,7 @@
           <p>-신청한 브랜드 정보는 운영자 심사를 거쳐 노출 여부가 결정되며 승인 결과는 문자메시지(SMS) 및 이메일로 알려드립니다.</p>
           <p>-승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</p>
         </div>
-        <PageTitleH3 titleh3="퀵 버튼 설정" noticeinfo="필수 입력값" />
+        <PageTitleH3 titleh3="퀵 버튼 설정"/>
         <form  ref="form" :model="form">
           <div class="table__wrap">
             <table class="table table-bodyonly form-table">

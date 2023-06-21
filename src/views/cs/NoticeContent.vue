@@ -1,10 +1,10 @@
 <template>
-  <div class="inner notice-content">
+  <div class="inner notice notice-content">
     <PageTitle pagetitle="공지사항" />
     <div class="table__wrap notice-table">
       <table class="table table-list notice-content__table">
         <colgroup>
-          <col width="11%">
+          <col width="13%">
           <col>
           <col width="17%">
         </colgroup>

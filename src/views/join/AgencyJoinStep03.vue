@@ -2,14 +2,15 @@
   <div class="join">
     <PageTitle pagetitle="대행사 회원가입" />
     <StepList :stepActiveIndex="3" :stepTitle="stepTitle" />
-    <PageTitleH3 titleh3="회원정보 입력" noticeinfo="필수 입력값" />
+    <PageTitleH3 titleh3="회원정보 입력" />
     <form  ref="form" :model="form">
         <div class="table__wrap">
           <table class="table table-bodyonly form-table">
+            <!-- 0620: 고객 요청 반영 - colgroup width값 수정 -->
             <colgroup>
-              <col width="200px">
+              <col width="230px">
+              <col width="390px">
               <col />
-              <col width="85px">
               <col />
             </colgroup>
             <tbody>
@@ -19,7 +20,7 @@
                     <div class="form-item__content">
                         <div class="form-item-row">
                             <div class="input-item">
-                                <span class="input"><input type="text" class="input" placeholder="담당자 이름을 입력해주세요." v-model="form.name"></span>
+                                <span class="input input-info"><input type="text" class="input" placeholder="담당자 이름을 입력해주세요." v-model="form.name"></span>
                             </div>
                         </div>
                         <p class="guide-text error" v-if="nameErrorMsg">담당자 이름을 입력해주세요.</p>
@@ -32,7 +33,7 @@
                     <div class="form-item__content">
                         <div class="form-item-row">
                             <div class="input-item">
-                                <span class="input"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요." v-model="form.phone"></span>
+                                <span class="input input-info"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요." v-model="form.phone"></span>
                                 <ButtonCmp
                                     type="btn-default-line"
                                     @click="phoneCertificate"
@@ -45,14 +46,13 @@
                     </div>
                 </td>
               </tr>
-              <!-- 휴대폰 인증 이후 인증번호 입력 폼이 필요할듯 한데.. 확인 필요 -->
               <tr>
                 <th scope="row"><span class="form-item__label required">아이디</span></th>
                 <td colspan="3">
                   <div class="form-item__content">
                     <div class="form-item-row">
                       <div class="input-item">
-                        <span class="input"><input type="text" class="input" placeholder="아이디 입력해주세요." v-model="form.id"></span>
+                        <span class="input input-info"><input type="text" class="input" placeholder="아이디 입력해주세요." v-model="form.id"></span>
                         <ButtonCmp
                             type="btn-default-line"
                             @click="checkCertificate"
@@ -71,7 +71,7 @@
                   <div class="form-item__content">
                     <div class="form-item-row">
                       <div class="input-item">
-                        <span class="input"><input type="text" class="input" placeholder="비밀번호를 입력하세요"  v-model="form.pass"></span>
+                        <span class="input input-info"><input type="text" class="input" placeholder="비밀번호를 입력하세요"  v-model="form.pass"></span>
                       </div>
                     </div>
                     <p class="guide-text error" v-if="passErrorMsg">비밀번호을 입력해주세요.</p>
@@ -92,7 +92,7 @@
                   <div class="form-item__content">
                     <div class="form-item-row">
                       <div class="input-item">
-                        <span class="input"><input type="text" class="input" placeholder="비밀번호를 다시 한번 입력하세요"  v-model="form.passre"></span>
+                        <span class="input input-info"><input type="text" class="input" placeholder="비밀번호를 다시 한번 입력하세요"  v-model="form.passre"></span>
                       </div>
                     </div>
                     <p class="guide-text validation">새 비밀번호 확인이 완료되었습니다.</p>
@@ -105,7 +105,7 @@
                   <div class="form-item__content">
                     <div class="form-item-row">
                       <div class="input-item">
-                        <span class="input"><input type="text" class="input" placeholder="담당자 이메일을 입력해주세요."   v-model="form.email"></span>
+                        <span class="input input-info"><input type="text" class="input" placeholder="이메일을 입력해 주세요." v-model="form.email"></span>
                       </div>
                     </div>
                     <p class="guide-text error" v-if="emailErrorMsg">담당자 이메일을 입력해주세요.</p>
@@ -118,18 +118,22 @@
                   <div class="form-item__content">
                     <div class="form-item-row">
                       <div class="input-item">
-                        <span class="input"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요."   v-model="form.tel"></span>
+                        <span class="dropdown-tel"><Dropdown :options="dropdownTel" value="선택" @beforeChange="isChange" v-model="form.telFirst" /></span>
+                        <span>-</span>
+                        <span class="input input-tel"><input type="text" class="input" placeholder="" v-model="form.telMiddle"></span>
+                        <span>-</span>
+                        <span class="input input-tel"><input type="text" class="input" placeholder="" v-model="form.telLast"></span>
                       </div>
                     </div>
                     <p class="guide-text error" v-if="telErrorMsg">담당자 연락처를 입력해주세요.</p>
                   </div>
                 </td>
-                <th scope="row"><span class="form-item__label">내선번호</span></th>
+                <th scope="row" class="th-tel"><span class="form-item__label">내선번호</span></th>
                 <td class="align--top">
                   <div class="form-item__content">
                     <div class="form-item-row">
                       <div class="input-item">
-                        <span class="input"><input type="text" class="input" placeholder="내선번호를 입력해주세요."   v-model="form.bizevent"></span>
+                        <span class="input input-tel"><input type="text" class="input" placeholder=""   v-model="form.bizevent"></span>
                       </div>
                     </div>
                   </div>
@@ -138,17 +142,17 @@
             </tbody>
           </table>
         </div>
-      </form>
-      <div class="button__wrap">
-        <ButtonCmp
-          type="btn-blue-line"
-        >취소</ButtonCmp>
-        <ButtonCmp
-          type="btn-blue"
-          @click="onSubmit"
-        >회원가입</ButtonCmp>
-      </div>
-    <!-- // 모달 -->
+    </form>
+    <div class="button__wrap space-between">
+      <ButtonCmp
+        type="btn-line"
+      >이전</ButtonCmp>
+      <ButtonCmp
+        type="btn-blue"
+        @click="nextStep"
+      >신청</ButtonCmp>
+    </div>
+    <!-- 모달 -->
     <ModalView
       v-if="isModalViewed" @closeModal="isModalViewed = false"
     >
@@ -223,7 +227,6 @@
         </div>
       </ConfirmMsg>
     </ModalView>
-    <!-- // 모달 -->
   </div>
 </template>
 
@@ -231,17 +234,20 @@
 import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import ModalView from '@/components/common/ModalView.vue'
 import StepList from '@/components/common/StepList.vue'
+import ModalView from '@/components/common/ModalView.vue'
 import ConfirmMsg from '@/views/join/components/ConfirmMsg.vue'
+import Dropdown from '@/components/common/Dropdown.vue'
+
 export default {
   components: {
     PageTitle,
     ButtonCmp,
     PageTitleH3,
-    ModalView,
     StepList,
-    ConfirmMsg
+    ModalView,
+    ConfirmMsg,
+    Dropdown
   },
   data() {
     return {
@@ -252,9 +258,22 @@ export default {
         pass: '',
         passre: '',
         email: '',
-        tel: '',
+        telFirst: '',
+        telMiddle: '',
+        telLast: '',
         certNumber: ''
       },
+      dropdownTel: [
+        { label: '010' },
+        { label: '070' },
+        { label: '02' },
+        { label: '031' },
+        { label: '032' },
+        { label: '…​' },
+        { label: '062' },
+        { label: '063' },
+        { label: '064' }
+      ],
       nameErrorMsg: false,
       idErrorMsg: false,
       phoneErrorMsg: false,
@@ -285,7 +304,7 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
+    nextStep () {
       if (this.form.name === '') {
         this.nameErrorMsg = true
         return
