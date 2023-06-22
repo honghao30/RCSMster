@@ -10,6 +10,22 @@
       <!-- 반려 -->
       <span class="flag-progress reject">반려</span>
     </div>
+    <!-- 선거용 배너 노출 영역 -->
+    <template v-if="election">
+      <div class="top-notice--gray election">
+        <div class="title">2024년 4월 10일 제 22대 국회의원선거 선거 운동</div>
+        <div class="sub-title">기간 : 2023년 10월 13일~ 2024년 5월 10일</div>
+        <div class="election__banner--innerbox">
+          <p>발급된 계정으로 접속하여 기간 동안 브랜드를 생성/운영관리 할 수 있습니다.</p>
+          <ButtonCmp
+            type="btn-blue"
+          >
+            기간제 계정 신청
+          </ButtonCmp>
+        </div>
+      </div>
+    </template>
+    <!-- //선거용 배너 노출 영역 -->
     <PageTitleH3 titleh3="비지니스 정보"/>
     <form  ref="form" :model="form">
       <div class="table__wrap">
@@ -230,7 +246,8 @@ export default {
         agencyLogoFile: 'Logo_final.jpg'
       },
       selecteAuth: ['Auth_1'],
-      filesName: '사업자등록증_2023.pdf'
+      filesName: '사업자등록증_2023.pdf',
+      election: true
     }
   },
   watch: {

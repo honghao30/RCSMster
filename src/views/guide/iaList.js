@@ -457,6 +457,47 @@ const dashboardList = [
     'status': ['0621: 기획 공유'],
     'link': '/ChatbotRegistration'
   },
+  // 통계
+  {
+    'depth3': '통계',
+    'depth4': '메시지 통계',
+    'depth5': '목록',
+    'screenId': 'R-Brand-Stat-List-01',
+    'status': ['0622: 기획 공유'],
+    'link': '/MsgStatList'
+  },
+  {
+    'depth5': '상세',
+    'screenId': 'R-Brand-Stat-View-01',
+    'status': ['0622: 기획 공유'],
+    'link': '/MsgStatListView'
+  },
+  {
+    'depth4': '대화방 메뉴 통계',
+    'depth5': '목록',
+    'screenId': 'R-Brand-Stat-List-02',
+    'status': ['0622: 기획 공유'],
+    'link': '/'
+  },
+  {
+    'depth5': '상세',
+    'screenId': 'R-Brand-Stat-View-02',
+    'status': ['0622: 기획 공유'],
+    'link': '/'
+  },
+  {
+    'depth4': '브랜드 소식 통계',
+    'depth5': '목록',
+    'screenId': 'R-Brand-Stat-List-03',
+    'status': ['0622: 기획 공유'],
+    'link': '/'
+  },
+  {
+    'depth5': '상세',
+    'screenId': 'R-Brand-Stat-View-03',
+    'status': ['0622: 기획 공유'],
+    'link': '/'
+  },
   // 브랜드 개설
   {
     'depth1': '브랜드 개설',
