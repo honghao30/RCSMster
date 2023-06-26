@@ -6,11 +6,19 @@
     <p v-if="noticeinfo !== null">
       {{ noticeinfo }}
     </p>
+    <Dropdown
+      v-if="DropData !== null"
+      :options="DropData"/>
 </div>
 </template>
 
 <script>
+import Dropdown from '@/components/common/Dropdown.vue'
+
 export default {
+  components: {
+    Dropdown
+  },
   props: {
     titleh3: String,
     noticeinfo: {
@@ -19,6 +27,10 @@ export default {
     },
     totalCount: {
       type: String,
+      default: null
+    },
+    DropData: {
+      type: Object,
       default: null
     }
   }

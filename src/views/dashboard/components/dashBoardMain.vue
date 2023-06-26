@@ -1,33 +1,42 @@
 <template>
   <div class="dashBoard-main__content">
-    <div class="approval-statu__box">
-      <strong>가입 승인 </strong>
-      <p>가입 승인 완료 후 RBC의 모든 기능을 정상적으로 사용하실 수 있습니다.</p>
+    <!-- 가입 승인 배너 -->
+    <!-- 가입 승인 배너 : 가입 승인 요청 -->
+    <div class="approval-statu__box document-not">
+      <strong>가입 승인 진행중(서류 미제출)</strong>
+      <p>사업자등록증을 제출하지 않았습니다. 사업자등록증을 제출해주세요.</p>
     </div>
-    <!-- // 가입 상태 안내 메시지 -->
-    <div class="board-main__box--roun-type">
-      <div class="dash-tit">
-        <h3>운영중인 브랜드</h3>
-        <span>(<em>982</em>)</span>
-      </div>
+    <!-- 가입 승인 배너 : 가입 승인 요청 -->
+    <div class="approval-statu__box approval-ing">
+      <strong>가입 승인 진행중</strong>
+      <p>가입 승인 완료 전에도 RBC의 기능을 이용하실 수 있으나, 일부기능은 승인 완료 후 정상적으로 사용하실 수 있습니다.</p>
+    </div>
+    <!-- 가입 승인 배너 : 가입 승인 반려 -->
+    <div class="approval-statu__box approval-reject">
+      <strong>가입 승인 반려</strong>
+      <p class="reject-reason">반려 사유 : 인터넷 광고 금지 메시지</p>
+      <p>반려 사유를 확인하고 수정해 주세요. 3일 안에 다시 신청하지 않으면 지금까지 등록한 모든 데이터가 삭제됩니다.</p>
+    </div>
+    <!-- 가입 승인 배너 : 가입 승인 반려 -->
+    <div class="approval-statu__box approval-done">
+      <strong>가입 승인 완료</strong>
+      <p>RBC의 모든 기능을 자유롭게 이용하실 수 있습니다.</p>
+    </div>
+    <!-- // 가입 승인 배너 -->
+    <!-- 내가 운영중인 브랜드 영역 -->
+    <div class="board-main__box--roun-type brand-ing">
       <div class="top-ctrl-area">
         <div class="left-area">
+          <PageTitleH3 titleh3="내가 운영중인 브랜드" totalCount="982"/>
+        </div>
+        <div class="right-area">
           <div class="search-area">
             <Dropdown searchable :options="dropdownOptions" placeholder="브랜드명">
             </Dropdown>
           </div>
         </div>
-        <div class="right-area">
-          <div class="ctrl">
-            <div class="pager">
-              <span class="num">1/3</span>
-              <a role="button" class="btn-prev"><span class="blind">이전으로</span></a>
-              <a role="button" class="btn-next"><span class="blind">다음으로</span></a>
-            </div>
-          </div>
-        </div>
       </div>
-      <div class="table__wrap">
+      <div class="table__wrap brand-ing-table">
         <table class="table table-list">
           <colgroup>
               <col width="58%">
@@ -56,9 +65,7 @@
                       <img :src="item.brandLogo" alt="">
                     </div>
                     <span class="brand__title"><router-link to="">{{ item.title }}</router-link></span>
-                    <span class="brnad__new" v-if="item.new">NEW</span>
                   </div>
-                  <span class="brand__message" v-if="item.message">메세지 발송 가능</span>
                 </div>
               </td>
               <td>
@@ -74,33 +81,25 @@
           </tbody>
         </table>
       </div>
+      <PagingCmp />
     </div>
-    <!-- // 페이지 게이션 -->
+    <!-- // 내가 운영중인 브랜드 영역 -->
+    <!-- 브랜드 개설 배너 -->
     <div class="brand-banner__box">
       <strong>브랜드를 만들고 고객과 연결될 수 있는<br/>RBC의 다양한 기능을 사용하세요.</strong>
       <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
       <router-link to="" class="btn btn-blue">브랜드 개설하기</router-link>
     </div>
     <!-- // 브랜드 개설 배너 -->
-    <div class="board-main__box--roun-type">
-      <div class="dash-tit">
-        <h3>내 기업 브랜드</h3>
-        <span>(<em>982</em>)</span>
-      </div>
+    <div class="board-main__box--roun-type mybrand-box">
       <div class="top-ctrl-area">
         <div class="left-area">
+          <PageTitleH3 titleh3="내가 운영할 수 있는 브랜드" totalCount="982"/>
+        </div>
+        <div class="right-area">
           <div class="search-area">
             <Dropdown searchable :options="dropdownOptions" placeholder="브랜드명">
             </Dropdown>
-          </div>
-        </div>
-        <div class="right-area">
-          <div class="ctrl">
-            <div class="pager">
-              <span class="num">1/3</span>
-              <a role="button" class="btn-prev"><span class="blind">이전으로</span></a>
-              <a role="button" class="btn-next"><span class="blind">다음으로</span></a>
-            </div>
           </div>
         </div>
       </div>
@@ -125,7 +124,6 @@
                     </div>
                     <span class="brand__title"><router-link to="">{{ item.title }}</router-link></span>
                   </div>
-                  <span class="brand__message" v-if="item.message">메세지 발송 가능</span>
                 </div>
               </td>
               <td>
@@ -151,6 +149,7 @@
           </tbody>
         </table>
       </div>
+      <PagingCmp />
     </div>
     <!-- // 페이지 게이션 -->
   </div>
@@ -159,11 +158,15 @@
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
+import PagingCmp from '@/components/common/PagingCmp.vue'
+import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 
 export default {
   components: {
     ButtonCmp,
-    Dropdown
+    Dropdown,
+    PagingCmp,
+    PageTitleH3
   },
   data() {
     return {
@@ -190,8 +193,6 @@ export default {
           mark: true,
           brandLogo: require('../../../assets/images/dummy/brand_logo_1.png'),
           title: '더피프티원더피프티원더피프티원더피프티원...',
-          new: true,
-          message: true,
           chatData: 999,
           templateData: 654,
           agencyData: 0
@@ -200,8 +201,6 @@ export default {
           mark: true,
           brandLogo: require('../../../assets/images/dummy/brand_logo_2.png'),
           title: 'CX hub',
-          new: false,
-          message: false,
           chatData: 275,
           templateData: 999,
           agencyData: 3
@@ -210,8 +209,6 @@ export default {
           mark: false,
           brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
           title: 'SYSTEM HOMME',
-          new: false,
-          message: true,
           chatData: 102,
           templateData: 87,
           agencyData: 2
@@ -220,8 +217,6 @@ export default {
           mark: false,
           brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
           title: 'SYSTEM STUDIO HOUSE',
-          new: false,
-          message: true,
           chatData: 714,
           templateData: 69,
           agencyData: 1
@@ -230,8 +225,6 @@ export default {
           mark: false,
           brandLogo: require('../../../assets/images/dummy/brand_logo_4.png'),
           title: '롯데홈쇼핑',
-          new: false,
-          message: false,
           chatData: 999,
           templateData: 999,
           agencyData: 5
@@ -241,7 +234,6 @@ export default {
         {
           brandLogo: require('../../../assets/images/dummy/brand_logo_1.png'),
           title: 'LANVIN COLLECTION',
-          message: true,
           chatData: 872,
           templateData: 654,
           agencyData: 0,
@@ -250,7 +242,6 @@ export default {
         {
           brandLogo: require('../../../assets/images/dummy/brand_logo_2.png'),
           title: '더캐시미어',
-          message: true,
           chatData: 275,
           templateData: 106,
           agencyData: 3,
@@ -259,7 +250,6 @@ export default {
         {
           brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
           title: '타미힐피거',
-          message: false,
           chatData: 872,
           templateData: 654,
           agencyData: 0,
@@ -268,7 +258,6 @@ export default {
         {
           brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
           title: 'TOMMY JEANS',
-          message: true,
           chatData: 87,
           templateData: 29,
           agencyData: 2,
@@ -277,7 +266,6 @@ export default {
         {
           brandLogo: require('../../../assets/images/dummy/brand_logo_4.png'),
           title: '클럽모나코​',
-          message: true,
           chatData: 127,
           templateData: 106,
           agencyData: 3,

@@ -97,7 +97,7 @@
             />
           </div>
         </div>
-        <div class="top-notice--gray gray-btn">
+        <div class="top-notice--gray">
           <ul>
             <li>- 승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</li>
           </ul>

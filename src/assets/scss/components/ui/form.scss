@@ -482,6 +482,7 @@ $textareaHeight: 100px;
       align-items: center;
       .btn-only-icon{
         padding:0 16px;
+        position: static;
         .icon-search {
           display:inline-block;
           width:20px;
@@ -997,14 +998,46 @@ $formLabelWidth : 120px;
     align-items: center;
     gap: 8px;
   }
-  .search-area {
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      .input {
-          flex: auto;
-          max-width: 240px;
+  .el-date-editor {
+    min-width: 230px;
+  }
+  .search-area{
+    width: 100%;
+    position:relative;
+    width: 300px;
+    input {
+      padding-right:52px;
+    }
+    .btn-only-icon{
+      padding:0 16px;
+      position:absolute;
+      right:0;
+      top:8px;
+      .icon-search {
+        display:inline-block;
+        width:20px;
+        height: 20px;
+        background: url('../assets/images/icon/icon_search.png') no-repeat 50% 50%;
       }
+    }
+  }
+  .radio__btn-type {
+    display: flex;
+    gap: 8px;
+    label {
+      display:inline-flex;
+      justify-content: center;
+      align-items: center;
+      height: 36px;
+      padding:0 14px;
+      font-size: 14px;
+      font-weight: 700;
+      border:1px solid #bdbdbd;
+      color: #6E7581;
+      min-width: 70px;
+      border-radius: 6px;
+      cursor:pointer
+    }
   }
   .right-area {
       display:inline-flex;

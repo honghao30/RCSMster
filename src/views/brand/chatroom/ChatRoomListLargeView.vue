@@ -140,7 +140,7 @@
           </div>
         </div>
         <!-- 임시저장,승인대기,검수중 top-notice--gray 사용 -->
-        <div class="top-notice--gray gray-btn">
+        <div class="top-notice--gray">
           <ul>
             <li>
               <span class="flag-progress reject">삭제 D-7</span>

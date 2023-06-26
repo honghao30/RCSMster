@@ -61,9 +61,8 @@
     <!-- 멤버 초대하기 -->
     <div class="side-box side-box__invite">
       <div class="side-box-top">
-        <h4>멤버 초대하기</h4>
-        <p>함께 관리하고 운영하는 멤버를 초대하세요.</p>
-        <p>아직 가입하지 않는 멤버도 초대할 수 있어요.</p>
+        <h4>마스터 계정 설정</h4>
+        <p>승인이 완료되면 모든 기능을 사용할 수 있어요.</p>
       </div>
       <div class="side-box-cont">
         <ul class="invite__step">

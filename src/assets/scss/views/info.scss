@@ -261,6 +261,28 @@
         margin-top: 32px;
     }
 }
+.bottom-notice--gray {
+    padding:16px 24px;
+    background-color:#F8F8F8;
+    border-radius: 8px;
+    margin-top: 32px;
+    +.page-title__wrap {
+        margin-top: 24px;
+    }
+    +.step__wrap {
+        margin-top: 24px;
+    }
+    &.gray-btn {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        margin-bottom: 32px;
+    }
+    &.gray__bottom {
+        margin-top: 32px;
+    }
+}
+
 .agree{
     &__wrap {
         margin-top: 32px;
@@ -365,6 +387,7 @@
     line-height:18px;
     border:1px solid #999;
     height: 24px;
+    line-height: 100%;
     &.done {
         border-color:$pointColor;
         color:$pointColor;

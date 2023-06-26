@@ -16,9 +16,23 @@
         <div class="title">2024년 4월 10일 제 22대 국회의원선거 선거 운동</div>
         <div class="sub-title">기간 : 2023년 10월 13일~ 2024년 5월 10일</div>
         <div class="election__banner--innerbox">
+          <p><span class="flag-progress done">아이디 발급 완료</span> 발급된 계정으로 접속하여 기간 동안 브랜드를 생성/운영관리 할 수 있습니다.</p>
+          <ButtonCmp
+            type="btn-line"
+            disabled
+          >
+              ID : 123456789
+          </ButtonCmp>
+        </div>
+      </div>
+      <div class="top-notice--gray election">
+        <div class="title">2024년 4월 10일 제 22대 국회의원선거 선거 운동</div>
+        <div class="sub-title">기간 : 2023년 10월 13일~ 2024년 5월 10일</div>
+        <div class="election__banner--innerbox">
           <p>발급된 계정으로 접속하여 기간 동안 브랜드를 생성/운영관리 할 수 있습니다.</p>
           <ButtonCmp
             type="btn-blue"
+            @click="newIdApproval"
           >
             기간제 계정 신청
           </ButtonCmp>
@@ -211,6 +225,38 @@
         >수정</ButtonCmp>
       </div>
     </div>
+    <!-- 모달 -->
+    <ModalView
+      v-if="isModalViewed" @closeModal="isModalViewed = false"
+    >
+      <ConfirmMsg
+        @closeModal="isModalViewed = false"
+        modalsize="Max628"
+      >
+        <div slot="msg">
+          <div class="msg election">
+            <div class="phone-cert__title">
+              2024년 4월 10일 제 22대 국회의원선거 선거 운동<br>
+              계정이 발급되었습니다.
+            </div>
+            <div class="phone-cert__number">ID : 13456789</div>
+            <div class="phone-cert__msg">
+              비밀번호 재설정 이후 사용하실 수 있습니다.<br>
+              확인 버튼을 선택하시면 비밀번호 재설정 페이지로 이동합니다.
+            </div>
+          </div>
+        </div>
+        <div class="button__wrap" slot="button">
+            <ButtonCmp
+              type="btn-blue"
+              @click="closeMsg"
+            >
+              확인
+            </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+    </ModalView>
+    <!-- // 모달 -->
   </div>
 </template>
 
@@ -218,12 +264,16 @@
 import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import ModalView from '@/components/common/ModalView.vue'
+import ConfirmMsg from '@/views/join/components/ConfirmMsg.vue'
 
 export default {
   components: {
     PageTitle,
     ButtonCmp,
-    PageTitleH3
+    PageTitleH3,
+    ModalView,
+    ConfirmMsg
   },
   data() {
     return {
@@ -247,7 +297,8 @@ export default {
       },
       selecteAuth: ['Auth_1'],
       filesName: '사업자등록증_2023.pdf',
-      election: true
+      election: true,
+      isModalViewed: false
     }
   },
   watch: {
@@ -258,6 +309,12 @@ export default {
     },
     corpInfo () {
       this.$router.push('./myInfo')
+    },
+    newIdApproval () {
+      this.isModalViewed = true
+    },
+    closeMsg () {
+      this.isModalViewed = false
     }
   }
 }

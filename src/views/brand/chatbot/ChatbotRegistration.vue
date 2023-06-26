@@ -7,7 +7,8 @@
         <div class="chatroom__wrap">
           <div class="chatroom-registration">
             <form  ref="form" :model="form">
-              <div class="chat-type__radio-tab">
+              <!-- 챗봇 유형 -->
+              <div class="type__radio-tab">
                 <ul>
                   <li>
                     <input type="radio" id="chatBubble" value="chatBubble" v-model="form.chatType" class="blind" @change="isChangeTypeCheck"/>
@@ -31,6 +32,7 @@
                   </li>
                 </ul>
               </div>
+              <!-- // 챗봇 유형 -->
               <div class="table__wrap">
                 <table class="table table-bodyonly form-table">
                   <colgroup>
@@ -38,7 +40,7 @@
                     <col />
                   </colgroup>
                   <tbody>
-                    <!-- 타입선택 -->
+                    <!-- 간편챗봇 메시지 이름 -->
                     <tr>
                       <th scope="row"><span class="form-item__label required">간편챗봇 메시지 이름</span></th>
                       <td>
@@ -62,7 +64,7 @@
                         </div>
                       </td>
                     </tr>
-                    <!-- //타입선택 -->
+                    <!-- // 간편챗봇 메시지 이름 -->
                     <template v-if="form.chatType == 'card'">
                     <!-- 이미지 사이즈 -->
                     <tr>
@@ -185,6 +187,7 @@
                     <!-- // 응답버튼 -->
                   </tbody>
                 </table>
+                <!--  카드 추가, 드래그 영역 -->
                 <div class="item-reg__wrap">
                   <div class="item-reg__inner">
                     <div class="item-reg__list" v-if="form.chatType == 'chatBubble'">
@@ -241,6 +244,8 @@
                     >저장</ButtonCmp>
                   </div>
                 </div>
+                <!--  // 카드 추가, 드래그 영역 -->
+                <!-- 말풍선 내용 영역 -->
                 <template v-if="form.chatType !== 'card'">
                   <table class="table table-bodyonly form-table" :key="j" >
                     <colgroup>
@@ -274,6 +279,8 @@
                     </tbody>
                   </table>
                 </template>
+                <!-- // 말풍선 내용 영역 -->
+                <!-- 카드 내용 영역 -->
                 <template v-else>
                   <template v-for="(msg, j) in form.msgData">
                     <table class="table table-bodyonly form-table" v-if="msg.isActive" :key="j" >
@@ -387,6 +394,7 @@
                     </table>
                   </template>
                 </template>
+                <!-- // 카드 내용 영역 -->
               </div>
             </form>
           </div>

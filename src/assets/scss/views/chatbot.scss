@@ -9,7 +9,7 @@
   background-color:#FCFCFC;
   padding:0px !important;
   align-self: flex-start;
-  top: 150px;    
+  top: 36px;    
   &.sticky {
       position: sticky;
       top: 124px;
@@ -387,7 +387,7 @@
   }
 }
 
-.chat-type__radio-tab {
+.type__radio-tab {
   padding: 16px 0;
 
   ul {
@@ -420,13 +420,18 @@
     }
     .tab-text {
       font-size: 12px;
-      line-height: 24px;
+      line-height: 18px;
     }
     .tab-title {
       display: block;
       font-weight: 500;
       line-height: 28px;
       font-size: 16px;
+      span {
+        font-size: 12px;
+        line-height:24px;
+        font-weight: 400;
+      }
     }
   }
   input[type="radio"]:checked {

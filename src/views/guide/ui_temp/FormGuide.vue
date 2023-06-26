@@ -261,7 +261,7 @@ export default {
     //   let emoji = e
     //   let refName = target
     //   if (idx !== undefined) {
-    //     this.$refs[refName][idx].value += emoji
+    //     this.$refs[refName][0].value += emoji
     //   } else {
     //     this.$refs[refName].value += emoji
     //   }

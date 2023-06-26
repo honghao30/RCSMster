@@ -7,7 +7,7 @@
     </div>
     <!-- case01.기존 회원 운영권한 초대 팝업 -->
     <div class="modal__content--body">
-      <div class="top-notice--gray gray-btn">
+      <div class="top-notice--gray">
         <ul>
            <li>- 대화방 메뉴를 등록할 대화방을 선택해주세요.</li>
            <li>- 대화방 메뉴 정보가 자동으로 입력됩니다.</li>

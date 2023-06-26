@@ -2,7 +2,7 @@
   <div class="brand__wrap">
     <div class="brand__inner">
       <BrandLnb />
-      <div class="brand-info__wrap stat-msg__wrap">
+      <div class="brand-info__wrap stat__wrap">
         <PageTitle pagetitle="메시지 통계 목록" />
         <div class="top-ctrl-area">
           <div class="left-area">

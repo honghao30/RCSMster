@@ -6,9 +6,9 @@ export default {
       label: '남성',
       backgroundColor: '#2F77FB',
       data: [60, 77, 60, 60, 40, 20],
-      borderRadius: 4, // 바 그래프의 테두리 둥글기 정도
-      barPercentage: 0.9, // 막대의 너비 비율을 조정
-      categoryPercentage: 0.3, // 카테고리 간의 간격 비율을 조정
+      borderRadius: 4,
+      barPercentage: 0.9,
+      categoryPercentage: 0.3,
       order: 2
     },
     {
@@ -17,8 +17,8 @@ export default {
       backgroundColor: '#F87B35',
       data: [45, 83, 63, 58, 37, 29],
       borderRadius: 4,
-      barPercentage: 0.9, // 막대의 너비 비율을 조정
-      categoryPercentage: 0.3, // 카테고리 간의 간격 비율을 조정
+      barPercentage: 0.9,
+      categoryPercentage: 0.3,
       order: 2
     }
   ]

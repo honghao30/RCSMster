@@ -477,26 +477,20 @@ const dashboardList = [
     'depth5': '목록',
     'screenId': 'R-Brand-Stat-List-02',
     'status': ['0622: 기획 공유'],
-    'link': '/'
-  },
-  {
-    'depth5': '상세',
-    'screenId': 'R-Brand-Stat-View-02',
-    'status': ['0622: 기획 공유'],
-    'link': '/'
+    'link': '/ChatRoomMenuStat'
   },
   {
     'depth4': '브랜드 소식 통계',
     'depth5': '목록',
     'screenId': 'R-Brand-Stat-List-03',
     'status': ['0622: 기획 공유'],
-    'link': '/'
+    'link': '/BrandFeedStat'
   },
   {
     'depth5': '상세',
     'screenId': 'R-Brand-Stat-View-03',
     'status': ['0622: 기획 공유'],
-    'link': '/'
+    'link': '/BrandFeedStatView'
   },
   // 브랜드 개설
   {
