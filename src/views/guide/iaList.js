@@ -324,20 +324,32 @@ const dashboardList = [
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/DashBoard'
   },
-  // 선거 대시보드
-  {
-    'depth1': '선거',
-    'depth2': '선거대시보드',
-    'depth3': '홈',
-    'screenId': '',
-    'status': ['0628: 기획 공유'],
-    'link': '/ElectionDashboard'
+   // 브랜드 관리
+   {
+    'depth3': '내 브랜드 관리',
+    'depth4': '브랜드 홈수정',
+    'depth5': '기본정보',
+    'screenId': 'R-Brand-Invi-View-01',
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
+    'link': '/brandeditstep01'
   },
   {
-    'depth3': '운영중인 브랜드',
-    'screenId': '',
-    'status': ['0628: 기획 공유'],
-    'link': '/OperatingBrandList'
+    'depth5': '퀵버튼',
+    'screenId': 'R-Brand-Invi-View-01',
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
+    'link': '/brandeditstep02'
+  },
+  {
+    'depth5': '브랜드 홈 탭 설정',
+    'screenId': 'R-Brand-Invi-View-01',
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
+    'link': '/brandeditstep03'
+  },
+  {
+    'depth4': '안심마크 관리',
+    'screenId': 'R-Brand-Mgt-Mod-04',
+    'status': ['0524: 기획 공유', '0526: 개발 공유'],
+    'link': '/SafetyMarkManage'
   },
   // 대화방
   {
@@ -534,33 +546,21 @@ const dashboardList = [
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandcreatestep04'
   },
-  // 브랜드 관리
+  // 선거 대시보드
   {
-    'depth3': '내 브랜드 관리',
-    'depth4': '브랜드 홈수정',
-    'depth5': '기본정보',
-    'screenId': 'R-Brand-Invi-View-01',
-    'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/brandeditstep01'
+    'depth1': '선거',
+    'depth2': '선거대시보드',
+    'depth3': '홈',
+    'screenId': '',
+    'status': ['0628: 기획 공유'],
+    'link': '/ElectionDashboard'
   },
   {
-    'depth5': '퀵버튼',
-    'screenId': 'R-Brand-Invi-View-01',
-    'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/brandeditstep02'
+    'depth3': '운영중인 브랜드',
+    'screenId': '',
+    'status': ['0628: 기획 공유'],
+    'link': '/OperatingBrandList'
   },
-  {
-    'depth5': '브랜드 홈 탭 설정',
-    'screenId': 'R-Brand-Invi-View-01',
-    'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/brandeditstep03'
-  },
-  {
-    'depth4': '안심마크 관리',
-    'screenId': 'R-Brand-Mgt-Mod-04',
-    'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/SafetyMarkManage'
-  }
   // 브랜드 소식
   // {
   //   'depth3': '브랜드 소식',

@@ -364,12 +364,13 @@ export default {
         title: '',
         content: ''
       },
+      brandTip: false,
+      isOpen: false,
       tabErrorMsg: false,
       webErrorMsg: false,
       resvErrorMsg: false,
       appErrorMsg: false,
       chatErrorMsg: false,
-      brandTip: false,
       noticeInfoCheck: [
         {
           label: '전화하기',
@@ -393,8 +394,7 @@ export default {
         }
       ],
       checkedMenus: [],
-      stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료'],
-      isOpen: false
+      stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료']
     }
   },
   computed: {

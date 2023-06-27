@@ -77,8 +77,7 @@
         padding-top: 12px;
     }
     .agree__area {
-        margin-top: 24px;
-        text-align:center;
+        margin: 32px 0 16px;
     }
     .flag-approval {
         padding: 2px 10px;
@@ -177,156 +176,127 @@
         margin-top: 32px;
     }
 }
-.brand-tip__wrap {
-    border-radius: 12px;
-    background-color: #f8f8f8;
-    padding: 20px;
-    margin: -8px 0 20px 0;
-    .brand-tip__box {
-        display: flex;
-        gap: 12px;
-        justify-content: space-between;
-        li {
-            padding: 24px 0;
-            width: 306px;
-            text-align: center;
-            border: 1px solid #DDDDDD;
-            background-color: #FFFFFF;
-            border-radius: 8px;
-            h5 {
-                @include fontoption(18px,#000,700,28px);
-            }
-            .brand-tip__example {
-                padding: 13px 11px 13px 12px;
-                margin: 25px 14px;
-                border: 1px solid #EEEEEE;
-                border-radius: 8px;
-                text-align: left;
-                strong {
-                    @include fontoption(12px,#888,700,19px);
-                }
-                p {
-                    padding-top: 4px;
-                    @include fontoption(13px,#333,400,19px);
-                }
-            }
-        }
-    }
-}
-.brand_create {
+.brand_create, .brand_edit {
     .brand_wrap {
         display: flex;
         gap: 32px;
         border-top: 2px solid #bcbcbc;
-        border-bottom: 2px solid #ddd;
-        .table__wrap {
-            border-top: 0;
-            .form-table {
-                .btn {
-                    height: 36px;
-                }
-                .form-item__content {
-                    .form-item-row {
-                        display: block;
-                    }
-                    .input-item_start {
-                        align-items: start;
-                    }
-                }
-                .textarea {
-                    textarea {
-                        height: 78px;
-                    }
-                }
-                tr {
-                    th {
-                        padding: 16px 0 16px 16px;
-                    }
-                    td {
-                        padding: 16px 16px 16px 0;
-                    }
-                }
-                .brand_board {
-                    th,
-                    td {
-                        border-bottom: 0;
-                    }
-                }
-                .brand_boardTip {
-                    th,
-                    td {
-                        padding: 0;
-                    }
-                }
-                tr:last-child {
-                    th,
-                    td {
-                        border-bottom: 0;
-                    }
-                }
-                tr:first-child {
-                    th,
-                    td {
-                        border-bottom: 1px solid #F0F0F0;
-                    }
-                }
-                .text-item {
-                    display: flex;
-                    gap: 16px;
-                    flex-direction: column;
-                    .text-item__title {
-                        display: inline-block;
-                        width: 100px;
-                        &.required:after {
-                            content:'*';
-                            color: $pointColor;
-                            position: relative;
-                            top: -1px;
-                            left:2px;
-                        }
-                    }
-                    .text-item__content {
-                        padding-bottom: 16px;
-                        border-bottom: 1px solid #F0F0F0;
-                        &.text-item__content:last-child {
-                            padding-bottom: 0;
-                            border-bottom: 0;
+        border-bottom: 2px solid #ddd;   
+    }
+    .table__wrap {
+        border-top: 0;
+        .form-table {
+            .btn {
+                height: 36px;
+            }
+            .form-item__content {
+                .form-item-row {
+                    display: block;
+                    .input-item {
+                        .text-item__title {
+                            width: 92px;
                         }
                     }
                 }
-                .guide-wrap {
-                    th {
-                        padding: 0;
-                    }
+                .input-item_start {
+                    align-items: start;
                 }
-                .btn-brandTip {
-                    @include fontoption(14px,#000,400,24px);
-                    text-decoration-line: underline;
-                    padding: 12px 0;
-                    &::after {
-                        content: '';
-                        display: block;
+            }
+            .textarea {
+                textarea {
+                    height: 78px;
+                }
+            }
+            tr {
+                th {
+                    padding: 16px 0 16px 16px;
+                }
+                td {
+                    padding: 16px 16px 16px 0;
+                }
+            }
+            .brand_board {
+                th,
+                td {
+                    border-bottom: 0;
+                }
+            }
+            .brand_boardTip {
+                th,
+                td {
+                    padding: 0;
+                }
+            }
+            tr:last-child {
+                th,
+                td {
+                    border-bottom: 0;
+                }
+            }
+            tr:first-child {
+                th,
+                td {
+                    border-bottom: 1px solid #F0F0F0;
+                }
+            }
+            .text-item {
+                display: flex;
+                gap: 16px;
+                flex-direction: column;
+                .text-item__title {
+                    display: inline-block;
+                    width: 100px;
+                    &.required:after {
+                        content:'*';
+                        color: $pointColor;
                         position: relative;
-                        left: 113px;
-                        top: -18px;
-                        transform: translateY(-50%);
-                        width: 16px;
-                        height:16px;
-                        background-image: url('../assets/images/icon/icon_arrow_guide.png');
-                        background-position: center center;
-                        background-repeat: no-repeat;
+                        top: -1px;
+                        left:2px;
+                    }
+                }
+                .text-item__content {
+                    padding-bottom: 16px;
+                    border-bottom: 1px solid #F0F0F0;
+                    &.text-item__content:last-child {
+                        padding-bottom: 0;
+                        border-bottom: 0;
+                    }
+                }
+            }
+            .guide-wrap {
+                th {
+                    padding: 0;
+                }
+            }
+            .btn-brandTip {
+                @include fontoption(14px,#000,400,24px);
+                text-decoration-line: underline;
+                padding: 0;
+                margin-top: 13px;
+                margin-bottom: -16px;
+                &::after {
+                    content: '';
+                    display: block;
+                    position: relative;
+                    left: 113px;
+                    top: -18px;
+                    transform: translateY(-50%);
+                    width: 16px;
+                    height:16px;
+                    background-image: url('../assets/images/icon/icon_arrow_guide.png');
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    transform: rotate(90deg);
+                    transition: all 0.3s;
+                }
+                &.open {
+                    &::after {      
                         transform: rotate(-90deg);
                         transition: all 0.3s;
                     }
-                    &.open {
-                        &::after {      
-                            transform: rotate(90deg);
-                            transition: all 0.3s;
-                        }
-                    } 
-                }
+                } 
             }
-        }   
+        }
     }
     .brand-aside {
         padding: 16px 0;
@@ -353,31 +323,66 @@
                 padding-bottom: 16px;
             }
         }
-        .brand-aside {
-            padding: 16px 0;
-            gap: 16px;
-            .button__brand {
-                justify-content: left;
-                .btn-brand {
-                    padding: 0 13.5px;
-                    @include fontoption(14px,#000000,400,24px);
-                    text-decoration: underline;
-                    &::after {
-                        content: '';
-                        display: block;
-                        position: absolute;
-                        right: 50px;
-                        top: 18px;
-                        width: 16px;
-                        height:16px;
-                        background-image: url('../assets/images/icon/icon_arrow_guide.png');
+    }
+}
+.brand-tip__wrap {
+    border-radius: 12px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    margin-bottom: 20px;
+    .brand-tip__box {
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+        li {
+            padding: 24px 12px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #DDDDDD;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            h5 {
+                @include fontoption(16px,#000,500,28px);
+            }
+            .brand-tip__example {
+                padding: 14px;
+                margin: 16px 0;
+                border: 1px solid #EEEEEE;
+                border-radius: 8px;
+                text-align: left;
+                strong {
+                    @include fontoption(12px,#888,700,19px);
+                }
+                p {
+                    padding-top: 4px;
+                    @include fontoption(13px,#333,400,19px);
+                }
+            }
+        }
+    }
+}
+.brand_edit {
+    .brand-tip__wrap {
+        padding: 12px;
+        .brand-tip__box {
+            gap: 8px;
+            li {
+                .brand-tip__example {
+                    p {
+                        font-size: 12px;
                     }
                 }
             }
-        }   
+        }
+    }
+    .form-table {
+        .input {
+            .post, .address {
+                margin-left: 7px;
+            }
+        }
     }
 }
-
 .brand__wrap--edit {
     display: flex;
     justify-content: space-between;
