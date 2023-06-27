@@ -209,7 +209,7 @@
       }
     }
   }
-  .zipcode__modal {
+  .Max628 {
     max-width:628px;               
     padding:40px;  
     border-radius: 16px;
@@ -604,5 +604,68 @@
   }
   .modal__content--footer{
     flex-wrap: wrap;
+  }
+}
+//기업 대시보드 모달창
+.modal__content--inner {
+  &.dashboard_modal{
+    max-width:628px;               
+    padding:48px 40px 40px 40px;  
+    border-radius: 16px;
+    background-color: #fff;    
+    transition: opacity .3s ease;
+    h3{
+      @include fontoption(28px,#000,700,36px);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .safetymark_des{
+      margin-top: 16px;
+    }
+    .reject_applicant{
+      margin-bottom: 16px;
+      padding: 16px 24px;
+      background-color: #F4F4F4;
+      border-radius: 8px;
+      text-align: center;
+      h5{
+      @include fontoption(12px,#000,700,24px);
+      }
+    }
+    .textarea {
+      textarea{
+        height: 118px;
+      }
+    }
+    .modal__content--footer{
+      .button__wrap{
+        button{
+          flex: 0 0 auto;
+        }
+      }
+    }
+  }
+  &.dashboard_small_modal{
+    max-width:403px;               
+    padding:48px 40px 40px 40px;  
+    border-radius: 16px;
+    background-color: #fff;    
+    transition: opacity .3s ease; 
+    p{
+      text-align: center;
+    }
+    .invite_detail{
+      margin-top: 16px;
+      padding: 16px 24px;
+      background-color: #f4f4f4;
+      border-radius: 8px;
+    }
+  }
+  .modal__content--footer{
+    .button__wrap{
+      button{
+        flex: 0 0 auto;
+      }
+    }
   }
 }

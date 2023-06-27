@@ -32,11 +32,11 @@
                         </div>
                     </td>
                   </tr>
-                  <tr>
+                  <tr class="brand_board">
                     <th scope="row"><span class="form-item__label">알림판</span></th>
                     <td>
                       <div class="form-item__content">
-                        <div class="form-item-row">
+                        <div class="text-item">
                           <div class="input-item">
                             <span class="radiobox">
                               <input type="radio" name="noticeChk" id="noticeUseN" v-model="form.noticeUse" value="useN"/>
@@ -47,13 +47,90 @@
                               <label for="noticeUse"><span class="checkbox__text">사용</span></label>
                             </span>
                           </div>
-                          <template v-if="form.noticeUse === 'use'">
-                            <p>미사용</p>
-                          </template>
                           <template v-if="form.noticeUse === 'useN'">
-                            <p>사용</p>
+                          </template>
+                          <template v-if="form.noticeUse === 'use'">
+                            <div class="form-item__content is-emoji">
+                              <div class="form-item-row text-item">
+                                <div class="input-item input-limit">
+                                  <span class="text-item__title required">제목</span>
+                                  <div class="input">
+                                    <input type="text" class="input" maxlength="20" placeholder="알림 제목을 입력해주세요." v-model="form.title" ref="title">
+                                    <div class="input-limit__text">
+                                      <Emoji @input="onSelectEmoji($event, 'title', j)"/>
+                                      <p>{{ form.title.length }}/20자</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="input-item input-limit input-item_start">
+                                  <span class="text-item__title required">내용</span>
+                                  <div class="textarea feed__textarea" >
+                                    <textarea maxlength="150" placeholder="알림 내용을 입력해주세요." v-model="form.content" ref="content"></textarea>
+                                    <div class="textarea-limit__text">
+                                      <Emoji @input="onSelectEmoji($event, 'content', j)"/>
+                                      <p>
+                                        {{ form.content.length }}/200자
+                                      </p>
+                                    </div>
+                                    <p class="guide-text error" v-if="brandContentErrorMsg">알림 내용을 입력해주세요.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </template>
                         </div>
+                        <button
+                          class="btn-brandTip"
+                          @click=onBrandTip
+                          type="button"
+                          :class="{open: isOpen}"
+                        >
+                          알림판 작성 가이드
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="brand_boardTip">
+                    <td colspan="2">
+                      <div class="brand-tip__wrap" v-if="isOpen">
+                        <ul class="brand-tip__box">
+                          <li>
+                            <h5>1. 영업시간 안내</h5>
+                            <div class="brand-tip__example">
+                              <strong>영업시간 안내</strong>
+                              <p>월~금 : 10:30 ~ 20:00 <br />
+                                주말 및 공휴일은 휴무입니다.</p>
+                            </div>
+                            <ButtonCmp
+                              type="btn-blue-line small"
+                              @click=brandTip1
+                            >적용</ButtonCmp>
+                          </li>
+                          <li>
+                            <h5>2. 임시휴무 안내</h5>
+                            <div class="brand-tip__example">
+                              <strong>1월 23일 임시휴무 안내</strong>
+                              <p>내부 인테리어로 임시휴무입니다. <br />
+                                더 산뜻하게 다시 모시겠습니다!</p>
+                            </div>
+                            <ButtonCmp
+                              type="btn-blue-line small"
+                              @click=brandTip2
+                            >적용</ButtonCmp>
+                          </li>
+                          <li>
+                            <h5>3. 강조하고 싶은 내용 인재</h5>
+                            <div class="brand-tip__example">
+                              <strong>출시기념!</strong>
+                              <p>단 7일간! 이 메시지를 보여주시는 <br />
+                                분들께만 10% 할인!</p>
+                            </div>
+                            <ButtonCmp
+                              type="btn-blue-line small"
+                              @click=brandTip3
+                            >적용</ButtonCmp>
+                          </li>
+                        </ul>
                       </div>
                     </td>
                   </tr>
@@ -61,16 +138,16 @@
                     <th scope="row"><span class="form-item__label">소식</span></th>
                     <td>
                       <div class="form-item__content">
-                        <div class="form-item-row">
-                          <div class="text-item">
+                        <div class="text-item">
+                          <div class="text-item__content">
                             <span class="text-item__title">전화</span>
                             <span class="text">{{ form.tel }}</span>
                           </div>
-                          <div class="text-item">
+                          <div class="text-item__content">
                             <span class="text-item__title">더보기</span>
                             <span class="text">{{ form.moreInfo }}</span>
                           </div>
-                          <div class="text-item">
+                          <div class="text-item__content">
                             <span class="text-item__title">웹</span>
                             <span class="text">{{ form.url }}</span>
                           </div>
@@ -82,25 +159,24 @@
                     <th scope="row"><span class="form-item__label">정보</span></th>
                     <td>
                       <div class="form-item__content">
-                        <div class="form-item-row">
+                        <div class="form-item-row text-item">
                           <div class="input-item">
-                            <span class="inpun-item__title required">웹사이트</span>
+                            <span class="text-item__title required">웹사이트</span>
                             <span class="input">
-                              <input type="text" class="input" v-model="form.name" disabled>
+                              <input type="text" class="input" v-model="form.website">
                             </span>
                           </div>
                           <div class="input-item">
-                            <span class="inpun-item__title required">이메일</span>
+                            <span class="text-item__title required">이메일</span>
                             <span class="input">
-                              <input type="text" class="input" v-model="form.name" disabled>
+                              <input type="text" class="input" v-model="form.email">
                             </span>
                           </div>
-                          <div class="input-item">
-                            <span class="inpun-item__title required">주소</span>
-                            <div class="form-item__content">
+                          <div class="input-item input-item_start">
+                            <span class="text-item__title required">주소</span>
+                            <div class="input">
                               <div class="form-item-row">
                                 <div class="input-item post">
-                                <!-- 0620: 디자인 1차 수정 - 'input-post' class명 추가 -->
                                   <span class="input input-post"><input type="text" class="input" v-model="form.postcode" disabled></span>
                                   <ButtonCmp
                                       type="btn-default-line"
@@ -112,7 +188,6 @@
                               </div>
                               <div class="form-item-row">
                                 <div class="input-item address">
-                                <!-- 0620: 디자인 1차 수정 - 'input-info' class명 추가 -->
                                   <span class="input input-info">
                                     <input type="text" class="input" v-model="form.addr1" disabled>
                                   </span>
@@ -126,6 +201,11 @@
                         </div>
                       </div>
                     </td>
+                  </tr>
+                  <tr class="guide-wrap">
+                    <th colspan="2">
+                      <p class="guide-text black">&bull; 퀵 버튼 설정 시 입력한 정보가 동일하게 반영됩니다.</p>
+                    </th>
                   </tr>
                   <!-- <tr>
                     <th scope="row"><span class="form-item__label">소식 노출 정보 선택</span></th>
@@ -208,34 +288,37 @@
                   </tr> -->
                 </tbody>
               </table>
+              <div class="agree__area">
+                <span class="checkbox">
+                  <input type="checkbox" id="agreeY" v-model="form.agree" value="agreeY"><label for="agreeY">메시지 발송 시 Free 템플릿은 정보성에 한하여 이용 가능합니다. 규정 위반시, 서비스 이용이 제한될 수 있습니다.</label>
+                </span>
+              </div>
             </div>
-            <div class="brand-aside  sticky">
+            <div class="brand-aside sticky">
               <div class="button__wrap button__brand">
                 <button class="btn-brand">
-                  브랜드 홈 작성가이드
+                  브랜드 개설 가이드
                 </button>
               </div>
-              <BrandEmulator :brandInfoData="form" :curTab="form.curTab"/>
+              <BrandEmulator :brandInfoData="form" curTab="feed" :feedData="form"/>
             </div>
           </div>
         </form>
-        <div class="agree__area">
-          <span class="checkbox">
-            <input type="checkbox" id="agreeY" v-model="form.agree" value="agreeY"><label for="agreeY">메시지 발송 시 Free 템플릿은 정보성에 한하여 이용 가능합니다. 규정 위반시, 서비스 이용이 제한될 수 있습니다.</label>
-          </span>
-        </div>
-        <div class="button__wrap">
+        <div class="button__wrap space-between">
           <router-link
-            to="/brandcreatestep02"
-            class="btn btn-blue-line"
+            to="/brandcreatestep01"
+            class="btn btn-line"
           >이전</router-link>
-          <ButtonCmp
-              type="btn-line"
-          >임시저장</ButtonCmp>
-          <ButtonCmp
-              type="btn-blue"
-              @click="onSubmit"
-          >승인요청</ButtonCmp>
+        <div>
+            <ButtonCmp
+                type="btn-line"
+                @click="isModalViewed = true"
+            >임시저장</ButtonCmp>
+            <ButtonCmp
+                type="btn-blue"
+                @click="onSubmit"
+            >다음</ButtonCmp>
+          </div>
         </div>
       </div>
     </div>
@@ -248,6 +331,7 @@ import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import StepList from '@/components/common/StepList.vue'
 import BrandEmulator from '@/views/brand/components/BrandEmulator.vue'
+import Emoji from '@/components/common/Emoji.vue'
 
 export default {
   components: {
@@ -255,7 +339,8 @@ export default {
     ButtonCmp,
     PageTitleH3,
     StepList,
-    BrandEmulator
+    BrandEmulator,
+    Emoji
   },
   data() {
     return {
@@ -275,13 +360,16 @@ export default {
         chat: '',
         agree: '',
         curTab: 'feed',
-        noticeUse: 'noticeUseN'
+        noticeUse: 'useN',
+        title: '',
+        content: ''
       },
       tabErrorMsg: false,
       webErrorMsg: false,
       resvErrorMsg: false,
       appErrorMsg: false,
       chatErrorMsg: false,
+      brandTip: false,
       noticeInfoCheck: [
         {
           label: '전화하기',
@@ -305,12 +393,33 @@ export default {
         }
       ],
       checkedMenus: [],
-      stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료']
+      stepTitle: ['기본 정보 입력', '퀵 버튼 설정', '브랜드 홈 탭 설정', '브랜드 개설 완료'],
+      isOpen: false
     }
   },
   computed: {
   },
   methods: {
+    onBrandTip () {
+      this.isOpen = !this.isOpen
+    },
+    brandTip1 () {
+      this.form.title = '영업시간 안내'
+      this.form.content = '월~금 : 10:30 ~ 20:00 주말 및 공휴일은 휴무입니다.'
+    },
+    brandTip2 () {
+      this.form.title = '1월 23일 임시휴무 안내'
+      this.form.content = '내부 인테리어로 임시휴무입니다. 더 산뜻하게 다시 모시겠습니다!'
+    },
+    brandTip3 () {
+      this.form.title = '출시기념!'
+      this.form.content = '단 7일간! 이 메시지를 보여주시는 분들께만 10% 할인!'
+    },
+    onSelectEmoji(e, target) {
+      let emoji = e
+      let refName = target
+      this.$refs[refName].value += emoji
+    },
     changeMenuCheck(e, targetMenu) {
       if (this.checkedMenus.length > 3) {
         alert('퀵 버튼은 3개까지만 선택 가능합니다.')
@@ -355,7 +464,7 @@ export default {
     },
     noticeCheck (index, value) {
       this.isActiveNum = index
-      this.form.bgImage = value
+      this.form.noticeUse = value
     }
   }
 }

@@ -130,7 +130,7 @@
             <div class="brand-aside">
               <div class="button__wrap button__brand">
                 <button class="btn-brand">
-                  브랜드 홈 작성가이드
+                  브랜드 개설 가이드
                 </button>
               </div>
               <BrandEmulator :brandInfoData="form" curTab="info"/>
@@ -146,17 +146,17 @@
             to="/brandcreatestep01"
             class="btn btn-line"
           >이전</router-link>
-          <div>
-              <ButtonCmp
-                  type="btn-line"
-                  @click="isModalViewed = true"
-              >임시저장</ButtonCmp>
-              <ButtonCmp
-                  type="btn-blue"
-                  @click="onSubmit"
-              >다음</ButtonCmp>
-            </div>
+        <div>
+            <ButtonCmp
+                type="btn-line"
+                @click="isModalViewed = true"
+            >임시저장</ButtonCmp>
+            <ButtonCmp
+                type="btn-blue"
+                @click="onSubmit"
+            >다음</ButtonCmp>
           </div>
+        </div>
       </div>
     </div>
     <!-- // 모달 영역 -->

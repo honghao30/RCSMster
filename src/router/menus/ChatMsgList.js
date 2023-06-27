@@ -13,6 +13,8 @@ import TemplateView from '@/views/brand/message/TemplateView'
 
 // 레이아웃
 import LayoutRegistration from '@/views/brand/message/LayoutRegistration'
+import LayoutList from '@/views/brand/message/LayoutList'
+import LayoutView from '@/views/brand/message/LayoutView'
 export default [
   // 챗봇
   {
@@ -95,6 +97,24 @@ export default [
   {
     path: '/LayoutRegistration',
     component: LayoutRegistration,
+    meta: {
+      tittle: '레이아웃',
+      breadcrumb: false
+    },
+    props: true
+  },
+  {
+    path: '/LayoutList',
+    component: LayoutList,
+    meta: {
+      tittle: '레이아웃 목록',
+      breadcrumb: false
+    },
+    props: true
+  },
+  {
+    path: '/LayoutView',
+    component: LayoutView,
     meta: {
       tittle: '레이아웃',
       breadcrumb: false

@@ -36,40 +36,40 @@
                       <th scope="row"><span class="form-item__label required">제목</span></th>
                       <td>
                         <div class="form-item__content is-emoji">
-                            <div class="form-item-row">
-                              <div class="input-item input-limit">
-                                <div class="input">
-                                  <input type="text" class="input" maxlength="20" placeholder="알림 제목을 입력해주세요." v-model="form.title" ref="title">
-                                  <div class="input-limit__text">
-                                    <Emoji @input="onSelectEmoji($event, 'title')"/>
-                                    <p>{{ form.title.length }}/20자</p>
-                                  </div>
+                          <div class="form-item-row">
+                            <div class="input-item input-limit">
+                              <div class="input">
+                                <input type="text" class="input" maxlength="20" placeholder="알림 제목을 입력해주세요." v-model="form.title" ref="title">
+                                <div class="input-limit__text">
+                                  <Emoji @input="onSelectEmoji($event, 'title')"/>
+                                  <p>{{ form.title.length }}/20자</p>
                                 </div>
                               </div>
                             </div>
-                              <p class="guide-text error" v-if="brandTitleErrorMsg">알림 제목을 입력해주세요.</p>
                           </div>
+                            <p class="guide-text error" v-if="brandTitleErrorMsg">알림 제목을 입력해주세요.</p>
+                        </div>
                       </td>
                     </tr>
                     <tr v-if="form.notice === 'noticeUseY'">
                       <th scope="row"><span class="form-item__label required">내용</span></th>
                       <td>
                         <div class="form-item__content is-emoji">
-                            <div class="form-item-row">
-                              <div class="input-item input-limit">
-                                <div class="textarea feed__textarea" >
-                                  <textarea maxlength="150" placeholder="알림 내용을 입력해주세요." v-model="form.content" ref="content"></textarea>
-                                  <div class="textarea-limit__text">
-                                    <Emoji @input="onSelectEmoji($event, 'content')"/>
-                                    <p>
-                                      {{ form.content.length }}/200자
-                                    </p>
-                                  </div>
+                          <div class="form-item-row">
+                            <div class="input-item input-limit">
+                              <div class="textarea feed__textarea" >
+                                <textarea maxlength="150" placeholder="알림 내용을 입력해주세요." v-model="form.content" ref="content"></textarea>
+                                <div class="textarea-limit__text">
+                                  <Emoji @input="onSelectEmoji($event, 'content')"/>
+                                  <p>
+                                    {{ form.content.length }}/200자
+                                  </p>
                                 </div>
                               </div>
                             </div>
-                              <p class="guide-text error" v-if="brandContentErrorMsg">알림 내용을 입력해주세요.</p>
                           </div>
+                            <p class="guide-text error" v-if="brandContentErrorMsg">알림 내용을 입력해주세요.</p>
+                        </div>
                       </td>
                     </tr>
                   </tbody>

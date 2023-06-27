@@ -1,6 +1,6 @@
 <template>
   <div class="template-item">
-    <h4 class="template-item__title">{{ itemTitle }}</h4>
+    <h4 class="template-item__title" v-if="!mode === 'msgonly'">{{ itemTitle }}</h4>
     <div class="template-item__box">
       <component
         v-for="(cmp, i) in templateData" :key="i"
@@ -10,6 +10,7 @@
     </div>
     <ButtonCmp
       type="btn-blue-line"
+      v-if="!mode === 'msgonly'"
     >컴포넌트 작성</ButtonCmp>
   </div>
 </template>
@@ -46,6 +47,9 @@ export default {
     },
     templateData: {
       type: Array
+    },
+    mode: {
+      type: String
     }
   }
 }

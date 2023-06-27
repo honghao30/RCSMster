@@ -12,8 +12,7 @@
                   <li>
                     <input type="radio" id="sms" value="sms" v-model="form.layoutType" class="blind"/>
                     <label for="sms">
-                      <i class="icon-card"></i>
-
+                      <i class="icon-chatbubble"></i>
                       <dl>
                         <dt class="tab-title">SMS<span> (40~45자)</span></dt>
                         <dd class="tab-text">간단한 알림이나 짧은 공지를 메시지로 발송</dd>
@@ -33,7 +32,8 @@
                   <li>
                     <input type="radio" id="mms" value="mms" v-model="form.layoutType" class="blind" />
                     <label for="mms">
-                      <i class="icon-chatbubble"></i>
+                      <i class="icon-card"></i>
+
                       <dl>
                         <dt class="tab-title">MMS<span> (텍스트+사진첨부)</span></dt>
                         <dd class="tab-text">이미지와 텍스트를 혼합하여 메시지 발송</dd>
@@ -42,12 +42,12 @@
                   </li>
                 </ul>
               </div>
-              <div class="msg-cmp__list">
+              <!-- <div class="msg-cmp__list">
                 <div class="cmp-item">
                   <p class="cmp-title">Main Title</p>
                   <div></div>
                 </div>
-              </div>
+              </div> -->
               <div class="table__wrap">
                 <table class="table table-bodyonly form-table">
                   <colgroup>
@@ -85,7 +85,7 @@
                           <div class="form-item-row">
                             <div class="input-item">
                               <Dropdown
-                              v-model="form.tableCount" placeholder="테이블 개수 선택" />
+                              v-model="form.tableCount" placeholder="테이블 개수 선택" :options="tableCountOption"/>
                             </div>
                           </div>
                         </div>
@@ -169,8 +169,20 @@ export default {
         hideInputFooter: true,
         mode: 'registration'
       },
-      tableCountOption: [{
-      }]
+      tableCountOption: [
+        {
+          label: '1개',
+          value: 1
+        },
+        {
+          label: '2개',
+          value: 2
+        },
+        {
+          label: '3개',
+          value: 3
+        }
+      ]
     }
   },
   computed: {

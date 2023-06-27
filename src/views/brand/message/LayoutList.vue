@@ -3,7 +3,7 @@
     <div class="brand__inner">
       <BrandLnb />
       <div class="brand-info__wrap">
-        <PageTitle pagetitle="템플릿 메시지 목록" />
+        <PageTitle pagetitle="레이아웃 목록" />
         <div class="top-ctrl-area">
           <div class="left-area">
             <el-date-picker
@@ -27,33 +27,30 @@
             </div>
           </div>
           <div class="right-area">
-            <Dropdown :options="templateOptions" v-model="templateOption"/>
-            <Dropdown :options="statusOptions" v-model="statusOption"/>
+            <Dropdown :options="layoutOptions" v-model="layoutOption" placeholder="레이아웃 유형"/>
           </div>
         </div>
         <div class="table__wrap chatroom__table">
           <table class="table table-list">
             <colgroup>
+              <col width="18%"/>
               <col width="15%"/>
-              <col width="15%"/>
-              <col width="15%"/>
-              <col />
-              <col width="15%"/>
+              <col/>
+              <col width="13%" />
               <col width="15%"/>
             </colgroup>
             <thead>
               <tr>
-                <th scope="col"><span>템플릿 ID</span></th>
-                <th scope="col"><span>템플릿 유형</span></th>
-                <th scope="col"><span>템플릿 이름</span></th>
-                <th scope="col"><span>제목</span></th>
+                <th scope="col"><span>레이아웃 ID</span></th>
+                <th scope="col"><span>레이아웃 유형</span></th>
+                <th scope="col"><span>레이아웃 명</span></th>
+                <th scope="col"><span>작성자</span></th>
                 <th scope="col"><span>최종 수정일</span></th>
-                <th scope="col"><span>상태</span></th>
               </tr>
             </thead>
             <tbody>
               <tr
-                v-for="(item, i) in templateList" :key="i"
+                v-for="(item, i) in layoutList" :key="i"
               >
                 <td>
                   {{ item.id }}
@@ -61,19 +58,14 @@
                 <td>
                   {{ item.type }}
                 </td>
-                <td>
-                  {{ item.name }}
+                <td class="l-align">
+                  <router-link to="">{{ item.name }}</router-link>
                 </td>
                 <td>
-                  <router-link to="">{{ item.title }}</router-link>
+                  {{ item.writer }}
                 </td>
                 <td>
                   {{ item.date }}
-                </td>
-                <td>
-                  <span :class="{'reject' : item.status === '반려'}">
-                    {{ item.status }}
-                  </span>
                 </td>
               </tr>
             </tbody>
@@ -126,93 +118,65 @@ export default {
           value: '3m'
         }
       ],
-      templateOptions: [
+      layoutOptions: [
         {
           label: '전체',
           codeNm: 'all'
         },
         {
-          label: '텍스트 템플릿',
-          codeNm: 'textTemplate'
+          label: 'SMS',
+          codeNm: 'SMS'
         },
         {
-          label: 'LMS 템플릿',
-          codeNm: 'LMSTemplate'
+          label: 'LMS',
+          codeNm: 'LMS'
         },
         {
-          label: '이미지 템플릿',
-          codeNm: 'imageTemplate'
+          label: 'MMS',
+          codeNm: 'MMS'
         }
       ],
-      statusOptions: [
-        {
-          label: '전체',
-          codeNm: 'all'
-        },
-        {
-          label: '임시저장',
-          codeNm: 'draft'
-        },
-        {
-          label: '승인 대기',
-          codeNm: 'waiting'
-        },
-        {
-          label: '승인 완료',
-          codeNm: 'approval'
-        },
-        {
-          label: '반려',
-          codeNm: 'reject'
-        }
-      ],
-      templateList: [{
-        'id': 'ADS232SDS',
-        'type': '이미지 템플릿',
-        'name': '타이틀 선택형1',
-        'title': '카드가입안내',
-        'date': '2022.10.02',
-        'status': '승인대기'
+      layoutList: [{
+        'id': 'SKJD0233',
+        'type': 'SMS',
+        'name': '신상품소개',
+        'writer': '홍*동',
+        'date': '2022.10.02'
       },
       {
-        'id': 'ADS232SDS',
-        'type': '텍스트 템플릿',
-        'name': '타이틀 자유형1',
-        'title': '신상품 소개',
-        'date': '2022.10.02',
-        'status': '승인완료'
+        'id': 'SKJD0233',
+        'type': 'MMS',
+        'name': '카드가입안내',
+        'writer': '홍*동',
+        'date': '2022.10.02'
       },
       {
-        'id': 'ADS232SDS',
-        'type': 'LMS 템플릿',
-        'name': '장문형',
-        'title': '프로모션(우러간)',
-        'date': '2022.10.02',
-        'status': '반려'
+        'id': 'SKJD0233',
+        'type': 'SMS',
+        'name': '프로모션(월간)',
+        'writer': '홍*동',
+        'date': '2022.10.02'
       },
       {
-        'id': 'ADS232SDS',
-        'type': '이미지 템플릿',
-        'name': '이미지 강조형',
-        'title': '카드가입안내',
-        'date': '2022.10.02',
-        'status': '승인대기'
+        'id': 'SKJD0233',
+        'type': 'SMS',
+        'name': '프리 템플릿(자동생성)',
+        'writer': '홍*동',
+        'date': '2022.10.02'
       },
       {
-        'id': 'ADS232SDS',
-        'type': '텍스트 템플릿',
-        'name': '타이틀 자유형1',
-        'title': '신상품 소개',
-        'date': '2022.10.02',
-        'status': '승인대기'
+        'id': 'SKJD0233',
+        'type': 'SMS',
+        'name': '자동이체(신한카드)',
+        'writer': '홍*동',
+        'date': '2022.10.02'
       },
       {
-        'id': 'ADS232SDS',
-        'type': '텍스트 템플릿',
-        'name': '아이콘 강조형1',
-        'title': '프리 템플릿(자동생성)',
-        'date': '2022.10.02',
-        'status': '임시저장'
+        'id': 'SKJD0233',
+        'type': 'SMS',
+        'name': '자동이체(현대카드)',
+        'writer': '홍*동',
+        'date': '2022.10.02'
       }]
     }
   },

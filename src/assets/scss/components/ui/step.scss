@@ -6,6 +6,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        &.step--03 {
+            li {
+                width: calc(100% / 3);
+            }
+        }
     }
     li {
         position: relative;            

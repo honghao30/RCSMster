@@ -33,7 +33,7 @@
               <div class="inner__input-item">
                 <div class="input-item input-limit">
                   <div class="textarea">
-                    <textarea maxlength="17" placeholder="사용자에게 보여지는 버튼이름을 입력해주세요."  v-model="btn.buttonName" style="height:38px;"
+                    <textarea maxlength="17" placeholder="사용자에게 보여지는 버튼이름을 입력해주세요."  v-model="btn.buttonName" style="height:48px;"
                     ref="buttonName"></textarea>
                     <div class="textarea-limit__text">
                       <Emoji @input="onSelectEmoji($event, 'buttonName', i)"/>

@@ -316,12 +316,28 @@ const homeList = [
 ]
 
 const dashboardList = [
+  // 기업 대시보드
   {
     'depth1': '기업',
     'depth2': '기업대시보드',
     'screenId': 'R-Comp-Dash-View-01',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/DashBoard'
+  },
+  // 선거 대시보드
+  {
+    'depth1': '선거',
+    'depth2': '선거대시보드',
+    'depth3': '홈',
+    'screenId': '',
+    'status': ['0628: 기획 공유'],
+    'link': '/ElectionDashboard'
+  },
+  {
+    'depth3': '운영중인 브랜드',
+    'screenId': '',
+    'status': ['0628: 기획 공유'],
+    'link': '/OperatingBrandList'
   },
   // 대화방
   {

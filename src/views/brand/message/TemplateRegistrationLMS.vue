@@ -26,7 +26,7 @@
                     <tr>
                       <th scope="row"><span class="form-item__label">템플릿 유형</span></th>
                       <td>
-                        <span class="text">텍스트 선택형</span>
+                        <span class="text">LMS 템플릿</span>
                       </td>
                     </tr>
                     <!-- //템플릿 유형 -->

@@ -3,7 +3,7 @@ const ImageTemplate = [
     {
       cmpType: 'MainTitle',
       data: {
-        title: '상품권/티켓형'
+        mainTitle: '상품권/티켓형'
       }
     },
     {
@@ -78,7 +78,7 @@ const ImageTemplate = [
     {
       cmpType: 'MainTitle',
       data: {
-        title: '6월 신작 소개'
+        mainTitle: '6월 신작 소개'
       }
     },
     {
@@ -265,7 +265,7 @@ const LMSTemplate = [
     {
       cmpType: 'MainTitle',
       data: {
-        title: '장문형 LMS 템플릿'
+        mainTitle: '장문형 LMS 템플릿'
       }
     },
     {
@@ -293,7 +293,7 @@ const LMSTemplate = [
     {
       cmpType: 'MainTitle',
       data: {
-        title: '문단형 LMS 템플릿'
+        mainTitle: '문단형 LMS 템플릿'
       }
     },
     {
@@ -377,7 +377,7 @@ const LMSTemplate = [
     {
       cmpType: 'MainTitle',
       data: {
-        title: '청구서함 LMS 템플릿',
+        mainTitle: '청구서함 LMS 템플릿',
         borderNone: true
       }
     },
@@ -441,7 +441,7 @@ const LMSTemplate = [
     {
       cmpType: 'MainTitle',
       data: {
-        title: '광고형 LMS 템플릿'
+        mainTitle: '광고형 LMS 템플릿'
       }
     },
     {
@@ -490,7 +490,7 @@ const LMSTemplate = [
     {
       cmpType: 'MainTitle',
       data: {
-        title: '예정/일정 안내형'
+        mainTitle: '예정/일정 안내형'
       }
     },
     {
@@ -566,113 +566,159 @@ const LMSTemplate = [
 ]
 
 const textTemplate = [
-  [
-    {
-      cmpType: 'Item',
-      data: {
-        reverse: true,
-        mainText: '아이템 강조형',
-        subText: '텍스트 템플릿'
+  {
+    templateType: 'textItem1',
+    cmp: [
+      {
+        cmpType: 'Item',
+        data: {
+          reverse: true,
+          mainText: '아이템 강조형',
+          subText: '텍스트 템플릿'
+        }
+      },
+      {
+        cmpType: 'Description',
+        data: {
+          description: '강조하고 싶은 문구에<br>집중해주세요.<br><br>정보성 메시지의 인식률을 높여줍니다.'
+        }
+      },
+      {
+        cmpType: 'Buttons',
+        data: {
+          buttons: ['버튼']
+        }
       }
-    },
-    {
-      cmpType: 'Description',
-      data: {
-        description: '강조하고 싶은 문구에<br>집중해주세요.<br><br>정보성 메시지의 인식률을 높여줍니다.'
+    ]
+  },
+  {
+    templateType: 'textItem2',
+    cmp: [
+      {
+        cmpType: 'Item',
+        data: {
+          reverse: true,
+          mainText: '아이템 강조형',
+          subText: '텍스트 템플릿'
+        }
+      },
+      {
+        cmpType: 'MainTitle',
+        data: {
+          mainTitle: '가능 글자수',
+          pointText: '90자'
+        }
+      },
+      {
+        cmpType: 'Table',
+        data: {
+          description: [
+            {
+              tableTitle: '심사승인여부',
+              tableText: '필수'
+            },
+            {
+              tableTitle: '단가',
+              tableText: '대행사 문의'
+            },
+            {
+              tableTitle: '특징',
+              tableText: '로고 사전 등록 가능'
+            }
+          ]
+        }
+      },
+      {
+        cmpType: 'Buttons',
+        data: {
+          buttons: ['버튼']
+        }
       }
-    },
-    {
-      cmpType: 'Buttons',
-      data: {
-        buttons: ['버튼']
+    ]
+  },
+  {
+    templateType: 'textTitleCustom1',
+    cmp: [
+      {
+        cmpType: 'Table',
+        data: {
+          title: 'RBC 택배',
+          pointText: '배송완료',
+          description: [
+            {
+              tableTitle: '보내는 사람',
+              tableText: 'RCS Biz Center 판매점',
+              bold: true
+            },
+            {
+              tableTitle: '배송지',
+              tableText: '서울 중구 을지로 000빌딩',
+              bold: true
+            },
+            {
+              tableTitle: '상품',
+              tableText: '상품패키지6종',
+              bold: true
+            }
+          ]
+        }
+      },
+      {
+        cmpType: 'Buttons',
+        data: {
+          buttons: ['버튼']
+        }
       }
-    }
-  ],
-  [
-    {
-      cmpType: 'Item',
-      data: {
-        reverse: true,
-        mainText: '아이템 강조형',
-        subText: '텍스트 템플릿'
+    ]
+  },
+  {
+    templateType: 'textTitleCustom2',
+    cmp: [
+      {
+        cmpType: 'MainTitle',
+        data: {
+          mainTitle: '인증번호',
+          pointText: '1234566'
+        }
+      },
+      {
+        cmpType: 'Description',
+        data: {
+          description: 'RCS Biz Center의<br>로그인 인증을 위한 인증번호 입니다.'
+        }
+      },
+      {
+        cmpType: 'Buttons',
+        data: {
+          buttons: ['버튼']
+        }
       }
-    },
-    {
-      cmpType: 'MainTitle',
-      data: {
-        title: '가능 글자수',
-        pointText: '90자'
+    ]
+  },
+  {
+    templateType: 'textTitle1',
+    cmp: [
+      {
+        cmpType: 'MainTitle',
+        data: {
+          mainTitle: '안내'
+        }
+      },
+      {
+        cmpType: 'Description',
+        data: {
+          description: '텍스트 템플릿은<br>SMS보다 저렴한 RCS 메시지 상품입니다.<br><br>90자 이내으 정보성 메시지를<br> 패턴화하여 사전등록 후, 이용하실 수 있습니다.'
+        }
+      },
+      {
+        cmpType: 'Buttons',
+        data: {
+          buttons: ['템플릿 등록하기']
+        }
       }
-    },
-    {
-      cmpType: 'Table',
-      data: {
-        description: [
-          {
-            tableTitle: '심사승인여부',
-            tableText: '필수'
-          },
-          {
-            tableTitle: '단가',
-            tableText: '대행사 문의'
-          },
-          {
-            tableTitle: '특징',
-            tableText: '로고 사전 등록 가능'
-          }
-        ]
-      }
-    },
-    {
-      cmpType: 'Buttons',
-      data: {
-        buttons: ['버튼']
-      }
-    }
-  ],
-  [
-    {
-      cmpType: 'MainTitle',
-      data: {
-        title: '인증번호',
-        pointText: '1234566'
-      }
-    },
-    {
-      cmpType: 'Description',
-      data: {
-        description: 'RCS Biz Center의<br>로그인 인증을 위한 인증번호 입니다.'
-      }
-    },
-    {
-      cmpType: 'Buttons',
-      data: {
-        buttons: ['버튼']
-      }
-    }
-  ],
-  [
-  ],
-  [
-    {
-      cmpType: 'MainTitle',
-      data: {
-        title: '안내'
-      }
-    },
-    {
-      cmpType: 'Description',
-      data: {
-        description: '텍스트 템플릿은<br>SMS보다 저렴한 RCS 메시지 상품입니다.<br><br>90자 이내으 정보성 메시지를<br> 패턴화하여 사전등록 후, 이용하실 수 있습니다.'
-      }
-    },
-    {
-      cmpType: 'Buttons',
-      data: {
-        buttons: ['템플릿 등록하기']
-      }
-    }
-  ]
+    ]
+  }
+
 ]
 
 export { ImageTemplate, LMSTemplate, textTemplate }

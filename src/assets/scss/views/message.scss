@@ -41,8 +41,8 @@
         display: flex;
         flex-direction: row;
         align-items: flex-start;
-        flex-wrap: wrap;
         justify-content: flex-end;
+        flex-wrap: wrap; 
         .form-item__label{
           @include fontoption(14px,#000,500,26px);
           flex:0 0 100px;
@@ -52,6 +52,7 @@
           display: flex;
           flex-direction: column;
           gap: 8px;
+          max-width: calc(100% - 100px);
           &.buttonInfo-box {
             flex: none;
             width: calc(100% - 100px);
@@ -314,6 +315,9 @@
       line-height:24px;
       margin-bottom: 8px;
     }
+    .title-point {
+      color: $pointColor;
+    }
     .description {
       font-size: 14px;
       line-height: 22px;
@@ -378,6 +382,9 @@
           }
           dd {
             text-align:right;
+            &.em {
+              font-weight: 700;
+            }
           }
         }
       }
@@ -471,6 +478,26 @@
     }
   }
 }
+.layout-code {
+  margin-top: 32px;
+  padding: 8px;
+  background-color:#F8F8F8;
+  .code-inner {
+    padding: 8px;
+    overflow-y: auto;
+    max-height: 400px;
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+  }
+  code {
+    font-family: $font-family; 
+    @include fontoption($defaultFontSize,$defaultColor,400,$defaultLineHeight);
+    white-space: pre-wrap;
+  }
+  
+}
+
 
 .btn__area--top {
   display: flex;

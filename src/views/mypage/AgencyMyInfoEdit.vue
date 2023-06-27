@@ -56,7 +56,7 @@
             <tr class="tr__border">
               <th scope="row"><span class="form-item__label required">휴대폰(관리자)</span></th>
               <td colspan="3">
-                  <div class="form-item__content">
+                  <div class="input">
                       <div class="form-item-row">
                           <div class="input-item">
                           <!-- 0620: 디자인 1차 수정 - 'input-info' class명 추가 -->

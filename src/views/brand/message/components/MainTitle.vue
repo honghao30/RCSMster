@@ -1,11 +1,21 @@
 <template>
-  <div class="main-title">
-    <div class="title"
-      :class="[{'border--none' : data.borderNone }, {'justify' : data.pointText}]"
-    >
-      <span class="thum" v-if="!data.pointText"></span>
-      <p v-html="data.title"></p>
-      <span class="point" v-html="data.pointText" v-if="data.pointText"></span>
+  <div v-if="viewMode">
+    <div class="main-title">
+      <div class="title"
+      >
+        <span class="logo" :style="{'background-image': `url(${data.logoSrc})`}"></span>
+        <p v-html="data.mainTitle"></p>
+      </div>
+    </div>
+  </div>
+  <div v-else>
+    <div class="main-title">
+      <div class="title"
+      >
+        <span class="logo" :style="{'background-image': `url(${data.logoSrc})`}"></span>
+        <p v-if="data.mainTitle">{{ data.mainTitle }}</p>
+        <p v-else>타이틀을 입력해주세요</p>
+      </div>
     </div>
   </div>
 </template>
@@ -16,6 +26,14 @@ export default {
     data: {
       type: Object,
       default: null
+    },
+    viewMode: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data () {
+    return {
     }
   }
 }

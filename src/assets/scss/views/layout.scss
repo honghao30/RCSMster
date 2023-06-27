@@ -207,6 +207,26 @@ $contentWidth2: 1024px;
         text-align:center;
         padding-top: 82px;   
         margin-bottom: 56px;
+        .flag-progress {
+           vertical-align: middle;
+           border:0;
+           &.weit {
+            background-color: #ccc;
+            color:#fff;  
+           }
+           &.ing {
+            background-color: #FF8310;
+            color:#fff;                
+           }
+           &.return {
+            background-color: #FF4830;
+            color:#fff;            
+           }
+           &.done {
+            background-color: #2F77FB;
+            color:#fff;
+           }                                 
+        }
     }
     &.bgcontainer {
         background: #F5F5F5;

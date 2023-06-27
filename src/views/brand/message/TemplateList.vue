@@ -54,22 +54,23 @@
           <div class="template-list">
             <TemplateItem
               itemTitle="아이템 강조형1"
-              :templateData=textTemplate[0] />
+              :templateData=textTemplate[0].cmp />
             <TemplateItem
               itemTitle="아이템 강조형2"
-              :templateData=textTemplate[1] />
+              :templateData=textTemplate[1].cmp />
             <TemplateItem
               itemTitle="타이틀 자유형1"
-              :templateData=textTemplate[2] />
+              :templateData=textTemplate[2].cmp />
             <TemplateItem
               itemTitle="타이틀 자유형2"
-              :templateData=textTemplate[3] />
+              :templateData=textTemplate[3].cmp />
             <TemplateItem
               itemTitle="타이틀 선택형1"
-              :templateData=textTemplate[4] />
+              :templateData=textTemplate[4].cmp />
             <TemplateItem
               itemTitle="타이틀 선택형2"
-              :templateData=textTemplate[5] />
+              :templateData=textTemplate[5].cmp />
+          </div>
         </div>
       </div>
     </div>

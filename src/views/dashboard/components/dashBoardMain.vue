@@ -1,23 +1,23 @@
 <template>
   <div class="dashBoard-main__content">
     <!-- 가입 승인 배너 -->
-    <!-- 가입 승인 배너 : 가입 승인 요청 -->
+    <!-- 가입 승인 요청 -->
     <div class="approval-statu__box document-not">
       <strong>가입 승인 진행중(서류 미제출)</strong>
       <p>사업자등록증을 제출하지 않았습니다. 사업자등록증을 제출해주세요.</p>
     </div>
-    <!-- 가입 승인 배너 : 가입 승인 요청 -->
+    <!-- 가입 승인 요청 -->
     <div class="approval-statu__box approval-ing">
       <strong>가입 승인 진행중</strong>
       <p>가입 승인 완료 전에도 RBC의 기능을 이용하실 수 있으나, 일부기능은 승인 완료 후 정상적으로 사용하실 수 있습니다.</p>
     </div>
-    <!-- 가입 승인 배너 : 가입 승인 반려 -->
+    <!-- 가입 승인 반려 -->
     <div class="approval-statu__box approval-reject">
       <strong>가입 승인 반려</strong>
       <p class="reject-reason">반려 사유 : 인터넷 광고 금지 메시지</p>
       <p>반려 사유를 확인하고 수정해 주세요. 3일 안에 다시 신청하지 않으면 지금까지 등록한 모든 데이터가 삭제됩니다.</p>
     </div>
-    <!-- 가입 승인 배너 : 가입 승인 반려 -->
+    <!-- 가입 승인 반려 -->
     <div class="approval-statu__box approval-done">
       <strong>가입 승인 완료</strong>
       <p>RBC의 모든 기능을 자유롭게 이용하실 수 있습니다.</p>
@@ -84,6 +84,38 @@
       <PagingCmp />
     </div>
     <!-- // 내가 운영중인 브랜드 영역 -->
+    <!-- 내 브랜드를 개설하세요 영역 -->
+    <div class="board-main__box--roun-type brand-make-box">
+      <PageTitleH3 titleh3="내 브랜드를 개설하세요"/>
+      <div class="des">
+        <p>고객과 RCS 메시지를 이용해 커뮤니케이션하려면 브랜드를 개설하셔야 합니다.</p>
+        <p>우선 통신서비스 가입증명원을 미리 준비해주세요.</p>
+      </div>
+      <div class="step-total">
+        <div class="step-each">
+          <p class="step-num">STEP 1</p>
+          <p class="step_title">기본 정보 입력</p>
+          <div class="step_des">
+            <p>프로필 이미지, 브랜드 소개를 이용해 고객에게 브랜드 이미지를 전달할 수 있어요.</p>
+          </div>
+        </div>
+        <div class="step-each">
+          <p class="step-num">STEP 2</p>
+          <p class="step_title">퀵 버튼 설정</p>
+          <div class="step_des">
+            <p>전화하기, 웹사이트 연결 등 고객이 쉽게 접근할 수 있는 퀵 버튼을 활용해 보세요.</p>
+          </div>
+        </div>
+        <div class="step-each">
+          <p class="step-num">STEP 3</p>
+          <p class="step_title">브랜드 홈 탭 설정</p>
+          <div class="step_des">
+            <p>브랜드에 대한 소식과 정보 중 고객에게 우선적으로 보일 탭을 직접 선택하세요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 내 브랜드를 개설하세요 영역 -->
     <!-- 브랜드 개설 배너 -->
     <div class="brand-banner__box">
       <strong>브랜드를 만들고 고객과 연결될 수 있는<br/>RBC의 다양한 기능을 사용하세요.</strong>

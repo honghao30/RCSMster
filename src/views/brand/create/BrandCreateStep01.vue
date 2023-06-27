@@ -468,7 +468,7 @@ export default {
       isModalViewed: false,
       isSave: false,
       isBrandImport: false,
-      quickButtons: [''],
+      quickButton: ['chat'],
       imgcategoryOptions,
       categoryOptions: [
         {
