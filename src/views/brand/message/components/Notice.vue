@@ -2,14 +2,14 @@
   <div class="notice-area">
     <p class="notice-text"
     v-html="item"
-    v-for="(item, i) in data.noticeText" :key="i"></p>
+    v-for="(item, i) in info.noticeText" :key="i"></p>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    data: {
+    info: {
       type: Object,
       default: null
     }

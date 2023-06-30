@@ -73,8 +73,10 @@
         }
        
     }
-    .checkbox {
-        padding-top: 12px;
+    .inner__input {
+        .checkbox {
+            padding-top: 12px;
+        }
     }
     .agree__area {
         margin: 32px 0 16px;
@@ -301,28 +303,30 @@
     .brand-aside {
         padding: 16px 0;
         gap: 16px;
-        .button__brand {
-            justify-content: right;
-            .btn-brand {
-                padding: 0 18.5px;
-                @include fontoption(14px,#000000,400,24px);
-                text-decoration: underline;
-                &::after {
-                    content: '';
-                    display: block;
-                    position: absolute;
-                    right: 0px;
-                    top: 6px;
-                    width: 16px;
-                    height:16px;
-                    background-image: url('../assets/images/icon/icon_arrow_guide.png');
-                }
-            }
-            .agree__area {
-                text-align: left;
-                padding-bottom: 16px;
-            }
+        
+    }
+}
+.button__brand {
+    justify-content: right;
+    padding: 0;
+    .btn-brand {
+        padding: 0 18.5px;
+        @include fontoption(14px,#000000,400,24px);
+        text-decoration: underline;
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            right: 0px;
+            top: 6px;
+            width: 16px;
+            height:16px;
+            background-image: url('../assets/images/icon/icon_arrow_guide.png');
         }
+    }
+    .agree__area {
+        text-align: left;
+        padding-bottom: 16px;
     }
 }
 .brand-tip__wrap {
@@ -816,6 +820,16 @@
             color: #999
         }
     }
+    .history-btn {
+        position: relative;
+        margin-bottom: -96px;
+        left: 113px;
+        bottom: 110px;
+        width: 900px;
+        padding: 24px 0;
+        border-radius: 100px;
+        background: rgba(0, 0, 0, 0.20);
+    }
 }
 //대화방 메뉴 등록
 .switch-status{
@@ -963,12 +977,22 @@ td{
         width: 100%;
         gap: 32px;
         margin-bottom: 32px;
+        border-top: 3px solid #BCBCBC;
+        border-bottom: 3px solid #BCBCBC;
         .chatroom-registration{
             flex: 1;
             .tab__wrap{
                 margin-bottom: 0;
+                border-top: 0;               
             }
             .table__wrap{
+                border-top:0;
+                tr {
+                    &:last-child {
+                        th,
+                        td {border-bottom:0;}
+                    }
+                }                 
                 .form-table{
                     .chattype-des{
                         margin-bottom: 8px;
@@ -1001,10 +1025,19 @@ td{
                                     width: 100%;
                                 }
                             }
+                            &.input-number {
+                                padding: 8px 0;
+                            }
                         }
                         .guide-text{
                             width: calc(100% - 100px);
                             float: right;
+                            &.float-none {
+                                float: none;
+                                &.width {
+                                    width: 100%;
+                                }
+                            }
                         }
                     }
                     .exception{
@@ -1080,11 +1113,12 @@ td{
                 background-repeat: no-repeat;
                 transform: rotate(-90deg);
                 cursor: pointer;
-                top: 4px;
-                right: -16px;
+                top: 6px;
+                right: -14px;
             }
         }
         .chatroom-emulator{
+            padding:16px 0;
             .exception-txt{
                 flex: none;
                 margin: 0 32px 16px 0;
@@ -1129,6 +1163,31 @@ td{
     align-items: center;
     gap: 10px;
     @include fontoption(14px,#999,400,26px);
+    }
+}
+.form-item__content {
+    &.item-file {
+        width: 100%;
+    }
+    &.item-connect {
+        .inner__input{
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            &:last-child {
+                padding-bottom: 0;
+                border-bottom: 0;
+            }
+            .inner__input-box {
+                span {
+                    width: 78px;
+                }
+                .textarea {
+                    textarea {
+                        height: 85px;
+                    }
+                }
+            }
+        }
     }
 }
 //대화방 목록
@@ -1248,142 +1307,335 @@ td{
 // 브랜드 대시보드
 .brand-dash {
     .brand-dash__wrap {
-      width: 801px;
-      .brand-dash__content {
-        margin-bottom: 24px;
+       display: flex;
+       gap: 32px;
+       flex-direction: column;
+       .brand-dash__content--wrap {
+        flex: 1;    
+       }
+        .brand-dash__content {
+            margin-bottom: 24px;
+            padding: 24px 24px 28px;
+            background: #FFFFFF;
+            border: 1px solid #EAEAEA;
+            border-radius: 16px;
+            .template__list--wrap {
+                margin-top:24px;
+                .template-list {
+                    display: flex;
+                    justify-content: space-around;
+                    gap: 16px;
+                    .template-item__title {
+                        text-align: center;
+                        @include fontoption(14px,#333,400,24px);
+                        margin-bottom: 8px;
+                        &::after {
+                            content: '';
+                            display: inline-block;
+                            margin-left: 3px;
+                            width: 20px;
+                            height:20px;
+                            vertical-align: middle;
+                            background: url('../assets/images/icon/icon_arrow-next.png') no-repeat right center;
+                        }                        
+                    }
+                    .template-item {
+                        width: calc(100% / 3);
+                        .template-item__box {
+                            width: 100%;
+                        }
+                        .btn {
+                            display: none !important;
+                        }       
+                        .description {
+                            li {
+                                padding: 3px 0 7px;
+                            }
+                        }                 
+                    }
+                }
+            }
+            .brand-dash__chat {
+            display: flex;
+            .brand-dash__state {
+                width: 467px;
+                ul {
+                li {
+                    p {
+                    width: 110px;
+                    padding: 43px 0;
+                    font-size: 24px;
+                    }
+                    span {
+                    font-size: 14px;
+                    line-height: 26px;
+                    }
+                }
+                }
+            }
+            .brand-dash__chatbot {
+                width: 100%;
+                border: 1px solid #EAEAEA;
+                border-radius: 16px;
+                margin: 39px 0 0 24px;
+                &:after {
+                content: "";
+                position: absolute;
+                border-top: 1px solid #f0f0f0;
+                right: 600px;
+                top: 260.5px;
+                width: 212px;
+                height: 0;
+                margin: 0 24px;
+                }
+                li {
+                display: flex;
+                justify-content: space-between;
+                padding: 16px 24px;
+                p {
+                    @include fontoption(14px,#000,500,20px);
+                }
+                span {
+                    @include fontoption(28px,#000,700,34px);
+                    padding-top: 6px;
+                }
+                }
+            }
+            }
+            .brand-dash__result {
+                .title-area {
+                    position: relative;
+                    button {
+                        position: absolute;
+                        right:0;
+                        top:10px;
+                        min-width: fit-content;
+                    }
+                }
+            h4 {
+                @include fontoption(18px,#000,700,26px);
+            }
+            p {
+                padding-top: 2px;
+                @include fontoption(14px,#666,400,20px);
+                span {
+                @include fontoption(14px,#888,400,20px);
+                }
+            }
+            ul {
+                padding-top: 16px;
+                width: 100%;
+                li {
+                padding: 12px 0;
+                display: flex;
+                border-bottom: 1px solid #f0f0f0;
+                .result-title {
+                    padding-left: 8px;
+                    width: 188px; 
+                    @include fontoption(16px,#333,500,28px);
+                }
+                .result-data {
+                    padding: 1px 0;
+                    @include fontoption(14px,#333,400,26px);
+                    span {
+                    @include fontoption(16px,#2F77FB,700,24px);
+                    }
+                }
+                &:first-child {
+                    padding: 0 0 12px;
+                }
+                &:last-child {
+                    padding: 12px 0 0;
+                    border-bottom: 0;
+                }
+                }
+            }
+            }
+            .brand-dash__template {
+            h4 {
+                @include fontoption(18px,#000,400,26px);
+                .template-brand {
+                @include fontoption(18px,#000,600,26px);
+                }
+                span {
+                @include fontoption(20px,#2F77FB,700,26px);
+                }
+            }
+            p {
+                padding-top: 6px;
+                @include fontoption(14px,#666,400,20px);
+            }
+            }
+        }
+        .brand-dash__product {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            .brand-dash__list {
+            background: #FFFFFF;
+            border: 1px solid #EAEAEA;
+            border-radius: 16px;
+            padding: 24px 24px 28px;
+            .brand-dash__state {
+                width: 338.5px;
+            }
+            }
+        }
+        .brand-dash__banner {
+            padding: 24px 48px;
+            background: #CBE6FF;
+            border-radius: 16px;
+            h3 {
+            @include fontoption(18px,#000,700,26px);
+            }
+            p {
+            padding-top: 2px;
+            @include fontoption(12px,#666,400,18px);
+            }
+        }
+        .brand-dash__content--bottom {
+            display: flex;
+            gap: 32px;
+        }        
+     .step-display__board {
         padding: 24px 24px 28px;
         background: #FFFFFF;
         border: 1px solid #EAEAEA;
         border-radius: 16px;
-        .brand-dash__chat {
+        &.collapse {
+            padding-bottom:10px;
+        }
+        .display__board--tit {
           display: flex;
-          .brand-dash__state {
-            width: 467px;
+          justify-content: space-between;
+          .tit {
+            @include fontoption(24px,#000,700,36px);
+          }
+          .btn-text-toggle {
+            @include fontoption(12px,#333,400,18px);
+            &::after {
+                content: '';
+                display: inline-block;
+                width:10px;
+                height:10px;
+                background: url('../assets/images/icon/icon_arrow_up.png') no-repeat;
+            }
+            &.collapse {
+                &::after {
+                    transform: rotate(-180deg);
+                    transition: all 0.3s;
+                }
+            }
+          }
+        }        
+        .display__board {
+          margin-top: 16px;
+          display: flex;
+          justify-content: space-between;
+          height:auto;
+          transition: all 0.3s;
+          &.collapse {
+            height:0;
+            transition: all 0.3s;
+            overflow: hidden;
+          }
+          .step-list__wrap {
+            width: 50%;
             ul {
-              li {
+                display: flex;
+                width: 100%;
+                max-width: 555px;
+                position: relative;
+                &::before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 51px;
+                    width: auto;
+                    right: 50px;
+                    left: 50px;
+                    height:6px;
+                    background-color: #F4F4F4;
+                }
+                &.step-ing2 {
+                    padding:0 50px;
+                    justify-content: space-between;
+                }
+                &.step-ing3 {
+                    max-width: 100%;
+                    padding-right: 50px;
+                    justify-content: space-between;
+                }
+                li {
+                    position: relative;
+                    list-style: none;
+                    .list__circle {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;      
+                        align-items: center;                  
+                        .circle {                                                        
+                            width: 110px;
+                            height:110px;
+                            border-radius: 50%;
+                            border: 6px solid #F4F4F4;     
+                            display: flex;                            
+                            justify-content: center;      
+                            align-items: center;   
+                            background-color: #fff;
+                            span {
+                                @include fontoption(40px,#999,700,49px);
+                            }                                                 
+                        }
+                        .step-name {
+                            margin-top:8px;
+                            @include fontoption(14px,#666666,700,26px);
+                        }
+                    }
+                    &.isDone {
+                        .circle {
+                            border: 6px solid #D9E4FA;
+                            background: #fff url('../assets/images/icon/icon_check.png') no-repeat center;
+                            span {
+                                color:#2855A7;                                
+                            }
+                        }
+                        .step-name { 
+                            color:#2855A7;
+                        }
+                    }
+                    &.isIng {
+                        .circle {
+                            border: 6px solid #ADE2FF;
+                            span {
+                                color: #2F77FB;                                                                
+                            }
+                        }
+                        .step-name { 
+                            color: #2F77FB;
+                        }
+                    }                    
+                }
+            }
+          }
+          .step-list__text--wrap {
+            flex: 1;
+            .text-box-gray {
+                padding: 16px 24px;
+                gap: 16px;
+                background: #f8f8f8;
+                border-radius: 16px;
+                .tit {
+                  @include fontoption(18px,#000,500,26px);
+                }
                 p {
-                  width: 110px;
-                  padding: 43px 0;
-                  font-size: 24px;
+                  margin:6px 0 10px 0;
+                  @include fontoption(14px,#000,400,20px);  
                 }
-                span {
-                  font-size: 14px;
-                  line-height: 26px;
-                }
-              }
             }
           }
-          .brand-dash__chatbot {
-            width: 100%;
-            border: 1px solid #EAEAEA;
-            border-radius: 16px;
-            margin: 39px 0 0 24px;
-            &:after {
-              content: "";
-              position: absolute;
-              border-top: 1px solid #f0f0f0;
-              right: 600px;
-              top: 260.5px;
-              width: 212px;
-              height: 0;
-              margin: 0 24px;
-            }
-            li {
-              display: flex;
-              justify-content: space-between;
-              padding: 16px 24px;
-              p {
-                @include fontoption(14px,#000,500,20px);
-              }
-              span {
-                @include fontoption(28px,#000,700,34px);
-                padding-top: 6px;
-              }
-            }
-          }
-        }
-        .brand-dash__result {
-          h4 {
-            @include fontoption(18px,#000,700,26px);
-          }
-          p {
-            padding-top: 2px;
-            @include fontoption(14px,#666,400,20px);
-            span {
-              @include fontoption(14px,#888,400,20px);
-            }
-          }
-          ul {
-            padding-top: 16px;
-            width: 100%;
-            li {
-              padding: 12px 0;
-              display: flex;
-              border-bottom: 1px solid #f0f0f0;
-              .result-title {
-                padding-left: 8px;
-                width: 188px; 
-                @include fontoption(16px,#333,500,28px);
-              }
-              .result-data {
-                padding: 1px 0;
-                @include fontoption(14px,#333,400,26px);
-                span {
-                  @include fontoption(16px,#2F77FB,700,24px);
-                }
-              }
-              &:first-child {
-                padding: 0 0 12px;
-              }
-              &:last-child {
-                padding: 12px 0 0;
-                border-bottom: 0;
-              }
-            }
-          }
-        }
-        .brand-dash__template {
-          h4 {
-            @include fontoption(18px,#000,400,26px);
-            .template-brand {
-              @include fontoption(18px,#000,600,26px);
-            }
-            span {
-              @include fontoption(20px,#2F77FB,700,26px);
-            }
-          }
-          p {
-            padding-top: 6px;
-            @include fontoption(14px,#666,400,20px);
-          }
-        }
-      }
-      .brand-dash__product {
-        display: flex;
-        gap: 24px;
-        margin-bottom: 24px;
-        .brand-dash__list {
-          background: #FFFFFF;
-          border: 1px solid #EAEAEA;
-          border-radius: 16px;
-          padding: 24px 24px 28px;
-          .brand-dash__state {
-            width: 338.5px;
-          }
-        }
-      }
-      .brand-dash__banner {
-        padding: 24px 48px;
-        background: #CBE6FF;
-        border-radius: 16px;
-        h3 {
-          @include fontoption(18px,#000,700,26px);
-        }
-        p {
-          padding-top: 2px;
-          @include fontoption(12px,#666,400,18px);
-        }
-      }
+        }             
+     }
     }
     .brand-aside {
       flex:0 0 360px;
@@ -1415,6 +1667,12 @@ td{
         p{
           @include fontoption(12px,#666,400,18px);
         }
+      }
+      &.side-box__banner {
+        padding: 0;
+        background-color: transparent;
+        border-radius: 0;
+        border: 0;
       }
       &.side-box__invite{
         .side-box-top {
@@ -1484,6 +1742,23 @@ td{
         @include fontoption(14px,#000,700,22px);
         }
     }
+    .gray-box-noti {
+        width: 100%;
+        height: 64px;
+        border-radius: 8px;
+        padding: 8px 12px;
+        background-color: #f8f8f8;
+        margin-top:16px;
+        .no-data {
+            @include fontoption(12px,#666,400,24px); 
+        }
+        .noti {
+            @include fontoption(12px,#000,400,24px); 
+            span {
+                color:#FF4830;
+            }
+        }
+    }
     ul {
         display: flex;
         justify-content: space-between;
@@ -1492,42 +1767,40 @@ td{
         padding-top: 16px;
         p {
             width: 72px;
-            padding: 24px 0;
-            border-radius: 100%;
-            background: rgba(217, 217, 217, 0.3);
-            @include fontoption(16px,#333,700,24px);
+            padding: 6px 0;
+            @include fontoption(24px,#333,700,36px);
         }
         span {
             padding-top: 6px;
-            @include fontoption(12px,#333,700,18px);
+            @include fontoption(12px,#666,700,18px);
         }
-        &:nth-child(2) {
-            p {
-            background: rgba(217, 217, 217, 0.2);
-            @include fontoption(16px,#777,700,24px);
-            }
-            span {
-            @include fontoption(12px,#777,700,18px);
-            }
-        }
-        &:nth-child(3) {
-            p {
-            background: rgba(253, 85, 62, 0.08);
-            @include fontoption(16px,#FD553E,700,24px);
-            }
-            span {
-            @include fontoption(12px,#FD553E,700,18px);
-            }
-        }
-        &:nth-child(4) {
-            p {
-            background: rgba(38, 130, 238, 0.08);
-            @include fontoption(16px,#2682EE,700,24px);
-            }
-            span {
-            @include fontoption(12px,#2682EE,700,18px);
-            }
-        }
+        // &:nth-child(2) {
+        //     p {
+        //     background: rgba(217, 217, 217, 0.2);
+        //     @include fontoption(16px,#777,700,24px);
+        //     }
+        //     span {
+        //     @include fontoption(12px,#777,700,18px);
+        //     }
+        // }
+        // &:nth-child(3) {
+        //     p {
+        //     background: rgba(253, 85, 62, 0.08);
+        //     @include fontoption(16px,#FD553E,700,24px);
+        //     }
+        //     span {
+        //     @include fontoption(12px,#FD553E,700,18px);
+        //     }
+        // }
+        // &:nth-child(4) {
+        //     p {
+        //     background: rgba(38, 130, 238, 0.08);
+        //     @include fontoption(16px,#2682EE,700,24px);
+        //     }
+        //     span {
+        //     @include fontoption(12px,#2682EE,700,18px);
+        //     }
+        // }
         }
     }
 }

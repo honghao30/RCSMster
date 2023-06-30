@@ -5,18 +5,11 @@
       <div class="brand-info__wrap">
         <PageTitle pagetitle="작업 히스토리" />
         <div class="top-ctrl-area">
-          <div class="left-area">
+          <div></div>
+          <div class="right-area">
             <Dropdown :options="categoryOptions" placeholder="유형" />
             <Dropdown :options="statusOptions" placeholder="상태" />
-          </div>
-          <div class="right-area">
-            <Dropdown :options="orderOptions" />
-            <Dropdown :options="Options" />
-            <div class="pager">
-              <span class="num">1/3</span>
-              <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
-              <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
-            </div>
+            <Dropdown :options="orderOptions" placeholder="최신순" />
           </div>
         </div>
         <div class="table__wrap notice-table">
@@ -53,11 +46,7 @@
                   {{ item.title }}
                 </td>
                 <td>
-                  <span class="flag-progress"
-                    :class="item.status"
-                  >
-                    {{ item.statusText }}
-                  </span>
+                  {{ item.statusText }}
                   <p v-if="item.statusDetail" class="more-detail">{{ item.statusDetail }}</p>
                 </td>
                 <td>
@@ -71,14 +60,19 @@
             </tbody>
           </table>
         </div>
-        <div class="button__wrap" v-if="checkList.length > 0">
+        <!-- 1차 디자인 수정 -->
+        <!-- <div class="button__wrap" v-if="checkList.length > 0">
+          <ButtonCmp
+            type="btn-blue-line"
+          >사용</ButtonCmp>
           <ButtonCmp
             type="btn-blue-line"
           >미사용</ButtonCmp>
           <ButtonCmp
-            type="btn-blue"
-          >사용</ButtonCmp>
-        </div>
+            type="btn-blue-line"
+          >삭제</ButtonCmp>
+        </div> -->
+        <PagingCmp />
       </div>
     </div>
   </div>
@@ -88,15 +82,17 @@
 
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
-import ButtonCmp from '@/components/common/ButtonCmp.vue'
+// import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
+import PagingCmp from '@/components/common/PagingCmp.vue'
 
 export default {
   components: {
     PageTitle,
     BrandLnb,
-    ButtonCmp,
-    Dropdown
+    // ButtonCmp,
+    Dropdown,
+    PagingCmp
   },
   data() {
     return {
@@ -191,20 +187,6 @@ export default {
         {
           label: '오래된 순',
           value: 'oldest'
-        }
-      ],
-      Options: [
-        {
-          label: '10개씩',
-          value: '10'
-        },
-        {
-          label: '20개씩',
-          value: '20'
-        },
-        {
-          label: '20개씩',
-          value: '20'
         }
       ]
     }

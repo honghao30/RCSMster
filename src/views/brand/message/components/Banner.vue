@@ -10,7 +10,7 @@
 <script>
 export default {
   props: {
-    compInfo: {
+    info: {
       type: Object,
       default: null
     }

@@ -42,12 +42,27 @@
                   </li>
                 </ul>
               </div>
-              <!-- <div class="msg-cmp__list">
-                <div class="cmp-item">
-                  <p class="cmp-title">Main Title</p>
-                  <div></div>
+              <div class="message-cmp__list">
+                <div class="cmp-item" v-for="(item, i) in cmpList" :key="i">
+                  <p class="cmp-title">{{ item.title }}</p>
+                  <div class="cmp-box">
+                    <img :src="item.iconUrl" alt="">
+                  </div>
+                  <ButtonCmp
+                    type="btn-blue-line"
+                    size="medium"
+                    @click="addCmpItem(item)"
+                    v-if="!item.isActive"
+                    :disabled="cmpAddLength > 1 && item.title !== 'Button'"
+                  >컴포넌트 작성</ButtonCmp>
+                  <ButtonCmp
+                    type="btn-line"
+                    size="medium"
+                    v-if="item.isActive"
+                    @click="removeCmpItem(item)"
+                  >컴포넌트 삭제</ButtonCmp>
                 </div>
-              </div> -->
+              </div>
               <div class="table__wrap">
                 <table class="table table-bodyonly form-table">
                   <colgroup>
@@ -120,8 +135,7 @@
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
             <ChatEmulator
-              :chatInfoData="chatInfoData"
-              :chatMsgData="form"
+              :templateData="templateData"
             />
           </div>
           <!-- // 에뮬레이터 -->
@@ -140,7 +154,7 @@
 <script>
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
-import ChatEmulator from '@/views/brand/components/ChatEmulator.vue'
+import ChatEmulator from '@/views/brand/message/components/ChatEmulator.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
 import Emoji from '@/components/common/Emoji.vue'
@@ -162,6 +176,39 @@ export default {
         btnDirection: 'row',
         tableCount: ''
       },
+      templateData: [],
+      cmpList: [
+        {
+          title: 'Main Title',
+          iconUrl: require('@/assets/images/icon/icon_cmp_01.png'),
+          cmpType: 'MainTitle',
+          isActive: false
+        },
+        {
+          title: 'Description',
+          iconUrl: require('@/assets/images/icon/icon_cmp_02.png'),
+          cmpType: 'Description',
+          isActive: false
+        },
+        {
+          title: 'Item',
+          iconUrl: require('@/assets/images/icon/icon_cmp_03.png'),
+          cmpType: 'Item',
+          isActive: false
+        },
+        {
+          title: 'Table',
+          iconUrl: require('@/assets/images/icon/icon_cmp_04.png'),
+          cmpType: 'Table',
+          isActive: false
+        },
+        {
+          title: 'Button',
+          iconUrl: require('@/assets/images/icon/icon_cmp_05.png'),
+          cmpType: 'Buttons',
+          isActive: false
+        }
+      ],
       chatInfoData: {
         chatType: 'chatBubble',
         chatRoomName: 'SYSTEMSTUDIO',
@@ -186,6 +233,15 @@ export default {
     }
   },
   computed: {
+    cmpAddLength() {
+      let lth = 0
+      this.templateData.forEach((item) => {
+        if (item.type !== 'Buttons') {
+          lth = lth + 1
+        }
+      })
+      return lth
+    }
   },
   methods: {
     onSelectEmoji(e, target, idx) {
@@ -196,6 +252,22 @@ export default {
       } else {
         this.$refs[refName].value += emoji
       }
+    },
+    addCmpItem(cmp) {
+      let cmpItem = {
+        type: cmp.cmpType,
+        info: {}
+      }
+      cmp.isActive = true
+      this.templateData.push(cmpItem)
+    },
+    removeCmpItem(cmp) {
+      this.templateData.forEach((item, i) => {
+        if (item.type === cmp.cmpType) {
+          this.templateData.splice(i, 1)
+        }
+      })
+      cmp.isActive = false
     }
   }
 }

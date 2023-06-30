@@ -5,6 +5,22 @@
             <div class="election__box">
               <strong>2024년 4월 10일 제 22대 국회의원선거</strong>
               <p>선거 운동 기간 : 2023년 10월 13일~ 2024년 5월 10일</p>
+              <span class="flag-progress done">아이디 발급 완료</span>
+              <div class="election__banner--innerbox">
+                <p>발급된 계정으로 접속하여 기간 동안 브랜드를 생성/운영관리 할 수 있습니다.</p>
+                <span class="msgbox-round"
+                >
+                    ID : 123456789
+                </span>
+              </div>
+            </div>
+            <div class="election__box">
+              <strong>2024년 4월 10일 제 22대 국회의원선거</strong>
+              <p>선거 운동 기간 : 2023년 10월 13일~ 2024년 5월 10일</p>
+            </div>
+            <div class="election__box type2">
+              <strong>2024년 4월 10일 제 22대 국회의원선거</strong>
+              <p>선거 운동 기간 : 2023년 10월 13일~ 2024년 5월 10일</p>
             </div>
             <!-- // 가입 상태 안내 메시지 -->
             <div class="board-main__box">

@@ -1,20 +1,28 @@
 <template>
   <div class="button-area"
-    :class="{ column : data.direction === 'column'}"
   >
+    <template v-if="Object.keys(info).length !== 0">
+      <button
+        class="btn"
+        v-for="(btn, i) in info.buttons" :key="i"
+      >
+        <span v-if="btn.buttonName">{{ btn.buttonName }}</span>
+        <span v-else>버튼</span>
+      </button>
+    </template>
     <button
-      class="btn"
-      v-for="(btn, i) in data.buttons" :key="i"
-    >
-    {{ btn }}
-    </button>
+        v-else
+        class="btn"
+      >
+        <span>버튼</span>
+      </button>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    data: {
+    info: {
       type: Object
     }
   }

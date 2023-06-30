@@ -52,7 +52,7 @@
       height: calc(100% - 50px - 50px);
       position:relative;
       width: 100%;       
-      overflow-y: scroll;
+      // overflow-y: scroll;
     }
     .modal__content--footer {
       display: flex;
@@ -209,7 +209,7 @@
       }
     }
   }
-  .Max628 {
+  .zipcode__modal {
     max-width:628px;               
     padding:40px;  
     border-radius: 16px;
@@ -227,8 +227,11 @@
       display:flex;
       flex-direction: column;
       gap: 32px;
+      .top-notice {
+        a {text-decoration: underline;}
+      }
       .table__wrap {
-        max-height: 500px;        
+        max-height: 406px;        
         overflow-y: auto;
         //스크롤 발생 시 table bottom 주기 위해
         border-bottom: 1px solid #f0f0f0;
@@ -358,7 +361,7 @@
         }
       }
     }
-  }
+}
   // 내 브랜드 관리 - 브랜드 운영관리
   .bottom-new--invite{
     margin-top: 32px;
@@ -614,35 +617,104 @@
     border-radius: 16px;
     background-color: #fff;    
     transition: opacity .3s ease;
-    h3{
-      @include fontoption(28px,#000,700,36px);
-      text-align: center;
+    .modal__content--header{
+      justify-content: center;
       margin-bottom: 32px;
     }
-    .safetymark_des{
-      margin-top: 16px;
-    }
-    .reject_applicant{
-      margin-bottom: 16px;
-      padding: 16px 24px;
-      background-color: #F4F4F4;
-      border-radius: 8px;
-      text-align: center;
-      h5{
-      @include fontoption(12px,#000,700,24px);
+    .modal__content--body{
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      .table__wrap {
+        max-height: 500px;        
+        overflow-y: auto;
+        //스크롤 발생 시 table bottom 주기 위해
+        border-bottom: 1px solid #f0f0f0;
+        .table-list{
+          tr{
+            &:last-child{
+              td{
+              border: none;
+                &.l-align {
+                  text-align: left;
+                }
+              }
+            }
+          }
+        }
       }
-    }
-    .textarea {
-      textarea{
-        height: 118px;
+      h3{
+        @include fontoption(28px,#000,700,36px);
+        text-align: center;
+        margin-bottom: 32px;
+      }
+      .safetymark_des{
+        margin-top: 16px;
+      }
+      .top-notice--center{
+        padding: 16px 24px;
+        background-color: #F4F4F4;
+        border-radius: 8px;
+        text-align: center;
+        h5{
+        @include fontoption(12px,#000,700,24px);
+        }
+        &.invite-brand{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 24px;
+          p{
+            line-height: 24px;
+          }
+          .dropdown{
+            min-width: 314px;
+          }
+        }
+      }
+      .result-none {
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        padding: 100px 0;
+      }
+      .textarea {
+        textarea{
+          height: 118px;
+        }
+      }
+      .agency-num{
+        color: $pointColor;
+      }
+      .remove-des{
+        @include fontoption(12px,#000,400,22px);
+        margin-top: 16px;
       }
     }
     .modal__content--footer{
+      gap: 32px;
+      flex-direction: column;
       .button__wrap{
         button{
           flex: 0 0 auto;
         }
       }
+      .new-invite-box{
+        display: flex;
+        padding: 16px 24px;
+        background-color: #F4F4F4;
+        border-radius: 8px;
+        text-align: center;
+        background-color: #DCF2FF;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+  &.brand-reject{
+    .modal__content--body{
+      gap: 16px;
     }
   }
   &.dashboard_small_modal{
@@ -665,6 +737,26 @@
     .button__wrap{
       button{
         flex: 0 0 auto;
+      }
+    }
+  }
+}
+// 메일 추가 및 초대
+.new-mail-box{
+  .new-email-default{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    .new-email{
+      flex: 1;
+    }
+  }
+  
+  .new-email-add{
+    margin-bottom: 12px;
+    .new-email-default{
+      +.new-email-default{
+        margin-top: 8px;
       }
     }
   }

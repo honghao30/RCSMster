@@ -3,14 +3,14 @@
     <div class="form-item-row is-emoji">
       <div class="input-item input-limit w--full" >
         <div class="input">
-          <input type="text" class="input" maxlength="20"
+          <input type="text" class="input" maxlength="17"
             :disabled="buttons.length > 1 && !isEdit"
             placeholder="사용자에게 보여지는 버튼이름을 입력해주세요." v-model="buttonInfo.btnName"
             ref="btnName"
           >
           <div class="input-limit__text">
             <Emoji @input="onSelectEmoji($event, 'btnName')"/>
-            {{ buttonInfo.btnName.length }}/20자
+            {{ buttonInfo.btnName.length }}/17자
           </div>
         </div>
       </div>

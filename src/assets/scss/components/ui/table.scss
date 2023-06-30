@@ -35,6 +35,11 @@
     &.align--top {
       vertical-align:top
     }
+    .link {
+      &:hover {
+        text-decoration: underline;
+      }
+    } 
   }
 }
 
@@ -73,7 +78,7 @@
     &.l-align {
       text-align: left;
       padding:15px;
-    }    
+    }
   }
   tr:last-child {
     td {

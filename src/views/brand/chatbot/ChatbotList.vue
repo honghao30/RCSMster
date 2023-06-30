@@ -58,7 +58,7 @@
                 <td>
                   <div class="chat_title__wrap">
                     <div class="chat_title">
-                      <router-link to="/chatbotView">{{ item.chatbotName }}</router-link>
+                      <router-link to="/chatbotView" class="link">{{ item.chatbotName }}</router-link>
                     </div>
                   </div>
                 </td>

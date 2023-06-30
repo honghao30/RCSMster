@@ -41,8 +41,8 @@
                                     {{ form.name.length }}/20자
                                   </p>
                                 </span>
+                                <span class="flag-approval">승인필요</span>
                               </div>
-                              <span class="flag-approval">승인필요</span>
                             </div>
                               <p class="guide-text error" v-if="brandNameErrorMsg">브랜드명을 입력해주세요.</p>
                           </div>

@@ -85,9 +85,8 @@ $radius: 8px;
   }
   &.medium {
     height: 36px;
-    width: 90px;
+    min-width: 90px;
     font-size: 14px;
-    padding:0 42px; 
     padding:0 32px; 
   }
   &.small {

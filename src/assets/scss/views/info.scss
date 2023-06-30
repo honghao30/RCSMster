@@ -3,6 +3,7 @@
     width: 100%;
     max-width: $contentWidth2;
     margin: 0 auto;
+    padding-bottom: 80px;
     .table__wrap {
         .form-table {
             th {
@@ -376,7 +377,7 @@
     }
 }
 
-
+// flag-progress
 .flag-progress {
     padding: 6px 12px;
     border-radius: 15px;

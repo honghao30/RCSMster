@@ -64,7 +64,7 @@ const homeList = [
     'screenId': 'R-Mem-Lgin-View-01',
     'status': ['0512: 개발 공유'],
     'link': '/LoginPage',
-    'comments': ['공통적으로 임의의 값을 입력시 다음 페이지로 넘어감.','0613: 버튼 여섯 번 클릭 시 비밀번호 변경 모달 창 켜짐']
+    'comments': ['공통적으로 임의의 값을 입력시 다음 페이지로 넘어감.', '0613: 버튼 여섯 번 클릭 시 비밀번호 변경 모달 창 켜짐', '회원 공통: 기획서 버전 : 2023RBC_UIUX개편_화면설계서_회원_v0.4_20230605']
   },
   {
     'depth2': '아이디 찾기',
@@ -213,7 +213,7 @@ const homeList = [
     'screenId': '',
     'status': ['0620: 신규 추가', '0621: 개발 공유'],
     'link': '/agencycorpinfo',
-    'comments': ['0620: 추가 된 페이지 - 대행사_비지니스 정보 관리']
+    'comments': ['0620: 추가 된 페이지 - 대행사_비지니스 정보 관리', '0628: 선거용 배너 추가']
   },
   {
     'depth3': '수정',
@@ -236,7 +236,8 @@ const homeList = [
     'depth3': '목록',
     'screenId': 'R-Cust-Noti-List-01',
     'status': ['0512: 개발 공유'],
-    'link': '/notice'
+    'link': '/notice',
+    'comments': ['고객센터 기획서 버전: 2023RBC_UIUX개편_화면설계서_HOME(고객센터)_v0.5_20230526_피드백 대기중']
   },
   {
     'depth3': '공지사항 상세',
@@ -319,19 +320,35 @@ const dashboardList = [
   // 기업 대시보드
   {
     'depth1': '기업',
-    'depth2': '기업대시보드',
+    'depth2': '기업대시보드(전체목록)',
     'screenId': 'R-Comp-Dash-View-01',
-    'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/DashBoard'
+    'status': ['0524: 기획 공유', '0526: 개발 공유', '0630: 2차 공유'],
+    'link': '/DashBoard',
+    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_선거_v0.8_20230627']
   },
-   // 브랜드 관리
-   {
+  {
+    'depth2': '운영 히스토리',
+    'screenId': '',
+    'status': ['0630: 기획,개발 공유'],
+    'link': '/ManageHistory',
+    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_선거_v0.8_20230627']
+  },
+  {
+    'depth2': '전체브랜드 운영관리',
+    'screenId': '',
+    'status': ['0630: 기획,개발 공유'],
+    'link': '/dashboardOperationManage',
+    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_선거_v0.8_20230627']
+  },
+  // 브랜드 관리
+  {
     'depth3': '내 브랜드 관리',
     'depth4': '브랜드 홈수정',
     'depth5': '기본정보',
     'screenId': 'R-Brand-Invi-View-01',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/brandeditstep01'
+    'link': '/brandeditstep01',
+    'comment': ['2023RBC_UIUX개편_화면설계서_내 브랜드 관리_v0.8_20230621(SK피드백)']
   },
   {
     'depth5': '퀵버튼',
@@ -356,50 +373,51 @@ const dashboardList = [
     'depth3': '대화방',
     'depth4': '대화방 목록',
     'screenId': 'R-Brand-Room-List-01',
-    'status': ['0601: 기획 공유', '0605: 개발 공유'],
-    'link': '/ChatRoomList'
+    'status': ['0601: 기획 공유', '0612: 개발 공유'],
+    'link': '/ChatRoomList',
+    'comment': ['기획서 버전: 2023RBC_UIUX개편_화면설계서_대화방_v0.7_20230526']
   },
   {
     'depth4': '대화방 등록',
     'screenId': 'R-Brand-Room-Reg-01',
-    'status': ['0601: 기획 공유', '0605: 개발 공유'],
+    'status': ['0601: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomRegistration'
   },
   {
     'depth5': '대화방 등록 완료(개별)',
     'screenId': 'R-Brand-Room-Reg-02',
-    'status': ['0601: 기획 공유', '0605: 개발 공유'],
+    'status': ['0601: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomRegistrationComplete'
   },
   {
     'depth5': '대화방 등록 완료(대량)',
     'screenId': 'R-Brand-Room-Reg-04',
-    'status': ['0601: 기획 공유', '0605: 개발 공유'],
+    'status': ['0601: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomLargeRegistrationComplete',
     'comments': ['개별등록과 대량등록 하나의 버튼을 공유하는듯 한데, 퍼블에서 승인요청 크릭후 뜨는 팝업에서 아니요를 클릭하면 대량등록 완료 페이지로 이동.']
   },
   {
     'depth5': '대화방 수정',
     'screenId': 'R-Brand-Room-Reg-02',
-    'status': ['0602: 기획 공유', '0605: 개발 공유'],
+    'status': ['0602: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomModified'
   },
   {
     'depth5': '대화방 수정(대량)',
     'screenId': 'R-Brand-Room-Reg-02',
-    'status': ['0602: 기획 공유', '0605: 개발 공유'],
+    'status': ['0602: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomLargeModified'
   },
   {
     'depth5': '대화방 상세',
     'screenId': 'R-Brand-Room-View-01',
-    'status': ['0602: 기획 공유', '0605: 개발 공유'],
+    'status': ['0602: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomListView'
   },
   {
     'depth5': '대화방 상세(대량)',
     'screenId': 'R-Brand-Room-View-01',
-    'status': ['0602: 기획 공유', '0605: 개발 공유'],
+    'status': ['0602: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomListLargeView'
   },
   // 대화방 메뉴
@@ -436,7 +454,8 @@ const dashboardList = [
     'depth1': '브랜드 홈',
     'screenId': 'R-Brand-Open-Reg-01',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/brand'
+    'link': '/brand',
+    'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
     'depth3': '브랜드 운영관리',
@@ -455,13 +474,14 @@ const dashboardList = [
     'depth3': '브랜드 소식',
     'depth4': '브랜드 기본 소식 등록',
     'screenId': 'R-Brand-News-Reg-01',
-    'status': ['0607: 기획 공유'],
-    'link': '/FeedRegistrationBasic'
+    'status': ['0607: 기획 공유', '0616: 개발 공유'],
+    'link': '/FeedRegistrationBasic',
+    'comment': '기획서 : 2023RBC_UIUX개편_화면설계서_브랜드 소식_v0.6_20230615'
   },
   {
     'depth4': '브랜드 소식 등록',
     'screenId': 'R-Brand-News-Reg-02',
-    'status': ['0607: 기획 공유'],
+    'status': ['0607: 기획 공유', '0616: 개발 공유'],
     'link': '/FeedRegistration'
   },
   // 챗붓
@@ -471,7 +491,8 @@ const dashboardList = [
     'depth5': '목록',
     'screenId': 'R-Brand-Chat-List-02',
     'status': ['0621: 기획 공유'],
-    'link': '/ChatbotList'
+    'link': '/ChatbotList',
+    'comment': '2023RBC_UIUX개편_화면설계서_브랜드_챗봇_v0.8_20230621_수정중'
   },
   {
     'depth5': '상세',
@@ -486,65 +507,78 @@ const dashboardList = [
     'link': '/ChatbotRegistration'
   },
   // 통계
-  {
-    'depth3': '통계',
-    'depth4': '메시지 통계',
-    'depth5': '목록',
-    'screenId': 'R-Brand-Stat-List-01',
-    'status': ['0622: 기획 공유'],
-    'link': '/MsgStatList'
-  },
-  {
-    'depth5': '상세',
-    'screenId': 'R-Brand-Stat-View-01',
-    'status': ['0622: 기획 공유'],
-    'link': '/MsgStatListView'
-  },
-  {
-    'depth4': '대화방 메뉴 통계',
-    'depth5': '목록',
-    'screenId': 'R-Brand-Stat-List-02',
-    'status': ['0622: 기획 공유'],
-    'link': '/ChatRoomMenuStat'
-  },
-  {
-    'depth4': '브랜드 소식 통계',
-    'depth5': '목록',
-    'screenId': 'R-Brand-Stat-List-03',
-    'status': ['0622: 기획 공유'],
-    'link': '/BrandFeedStat'
-  },
-  {
-    'depth5': '상세',
-    'screenId': 'R-Brand-Stat-View-03',
-    'status': ['0622: 기획 공유'],
-    'link': '/BrandFeedStatView'
-  },
+  // {
+  //   'depth3': '통계',
+  //   'depth4': '메시지 통계',
+  //   'depth5': '목록',
+  //   'screenId': 'R-Brand-Stat-List-01',
+  //   'status': ['0622: 기획 공유'],
+  //   'link': '/MsgStatList'
+  // },
+  // {
+  //   'depth5': '상세',
+  //   'screenId': 'R-Brand-Stat-View-01',
+  //   'status': ['0622: 기획 공유'],
+  //   'link': '/MsgStatListView'
+  // },
+  // {
+  //   'depth4': '대화방 메뉴 통계',
+  //   'depth5': '목록',
+  //   'screenId': 'R-Brand-Stat-List-02',
+  //   'status': ['0622: 기획 공유'],
+  //   'link': '/ChatRoomMenuStat'
+  // },
+  // {
+  //   'depth4': '브랜드 소식 통계',
+  //   'depth5': '목록',
+  //   'screenId': 'R-Brand-Stat-List-03',
+  //   'status': ['0622: 기획 공유'],
+  //   'link': '/BrandFeedStat'
+  // },
+  // {
+  //   'depth5': '상세',
+  //   'screenId': 'R-Brand-Stat-View-03',
+  //   'status': ['0622: 기획 공유'],
+  //   'link': '/BrandFeedStatView'
+  // },
   // 브랜드 개설
   {
     'depth1': '브랜드 개설',
     'depth2': '기본 정보 입력',
     'screenId': 'R-Brand-Open-Reg-01',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/brandcreatestep01'
+    'link': '/brandcreatestep01',
+    'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_브랜드개설_v0.9_20230627']
   },
   {
     'depth2': '퀵 버튼 설정',
     'screenId': 'R-Brand-Open-Reg-02',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/brandcreatestep02'
+    'link': '/brandcreatestep02',
+    'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_브랜드개설_v0.9_20230627']
   },
   {
     'depth2': '브랜드 홈 탭 설정',
     'screenId': 'R-Brand-Open-Reg-03',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/brandcreatestep03'
+    'link': '/brandcreatestep03',
+    'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_브랜드개설_v0.9_20230627']
   },
   {
     'depth2': '브랜드 개설 완료',
     'screenId': 'R-Brand-Open-Reg-04',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/brandcreatestep04'
+    'link': '/brandcreatestep04',
+    'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_브랜드개설_v0.9_20230627']
+  },
+  // 브랜드 대시보드
+  {
+    'depth2': '브랜드 대시보드',
+    'depth3': '홈',
+    'screenId': '',
+    'status': ['0630: 기획 공유', '0630: 개발 공유'],
+    'link': '/BrandDashboard',
+    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_브랜드대시보드_v0.6_20230623']
   },
   // 선거 대시보드
   {
@@ -552,22 +586,24 @@ const dashboardList = [
     'depth2': '선거대시보드',
     'depth3': '홈',
     'screenId': '',
-    'status': ['0628: 기획 공유'],
-    'link': '/ElectionDashboard'
+    'status': ['0628: 기획 공유', '0628: 개발 공유'],
+    'link': '/ElectionDashboard',
+    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_선거_v0.7_20230623']
   },
   {
     'depth3': '운영중인 브랜드',
     'screenId': '',
-    'status': ['0628: 기획 공유'],
-    'link': '/OperatingBrandList'
+    'status': ['0628: 기획 공유', '0628: 개발 공유'],
+    'link': '/OperatingBrandList',
+    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_선거_v0.7_20230623']
   },
-  // 브랜드 소식
-  // {
-  //   'depth3': '브랜드 소식',
-  //   'screenId': 'R-Comp-Mgt-List-01',
-  //   'status': '완료',
-  //   'link': '/feed'
-  // },
+  {
+    'depth3': '대화방 개설',
+    'screenId': '',
+    'status': ['0628: 기획 공유', '0628: 개발 공유'],
+    'link': '/ChatroomOpen',
+    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_선거_v0.7_20230623']
+  }
 ]
 
 export { guideList, homeList, dashboardList }

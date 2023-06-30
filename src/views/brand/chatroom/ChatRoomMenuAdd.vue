@@ -21,7 +21,7 @@
                         <div class="form-item__content">
                           <div class="form-item-row">
                             <div class="switch switch-status" role="switch">
-                              사용 여부
+                              {{ switchStatus }}
                               <input type="checkbox" id="switch" v-model="form.switch" checked>
                               <label class="switch__core" for="switch"></label>
                             </div>
@@ -494,6 +494,14 @@ export default {
         chatRoomName: 'SYSTEM STUDIOS',
         allowMsg: 'Y'
       }
+    }
+  },
+  mounted() {
+    this.switchStatus = this.form.switch ? '사용' : '미사용'
+  },
+  computed: {
+    switchStatus() {
+      return this.form.switch ? '사용' : '미사용'
     }
   },
   methods: {

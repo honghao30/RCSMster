@@ -1,13 +1,12 @@
 <template>
   <div class="dashBoard-side">
     <!-- 기업정보 -->
+    <!-- 마스터 -->
     <div class="side-box side-box__info">
       <div class="side-box__info-top">
         <div class="side-box-top">
           <h4>더피프티원</h4>
           <span class="authority master">마스터</span>
-          <span class="authority manager">매니저</span>
-          <span class="authority agency">대행사</span>
         </div>
         <div class="side-box-middle">
           <span class="id">CO.K0803h0r0O</span>
@@ -16,23 +15,79 @@
       </div>
       <!-- 안심마크 사용 기업 -->
       <div class="side-box-cont" v-if="safetyMarkCompany">
-        <p>RCS 메시지 상단에
+        <div>RCS 메시지 상단에
           “<a
             role="button"
             class="safetymark"
             @click="safetyDesModal"
-          >안심마크</a>(<span>확인된 발신번호</span>)”를 표시하여 사칭 문자로 인한 스미싱 범죄 등에 안전함을 안내할 수 있습니다.</p>
+            >안심마크</a>(
+            <span class="safety_icon-text">
+            <span class="safety_icon"></span>
+              확인된 발신번호
+            </span>
+            )”를
+        </div>
+        <div>표시하여 사칭 문자로 인한 스미싱 범죄 등에 안전함을 안내할 수 있습니다.
+        </div>
       </div>
       <!-- // 안심마크 사용 기업 -->
     </div>
+    <!-- // 마스터 -->
+    <!-- 매니저 -->
+    <div class="side-box side-box__info">
+      <div class="side-box__info-top">
+        <div class="side-box-top">
+          <h4>더피프티원</h4>
+          <span class="authority manager">매니저</span>
+        </div>
+        <div class="side-box-middle">
+          <span class="id">CO.K0803h0r0O</span>
+          <span class="date">2023.03.09</span>
+        </div>
+      </div>
+      <!-- 안심마크 사용 기업 -->
+      <div class="side-box-cont" v-if="safetyMarkCompany">
+        <div>RCS 메시지 상단에
+          “<a
+            role="button"
+            class="safetymark"
+            @click="safetyDesModal"
+            >안심마크</a>(
+            <span class="safety_icon-text">
+            <span class="safety_icon"></span>
+              확인된 발신번호
+            </span>
+            )”를
+        </div>
+        <div>표시하여 사칭 문자로 인한 스미싱 범죄 등에 안전함을 안내할 수 있습니다.
+        </div>
+      </div>
+      <!-- // 안심마크 사용 기업 -->
+    </div>
+    <!-- // 매니저 -->
+    <!-- 대행사 -->
+    <div class="side-box side-box__info">
+      <div class="side-box__info-top">
+        <div class="side-box-top">
+          <h4>비즈뿌리오</h4>
+          <span class="authority agency">대행사</span>
+        </div>
+        <div class="side-box-middle">
+          <span class="id">CO.K0803h0r0O</span>
+          <span class="date">2023.03.09</span>
+        </div>
+      </div>
+      <div class="side-box-cont" v-if="safetyMarkCompany===false"></div>
+    </div>
+    <!-- // 대행사 -->
     <!-- // 기업정보 -->
-    <!-- 전체 브랜드 운영 관리 -->
+    <!-- 전체 브랜드 운영 관리 (마스터, 매니저) -->
     <div class="side-btn">
       <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
-      <router-link to="" class="btn btn-blue-line">전체 브랜드 운영 관리</router-link>
+      <router-link to="/dashboardOperationManage" class="btn btn-blue-line">전체 브랜드 운영 관리</router-link>
     </div>
-    <!-- // 전체 브랜드 운영 관리 -->
-    <!-- 운영권한 관리 및 신청 내역 -->
+    <!-- // 전체 브랜드 운영 관리 (마스터, 매니저) -->
+    <!-- 운영권한 관리 및 신청 내역 (마스터) -->
     <div class="side-box side-box__authority">
       <div class="side-box-top">
         <h4>운영권한 승인 신청 내역 ({{authorityList.length}})</h4>
@@ -61,6 +116,8 @@
               size="small"
               @click="rejectModal"
             >반려</ButtonCmp>
+            <!-- 승인 선택 시) 1. 운영권한 승인 신청 내역 내 숨김 처리 2. 운영권한 신청자의 계정권한에 따라 권한 부여
+            마스터가 운영권한 신청 시 마스터 권한 부여 / 매니저가 운영권한 신청 시 매니저 권한 부여 -->
             <ButtonCmp
               type="btn-blue-line"
               size="small"
@@ -75,41 +132,43 @@
         </div>
       </div>
     </div>
+    <!-- // 운영권한 관리 및 신청 내역 (마스터) -->
     <!-- 사용 가이드 -->
-    <!-- 1. 멤버 초대하기 -->
+    <!-- 1. 멤버 초대하기 (마스터) -->
     <div class="side-box side-box__invite">
       <div class="side-box-top">
-        <h4>멤버 초대하기</h4>
+        <h4>브랜드 운영자 초대하기</h4>
       </div>
       <div class="side-box-cont">
         <p>함께 관리하고 운영하는 멤버를 초대하세요.</p>
         <p>아직 가입하지 않는 멤버도 초대할 수 있어요.</p>
       </div>
       <div class="button__wrap side-box-bottom">
+        <!-- 전체 브랜드 운영권한 초대 팝업 출력 -->
         <ButtonCmp
           type="btn-blue-line"
           size="medium"
-          @click="MemberInvite"
         >
         브랜드 운영권한 초대
         </ButtonCmp>
       </div>
     </div>
-    <!-- // 1. 멤버 초대하기 -->
-    <!-- 2. 서비스 이용 가이드 -->
+    <!-- // 1. 멤버 초대하기 (마스터) -->
+    <!-- 2. 서비스 이용 가이드 (마스터, 매니저, 대행사) -->
     <div class="side-box side-box__invite">
       <div class="side-box-top">
         <h4>서비스 이용 가이드</h4>
       </div>
       <div class="side-box-cont">
-        <p>RCS를 쉽고 편리하게 관리 할 수 있도록 이용 가이드를 확인하세요.</p>
+        <p>RCS를 쉽고 편리하게 관리 할 수 있도록<br> 이용 가이드를 확인하세요.</p>
       </div>
       <div class="button__wrap side-box-bottom">
-        <router-link to="" class="btn btn-blue-line medium">브랜드 개설</router-link>
+        <!-- HOME > 이용 가이드 페이지로 이동 -->
+        <router-link to="" class="btn btn-blue-line medium">이용 가이드</router-link>
       </div>
     </div>
-    <!-- // 2. 서비스 이용 가이드 -->
-    <!-- 3. 브랜드 즐겨찾기 -->
+    <!-- // 2. 서비스 이용 가이드 (마스터, 매니저, 대행사) -->
+    <!-- 3. 브랜드 즐겨찾기 (마스터, 매니저, 대행사) -->
     <div class="side-box side-box__invite">
       <div class="side-box-top">
         <h4>브랜드 즐겨찾기</h4>
@@ -119,8 +178,8 @@
         <p>간편하게 자주 사용하는 브랜드에 접속할 수 있어요.</p>
       </div>
     </div>
-    <!-- // 3. 브랜드 즐겨찾기 -->
-    <!-- 4. 마스터 계정 설정(기업 회원) -->
+    <!-- // 3. 브랜드 즐겨찾기 (마스터, 매니저, 대행사) -->
+    <!-- 4. 마스터 계정 설정 -기업회원 (매니저) -->
     <div class="side-box side-box__invite">
       <div class="side-box-top">
         <h4>마스터 계정 설정</h4>
@@ -130,30 +189,97 @@
         <ul class="invite__step">
           <li>
             <strong>1</strong>
+            <!-- 마이페이지 > 기업정보관리 페이지로 이동  -->
             <router-link to="" class="step-more submit-more">사업자등록증 제출</router-link>
           </li>
           <li>
             <strong>2</strong>
+            <!-- 마스터 승격 완료 글자 컬러 스타일 변경될 시 : step-more 클래스 추가 -->
             <a>마스터 승격 완료</a>
           </li>
         </ul>
       </div>
     </div>
-    <!-- 4. 마스터 계정 설정(기업 회원) -->
-    <!-- // 사용 가이드 -->
-    <!-- 가변 배너 -->
-    <div class="side-box side-box__banner">
+    <!-- // 4. 마스터 계정 설정 -기업회원 (매니저) -->
+    <!-- 5. 브랜드 운영권한 신청 (대행사) -->
+    <div class="side-box side-box__invite">
       <div class="side-box-top">
-        <h3>챗봇 대행사<br/>필요하지 않으세요?</h3>
-        <a class="side-company-btn"><router-link to="">대행사 보러가기</router-link></a>
+        <h4>브랜드 운영권한 신청</h4>
+      </div>
+      <div class="side-box-cont">
+        <p>브랜드의 관리자에게 대행사 권한을 신청합니다.<br>권한이 부여되면 RCS 메시지 발송이 가능합니다.</p>
+      </div>
+      <div class="button__wrap side-box-bottom">
+        <ButtonCmp
+          type="btn-blue-line"
+          size=" medium"
+          @click="BrandAuthorityRequestModal"
+        >
+        브랜드 운영권한 신청
+        </ButtonCmp>
       </div>
     </div>
+    <!-- // 5. 브랜드 운영권한 신청 (대행사) -->
+    <!-- // 사용 가이드 -->
+    <!-- 가변 배너 (마스터, 매니저) -->
+    <div class="side-box side-box__banner">
+      <div class="side-box-top">
+        <h3>양방향 대행사<br>필요하지 않으세요?</h3>
+        <p>챗봇을 사용하면 고객과 더 가깝게 소통할 수 있어요.</p>
+        <router-link to="" class="side-company-btn">양방향 대행사 보러가기</router-link>
+        <div class="side-box-img">
+          <div class="chat_icon">
+            <img src="@/assets/images/icon/icon_chatbot.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 가변 배너 (마스터, 매니저) -->
+    <!-- 기업 히스토리 (마스터, 매니저, 대행사) -->
+    <div class="link-area">
+      <router-link to="/ManageHistory" class="arrow-link">기업 히스토리</router-link>
+    </div>
+    <!-- // 기업 히스토리 (마스터, 매니저, 대행사) -->
     <!-- 모달 -->
-    <!-- 안심마크 -->
     <ModalView
       v-if="isModalViewed"
       @closeModal="isModalViewed = false"
     >
+      <!-- 대행사 등록 유도 팝업 : 마스터가 운영권한이 있는 브랜드 중 대행사가 등록되지 않은 브랜드가 있는 경우 노출되는 팝업 -->
+      <ConfirmMsg
+        @closeModal="isModalViewed = false, isMemberInvite = false"
+        v-if="isMemberInvite"
+        modalsize="dashboard_small_modal"
+      >
+        <div class="msg" slot="msg">
+          <div class="invite-question">
+            <p>브랜드에 대행사를 등록하셔야만<br>
+              메시지 발송이 가능합니다.<br>
+              대행사를 등록 하시겠습니까?</p>
+          </div>
+          <div class="invite_detail">
+            <p>LANVIN COLLECTION</p>
+            <p>더캐시미어</p>
+          </div>
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+            type="btn-line"
+            @click="closeMsg"
+          >
+            닫기
+          </ButtonCmp>
+          <!-- 초대 버튼 > 대행사 운영권한 부여 팝업 출력 > 기획서 v.09 기준 대행사 운영권한 부여 팝업 삭제 -->
+          <ButtonCmp
+            type="btn-blue"
+            @click="closeMsg"
+          >
+            초대
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+      <!-- // 대행사 등록 유도 팝업 : 마스터가 운영권한이 있는 브랜드 중 대행사가 등록되지 않은 브랜드가 있는 경우 노출되는 팝업 -->
+      <!-- 안심마크 -->
       <ConfirmMsg
         @closeModal="isModalViewed = false, isModalSafetyDes = false"
         v-if="isModalSafetyDes"
@@ -179,58 +305,17 @@
           </ButtonCmp>
         </div>
       </ConfirmMsg>
-    </ModalView>
-    <!-- // 안심마크 -->
-    <!-- 운영권한 신청 반려 버튼 클릭 시 -->
-    <ModalView
-      v-if="isModalViewed"
-      @closeModal="isModalViewed = false"
-    >
-      <ConfirmMsg
+      <!-- // 안심마크 -->
+      <!-- 운영권한 신청 반려 버튼 클릭 시 -->
+      <BrandAuthorityReject
         @closeModal="isModalViewed = false, isModalReject = false"
+        @rejectFinish="rejectFinishModal"
         v-if="isModalReject"
         modalsize="dashboard_modal"
       >
-        <div class="msg" slot="msg">
-          <h3>브랜드 운영권한 신청 반려</h3>
-          <div class="reject_applicant">
-            <h5>SYSTEM STUDIO</h5>
-            <p>신청자 : <span>김솔솔(solsol51)</span></p>
-          </div>
-          <div class="input-item input-limit">
-            <div class="textarea">
-              <textarea maxlength="100" placeholder="반려 사유를 입력해주세요." v-model="form.textarea"></textarea>
-              <div class="textarea-limit__text">
-                <p>
-                  {{ form.textarea.length }}/100자
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="button__wrap" slot="button">
-          <ButtonCmp
-            type="btn-line"
-            @click="closeMsg"
-          >
-            닫기
-          </ButtonCmp>
-          <ButtonCmp
-            type="btn-blue"
-            :disabled="form.textarea.length === 0"
-            @click="rejectFinish"
-          >
-            반려
-          </ButtonCmp>
-        </div>
-      </ConfirmMsg>
-    </ModalView>
-    <!-- // 운영권한 신청 반려 버튼 클릭 시 -->
-    <!-- 운영권한 신청 반려 버튼 클릭 시 > 반려 버튼 -->
-    <ModalView
-      v-if="isModalViewed"
-      @closeModal="isModalViewed = false"
-    >
+      </BrandAuthorityReject>
+      <!-- // 운영권한 신청 반려 버튼 클릭 시 -->
+      <!-- 운영권한 신청 반려 버튼 클릭 시 > 반려 버튼 -->
       <ConfirmMsg
         @closeModal="isModalViewed = false, isRejectFinish = false"
         v-if="isRejectFinish"
@@ -248,46 +333,16 @@
           </ButtonCmp>
         </div>
       </ConfirmMsg>
-    </ModalView>
-    <!-- // 운영권한 신청 반려 버튼 클릭 시 > 반려 버튼 -->
-    <!-- 사용 가이드 > 멤버 초대하기 > 브랜드 운영권한 초대 버튼 클릭 시 -->
-    <ModalView
-      v-if="isModalViewed"
-      @closeModal="isModalViewed = false"
-    >
-      <ConfirmMsg
-        @closeModal="isModalViewed = false, isMemberInvite = false"
-        v-if="isMemberInvite"
-        modalsize="dashboard_small_modal"
+      <!-- // 운영권한 신청 반려 버튼 클릭 시 > 반려 버튼 -->
+      <!-- 사용 가이드 > 브랜드 운영권한 신청 (대행사) > 브랜드 운영권한 신청 버튼 클릭 시 -->
+      <BrandAuthorityRequest
+        @closeModal="isModalViewed = false, isAuthorityRequest = false"
+        v-if="isAuthorityRequest"
+        modalsize="dashboard_modal"
       >
-        <div class="msg" slot="msg">
-          <div class="invite-question">
-            <p>브랜드에 대행사를 등록하셔야만<br>
-              메시지 발송이 가능합니다.<br>
-              대행사를 등록 하시겠습니까?</p>
-          </div>
-          <div class="invite_detail">
-            <p>LANVIN COLLECTION</p>
-            <p>더캐시미어</p>
-          </div>
-        </div>
-        <div class="button__wrap" slot="button">
-          <ButtonCmp
-            type="btn-line"
-            @click="closeMsg"
-          >
-            취소
-          </ButtonCmp>
-          <ButtonCmp
-            type="btn-blue"
-            @click="closeMsg"
-          >
-            초대
-          </ButtonCmp>
-        </div>
-      </ConfirmMsg>
+      </BrandAuthorityRequest>
+      <!-- // 사용 가이드 > 브랜드 운영권한 신청 (대행사) > 브랜드 운영권한 신청 버튼 클릭 시 -->
     </ModalView>
-    <!-- // 사용 가이드 > 멤버 초대하기 > 브랜드 운영권한 초대 버튼 클릭 시 -->
     <!-- // 모달 -->
   </div>
 </template>
@@ -296,12 +351,16 @@
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import ConfirmMsg from '@/views/dashboard/components/ConfirmMsg.vue'
+import BrandAuthorityRequest from '@/views/dashboard/components/BrandAuthorityRequest.vue'
+import BrandAuthorityReject from '@/views/dashboard/components/BrandAuthorityReject.vue'
 
 export default {
   components: {
     ButtonCmp,
     ModalView,
-    ConfirmMsg
+    ConfirmMsg,
+    BrandAuthorityRequest,
+    BrandAuthorityReject
   },
   data() {
     return {
@@ -335,9 +394,7 @@ export default {
       isModalReject: false,
       isRejectFinish: false,
       isMemberInvite: false,
-      form: {
-        textarea: ''
-      }
+      isAuthorityRequest: false
     }
   },
   computed: {
@@ -353,33 +410,27 @@ export default {
       this.isRejectFinish = false
       this.isMemberInvite = false
     },
+    MemberInvite () {
+      this.isModalViewed = true
+      this.isMemberInvite = true
+    },
     safetyDesModal () {
       this.isModalViewed = true
       this.isModalSafetyDes = true
-      this.isModalReject = false
-      this.isRejectFinish = false
-      this.isMemberInvite = false
     },
     rejectModal () {
       this.isModalViewed = true
       this.isModalReject = true
-      this.isModalSafetyDes = false
       this.isRejectFinish = false
-      this.isMemberInvite = false
     },
-    rejectFinish () {
+    rejectFinishModal () {
       this.isModalViewed = true
       this.isRejectFinish = true
       this.isModalReject = false
-      this.isModalSafetyDes = false
-      this.isMemberInvite = false
     },
-    MemberInvite () {
+    BrandAuthorityRequestModal () {
       this.isModalViewed = true
-      this.isMemberInvite = true
-      this.isRejectFinish = false
-      this.isModalReject = false
-      this.isModalSafetyDes = false
+      this.isAuthorityRequest = true
     }
   }
 }

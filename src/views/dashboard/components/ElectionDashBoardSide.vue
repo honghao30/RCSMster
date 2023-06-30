@@ -5,7 +5,8 @@
       <div class="side-box__info-top">
         <div class="side-box-top">
           <h4>제22대 국회의원선거 더피프티원</h4>
-          <span class="authority">마스터</span>
+          <span class="authority master">마스터</span>
+          <!-- manager, agency -->
         </div>
         <div class="side-box-middle">
           <span class="id">CO.K0803h0r0O</span>
@@ -20,7 +21,7 @@
     <!-- router -->
     <div class="side-btn">
       <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
-      <router-link to="" class="btn btn-blue">전체 브랜드 운영 관리</router-link>
+      <router-link to="" class="btn btn-blue-line">전체 브랜드 운영 관리</router-link>
     </div>
     <!-- // 전체 브랜드 운영 관리 -->
     <div class="side-box side-box__invite">

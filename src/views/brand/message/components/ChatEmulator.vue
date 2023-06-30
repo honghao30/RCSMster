@@ -20,8 +20,8 @@
             <p class="safty-icon">확인된 발신번호</p>
             <div class="message-box">
               <TemplateItem
-                :templateData="messageTemplate"
-                mode="msgOnly"
+                mode="emulator"
+                :infoData="templateData"
               />
             </div>
           </div>
@@ -97,8 +97,8 @@ export default {
       type: Array,
       default: null
     },
-    messageData: {
-      type: Object,
+    templateData: {
+      type: Array,
       default: null
     }
   },

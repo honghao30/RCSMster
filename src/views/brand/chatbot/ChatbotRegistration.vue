@@ -55,7 +55,7 @@
                                 >
                                 <div class="input-limit__text">
                                   <Emoji @input="onSelectEmoji($event, 'chatbotName')"/>
-                                  <p>{{ form.chatbotMsgName.length }}/17자</p>
+                                  <p>{{ form.chatbotMsgName.length }}/30자</p>
                                 </div>
                               </div>
                             </div>
@@ -224,11 +224,6 @@
                       >+<span class="blind">추가</span></a>
                   </div>
                   <div class="ctrl-btns">
-                    <ButtonCmp
-                        type="btn-line"
-                        size="small"
-                        :disabled="form.chatType == 'chatBubble'"
-                    >복제</ButtonCmp>
                     <ButtonCmp
                         type="btn-line"
                         size="small"

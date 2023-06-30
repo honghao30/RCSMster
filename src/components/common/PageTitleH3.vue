@@ -9,6 +9,9 @@
     <Dropdown
       v-if="DropData !== null"
       :options="DropData"/>
+    <Dropdown searchable
+    v-if="DropDataSearchable !== null"
+    :options="DropDataSearchable"/>
 </div>
 </template>
 
@@ -30,6 +33,10 @@ export default {
       default: null
     },
     DropData: {
+      type: Object,
+      default: null
+    },
+    DropDataSearchable: {
       type: Object,
       default: null
     }

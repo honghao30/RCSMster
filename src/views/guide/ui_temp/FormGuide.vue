@@ -115,13 +115,14 @@
     </div>
     <TitleH3 titleh3="이모지" />
     <Emoji  @input="onSelectEmoji($event, 'ref이름' )" />
-    {{ emojiCode }}
     <!-- // 이모지 미사용 : ButtonCmp,emoji-picker 제거 -->
     <TitleH3 titleh3="스위치" />
     <div class="switch" role="switch">
       <input type="checkbox" id="switch" v-model="form.switch">
       <label class="switch__core" for="switch"></label>
     </div>
+    <TitleH3 titleh3="폰트 스타일 레이어 input" />
+    <CustomFontStyleInput v-model="inputFontStyle"/>
     <!-- <TitleH3 titleh3="Form List" />
     <div class="wsg-guide-content">
       <div class="form-list">
@@ -192,11 +193,13 @@ import TitleH3 from '../cmp/TitleH3.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Emoji from '@/components/common/Emoji.vue'
+import CustomFontStyleInput from '@/components/common/CustomFontStyleInput.vue'
 import 'emoji-picker-element'
 
 export default {
   data() {
     return {
+      inputFontStyle: '',
       form: {
         selectValue: '',
         date: '',
@@ -247,7 +250,8 @@ export default {
     TitleH3,
     Dropdown,
     ButtonCmp,
-    Emoji
+    Emoji,
+    CustomFontStyleInput
   },
   methods: {
     // Emoji method 01

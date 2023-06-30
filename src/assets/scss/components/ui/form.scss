@@ -1099,6 +1099,92 @@ $formLabelWidth : 120px;
   }
 }
 
+.custom-textarea {
+  position:relative;
+  .input {
+    resize: none;
+    @include inputBasic;
+    font-family: $font-family;
+    line-height: 32px;
+  }
+  .style-picker {
+    z-index: 20;
+    position:absolute;
+    left:0;
+    top:-49px;
+    background-color:#f2f4ff;
+    border:1px solid #ddd;
+    width: 242px;
+    &__inner {
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      height: 48px;
+      padding:0 24px;
+      gap: 4px;
+      > span, > div {
+        flex:1;
+        display:inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        label {
+          cursor: pointer
+        }
+        input[type="checkbox"]:checked + label,  
+        input[type="radio"]:checked + label {
+            font-weight: 700;
+            color:#000;
+        }
+        &.align {
+          label {
+            display:inline-flex;
+            align-items: center;
+          }
+          i {
+            display:inline-block;
+            width: 14px;
+            height: 13px;
+            background: url('../assets/images/icon/icon_align_left.png') no-repeat 50% 0;
+            &.icon-align--right {
+              background-image: url('../assets/images/icon/icon_align_right.png')
+            }
+          }
+          input[type="radio"]:checked + label {
+            i {
+              background-position: 50% 100%;
+            }
+          }
+        }
+        &.sml {
+          font-size: 14px;
+        }
+        &.mid {
+          font-size: 16px;
+        }
+        &.big {
+          font-size: 18px;
+        }
+      }
+      .color-palette {
+        position: relative;
+        .btn-font--color {
+          cursor: pointer;
+        }
+        .palette {
+          position:absolute;
+          left:0;
+          top:20px;
+          border:1px solid #ddd;
+          background-color:#fff;
+        }
+      }
+    }
+  }
+}
+
+
+
 @media #{$phone} {
   $inputHeight: 45px;
   @mixin inputBasicM {  

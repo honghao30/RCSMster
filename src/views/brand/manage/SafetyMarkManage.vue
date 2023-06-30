@@ -6,21 +6,25 @@
         <PageTitle pagetitle="안심마크 관리" />
         <div class="top-ctrl-area">
           <div class="left-area">
-            <div class="search-area">
-              <span class="input">
-                <input type="text" placeholder="브랜드명을 입력하세요."/>
-              </span>
-              <ButtonCmp
-                type="btn-search"
-              >검색</ButtonCmp>
+            <div class="dropdown-search__wrap">
+              <Dropdown :options="TitleOptions"/>
+              <div class="search-area">
+                <span class="input search-box">
+                  <input type="text" placeholder="검색어를 입력하세요."/>
+                  <ButtonCmp
+                    type="btn-only-icon"
+                    iconname='icon-search'
+                  >
+                  </ButtonCmp>
+                </span>
+              </div>
             </div>
           </div>
           <div class="right-area">
-            <Dropdown :options="dropdownOptions" />
-            <div class="pager">
-              <span class="num">1/3</span>
-              <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
-              <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
+            <div class="button__wrap button__brand">
+              <button class="btn-brand">
+                안심마크 이용가이드
+              </button>
             </div>
           </div>
         </div>
@@ -71,14 +75,19 @@
             </tbody>
           </table>
         </div>
-        <div class="button__wrap" v-if="checkList.length > 0">
+        <!-- 1차 디자인 수정 -->
+        <div class="button__wrap history-btn" v-if="checkList.length > 0">
+          <ButtonCmp
+            type="btn-blue-line"
+          >사용</ButtonCmp>
           <ButtonCmp
             type="btn-blue-line"
           >미사용</ButtonCmp>
           <ButtonCmp
-            type="btn-blue"
-          >사용</ButtonCmp>
+            type="btn-blue-line"
+          >삭제</ButtonCmp>
         </div>
+        <PagingCmp />
       </div>
     </div>
   </div>
@@ -90,18 +99,34 @@ import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
+import PagingCmp from '@/components/common/PagingCmp.vue'
 
 export default {
   components: {
     PageTitle,
     BrandLnb,
     ButtonCmp,
-    Dropdown
+    Dropdown,
+    PagingCmp
   },
   data() {
     return {
       isAllChecked: false,
       checkList: [],
+      TitleOptions: [
+        {
+          label: '전체',
+          value: 'all'
+        },
+        {
+          label: '대화방 명',
+          value: 'chatName'
+        },
+        {
+          label: '대화방 ID',
+          value: 'chatId'
+        }
+      ],
       safetyMarkList: [
         {
           chatTitle: 'SYSTEMSTUDIO',
@@ -152,20 +177,6 @@ export default {
           chatTitle: '롯데홈쇼핑',
           chatID: '02-335-2286',
           mark: true
-        }
-      ],
-      dropdownOptions: [
-        {
-          label: '10개씩',
-          value: '10'
-        },
-        {
-          label: '20개씩',
-          value: '20'
-        },
-        {
-          label: '30개씩',
-          value: '30'
         }
       ]
     }

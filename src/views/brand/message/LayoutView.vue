@@ -33,8 +33,6 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
-            <div class="table__wrap">
               <table class="table table-bodyonly">
                 <colgroup>
                   <col width="196px"/>

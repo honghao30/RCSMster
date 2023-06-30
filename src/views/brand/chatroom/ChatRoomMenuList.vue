@@ -87,8 +87,8 @@
                     <label :for="`item${i+1}`"></label>
                   </span>
                 </td>
-                <td>
-                  {{ item.chatTitle }}
+                <td class="link">
+                  <router-link to="">{{ item.chatTitle }}</router-link>
                 </td>
                 <td>
                   {{ item.phoneNUm }}

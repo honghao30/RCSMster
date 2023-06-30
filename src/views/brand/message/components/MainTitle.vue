@@ -1,20 +1,17 @@
 <template>
-  <div v-if="viewMode">
-    <div class="main-title">
-      <div class="title"
-      >
-        <span class="logo" :style="{'background-image': `url(${data.logoSrc})`}"></span>
-        <p v-html="data.mainTitle"></p>
+  <div class="main-title">
+    <div class="main-title__inner"
+    >
+      <div class="title--start">
+        <span class="logo"
+        :style="{'background-image': `url()`}"
+        v-if="info.logoUse === 'Y'"
+        ></span>
+        <p v-if="info.mainTitle">{{ info.mainTitle }}</p>
+        <p v-else>제목을 입력해주세요.</p>
       </div>
-    </div>
-  </div>
-  <div v-else>
-    <div class="main-title">
-      <div class="title"
-      >
-        <span class="logo" :style="{'background-image': `url(${data.logoSrc})`}"></span>
-        <p v-if="data.mainTitle">{{ data.mainTitle }}</p>
-        <p v-else>타이틀을 입력해주세요</p>
+      <div class="title--end" v-if="info.varUse === 'Y'">
+        <p style="color:#2F77FB">변수</p>
       </div>
     </div>
   </div>
@@ -22,23 +19,21 @@
 
 <script>
 export default {
+  components: {
+  },
   props: {
-    data: {
+    info: {
       type: Object,
       default: null
-    },
-    viewMode: {
-      type: Boolean,
-      default: true
     }
   },
   data () {
     return {
     }
+  },
+  methods: {
+
   }
+
 }
 </script>
-
-<style scoped>
-
-</style>

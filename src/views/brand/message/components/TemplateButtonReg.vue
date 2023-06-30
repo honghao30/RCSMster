@@ -21,7 +21,7 @@
           <span class="form-item__label required">버튼</span>
           <div class="inner__input-item">
             <div class="input-item">
-              <Dropdown :options="buttonNumOption" v-model="buttonInfo.buttonNum" @change="changeBtnRow"/>
+              <Dropdown :options="buttonNumOption" v-model="buttonInfo.buttonNum" @change="changeBtnRow" @input="e => buttonInfo.buttonNum = e.target.value" />
             </div>
           </div>
           <div class="inner__input-item buttonInfo-box" v-for="(btn, i) in buttonInfo.buttons" :key="i">
@@ -33,7 +33,7 @@
               <div class="inner__input-item">
                 <div class="input-item input-limit">
                   <div class="textarea">
-                    <textarea maxlength="17" placeholder="사용자에게 보여지는 버튼이름을 입력해주세요."  v-model="btn.buttonName" style="height:48px;"
+                    <textarea maxlength="17" placeholder="사용자에게 보여지는 버튼이름을 입력해주세요."  @input="e => btn.buttonName = e.target.value" style="height:48px;"
                     ref="buttonName"></textarea>
                     <div class="textarea-limit__text">
                       <Emoji @input="onSelectEmoji($event, 'buttonName', i)"/>
@@ -87,10 +87,6 @@ export default {
         {
           label: '2개',
           value: 2
-        },
-        {
-          label: '3개',
-          value: 3
         }
       ],
       buttonTypeOption: [
@@ -108,6 +104,9 @@ export default {
         }
       ]
     }
+  },
+  mounted() {
+    this.changeBtnRow()
   },
   methods: {
     changeBtnRow () {
@@ -132,7 +131,7 @@ export default {
       let emoji = e
       let refName = target
       if (idx !== undefined) {
-        this.$refs[refName][0].value += emoji
+        this.$refs[refName][idx].value += emoji
       } else {
         this.$refs[refName].value += emoji
       }

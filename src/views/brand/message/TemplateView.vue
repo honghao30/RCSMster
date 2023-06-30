@@ -45,8 +45,6 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
-            <div class="table__wrap">
               <table class="table table-bodyonly">
                 <colgroup>
                   <col width="196px"/>
@@ -70,6 +68,13 @@
             </div>
           </div>
           <div class="brand-aside">
+            <!-- 에뮬레이터 -->
+            <div class="brand-aside">
+              <ChatEmulator
+                :templateData="templateData"
+              />
+            </div>
+            <!-- // 에뮬레이터 -->
           </div>
         </div>
         <div class="button__wrap space-between">
@@ -99,14 +104,17 @@
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import ChatEmulator from '@/views/brand/message/components/ChatEmulator.vue'
 export default {
   components: {
     PageTitle,
     BrandLnb,
-    ButtonCmp
+    ButtonCmp,
+    ChatEmulator
   },
   data() {
     return {
+      templateData: []
     }
   },
   methods: {

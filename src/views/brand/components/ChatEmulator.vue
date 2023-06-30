@@ -14,37 +14,39 @@
         </div>
         <button class="btn-more" :class="{open: isBlind}"><span class="blind">정보</span></button>
       </div>
-      <!--<div class="emulator-body" v-if="chatInfoData.mode !== 'registration'">
+      <div class="emulator-body" v-if="chatInfoData.mode !== 'registration'">
+      <template v-if="chatInfoData.chatType == 'chatRoom'">
         <transition name="bodyshow">
            <template v-if="chatInfoData.chatRoomName">
             <div class="chat-item__wrap">
               <p class="chat-date">{{ todayData }}</p>
-              <p class="safty-icon" v-if="chatInfoData.saftyMark == 'Y'">확인된 발신번호</p>
+              <p class="safty-icon" v-if="chatInfoData.saftyMark">확인된 발신번호</p>
               <div class="chat-bubble__wrap sender">
                 <div class="chat-bubble">
-                  <p>문의사항이 있으시다면 채팅방에 문의 내용과 성함/연락처를 남겨주세요.<br>
+                  <p>문의사항이 있으시다면 채팅방에 문의 내용과 성함/연락처를 남겨주세요.<br><br>
                     {{ chatInfoData.chatRoomName }}의 MD팀이 최대한 빠르게 답변 드리도록 하겠습니다!
                   </p>
                 </div>
-                <div class="chat-bubble">
+                <!-- <div class="chat-bubble">
                   <p>{{ chatInfoData.chatRoomName }} 가입을 환영합니다.<br>더 풍부해진 문자서비스를 지금 만나보세요!</p>
-                </div>
+                </div> -->
                 <span class="chat-time">{{ currentTime }}</span>
               </div>
             </div>
           </template>
         </transition>
-      </div>-->
-      <div class="emulator-body">
+      </template>
+      </div>
+      <!-- <div class="emulator-body">
         <transition name="bodyshow">
           <div class="chat-item__wrap">
-            <p class="safty-icon" v-if="chatInfoData.saftyMark == 'Y'">확인된 발신번호</p>
+            <p class="safty-icon" v-if="chatInfoData.saftyMark === 'Y'">확인된 발신번호</p>
 
             <div class="chat-bubble__wrap sender" v-if="chatMsgData.chatType == 'chatBubble'">
               <div class="chat-bubble message">
-                <!-- <p>문의사항이 있으시다면 채팅방에 문의 내용과 성함/연락처를 남겨주세요.<br>
+                <p>문의사항이 있으시다면 채팅방에 문의 내용과 성함/연락처를 남겨주세요.<br>
                     {{ chatInfoData.chatRoomName }}의 MD팀이 최대한 빠르게 답변 드리도록 하겠습니다!
-                </p> -->
+                </p>
                 <p v-if="!chatMsgData.bubbleContent">내용을 입력해주세요.</p>
                 <p v-else v-html="chatMsgData.bubbleContent"> </p>
               </div>
@@ -94,15 +96,14 @@
               </li>
             </ul>
           </div>
-          <!-- <div class="chat-bubble__wrap receiver">
+          <div class="chat-bubble__wrap receiver">
             <div class="chat-bubble">
               <p>가입을 환영합니다.<br>더 풍부해진 문자서비스를 지금 만나보세요!</p>
             </div>
             <span class="chat-time">오후 5:22</span>
-          </div> -->
-          <!-- carousel case -->
+          </div>
         </transition>
-      </div>
+      </div> -->
       <div class="emulator-footer" v-if="!chatInfoData.hideInputFooter">
         <div class="emulator-footer__inner" v-if="this.chatInfoData.allowMsg === 'Y'">
           <div class="emulator-footer__top">
@@ -206,10 +207,8 @@ export default {
       default: () => {
         return {
           chatRoomName: '',
-          allowMsg: 'Y',
-          saftyMark: 'N',
+          allowMsg: 'N',
           mode: 'views',
-          chatType: '',
           hideInputFooter: false
         }
       }

@@ -1,22 +1,38 @@
 <template>
   <div class="desc-area table">
-    <p class="subtitle" v-if="data.title">
-      {{ data.title }}
-      <span class="title-point" v-if="data.pointText">{{ data.pointText }}</span>
+    <p class="subtitle">
+      <span v-if="info.title" >{{ info.title }}</span>
+      <span v-else>제목을 입력해주세요</span>
     </p>
-    <div class="description">
-      <dl v-for="(item, i) in data.description" :key="i">
-        <dt v-html="item.tableTitle"></dt>
-        <dd v-html="item.tableText" :class="{'em' : data.bold}"></dd>
-      </dl>
-    </div>
+    <ul class="description" v-if="info.description">
+      <li v-for="(item, i) in info.description" :key="i" :class="{ 'border' : item.tableLine}">
+        <div class="item-label" v-if="item.colNum == 2">
+            <span v-if="item.itemLabel">{{ item.itemLabel }}</span>
+            <span v-else>항목명</span>
+        </div>
+        <div class="item-data">
+            <span v-if="item.itemData">{{ item.itemData }}</span>
+            <span v-else>항목값</span>
+        </div>
+      </li>
+    </ul>
+    <ul v-else class="description">
+      <li>
+        <span class="item-label">
+            <span>항목명</span>
+        </span>
+        <span class="item-data">
+            <span>항목값</span>
+        </span>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    data: {
+    info: {
       type: Object,
       default: null
     }

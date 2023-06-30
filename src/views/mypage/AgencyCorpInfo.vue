@@ -1,28 +1,20 @@
 <!-- 0620: 추가 된 페이지 대행사_비지니스 정보 관리 -->
 <template>
   <div class="join">
-    <PageTitle pagetitle="비지니스 정보 관리" />
-    <div class="top-progress-area">
-      <!-- 승인대기 -->
-      <span class="flag-progress">승인대기</span>
-      <!-- 승인완료 -->
-      <span class="flag-progress done">승인완료</span>
-      <!-- 반려 -->
-      <span class="flag-progress reject">반려</span>
-    </div>
+    <!-- 디자인 1차 수정 -->
+    <PageTitle pagetitle="비지니스 정보 관리" progress="승인완료" />
     <!-- 선거용 배너 노출 영역 -->
     <template v-if="election">
       <div class="top-notice--gray election">
         <div class="title">2024년 4월 10일 제 22대 국회의원선거 선거 운동</div>
         <div class="sub-title">기간 : 2023년 10월 13일~ 2024년 5월 10일</div>
+        <span class="flag-progress done">아이디 발급 완료</span>
         <div class="election__banner--innerbox">
-          <p><span class="flag-progress done">아이디 발급 완료</span> 발급된 계정으로 접속하여 기간 동안 브랜드를 생성/운영관리 할 수 있습니다.</p>
-          <ButtonCmp
-            type="btn-line"
-            disabled
+          <p>발급된 계정으로 접속하여 기간 동안 브랜드를 생성/운영관리 할 수 있습니다.</p>
+          <span class="msgbox-round"
           >
               ID : 123456789
-          </ButtonCmp>
+          </span>
         </div>
       </div>
       <div class="top-notice--gray election">

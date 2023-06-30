@@ -1,17 +1,27 @@
 <template>
-  <div class="template-item">
-    <h4 class="template-item__title" v-if="!mode === 'msgonly'">{{ itemTitle }}</h4>
+  <div class="template-item" v-if="mode !== 'emulator'">
+    <h4 class="template-item__title">{{ itemTitle }}</h4>
     <div class="template-item__box">
       <component
-        v-for="(cmp, i) in templateData" :key="i"
-        :is="cmp.cmpType"
-        :data="cmp.data"
+        v-for="cmp in infoData"
+        :key="cmp"
+        :is="cmp.type"
+        :info.sync="cmp.info"
       />
     </div>
     <ButtonCmp
       type="btn-blue-line"
-      v-if="!mode === 'msgonly'"
     >컴포넌트 작성</ButtonCmp>
+  </div>
+  <div class="template-item" v-else>
+    <div class="template-item__box">
+      <component
+        v-for="cmp in infoData"
+        :key="cmp"
+        :is="cmp.type"
+        :info.sync="cmp.info"
+      />
+    </div>
   </div>
 </template>
 
@@ -45,11 +55,18 @@ export default {
     itemTitle: {
       type: String
     },
-    templateData: {
-      type: Array
+    infoData: {
+      type: Array,
+      default: null
     },
     mode: {
-      type: String
+      type: String,
+      default: 'viewMode'
+    }
+  },
+  data() {
+    return {
+
     }
   }
 }

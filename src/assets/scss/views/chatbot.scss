@@ -133,15 +133,17 @@
         }
       }
       .safty-icon {
-          display: block;
-          @include fontoption(12px,#888,400,18px);
+          display: flex;
+          margin-bottom: 4px;
+          align-items: center;
+          gap: 10px;
+          @include fontoption(12px,#2F77FB,400,18px);
           &::before {
               content: '';
               display: inline-block;
-              margin-right: 10px;
               width:12px;
               height:12px;
-              background-image: url('../assets/images/icon/icon_safty.png');
+              background-image: url('../assets/images/icon/icon_safety_blue.png');
               background-position: center center;
               background-repeat: no-repeat;
           }
@@ -164,7 +166,6 @@
               font-size: 14px;
               line-height: 22px;
               font-weight: 400;
-              white-space: pre-wrap;
           }
           &.message {
             min-height: 164px;

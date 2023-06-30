@@ -8,7 +8,7 @@
               <p>선거 운동 기간 : 2023년 10월 13일~ 2024년 5월 10일</p>
             </div>
             <!-- 가입한 브랜드가 없는 경우 -->
-            <div class="board-main__box--roun-type">
+            <div class="board-main__box--roun-type brand-make">
               <PageTitleH3 titleh3="내 브랜드를 개설하세요." />
               <div class="board-main__description">
                 고객과 RCS 메시지를 이용해 커뮤니케이션하려면 브랜드를 개설하셔야 합니다.<br>
@@ -82,7 +82,7 @@
                       </td>
                       <td>
                         <span class="data-template underline"  v-if="item.message >= 999">999+</span>
-                        <span class="data-chat" v-else>{{ item.message }}</span>
+                        <span class="data-template" v-else>{{ item.message }}</span>
                       </td>
                       <td>
                         <span class="data-agency">{{ item.agencyData }}</span>
