@@ -348,7 +348,7 @@ const dashboardList = [
     'screenId': 'R-Brand-Invi-View-01',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandeditstep01',
-    'comment': ['2023RBC_UIUX개편_화면설계서_내 브랜드 관리_v0.8_20230621(SK피드백)']
+    'comments': ['2023RBC_UIUX개편_화면설계서_내 브랜드 관리_v0.8_20230621(SK피드백)']
   },
   {
     'depth5': '퀵버튼',
@@ -375,7 +375,7 @@ const dashboardList = [
     'screenId': 'R-Brand-Room-List-01',
     'status': ['0601: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomList',
-    'comment': ['기획서 버전: 2023RBC_UIUX개편_화면설계서_대화방_v0.7_20230526']
+    'comments': ['기획서 버전: 2023RBC_UIUX개편_화면설계서_대화방_v0.7_20230526']
   },
   {
     'depth4': '대화방 등록',
@@ -476,7 +476,7 @@ const dashboardList = [
     'screenId': 'R-Brand-News-Reg-01',
     'status': ['0607: 기획 공유', '0616: 개발 공유'],
     'link': '/FeedRegistrationBasic',
-    'comment': '기획서 : 2023RBC_UIUX개편_화면설계서_브랜드 소식_v0.6_20230615'
+    'comments': '기획서 : 2023RBC_UIUX개편_화면설계서_브랜드 소식_v0.6_20230615'
   },
   {
     'depth4': '브랜드 소식 등록',
@@ -492,7 +492,7 @@ const dashboardList = [
     'screenId': 'R-Brand-Chat-List-02',
     'status': ['0621: 기획 공유'],
     'link': '/ChatbotList',
-    'comment': '2023RBC_UIUX개편_화면설계서_브랜드_챗봇_v0.8_20230621_수정중'
+    'comments': '2023RBC_UIUX개편_화면설계서_브랜드_챗봇_v0.8_20230621_수정중'
   },
   {
     'depth5': '상세',
