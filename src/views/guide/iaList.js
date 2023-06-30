@@ -324,21 +324,21 @@ const dashboardList = [
     'screenId': 'R-Comp-Dash-View-01',
     'status': ['0524: 기획 공유', '0526: 개발 공유', '0630: 2차 공유'],
     'link': '/DashBoard',
-    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_선거_v0.8_20230627']
+    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_기업대시보드_v0.9_20230623']
   },
   {
     'depth2': '운영 히스토리',
     'screenId': '',
     'status': ['0630: 기획,개발 공유'],
     'link': '/ManageHistory',
-    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_선거_v0.8_20230627']
+    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_기업대시보드_v0.9_20230623']
   },
   {
     'depth2': '전체브랜드 운영관리',
     'screenId': '',
     'status': ['0630: 기획,개발 공유'],
     'link': '/dashboardOperationManage',
-    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_선거_v0.8_20230627']
+    'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_기업대시보드_v0.9_20230623']
   },
   // 브랜드 관리
   {
