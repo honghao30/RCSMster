@@ -476,7 +476,7 @@ const dashboardList = [
     'screenId': 'R-Brand-News-Reg-01',
     'status': ['0607: 기획 공유', '0616: 개발 공유'],
     'link': '/FeedRegistrationBasic',
-    'comments': '기획서 : 2023RBC_UIUX개편_화면설계서_브랜드 소식_v0.6_20230615'
+    'comments': ['기획서 : 2023RBC_UIUX개편_화면설계서_브랜드 소식_v0.6_20230615']
   },
   {
     'depth4': '브랜드 소식 등록',
@@ -492,7 +492,7 @@ const dashboardList = [
     'screenId': 'R-Brand-Chat-List-02',
     'status': ['0621: 기획 공유'],
     'link': '/ChatbotList',
-    'comments': '2023RBC_UIUX개편_화면설계서_브랜드_챗봇_v0.8_20230621_수정중'
+    'comments': ['2023RBC_UIUX개편_화면설계서_브랜드_챗봇_v0.8_20230621_수정중']
   },
   {
     'depth5': '상세',
