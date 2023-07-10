@@ -251,7 +251,7 @@
   .list__sort-area {
     display: flex;
     gap: 8px;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
     .checkbox {
       label {
         height: 42px;
@@ -278,26 +278,10 @@
     
   }
   .template-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    flex-direction: column;
-    height: 2420px;
-    #image4 {
-      margin-bottom: 160px;
-    }
-    &.text {
-      height: 460px;
-    }
-    &.lms {
-      height: 1160px;
-    }
-    &.image {
-      height: 1120px;
-    }
     .template-item {
       width: 262px;
       position:relative;
+      margin:12px 0;
       &__box {
         width: 262px;
         padding:0;
@@ -329,63 +313,6 @@
         text-align:center;
         @include fontoption(16px,#fff,500,28px);
       }
-    }
-    #text1 {
-      order: 1
-    }
-    #text5 {
-      order:2
-    }
-    #lms3 {
-      order: 3;
-    }
-    #image1 {
-      order:4
-    }
-    #image4 {
-      order: 5;
-    }
-    #text2 {
-      order:6;
-    }
-    #text6 {
-      order:7
-    }
-    #lms4 {
-      order:8;
-    }
-    #image2 {
-      order: 9
-    }
-    #image5 {
-      order: 10
-    }
-    #text3 {
-      order:11;
-    }
-    #lms1 {
-      order: 12
-    }
-    #lms5 {
-      order: 13;
-    }
-    #image3 {
-      order: 14;
-    }
-    #image6 {
-      order: 15
-    }
-    #text4 {
-      order:16;
-    }
-    #lms2 {
-      order: 17;
-    }
-    #lms6 {
-      order: 18;
-    }
-    #image7 {
-      order: 20
     }
   }
 }

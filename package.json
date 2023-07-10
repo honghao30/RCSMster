@@ -47,6 +47,7 @@
     "vue-color": "^2.8.1",
     "vue-custom-scrollbar": "1.1.0",
     "vue-data-tables": "^3.4.4",
+    "vue-masonry-css": "^1.0.3",
     "vue-owl-carousel": "^2.0.3",
     "vue-pdf-app": "^2.1.0",
     "vue-router": "^3.0.1",

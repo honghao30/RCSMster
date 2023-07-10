@@ -4,47 +4,42 @@
       <BrandLnb />
       <div class="brand-info__wrap">
         <PageTitle pagetitle="대화방 메뉴 등록" />
-        <div class="chatroom__wrap">
+        <div class="chatroom__wrap chatroom-menu__wrap">
           <div class="chatroom-registration">
             <form  ref="form" :model="form">
               <div class="table__wrap">
                 <table class="table table-bodyonly form-table">
                   <colgroup>
-                    <col width="196px" />
+                    <col />
                     <col />
                   </colgroup>
                   <tbody>
+                    <!-- 기획서 v1.0 수정 -->
                     <tr>
-                      <th scope="row"><span class="form-item__label">사용여부</span>
+                      <th scope="row" width="77px"><span class="form-item__label">대화방</span>
                       </th>
                       <td>
                         <div class="form-item__content">
                           <div class="form-item-row">
-                            <div class="switch switch-status" role="switch">
-                              {{ switchStatus }}
-                              <input type="checkbox" id="switch" v-model="form.switch" checked>
-                              <label class="switch__core" for="switch"></label>
+                            <div class="two-content">
+                              <div class="chatroom__select--top">
+                                <Dropdown :options="dropdownOptions" @beforeChange="isChange"
+                                >
+                                </Dropdown>
+                                <!-- 대화방 메뉴 복사를 통해 진입한 경우 : 대화방이 선택되지 않은 경우 노출 -->
+                                <p class="guide-text error">대화방이 선택되어 있지 않습니다.</p>
+                              </div>
+                              <div class="switch switch-status" role="switch">
+                                {{ switchStatus }}
+                                <input type="checkbox" id="switch" v-model="form.switch" checked>
+                                <label class="switch__core" for="switch"></label>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </td>
                     </tr>
-                    <tr>
-                      <th scope="row"><span class="form-item__label">대화방</span>
-                      </th>
-                      <td>
-                        <div class="form-item__content">
-                          <div class="form-item-row">
-                            <div class="chatroom__select--top">
-                              <Dropdown :options="dropdownOptions" @beforeChange="isChange"
-                              v-model="form.chatRoom"
-                              >
-                              </Dropdown>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
+                    <!-- // 기획서 v1.0 수정 -->
                     <tr>
                       <td colspan="2" class="card-box">
                         <div class="form-item__content">
@@ -67,7 +62,6 @@
                                     "><span class="blind">삭제</span></a>
                                   </div>
                                 </draggable>
-
                                 <a role="button" class="btn-add" @click="addSlide(form.chatMenuData.length)" v-if="form.chatMenuData.length < 5">+<span class="blind"></span></a>
                               </div>
                               <div class="ctrl-btns">
@@ -111,7 +105,6 @@
                                                     :placeholder="'메뉴명을 입력해주세요'"
                                                     ref="menuName"
                                                   >
-
                                                   <div class="input-limit__text">
                                                     <Emoji @input="onSelectEmoji($event, 'menuName', j)"/>
                                                     <p>{{ menu.menuTitle.length }}/17자</p>
@@ -125,27 +118,28 @@
                                       </div>
                                     </td>
                                   </tr>
+                                  <!-- 기획서 v1.0 수정 -->
                                   <tr>
                                     <th scope="row"><span class="form-item__label">연결항목</span></th>
                                     <td>
-                                        <div class="form-item__content chatroom-menu">
-                                          <span class="radiobox">
-                                            <input type="radio" name="chatroomMenu" value="call" v-model="menu.checkItem" id="radio1" />
-                                            <label for="radio1"><span class="radiobox__text">전화 연결</span></label>
-                                          </span>
-                                          <span class="radiobox">
-                                            <input type="radio" name="chatroomMenu" value="web" v-model="menu.checkItem" id="radio2"  />
-                                            <label for="radio2"><span class="radiobox__text">홈페이지 연결</span></label>
-                                          </span>
-                                          <span class="radiobox">
-                                            <input type="radio" name="chatroomMenu" value="news" v-model="menu.checkItem" id="radio3" />
-                                            <label for="radio3"><span class="radiobox__text">브랜드 소식 연결</span></label>
-                                          </span>
-                                          <span class="radiobox">
-                                            <input type="radio" name="chatroomMenu" value="chatbot" v-model="menu.checkItem" id="radio4" />
-                                            <label for="radio4"><span class="radiobox__text">간편 챗봇 메시지 연결</span></label>
-                                          </span>
-                                        </div>
+                                      <div class="form-item__content chatroom-menu">
+                                        <span class="radiobox">
+                                          <input type="radio" name="chatroomMenu" value="call" v-model="menu.checkItem" id="radio1" />
+                                          <label for="radio1"><span class="radiobox__text">전화 연결</span></label>
+                                        </span>
+                                        <span class="radiobox">
+                                          <input type="radio" name="chatroomMenu" value="web" v-model="menu.checkItem" id="radio2"  />
+                                          <label for="radio2"><span class="radiobox__text">웹사이트 연결</span></label>
+                                        </span>
+                                        <span class="radiobox">
+                                          <input type="radio" name="chatroomMenu" value="news" v-model="menu.checkItem" id="radio3" />
+                                          <label for="radio3"><span class="radiobox__text">브랜드 소식 연결</span></label>
+                                        </span>
+                                        <span class="radiobox">
+                                          <input type="radio" name="chatroomMenu" value="chatbot" v-model="menu.checkItem" id="radio4" />
+                                          <label for="radio4"><span class="radiobox__text">간편 챗봇 메시지 연결</span></label>
+                                        </span>
+                                      </div>
                                     </td>
                                   </tr>
                                   <tr v-if="menu.checkItem === 'call'">
@@ -162,15 +156,26 @@
                                     </td>
                                   </tr>
                                   <tr v-if="menu.checkItem === 'web'">
-                                    <th scope="row"><span class="form-item__label">URL</span></th>
+                                    <th scope="row"><span class="form-item__label">웹사이트</span></th>
                                     <td>
                                       <div class="form-item__content">
+                                        <!-- Default: 브랜드 개설 시 입력한 웹사이트 노출 -->
                                         <div class="form-item-row">
                                           <div class="input-item">
-                                            <span class="input"><input type="text" class="input" placeholder="http://로 된 주소를 입력해주세요." v-model="menu.web"></span>
+                                            <span class="input"><input type="text" class="input" placeholder="https://www-qa.rcsbizcenter.com/service/brand/BR.13L49F42Mo/psmenu/unit/bot-9467llz2olr" v-model="menu.web" disabled></span>
                                           </div>
                                         </div>
-                                        <p class="guide-text error" v-if="webErrorMsg">http://로 된 주소를 입력해주세요.</p>
+                                        <!-- // Default: 브랜드 개설 시 입력한 웹사이트 노출 -->
+                                        <!-- 등록된 웹사이트가 없는 경우 -->
+                                        <div class="form-item-row web-registration-box">
+                                          <div>
+                                            <p>브랜드 개설 시 입력한 웹사이트가 없습니다.<br>웹사이트를 등록해주세요.</p>
+                                            <div class="exception-txt">
+                                              <a @click="webRegistrationModal">웹사이트 등록</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <!-- // 등록된 웹사이트가 없는 경우 -->
                                       </div>
                                     </td>
                                   </tr>
@@ -185,14 +190,32 @@
                                           <ButtonCmp
                                             type="btn-default-line"
                                             @click="barndNewsSelect"
-                                          >등록</ButtonCmp>
+                                          >브랜드 소식 선택</ButtonCmp>
                                         </div>
                                         <p class="guide-text error" v-if="newsErrorMsg">연결할 브랜드 소식을 선택하세요.</p>
                                       </div>
                                     </td>
                                   </tr>
                                   <tr v-if="menu.checkItem === 'chatbot'">
-                                    <th scope="row"><span class="form-item__label">URL</span></th>
+                                    <th scope="row"><span class="form-item__label">양방향 대행사</span></th>
+                                    <td>
+                                      <!-- 청약 대행사 O / 대행사 연결 O / 간편챗봇 메시지 등록 O : 양방향 대행사 선택 경우, chatbot-des 클래스 삭제 -->
+                                      <!-- 청약 대행사 O / 대행사 연결 X : 양방향 대행사 선택 경우, chatbot-des 클래스 필요 -->
+                                      <div class="chatbot-agency">
+                                        <div class="chatbot-des">
+                                        <p>
+                                          현재 연결된 양방향 대행사가 없습니다.<br>
+                                          대행사 연결 후 간편챗봇 메시지를 등록할 수 있습니다.
+                                        </p>
+                                      </div>
+                                      <Dropdown :options="chatbotOptions"
+                                        >
+                                      </Dropdown>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr v-if="menu.checkItem === 'chatbot'">
+                                    <th scope="row"><span class="form-item__label">간편챗봇 메시지</span></th>
                                     <td>
                                       <div class="form-item__content">
                                         <div class="form-item-row row-gap">
@@ -202,21 +225,23 @@
                                           <ButtonCmp
                                             type="btn-default-line"
                                             @click="chatBotSelect"
-                                          >등록</ButtonCmp>
+                                          >간편챗봇 메시지</ButtonCmp>
                                         </div>
-                                        <!-- 연결된 대행사가 없는 경우 -->
+                                        <!-- 기획서 v1.0 수정(청약 대행사 X / 대행사 연결 X) -->
                                         <div class="form-item-row notchat__wrap">
                                           <ul>
                                             <li>현재 연결된 양방향 대행사가 없습니다.</li>
                                             <li>대행사 연결 후 간편 챗봇 메시지를 등록할 수 있습니다.</li>
                                           </ul>
-                                          <a class="notchat-des"><router-link to="">RBC의 파트너 대행사를 확인해보세요.</router-link></a>
+                                          <!-- 기획서 v1.0 수정(텍스트 링크 클릭 시 파트너사 화면으로 이동 / 파트너사 화면 미작업된 상황) -->
+                                          <router-link to="" class="exception-txt">RBC의 파트너 대행사를 확인해보세요.</router-link>
                                         </div>
-                                        <!-- //연결된 대행사가 없는 경우 -->
+                                        <!-- // 기획서 v1.0 수정(청약 대행사 X / 대행사 연결 X) -->
                                         <p class="guide-text error" v-if="chatbotErrorMsg">연결할 간편챗봇 메시지를 선택하세요.</p>
                                       </div>
                                     </td>
                                   </tr>
+                                  <!-- // 기획서 v1.0 수정 -->
                                 </tbody>
                               </table>
                             </template>
@@ -232,7 +257,7 @@
           <div class="chatroom-emulator sticky">
             <ChatEmulator
             :chatInfoData="chatInfoData"
-            :chatMenuList='form.chatMenuData'
+            :chatMenuList="form.chatMenuData"
             />
           </div>
         </div>
@@ -243,12 +268,12 @@
           >임시 저장</ButtonCmp>
           <ButtonCmp
             type="btn-blue"
-            :disabled = "isDisabled"
             @click="onSubmit"
           >저장</ButtonCmp>
         </div>
       </div>
     </div>
+    <!-- 기획서 v1.0 수정 -->
     <!-- 모달 -->
     <ModalView
       v-if="isModalViewed"
@@ -257,7 +282,7 @@
       <!-- 대화방 변경 시 alert -->
       <ConfirmMsg
       v-if="isChatRoomChange"
-        @closeModal="isModalViewed = false"
+        @closeModal="isModalViewed = false, isChatRoomChange = false"
       >
         <div class="msg" slot="msg">
           대화방을 변경하시면<br>
@@ -280,10 +305,14 @@
         </div>
       </ConfirmMsg>
       <!-- //대화방 변경 시 alert -->
+      <!-- 기획서 v1.0 수정(추가된 내용에 대한 설명입니다. /
+      Case1) 첫번째 메뉴인 경우: 탭은 그대로 있고 입력 내용만 삭제
+      Case2) 두번째~다섯번째 메뉴인 경우: 탭과 입력 내용 모두 삭제
+      -->
       <!-- 메뉴 편집 버튼 삭제 시 alert -->
       <ConfirmMsg
       v-if="isRemoveSlide"
-        @closeModal="isModalViewed = false"
+        @closeModal="isModalViewed = false, isRemoveSlide = false"
       >
         <div class="msg" slot="msg">
           삭제하는 경우 해당 메뉴에 입력된 내용이<br>
@@ -306,16 +335,22 @@
         </div>
       </ConfirmMsg>
       <!-- //메뉴 편집 버튼 삭제 시 alert -->
+      <!-- // 기획서 v1.0 수정(추가된 내용에 대한 설명입니다. /
+      Case1) 첫번째 메뉴인 경우: 탭은 그대로 있고 입력 내용만 삭제
+      Case2) 두번째~다섯번째 메뉴인 경우: 탭과 입력 내용 모두 삭제
+      -->
       <!-- 브랜드 소식 연결 선택 버튼 : 클릭 시 -->
       <!-- case01. 등록된 브랜드 소식이 없는 경우(아니요 클릭 시 case02로 진입함) -->
+      <!-- 기획서 v1.0 수정(문구수정) -->
       <ConfirmMsg
-        @closeModal="isModalViewed = false"
+        @closeModal="isModalViewed = false, isBrandNews = false"
         v-if="isBrandNews"
       >
         <div class="msg" slot="msg">
           등록된 브랜드 소식이 없습니다.<br>
-          등록중인 대화방 메뉴를 임시저장하고<br>
-          브랜드 소식을 등록 하시겠습니까?
+          브랜드 소식 > 브랜드 소식 작성 에서 콘텐츠 작성 후<br>
+          브랜드 소식 연결을 사용하실 수 있습니다.<br>
+          브랜드 소식으로 이동 하시겠습니까?
         </div>
         <div class="button__wrap" slot="button">
           <!-- 원래 아니요 클릭 시 case02 페이지 구현을 위해 만듦-->
@@ -335,12 +370,14 @@
             아니요
           </ButtonCmp>
           <!-- // 실제 구현 시 불필요 -->
+          <!-- 기획서 v1.0 수정(추가된 내용에 대한 설명입니다. /[예] 선택 시, 브랜드 소식 등록 화면으로 이동) -->
           <router-link
             to="/FeedRegistration"
             class="btn btn-blue"
           >예</router-link>
         </div>
       </ConfirmMsg>
+      <!-- // 기획서 v1.0 수정(문구수정) -->
       <!-- case02. 등록된 브랜드 소식이 있는 경우 -->
       <DonebarndNewsSelect
         @closeModal="isModalViewed = false, isDoneBrandNews = false"
@@ -350,14 +387,16 @@
       <!-- //브랜드 소식 연결 선택 버튼 : 클릭 시 -->
       <!-- 간편챗봇 메시지 연결 선택 버튼 : 클릭 시 -->
       <!-- case01. 등록된 간편챗봇 메시지가 없는 경우(아니요 클릭 시 case02로 진입함) -->
+      <!-- 기획서 v1.0 수정(문구수정 / 링크연결) -->
       <ConfirmMsg
         v-if="isChatBotConnect"
-          @closeModal="isModalViewed = false"
+        @closeModal="isModalViewed = false"
       >
         <div class="msg" slot="msg">
           등록된 간편챗봇 메시지가 없습니다.<br>
-          등록중인 대화방 메뉴를 임시저장하고<br>
-          간편챗봇 메시지를 등록 하시겠습니까?
+          간편챗봇 메시지 작성 후 간편챗봇 메시지<br>
+          연결을 사용하실 수 있습니다.<br>
+          간편챗봇 메시지 작성화면으로 이동 하시겠습니까?
         </div>
         <div class="button__wrap" slot="button">
           <!-- 원래 아니요 클릭 시 case02 페이지 구현을 위해 만듦-->
@@ -377,13 +416,14 @@
             아니요
           </ButtonCmp>
           <!-- // 실제 구현 시 불필요 -->
-          <!-- 기획서 > 예 버튼 클릭 시 경로 이동에 관한 내용 없음 -->
+          <!-- 기획서 v1.0 수정(추가된 내용에 대한 설명입니다. / [예] 선택 시, 간편챗봇 메시지 등록 화면으로 이동) -->
           <router-link
-            to=""
+            to="/ChatbotRegistration"
             class="btn btn-blue"
           >예</router-link>
         </div>
       </ConfirmMsg>
+      <!-- // 기획서 v1.0 수정(문구수정 / 링크연결) -->
       <!-- case02. 등록된 간편챗봇 메시지가 있는 경우 -->
       <DoneChatBotMsgSelect
         @closeModal="isModalViewed = false, isDoneChatBotConnect = false"
@@ -393,7 +433,7 @@
       <!-- //간편챗봇 메시지 연결 선택 버튼 : 클릭 시 -->
       <!-- 임시저장 -->
       <ConfirmMsg
-        @closeModal="isModalViewed = false"
+        @closeModal="isModalViewed = false, isModalSave = false"
         v-if="isModalSave"
       >
         <div class="msg" slot="msg">
@@ -409,9 +449,33 @@
         </div>
       </ConfirmMsg>
       <!-- //임시저장 -->
-      </ModalView>
-      <!-- //모달 -->
-    </div>
+      <!-- 기획서 v1.0 수정(연결항목: 웹사이트 > 등록된 웹사이트가 없는 경우)  -->
+      <ConfirmMsg
+        v-if="isWebRegistration"
+        @closeModal="isModalViewed = false, isWebRegistration = false"
+      >
+        <div class="msg" slot="msg">
+          등록된 홈페이지 URL이 없습니다.<br>
+          내 브랜드관리 > 브랜드 홈 탭 설정에서 웹사이트<br>
+          등록 후 웹사이트 연결을 사용할 수 있습니다.<br>
+          내 브랜드 관리로 이동 하시겠습니까?
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+          type="btn-line"
+          @click="closeMsg"
+          >
+            아니요
+          </ButtonCmp>
+          <!-- [예] 선택 시, 내 브랜드 관리 화면으로 이동 -->
+          <router-link to="/brandeditstep01" class="btn btn-blue">예</router-link>
+        </div>
+      </ConfirmMsg>
+      <!-- // 기획서 v1.0 수정(연결항목: 웹사이트 > 등록된 웹사이트가 없는 경우) -->
+    </ModalView>
+    <!-- //모달 -->
+    <!-- // 기획서 v1.0 수정 -->
+  </div>
 </template>
 
 <script>
@@ -458,9 +522,10 @@ export default {
           web: '',
           news: '',
           chatbot: ''
-        }],
-        chatRoom: 'chatRoomMenu01'
+        }]
       },
+      chatRoom: 'chatRoomMenu01',
+      switchStatus: '',
       dropdownOptions: [
         {
           label: 'SYSTEM STUDIOS',
@@ -482,7 +547,6 @@ export default {
       isChatBotConnect: false,
       isDoneChatBotConnect: false,
       isModalSave: false,
-      selectOption: 'chatRoomMenu01',
       menuActiveIndex: 0,
       isMenuEdit: false,
       showSpecialCharTitle: false, // 특수문자 선택창 show 여부
@@ -490,19 +554,29 @@ export default {
       webErrorMsg: false,
       newsErrorMsg: false,
       chatbotErrorMsg: false,
+      isWebRegistration: false,
       chatInfoData: {
         chatRoomName: 'SYSTEM STUDIOS',
         allowMsg: 'Y'
-      }
+      },
+      chatbotOptions: [
+        {
+          label: '카카오 I 커넥트 톡',
+          value: 'chatbot01'
+        },
+        {
+          label: '포스트 맨',
+          value: 'chatbot02'
+        },
+        {
+          label: '문자온',
+          value: 'chatbot03'
+        }
+      ]
     }
   },
   mounted() {
-    this.switchStatus = this.form.switch ? '사용' : '미사용'
-  },
-  computed: {
-    switchStatus() {
-      return this.form.switch ? '사용' : '미사용'
-    }
+    this.switchStatus = this.form.switch ? '대화방 메뉴 사용' : '대화방 메뉴 미사용'
   },
   methods: {
     isChange(option) {
@@ -529,16 +603,26 @@ export default {
       this.isChatBotConnect = false
       this.isDoneChatBotConnect = true
     },
-    closeMsg () {
+    closeMsg() {
       this.isModalViewed = false
       this.isChatRoomChange = false
-      this.isRemoveSlideModal = false
+      this.isRemoveSlide = false
+      this.isWebRegistration = false
+      this.isBrandNews = false
+      this.isDoneChatBotConnect = false
+      this.isDoneBrandNews = false
+      this.isChatBotConnect = false
+      this.isModalSave = false
     },
-    saveTemp () {
+    saveTemp() {
       this.isModalViewed = true
       this.isModalSave = true
     },
-    onSubmit () {
+    webRegistrationModal() {
+      this.isModalViewed = true
+      this.isWebRegistration = true
+    },
+    onSubmit() {
       this.form.chatMenuData.forEach((menu) => {
         if (menu.checkItem === 'call' && !menu.tel) {
           this.telErrorMsg = true

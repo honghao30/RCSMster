@@ -16,6 +16,13 @@
                 </span>
               </div>
             </div>
+            <!-- 기획서 v1.0 수정 (right-area 추가) -->
+            <div class="right-area">
+              <Dropdown :options="sortOptions"
+              >
+              </Dropdown>
+            </div>
+            <!-- // 기획서 v1.0 수정 (right-area 추가) -->
           </div>
           <div class="table__wrap">
             <table class="table table-list">
@@ -54,16 +61,17 @@
             </table>
           </div>
         </div>
-        <div class="empty-emulator" v-if="radiochk">
+        <!-- 기획서 v1.0 수정 (v-if/ v-else 수정 / ) -->
+        <div class="empty-emulator" v-if="radiochk.length === 0">
           <p>브랜드 소식을 선택해주세요.</p>
         </div>
         <!-- 간편챗봇 컴포넌트 완성되면 연결해야함 임시로 피드에뮬레이터 컴포넌트 사용함 -->
-        <feedEmulator
-          v-if="!radiochk"
-          :brandInfoData="brandInfoData"
-          :feedInfoData="form"
-          :showBrandHeader="true"
+        <ChatEmulator
+        v-else
+        :chatInfoData="chatInfoData"
+        :chatMsgData ="chatMsgData"
         />
+        <!-- // 기획서 v1.0 수정 (v-if, v-else 수정) -->
       </div>
     </div>
     <div class="modal__content--footer">
@@ -87,14 +95,16 @@
 
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import feedEmulator from '@/views/brand/feed/components/feedEmulator.vue'
+import ChatEmulator from '@/views/brand/components/ChatEmulator.vue'
 import PagingCmp from '@/components/common/PagingCmp.vue'
+import Dropdown from '@/components/common/Dropdown.vue'
 
 export default {
   components: {
     ButtonCmp,
-    feedEmulator,
-    PagingCmp
+    ChatEmulator,
+    PagingCmp,
+    Dropdown
   },
   data() {
     return {
@@ -152,16 +162,45 @@ export default {
           type: '이미지형'
         }
       ],
-      brandInfoData: {
-        name: '네스프레소',
-        profileImgFileUrl: 'dummy/brand_logo.png'
+      sortOptions: [
+        {
+          label: '최신순',
+          value: 'latest'
+        },
+        {
+          label: '이름순',
+          value: 'name'
+        }
+      ],
+      chatInfoData: {
+        chatRoomName: '네스프레소',
+        allowMsg: 'N',
+        saftyMark: 'Y',
+        chatType: '',
+        hideInputFooter: true
       },
-      form: {
-        type: 'gallery',
-        feedDate: '4월 19일 오후 3:00',
-        feedTitle: 'SK 텔레콤의 스마트한 제안​',
-        feedContent: 'SK텔레콤을 다양하게 만나보세요! #SKT Insight · SK텔레콤 네이버 포스트 스크랩 · SK텔레콤 페이스북 #Facebook · SK텔레콤 유튜브 #YouTube ​레콤 네이버 포스트 스크랩 · SK텔레콤 페이스북 #Facebook · SK텔레콤 유튜브 #YouTube ​레콤 네이버 포스트 스크랩 · SK텔레콤 페이스북 #Facebook · SK텔레콤 유튜브 #YouTube',
-        imgFiles: ['dummy/feed_image_02.png']
+      chatMsgData: {
+        chatType: 'card',
+        imgSize: 'medium',
+        chatCardTitle: 'Y',
+        chatCardContent: 'Y',
+        chipButtons: [{
+          btnName: '🎀 상담직원연결 👋​'
+        },
+        {
+          btnName: '🍉나에게 맞​는 상품은?🍓​'
+        }],
+        msgData: [{
+          index: 1,
+          imgFile: 'dummy/template_image.png',
+          title: 'SYSTEM STUDIOS',
+          cardContent: '5만원 이상 첫 구매 후 응모 시 L Point <br>3천 P 지급합니다.',
+          btnUse: 'Y',
+          btnDirection: 'column',
+          buttons: [{
+            btnName: '주소찾기'
+          }]
+        }]
       }
     }
   },

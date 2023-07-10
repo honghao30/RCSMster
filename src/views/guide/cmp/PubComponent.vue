@@ -19,6 +19,7 @@
               <col style="width:8%;">
               <col style="width:10%;">
               <col style="width:14%;">
+              <col style="width:4%;">
               <col style="">
           </colgroup>
           <thead>
@@ -31,6 +32,7 @@
               <th>화면ID</th>
               <th>작업이력</th>
               <th>Link</th>
+              <th>배포예정</th>
               <th>비고</th>
             </tr>
           </thead>
@@ -51,7 +53,11 @@
                   - {{ status }}
                 </p>
               </span></td>
-              <td><span v-if="item.link"><router-link :to="item.link" target="_blank">{{item.link}}</router-link></span></td>
+              <td><span v-if="item.link"><router-link
+                :to="item.link"
+                :class="{ publish: item.isPublished === true }"
+                target="_blank">{{item.link}}</router-link></span></td>
+              <td style="text-align:center"><span>{{ item.pubData }}</span></td>
               <td><span v-if="item.comments">
                 <p
                   v-for="item in item.comments"
@@ -151,4 +157,13 @@ export default {
 .ia__list__table tr td:first-child {border-left: 0;}
 .ia__list__table tr th:first-child {padding-left: 0;padding-right: 0;}
 .ia__list__table td {text-align: left;}
+.publish {
+  color:#2F77FB;
+}
+.publish:after {
+    content: '(✔)';
+    display: inline-block;
+    font-size:9px;
+    margin-left:2px;
+  }
 </style>

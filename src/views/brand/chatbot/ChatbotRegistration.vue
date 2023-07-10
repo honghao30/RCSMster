@@ -99,13 +99,13 @@
                             </div>
                             <div class="form-item-row">
                               <div class="input-item">
-                                <span class="input"><input type="text" :value="filesName" disabled placeholder="이미지를 등록해주세요."></span>
-                                <input type="file" id="fileUp" class="input" @change="onFileChanged" :disabled="isSlideCardEdit">
+                                <span class="input"><input type="text" v-model="imgFile" disabled placeholder="이미지를 등록해주세요."></span>
+                                <input type="file" id="fileUp" class="input" @change="onFileUpLoad">
                                 <label for="fileUp"
                                   class="btn btn-default-line"
-                                  :class="{'inactive' : isSlideCardEdit }"
                                 >파일찾기</label>
                               </div>
+                              <!-- :disabled="isSlideCardEdit"  :class="{'inactive' : isSlideCardEdit }" -->
                               <p class="guide-text black">&middot; 파일형식: JPG, PNG, GIF, BMP<br>(최대 1MB, 단, 동일한 파일을 등록하는 경우 크기에 합산되지 않습니다.)</p>
                             </div>
                         </div>
@@ -177,19 +177,19 @@
                             <div class="form-item-row">
                               <div class="input-item">
                                 <span class="radiobox">
-                                  <input type="radio" name="chipBtnUse" id="btnUseN" value="N" v-model="form.chipBtnUse"/>
-                                  <label for="btnUseN"><span class="radiobox__text">미사용</span></label>
+                                  <input type="radio" name="cardBtnUse" id="cardBtnUseN" value="N" v-model="form.cardBtnUse"/>
+                                  <label for="cardBtnUseN"><span class="radiobox__text">미사용</span></label>
                                 </span>
                                 <span class="radiobox">
-                                  <input type="radio" name="chipBtnUse" id="btnUseY" value="Y" v-model="form.chipBtnUse"/>
-                                  <label for="btnUseY"><span class="radiobox__text">사용</span></label>
+                                  <input type="radio" name="cardBtnUse" id="cardBtnUseY" value="Y" v-model="form.cardBtnUse"/>
+                                  <label for="cardBtnUseY"><span class="radiobox__text">사용</span></label>
                                 </span>
                               </div>
                             </div>
                         </div>
                         <ChatChipButtonReg
                           :buttons="form.chipButtons"
-                          v-if="form.chipBtnUse === 'Y'"
+                          v-if="form.cardBtnUse === 'Y'"
                           @openChatbotModal="ChatBotModal"
                         />
                       </td>
@@ -569,6 +569,7 @@ export default {
         imgSize: 'full',
         chatCardTitle: 'N',
         chatCardContent: 'N',
+        cardBtnUse: 'N',
         chipBtnUse: 'N',
         chipButtons: [],
         bubbleContent: '',
@@ -603,6 +604,7 @@ export default {
         hideInputFooter: true,
         mode: 'registration'
       },
+      imgFile: '',
       cardActiveIndex: 0,
       isModalViewed: false,
       isChatbotMsgChange: false,
@@ -716,6 +718,13 @@ export default {
       const file = files[0]
       const fileName = file.name
       this.form.msgData[0].imgFile = fileName
+      this.url = URL.createObjectURL(file)
+    },
+    onFileUpLoad (e) {
+      const files = e.target.files
+      const file = files[0]
+      const fileName = file.name
+      this.imgFile = fileName
       this.url = URL.createObjectURL(file)
     },
     isChangeTypeCheck() {

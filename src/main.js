@@ -17,6 +17,7 @@ import Vue2Editor from 'vue2-editor'
 // 플러그인
 import MessagePlugin from '@/plugins/message'
 import FilterPlugin from '@/plugins/filter'
+import VueMasonry from 'vue-masonry-css'
 
 // 에러 관리
 // import ErrorTracer from 'error-tracer'
@@ -40,6 +41,7 @@ Vue.use(vuescroll)
 Vue.use(MessagePlugin)
 Vue.use(FilterPlugin)
 Vue.use(Vue2Editor)
+Vue.use(VueMasonry)
 
 Vue.config.productionTip = false
 

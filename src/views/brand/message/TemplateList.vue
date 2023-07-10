@@ -27,8 +27,8 @@
               <label for="type2"><span class="checkbox__text">상품유형2</span></label>
             </span>
           </div>
-          <div class="template-list">
-            <div class="template-item" v-for="item in sortTemplateList" :key="item" :id="item.id">
+          <masonry class="template-list" :cols="4" :gutter="24">
+            <div class="template-item" v-for="(item, i) in sortTemplateList" :key="i" :id="item.id">
               <div class="template-item__box">
                 <img :src="item.imgUrl" alt="">
               </div>
@@ -40,7 +40,7 @@
                 >템플릿 작성</ButtonCmp>
               </div>
             </div>
-          </div>
+          </masonry>
         </div>
       </div>
     </div>
@@ -51,6 +51,7 @@
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+
 export default {
   components: {
     BrandLnb,
@@ -182,23 +183,18 @@ export default {
     this.sortTemplateList = this.templateList
   },
   computed: {
-    sortTemplateList() {
-      // list = this.sortOption.forEach((opt) => {
-      //   this.templateList.filter((item) => {
-      //     return item.type.toLowerCase().includes(opt.toLowerCase())
-      //   })
-      // })
-      // return list
-      let list = this.templateList
-      return list
+    sortTemplateList () {
+      let filteredList = []
+      this.templateList.forEach((item) => {
+        this.sortOption.forEach((opt) => {
+          if (item.type === opt) {
+            filteredList.push(item)
+          }
+        })
+      })
+      return filteredList
     }
-  },
-  methods: {
   }
 }
 
 </script>
-
-<style>
-
-</style>

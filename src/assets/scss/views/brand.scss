@@ -817,19 +817,20 @@
     }
 }
 //대화방 메뉴 등록
-.switch-status{
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-.chatroom__select--top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.two-content{
     width: 100%;
-    .dropdown{
-        min-width: 523px;
-    }   
+    display: flex;
+    justify-content: space-between;
+    .chatroom__select--top{
+        .dropdown{
+            min-width: 328px;
+        }
+    }
+    .switch-status{
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
 }
 td{
     &.card-box{
@@ -856,26 +857,19 @@ td{
     .row-gap{
         gap: 8px;
     }
-    .notchat__wrap{
-        .notchat-des{
+    .web-registration-box{
+        .exception-txt{
             margin-top: 8px;
-            position: relative;
-            text-decoration: underline;
+            cursor: pointer;
             &::after {
-                content: '';
-                display: block;
-                position: absolute;
-                width: 16px;
-                height:16px;
-                background-image: url('../assets/images/icon/icon_more.png');
-                background-position: center center;
-                background-repeat: no-repeat;
-                transform: rotate(-90deg);
-                cursor: pointer;
-                top: 6px;
-                right: -20px;
+                left: 35%;
             }
         }
+    }
+    .chatbot-agency{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
 }
 //대화방 메뉴 목록
