@@ -36,7 +36,7 @@
                     <label for="slider">
                       <i class="icon-card"></i>
                       <dl>
-                        <dt class="tab-title">슬라이드(2~6장)</dt>
+                        <dt class="tab-title">캐로셀(2~6장)</dt>
                         <dd class="tab-text">이미지와 텍스트를 혼합하여 풍부한 메시지 작성</dd>
                       </dl>
                     </label>
@@ -283,7 +283,7 @@
                   <div class="item-reg__inner">
                     <div class="item-reg__list" v-if="form.chatType == 'chatBubble'">
                       <div class="item active">
-                        <span class="item-text">슬라이드 1</span>
+                        <span class="item-text">캐로셀 1</span>
                       </div>
                     </div>
                     <draggable
@@ -298,7 +298,7 @@
                         :class="[{'active': msg.isActive},]"
                         @click="cardActive(i)"
                       >
-                        <span v-text="`슬라이드${msg.index}`" class="item-text"></span>
+                        <span v-text="`캐로셀${msg.index}`" class="item-text"></span>
                         <ButtonCmp
                           type="btn-only-icon"
                           ><i class="icon-copy"></i>

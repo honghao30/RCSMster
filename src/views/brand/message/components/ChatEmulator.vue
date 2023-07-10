@@ -1,6 +1,6 @@
 <template>
   <div class="chat-emulator__wrap">
-    <div class="chat-emulator">
+    <div class="chat-emulator layout">
       <div class="emulator-header">
         <div class="emulator-header__inner">
           <button class="btn-back"><span class="blind">이전으로</span></button>
@@ -15,12 +15,13 @@
         <button class="btn-more"><span class="blind">정보</span></button>
       </div>
       <div class="emulator-body">
-        <transition name="bodyshow">e
+        <transition name="bodyshow">
           <div class="chat-item__wrap">
-            <p class="safty-icon">확인된 발신번호</p>
             <div class="message-box">
+              <p class="safty-icon">확인된 발신번호</p>
               <draggable
                 class="component-list"
+
                 :list="templateData"
                 group="comp"
                 handle=".btn-drag"
@@ -28,7 +29,7 @@
                 <div class="template-item cmp-item"
                   v-for="(item, j) in templateData"
                   :key="j"
-                  :class="{'inactive' : isActiveCmpIndex !== j}"
+                  :class="[{'inactive' : isActiveCmpIndex !== j}, {'edit': isEdit}]"
                   >
                   <div class="template-item__box item--none" v-if="!item.type" >
                     <p class="default-msg">컴포넌트를 선택해주세요.</p>
@@ -37,7 +38,7 @@
                     :itemData="item"
                     mode="layout"
                       />
-                  <div class="ctrl">
+                  <div class="ctrl" v-if="isEdit">
                     <div class="ctrl-menu">
                       <ButtonCmp
                         type="btn-only-icon"
@@ -61,7 +62,28 @@
                 </div>
               </draggable>
             </div>
+            <div class="button__wrap">
+              <ButtonCmp
+                type="btn-blue-line"
+                v-if="!isEdit"
+                @click="isEdit = !isEdit"
+              >컴포넌트 편집
+              </ButtonCmp>
+              <ButtonCmp
+                type="btn-line"
+                v-if="isEdit"
+                @click="isEdit = !isEdit"
+              >취소
+              </ButtonCmp>
+              <ButtonCmp
+                type="btn-blue"
+                v-if="isEdit"
+                @click="isEdit = !isEdit"
+              >완료
+              </ButtonCmp>
+            </div>
           </div>
+
         </transition>
       </div>
       <div class="emulator-footer">
@@ -161,7 +183,8 @@ export default {
         slidesPerView: 'auto'
       },
       collapse: false,
-      isShowLayerIndex: undefined
+      isShowLayerIndex: undefined,
+      isEdit: false
     }
   },
   mounted() {

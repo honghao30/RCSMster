@@ -471,6 +471,24 @@
                             <!-- <p class="guide-text error"  v-if="slideBtnErrorMsg">슬라이드 버튼을 입력해주세요.</p> -->
                           </td>
                         </tr>
+                        <!-- 상단고정 -->
+                        <!-- 기획서 v1.0 수정 --- 위치 변경-->
+                        <tr class="no-line">
+                          <th scope="row"><span class="form-item__label">상단고정</span></th>
+                          <td>
+                              <div class="form-item__content">
+                                  <div class="form-item-row">
+                                    <div class="input-item">
+                                      <span class="checkbox">
+                                        <input type="checkbox" id="pinY" v-model="form.pinYn" @change="checkfixTitle" />
+                                        <label for="pinY"><span class="radiobox__text">상단 고정 등록</span></label>
+                                      </span>
+                                    </div>
+                                  </div>
+                              </div>
+                          </td>
+                        </tr>
+                        <!-- // 상단고정 -->
                       </tbody>
                     </table>
                   </template>
@@ -971,6 +989,7 @@ export default {
       if (this.form.type) {
         this.isModalViewed = true
         this.isChangeType = true
+        this.isFixedFeed = false
       }
     },
     closeMsg () {
@@ -981,6 +1000,7 @@ export default {
       if (this.form.pinYn === true) {
         this.isModalViewed = true
         this.isFixedFeed = true
+        this.isChangeType = false
       }
     },
     changeType(tab) {

@@ -401,14 +401,28 @@ export default {
       } else {
         this.cmpList = this.mmsCmpList
       }
+      this.setCmpItems()
     },
     setCmpItems() {
       let cmpItem = {
         type: '',
         info: {}
       }
-      for (let i = 0; i < 6; i++) {
-        this.templateData.push(cmpItem)
+      let cmpCount = 2
+      if (this.form.layoutType === 'sms') {
+        cmpCount = 2
+      } else {
+        cmpCount = 6
+      }
+      let diff = cmpCount - this.templateData.length
+      if (diff > 0) {
+        for (let i = 0; i < diff; i++) {
+          this.templateData.push(cmpItem)
+        }
+      } else {
+        for (let i = 0; i < -diff; i++) {
+          this.templateData.splice(i, 1)
+        }
       }
     },
     onSelectEmoji(e, target, idx) {

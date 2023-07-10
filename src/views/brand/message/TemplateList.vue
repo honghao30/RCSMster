@@ -5,34 +5,29 @@
       <div class="brand-info__wrap">
         <PageTitle pagetitle="템플릿 작성" />
         <div class="template-list__wrap">
-          <ul class="list__sort-area">
-            <li>
-              <a role="button"
-                :class="{'active' : sortActiveCate === 'all'}"
-                @click="sortList('all')"
-              >전체</a></li>
-            <li>
-              <a role="button"
-                @click="sortList('text')"
-                :class="{'active' : sortActiveCate === 'text'}"
-                >텍스트 템플릿
-              </a>
-            </li>
-            <li>
-              <a role="button"
-                @click="sortList('lms')"
-                :class="{'active' : sortActiveCate === 'lms'}"
-              >LMS 템플릿</a>
-            </li>
-            <li>
-              <a role="button"
-                @click="sortList('image')"
-                :class="{'active' : sortActiveCate === 'image'}"
-                >이미지 템플릿
-              </a>
-            </li>
-          </ul>
-          <div class="template-list" :class="sortActiveCate">
+          <div class="list__sort-area">
+            <span class="checkbox">
+              <input type="checkbox" id="textTemplate" value="text" v-model="sortOption" class="blind"/>
+              <label for="textTemplate"><span class="checkbox__text">텍스트 템플릿</span></label>
+            </span>
+            <span class="checkbox">
+              <input type="checkbox" id="lmsTemplate" value="lms" v-model="sortOption" class="blind"/>
+              <label for="lmsTemplate"><span class="checkbox__text">LMS 템플릿</span></label>
+            </span>
+            <span class="checkbox">
+              <input type="checkbox" id="imageTemplate" value="image" v-model="sortOption" class="blind"/>
+              <label for="imageTemplate"><span class="checkbox__text">이미지 템플릿</span></label>
+            </span>
+            <span class="checkbox">
+              <input type="checkbox" id="type1" value="type1" v-model="sortOption" class="blind"/>
+              <label for="type1"><span class="checkbox__text">상품유형1</span></label>
+            </span>
+            <span class="checkbox">
+              <input type="checkbox" id="type2" value="type2" v-model="sortOption" class="blind"/>
+              <label for="type2"><span class="checkbox__text">상품유형2</span></label>
+            </span>
+          </div>
+          <div class="template-list">
             <div class="template-item" v-for="item in sortTemplateList" :key="item" :id="item.id">
               <div class="template-item__box">
                 <img :src="item.imgUrl" alt="">
@@ -64,7 +59,7 @@ export default {
   },
   data() {
     return {
-      sortActiveCate: 'all',
+      sortOption: ['text', 'lms', 'image', 'type1', 'type2'],
       templateList: [
         {
           id: 'text1',
@@ -188,21 +183,17 @@ export default {
   },
   computed: {
     sortTemplateList() {
-      let list = []
-      if (this.sortActiveCate !== 'all') {
-        list = this.templateList.filter((item) => {
-          return item.type.toLowerCase().includes(this.sortActiveCate.toLowerCase())
-        })
-      } else {
-        list = this.templateList
-      }
+      // list = this.sortOption.forEach((opt) => {
+      //   this.templateList.filter((item) => {
+      //     return item.type.toLowerCase().includes(opt.toLowerCase())
+      //   })
+      // })
+      // return list
+      let list = this.templateList
       return list
     }
   },
   methods: {
-    sortList(target) {
-      this.sortActiveCate = target
-    }
   }
 }
 

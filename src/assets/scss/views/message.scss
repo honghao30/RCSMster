@@ -252,30 +252,39 @@
     display: flex;
     gap: 8px;
     margin-bottom: 32px;
-    a {
-      display: inline-block;
-      height: 42px;
-      border:2px solid #ddd;
-      text-align:center;
-      border-radius:100px;
-      padding:0 20px;
-      @include fontoption(14px,#666,700,38px);
-      &.active {
+    .checkbox {
+      label {
+        height: 42px;
+        border:2px solid #ddd;
+        align-items: center;
+        justify-content: center;
+        border-radius:100px;
+        padding:0 20px;
+        &:before {
+          display: none !important;
+        }
+        span {
+          @include fontoption(14px,#666,700,26px);
+        }
+      }
+      input[type="checkbox"]:checked + label {
         border-color: $pointColor;
-        color: $pointColor;
+        span {
+          color: $pointColor;
+        }
       }
     }
+    
+    
   }
   .template-list {
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
     flex-direction: column;
-    &.all {
-      height: 2420px;
-      #image4 {
-        margin-bottom: 160px;
-      }
+    height: 2420px;
+    #image4 {
+      margin-bottom: 160px;
     }
     &.text {
       height: 460px;
@@ -416,8 +425,12 @@
     flex-direction: row;
     align-items:center;
     justify-content: space-between;
+    &.edit {
+      .template-item__box {
+        width: 260px;
+      }
+    }
     .template-item__box {
-      width: 260px;
       .template-image {
         text-align:center;
         img {
@@ -428,7 +441,7 @@
     .ctrl {
       display:flex;
       flex-direction: column;
-      justify-items:flex-start;
+      justify-items:center;
       gap: 14px;
       .btn {
         i {

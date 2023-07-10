@@ -143,9 +143,18 @@
         padding-top: 16px;
     }
     .table__wrap {
+        &.no-line {
+            border-bottom: 0;
+        }
         &:first-child {
             border-top: 0;
         }
+        &:only-child {
+            border-bottom: 0;
+        }
+        &:only-of-type {
+            border-bottom: 0;
+        }        
     }
     .feed__inner {
         flex: auto;

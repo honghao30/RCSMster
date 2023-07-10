@@ -386,6 +386,22 @@
           }
       }
   }
+  &.layout {
+    .emulator-body {
+      justify-items: stretch;
+      .chat-item__wrap {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .button__wrap {
+          flex-shrink: 0;
+          padding-top: 24px;
+        }
+      }
+    }
+  }
 }
 
 .type__radio-tab {

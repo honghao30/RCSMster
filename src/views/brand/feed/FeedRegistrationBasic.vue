@@ -7,7 +7,7 @@
         <div class="feed__wrap">
           <div class="feed__inner">
             <form  ref="form" :model="form">
-              <div class="table__wrap">
+              <div class="table__wrap no-line">
                 <table class="table table-bodyonly form-table">
                   <colgroup>
                     <col width="196px">

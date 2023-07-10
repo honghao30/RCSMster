@@ -26,7 +26,7 @@
                             <div class="form-item-row">
                               <div class="input-item">
                                 <span class="radiobox">
-                                  <input type="radio" name="chatRoomUse" id="chatRoomUseN" v-model="form.chatRoomUse" value="N"/>
+                                  <input type="radio" name="chatRoomUse" id="chatRoomUseN" v-model="form.chatRoomUse" value="N" />
                                   <label for="chatRoomUseN"><span class="checkbox__text">미사용</span></label>
                                 </span>
                                 <span class="radiobox">
@@ -191,18 +191,14 @@
                           <div class="form-item__content">
                             <div class="form-item-row">
                               <div class="input-item">
-                                <span class="radiobox">
-                                  <input type="radio" name="agencyConnect" id="connectDefault" v-model="form.agencyConnect" value="defalut"/>
-                                  <label for="connectDefault"><span class="checkbox__text">연결 해제</span></label>
-                                </span>
-                                <span class="radiobox">
-                                  <input type="radio" name="agencyConnect" id="connectUse" v-model="form.agencyConnect" value="use" />
+                                <span class="checkbox">
+                                  <input type="checkbox" id="connectUse" v-model="form.agencyConnect" />
                                   <label for="connectUse"><span class="checkbox__text">연결</span></label>
                                 </span>
                               </div>
                               <!-- 기획서 v1.0 수정 (특수 기호표 사용)-->
                               <p class="guide-text black float-none">&middot; 문구 추가 필요</p>
-                              <template v-if="form.agencyConnect === 'use'">
+                              <template v-if="form.agencyConnect">
                                 <div class="inner__input">
                                   <div class="inner__input-box">
                                     <span class="form-item__label required">연결 대행사</span>
@@ -372,12 +368,12 @@
             type="btn-blue-line"
             @click="saveTemp"
           >임시 저장</ButtonCmp>
-          <!-- 기획서 v1.0 수정(p.60 대화방 수정 > 대행사 연결 여부 변경 후 [승인요청] 버튼선택 시 노출되는 Alert 정의 / 노출 기준 : 대행사 사용  미사용으로 변경하는 경우) -->
+          <!-- 기획서 v1.0 수정(p.60 대화방 수정 > 대행사 연결 여부 변경 후 [승인요청] 버튼선택 시 노출되는 Alert 정의 / 노출 기준 : 대행사 사용 → 미사용으로 변경하는 경우) -->
           <ButtonCmp
             type="btn-blue"
             @click="isNotUseModal"
           >승인 요청</ButtonCmp>
-          <!-- // 기획서 v1.0 수정(p.60 대화방 수정 > 대행사 연결 여부 변경 후 [승인요청] 버튼선택 시 노출되는 Alert 정의 / 노출 기준 : 대행사 사용  미사용으로 변경하는 경우) -->
+          <!-- // 기획서 v1.0 수정(p.60 대화방 수정 > 대행사 연결 여부 변경 후 [승인요청] 버튼선택 시 노출되는 Alert 정의 / 노출 기준 : 대행사 사용 → 미사용으로 변경하는 경우) -->
         </div>
       </div>
     </div>
@@ -409,7 +405,7 @@
         v-if="isPhoneNumber"
       >
       </SelectPhoneNum>
-      <!-- 기획서 v1.0 수정(p.60 대화방 수정 > 대행사 연결 여부 변경 후 [승인요청] 버튼선택 시 노출되는 Alert 정의 / 노출 기준 : 대행사 사용  미사용으로 변경하는 경우)  -->
+      <!-- 기획서 v1.0 수정(p.60 대화방 수정 > 대행사 연결 여부 변경 후 [승인요청] 버튼선택 시 노출되는 Alert 정의 / 노출 기준 : 대행사 사용 → 미사용으로 변경하는 경우)  -->
       <ConfirmMsg
         @closeModal="isModalViewed = false, isNotUse = false"
         v-if="isNotUse"
@@ -429,7 +425,7 @@
           <router-link to="/ChatRoomList" class="btn btn-blue" @click="closeMsg">대행사 미사용</router-link>
         </div>
       </ConfirmMsg>
-      <!-- // 기획서 v1.0 수정(p.60 대화방 수정 > 대행사 연결 여부 변경 후 [승인요청] 버튼선택 시 노출되는 Alert 정의 / 노출 기준 : 대행사 사용  미사용으로 변경하는 경우)  -->
+      <!-- // 기획서 v1.0 수정(p.60 대화방 수정 > 대행사 연결 여부 변경 후 [승인요청] 버튼선택 시 노출되는 Alert 정의 / 노출 기준 : 대행사 사용 → 미사용으로 변경하는 경우)  -->
       <!-- 기획서 v1.0 수정(삭제 선택 시, 회신번호(챗봇ID) 대화방인 경우) -->
       <ConfirmMsg
         @closeModal="isModalViewed = false, isRemoveList = false"
@@ -454,6 +450,7 @@
         </div>
       </ConfirmMsg>
       <!-- // 기획서 v1.0 수정(삭제 선택 시, 회신번호(챗봇ID) 대화방인 경우) -->
+      <!--  기획서 v1.0 수정(대화방 유형: 미사용 선택 시, 대화방 사용 중지 alert 출력) -->
     </ModalView>
     <!-- //모달  -->
   </div>
@@ -490,7 +487,7 @@ export default {
         chatRoomName: 'SYSTEM STUDIOS',
         chatRegistrationType: 'phone',
         serviceDocument: 'SYSTEMSTUDIO_통신서비스가입증명원.zip​',
-        agencyConnect: 'use',
+        agencyConnect: '',
         searchIntro: 'SYSTEM STUDIOS 대화방 입니다.',
         allowMsg: 'Y',
         receptionSms: 'defalut',
@@ -507,8 +504,8 @@ export default {
       isModalViewed: false,
       isModalSave: false,
       isPhoneNumber: false,
-      isNotUse: false,
-      isRemoveList: false
+      isRemoveList: false,
+      isNotUse: false
     }
   },
   computed: {

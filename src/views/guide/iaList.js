@@ -381,7 +381,8 @@ const dashboardList = [
     'depth4': '대화방 등록',
     'screenId': 'R-Brand-Room-Reg-01',
     'status': ['0601: 기획 공유', '0612: 개발 공유'],
-    'link': '/ChatRoomRegistration'
+    'link': '/ChatRoomRegistration',
+    'comments': ['주석 : <!-- 입력된 데이터가 있는 상태에서 개별/대량 등록 변경 시 --> 표시함', '양방향 대행사 연결 : 디자인은 현재 라디오박스 / 기획서는 체크박스여서    기획서대로 작업한 상황', '개별등록  탭 → 승인요청 버튼 → 승인요청 alert창 → 닫기 버튼 클릭 시 기획서 p.30(대량등록 결과 알림 팝업) 나오도록 작업함']
   },
   {
     'depth5': '대화방 등록 완료(개별)',
@@ -584,7 +585,7 @@ const dashboardList = [
     'depth4': '레이아웃 목록',
     'screenId': '',
     'status': ['0710: 기획 공유', '0710: 개발 공유'],
-    'link': '/LayoutRegistration',
+    'link': '/LayoutList',
     'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_메시지_v0.8_20230630']
   },
   // 브랜드 대시보드
