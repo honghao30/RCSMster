@@ -6,17 +6,20 @@
         <div class="registration__complete">
           <h4>대화방 등록 완료</h4>
           <p>대화방 등록이 완료되었습니다.</p>
-          <p>관리자의 승인 이전에도 대화방 메뉴를 등록해<br>고객의 요청에 실시간으로 응답할 수 있습니다.</p>
+          <!-- 기획서 v1.0 수정 (문구 수정) -->
+          <p>RBC 승인  이후 대화방을 사용할 수 있습니다.</p>
         </div>
         <div class="button__wrap">
+          <!-- 기획서 v1.0 수정 (문구 수정 + 링크연결) -->
           <router-link
-            to=""
+            to="/BrandDashboard"
             class="btn btn-line"
-          >대시보드 이동</router-link>
+          >브랜드 대시보드</router-link>
           <router-link
-            to=""
+            to="/ChatRoomMenuAdd"
             class="btn btn-blue"
-          >대화방 메뉴 등록하기</router-link>
+          >대화방 메뉴 등록</router-link>
+          <!-- // 기획서 v1.0 수정 (문구 수정 + 링크연결) -->
         </div>
       </div>
     </div>

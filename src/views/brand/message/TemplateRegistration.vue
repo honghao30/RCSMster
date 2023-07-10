@@ -367,7 +367,7 @@ import TemplateButtonReg from '@/views/brand/message/components/TemplateButtonRe
 import TemplateTableReg from '@/views/brand/message/components/TemplateTableReg.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
-import { textTemplate } from '@/views/brand/message/templateSampleData.js'
+import { textTemplate } from '@/views/brand/message/templateData.js'
 
 export default {
   components: {
@@ -419,7 +419,7 @@ export default {
         Buttons: {
           use: 'N',
           info: {
-            bgColor: '#0C22E1',
+            bgColor: '#2f77fb',
             buttonNum: 1,
             buttons: []
           }
@@ -428,20 +428,28 @@ export default {
 
       titleOptions: [
         {
-          label: '승인',
+          label: '알림',
           value: 'F001'
         },
         {
-          label: '입금',
+          label: '이벤트',
           value: 'F002'
         },
         {
-          label: '출금',
+          label: '프로모션',
           value: 'F003'
         },
         {
-          label: '출고',
+          label: '청구서',
           value: 'F004'
+        },
+        {
+          label: '예약',
+          value: 'F005'
+        },
+        {
+          label: '티켓 쿠폰',
+          value: 'F006'
         }
       ]
     }
@@ -453,11 +461,9 @@ export default {
   methods: {
     initTemplate(templateNum) {
       this.templateData = this.textTemplate[templateNum]
+      console.log(this.textTemplate[templateNum])
       this.templateData.forEach((item) => {
         let type = item.type
-        Object.keys(item.info).forEach((key) => {
-          item.info[key] = ''
-        })
         Object.keys(this.form).forEach((key) => {
           if (type === key) {
             item.info = this.form[key].info

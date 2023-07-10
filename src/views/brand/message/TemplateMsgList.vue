@@ -129,41 +129,41 @@ export default {
       templateOptions: [
         {
           label: '전체',
-          codeNm: 'all'
+          value: 'all'
         },
         {
           label: '텍스트 템플릿',
-          codeNm: 'textTemplate'
+          value: 'textTemplate'
         },
         {
           label: 'LMS 템플릿',
-          codeNm: 'LMSTemplate'
+          value: 'LMSTemplate'
         },
         {
           label: '이미지 템플릿',
-          codeNm: 'imageTemplate'
+          value: 'imageTemplate'
         }
       ],
       statusOptions: [
         {
           label: '전체',
-          codeNm: 'all'
+          value: 'all'
         },
         {
           label: '임시저장',
-          codeNm: 'draft'
+          value: 'draft'
         },
         {
           label: '승인 대기',
-          codeNm: 'waiting'
+          value: 'waiting'
         },
         {
           label: '승인 완료',
-          codeNm: 'approval'
+          value: 'approval'
         },
         {
           label: '반려',
-          codeNm: 'reject'
+          value: 'reject'
         }
       ],
       templateList: [{

@@ -7,9 +7,9 @@
     </div>
     <!-- case01.기존 회원 운영권한 초대 팝업 -->
     <div class="modal__content--body">
+      <!-- 기획서 v1.0 수정(문구 삭제 및 수정) -->
       <div class="top-notice--gray">
-        <p>- 회신번호로 사용할 발신번호를 선택해주세요.</p>
-        <p>- 비전시 상태의 발신번호는 회신번호로 선택할 수 없습니다.</p>
+        <p>- 비전시 상태인 대화방에서 사용중인 발신번호는 선택하실 수 없습니다.</p>
       </div>
       <div class="search-result__wrap">
         <div class="top-ctrl-area">
@@ -20,15 +20,7 @@
               </span>
             </div>
           </div>
-          <div class="right-area">
-            <div class="ctrl">
-              <div class="pager">
-                <span class="num">1/3</span>
-                <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
-                <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
-              </div>
-            </div>
-          </div>
+          <!-- 기획서 v1.0 수정(right-area 클래스 삭제) -->
         </div>
         <div class="table__wrap">
           <table class="table table-list">
@@ -68,6 +60,8 @@
       </div>
     </div>
     <div class="modal__content--footer">
+      <!-- 기획서 v1.0 수정(PagingCmp 컴포넌트 추가) -->
+      <PagingCmp />
       <div class="button__wrap">
         <ButtonCmp
           type="btn-blue-line"
@@ -146,10 +140,12 @@
 
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import PagingCmp from '@/components/common/PagingCmp.vue'
 
 export default {
   components: {
-    ButtonCmp
+    ButtonCmp,
+    PagingCmp
   },
   data() {
     return {

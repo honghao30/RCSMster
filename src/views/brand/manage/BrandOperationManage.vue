@@ -11,7 +11,7 @@
               <img src="@/assets/images/icon/icon_company_person.png" alt="">
               <p>
               함께 브랜드를 운영할<br/>
-              <span>마스터와 매니저를</span>
+              <span>운영자를</span>
               초대하세요
             </p>
             </div>
@@ -19,7 +19,7 @@
               <ButtonCmp
                 type="btn-blue"
                 @click="brandInvite"
-              >마스터 / 매니저 초대</ButtonCmp>
+              >운영자 초대</ButtonCmp> <!--기획서 v1.0 수정: 텍스트 수정 -->
             </div>
           </div>
           <div class="case-box__type">
@@ -40,9 +40,9 @@
         </div>
         <!-- 권한 관리 -->
         <div class="authority">
-          <PageTitleH3 titleh3="권한관리" />
+          <PageTitleH3 titleh3="운영권한 관리" /> <!-- 기획서 v1.0 수정: 텍스트 수정 -->
           <!-- 테이블 상단 컨트롤 영역 공통 -->
-          <div class="top-ctrl-area">
+          <!-- <div class="top-ctrl-area">
             <div class="left-area">
               <Dropdown :options="dropdownOptions" placeholder="10개씩">
               </Dropdown>
@@ -54,7 +54,7 @@
                 <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
               </div>
             </div>
-          </div>
+          </div> 기획서 v1.0 수정: 아래 paging 으로 대체 -->
           <div class="table__wrap manage-table">
             <table class="table table-list">
               <colgroup>
@@ -84,19 +84,28 @@
                   <td>
                     <div class="button__wrap" v-if="item.manage">
                       <ButtonCmp
+                        v-if="item.manage === 'delete'"
                         type="btn-line small"
                       >삭제</ButtonCmp>
+                      <ButtonCmp
+                        v-if="item.manage === 'mandate'"
+                        type="btn-line small"
+                        @click="BrandAuthorityMandate"
+                      >권한 위임</ButtonCmp>
+
+                      <!--기획서 v1.0 수정: 권한 위임 버튼 추가 -->
                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
+          <PagingCmp />  <!-- 기획서 v1.0 수정: paging 추가 -->
         </div>
         <!-- 운영권한 승인 신청 내역 -->
         <PageTitleH3 titleh3="운영권한 승인 신청 내역" />
         <!-- 테이블 상단 컨트롤 영역 공통 -->
-        <div class="top-ctrl-area">
+        <!-- <div class="top-ctrl-area">
           <div class="left-area">
             <Dropdown :options="dropdownOptions" placeholder="10개씩">
             </Dropdown>
@@ -108,45 +117,46 @@
               <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
             </div>
           </div>
-        </div>
+        </div> 기획서 v1.0 수정: 아래 paging 으로 대체 -->
         <div class="table__wrap manage-table">
-            <table class="table table-list">
-              <colgroup>
-                <col width="70%">
-                <col width="10%">
-                <col width="20%">
-              </colgroup>
-              <thead>
-                <tr>
-                  <th scope="col" colspan="2"><span>신청자</span></th>
-                  <th scope="col"><span>관리</span></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(item, i) in applicationData" :key="i">
-                  <td class="info-right">
-                    <span class="user">{{ item.user }}</span>
-                    <span>{{ item.phone }}</span>
-                    <span>/</span>
-                    <span>{{ item.mail }}</span>
-                  </td>
-                  <td class="application-date">
-                    <span>{{ item.date }}</span>
-                  </td>
-                  <td>
-                    <div class="button__wrap">
-                      <ButtonCmp
-                        type="btn-line small"
-                      >반려</ButtonCmp>
-                      <ButtonCmp
-                        type="btn-blue small"
-                      >승인</ButtonCmp>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <table class="table table-list">
+            <colgroup>
+              <col width="70%">
+              <col width="10%">
+              <col width="20%">
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col" colspan="2"><span>신청자</span></th>
+                <th scope="col"><span>관리</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item, i) in applicationData" :key="i">
+                <td class="info-right">
+                  <span class="user">{{ item.user }}</span>
+                  <span>{{ item.phone }}</span>
+                  <span>/</span>
+                  <span>{{ item.mail }}</span>
+                </td>
+                <td class="application-date">
+                  <span>{{ item.date }}</span>
+                </td>
+                <td>
+                  <div class="button__wrap">
+                    <ButtonCmp
+                      type="btn-line small"
+                    >반려</ButtonCmp>
+                    <ButtonCmp
+                      type="btn-blue small"
+                    >승인</ButtonCmp>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <PagingCmp /> <!-- 기획서 v1.0 수정: paging 추가 -->
       </div>
     </div>
     <!-- 모달영역 -->
@@ -166,6 +176,13 @@
         @closeModal="isModalViewed = false"
       >
       </BrandAuthority>
+      <!-- 기획서 v1.0 수정: 브랜드 오너 권한위임 팝업 추가  -->
+      <!-- 모달 영역 : 브랜드 오너 권함위임 모달 영역 -->
+      <BrandAuthorityMandate
+        v-else-if="authorityMandate"
+        @closeModal="isModalViewed = false"
+      >
+      </BrandAuthorityMandate>
     </ModalView>
   </div>
 </template>
@@ -177,10 +194,11 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
+import PagingCmp from '@/components/common/PagingCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import BrandInvite from '@/views/brand/create/components/BrandInvite.vue'
 import BrandAuthority from '@/views/brand/create/components/BrandAuthority.vue'
-
+import BrandAuthorityMandate from '@/views/brand/create/components/BrandAuthorityMandate.vue'
 export default {
   components: {
     PageTitle,
@@ -188,15 +206,18 @@ export default {
     PageTitleH3,
     BrandLnb,
     Dropdown,
+    PagingCmp,
     ModalView,
     BrandInvite,
-    BrandAuthority
+    BrandAuthority,
+    BrandAuthorityMandate
   },
   data() {
     return {
       isModalViewed: false,
       inviteCont: false,
       authorityCont: false,
+      authorityMandate: false,
       dropdownOptions: [
         {
           label: '10개씩',
@@ -218,7 +239,7 @@ export default {
           user: '김미미(abcde)',
           mail: 'abcde@studio.com',
           phone: '010-1234-5678',
-          manage: false
+          manage: 'delete'
         },
         {
           type: '매니저',
@@ -226,7 +247,7 @@ export default {
           user: '최라라(Fghij123)',
           mail: 'Fghij123@studio.com',
           phone: '010-5151-5151',
-          manage: true
+          manage: 'mandate'
         },
         {
           type: '마스터',
@@ -234,7 +255,7 @@ export default {
           user: '오동동(KLMN00)',
           mail: 'KLMN00@studio.com',
           phone: '010-9876-5432',
-          manage: false
+          manage: ''
         },
         {
           type: '대행사',
@@ -242,7 +263,7 @@ export default {
           user: '이봉봉(T5ONE)',
           mail: 'T5ONE@naver.com',
           phone: '010-1234-5678',
-          manage: true
+          manage: 'delete'
         },
         {
           type: '대행사',
@@ -250,7 +271,7 @@ export default {
           user: '이봉봉(T5ONE)',
           mail: 'T5ONE@naver.com',
           phone: '010-1234-5678',
-          manage: true
+          manage: 'mandate'
         },
         {
           type: '대행사',
@@ -258,7 +279,7 @@ export default {
           user: '이봉봉(T5ONE)',
           mail: 'T5ONE@naver.com',
           phone: '010-1234-5678',
-          manage: true
+          manage: 'delete'
         },
         {
           type: '대행사',
@@ -266,7 +287,7 @@ export default {
           user: '이봉봉(T5ONE)',
           mail: 'T5ONE@naver.com',
           phone: '010-1234-5678',
-          manage: true
+          manage: 'delete'
         },
         {
           type: '마스터',
@@ -274,7 +295,7 @@ export default {
           user: '오동동(KLMN00)',
           mail: 'KLMN00@studio.com',
           phone: '010-9876-5432',
-          manage: false
+          manage: 'delete'
         },
         {
           type: '마스터',
@@ -282,7 +303,7 @@ export default {
           user: '오동동(KLMN00)',
           mail: 'KLMN00@studio.com',
           phone: '010-9876-5432',
-          manage: false
+          manage: ''
         },
         {
           type: '마스터',
@@ -290,7 +311,7 @@ export default {
           user: '오동동(KLMN00)',
           mail: 'KLMN00@studio.com',
           phone: '010-9876-5432',
-          manage: false
+          manage: ''
         }
       ],
       applicationData: [
@@ -339,11 +360,19 @@ export default {
       this.isModalViewed = true
       this.inviteCont = true
       this.authorityCont = false
+      this.authorityMandate = false
     },
     brandAuthority() {
       this.isModalViewed = true
       this.authorityCont = true
       this.inviteCont = false
+      this.authorityMandate = false
+    },
+    BrandAuthorityMandate() {
+      this.isModalViewed = true
+      this.authorityMandate = true
+      this.inviteCont = false
+      this.authorityCont = false
     }
   }
 }

@@ -15,7 +15,7 @@
         <button class="btn-more" :class="{open: isBlind}"><span class="blind">정보</span></button>
       </div>
       <div class="emulator-body" v-if="chatInfoData.mode !== 'registration'">
-      <template v-if="chatInfoData.chatType == 'chatRoom'">
+      <!-- <template v-if="chatInfoData.chatType == 'chatRoom'"> -->
         <transition name="bodyshow">
            <template v-if="chatInfoData.chatRoomName">
             <div class="chat-item__wrap">
@@ -35,7 +35,7 @@
             </div>
           </template>
         </transition>
-      </template>
+      <!-- </template> -->
       </div>
       <!-- <div class="emulator-body">
         <transition name="bodyshow">
@@ -197,10 +197,13 @@ export default {
     SwiperSlide
   },
   props: {
-    mode: String,
+    mode: {
+      type: String,
+      defalut: 'views'
+    },
     chatMenuList: {
       type: Array,
-      required: true
+      default: null
     },
     chatInfoData: {
       type: Object,

@@ -82,6 +82,43 @@
                 </tbody>
               </table>
             </div>
+            <!-- 기획서 v1.0 수정 -- 대화방 목록 추가 -->
+            <div class="table__wrap chatroom__table">
+              <table class="table table-list">
+                <colgroup>
+                  <col width="40%">
+                  <col width="30%">
+                  <col width="30%">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col"><span>대화방 명</span></th>
+                    <th scope="col"><span>발신번호/챗붓 ID</span></th>
+                    <th scope="col"><span>간편챗붓 메시지</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="(item, i) in 10" :key="i"
+                  >
+                    <td>
+                      <div class="chat_title__wrap">
+                        <div class="chat_title">
+                          <router-link to="/chatbotView" class="link">롯데 홈쇼핑 {{ item }}</router-link>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      22555448 {{ item }}
+                    </td>
+                    <td>
+                      연결됨 {{ item }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- // 기획서 v1.0 수정 -- 대화방 목록 추가 -->
           </div>
           <div class="chatroom-emulator sticky">
             <ChatEmulator

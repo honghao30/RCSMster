@@ -22,7 +22,7 @@
         width: auto;
     }
     .radiobox {
-        width: 200px;
+        width: 160px;
         + .radiobox {
             display: inline-block;
         }
@@ -113,25 +113,31 @@
             width: 50%;
             border: 1px solid #ddd;
             border-radius: 8px;
-            padding: 36px 0 32px;
+            padding: 32px 0;
             .case-box__type-txt{
                 display: flex;
                 justify-content: center;
+                align-items: center;
                 gap: 12px;
                 img{
                     width: 64px;
                     height: 64px;
                 }
                 p{
-                    @include fontoption(18px,#000,500,28px);
+                    @include fontoption(16px,#000,500,26px);
                     span{
                         color: $pointColor;
+                        font-weight: 700;
                     }
+                }
+                + .button__wrap {
+                    padding-top: 24px;
                 }
             }
         }
     }
     .authority{
+        margin-bottom: 60px;
         .page-title__wrap{
             margin-top: 24px;
             padding-bottom: 24px;
@@ -167,7 +173,7 @@
                 padding: 0;
                 gap:6px;
                 .btn {
-                padding: 0;
+                padding: 0 5px;
                 }
             }
         }
@@ -186,7 +192,6 @@
         border-bottom: 2px solid #ddd;   
     }
     .table__wrap {
-        border-top: 0;
         .form-table {
             .btn {
                 height: 36px;
@@ -227,18 +232,6 @@
                 th,
                 td {
                     padding: 0;
-                }
-            }
-            tr:last-child {
-                th,
-                td {
-                    border-bottom: 0;
-                }
-            }
-            tr:first-child {
-                th,
-                td {
-                    border-bottom: 1px solid #F0F0F0;
                 }
             }
             .text-item {
@@ -390,23 +383,15 @@
 .brand__wrap--edit {
     display: flex;
     justify-content: space-between;
-    border-top: 3px solid #BCBCBC;
-    border-bottom: 3px solid #BCBCBC;
+    align-items: flex-start;
+    border-top: 2px solid #BCBCBC;
+    border-bottom: 2px solid #ddd;
     gap: 32px;
     margin-bottom: 32px;
+    padding-bottom: 16px;
     .table__wrap {
         border-top: 0;
-        border-bottom: 0;
-        table {
-            tr {
-                &:last-child {
-                    th,
-                    td {
-                        border-bottom: 0;
-                    }
-                }
-            }
-        }        
+        border-bottom: 0;  
     }
     .form-item-row {
         &.colunl-type {
@@ -502,6 +487,10 @@
         display: flex;
         justify-content: flex-end;
         gap:12px;
+        .icon {
+            display: inline-block;
+            height: 24px;
+        }
         i {
             display: inline-block;
             width: 24px;
@@ -539,14 +528,14 @@
     .brand-profile {
         display:flex;
         align-items: center;
-        padding: 12px 0;
-        gap: 12px;
+        padding: 16px 0;
+        gap: 15px;
         .brand-logo {
             display:inline-block;
-            height: 50px;
-            width: 50px;
-            border-radius: 100%;
-            flex:0 0 50px;
+            height: 62px;
+            width: 62px;
+            border-radius: 10px;
+            flex:0 0 62px;
             position:relative;
             overflow:hidden;
             background: #eaeaea  url('../assets/images/icon/icon_potho_previe_small.png') no-repeat center;
@@ -561,26 +550,23 @@
         }
         .brand-desc {
             padding-left: 7px;
-            .deac__name {
-                font-weight: 700;
-                line-height: 22px;
+            .desc__name {
+                @include fontoption(16px,#000,700,22px);
             }
             .desc__text {
-                font-size: 12px;
-                line-height: 20px;
-                color: #666;
+                margin-top: 4px;
+                @include fontoption(13px,#666,400,19px);
             }
         }
     }
     .brand-detail {
         border-top: 1px solid #eaeaea;
-        padding-top: 12px;
         .brand-quick__tab {
             background-color: none;
             margin-bottom: 0;
             ul {
                 background:none;
-                margin-bottom: 12px;
+                margin-bottom: 16px;
             }
             li {
                 background: none;
@@ -651,8 +637,7 @@
     dd {
         font-size: 14px;
         line-height: 22px;
-        @include ellipsis($line: 1);
-        max-width: 200px;
+        max-width:calc(100% - 40px);
     }
     .notice-box {
         border: 1px solid #f0f0f0;
@@ -846,7 +831,6 @@
         min-width: 523px;
     }   
 }
-
 td{
     &.card-box{
         padding: 0;
@@ -974,33 +958,54 @@ td{
 .brand-info__wrap {
     .chatroom__wrap{
         display: flex;
-        width: 100%;
         gap: 32px;
         margin-bottom: 32px;
-        border-top: 3px solid #BCBCBC;
-        border-bottom: 3px solid #BCBCBC;
+        border-bottom: 2px solid #DDD;
         .chatroom-registration{
             flex: 1;
             .tab__wrap{
                 margin-bottom: 0;
                 border-top: 0;               
             }
+            .chatroom__wrap-box{
+                display: flex;
+                gap: 32px;
+                justify-content: space-between;
+                margin: 16px 0;
+                &.large-box{
+                    .table__wrap{
+                        margin-bottom: 16px;
+                    }
+                }
+            }
             .table__wrap{
-                border-top:0;
                 tr {
                     &:last-child {
                         th,
                         td {border-bottom:0;}
                     }
-                }                 
-                .form-table{
+                }
+                .table-bodyonly{                
+                &.form-table{
+                    th{
+                        padding: 16px 0 16px 16px;
+                    }
+                    td{
+                        padding: 16px 16px 16px 0;
+                    }
                     .chattype-des{
                         margin-bottom: 8px;
                     }
-                    .guide-text{
-                        font-size: 12px;
-                        font-weight: 400;
-                        line-height: 22px;
+                    .ch-service_wrap{
+                        margin-top: 12px;
+                        width: 100%;
+                        .ch-service-box{
+                            display: flex;
+                            align-items: center;
+                        }
+                    }
+                    .safety-bg{
+                        background-color: rgba(220, 242, 255, 0.5);
                     }
                     .inner__input{
                         width: 100%;
@@ -1008,12 +1013,9 @@ td{
                         .inner__input-box{
                             display: flex;
                             align-items: center;
-                            gap: 38px;
                             .form-item__label{
                                 @include fontoption(14px,#000,500,26px);
-                                &.chattype{
-                                    min-width: 62px;
-                                }
+                                min-width: 100px;
                             }
                             .inner__input-item{
                                 flex: 1;
@@ -1045,9 +1047,6 @@ td{
                             display: flex;
                             gap: 8px;
                             align-items: center;
-                            .input-item{
-                                flex: 1 1 331px;
-                            }
                         }
                         .btn-default-line{
                             min-width: 91px;
@@ -1057,7 +1056,6 @@ td{
                     }
                     .connect__wrap{
                         .inner__input-box{
-                            gap: 22px;
                             align-items: inherit;
                             .inner__input-btn{
                                 margin-bottom: 12px;
@@ -1068,6 +1066,13 @@ td{
                                     min-width: 175px;
                                     padding: 0 17px;
                                     line-height: 24px;
+                                }
+                            }
+                        }
+                        .allow-box{
+                            .inner__input-box{
+                                .inner__input-btn{
+                                    margin-bottom: 0;
                                 }
                             }
                         }
@@ -1084,15 +1089,13 @@ td{
                         }
                     }
                 }
+                } 
             }
             .excel-box{
                 .btn{
-                margin-top: 8px;
-                }
-            }
-            &.editmod {
-                .table__wrap{
-                border-top: 2px solid #2f77fb;
+                    &.small{
+                    margin-top: 12px;
+                    }
                 }
             }
         }
@@ -1100,7 +1103,6 @@ td{
             @include fontoption(14px,#000,400,24px);
             position: relative;
             text-decoration: underline;
-            flex: auto;
             &::after {
                 content: '';
                 display: block;
@@ -1114,27 +1116,76 @@ td{
                 transform: rotate(-90deg);
                 cursor: pointer;
                 top: 6px;
-                right: -14px;
+                right: -16px;
             }
         }
         .chatroom-emulator{
             padding:16px 0;
             .exception-txt{
                 flex: none;
-                margin: 0 32px 16px 0;
+                margin: 4px 32px 20px 0;
                 text-align: end;
             }
-        }      
+        }
+        &.editmod{
+            border-top: 3px solid #BCBCBC;
+            .chatroom-registration{
+                .table__wrap{
+                border-top: 0;
+                    .form-table{
+                        &.table-bodyonly{
+                            .modify-type{
+                                border-bottom: 2px solid #ddd;
+                                .inner__input{
+                                    &.only-txt{
+                                        margin-top: 0;
+                                    }
+                                }
+                                .form-item-row{
+                                    gap: 16px;
+                                    .bd-top{
+                                        padding-top: 16px;
+                                        margin-top: 0;
+                                        border-top: 1px solid #F0F0F0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }   
     }
     .registration__complete{
         text-align: center;
-        margin-top: 127px;
+        margin-top: 48px;
+        padding-top: 120px;
         h4{
             @include fontoption(28px,#000,500,38px);
             margin-bottom: 16px;
         }
         p{
             @include fontoption(18px,#000,400,28px);
+        }
+    }
+    //대화방 등록 탭 안에 에뮬레이터
+    .chatroom__wrap{
+        &.emulator-outside{
+            position: relative;
+            gap: 0;
+            .tab-contents{
+                padding-right: 392px;
+                min-height: 820px;
+            }
+            .chatroom-emulator{
+                position: absolute;
+                right: 0;
+                top:76px;
+                .exception-txt{
+                    margin: 6px 32px 18px 0;
+                }
+            }
+            
         }
     }
 }
@@ -1195,6 +1246,26 @@ td{
     .page-title{
         margin-bottom: 32px;
     }
+    .dropdown{
+        &.w109{
+            min-width: 109px;
+        }
+        &.w106{
+            min-width: 106px;
+        }
+    }
+    .top-ctrl-area{
+        .search-area{
+            width: 269px;
+        }
+        .roomlist-total-box{
+            margin-left: 8px;
+            line-height: 24px;
+            .roomlist-total-num{
+                font-weight: 700;
+            }
+        }
+    }
     .chatroom__table{
         .table-list{
             tr{
@@ -1212,15 +1283,10 @@ td{
                             height: 24px;
                             min-width: 39px;
                             padding: 0 8px;
+                            border-radius: 4px;
+                            margin-right: 8px;
                             background-color: rgba(47, 119, 251, 0.08);
                             @include fontoption(12px,$pointColor,400,24px);
-                        }
-                    }
-                    .chat_title-sub{
-                        float: right;
-                        .temporary-date{
-                            display: inline-block;
-                            @include fontoption(12px,$errorColor,400,24px);
                         }
                     }
                 }
@@ -1228,18 +1294,32 @@ td{
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                    .reject{
+                        color: $errorColor;
+                    }
+                }
+                .chat_title-sub{
+                    .temporary-date{
+                        display: inline-block;
+                        @include fontoption(12px,$errorColor,400,24px);
+                    }
                 }
             }    
         }
     }
     .chatroom-none{
-        border-top: 2px solid #BCBCBC;
-        border-bottom: 1px solid #BCBCBC;
-        padding: 160px 0;
-        text-align: center;
-        ul{
-            li{
-            @include fontoption(14px,#999,400,26px);
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        .chatroom-none-txt{
+            margin-bottom: 80px;
+            text-align: center;
+            h3{
+                @include fontoption(28px,#000,500,38px);
+                margin-bottom: 16px;
+            }
+            p{
+                @include fontoption(18px,#000,400,28px);
             }
         }
     }
@@ -1248,32 +1328,52 @@ td{
 .brand-info__wrap {
     .chatroom__wrap{
         &.view-box{
-            margin-top: 32px;
-            .form-table{
-                &.table-bodyonly{
-                    td{
-                        a{
-                            &.text{
-                                cursor: pointer;
+            border-top: 3px solid #BCBCBC;
+            .table__wrap{
+                border-top: 0;
+                .form-table{
+                    &.table-bodyonly{
+                        td{
+                            a{
+                                &.text{
+                                    cursor: pointer;
+                                }
                             }
                         }
-                    }
-                    .inner__input{
-                        margin-top: 0;
-                        .inner__input-box{
-                            align-items: start;
+                        .inner__input{
                             margin-top: 12px;
-                            gap: 0;
-                            .form-item__label{
-                                min-width: 100px;
+                            &.only-txt{
+                                margin-top: 0;
                             }
-                            .input{
-                                @include fontoption(14px,#000,400,26px);
+                            .inner__input-box{
+                                align-items: start;
+                                gap: 0;
+                                .form-item__label{
+                                    min-width: 100px;
+                                }
+                                .input{
+                                    @include fontoption(14px,#000,400,26px);
+                                }
                             }
                         }
                     }
                 }
             }
+        }
+    }
+    .chat-reject-reason{
+        color: $errorColor;
+    }
+}
+.table-bodyonly {
+    th{
+        &.bd-bg{
+            border-color: #BCBCBC;
+        }
+    }
+    td{
+        &.bd-bg{
+            border-color: #BCBCBC;
         }
     }
 }

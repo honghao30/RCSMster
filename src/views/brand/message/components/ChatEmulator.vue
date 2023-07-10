@@ -15,14 +15,51 @@
         <button class="btn-more"><span class="blind">정보</span></button>
       </div>
       <div class="emulator-body">
-        <transition name="bodyshow">
+        <transition name="bodyshow">e
           <div class="chat-item__wrap">
             <p class="safty-icon">확인된 발신번호</p>
             <div class="message-box">
-              <TemplateItem
-                mode="emulator"
-                :infoData="templateData"
-              />
+              <draggable
+                class="component-list"
+                :list="templateData"
+                group="comp"
+                handle=".btn-drag"
+              >
+                <div class="template-item cmp-item"
+                  v-for="(item, j) in templateData"
+                  :key="j"
+                  :class="{'inactive' : isActiveCmpIndex !== j}"
+                  >
+                  <div class="template-item__box item--none" v-if="!item.type" >
+                    <p class="default-msg">컴포넌트를 선택해주세요.</p>
+                  </div>
+                  <TemplateItem v-else
+                    :itemData="item"
+                    mode="layout"
+                      />
+                  <div class="ctrl">
+                    <div class="ctrl-menu">
+                      <ButtonCmp
+                        type="btn-only-icon"
+                        iconname='icon-menu'
+                        class="btn-menu"
+                        @click="showLayerMenu(j)"
+                      ><span class="irtext">메뉴</span>
+                      </ButtonCmp>
+                      <ul class="layer-menu" v-if="j == isShowLayerIndex">
+                        <li><a role="button">수정</a></li>
+                        <li><a role="button" @click="removeCmp(j)">삭제</a></li>
+                      </ul>
+                    </div>
+                    <ButtonCmp
+                      type="btn-only-icon"
+                      iconname='icon-drag'
+                      class="btn-drag"
+                    ><span class="irtext">드래그</span>
+                    </ButtonCmp>
+                  </div>
+                </div>
+              </draggable>
             </div>
           </div>
         </transition>
@@ -85,12 +122,14 @@
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import { getTodayDate } from '@/utils/time.js'
+import draggable from 'vuedraggable'
 import TemplateItem from '@/views/brand/message/components/TemplateItem.vue'
 
 export default {
   components: {
     ButtonCmp,
-    TemplateItem
+    TemplateItem,
+    draggable
   },
   props: {
     messageTemplate: {
@@ -100,6 +139,10 @@ export default {
     templateData: {
       type: Array,
       default: null
+    },
+    isActiveCmpIndex: {
+      type: Number,
+      defalut: 0
     }
   },
   data () {
@@ -117,7 +160,8 @@ export default {
         spaceBetween: 10,
         slidesPerView: 'auto'
       },
-      collapse: false
+      collapse: false,
+      isShowLayerIndex: undefined
     }
   },
   mounted() {
@@ -126,6 +170,20 @@ export default {
   methods: {
     btnToggleMenu () {
       this.collapse = !this.collapse
+    },
+    showLayerMenu(idx) {
+      if (this.isShowLayerIndex !== idx) {
+        this.isShowLayerIndex = idx
+      } else {
+        this.isShowLayerIndex = undefined
+      }
+    },
+    removeCmp(idx) {
+      let cmpItem = {
+        type: '',
+        info: {}
+      }
+      this.templateData.splice(idx, 1, cmpItem)
     }
   }
 }

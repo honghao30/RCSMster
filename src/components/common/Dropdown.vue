@@ -29,23 +29,27 @@ export default {
       isOpen: false,
       searchWord: '',
       valueIndex: '',
-      isSelectedIndex: undefined
+      isSelectedIndex: undefined,
+      filteredOption: []
     }
   },
   props: {
-    options: Object,
-    searchable: Boolean,
+    options: {
+      type: Array,
+      default: null
+    },
+    searchable: {
+      type: Boolean,
+      default: false
+    },
     placeholder: String,
     value: String,
-    disabled: Boolean,
-    beforeChange: {
-      type: Function
-    }
+    disabled: Boolean
   },
   emits: [
     'update:modelValue'
   ],
-  mounted() {
+  created() {
     let $value = this.value
     if ($value) {
       this.options.forEach((option, index) => {
@@ -65,11 +69,11 @@ export default {
     this.filteredOption = this.options
   },
   computed: {
-    filteredOption() {
-      return this.options.filter(option => {
-        return option.label.toLowerCase().includes(this.searchWord.toLowerCase())
-      })
-    }
+    // filteredOption() {
+    //   return this.options.filter(option => {
+    //     return option.label.toLowerCase().includes(this.searchWord.toLowerCase())
+    //   })
+    // }
   },
   methods: {
     selectOption(option, idx) {

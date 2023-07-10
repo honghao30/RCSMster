@@ -7,62 +7,6 @@
         <div class="registration__wrap">
           <div class="registration-form__wrap">
             <form  ref="form" :model="form">
-              <div class="type__radio-tab">
-                <ul>
-                  <li>
-                    <input type="radio" id="sms" value="sms" v-model="form.layoutType" class="blind"/>
-                    <label for="sms">
-                      <i class="icon-chatbubble"></i>
-                      <dl>
-                        <dt class="tab-title">SMS<span> (40~45자)</span></dt>
-                        <dd class="tab-text">간단한 알림이나 짧은 공지를 메시지로 발송</dd>
-                      </dl>
-                    </label>
-                  </li>
-                  <li>
-                    <input type="radio" id="lms" value="lms" v-model="form.layoutType" class="blind" />
-                    <label for="lms">
-                      <i class="icon-chatbubble"></i>
-                      <dl>
-                        <dt class="tab-title">LMS<span> (1,000자)</span></dt>
-                        <dd class="tab-text">내용이 긴 메시지를 한번에 발송</dd>
-                      </dl>
-                    </label>
-                  </li>
-                  <li>
-                    <input type="radio" id="mms" value="mms" v-model="form.layoutType" class="blind" />
-                    <label for="mms">
-                      <i class="icon-card"></i>
-
-                      <dl>
-                        <dt class="tab-title">MMS<span> (텍스트+사진첨부)</span></dt>
-                        <dd class="tab-text">이미지와 텍스트를 혼합하여 메시지 발송</dd>
-                      </dl>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-              <div class="message-cmp__list">
-                <div class="cmp-item" v-for="(item, i) in cmpList" :key="i">
-                  <p class="cmp-title">{{ item.title }}</p>
-                  <div class="cmp-box">
-                    <img :src="item.iconUrl" alt="">
-                  </div>
-                  <ButtonCmp
-                    type="btn-blue-line"
-                    size="medium"
-                    @click="addCmpItem(item)"
-                    v-if="!item.isActive"
-                    :disabled="cmpAddLength > 1 && item.title !== 'Button'"
-                  >컴포넌트 작성</ButtonCmp>
-                  <ButtonCmp
-                    type="btn-line"
-                    size="medium"
-                    v-if="item.isActive"
-                    @click="removeCmpItem(item)"
-                  >컴포넌트 삭제</ButtonCmp>
-                </div>
-              </div>
               <div class="table__wrap">
                 <table class="table table-bodyonly form-table">
                   <colgroup>
@@ -94,33 +38,41 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row"><span class="form-item__label">테이블 개수</span></th>
+                      <th scope="row"><span class="form-item__label">상단여백</span></th>
                       <td>
                         <div class="form-item__content is-emoji">
                           <div class="form-item-row">
                             <div class="input-item">
-                              <Dropdown
-                              v-model="form.tableCount" placeholder="테이블 개수 선택" :options="tableCountOption"/>
+                              <span class="radiobox">
+                                <input type="radio" name="topPad" id="topPadY" value="Y" v-model="form.topPad"
+                                />
+                                <label for="topPadY"><span class="radiobox__text">사용</span></label>
+                              </span>
+                              <span class="radiobox">
+                                <input type="radio" name="topPad" id="topPadN" value="N" v-model="form.topPad"
+                                />
+                                <label for="topPadN"><span class="radiobox__text">미사용</span></label>
+                              </span>
                             </div>
                           </div>
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row"><span class="form-item__label">버튼 유형</span></th>
+                      <th scope="row"><span class="form-item__label">하단여백</span></th>
                       <td>
                         <div class="form-item__content is-emoji">
                           <div class="form-item-row">
                             <div class="input-item">
                               <span class="radiobox">
-                                <input type="radio" name="btnDirection" id="row" value="row" v-model="form.btnDirection"
+                                <input type="radio" name="btmPad" id="btmPadY" value="Y" v-model="form.btmPad"
                                 />
-                                <label for="row"><span class="radiobox__text">좌우 버튼</span></label>
+                                <label for="btmPadY"><span class="radiobox__text">사용</span></label>
                               </span>
                               <span class="radiobox">
-                                <input type="radio" name="btnDirection" id="column" value="column" v-model="form.btnDirection"
+                                <input type="radio" name="btmPad" id="btmPadN" value="N" v-model="form.btmPad"
                                 />
-                                <label for="column"><span class="radiobox__text">상하 버튼</span></label>
+                                <label for="btmPadN"><span class="radiobox__text">미사용</span></label>
                               </span>
                             </div>
                           </div>
@@ -130,12 +82,71 @@
                   </tbody>
                 </table>
               </div>
+              <div class="type__radio-tab">
+                <ul>
+                  <li>
+                    <input type="radio" id="sms" value="sms"
+                    v-model="form.layoutType" class="blind"
+                    @change="setCmpList"
+                    />
+                    <label for="sms">
+                      <i class="icon-chatbubble"></i>
+                      <dl>
+                        <dt class="tab-title">SMS<span> (40~45자)</span></dt>
+                        <dd class="tab-text">간단한 알림이나 짧은 공지를 메시지로 발송</dd>
+                      </dl>
+                    </label>
+                  </li>
+                  <li>
+                    <input type="radio" id="lms" value="lms"
+                    v-model="form.layoutType" class="blind"
+                    @change="setCmpList"
+                    />
+                    <label for="lms">
+                      <i class="icon-chatbubble"></i>
+                      <dl>
+                        <dt class="tab-title">LMS<span> (1,000자)</span></dt>
+                        <dd class="tab-text">내용이 긴 메시지를 한번에 발송</dd>
+                      </dl>
+                    </label>
+                  </li>
+                  <li>
+                    <input type="radio" id="mms" value="mms"
+                    v-model="form.layoutType" class="blind"
+                    @change="setCmpList" />
+                    <label for="mms">
+                      <i class="icon-card"></i>
+
+                      <dl>
+                        <dt class="tab-title">MMS<span> (텍스트+사진첨부)</span></dt>
+                        <dd class="tab-text">이미지와 텍스트를 혼합하여 메시지 발송</dd>
+                      </dl>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <div class="message-cmp__list">
+                <div class="cmp-item" v-for="(item, i) in cmpList" :key="i">
+                  <p class="cmp-title">{{ item.title }}</p>
+                  <div class="cmp-box">
+                    <img :src="item.iconUrl" alt="">
+                  </div>
+                  <ButtonCmp
+                    type="btn-blue-line"
+                    size="medium"
+                    @click="addCmpItem(item)"
+                    :disabled="item.isActive"
+                  >컴포넌트 작성</ButtonCmp>
+                </div>
+              </div>
+
             </form>
           </div>
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
             <ChatEmulator
               :templateData="templateData"
+              :isActiveCmpIndex = isActiveCmpIndex
             />
           </div>
           <!-- // 에뮬레이터 -->
@@ -159,6 +170,7 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
+
 export default {
   components: {
     PageTitle,
@@ -173,39 +185,171 @@ export default {
       form: {
         layoutType: 'sms',
         layoutName: '',
-        btnDirection: 'row',
-        tableCount: ''
+        btmPad: 'Y',
+        topPad: 'Y'
       },
+      isActiveCmpIndex: 0,
       templateData: [],
-      cmpList: [
+      cmpList: [],
+      smsCmpList: [
         {
-          title: 'Main Title',
-          iconUrl: require('@/assets/images/icon/icon_cmp_01.png'),
+          title: '메인 타이틀',
+          iconUrl: require('@/assets/images/message/icon_cmp_title.png'),
           cmpType: 'MainTitle',
           isActive: false
         },
         {
-          title: 'Description',
-          iconUrl: require('@/assets/images/icon/icon_cmp_02.png'),
-          cmpType: 'Description',
-          isActive: false
-        },
-        {
-          title: 'Item',
-          iconUrl: require('@/assets/images/icon/icon_cmp_03.png'),
+          title: '스타일 타이틀A',
+          iconUrl: require('@/assets/images/message/icon_cmp_title.png'),
           cmpType: 'Item',
           isActive: false
         },
         {
-          title: 'Table',
-          iconUrl: require('@/assets/images/icon/icon_cmp_04.png'),
-          cmpType: 'Table',
+          title: 'A 아이템',
+          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          cmpType: 'itemA',
           isActive: false
         },
         {
-          title: 'Button',
-          iconUrl: require('@/assets/images/icon/icon_cmp_05.png'),
-          cmpType: 'Buttons',
+          title: 'B 아이템',
+          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          cmpType: 'itemB',
+          isActive: false
+        },
+        {
+          title: 'C 아이템',
+          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          cmpType: 'itemC',
+          isActive: false
+        },
+        {
+          title: '디스크립션',
+          iconUrl: require('@/assets/images/message/icon_cmp_desc.png'),
+          cmpType: 'Description',
+          isActive: false
+        }
+      ],
+      lmsCmpList: [
+        {
+          title: '메인 타이틀',
+          iconUrl: require('@/assets/images/message/icon_cmp_title.png'),
+          cmpType: 'MainTitle',
+          isActive: false
+        },
+        {
+          title: '스타일 타이틀A',
+          iconUrl: require('@/assets/images/message/icon_cmp_title.png'),
+          cmpType: 'MainTitle',
+          isActive: false
+        },
+        {
+          title: '테이블',
+          iconUrl: require('@/assets/images/message/icon_cmp_table.png'),
+          cmpType: 'table',
+          isActive: false
+        },
+        {
+          title: '서브 디스크립션 테이블',
+          iconUrl: require('@/assets/images/message/icon_cmp_table.png'),
+          cmpType: 'table',
+          isActive: false
+        },
+        {
+          title: 'A 아이템',
+          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          cmpType: 'item',
+          isActive: false
+        },
+        {
+          title: 'B 아이템',
+          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          cmpType: 'item',
+          isActive: false
+        },
+        {
+          title: '디스크립션',
+          iconUrl: require('@/assets/images/message/icon_cmp_desc.png'),
+          cmpType: 'Description',
+          isActive: false
+        },
+        {
+          title: '서브 디스크립션',
+          iconUrl: require('@/assets/images/message/icon_cmp_desc.png'),
+          cmpType: 'Description',
+          isActive: false
+        },
+        {
+          title: '노티스',
+          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          cmpType: 'notice',
+          isActive: false
+        }
+      ],
+      mmsCmpList: [
+        {
+          title: '메인 타이틀',
+          iconUrl: require('@/assets/images/message/icon_cmp_title.png'),
+          cmpType: 'MainTitle',
+          isActive: false
+        },
+        {
+          title: '스타일 타이틀A',
+          iconUrl: require('@/assets/images/message/icon_cmp_title.png'),
+          cmpType: 'MainTitle',
+          isActive: false
+        },
+        {
+          title: '정형 이미지',
+          iconUrl: require('@/assets/images/message/icon_cmp_image_square.png'),
+          cmpType: 'MainImage',
+          isActive: false
+        },
+        {
+          title: '가로형 이미지',
+          iconUrl: require('@/assets/images/message/icon_cmp_image.png'),
+          cmpType: 'MainImage',
+          isActive: false
+        },
+        {
+          title: '테이블',
+          iconUrl: require('@/assets/images/message/icon_cmp_table.png'),
+          cmpType: 'table',
+          isActive: false
+        },
+        {
+          title: '서브 디스크립션 테이블',
+          iconUrl: require('@/assets/images/message/icon_cmp_table.png'),
+          cmpType: 'table',
+          isActive: false
+        },
+        {
+          title: 'A 아이템',
+          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          cmpType: 'item',
+          isActive: false
+        },
+        {
+          title: 'B 아이템',
+          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          cmpType: 'item',
+          isActive: false
+        },
+        {
+          title: '디스크립션',
+          iconUrl: require('@/assets/images/message/icon_cmp_desc.png'),
+          cmpType: 'Description',
+          isActive: false
+        },
+        {
+          title: '서브 디스크립션',
+          iconUrl: require('@/assets/images/message/icon_cmp_desc.png'),
+          cmpType: 'Description',
+          isActive: false
+        },
+        {
+          title: '노티스',
+          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          cmpType: 'notice',
           isActive: false
         }
       ],
@@ -232,18 +376,41 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.setCmpItems()
+    this.cmpList = this.smsCmpList
+  },
   computed: {
-    cmpAddLength() {
-      let lth = 0
-      this.templateData.forEach((item) => {
-        if (item.type !== 'Buttons') {
-          lth = lth + 1
-        }
-      })
-      return lth
-    }
+    // cmpAddLength() {
+    //   let lth = 0
+    //   this.templateData.forEach((item) => {
+    //     if (item.type !== 'Buttons') {
+    //       lth = lth + 1
+    //     }
+    //   })
+    //   return lth
+    // }
   },
   methods: {
+    setCmpList($event) {
+      let target = $event.target.value
+      if (target === 'sms') {
+        this.cmpList = this.smsCmpList
+      } else if (target === 'lms') {
+        this.cmpList = this.lmsCmpList
+      } else {
+        this.cmpList = this.mmsCmpList
+      }
+    },
+    setCmpItems() {
+      let cmpItem = {
+        type: '',
+        info: {}
+      }
+      for (let i = 0; i < 6; i++) {
+        this.templateData.push(cmpItem)
+      }
+    },
     onSelectEmoji(e, target, idx) {
       let emoji = e
       let refName = target
@@ -256,15 +423,29 @@ export default {
     addCmpItem(cmp) {
       let cmpItem = {
         type: cmp.cmpType,
-        info: {}
+        info: {
+          imgUrl: cmp.iconUrl
+        }
       }
       cmp.isActive = true
-      this.templateData.push(cmpItem)
+      this.templateData.splice(this.isActiveCmpIndex, 1, cmpItem)
+
+      this.isActiveCmpIndex += 1
     },
     removeCmpItem(cmp) {
+      let cmpItem = {
+        type: '',
+        info: {}
+      }
       this.templateData.forEach((item, i) => {
         if (item.type === cmp.cmpType) {
-          this.templateData.splice(i, 1)
+          this.templateData.splice(i, 1, cmpItem)
+        }
+      })
+      this.templateData.some((item, j) => {
+        if (!item.type) {
+          this.isActiveCmpIndex = j
+          return true
         }
       })
       cmp.isActive = false

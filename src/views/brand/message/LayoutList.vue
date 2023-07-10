@@ -121,19 +121,19 @@ export default {
       layoutOptions: [
         {
           label: '전체',
-          codeNm: 'all'
+          value: 'all'
         },
         {
           label: 'SMS',
-          codeNm: 'SMS'
+          value: 'SMS'
         },
         {
           label: 'LMS',
-          codeNm: 'LMS'
+          value: 'LMS'
         },
         {
           label: 'MMS',
-          codeNm: 'MMS'
+          value: 'MMS'
         }
       ],
       layoutList: [{

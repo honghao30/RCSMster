@@ -55,25 +55,17 @@
                 </div>
                 <div class="template__list--wrap">
                   <div class="template-list">
-                    <div class="template-item">
-                      <h4 class="template-item__title">상품권/티켓형</h4>
-                      <div class="template-item__box">
-                        <img src="@/assets/images/message/image_template_01.png" alt="">
-                      </div>
-                    </div>
-                    <div class="template-item">
-                      <h4 class="template-item__title">이미지 강조형3</h4>
-                      <div class="template-item__box">
-                        <img src="@/assets/images/message/image_template_02.png" alt="">
-                      </div>
-                    </div>
-                    <div class="template-item">
-                      <h4 class="template-item__title">이미지 강조형1</h4>
-                      <div class="template-item__box">
-                        <img src="@/assets/images/message/image_template_03.png" alt="">
-                      </div>
-                    </div>
+                    <TemplateItem
+                      itemTitle="상품권/티켓형"
+                      :infoData=ImageTemplate[0] />
+                    <TemplateItem
+                      itemTitle="이미지 강조형3"
+                      :infoData=ImageTemplate[1] />
+                    <TemplateItem
+                      itemTitle="이미지 강조형1"
+                      :infoData=ImageTemplate[2] />
                   </div>
+
                 </div>
               </div>
             </div>
@@ -102,7 +94,7 @@ import BrandState from '@/views/brand/dashboard/components/BrandState.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import BrandStep from '@/views/brand/dashboard/components/BrandStep.vue'
 import TemplateItem from '@/views/brand/message/components/TemplateItem.vue'
-import { ImageTemplate } from '@/views/brand/message/templateSampleData.js'
+import { ImageTemplate } from '@/views/brand/message/templateData.js'
 
 export default {
   components: {

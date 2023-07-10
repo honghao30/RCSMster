@@ -9,7 +9,6 @@
 		display: flex;
 		justify-content: space-between;
 		gap:32px;
-		// height: calc(100vh - 348px);
 	}
 	.dashBoard-main__content {
 		width: 100%;
@@ -18,12 +17,13 @@
 		align-items: flex-start;  
 		flex: auto;      
 		gap: 24px;
-		// min-height: 100%;        
+		min-height:calc(100vh - 346px);
 	}	
 	.approval-statu__box {
 		width: 100%;           
 		border-radius: 16px;  
 		padding:23px 31px;
+		flex:0 0 106px;
 		strong {
 			@include fontoption(20px,#000,700,32px);
 		}
@@ -172,6 +172,7 @@
 			}
 		}
 		&.agency-brand{
+			flex: auto;
 			.top-ctrl-area{
 				margin-top: 24px;
 				margin-bottom: 16px;
@@ -198,8 +199,12 @@
 				}
 			}
 			.agency-brand_none{
-				margin: 80px 0;
+				margin: 120px 0 80px 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 				text-align: center;
+				flex-direction: column;
 				h3{
 					@include fontoption(28px,#000,500,38px);
 					margin-bottom: 16px;

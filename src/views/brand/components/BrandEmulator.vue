@@ -46,6 +46,10 @@
             <dt>이메일</dt>
             <dd>{{ brandInfoData.email }}</dd>
           </dl>
+          <dl class="address">
+            <dt>주소</dt>
+            <dd>{{ brandInfoData.address }}</dd>
+          </dl>
         </TabItem>
       </TabCmp>
     </div>
@@ -73,7 +77,8 @@ export default {
           profileImgFileUrl: '',
           url: '',
           email: '',
-          tel: ''
+          tel: '',
+          address: ''
         }
       }
     },

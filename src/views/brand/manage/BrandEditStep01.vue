@@ -68,9 +68,8 @@
                         </div>
                       </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <th scope="row"><span class="form-item__label required">본인인증</span>
-                        <!-- 툴팁 -->
                         <ToolTipEl
                           direction="bottomPos"
                           elAlign="leftType"
@@ -87,7 +86,6 @@
                               </div>
                           </template>
                         </ToolTipEl>
-                        <!-- // 툴팁 -->
                       </th>
                       <td>
                         <div class="form-item__content cerficaton-type">
@@ -100,7 +98,7 @@
                           </ButtonCmp>
                         </div>
                       </td>
-                    </tr>
+                    </tr> 기획서 v1.0 수정: 삭제 -->
                     <tr>
                       <th scope="row"><span class="form-item__label required">백그라운드 이미지</span></th>
                       <td>
@@ -128,9 +126,9 @@
                                   <span class="img__text">{{ bgItem.name }}</span>
                                 </li>
                               </ul>
-                              <p class="checkbox">
+                              <!-- <p class="checkbox">
                                 <input type="checkbox" id="defaultImg" value="defaultImg"><label for="defaultImg">프로필 이미지에도 동일한 이미지를 사용합니다.</label>
-                              </p>
+                              </p> 기획서 v1.0 수정: 삭제 여부 기획 확인 필요 -->
                             </template>
                             <template v-if="form.bgImageType === 'custom'">
                               <div class="input-item">
@@ -138,7 +136,7 @@
                                 <input type="file" id="fileUpCumtom" class="input blind" @change="onFileBgChanged">
                                 <label for="fileUpCumtom" class="btn btn-default-line">파일찾기</label>
                               </div>
-                              <p class="guide-text black">&middot; 사이즈 : 388 X 388px ~ 1080 X 1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 5MB)</p>
+                              <p class="guide-text black">&middot; 사이즈 : 388 X 388px ~ 1080 X 1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 1MB)</p> <!-- 기획서 v1.0 수정: 텍스트 수정 -->
                             </template>
                           </div>
                           <p class="guide-text error"  v-if="bgImageErrorMsg">백그라운드 이미지를 선택하세요.</p>
@@ -165,7 +163,7 @@
                               <ul class="profile-img-list">
                                 <!-- 디자인 1차 수정 : 이벤트 처리 수정 -->
                                 <li v-for="(item, i) in imgcategoryOptions" :key="i" @click="pfImageCheck(i, item)"
-                                :class="{ active : isActiveNum === i }">
+                                :class="{ active : isActiveNumPf === i }">
                                   <span class="profile-img">
                                       <img :src="`${item.src }`" alt="">
                                   </span>
@@ -179,7 +177,7 @@
                                 <input type="file" id="fileUp" class="input blind" @change="onFileChanged()">
                                 <label for="fileUp" class="btn btn-default-line">파일찾기</label>
                               </div>
-                              <p class="guide-text black">&middot; 사이즈 : 388 X 388px ~ 1080 X 1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 5MB)</p>
+                              <p class="guide-text black">&middot; 사이즈 : 388 X 388px ~ 1080 X 1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 1MB)</p> <!-- 기획서 v1.0 수정: 텍스트 수정 -->
                             </template>
                           </div>
                           <p class="guide-text error"  v-if="profileImageErrorMsg">프로필 이미지를 선택하세요.</p>
@@ -311,16 +309,16 @@
                   <div class="button__wrap button__brand">
                     <!-- 1차 디자인 수정 -->
                     <button class="btn-brand">
-                      브랜드 홈 작성가이드
-                    </button>
+                      브랜드 개설 가이드
+                    </button> <!-- 기획서 v1.0 수정: 버튼 명 수정 -->
                   </div>
                   <BrandEmulator :brandInfoData="form" curTab="info"/>
               </div>
             </div>
           </form>
           <div class="top-notice--gray">
-              <p>-신청한 브랜드 정보는 운영자 심사를 거쳐 노출 여부가 결정되며 승인 결과는 문자메시지(SMS) 및 이메일로 알려드립니다.</p>
-              <p>-승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</p>
+              <p>- 신청한 브랜드 정보는 운영자 심사를 거쳐 노출 여부가 결정되며 승인 결과는 문자메시지(SMS) 및 이메일로 알려드립니다.</p>
+              <p>- 승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</p>
           </div>
           <div class="button__wrap flex-end">
             <ButtonCmp
@@ -374,16 +372,15 @@ export default {
         category1: 'travel',
         category2: 'service',
         category3: '시스템 스튜디오',
-        postcode: '06128',
-        addr1: '서울특별시 강남구 봉은사로 18길 58',
-        addr2: '더피프티원',
         brandColorType: 'Color',
         phone: '',
         certNumber: '',
         bgImage: '',
+        address: '016128 서울특별시 강남구 봉은사로 18길 58(역삼동,건영빌딩) 더피프티원',
         brandColor: '#0C22E1',
-        quickButton: ['chat', 'web', 'tel']
+        quickButton: ['chat', 'web', 'call']
       },
+      isActiveNumPf: 1,
       isActiveNum: 10,
       brandNameErrorMsg: false,
       brandDescriptionErrorMsg: false,
@@ -491,7 +488,7 @@ export default {
       this.form.bgImgFileUrl = bgItem.src
     },
     pfImageCheck (index, item) {
-      this.isActiveNum = index
+      this.isActiveNumPf = index
       this.form.profileImgFileUrl = item.src
       console.log(this.form.profileImgFileUrl)
     },

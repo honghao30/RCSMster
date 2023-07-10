@@ -15,7 +15,7 @@
                     <label for="chatBubble">
                       <i class="icon-chatbubble"></i>
                       <dl>
-                        <dt class="tab-title">말풍선</dt>
+                        <dt class="tab-title">말풍선(1장)</dt> <!-- 기획서 v1.0 수정 -->
                         <dd class="tab-text">텍스트 중심의 간단한 메시지 작성</dd>
                       </dl>
                     </label>
@@ -25,11 +25,23 @@
                     <label for="card">
                       <i class="icon-card"></i>
                       <dl>
-                        <dt class="tab-title">카드</dt>
+                        <dt class="tab-title">카드(1장)</dt> <!-- 기획서 v1.0 수정 -->
                         <dd class="tab-text">이미지와 텍스트를 혼합하여 풍부한 메시지 작성</dd>
                       </dl>
                     </label>
                   </li>
+                   <!-- 기획서 v1.0 수정 -->
+                  <li>
+                    <input type="radio" id="slider" value="slider" v-model="form.chatType" class="blind"  @change="isChangeTypeCheck"/>
+                    <label for="slider">
+                      <i class="icon-card"></i>
+                      <dl>
+                        <dt class="tab-title">슬라이드(2~6장)</dt>
+                        <dd class="tab-text">이미지와 텍스트를 혼합하여 풍부한 메시지 작성</dd>
+                      </dl>
+                    </label>
+                  </li>
+                   <!-- //기획서 v1.0 수정 -->
                 </ul>
               </div>
               <!-- // 챗봇 유형 -->
@@ -60,13 +72,15 @@
                               </div>
                             </div>
                           </div>
-                          <p class="guide-text error">간편챗봇 메시지 이름 입력해주세요.</p>
+                          <!-- 오류 메시지 주석-->
+                          <!-- <p class="guide-text error">간편챗봇 메시지 이름 입력해주세요.</p> -->
                         </div>
                       </td>
                     </tr>
                     <!-- // 간편챗봇 메시지 이름 -->
                     <template v-if="form.chatType == 'card'">
                     <!-- 이미지 사이즈 -->
+                    <!-- 기획서 v1.0 수정 -->
                     <tr>
                       <th scope="row"><span class="form-item__label required">이미지 사이즈</span></th>
                       <td>
@@ -75,18 +89,112 @@
                               <div class="input-item">
                                 <span class="radiobox">
                                   <input type="radio" name="imgSize" id="full" value="full" v-model="form.imgSize"/>
-                                  <label for="full"><span class="radiobox__text">전체 사이즈</span></label>
+                                  <label for="full"><span class="radiobox__text">900 * 900px</span></label>
                                 </span>
                                 <span class="radiobox">
                                   <input type="radio" name="imgSize" id="medium" value="medium" v-model="form.imgSize"/>
-                                  <label for="medium"><span class="radiobox__text">중간 사이즈</span></label>
+                                  <label for="medium"><span class="radiobox__text">900 * 1,200px</span></label>
                                 </span>
                               </div>
+                            </div>
+                            <div class="form-item-row">
+                              <div class="input-item">
+                                <span class="input"><input type="text" :value="filesName" disabled placeholder="이미지를 등록해주세요."></span>
+                                <input type="file" id="fileUp" class="input" @change="onFileChanged" :disabled="isSlideCardEdit">
+                                <label for="fileUp"
+                                  class="btn btn-default-line"
+                                  :class="{'inactive' : isSlideCardEdit }"
+                                >파일찾기</label>
+                              </div>
+                              <p class="guide-text black">&middot; 파일형식: JPG, PNG, GIF, BMP<br>(최대 1MB, 단, 동일한 파일을 등록하는 경우 크기에 합산되지 않습니다.)</p>
                             </div>
                         </div>
                       </td>
                     </tr>
                     <!-- // 이미지 사이즈 -->
+                    <!-- 타이틀 -->
+                    <!-- 기획서 v1.0 수정 -->
+                    <tr>
+                      <th scope="row"><span class="form-item__label required">제목</span></th>
+                      <td>
+                        <div class="form-item__content is-emoji">
+                          <div class="form-item-row">
+                            <div class="input-item input-limit">
+                              <div class="input">
+                                <input type="text" class="input" maxlength="30"
+                                  v-model="form.chatbotMsgName"
+                                  placeholder="간편챗봇 이름을 입력해주세요."
+                                  ref="chatbotName"
+                                >
+                                <div class="input-limit__text">
+                                  <Emoji @input="onSelectEmoji($event, 'chatbotName')"/>
+                                  <p>{{ form.chatbotMsgName.length }}/30자</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- <p class="guide-text error">제목 입력해주세요.</p> -->
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- // 타이틀  -->
+                    <!-- 내용 -->
+                    <!-- 기획서 v1.0 수정  -- 삭제 내용 -->
+                    <!-- // 내용  -->
+                    </template>
+                    <!-- 메시지 복사 -->
+                    <!-- 기획서 v1.0 수정  -- 삭제 메시지 복사 -->
+                    <!-- 기획서 v1.0 수정  -- 내용 위치 수정 -->
+                    <tr  v-if="form.chatType !== 'slider'">
+                      <th scope="row"><span class="form-item__label required">내용</span></th>
+                      <td>
+                        <div class="form-item__content is-emoji">
+                          <div class="form-item-row">
+                            <div class="input-item input-limit">
+                              <div class="textarea">
+                                <textarea maxlength="1300" placeholder="내용을 입력해주세요."  v-model="form.bubbleContent"
+                                ref="bubbleContent"
+                                style="height: 320px"></textarea>
+                                <div class="textarea-limit__text">
+                                  <Emoji @input="onSelectEmoji($event, 'bubbleContent')"/>
+                                  <p>
+                                    {{ form.bubbleContent.length }}/1,300자
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- 오류 메시지 주석처리 -->
+                          <!-- <p class="guide-text error">내용을 입력해주세요.</p> -->
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- 카드버튼 -->
+                    <tr  v-if="form.chatType == 'card'">
+                      <th scope="row"><span class="form-item__label">카드 버튼</span></th>
+                      <td>
+                        <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item">
+                                <span class="radiobox">
+                                  <input type="radio" name="chipBtnUse" id="btnUseN" value="N" v-model="form.chipBtnUse"/>
+                                  <label for="btnUseN"><span class="radiobox__text">미사용</span></label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="chipBtnUse" id="btnUseY" value="Y" v-model="form.chipBtnUse"/>
+                                  <label for="btnUseY"><span class="radiobox__text">사용</span></label>
+                                </span>
+                              </div>
+                            </div>
+                        </div>
+                        <ChatChipButtonReg
+                          :buttons="form.chipButtons"
+                          v-if="form.chipBtnUse === 'Y'"
+                          @openChatbotModal="ChatBotModal"
+                        />
+                      </td>
+                    </tr>
+                    <template  v-if="form.chatType == 'slider'">
                     <!-- 타이틀 -->
                     <tr>
                       <th scope="row"><span class="form-item__label required">타이틀</span></th>
@@ -138,27 +246,6 @@
                     </tr>
                     <!-- // 내용  -->
                     </template>
-                    <!-- 메시지 복사 -->
-                    <tr>
-                      <th scope="row"><span class="form-item__label required">메시지 복사</span></th>
-                      <td>
-                        <div class="form-item__content">
-                            <div class="form-item-row">
-                              <div class="input-item">
-                                <span class="radiobox">
-                                  <input type="radio" name="copy" id="copyY" value="Y" v-model="form.copyMsg"/>
-                                  <label for="copyY"><span class="radiobox__text">가능</span></label>
-                                </span>
-                                <span class="radiobox">
-                                  <input type="radio" name="copy" id="copyN" value="N" v-model="form.copyMsg"/>
-                                  <label for="copyN"><span class="radiobox__text">불가능</span></label>
-                                </span>
-                              </div>
-                            </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <!-- // 메시지 복사 -->
                     <!-- 응답버튼 -->
                     <tr>
                       <th scope="row"><span class="form-item__label">응답 버튼</span></th>
@@ -174,11 +261,15 @@
                                   <input type="radio" name="chipBtnUse" id="btnUseY" value="Y" v-model="form.chipBtnUse"/>
                                   <label for="btnUseY"><span class="radiobox__text">사용</span></label>
                                 </span>
+                                <div class="input" v-if="form.chipBtnUse === 'Y'">
+                                  <Dropdown :options="buttonCount" v-model="form.buttonLen" placeholder="1개"  />
+                                </div>
                               </div>
                             </div>
                         </div>
                         <ChatChipButtonReg
                           :buttons="form.chipButtons"
+                          :buttonLen="form.buttonLen"
                           v-if="form.chipBtnUse === 'Y'"
                           @openChatbotModal="ChatBotModal"
                         />
@@ -187,12 +278,12 @@
                     <!-- // 응답버튼 -->
                   </tbody>
                 </table>
-                <!--  카드 추가, 드래그 영역 -->
-                <div class="item-reg__wrap">
+                <!--  슬라이드 영역 -->
+                <div class="item-reg__wrap"   v-if="form.chatType == 'slider'">
                   <div class="item-reg__inner">
                     <div class="item-reg__list" v-if="form.chatType == 'chatBubble'">
                       <div class="item active">
-                        <span class="item-text">카드1</span>
+                        <span class="item-text">슬라이드 1</span>
                       </div>
                     </div>
                     <draggable
@@ -207,7 +298,7 @@
                         :class="[{'active': msg.isActive},]"
                         @click="cardActive(i)"
                       >
-                        <span v-text="`카드${msg.index}`" class="item-text"></span>
+                        <span v-text="`슬라이드${msg.index}`" class="item-text"></span>
                         <ButtonCmp
                           type="btn-only-icon"
                           ><i class="icon-copy"></i>
@@ -240,43 +331,8 @@
                   </div>
                 </div>
                 <!--  // 카드 추가, 드래그 영역 -->
-                <!-- 말풍선 내용 영역 -->
-                <template v-if="form.chatType !== 'card'">
-                  <table class="table table-bodyonly form-table" :key="j" >
-                    <colgroup>
-                      <col width="196px">
-                      <col />
-                    </colgroup>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><span class="form-item__label required">내용</span></th>
-                        <td>
-                          <div class="form-item__content is-emoji">
-                            <div class="form-item-row">
-                              <div class="input-item input-limit">
-                                <div class="textarea">
-                                  <textarea maxlength="1300" placeholder="내용을 입력해주세요."  v-model="form.bubbleContent"
-                                  ref="bubbleContent"
-                                  style="height: 320px"></textarea>
-                                  <div class="textarea-limit__text">
-                                    <Emoji @input="onSelectEmoji($event, 'bubbleContent')"/>
-                                    <p>
-                                      {{ form.bubbleContent.length }}/1,300자
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <p class="guide-text error">내용을 입력해주세요.</p>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </template>
-                <!-- // 말풍선 내용 영역 -->
-                <!-- 카드 내용 영역 -->
-                <template v-else>
+                <!-- 슬라이드 내용 영역 -->
+                <template   v-if="form.chatType == 'slider'">
                   <template v-for="(msg, j) in form.msgData">
                     <table class="table table-bodyonly form-table" v-if="msg.isActive" :key="j" >
                       <colgroup>
@@ -343,12 +399,13 @@
                                   </div>
                                 </div>
                               </div>
-                              <p class="guide-text error">내용을 입력해주세요.</p>
+                              <!-- 오류 메시지 주석처리 -->
+                              <!-- <p class="guide-text error">내용을 입력해주세요.</p> -->
                             </div>
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row"><span class="form-item__label required">버튼</span></th>
+                          <th scope="row"><span class="form-item__label required">슬라이드 버튼</span></th>
                           <td>
                             <div class="form-item__content">
                                 <div class="form-item-row">
@@ -484,6 +541,7 @@ import ChatCardButtonReg from '@/views/brand/chatbot/components/ChatCardButtonRe
 import ChatChipButtonReg from '@/views/brand/chatbot/components/ChatChipButtonReg.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import ConfirmMsg from '@/views/join/components/ConfirmMsg.vue'
+import Dropdown from '@/components/common/Dropdown.vue'
 import ChatbotConnect from '@/views/brand/chatbot/components/ChatbotConnect.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
@@ -499,6 +557,7 @@ export default {
     ChatChipButtonReg,
     ModalView,
     ConfirmMsg,
+    Dropdown,
     ChatbotConnect,
     Emoji
   },
@@ -514,9 +573,20 @@ export default {
         chipButtons: [],
         bubbleContent: '',
         copyMsg: 'Y',
+        buttonLen: '',
         msgData: [{
           index: 1,
           isActive: true,
+          imgFile: 'dummy/template_image.png',
+          title: '',
+          cardContent: '',
+          btnUse: 'N',
+          btnDirection: 'row',
+          buttons: []
+        },
+        {
+          index: 2,
+          isActive: false,
           imgFile: 'dummy/template_image.png',
           title: '',
           cardContent: '',
@@ -539,7 +609,49 @@ export default {
       isSaveDraftMsg: false,
       isChatBotConnect: false,
       showSpecialCharTitle: false, // 특수문자 선택창 show 여부
-      showSpecialCharBubbleContent: false
+      showSpecialCharBubbleContent: false,
+      buttonCount: [
+        {
+          label: '1개',
+          value: '1'
+        },
+        {
+          label: '2개',
+          value: '2'
+        },
+        {
+          label: '3개',
+          value: '3'
+        },
+        {
+          label: '4개',
+          value: '4'
+        },
+        {
+          label: '5개',
+          value: '5'
+        },
+        {
+          label: '6개',
+          value: '6'
+        },
+        {
+          label: '7개',
+          value: '7'
+        },
+        {
+          label: '8개',
+          value: '8'
+        },
+        {
+          label: '9개',
+          value: '9'
+        },
+        {
+          label: '10개',
+          value: '10'
+        }
+      ]
     }
   },
   computed: {
@@ -633,6 +745,9 @@ export default {
       } else {
         this.$refs[refName].value += emoji
       }
+    },
+    onSubmit () {
+      console.log('onSubmit')
     }
   }
 }

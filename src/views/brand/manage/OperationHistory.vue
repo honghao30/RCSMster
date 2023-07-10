@@ -5,28 +5,30 @@
       <div class="brand-info__wrap">
         <PageTitle pagetitle="작업 히스토리" />
         <div class="top-ctrl-area">
-          <div></div>
+          <div>
+            <p>총 <strong>7</strong>건</p>  <!-- 기획서 v1.0 수정 소팅 결과 소팅 건수 추가 -->
+          </div>
           <div class="right-area">
             <Dropdown :options="categoryOptions" placeholder="유형" />
             <Dropdown :options="statusOptions" placeholder="상태" />
-            <Dropdown :options="orderOptions" placeholder="최신순" />
+            <!-- <Dropdown :options="orderOptions" placeholder="최신순" /> --> <!-- 기획서 v1.0 수정 최신순 소팅 삭제 -->
           </div>
         </div>
         <div class="table__wrap notice-table">
           <table class="table table-list">
             <colgroup>
+              <col width="15%">
+              <col width="15%">
               <col>
-              <col width="20%">
               <col>
-              <col width="20%">
-              <col width="16%">
-              <col width="8%">
+              <col width="15%">
+              <col width="10%">
             </colgroup>
             <thead>
               <tr>
                 <th scope="col"><span>업데이트일</span></th>
                 <th scope="col"><span>유형</span></th>
-                <th scope="col"><span>타이틀</span></th>
+                <th scope="col"><span>내용</span></th> <!-- 기획서 v1.0 수정 -->
                 <th scope="col"><span>상태</span></th>
                 <th scope="col"><span>담당자</span></th>
                 <th scope="col"><span>수정방식</span></th>
@@ -149,34 +151,50 @@ export default {
           value: 'chat'
         },
         {
+          label: '간편 챗봇',
+          value: 'chatbot'
+        },
+        {
+          label: '템플릿 레이아웃',
+          value: 'templateLayout'
+        },
+        {
           label: '템플릿 메시지',
-          value: 'template'
+          value: 'templateMsg'
         },
         {
-          label: '간편 챗봇',
-          value: 'chatbot'
+          label: '운영자',
+          value: ''
         },
         {
-          label: '간편 챗봇',
-          value: 'chatbot'
+          label: '대행사',
+          value: 'agency'
         }
       ],
       statusOptions: [
         {
-          label: '수정요청',
-          value: 'request'
+          label: '최초등록',
+          value: 'reg'
         },
         {
-          label: '승인완료',
-          value: 'done'
+          label: '수정요청',
+          value: 'editRequest'
+        },
+        {
+          label: '승인요청 취소',
+          value: 'requestCancle'
         },
         {
           label: '반려',
           value: 'reject'
         },
         {
-          label: '최초등록',
-          value: 'regist'
+          label: '승인완료',
+          value: 'done'
+        },
+        {
+          label: '삭제',
+          value: 'delete'
         }
       ],
       orderOptions: [

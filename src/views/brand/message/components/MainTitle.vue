@@ -8,7 +8,7 @@
         v-if="info.logoUse === 'Y'"
         ></span>
         <p v-if="info.mainTitle">{{ info.mainTitle }}</p>
-        <p v-else>제목을 입력해주세요.</p>
+        <p v-else>제목을 입력하세요.</p>
       </div>
       <div class="title--end" v-if="info.varUse === 'Y'">
         <p style="color:#2F77FB">변수</p>

@@ -145,7 +145,7 @@
                     <div class="form-item-row">
                       <div class="input-item">
                       <!-- 0620: 디자인 1차 수정 - 'input-info' class명 추가 -->
-                        <span class="input input-info"><input type="text" class="input" :placeholder="agencyFilesName" v-model="form.files" :value="agencyFilesName" disabled></span>
+                        <span class="input input-info"><input type="text" class="input" :placeholder="agencyFilesName" v-model="form.files" disabled></span>
                         <input type="file" id="fileUp2" class="input" >
                         <label for="fileUp2" class="btn btn-default-line">파일찾기</label>
                       </div>

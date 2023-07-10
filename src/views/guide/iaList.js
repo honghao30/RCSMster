@@ -571,6 +571,22 @@ const dashboardList = [
     'link': '/brandcreatestep04',
     'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_브랜드개설_v0.9_20230627']
   },
+  // 메시지
+  {
+    'depth3': '메시지',
+    'depth4': '템플릿 목록',
+    'screenId': '',
+    'status': ['0710: 기획 공유', '0710: 개발 공유'],
+    'link': '/TemplateList',
+    'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_메시지_v0.8_20230630']
+  },
+  {
+    'depth4': '레이아웃 목록',
+    'screenId': '',
+    'status': ['0710: 기획 공유', '0710: 개발 공유'],
+    'link': '/LayoutRegistration',
+    'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_메시지_v0.8_20230630']
+  },
   // 브랜드 대시보드
   {
     'depth2': '브랜드 대시보드',

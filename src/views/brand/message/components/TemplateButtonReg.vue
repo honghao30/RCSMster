@@ -7,8 +7,8 @@
           <div class="inner__input-item">
             <div class="input-item">
               <span class="radiobox">
-                <input type="radio" name="bgColor" id="defaultColor" value="#0C22E1" v-model="buttonInfo.bgColor"/>
-                <label for="defaultColor">기본색 ( <span style="background-color:#0C22E1" class="color"></span> )</label>
+                <input type="radio" name="bgColor" id="defaultColor" value="#2f77fb" v-model="buttonInfo.bgColor"/>
+                <label for="defaultColor">기본색 ( <span style="background-color:#2f77fb" class="color"></span> )</label>
               </span>
               <span class="radiobox">
                 <input type="radio" name="bgColor" id="brandColor" value="#70AD47" v-model="buttonInfo.bgColor"/>

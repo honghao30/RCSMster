@@ -3,7 +3,8 @@
     <div class="brand__inner">
       <BrandLnb />
       <div class="brand-info__wrap">
-        <PageTitle pagetitle="대화방 목록" num="999" />
+        <!-- 기획서 v1.0 수정(num 앞에 콜론 붙힘) -->
+        <PageTitle pagetitle="대화방 목록" :num="999" />
         <div class="chatroom-graybox">
           <ul>
             <li>- 대화방을 등록하면 고객에게 단방향 문자 발송 및 대행사 등록 후 챗봇 등을 활용한 실시간 응답이 가능합니다.</li>

@@ -4,9 +4,13 @@
       <div class="emulator-header" v-if="showBrandHeader">
         <div class="emulator-header__inner">
           <button class="btn-back"><span class="blind">이전으로</span></button>
-          <div class="profile">
+          <div class="profile"  v-if="brandInfoData">
             <div class="profile__image">
-              <img :src="require('@/assets/images/' + brandInfoData.profileImgFileUrl)" alt="">
+              <img
+                v-if="brandInfoData.profileImgFileUrl"
+                :src="require('@/assets/images/' + brandInfoData.profileImgFileUrl)"
+                alt=""
+              >
             </div>
             <p class="brand-name">{{ brandInfoData.name }}</p>
           </div>
@@ -65,16 +69,26 @@
                   <div class="slide-content">
                     <p class="title">
                       <span v-if="slide.slideTitle">{{ slide.slideTitle }}</span>
-                      <span v-else>슬라이드 제목을 입력해주세요.</span>
+                      <span v-else>카드 제목을 입력해주세요.</span>
                     </p>
                     <p class="description">
                       <span v-if="slide.slideDescription">{{ slide.slideDescription }}</span>
-                      <span v-else>슬라이드 내용을 입력해주세요.</span>
+                      <span v-else>카드 내용을 입력해주세요.</span>
                     </p>
                   </div>
               </swiper-slide>
             </swiper>
           </div>
+        </div>
+        <div class="preview-button"  v-if="feedInfoData.btnUseLen !== '0' && !this.showThumbnail">
+            <router-link
+              class="btn-bg-gray"
+              to=""
+              v-for="(btn, index) in feedInfoData.btnUseLen"
+              :key="index"
+            >
+              URL 연결
+            </router-link>
         </div>
       </div>
     </div>
@@ -83,6 +97,7 @@
 
 <script>
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+
 export default {
   components: {
     Swiper,
@@ -99,7 +114,15 @@ export default {
     showBrandHeader: {
       type: Boolean,
       default: true
+    },
+    showThumbnail: {
+      type: Boolean
     }
+  },
+  mounted() {
+    this.$watch('showThumbnail', function(newVal, oldVal) {
+      console.log(this.showThumbnail)
+    })
   },
   data() {
     return {

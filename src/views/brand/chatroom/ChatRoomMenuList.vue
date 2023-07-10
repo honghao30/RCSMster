@@ -3,7 +3,8 @@
     <div class="brand__inner">
       <BrandLnb />
       <div class="brand-info__wrap">
-        <PageTitle pagetitle="대화방 메뉴 목록" num="989" />
+        <!-- 기획서 v1.0 수정(num 앞에 콜론 붙힘) -->
+        <PageTitle pagetitle="대화방 메뉴 목록" :num= 989 />
         <!-- 등록된 대화방 없을때 -->
         <div class="brand-info__wrap" v-if="chatroomList === ''">
           <div class="registration__complete">

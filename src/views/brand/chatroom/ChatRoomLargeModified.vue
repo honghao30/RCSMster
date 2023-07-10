@@ -3,19 +3,12 @@
     <div class="brand__inner">
       <BrandLnb />
       <div class="brand-info__wrap">
-        <PageTitle :pagetitle="pageTitle" />
-        <div class="top-progress-area">
-          <!-- <span class="flag-progress">승인대기</span> -->
-          <!-- <span class="flag-progress ing">처리중</span> -->
-          <span class="flag-progress reject">반려</span>
-          <!-- <span class="flag-progress">수정 전 데이터 보기</span>
-          <span class="flag-progress ing">삭제 처리중</span>
-          <span class="flag-progress done">승인완료</span>-->
-          <p class="date">신청 건 수 70건 중 반려 59건</p>
-          <p class="reject-text">반려사유 : 통신서비스가입증명원 번호와 불일치함 외 69건</p>
-        </div>
-        <div class="chatroom__wrap">
-          <div class="chatroom-registration editmod">
+        <!-- 기획서 v1.0 수정(chatroom-modify__title,chatroom-modify__title-use 클래스 삭제 후 공통컴포넌트 사용 / top-progress-area 클래스 삭제) -->
+        <PageTitle :pagetitle="pageTitle" progress="반려" />
+        <!-- // 기획서 v1.0 수정(chatroom-modify__title,chatroom-modify__title-use 클래스 삭제 후 공통컴포넌트 사용/ top-progress-area 클래스 삭제) -->
+        <!-- 기획서 v1.0 수정(editmod  이중클래스 위치 수정) -->
+        <div class="chatroom__wrap editmod">
+          <div class="chatroom-registration">
             <div>
               <form  ref="form" :model="form">
                 <div class="table__wrap">
@@ -53,7 +46,8 @@
                               <div class="input-item">
                                 <span class="input"><input type="text" class="input" :value="form.serviceDocument" disabled></span>
                                 <input type="file" id="fileUp" class="input blind" @change="onFileChanged">
-                                <label for="fileUp" class="btn btn-default-line medium">파일 선택</label>
+                                <!-- 기획서 v1.0 수정(문구 수정) -->
+                                <label for="fileUp" class="btn btn-default-line medium">파일 찾기</label>
                               </div>
                             </div>
                             <p class="guide-text black">&middot; 파일형식: XLS, XLSX(최대 5MB)</p>
@@ -70,10 +64,10 @@
                               <div class="input-item">
                                 <span class="input"><input type="text" class="input" :value="form.serviceDocument" disabled></span>
                                 <input type="file" id="fileUp" class="input blind" @change="onFileChanged">
-                                <label for="fileUp" class="btn btn-default-line medium">파일 선택</label>
+                                <!-- 기획서 v1.0 수정(문구 수정) -->
+                                <label for="fileUp" class="btn btn-default-line medium">파일 찾기</label>
                               </div>
-                              <!-- 타인 소유의 발신번호인 경우 : 가이드 팝업 출력 / 정책 수급 필요 -->
-                              <a class="exception-txt">타인 소유의 발신번호인 경우</a>
+                              <!-- 기획서 v1.0 수정(타인 소유의 발신번호인 경우 삭제) -->
                             </div>
                             <p class="guide-text black">&middot; 통신서비스 가입증명원을 제출하시면 서류 심사 후 등록이 가능합니다.</p>
                             <p class="guide-text black">&middot; 입력한 발신번호와 통신서비스 가입증명원의 전화번호가 동일해야만 발신번호가 등록됩니다.</p>
@@ -97,11 +91,14 @@
             />
           </div>
         </div>
+        <!-- 기획서 v1.0 수정(문구 수정 및 추가) -->
         <div class="top-notice--gray">
           <ul>
+            <li class="chat-reject-reason">- 반려 사유 : 통신서비스가입증명원 번호와 불일치함 외 69건</li>
             <li>- 승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</li>
           </ul>
         </div>
+        <!-- // 기획서 v1.0 수정(문구 수정 및 추가) -->
         <div class="button__wrap flex-end">
           <ButtonCmp
               type="btn-blue-line"
@@ -165,9 +162,9 @@ export default {
   data() {
     return {
       form: {
-        chatRoomName: 'TOMMY JEANS 외 69건 대화방 수정​',
+        chatRoomName: 'TOMMY JEANS 외 69건 대화방',
         chatRegistrationType: 'phone',
-        serviceDocument: 'SYSTEMSTUDIO_통신서비스가입증명원.zip​',
+        serviceDocument: 'SYSTEMSTUDIO_통신서비스가입증명원.zip',
         agencyConnect: 'use',
         allowSearch: 'Y',
         searchIntro: 'SYSTEM STUDIOS 대화방 입니다.',
@@ -192,8 +189,9 @@ export default {
       // 버튼 활성화에 대한 예시
       return this.form.chatTitle.length <= 0
     },
+    // 기획서 v1.0 수정
     pageTitle() {
-      return `${this.form.chatTitle}`
+      return `${this.form.chatRoomName + ' 수정'}`
     }
   },
   methods: {

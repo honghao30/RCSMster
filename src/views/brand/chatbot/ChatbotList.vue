@@ -31,13 +31,14 @@
             <Dropdown :options="NumberOptions" />
           </div>
         </div>
+        <!-- 기획서 v1.0 수정 -- 카드 개수 삭제 -->
         <div class="table__wrap chatroom__table">
           <table class="table table-list">
             <colgroup>
-              <col width="22%">
-              <col width="22%">
+              <col width="30%">
+              <col width="28%">
               <col width="14%">
-              <col width="14%">
+              <!-- <col width="14%"> -->
               <col width="14%">
               <col width="14%">
             </colgroup>
@@ -46,7 +47,7 @@
                 <th scope="col"><span>간편챗봇 메시지 이름</span></th>
                 <th scope="col"><span>간편챗봇 메시지 ID</span></th>
                 <th scope="col"><span>유형</span></th>
-                <th scope="col"><span>카드 개수</span></th>
+                <!-- <th scope="col"><span>카드 개수</span></th> -->
                 <th scope="col"><span>상태</span></th>
                 <th scope="col"><span>최종 수정일</span></th>
               </tr>
@@ -68,9 +69,9 @@
                 <td>
                   {{ item.chatType }}
                 </td>
-                <td>
+                <!-- <td>
                   {{ item.cardNum }}
-                </td>
+                </td> -->
                 <td>
                   {{ item.status }}
                 </td>
@@ -192,24 +193,24 @@ export default {
       SortOptions: [
         {
           label: '최신순',
-          codeNm: 'newest'
+          value: 'newest'
         },
         {
           label: '이름순',
-          codeNm: 'name'
+          value: 'name'
         }
       ],
       NumberOptions: [
         {
-          label: '10개씩',
-          codeNm: '10'
+          label: '10',
+          value: '10'
         },
         {
-          label: '20개씩',
+          label: '20',
           value: '20'
         },
         {
-          label: '30개씩',
+          label: '30',
           value: '30'
         }
       ]

@@ -122,7 +122,8 @@
       <label class="switch__core" for="switch"></label>
     </div>
     <TitleH3 titleh3="폰트 스타일 레이어 input" />
-    <CustomFontStyleInput v-model="inputFontStyle"/>
+    <TextStyleInput v-model="textStyleInput" @onSetStyle="onSetStyle($event)"/>
+    <p v-html="textStyleInput" :style="textStyle"></p>
     <!-- <TitleH3 titleh3="Form List" />
     <div class="wsg-guide-content">
       <div class="form-list">
@@ -193,13 +194,13 @@ import TitleH3 from '../cmp/TitleH3.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Emoji from '@/components/common/Emoji.vue'
-import CustomFontStyleInput from '@/components/common/CustomFontStyleInput.vue'
+import TextStyleInput from '@/components/common/TextStyleInput.vue'
 import 'emoji-picker-element'
 
 export default {
   data() {
     return {
-      inputFontStyle: '',
+
       form: {
         selectValue: '',
         date: '',
@@ -212,6 +213,8 @@ export default {
         switch: '',
         guideInputEmoji: ''
       },
+      textStyleInput: '',
+      textStyle: {},
       emojiCode: '',
       showSpecialCharTitle: false, // 특수문자 선택창 show 여부
       showSpecialTextarea: false, // 특수문자 선택창 show 여부
@@ -251,9 +254,16 @@ export default {
     Dropdown,
     ButtonCmp,
     Emoji,
-    CustomFontStyleInput
+    TextStyleInput
+  },
+  mounted: {
   },
   methods: {
+    // 텍스트 스타일 지정 input style 받아오는 methods
+    onSetStyle(e) {
+      let style = e
+      this.textStyle = style
+    },
     // Emoji method 01
     onSelectEmoji(e, target) {
       let emoji = e

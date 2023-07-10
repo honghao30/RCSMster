@@ -8,22 +8,19 @@
     <div class="modal__content--body">
       <div class="search-result__wrap">
         <div class="top-ctrl-area">
-          <div class="left-area">
+          <div class="dropdown-search__wrap">
             <div class="search-area">
-              <span class="input">
-                <input type="text" placeholder="검색어를 입력해 주세요."/>
+              <span class="input search-box">
+                <input type="text" placeholder="검색어를 입력하세요."/>
+                <ButtonCmp
+                  type="btn-only-icon"
+                  iconname='icon-search'
+                >
+                </ButtonCmp>
               </span>
             </div>
           </div>
-          <div class="right-area">
-            <div class="ctrl">
-              <div class="pager">
-                <span class="num">1/3</span>
-                <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
-                <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
-              </div>
-            </div>
-          </div>
+          <!-- 기획서 v1.0 수정: 검색 영역 추가 -->
         </div>
         <div class="table__wrap">
           <table class="table table-list">
@@ -69,6 +66,7 @@
             </tbody>
           </table>
         </div>
+        <PagingCmp /> <!-- 기획서 v1.0 수정: paging 추가 -->
       </div>
     </div>
     <div class="modal__content--footer">
@@ -90,10 +88,11 @@
 
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-
+import PagingCmp from '@/components/common/PagingCmp.vue'
 export default {
   components: {
-    ButtonCmp
+    ButtonCmp,
+    PagingCmp
   },
   data() {
     return {

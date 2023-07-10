@@ -35,7 +35,7 @@
                       </td>
                     </tr>
                     <tr v-if="form.quickButton.includes('call')">
-                      <th scope="row"><span class="form-item__label required">Call</span></th>
+                      <th scope="row"><span class="form-item__label required">전화번호</span></th>  <!-- 기획서 v1.0 수정: 텍스트 변경 -->
                       <td>
                         <div class="form-item__content">
                           <div class="form-item-row">
@@ -49,7 +49,7 @@
                       </td>
                     </tr>
                     <tr v-if="form.quickButton.includes('info')">
-                      <th scope="row"><span class="form-item__label required">More info</span></th>
+                      <th scope="row"><span class="form-item__label required">정보</span></th>  <!-- 기획서 v1.0 수정: 텍스트 변경 -->
                       <td>
                         <div class="form-item__content">
                           <div class="form-item-row">
@@ -62,7 +62,7 @@
                       </td>
                     </tr>
                     <tr v-if="form.quickButton.includes('order')">
-                      <th scope="row"><span class="form-item__label required">Order</span></th>
+                      <th scope="row"><span class="form-item__label required">주문</span></th>  <!-- 기획서 v1.0 수정: 텍스트 변경 -->
                       <td>
                         <div class="form-item__content">
                           <div class="form-item-row">
@@ -75,7 +75,7 @@
                       </td>
                     </tr>
                     <tr v-if="form.quickButton.includes('buy')">
-                      <th scope="row"><span class="form-item__label required">Buy</span></th>
+                      <th scope="row"><span class="form-item__label required">구매</span></th>  <!-- 기획서 v1.0 수정: 텍스트 변경 -->
                       <td>
                         <div class="form-item__content">
                           <div class="form-item-row">
@@ -88,7 +88,7 @@
                       </td>
                     </tr>
                     <tr v-if="form.quickButton.includes('ticket')">
-                      <th scope="row"><span class="form-item__label required">Ticket</span></th>
+                      <th scope="row"><span class="form-item__label required">티켓</span></th>  <!-- 기획서 v1.0 수정: 텍스트 변경 -->
                       <td>
                         <div class="form-item__content">
                           <div class="form-item-row">
@@ -101,7 +101,7 @@
                       </td>
                     </tr>
                     <tr v-if="form.quickButton.includes('web')">
-                      <th scope="row"><span class="form-item__label required">Web</span></th>
+                      <th scope="row"><span class="form-item__label required">웹 사이트</span></th>  <!-- 기획서 v1.0 수정: 텍스트 변경 -->
                       <td>
                         <div class="form-item__content">
                           <div class="form-item-row">
@@ -114,7 +114,7 @@
                       </td>
                     </tr>
                     <tr v-if="form.quickButton.includes('store')">
-                      <th scope="row"><span class="form-item__label required">Store</span></th>
+                      <th scope="row"><span class="form-item__label required">스토어</span></th>  <!-- 기획서 v1.0 수정: 텍스트 변경 -->
                       <td>
                         <div class="form-item__content">
                           <div class="form-item-row">
@@ -133,7 +133,7 @@
                 <div class="button__wrap button__brand">
                   <!-- 1차 디자인 수정 -->
                   <button class="btn-brand">
-                    브랜드 홈 작성가이드
+                    브랜드 개설 가이드 <!-- 기획서 v1.0 수정: 버튼 명 수정 -->
                   </button>
                 </div>
                 <BrandEmulator :brandInfoData="form" curTab="info"/>
@@ -141,17 +141,24 @@
             </div>
           </form>
           <div class="top-notice--gray">
-              <p>-신청한 브랜드 정보는 운영자 심사를 거쳐 노출 여부가 결정되며 승인 결과는 문자메시지(SMS) 및 이메일로 알려드립니다.</p>
-              <p>-승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</p>
+              <p>- 신청한 브랜드 정보는 운영자 심사를 거쳐 노출 여부가 결정되며 승인 결과는 문자메시지(SMS) 및 이메일로 알려드립니다.</p>
+              <p>- 승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</p>
           </div>
-          <div class="button__wrap flex-end">
-            <ButtonCmp
-              type="btn-line"
-            >수정완료</ButtonCmp>
-            <ButtonCmp
-              type="btn-blue"
-              @click="onSubmit"
-            >다음</ButtonCmp>
+          <div class="button__wrap space-between">
+            <div class="left">
+              <router-link
+                class="btn btn-line" to="/brandeditstep01"
+              >이전</router-link>
+            </div>
+            <div class="right">
+              <ButtonCmp
+                type="btn-line"
+              >수정완료</ButtonCmp>
+              <ButtonCmp
+                type="btn-blue"
+                @click="onSubmit"
+              >다음</ButtonCmp>
+            </div>
           </div>
       </div>
     </div>
@@ -192,6 +199,7 @@ export default {
         buyURL: '',
         ticketURL: '',
         storeURL: '',
+        address: '016128 서울특별시 강남구 봉은사로 18길 58(역삼동,건영빌딩) 더피프티원',
         quickButton: ['chat', 'web', 'call', 'order']
       },
       telErrorMsg: false,
@@ -202,35 +210,31 @@ export default {
       storeErrorMsg: false,
       quickComp: [
         {
-          label: 'Chat',
-          value: 'chat'
-        },
-        {
-          label: 'Call',
+          label: '전화번호',
           value: 'call'
         },
         {
-          label: 'More info',
+          label: '정보',
           value: 'info'
         },
         {
-          label: 'Order',
+          label: '주문',
           value: 'order'
         },
         {
-          label: 'Buy',
+          label: '구매',
           value: 'buy'
         },
         {
-          label: 'Ticket',
+          label: '티켓',
           value: 'ticket'
         },
         {
-          label: 'Web',
+          label: '웹사이트',
           value: 'web'
         },
         {
-          label: 'Store',
+          label: '스토어',
           value: 'store'
         }
       ],

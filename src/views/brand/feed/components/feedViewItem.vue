@@ -1,5 +1,20 @@
 <template>
   <div class="feed-view__item">
+    <!-- 검색결과 없을 시 -->
+    <div class="no-result" v-if="noResult">
+      검색 결과가 없습니다.
+    </div>
+    <!-- //검색결과 없을 시 -->
+    <!-- 검색결과 없을 시 -->
+    <div class="no-data" v-if="noData">
+      <p>첫 소식을 등록해 보세요.</p>
+      <ButtonCmp
+        type="btn-blue"
+      >
+        등록하기
+      </ButtonCmp>
+    </div>
+    <!-- //검색결과 없을 시 -->
     <div class="feed-view__top">
       <ul class="feed-view__info">
         <li class="id"><span class="label">소식 ID</span>{{ feedData.feedId }}</li>
@@ -29,7 +44,7 @@
           </ButtonCmp>
           <ul class="layer__more-menu" v-if="isLayerOpen" >
             <li>
-              <a role="button">미노출</a>
+              <a role="button">미게시</a>
             </li>
             <li>
               <a role="button">수정</a>
@@ -69,7 +84,9 @@ export default {
   },
   data() {
     return {
-      isLayerOpen: false
+      isLayerOpen: false,
+      noResult: false,
+      noData: false
     }
   },
   methods: {

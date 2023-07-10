@@ -3,10 +3,9 @@
     <div class="brand__inner">
       <BrandLnb />
       <div class="brand-info__wrap">
-        <PageTitle pagetitle="브랜드 기본 소식 등록" />
+        <PageTitle pagetitle="브랜드 알림 등록" />
         <div class="feed__wrap">
           <div class="feed__inner">
-            <PageTitleH3 titleh3="알림판 정보"/>
             <form  ref="form" :model="form">
               <div class="table__wrap">
                 <table class="table table-bodyonly form-table">
@@ -15,105 +14,120 @@
                     <col />
                   </colgroup>
                   <tbody>
-                    <tr>
-                      <th scope="row"><span class="form-item__label">알림</span></th>
+                    <tr class="no-line">
+                      <th scope="row"><span class="form-item__label">영업정보</span></th>
                       <td>
                           <div class="form-item__content">
                             <div class="form-item-row">
                               <div class="input-item">
-                                <span class="radiobox">
-                                  <input type="radio" id="noticeUseN" name="notice" value="noticeUseN" v-model="form.notice"><label for="noticeUseN">미사용</label>
-                                </span>
+                                <!-- 기획서 v1.0 수정 --- 순서 변경-->
                                 <span class="radiobox">
                                   <input type="radio" id="noticeUseY" name="notice" value="noticeUseY" v-model="form.notice" ><label for="noticeUseY">사용</label>
                                 </span>
+                                <span class="radiobox">
+                                  <input type="radio" id="noticeUseN" name="notice" value="noticeUseN" v-model="form.notice"><label for="noticeUseN">미사용</label>
+                                </span>
+                                <!-- // 기획서 v1.0 수정 -->
                               </div>
                             </div>
                           </div>
-                      </td>
-                    </tr>
-                    <tr v-if="form.notice === 'noticeUseY'">
-                      <th scope="row"><span class="form-item__label required">제목</span></th>
-                      <td>
-                        <div class="form-item__content is-emoji">
-                          <div class="form-item-row">
-                            <div class="input-item input-limit">
-                              <div class="input">
-                                <input type="text" class="input" maxlength="20" placeholder="알림 제목을 입력해주세요." v-model="form.title" ref="title">
-                                <div class="input-limit__text">
-                                  <Emoji @input="onSelectEmoji($event, 'title')"/>
-                                  <p>{{ form.title.length }}/20자</p>
+                          <template v-if="form.notice === 'noticeUseY'">
+                             <div class="feed-detail__wrap">
+                                <div class="form-item__content is-emoji">
+                                  <div class="form-item-row">
+                                    <div class="input-item input-limit">
+                                      <span class="form-item__label required">제목</span>
+                                      <div class="input">
+                                        <input type="text" class="input" maxlength="12" placeholder="알림 제목을 입력해주세요."  @input="e => form.title = e.target.value" v-model="form.title" ref="title">
+                                        <div class="input-limit__text">
+                                          <Emoji @input="onSelectEmoji($event, 'title')"/>
+                                          <p>{{ form.title.length }}/12자</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                    <p class="guide-text error" v-if="brandTitleErrorMsg">알림 제목을 입력해주세요.</p>
                                 </div>
-                              </div>
-                            </div>
-                          </div>
-                            <p class="guide-text error" v-if="brandTitleErrorMsg">알림 제목을 입력해주세요.</p>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr v-if="form.notice === 'noticeUseY'">
-                      <th scope="row"><span class="form-item__label required">내용</span></th>
-                      <td>
-                        <div class="form-item__content is-emoji">
-                          <div class="form-item-row">
-                            <div class="input-item input-limit">
-                              <div class="textarea feed__textarea" >
-                                <textarea maxlength="150" placeholder="알림 내용을 입력해주세요." v-model="form.content" ref="content"></textarea>
-                                <div class="textarea-limit__text">
-                                  <Emoji @input="onSelectEmoji($event, 'content')"/>
-                                  <p>
-                                    {{ form.content.length }}/200자
-                                  </p>
+                                <div class="form-item__content is-emoji">
+                                  <div class="form-item-row">
+                                    <div class="input-item input-limit">
+                                      <span class="form-item__label required">내용</span>
+                                      <div class="textarea feed__textarea" >
+                                        <textarea maxlength="150" placeholder="알림 내용을 입력해주세요."   @input="e => form.content = e.target.value" v-model="form.content" ref="content"></textarea>
+                                        <div class="textarea-limit__text">
+                                          <Emoji @input="onSelectEmoji($event, 'content')"/>
+                                          <p>
+                                            {{ form.content.length }}/200자
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <p class="guide-text error" v-if="brandContentErrorMsg">알림 내용을 입력해주세요.</p>
                                 </div>
-                              </div>
-                            </div>
-                          </div>
-                            <p class="guide-text error" v-if="brandContentErrorMsg">알림 내용을 입력해주세요.</p>
-                        </div>
+                                <div class="feed-temple-opener">
+                                  <button
+                                    class="btn-brandTip"
+                                    @click=onBrandTip
+                                    type="button"
+                                    :class="{open: isOpen}"
+                                  >
+                                    알림판 작성 가이드
+                                  </button>
+                                </div>
+                             </div>
+                          </template>
+                          <!-- 기획서 v1.0 수정 --- 추가-->
                       </td>
                     </tr>
+                    <!-- //기획서 v1.0 수정 --- 추가-->
                   </tbody>
                 </table>
               </div>
+               <!-- 기획서 v1.0 수정 --- 추가-->
+              <div class="feed-write__wrap--guide" v-if="form.notice === 'noticeUseY'">
+                <div class="brand-tip__wrap" v-if="isOpen">
+                  <ul class="brand-tip__box">
+                    <li>
+                      <h5>1. 영업시간 안내</h5>
+                      <div class="brand-tip__example">
+                        <strong>영업시간 안내</strong>
+                        <p>월~금 : 10:30 ~ 20:00 <br />
+                          주말 및 공휴일은 휴무입니다.</p>
+                      </div>
+                      <ButtonCmp
+                        type="btn-blue-line small"
+                        @click=brandTip1
+                      >적용</ButtonCmp>
+                    </li>
+                    <li>
+                      <h5>2. 임시휴무 안내</h5>
+                      <div class="brand-tip__example">
+                        <strong>1월 23일 임시휴무 안내</strong>
+                        <p>내부 인테리어로 임시휴무입니다. <br />
+                          더 산뜻하게 다시 모시겠습니다!</p>
+                      </div>
+                      <ButtonCmp
+                        type="btn-blue-line small"
+                        @click=brandTip2
+                      >적용</ButtonCmp>
+                    </li>
+                    <li>
+                      <h5>3. 강조하고 싶은 내용 인재</h5>
+                      <div class="brand-tip__example">
+                        <strong>출시기념!</strong>
+                        <p>단 7일간! 이 메시지를 보여주시는 <br />
+                          분들께만 10% 할인!</p>
+                      </div>
+                      <ButtonCmp
+                        type="btn-blue-line small"
+                        @click=brandTip3
+                      >적용</ButtonCmp>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </form>
-            <div v-if="form.notice === 'noticeUseY'" class="notice-tip__wrap">
-              <PageTitleH3 titleh3="알림 활용 Tip!"/>
-              <ul class="notice-tip__box">
-                <li>
-                  <i class="icon-time"></i>
-                  <h5>영업시간 안내</h5>
-                  <p>언제든 볼 수 있는 영업시간 <br />
-                    안내로 활용할 수 있습니다.</p>
-                  <div class="notice-tip__example">
-                    <strong>영업시간 안내</strong>
-                    <p>월~금 : 10:30 ~ 20:00 <br />
-                      주말 및 공휴일은 휴무입니다.</p>
-                  </div>
-                </li>
-                <li>
-                  <i class="icon-calendar"></i>
-                  <h5>임시휴무 안내</h5>
-                  <p>임시휴무 등 특이사항이 있을 때 <br />
-                    고객에게 안내할 수 있습니다.</p>
-                  <div class="notice-tip__example">
-                    <strong>1월 23일 임시휴무 안내</strong>
-                    <p>내부 인테리어로 임시휴무입니다. <br />
-                      더 산뜻하게 다시 모시겠습니다!</p>
-                  </div>
-                </li>
-                <li>
-                  <i class="icon-pen"></i>
-                  <h5>강조하고 싶은 내용 인재</h5>
-                  <p>신메뉴 출시, 간단한 프로모션 등을 <br />
-                    간편하게 알릴 수 있습니다.</p>
-                  <div class="notice-tip__example">
-                    <strong>출시기념!</strong>
-                    <p>단 7일간! 이 메시지를 보여주시는 <br />
-                      분들께만 10% 할인!</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </div>
           <div class="brand-aside sticky">
             <BrandEmulator :brandInfoData="brandInfoData" curTab="feed" :feedData="form"/>
@@ -137,16 +151,15 @@
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import BrandEmulator from '@/views/brand/components/BrandEmulator.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
-import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Emoji from '@/components/common/Emoji.vue'
+import 'emoji-picker-element'
 
 export default {
   components: {
     BrandLnb,
     BrandEmulator,
     PageTitle,
-    PageTitleH3,
     ButtonCmp,
     Emoji
   },
@@ -170,6 +183,8 @@ export default {
         title: '',
         content: ''
       },
+      emojiCode: '',
+      isOpen: false,
       noticeUse: false,
       brandTitleErrorMsg: false,
       brandContentErrorMsg: false
@@ -196,6 +211,21 @@ export default {
       } else {
         this.$router.push('./FeedRegistration')
       }
+    },
+    onBrandTip () {
+      this.isOpen = !this.isOpen
+    },
+    brandTip1 () {
+      this.form.title = '영업시간 안내'
+      this.form.content = '월~금 : 10:30 ~ 20:00 주말 및 공휴일은 휴무입니다.'
+    },
+    brandTip2 () {
+      this.form.title = '1월 23일 임시휴무 안내'
+      this.form.content = '내부 인테리어로 임시휴무입니다. 더 산뜻하게 다시 모시겠습니다!'
+    },
+    brandTip3 () {
+      this.form.title = '출시기념!'
+      this.form.content = '단 7일간! 이 메시지를 보여주시는 분들께만 10% 할인!'
     }
   }
 }

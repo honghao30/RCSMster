@@ -80,11 +80,7 @@
       padding:15px;
     }
   }
-  tr:last-child {
-    td {
-      border-bottom:2px solid #ddd
-    }
-  }
+  
   .reject {
    color: $errorColor;   
   }
@@ -100,7 +96,7 @@
       border-right: 0;
       th,
       td {
-        border-bottom: 2px solid #ddd;
+        border-bottom: 1px solid #ddd;
       }
     }
   }  
@@ -110,11 +106,17 @@
     border-color:#F0F0F0;
     text-align:left;
     line-height: 28px;
+    &.cell--last {
+      border-bottom:1px solid #ddd;
+    }
   }
   td {
     padding: 16px 16px 16px 0;
     .text {
       line-height: 26px;
+    }
+    &.cell--last {
+      border-bottom:1px solid #ddd;
     }
   }
   
@@ -124,9 +126,19 @@
   width: 100%;
   position: relative;
   border-top: 2px solid #BCBCBC;
+  border-bottom: 2px solid #ddd;
   + .table__wrap {
     margin-top: 32px;
   }
+  &:last-child {
+    border-bottom: 0;
+  }
+  .table-list {
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+  
 }
 .table-list {
   border-bottom: 2px solid #ddd;;

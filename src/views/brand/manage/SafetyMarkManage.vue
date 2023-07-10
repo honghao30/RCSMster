@@ -7,10 +7,11 @@
         <div class="top-ctrl-area">
           <div class="left-area">
             <div class="dropdown-search__wrap">
-              <Dropdown :options="TitleOptions"/>
+              <!--<Dropdown :options="TitleOptions"/> 기획서 v1.0 수정: 드랍다운 삭제 -->
               <div class="search-area">
                 <span class="input search-box">
-                  <input type="text" placeholder="검색어를 입력하세요."/>
+                  <input type="text" placeholder="대화방명 입력하세요."/>
+                  <!-- 기획서 v1.0 수정: placeholder 텍스트 변경 -->
                   <ButtonCmp
                     type="btn-only-icon"
                     iconname='icon-search'
@@ -20,14 +21,19 @@
               </div>
             </div>
           </div>
-          <div class="right-area">
+          <!-- <div class="right-area">
             <div class="button__wrap button__brand">
               <button class="btn-brand">
                 안심마크 이용가이드
               </button>
             </div>
-          </div>
+          </div> -->
+          <!-- 기획서 v1.0 수정: 이용가이드 영역 삭제 -->
         </div>
+        <div class="top-ctrl-area">
+          <p class="total">총 <strong>7</strong>건</p>
+        </div>
+        <!-- 기획서 v1.0 수정: sorting 건 수 영역 추가 => 추후 디자인 확인 필요 -->
         <div class="table__wrap notice-table">
           <table class="table table-list">
             <colgroup>

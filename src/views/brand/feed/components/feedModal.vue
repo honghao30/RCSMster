@@ -44,7 +44,7 @@
         <ButtonCmp
           type="btn-line"
           @click="$emit('closeModal')"
-        >취소</ButtonCmp>
+        >닫기</ButtonCmp>
         <ButtonCmp
           type="btn-blue"
           @click="$emit('modalSave')"

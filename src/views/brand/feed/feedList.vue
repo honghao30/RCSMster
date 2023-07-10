@@ -30,7 +30,7 @@
             value-format="yyyyMMdd"
             ref="datePicker"
           />
-          <Dropdown :options="rangeOption" v-model="selDateRange" @change="changeRange"/>
+          <Dropdown :options="rangeOption" v-model="selDateRange" placeholder="기간" @change="changeRange"/>
         </div>
         <div class="dropdown-search__wrap">
           <Dropdown :options=serchCategoryOption v-model="filterOption.searchCategory" placeholder="선택" />
@@ -97,12 +97,7 @@ export default {
           isSelected: false
         },
         {
-          label: '임시저장',
-          value: 'temporarySave',
-          isSelected: false
-        },
-        {
-          label: '미노출',
+          label: '미게시',
           value: 'hidden',
           isSelected: false
         },
@@ -129,7 +124,7 @@ export default {
           isSelected: false
         },
         {
-          label: '슬라이드',
+          label: '카드',
           value: 'slideView',
           isSelected: false
         }

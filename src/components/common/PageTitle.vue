@@ -5,7 +5,8 @@
      v-if="progress"
      :class="stepclass"
     >{{ progress }}</span>
-    <span class="num" v-if="num">({{ num }})</span>
+    <!-- 기획서 v1.0 수정(v-if 에서 v-show로 변경) -->
+    <span class="num" v-show="num !== null && num !== undefined">({{ num }})</span>
   </h2>
 </template>
 

@@ -252,7 +252,7 @@
                   <div class="form-item__content">
                     <div class="form-item-row">
                       <div class="input-item">
-                      <span class="input input-info"><input type="text" class="input" :value="filesName2" :disabled="disabled" placeholder="특수부가통신 사업자등록증을 등록해주세요." v-model="form.files"></span>
+                      <span class="input input-info"><input type="text" class="input" :value="filesName2" :disabled="disabled" placeholder="특수부가통신 사업자등록증을 등록해주세요."></span>
                       <input type="file" id="fileUp2" class="input" >
                       <label for="fileUp2" class="btn btn-default-line">파일찾기</label>
                       </div>

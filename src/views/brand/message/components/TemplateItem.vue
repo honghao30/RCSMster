@@ -1,27 +1,14 @@
 <template>
-  <div class="template-item" v-if="mode !== 'emulator'">
-    <h4 class="template-item__title">{{ itemTitle }}</h4>
-    <div class="template-item__box">
-      <component
-        v-for="cmp in infoData"
-        :key="cmp"
-        :is="cmp.type"
-        :info.sync="cmp.info"
-      />
+
+  <div class="template-item__box">
+    <div class="template-image" v-if="mode === 'layout'">
+      <img :src="itemData.info.imgUrl" />
     </div>
-    <ButtonCmp
-      type="btn-blue-line"
-    >컴포넌트 작성</ButtonCmp>
-  </div>
-  <div class="template-item" v-else>
-    <div class="template-item__box">
-      <component
-        v-for="cmp in infoData"
-        :key="cmp"
-        :is="cmp.type"
-        :info.sync="cmp.info"
-      />
-    </div>
+    <component
+      v-else
+      :is="itemData.type"
+      :info.sync="itemData.info"
+    />
   </div>
 </template>
 
@@ -52,16 +39,19 @@ export default {
     ButtonCmp
   },
   props: {
+    mode: {
+      type: String
+    },
     itemTitle: {
       type: String
     },
-    infoData: {
-      type: Array,
+    itemData: {
+      type: Object,
       default: null
     },
-    mode: {
-      type: String,
-      default: 'viewMode'
+    isEmpty: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

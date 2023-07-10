@@ -1,6 +1,6 @@
 <template>
   <div
-    class="modal__content--inner zipcode__modal"
+    class="modal__content--inner zipcode__modal modal-invite"
   >
     <div class="modal__content--header">
       <p class="modal-title">브랜드 운영권한 초대</p>
@@ -9,25 +9,21 @@
     <div class="modal__content--body">
       <div class="search-result__wrap">
         <div class="top-ctrl-area">
-          <div class="left-area">
+          <div class="dropdown-search__wrap">
+            <Dropdown :options="dropdownOptions"/>
             <div class="search-area">
-              <Dropdown :options="dropdownOptions" placeholder="이름">
-              </Dropdown>
-              <span class="input">
-                <input type="text" placeholder="검색어를 입력해 주세요."/>
+              <span class="input search-box">
+                <input type="text" placeholder="검색어를 입력하세요."/>
+                <ButtonCmp
+                  type="btn-only-icon"
+                  iconname='icon-search'
+                >
+                </ButtonCmp>
               </span>
             </div>
           </div>
-          <div class="right-area">
-            <div class="ctrl">
-              <div class="pager">
-                <span class="num">1/3</span>
-                <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
-                <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
-              </div>
-            </div>
-          </div>
         </div>
+        <!-- 기획서 v1.0 수정: 검색 영역 추가 -->
         <div class="table__wrap">
           <table class="table table-list">
             <colgroup>
@@ -72,6 +68,7 @@
             </tbody>
           </table>
         </div>
+        <PagingCmp /> <!-- 기획서 v1.0 수정: paging 추가 -->
       </div>
     </div>
     <div class="modal__content--footer">
@@ -87,16 +84,17 @@
           :disabled="this.checkList.length < 1"
         >초대</ButtonCmp>
       </div>
-    </div>
-    <!-- // 검색 결과 없을 시 화면 주석 -->
-    <!-- <div class="bottom-new--invite">
-      찾는 회원이 없다면 이메일로 회원을 초대하세요
-      <div class="button__wrap">
-        <ButtonCmp
-          type="btn-blue"
-        >신규 회원 초대</ButtonCmp>
+       <!-- // 검색 결과 없을 시 화면 주석 -->
+      <div class="bottom-new--invite">
+        찾는 회원이 없다면 이메일로 회원을 초대하세요
+        <div class="button__wrap">
+          <ButtonCmp
+            type="btn-blue"
+          >신규 회원 초대</ButtonCmp>
+        </div>
       </div>
-    </div> -->
+    </div>
+
     <!-- case02.신규 회원 운영권한 초대 팝업 -->
     <!-- <div class="modal__content--body">
       <div class="search-result__wrap">
@@ -154,11 +152,13 @@
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
+import PagingCmp from '@/components/common/PagingCmp.vue'
 
 export default {
   components: {
     ButtonCmp,
-    Dropdown
+    Dropdown,
+    PagingCmp
   },
   data() {
     return {
