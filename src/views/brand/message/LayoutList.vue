@@ -33,19 +33,21 @@
         <div class="table__wrap chatroom__table">
           <table class="table table-list">
             <colgroup>
-              <col width="18%"/>
               <col width="15%"/>
               <col/>
-              <col width="13%" />
-              <col width="15%"/>
+              <col width="12%"/>
+              <col width="12%" />
+              <col width="12%"/>
+              <col width="12%"/>
             </colgroup>
             <thead>
               <tr>
-                <th scope="col"><span>레이아웃 ID</span></th>
-                <th scope="col"><span>레이아웃 유형</span></th>
+                <th scope="col"><span>상품</span></th>
                 <th scope="col"><span>레이아웃 명</span></th>
+                <th scope="col"><span>버튼 컬러</span></th>
                 <th scope="col"><span>작성자</span></th>
-                <th scope="col"><span>최종 수정일</span></th>
+                <th scope="col"><span>작성일</span></th>
+                <th scope="col"><span>상태</span></th>
               </tr>
             </thead>
             <tbody>
@@ -53,19 +55,22 @@
                 v-for="(item, i) in layoutList" :key="i"
               >
                 <td>
-                  {{ item.id }}
-                </td>
-                <td>
                   {{ item.type }}
                 </td>
                 <td class="l-align">
                   <router-link to="">{{ item.name }}</router-link>
                 </td>
                 <td>
+                  {{ item.btnColor }}
+                </td>
+                <td>
                   {{ item.writer }}
                 </td>
                 <td>
                   {{ item.date }}
+                </td>
+                <td>
+                  {{ item.status }}
                 </td>
               </tr>
             </tbody>
@@ -137,46 +142,52 @@ export default {
         }
       ],
       layoutList: [{
-        'id': 'SKJD0233',
         'type': 'SMS',
         'name': '신상품소개',
+        'btnColor': '-',
         'writer': '홍*동',
-        'date': '2022.10.02'
+        'date': '2022.10.02',
+        'status': '등록중'
       },
       {
-        'id': 'SKJD0233',
         'type': 'MMS',
         'name': '카드가입안내',
+        'btnColor': '#3B7CF3',
         'writer': '홍*동',
-        'date': '2022.10.02'
+        'date': '2022.10.02',
+        'status': '등록완료'
       },
       {
-        'id': 'SKJD0233',
         'type': 'SMS',
         'name': '프로모션(월간)',
+        'btnColor': '-',
         'writer': '홍*동',
-        'date': '2022.10.02'
+        'date': '2022.10.02',
+        'status': '등록중'
       },
       {
-        'id': 'SKJD0233',
         'type': 'SMS',
-        'name': '프리 템플릿(자동생성)',
+        'name': '신상품소개',
+        'btnColor': '-',
         'writer': '홍*동',
-        'date': '2022.10.02'
+        'date': '2022.10.02',
+        'status': '등록중'
       },
       {
-        'id': 'SKJD0233',
-        'type': 'SMS',
-        'name': '자동이체(신한카드)',
+        'type': 'MMS',
+        'name': '카드가입안내',
+        'btnColor': '#3B7CF3',
         'writer': '홍*동',
-        'date': '2022.10.02'
+        'date': '2022.10.02',
+        'status': '등록완료'
       },
       {
-        'id': 'SKJD0233',
         'type': 'SMS',
-        'name': '자동이체(현대카드)',
+        'name': '프로모션(월간)',
+        'btnColor': '-',
         'writer': '홍*동',
-        'date': '2022.10.02'
+        'date': '2022.10.02',
+        'status': '등록중'
       }]
     }
   },

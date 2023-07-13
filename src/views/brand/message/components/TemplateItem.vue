@@ -1,15 +1,15 @@
 <template>
 
-  <div class="template-item__box">
-    <div class="template-image" v-if="mode === 'layout'">
+  <div class="template-item__box" v-if="mode === 'layout'">
+    <div class="template-image">
       <img :src="itemData.info.imgUrl" />
     </div>
-    <component
-      v-else
-      :is="itemData.type"
-      :info.sync="itemData.info"
-    />
   </div>
+  <component
+    v-else
+    :is="itemData.type"
+    :info.sync="itemData.info"
+  />
 </template>
 
 <script>

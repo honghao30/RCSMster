@@ -30,13 +30,14 @@
           <masonry class="template-list" :cols="4" :gutter="24">
             <div class="template-item" v-for="(item, i) in sortTemplateList" :key="i" :id="item.id">
               <div class="template-item__box">
-                <img :src="item.imgUrl" alt="">
+                  <img :src="item.imgUrl" alt="">
               </div>
               <div class="template-item__box--back">
                 <h4 class="template-item__title">{{ item.title }}</h4>
                 <ButtonCmp
                   type="btn-blue-line"
                   size="medium"
+                  @click="$router.push({ name: 'Creater', query: { name: 'Creater', type: `${item.id}` } })"
                 >템플릿 작성</ButtonCmp>
               </div>
             </div>
@@ -183,16 +184,20 @@ export default {
     this.sortTemplateList = this.templateList
   },
   computed: {
-    sortTemplateList () {
-      let filteredList = []
-      this.templateList.forEach((item) => {
-        this.sortOption.forEach((opt) => {
-          if (item.type === opt) {
-            filteredList.push(item)
-          }
+    sortTemplateList: {
+      get() {
+        let filteredList = []
+        this.templateList.forEach((item) => {
+          this.sortOption.forEach((opt) => {
+            if (item.type === opt) {
+              filteredList.push(item)
+            }
+          })
         })
-      })
-      return filteredList
+        return filteredList
+      },
+      set() {
+      }
     }
   }
 }

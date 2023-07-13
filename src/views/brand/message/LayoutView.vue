@@ -20,15 +20,27 @@
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row"><span class="form-item__label">레이아웃 유형</span></th>
+                    <th scope="row"><span class="form-item__label">상품</span></th>
                     <td>
-                      <span class="text">이미지 템플릿</span>
+                      <span class="text">SMS</span>
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row"><span class="form-item__label">레이아웃 이름</span></th>
+                    <th scope="row"><span class="form-item__label">레이아웃 명</span></th>
                     <td>
-                      <span class="text">결제 결과 템플릿</span>
+                      <span class="text">아이템 강조형</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><span class="form-item__label">버튼 컬러</span></th>
+                    <td>
+                      <span class="text">#2f77fb</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><span class="form-item__label">상태</span></th>
+                    <td>
+                      <span class="text">등록중</span>
                     </td>
                   </tr>
                 </tbody>
@@ -81,8 +93,15 @@
 
             </div>
           </div>
+          <!-- 에뮬레이터 -->
           <div class="brand-aside">
+            <ChatEmulator
+              :templateData="templateData"
+              mode="layout"
+              :viewMode="viewMode"
+            />
           </div>
+          <!-- // 에뮬레이터 -->
         </div>
         <div class="button__wrap space-between">
           <div class="left">
@@ -111,17 +130,37 @@
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import ChatEmulator from '@/views/brand/message/components/ChatEmulator.vue'
 export default {
   components: {
     PageTitle,
     BrandLnb,
-    ButtonCmp
+    ButtonCmp,
+    ChatEmulator
   },
   data() {
     return {
+      templateData: [
+        {
+          type: 'MainTitle',
+          info: {
+            imgUrl: require('@/assets/images/message/icon_cmp_title.png')
+          }
+        },
+        {
+          type: 'Description',
+          info: {
+            imgUrl: require('@/assets/images/message/icon_cmp_desc.png')
+          }
+        }
+      ],
+      viewMode: 'isView'
     }
   },
   methods: {
+    openDeleteMsg () {
+      console.log('openDeleteMsg')
+    }
   }
 }
 </script>

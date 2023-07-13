@@ -28,7 +28,7 @@
         </div>
         <div class="top-ctrl-area">
           <div class="left-area">
-            <div class="dropdown-search__wrap">
+            <div class="dropdown-search__wrap dropdown-search__list">
               <Dropdown :options="TitleOptions"/>
               <div class="search-area">
                 <span class="input search-box">
@@ -75,7 +75,8 @@
                 <th scope="col"><span>대화방명</span></th>
                 <th scope="col"><span>발신번호/회신번호</span></th>
                 <th scope="col"><span>챗붓 ID</span></th>
-                <th scope="col" colspan="2"><span>대화방 메뉴 사용</span></th>
+                <th scope="col"><span>사용 여부</span></th><!-- 기획서 v1.0 수정 -->
+                <th scope="col"><span>대화방 메뉴명</span></th><!-- 기획서 v1.0 수정 -->
               </tr>
             </thead>
             <tbody>
@@ -129,10 +130,11 @@
       v-if="isModalViewed" @closeModal="isModalViewed = false">
       <ConfirmMsg
         @closeModal="isModalViewed = false"
+        v-if="isRemoveConfirmMsgModal"
       >
         <div slot="msg">
           <div class="msg">
-            선택한 대화방을 삭제하시겠습니까?
+            대화방을 삭제하시겠습니까? <!-- 기획서 v1.0 수정(문구수정) -->
           </div>
         </div>
         <div class="button__wrap" slot="button">
@@ -150,7 +152,7 @@
         </div>
       </ConfirmMsg>
     </ModalView>
-    <!-- // 모달 뷰     -->
+    <!-- // 모달 뷰 -->
   </div>
 </template>
 
@@ -218,7 +220,8 @@ export default {
           label: '30개씩',
           value: '30'
         }
-      ]
+      ],
+      isRemoveConfirmMsgModal: false
     }
   },
   methods: {
@@ -238,9 +241,11 @@ export default {
     },
     closeMsg () {
       this.isModalViewed = false
+      this.isRemoveConfirmMsgModal = false
     },
     removeConfirmMsg () {
       this.isModalViewed = true
+      this.isRemoveConfirmMsgModal = true
     },
     removeChatRoom () {
       this.chatroomList = this.chatroomList.filter((item, i) => !this.checkList.includes(`item${i + 1}`))

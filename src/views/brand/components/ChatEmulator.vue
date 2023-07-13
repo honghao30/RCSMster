@@ -37,64 +37,126 @@
         </transition>
       <!-- </template> -->
       </div>
-      <!-- <div class="emulator-body">
+      <div class="emulator-body">
         <transition name="bodyshow">
           <div class="chat-item__wrap">
             <p class="safty-icon" v-if="chatInfoData.saftyMark === 'Y'">확인된 발신번호</p>
-
-            <div class="chat-bubble__wrap sender" v-if="chatMsgData.chatType == 'chatBubble'">
+            <div class="chat-bubble__wrap sender" v-if="chatMsgData.chatType == 'chatBubble'" :class="{ 'bubblenot-box': !chatMsgData.bubbleContent }"> <!-- 기획서 v1.0 수정 (클래스 추가) -->
               <div class="chat-bubble message">
-                <p>문의사항이 있으시다면 채팅방에 문의 내용과 성함/연락처를 남겨주세요.<br>
+                <p v-if="chatMsgData.bubbleContentBasic">문의사항이 있으시다면 채팅방에 문의 내용과 성함/연락처를 남겨주세요.<br>
                     {{ chatInfoData.chatRoomName }}의 MD팀이 최대한 빠르게 답변 드리도록 하겠습니다!
-                </p>
-                <p v-if="!chatMsgData.bubbleContent">내용을 입력해주세요.</p>
+                </p> <!-- 기획서 v1.0 수정 (v-if 추가 / 간편챗봇에서 미사용)-->
+                <p v-if="!chatMsgData.bubbleContent" class="bubblenot-box_txt">내용을 입력해주세요.</p> <!-- 기획서 v1.0 수정 (클래스 추가) -->
                 <p v-else v-html="chatMsgData.bubbleContent"> </p>
               </div>
             </div>
-            <div class="chat-bubble__wrap carousel"  v-if="chatMsgData.chatType == 'card'">
-              <swiper
-                ref="carousel"
-                :options="swiperOption"
-                :class="{'inactive': chatMsgData.msgData.length < 2}"
-              >
-                <swiper-slide v-for="(msg, i) in chatMsgData.msgData" :key="i">
-                  <div class="chat-bubble">
-                    <div
-                      v-if="msg.imgFile" class="image-area"
-                      :class="{'full' : chatMsgData.imgSize == 'full'}"
+            <!-- 기획서 v1.0 수정 / 카드 추가 -->
+            <template v-if="chatMsgData.chatType == 'card'">
+                <div class="chat-bubble__wrap carousel">
+                    <swiper
+                      ref="carousel"
+                      :options="swiperOption"
+                      :class="{'inactive': chatMsgData.msgCardData.length < 2}"
                     >
-                      <span class="image" :style="{backgroundImage: `url(${require('@/assets/images/'+ msg.imgFile)})`}"></span>
-                    </div>
+                      <swiper-slide v-for="(msg, i) in chatMsgData.msgCardData" :key="i">
+                        <div class="chat-bubble chatcard-innerbox">
+                          <div
+                            v-if="msg.imgFile" class="image-area chatcard-box"
+                            :class="{'full' : msg.imgSize == 'full', 'medium' : msg.imgSize == 'medium'}"
+                          >
+                            <span class="image" :style="{backgroundImage: `url(${require('@/assets/images/'+ msg.imgFile)})`}"></span>
+                          </div>
 
-                    <div class="item--none" v-else>
-                      <p class="img">이미지를 등록해주세요.</p>
+                          <div class="item--none chatcard-box" v-else :class="{'full' : msg.imgSize == 'full', 'medium' : msg.imgSize == 'medium'}">
+                            <p class="img">이미지를 등록해주세요.</p>
+                          </div>
+                          <div class="text-area" v-if="msg.title || msg.cardContent">
+                            <p class="msg-title" v-html="msg.title"></p>
+                            <p class="msg-text" v-html="msg.cardContent"></p>
+                          </div>
+                          <div class="btn-area"
+                            v-if="msg.buttons.length"
+                            :class="{'column' : msg.btnDirection === 'column'}"
+                          >
+                            <template v-for="(btn, k) in msg.buttons" >
+                              <a href="" :key="k" v-if="btn.btnName">{{ btn.btnName }}</a>
+                            </template>
+                          </div>
+                        </div>
+                      </swiper-slide>
+                  </swiper>
+                </div>
+            </template>
+            <!-- // 기획서 v1.0 수정 / 카드 추가 -->
+            <!-- 기획서 v1.0 수정 / 슬라이드 추가 -->
+            <!-- 기획서 v1.0 수정 (card에서 slider로 변경)-->
+            <template   v-if="chatMsgData.chatType == 'slider'">
+              <div class="chat-bubble__wrap carousel">
+                <swiper
+                  ref="carousel"
+                  :options="swiperOption"
+                  :class="{'inactive': chatMsgData.msgData.length < 2}"
+                >
+                  <swiper-slide v-for="(msg, i) in chatMsgData.msgData" :key="i">
+                    <div class="chat-bubble">
+                      <div
+                        v-if="msg.imgFile" class="image-area"
+                        :class="{'full' : chatMsgData.imgSize == 'full'}"
+                      >
+                        <span class="image" :style="{backgroundImage: `url(${require('@/assets/images/'+ msg.imgFile)})`}"></span>
+                      </div>
+
+                      <div class="item--none" v-else>
+                        <p class="img">이미지를 등록해주세요.</p>
+                      </div>
+                      <div class="text-area" v-if="msg.title || msg.cardContent">
+                        <p class="msg-title" v-html="msg.title"></p>
+                        <p class="msg-text" v-html="msg.cardContent"></p>
+                      </div>
+                      <div class="btn-area"
+                        v-if="msg.buttons.length"
+                        :class="{'column' : msg.btnDirection === 'column'}"
+                      >
+                        <template v-for="(btn, k) in msg.buttons" >
+                          <a href="" :key="k" v-if="btn.btnName">{{ btn.btnName }}</a>
+                        </template>
+                      </div>
                     </div>
-                    <div class="text-area" v-if="msg.title || msg.cardContent">
-                      <p class="msg-title" v-html="msg.title"></p>
-                      <p class="msg-text" v-html="msg.cardContent"></p>
-                    </div>
-                    <div class="btn-area"
-                      v-if="msg.buttons.length"
-                      :class="{'column' : msg.btnDirection === 'column'}"
-                    >
-                      <template v-for="(btn, k) in msg.buttons" >
-                        <a href="" :key="k" v-if="btn.btnName">{{ btn.btnName }}</a>
-                      </template>
-                    </div>
-                  </div>
-                </swiper-slide>
-              </swiper>
-            </div>
-            <ul class="chip-buttons">
-              <template v-if="chatMsgData.chipButtons.length">
+                  </swiper-slide>
+                </swiper>
+              </div>
+            </template>
+            <!-- // 기획서 v1.0 수정 / 슬라이드 추가 -->
+            <!-- 기획서 v1.0 수정 / 응답버튼 수정 -->
+            <ul class="chip-buttons"  :class="{ 'not-response-box': !chatMsgData.chipButtons.length }">
+              <!-- <template v-if="chatMsgData.chipButtons.length">
                 <li v-for="(btn, k) in chatMsgData.chipButtons" :key="k" >
                   <a href="">{{ btn.btnName }}</a>
                 </li>
               </template>
               <li v-else>
                 <span>응답버튼을 등록해주세요.</span>
+              </li> -->
+              <template v-if="chatMsgData.chipButtons.length">
+                <li>
+                  <swiper
+                    ref="responsecarousel"
+                    :options="chipSwiperOption"
+                    :class="{'inactive': chatMsgData.msgData.length < 2 || chatMsgData.msgCardData.length < 2}"
+                  >
+                    <swiper-slide v-for="(btn, k) in chatMsgData.chipButtons" :key="k">
+                      <a href="" class="response-box">{{ btn.btnName }}</a>
+                    </swiper-slide>
+                    <div class="swiper-button-prev" slot="button-prev" @click="$refs.responsecarousel.swiperInstance.slidePrev()"></div>
+                    <div class="swiper-button-next" slot="button-next" @click="$refs.responsecarousel.swiperInstance.slideNext()"></div>
+                  </swiper>
+                </li>
+              </template>
+              <li v-else-if="!chatMsgData.chipButtons.length">
+                <span>응답버튼을 등록해주세요.</span>
               </li>
             </ul>
+            <!-- // 기획서 v1.0 수정 / 응답버튼 수정 -->
           </div>
           <div class="chat-bubble__wrap receiver">
             <div class="chat-bubble">
@@ -103,7 +165,7 @@
             <span class="chat-time">오후 5:22</span>
           </div>
         </transition>
-      </div> -->
+      </div>
       <div class="emulator-footer" v-if="!chatInfoData.hideInputFooter">
         <div class="emulator-footer__inner" v-if="this.chatInfoData.allowMsg === 'Y'">
           <div class="emulator-footer__top">
@@ -210,6 +272,7 @@ export default {
       default: () => {
         return {
           chatRoomName: '',
+          chatbotMsgName: '',
           allowMsg: 'N',
           mode: 'views',
           hideInputFooter: false
@@ -227,6 +290,21 @@ export default {
           chipButtons: [],
           msgData: [{
             index: 0,
+            imgFile: '',
+            title: '',
+            cardContent: '',
+            bubbleContent: '',
+            btnUse: 'N',
+            btnDirection: 'row',
+            buttons: [{
+              btnName: '',
+              btnEvent: '',
+              isActive: true
+            }]
+          }],
+          msgCardData: [{
+            index: 0,
+            imgSize: 'full',
             imgFile: '',
             title: '',
             cardContent: '',
@@ -256,6 +334,14 @@ export default {
       swiperOption: {
         spaceBetween: 10,
         slidesPerView: 'auto'
+      },
+      chipSwiperOption: {
+        spaceBetween: 12,
+        slidesPerView: 'auto',
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        }
       },
       collapse: false
     }

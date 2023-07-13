@@ -156,6 +156,16 @@
   }
 }
 
+.modal__content--inner {
+  .table-bodyonly {
+    tr:last-child {
+      td, th {
+        border:0;
+      }
+    }
+  }
+}
+
 .paging {
   display:flex;
   justify-content: center;

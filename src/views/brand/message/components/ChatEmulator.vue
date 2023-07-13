@@ -19,68 +19,84 @@
           <div class="chat-item__wrap">
             <div class="message-box">
               <p class="safty-icon">확인된 발신번호</p>
-              <draggable
-                class="component-list"
-
-                :list="templateData"
-                group="comp"
-                handle=".btn-drag"
-              >
-                <div class="template-item cmp-item"
-                  v-for="(item, j) in templateData"
-                  :key="j"
-                  :class="[{'inactive' : isActiveCmpIndex !== j}, {'edit': isEdit}]"
-                  >
-                  <div class="template-item__box item--none" v-if="!item.type" >
-                    <p class="default-msg">컴포넌트를 선택해주세요.</p>
-                  </div>
-                  <TemplateItem v-else
-                    :itemData="item"
-                    mode="layout"
-                      />
-                  <div class="ctrl" v-if="isEdit">
-                    <div class="ctrl-menu">
-                      <ButtonCmp
-                        type="btn-only-icon"
-                        iconname='icon-menu'
-                        class="btn-menu"
-                        @click="showLayerMenu(j)"
-                      ><span class="irtext">메뉴</span>
-                      </ButtonCmp>
-                      <ul class="layer-menu" v-if="j == isShowLayerIndex">
-                        <li><a role="button">수정</a></li>
-                        <li><a role="button" @click="removeCmp(j)">삭제</a></li>
-                      </ul>
-                    </div>
-                    <ButtonCmp
-                      type="btn-only-icon"
-                      iconname='icon-drag'
-                      class="btn-drag"
-                    ><span class="irtext">드래그</span>
-                    </ButtonCmp>
+              <template v-if="mode === 'template'">
+                <div class="template-item"
+                >
+                  <div class="template-item__box">
+                    <TemplateItem
+                      :itemData="item"
+                      :mode="mode"
+                      v-for="(item, j) in templateData"
+                      :key="j"
+                    />
                   </div>
                 </div>
-              </draggable>
-            </div>
-            <div class="button__wrap">
-              <ButtonCmp
-                type="btn-blue-line"
-                v-if="!isEdit"
-                @click="isEdit = !isEdit"
-              >컴포넌트 편집
-              </ButtonCmp>
-              <ButtonCmp
-                type="btn-line"
-                v-if="isEdit"
-                @click="isEdit = !isEdit"
-              >취소
-              </ButtonCmp>
-              <ButtonCmp
-                type="btn-blue"
-                v-if="isEdit"
-                @click="isEdit = !isEdit"
-              >완료
-              </ButtonCmp>
+              </template>
+              <template v-else>
+                <draggable
+                  class="component-list"
+                  :list="templateData"
+                  group="comp"
+                  handle=".btn-drag"
+                >
+                  <div class="template-item cmp-item"
+                    v-for="(item, j) in templateData"
+                    :key="j"
+                    :class="[{'inactive' : isActiveCmpIndex !== j}, {'edit': isCmpEdit}]"
+                    >
+                    <div class="template-item__box item--none" v-if="!item.type" >
+                      <p class="default-msg" v-if="isActiveCmpIndex === j">컴포넌트를 선택해주세요.</p>
+                      <p class="default-msg" v-else>등록된 컴포넌트가 없습니다.</p>
+                    </div>
+                    <TemplateItem v-else
+                      :itemData="item"
+                      :mode="mode"
+                        />
+                    <div class="ctrl" v-if="isCmpEdit">
+                      <div class="ctrl-menu">
+                        <ButtonCmp
+                          type="btn-only-icon"
+                          iconname='icon-menu'
+                          class="btn-menu"
+                          @click="showLayerMenu(j)"
+                        ><span class="irtext">메뉴</span>
+                        </ButtonCmp>
+                        <ul class="layer-menu" v-if="j == isShowLayerIndex">
+                          <li><a role="button">수정</a></li>
+                          <li><a role="button" @click="removeCmp(j)">삭제</a></li>
+                        </ul>
+                      </div>
+                      <ButtonCmp
+                        type="btn-only-icon"
+                        iconname='icon-drag'
+                        class="btn-drag"
+                      ><span class="irtext">드래그</span>
+                      </ButtonCmp>
+                    </div>
+                  </div>
+                </draggable>
+                <div class="button__wrap">
+                  <ButtonCmp
+                    type="btn-blue-line"
+                    v-if="!(isCmpEdit || viewMode === 'isView')"
+                    @click="isCmpEdit = !isCmpEdit"
+                  >컴포넌트 편집
+                  </ButtonCmp>
+                  <ButtonCmp
+                    type="btn-line"
+                    v-if="isCmpEdit"
+                    @click="isCmpEdit = !isCmpEdit"
+                  >취소
+                  </ButtonCmp>
+                  <ButtonCmp
+                    type="btn-blue"
+                    v-if="isCmpEdit"
+                    @click="onEditComp"
+                  >완료
+                  </ButtonCmp>
+                </div>
+              </template>
+
             </div>
           </div>
 
@@ -99,8 +115,8 @@
               :class="{ collapse : collapse }"
             >
               <li
-                v-for="list in chatMenuList"
-                :key="list"
+                v-for="(list, k) in chatMenuList"
+                :key="k"
               >
                 <router-link to="#">{{ list.menuTitle }}</router-link>
               </li>
@@ -146,8 +162,12 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import { getTodayDate } from '@/utils/time.js'
 import draggable from 'vuedraggable'
 import TemplateItem from '@/views/brand/message/components/TemplateItem.vue'
+import vClickOutside from 'v-click-outside'
 
 export default {
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
   components: {
     ButtonCmp,
     TemplateItem,
@@ -165,6 +185,14 @@ export default {
     isActiveCmpIndex: {
       type: Number,
       defalut: 0
+    },
+    mode: {
+      type: String,
+      default: 'template'
+    },
+    viewMode: {
+      type: String,
+      defalut: ''
     }
   },
   data () {
@@ -184,11 +212,12 @@ export default {
       },
       collapse: false,
       isShowLayerIndex: undefined,
-      isEdit: false
+      isCmpEdit: false
     }
   },
   mounted() {
     [this.todayDateFull, this.todayData, this.currentTime] = getTodayDate()
+    console.log('체크1', this.viewMode)
   },
   methods: {
     btnToggleMenu () {
@@ -207,6 +236,21 @@ export default {
         info: {}
       }
       this.templateData.splice(idx, 1, cmpItem)
+    },
+    onClickOutside() {
+      this.isShowLayerIndex = undefined
+    },
+    onEditComp() {
+      this.isCmpEdit = !this.isCmpEdit
+      this.templateData.every((item, i) => {
+        if (!item.type) {
+          this.isActiveCmpIndex = i
+          return false
+        } else {
+          return true
+        }
+      })
+      this.$emit('setActiveCmp', this.isActiveCmpIndex)
     }
   }
 }

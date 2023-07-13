@@ -4,17 +4,17 @@
       <BrandLnb />
       <div class="brand-info__wrap">
         <PageTitle pagetitle="대화방 메뉴 등록" />
+        <!-- 기획서 v1.0 수정 및 추가 작업 -->
         <div class="chatroom__wrap chatroom-menu__wrap">
           <div class="chatroom-registration">
             <form  ref="form" :model="form">
-              <div class="table__wrap">
+              <div class="table__wrap menu-add-table">
                 <table class="table table-bodyonly form-table">
                   <colgroup>
                     <col />
                     <col />
                   </colgroup>
                   <tbody>
-                    <!-- 기획서 v1.0 수정 -->
                     <tr>
                       <th scope="row" width="77px"><span class="form-item__label">대화방</span>
                       </th>
@@ -26,7 +26,7 @@
                                 <Dropdown :options="dropdownOptions" @beforeChange="isChange"
                                 >
                                 </Dropdown>
-                                <!-- 대화방 메뉴 복사를 통해 진입한 경우 : 대화방이 선택되지 않은 경우 노출 -->
+                                <!-- 기획서 v1.0 수정 (대화방 메뉴 복사를 통해 진입한 경우 : 대화방이 선택되지 않은 경우 노출) -->
                                 <p class="guide-text error">대화방이 선택되어 있지 않습니다.</p>
                               </div>
                               <div class="switch switch-status" role="switch">
@@ -39,7 +39,6 @@
                         </div>
                       </td>
                     </tr>
-                    <!-- // 기획서 v1.0 수정 -->
                     <tr>
                       <td colspan="2" class="card-box">
                         <div class="form-item__content">
@@ -118,7 +117,6 @@
                                       </div>
                                     </td>
                                   </tr>
-                                  <!-- 기획서 v1.0 수정 -->
                                   <tr>
                                     <th scope="row"><span class="form-item__label">연결항목</span></th>
                                     <td>
@@ -241,7 +239,6 @@
                                       </div>
                                     </td>
                                   </tr>
-                                  <!-- // 기획서 v1.0 수정 -->
                                 </tbody>
                               </table>
                             </template>
@@ -261,6 +258,7 @@
             />
           </div>
         </div>
+        <!-- // 기획서 v1.0 수정 및 추가 작업 -->
         <div class="button__wrap flex-end">
           <ButtonCmp
             type="btn-blue-line"
@@ -269,11 +267,12 @@
           <ButtonCmp
             type="btn-blue"
             @click="onSubmit"
+            :disabled="isDisabled"
           >저장</ButtonCmp>
         </div>
       </div>
     </div>
-    <!-- 기획서 v1.0 수정 -->
+    <!-- 기획서 v1.0 수정 (모달) -->
     <!-- 모달 -->
     <ModalView
       v-if="isModalViewed"
@@ -310,9 +309,10 @@
       Case2) 두번째~다섯번째 메뉴인 경우: 탭과 입력 내용 모두 삭제
       -->
       <!-- 메뉴 편집 버튼 삭제 시 alert -->
+      <!-- 기획서 v1.0 수정 (isRemoveSlide → isRemoveMenu 로 변경) -->
       <ConfirmMsg
-      v-if="isRemoveSlide"
-        @closeModal="isModalViewed = false, isRemoveSlide = false"
+      v-if="isRemoveMenu"
+        @closeModal="isModalViewed = false, isRemoveMenu = false"
       >
         <div class="msg" slot="msg">
           삭제하는 경우 해당 메뉴에 입력된 내용이<br>
@@ -334,6 +334,7 @@
           </ButtonCmp>
         </div>
       </ConfirmMsg>
+      <!-- 기획서 v1.0 수정 (isRemoveSlide → isRemoveMenu 로 변경) -->
       <!-- //메뉴 편집 버튼 삭제 시 alert -->
       <!-- // 기획서 v1.0 수정(추가된 내용에 대한 설명입니다. /
       Case1) 첫번째 메뉴인 경우: 탭은 그대로 있고 입력 내용만 삭제
@@ -390,7 +391,7 @@
       <!-- 기획서 v1.0 수정(문구수정 / 링크연결) -->
       <ConfirmMsg
         v-if="isChatBotConnect"
-        @closeModal="isModalViewed = false"
+        @closeModal="isModalViewed = false, isChatBotConnect = false"
       >
         <div class="msg" slot="msg">
           등록된 간편챗봇 메시지가 없습니다.<br>
@@ -474,7 +475,7 @@
       <!-- // 기획서 v1.0 수정(연결항목: 웹사이트 > 등록된 웹사이트가 없는 경우) -->
     </ModalView>
     <!-- //모달 -->
-    <!-- // 기획서 v1.0 수정 -->
+    <!-- // 기획서 v1.0 수정 (모달) -->
   </div>
 </template>
 
@@ -522,10 +523,9 @@ export default {
           web: '',
           news: '',
           chatbot: ''
-        }]
+        }],
+        chatRoom: 'chatRoomMenu01'
       },
-      chatRoom: 'chatRoomMenu01',
-      switchStatus: '',
       dropdownOptions: [
         {
           label: 'SYSTEM STUDIOS',
@@ -554,11 +554,13 @@ export default {
       webErrorMsg: false,
       newsErrorMsg: false,
       chatbotErrorMsg: false,
-      isWebRegistration: false,
+      isWebRegistration: false, // 기획서 v1.0 수정
+      isRemoveMenu: false,
       chatInfoData: {
         chatRoomName: 'SYSTEM STUDIOS',
         allowMsg: 'Y'
       },
+      // 기획서 v1.0 수정
       chatbotOptions: [
         {
           label: '카카오 I 커넥트 톡',
@@ -575,8 +577,25 @@ export default {
       ]
     }
   },
+  // 기획서 v1.0 수정
   mounted() {
     this.switchStatus = this.form.switch ? '대화방 메뉴 사용' : '대화방 메뉴 미사용'
+  },
+  // 기획서 v1.0 수정
+  computed: {
+    switchStatus: {
+      get() {
+        return this.form.switch ? '대화방 메뉴 사용' : '대화방 메뉴 미사용'
+      },
+      set(value) {
+        this.form.switch = value
+      }
+      // return this.form.switch ? '대화방 메뉴 사용' : '대화방 메뉴 미사용'
+    },
+    isDisabled() {
+      // 버튼 활성화에 대한 예시
+      return this.form.chatMenuData[this.menuActiveIndex].menuTitle.length <= 0
+    }
   },
   methods: {
     isChange(option) {
@@ -603,10 +622,11 @@ export default {
       this.isChatBotConnect = false
       this.isDoneChatBotConnect = true
     },
+    // 기획서 v1.0 수정
     closeMsg() {
       this.isModalViewed = false
       this.isChatRoomChange = false
-      this.isRemoveSlide = false
+      this.isRemoveMenu = false // 기획서 v1.0 수정
       this.isWebRegistration = false
       this.isBrandNews = false
       this.isDoneChatBotConnect = false
@@ -618,6 +638,7 @@ export default {
       this.isModalViewed = true
       this.isModalSave = true
     },
+    // 기획서 v1.0 수정
     webRegistrationModal() {
       this.isModalViewed = true
       this.isWebRegistration = true
@@ -660,17 +681,17 @@ export default {
       this.removeMenuIndex = index
       if (this.form.chatMenuData.length > 1) {
         this.isModalViewed = true
-        this.isRemoveSlide = true
+        this.isRemoveMenu = true // 기획서 v1.0 수정
       } else if (this.form.chatMenuData.length === 1) {
         this.isModalViewed = false
-        this.isRemoveSlide = false
+        this.isRemoveMenu = false // 기획서 v1.0 수정
       }
     },
     // 슬라이드 삭제 팝업
     DoneremoveMenu () {
       if (this.form.chatMenuData.length > 1) {
         this.isModalViewed = false
-        this.isRemoveSlide = false
+        this.isRemoveMenu = false // 기획서 v1.0 수정
         this.form.chatMenuData.splice(this.removeMenuIndex, 1)
         this.removeMenuIndex = undefined
         this.form.chatMenuData[0].isActive = true

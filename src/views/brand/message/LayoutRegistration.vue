@@ -37,48 +37,6 @@
                         </div>
                       </td>
                     </tr>
-                    <tr>
-                      <th scope="row"><span class="form-item__label">상단여백</span></th>
-                      <td>
-                        <div class="form-item__content is-emoji">
-                          <div class="form-item-row">
-                            <div class="input-item">
-                              <span class="radiobox">
-                                <input type="radio" name="topPad" id="topPadY" value="Y" v-model="form.topPad"
-                                />
-                                <label for="topPadY"><span class="radiobox__text">사용</span></label>
-                              </span>
-                              <span class="radiobox">
-                                <input type="radio" name="topPad" id="topPadN" value="N" v-model="form.topPad"
-                                />
-                                <label for="topPadN"><span class="radiobox__text">미사용</span></label>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row"><span class="form-item__label">하단여백</span></th>
-                      <td>
-                        <div class="form-item__content is-emoji">
-                          <div class="form-item-row">
-                            <div class="input-item">
-                              <span class="radiobox">
-                                <input type="radio" name="btmPad" id="btmPadY" value="Y" v-model="form.btmPad"
-                                />
-                                <label for="btmPadY"><span class="radiobox__text">사용</span></label>
-                              </span>
-                              <span class="radiobox">
-                                <input type="radio" name="btmPad" id="btmPadN" value="N" v-model="form.btmPad"
-                                />
-                                <label for="btmPadN"><span class="radiobox__text">미사용</span></label>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -129,7 +87,7 @@
                 <div class="cmp-item" v-for="(item, i) in cmpList" :key="i">
                   <p class="cmp-title">{{ item.title }}</p>
                   <div class="cmp-box">
-                    <img :src="item.iconUrl" alt="">
+                    <img :src="item.imgUrl" alt="">
                   </div>
                   <ButtonCmp
                     type="btn-blue-line"
@@ -139,7 +97,6 @@
                   >컴포넌트 작성</ButtonCmp>
                 </div>
               </div>
-
             </form>
           </div>
           <!-- 에뮬레이터 -->
@@ -147,6 +104,8 @@
             <ChatEmulator
               :templateData="templateData"
               :isActiveCmpIndex = isActiveCmpIndex
+              @setActiveCmp="setActiveCmp($event)"
+              mode="layout"
             />
           </div>
           <!-- // 에뮬레이터 -->
@@ -154,11 +113,30 @@
         <div class="button__wrap flex-end">
           <ButtonCmp
               type="btn-blue"
-              @click="onSubmit"
+
           >저장</ButtonCmp>
         </div>
       </div>
     </div>
+    <ModalView
+      v-if="isModalViewed"
+      @closeModal="isModalViewed = false"
+    >
+      <!-- 버튼 설정 팝업 -->
+      <ButtonReg
+        :info="form.subDescTable"
+        v-if="isShowBtnReg"
+        modalsize="Max628"
+        @closeModal="isShowBtnReg = false, isModalViewed = false"
+        />
+      <!-- 테이블 설정 팝업 -->
+      <TableReg
+        :info="form.table"
+        v-if="isShowTableReg"
+        modalsize="Max628"
+        @closeModal="isShowTableReg = false, isModalViewed = false"
+      />
+    </ModalView>
   </div>
 </template>
 
@@ -167,120 +145,160 @@ import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ChatEmulator from '@/views/brand/message/components/ChatEmulator.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import Dropdown from '@/components/common/Dropdown.vue'
+import ModalView from '@/components/common/ModalView.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
+import ButtonReg from '@/views/brand/message/components/ButtonReg.vue'
+import TableReg from '@/views/brand/message/components/TableReg.vue'
 
 export default {
   components: {
     PageTitle,
     ChatEmulator,
+    ModalView,
     BrandLnb,
     ButtonCmp,
     Emoji,
-    Dropdown
+    ButtonReg,
+    TableReg
   },
   data() {
     return {
       form: {
         layoutType: 'sms',
         layoutName: '',
-        btmPad: 'Y',
-        topPad: 'Y'
+        table: {
+          row: 5,
+          fstRow: {
+            align: 'left',
+            fontStyle: 'regular'
+          },
+          sndRow: {
+            align: 'left',
+            fontStyle: 'regular'
+          },
+          btnUse: 'Y',
+          btnAlign: 'column',
+          btnColor: 'basic'
+        },
+        subDescTable: {
+          type: 'subDescTable',
+          btnUse: 'Y',
+          btnAlign: 'column',
+          btnColor: 'basic'
+        },
+        desc: {
+          type: 'desc',
+          btnUse: '',
+          btnColor: '',
+          btnAlign: ''
+        }
+
       },
+      isModalViewed: false,
       isActiveCmpIndex: 0,
       templateData: [],
       cmpList: [],
       smsCmpList: [
         {
           title: '메인 타이틀',
-          iconUrl: require('@/assets/images/message/icon_cmp_title.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
           cmpType: 'MainTitle',
-          isActive: false
+          isActive: false,
+          btnCmp: false
         },
         {
           title: '스타일 타이틀A',
-          iconUrl: require('@/assets/images/message/icon_cmp_title.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
           cmpType: 'Item',
-          isActive: false
+          isActive: false,
+          btnCmp: false
         },
         {
           title: 'A 아이템',
-          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
           cmpType: 'itemA',
-          isActive: false
+          isActive: false,
+          btnCmp: true
         },
         {
           title: 'B 아이템',
-          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
           cmpType: 'itemB',
-          isActive: false
+          isActive: false,
+          btnCmp: true
         },
         {
           title: 'C 아이템',
-          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
           cmpType: 'itemC',
-          isActive: false
+          isActive: false,
+          btnCmp: true
         },
         {
           title: '디스크립션',
-          iconUrl: require('@/assets/images/message/icon_cmp_desc.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
           cmpType: 'Description',
-          isActive: false
+          isActive: false,
+          btnCmp: true
         }
       ],
       lmsCmpList: [
         {
           title: '메인 타이틀',
-          iconUrl: require('@/assets/images/message/icon_cmp_title.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
           cmpType: 'MainTitle',
           isActive: false
         },
         {
           title: '스타일 타이틀A',
-          iconUrl: require('@/assets/images/message/icon_cmp_title.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
           cmpType: 'MainTitle',
           isActive: false
         },
         {
           title: '테이블',
-          iconUrl: require('@/assets/images/message/icon_cmp_table.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_table.png'),
           cmpType: 'table',
           isActive: false
         },
         {
           title: '서브 디스크립션 테이블',
-          iconUrl: require('@/assets/images/message/icon_cmp_table.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_table.png'),
           cmpType: 'table',
-          isActive: false
+          isActive: false,
+          btnCmp: true
         },
         {
           title: 'A 아이템',
-          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
           cmpType: 'item',
-          isActive: false
+          isActive: false,
+          btnCmp: true
         },
         {
           title: 'B 아이템',
-          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
           cmpType: 'item',
-          isActive: false
+          isActive: false,
+          btnCmp: true
         },
         {
           title: '디스크립션',
-          iconUrl: require('@/assets/images/message/icon_cmp_desc.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
           cmpType: 'Description',
-          isActive: false
+          isActive: false,
+          btnCmp: true
         },
         {
           title: '서브 디스크립션',
-          iconUrl: require('@/assets/images/message/icon_cmp_desc.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
           cmpType: 'Description',
           isActive: false
         },
         {
           title: '노티스',
-          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
           cmpType: 'notice',
           isActive: false
         }
@@ -288,71 +306,76 @@ export default {
       mmsCmpList: [
         {
           title: '메인 타이틀',
-          iconUrl: require('@/assets/images/message/icon_cmp_title.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
           cmpType: 'MainTitle',
           isActive: false
         },
         {
           title: '스타일 타이틀A',
-          iconUrl: require('@/assets/images/message/icon_cmp_title.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
           cmpType: 'MainTitle',
           isActive: false
         },
         {
           title: '정형 이미지',
-          iconUrl: require('@/assets/images/message/icon_cmp_image_square.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_image_square.png'),
           cmpType: 'MainImage',
           isActive: false
         },
         {
           title: '가로형 이미지',
-          iconUrl: require('@/assets/images/message/icon_cmp_image.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_image.png'),
           cmpType: 'MainImage',
           isActive: false
         },
         {
           title: '테이블',
-          iconUrl: require('@/assets/images/message/icon_cmp_table.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_table.png'),
           cmpType: 'table',
           isActive: false
         },
         {
           title: '서브 디스크립션 테이블',
-          iconUrl: require('@/assets/images/message/icon_cmp_table.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_table.png'),
           cmpType: 'table',
-          isActive: false
+          isActive: false,
+          btnCmp: true
         },
         {
           title: 'A 아이템',
-          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
           cmpType: 'item',
-          isActive: false
+          isActive: false,
+          btnCmp: true
         },
         {
           title: 'B 아이템',
-          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
           cmpType: 'item',
-          isActive: false
+          isActive: false,
+          btnCmp: true
         },
         {
           title: '디스크립션',
-          iconUrl: require('@/assets/images/message/icon_cmp_desc.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
           cmpType: 'Description',
           isActive: false
         },
         {
           title: '서브 디스크립션',
-          iconUrl: require('@/assets/images/message/icon_cmp_desc.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
           cmpType: 'Description',
           isActive: false
         },
         {
           title: '노티스',
-          iconUrl: require('@/assets/images/message/icon_cmp_item.png'),
+          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
           cmpType: 'notice',
           isActive: false
         }
       ],
+      isShowTableReg: false,
+      isShowBtnReg: false,
       chatInfoData: {
         chatType: 'chatBubble',
         chatRoomName: 'SYSTEMSTUDIO',
@@ -380,17 +403,6 @@ export default {
     this.setCmpItems()
     this.cmpList = this.smsCmpList
   },
-  computed: {
-    // cmpAddLength() {
-    //   let lth = 0
-    //   this.templateData.forEach((item) => {
-    //     if (item.type !== 'Buttons') {
-    //       lth = lth + 1
-    //     }
-    //   })
-    //   return lth
-    // }
-  },
   methods: {
     setCmpList($event) {
       let target = $event.target.value
@@ -415,13 +427,14 @@ export default {
         cmpCount = 6
       }
       let diff = cmpCount - this.templateData.length
-      if (diff > 0) {
+      if (diff >= 0) {
         for (let i = 0; i < diff; i++) {
           this.templateData.push(cmpItem)
         }
       } else {
         for (let i = 0; i < -diff; i++) {
-          this.templateData.splice(i, 1)
+          let num = this.templateData - 1
+          this.templateData.splice(num, 1)
         }
       }
     },
@@ -438,31 +451,33 @@ export default {
       let cmpItem = {
         type: cmp.cmpType,
         info: {
-          imgUrl: cmp.iconUrl
+          imgUrl: cmp.imgUrl
         }
       }
-      cmp.isActive = true
-      this.templateData.splice(this.isActiveCmpIndex, 1, cmpItem)
-
-      this.isActiveCmpIndex += 1
+      if (cmp.cmpType === 'table') {
+        this.isModalViewed = true
+        this.isShowTableReg = true
+      } else if (cmp.btnCmp) {
+        this.isModalViewed = true
+        this.isShowBtnReg = true
+      } else {
+        cmp.isActive = true
+        this.templateData.splice(this.isActiveCmpIndex, 1, cmpItem)
+        this.templateData.every((item, i) => {
+          if (!item.type) {
+            this.isActiveCmpIndex = i
+            return false
+          } else {
+            return true
+          }
+        })
+      }
     },
-    removeCmpItem(cmp) {
-      let cmpItem = {
-        type: '',
-        info: {}
-      }
-      this.templateData.forEach((item, i) => {
-        if (item.type === cmp.cmpType) {
-          this.templateData.splice(i, 1, cmpItem)
-        }
-      })
-      this.templateData.some((item, j) => {
-        if (!item.type) {
-          this.isActiveCmpIndex = j
-          return true
-        }
-      })
-      cmp.isActive = false
+    setActiveCmp(e) {
+      this.isActiveCmpIndex = e
+    },
+    closeReg() {
+      this.isShowBtnReg = false
     }
   }
 }

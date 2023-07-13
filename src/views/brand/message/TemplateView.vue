@@ -26,21 +26,21 @@
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row"><span class="form-item__label">템플릿 이름</span></th>
+                    <th scope="row"><span class="form-item__label">템플릿 명</span></th>
                     <td>
                       <span class="text">이미지 강조형</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><span class="form-item__label">제목</span></th>
-                    <td>
-                      <span class="text">테스트 메시지</span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row"><span class="form-item__label">상태</span></th>
                     <td>
                       <span class="text">임시등록</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><span class="form-item__label">승인일</span></th>
+                    <td>
+                      <span class="text">2023.05.26 12:12</span>
                     </td>
                   </tr>
                 </tbody>
@@ -72,6 +72,7 @@
             <div class="brand-aside">
               <ChatEmulator
                 :templateData="templateData"
+                mode="template"
               />
             </div>
             <!-- // 에뮬레이터 -->

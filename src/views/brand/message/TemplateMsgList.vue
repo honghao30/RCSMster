@@ -27,26 +27,28 @@
             </div>
           </div>
           <div class="right-area">
-            <Dropdown :options="templateOptions" v-model="templateOption"/>
-            <Dropdown :options="statusOptions" v-model="statusOption"/>
+            <Dropdown :options="templateOptions" v-model="templateOption" placeholder="템플릿 유형"/>
+            <Dropdown :options="statusOptions" v-model="statusOption" placeholder="상태"/>
           </div>
         </div>
         <div class="table__wrap chatroom__table">
           <table class="table table-list">
             <colgroup>
-              <col width="15%"/>
-              <col width="15%"/>
-              <col width="15%"/>
+              <col width="12%"/>
+              <col width="14%"/>
+              <col width="14%"/>
               <col />
-              <col width="15%"/>
-              <col width="15%"/>
+              <col width="12%"/>
+              <col width="12%"/>
+              <col width="12%"/>
             </colgroup>
             <thead>
               <tr>
                 <th scope="col"><span>템플릿 ID</span></th>
                 <th scope="col"><span>템플릿 유형</span></th>
-                <th scope="col"><span>템플릿 이름</span></th>
-                <th scope="col"><span>제목</span></th>
+                <th scope="col"><span>템플릿 상품</span></th>
+                <th scope="col"><span>템플릿 명</span></th>
+                <th scope="col"><span>작성자</span></th>
                 <th scope="col"><span>최종 수정일</span></th>
                 <th scope="col"><span>상태</span></th>
               </tr>
@@ -64,8 +66,11 @@
                 <td>
                   {{ item.name }}
                 </td>
-                <td>
+                <td class="l-align">
                   <router-link to="">{{ item.title }}</router-link>
+                </td>
+                <td>
+                  {{ item.writer }}
                 </td>
                 <td>
                   {{ item.date }}
@@ -128,10 +133,6 @@ export default {
       ],
       templateOptions: [
         {
-          label: '전체',
-          value: 'all'
-        },
-        {
           label: '텍스트 템플릿',
           value: 'textTemplate'
         },
@@ -145,10 +146,6 @@ export default {
         }
       ],
       statusOptions: [
-        {
-          label: '전체',
-          value: 'all'
-        },
         {
           label: '임시저장',
           value: 'draft'
@@ -171,6 +168,7 @@ export default {
         'type': '이미지 템플릿',
         'name': '타이틀 선택형1',
         'title': '카드가입안내',
+        'writer': '홍길동',
         'date': '2022.10.02',
         'status': '승인대기'
       },
@@ -178,6 +176,7 @@ export default {
         'id': 'ADS232SDS',
         'type': '텍스트 템플릿',
         'name': '타이틀 자유형1',
+        'writer': '홍길동',
         'title': '신상품 소개',
         'date': '2022.10.02',
         'status': '승인완료'
@@ -187,6 +186,7 @@ export default {
         'type': 'LMS 템플릿',
         'name': '장문형',
         'title': '프로모션(우러간)',
+        'writer': '홍길동',
         'date': '2022.10.02',
         'status': '반려'
       },
@@ -195,6 +195,7 @@ export default {
         'type': '이미지 템플릿',
         'name': '이미지 강조형',
         'title': '카드가입안내',
+        'writer': '홍길동',
         'date': '2022.10.02',
         'status': '승인대기'
       },
@@ -203,6 +204,7 @@ export default {
         'type': '텍스트 템플릿',
         'name': '타이틀 자유형1',
         'title': '신상품 소개',
+        'writer': '홍길동',
         'date': '2022.10.02',
         'status': '승인대기'
       },
@@ -210,6 +212,7 @@ export default {
         'id': 'ADS232SDS',
         'type': '텍스트 템플릿',
         'name': '아이콘 강조형1',
+        'writer': '홍길동',
         'title': '프리 템플릿(자동생성)',
         'date': '2022.10.02',
         'status': '임시저장'

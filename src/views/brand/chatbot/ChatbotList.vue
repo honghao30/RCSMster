@@ -13,7 +13,7 @@
         <div class="top-ctrl-area">
           <div class="left-area">
             <div class="dropdown-search__wrap">
-              <Dropdown :options="TitleOptions"/>
+              <Dropdown :options="TitleOptions" class="w157"/>
               <div class="search-area">
                 <span class="input search-box">
                   <input type="text" placeholder="검색어를 입력하세요."/>

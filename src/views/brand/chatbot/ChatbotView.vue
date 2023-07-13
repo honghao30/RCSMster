@@ -39,12 +39,7 @@
                       <span class="text">간편챗봇 메시지 저장 후 아이디가 노출됩니다.</span>
                     </td>
                   </tr>
-                  <tr>
-                    <th scope="row"><span class="form-item__label">메시지 복사</span></th>
-                    <td>
-                      <span class="text">불가능</span>
-                    </td>
-                  </tr>
+                  <!-- 기획서 v1.0 수정  -- 삭제 메시지 복사 -->
                 </tbody>
               </table>
             </div>
@@ -67,18 +62,7 @@
                       <span class="text">2023.05.26 10:12</span>
                     </td>
                   </tr>
-                  <tr>
-                    <th scope="row"><span class="form-item__label">수정자</span></th>
-                    <td>
-                      <span class="text">박*동</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><span class="form-item__label">수정일</span></th>
-                    <td>
-                      <span class="text">2023.07.12 15:12</span>
-                    </td>
-                  </tr>
+                  <!-- 기획서 v1.0 수정  -- 삭제 수정자, 수정일 -->
                 </tbody>
               </table>
             </div>
@@ -122,9 +106,8 @@
           </div>
           <div class="chatroom-emulator sticky">
             <ChatEmulator
-              :chatInfoData="chatroomList[0]"
-              :chatMenuList="chatroomList[0].list"
-              :chatMsgData="chatroomList[0].chatMsgData"
+              :chatInfoData="chatInfoData"
+              :chatMsgData="chatViewData"
             />
           </div>
         </div>
@@ -140,9 +123,8 @@
                 type="btn-line"
                 @click="openDeleteMsg"
             >삭제</ButtonCmp>
-            <ButtonCmp
-                type="btn-blue"
-            >수정</ButtonCmp>
+            <!-- 기획서 v1.0 수정 -- 버튼 클릭 시 수정 화면으로 이동 / 태그 변경 -->
+            <router-link to="/ChatbotModified" class="btn btn-blue">수정</router-link>
           </div>
         </div>
       </div>
@@ -166,12 +148,8 @@
           >
             아니요
           </ButtonCmp>
-          <ButtonCmp
-          type="btn-blue"
-          @click="closeMsg"
-          >
-            예
-          </ButtonCmp>
+          <!-- 기획서 v1.0 수정 -- 게시물 삭제 후 목록 화면으로 이동 / 태그 변경 -->
+          <router-link to="/ChatbotList" class="btn btn-blue">예</router-link>
         </div>
       </ConfirmMsg>
     </ModalView>
@@ -199,73 +177,64 @@ export default {
     return {
       isModalViewed: false,
       isChabotDeleteMsg: false,
-      chatroomList: [
+      chatMsgData: {
+        chatType: 'chatBubble',
+        bubbleContent: '[신한카드] 10번마다 캐시백 이용내역 7회 <br>* 실제 결제 횟수와 다를 수 있음​<br> 카카오뱅크 신한카드 이용횟수 확인​',
+        chipButtons: [{
+          btnName: '🎀 상담직원연결 👋​'
+        },
         {
-          chatRoomName: 'SYSTEMSTUDIO',
-          phoneNUm: '010-5151-5151',
-          chatID: 'bot-i7ke7f30e6c',
-          status: '사용',
-          saftyMark: 'Y',
-          allowMsg: 'N',
-          chatMsgData: {
-            chatType: 'chatBubble',
-            chatbotMsgName: '대화방 명',
-            bubbleContent: '[신한카드] 10번마다 캐시백 이용내역 7회 <br>* 실제 결제 횟수와 다를 수 있음​<br> 카카오뱅크 신한카드 이용횟수 확인​',
-            chipButtons: [{
-              btnName: '🎀 상담직원연결 👋​'
-            },
-            {
-              btnName: '질문하기​'
-            }]
+          btnName: '질문하기​'
+        }]
+      },
+      chatInfoData: {
+        chatRoomName: 'SYSTEMSTUDIO',
+        saftyMark: 'Y',
+        hideInputFooter: true,
+        mode: 'registration'
+      },
+      chatViewData: {
+        chatbotMsgName: '',
+        btnUse: 'btnUseN',
+        chatType: 'chatBubble',
+        copyMsg: 'Y',
+        chipBtnUse: 'N',
+        bubbleContent: '간편챗봇 메시지 저장 후 아이디가 노출됩니다.',
+        msgData: [{
+          index: 0,
+          imgFile: '',
+          title: '',
+          cardContent: '',
+          bubbleContent: '',
+          btnUse: 'N',
+          btnDirection: 'row',
+          buttons: [{
+            btnName: '',
+            btnEvent: '',
+            isActive: true
+          }]
+        }],
+        chipButtons: [
+          {
+            btnName: '🎀 상담직원연결 👋​'
           },
-          list: [
-            {
-              label: '자주 묻는 질문✋',
-              value: '🎀상담직원 연결👋',
-              menuDetails: [
-                {
-                  title: '전화연결',
-                  sevice: '010-5151-5151'
-                }
-              ]
-            },
-            {
-              label: '🍉나에게 맞는 상품은?🍓',
-              value: '🍉나에게 맞는 상품은?🍓',
-              menuDetails: [
-                {
-                  title: '간편 챗붓 연결',
-                  sevice: 'SYSTEM STUDIO 간편 챗봇 1'
-                }
-              ]
-            },
-            {
-              label: '🍉23FW 미리보기🍒',
-              value: '🍉23FW 미리보기🍒',
-              menuDetails: [
-                {
-                  title: '브랜드 소식 연결',
-                  sevice: ''
-                },
-                {
-                  title: '많이 찾는 FAQ 미리보기',
-                  sevice: ''
-                },
-                {
-                  title: 'BR.13L49F42Mo.28tF0K7EuV',
-                  sevice: ''
-                }
-              ]
-            }
-          ]
-        }
-      ]
+          {
+            btnName: '질문하기'
+          },
+          {
+            btnName: '전화하기'
+          },
+          {
+            btnName: '응답버튼 2'
+          },
+          {
+            btnName: '응답버튼 3'
+          }
+        ]
+      }
     }
   },
   methods: {
-    copyChatRoom () {
-      this.isModalViewed = true
-    },
     openDeleteMsg() {
       this.isModalViewed = true
       this.isChabotDeleteMsg = true

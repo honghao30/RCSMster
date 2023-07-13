@@ -245,7 +245,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row"><span class="form-item__label required">메시지 입력</span></th>
+                      <th scope="row"><span class="form-item__label required">메시지 입력란</span></th>
                       <td>
                         <div class="form-item__content">
                           <div class="form-item-row">

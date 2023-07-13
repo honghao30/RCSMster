@@ -328,7 +328,6 @@ const homeList = [
     'pubData': 'v1 08-04'
   }
 ]
-
 const dashboardList = [
   // 기업 대시보드
   {
@@ -457,6 +456,7 @@ const dashboardList = [
     'status': ['0612: 기획 공유', '0613: 개발 공유'],
     'link': '/ChatRoomMenuList',
     'pubData': 'v1 07-18',
+    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
@@ -465,6 +465,7 @@ const dashboardList = [
     'status': ['0612: 기획 공유', '0613: 개발 공유'],
     'link': '/ChatRoomMenuView',
     'pubData': 'v1 07-18',
+    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
@@ -473,6 +474,7 @@ const dashboardList = [
     'status': ['0613: 기획 공유', '0613: 개발 공유'],
     'link': '/ChatRoomMenuAdd',
     'pubData': 'v1 07-18',
+    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
@@ -481,6 +483,7 @@ const dashboardList = [
     'status': ['0613: 기획 공유', '0613: 개발 공유'],
     'link': '/ChatRoomMenuViewModified',
     'pubData': 'v1 07-18',
+    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   // 브랜드 홈
@@ -535,6 +538,7 @@ const dashboardList = [
     'status': ['0621: 기획 공유'],
     'link': '/ChatbotList',
     'pubData': 'v1 07-13',
+    'isPublished': true,
     'comments': ['2023RBC_UIUX개편_화면설계서_브랜드_챗봇_v0.8_20230621_수정중']
   },
   {
@@ -542,7 +546,8 @@ const dashboardList = [
     'screenId': 'R-Brand-Menu-View-01',
     'status': ['0621: 기획 공유'],
     'link': '/ChatbotView',
-    'pubData': 'v1 07-13'
+    'pubData': 'v1 07-13',
+    'isPublished': true
   },
   {
     'depth5': '등록',

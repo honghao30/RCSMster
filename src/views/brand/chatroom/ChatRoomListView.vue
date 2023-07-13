@@ -117,7 +117,7 @@
                   <!-- 기획서 v1.0 수정(검색허용 삭제) -->
                   <!-- 기획서 v1.0 수정(bd-bg 클래스 추가 + 문구수정) -->
                   <tr>
-                    <th scope="row" class="bd-bg"><span class="form-item__label">메시지 입력</span></th>
+                    <th scope="row" class="bd-bg"><span class="form-item__label">메시지 입력란</span></th>
                     <td class="bd-bg">
                       <div class="form-item__content">
                         <div class="form-item-row">
@@ -166,15 +166,12 @@
           </ul>
         </div>
         <!-- // 기획서 v1.0 수정 (반려 추가) -->
-        <!-- 기획서 v1.0 수정 (문구 수정 및 링크 연결로 인한 태그변경) -->
+        <!-- 기획서 v1.0 수정 -->
         <div class="button__wrap flex-end">
           <router-link to="/ChatRoomMenuAdd" class="btn btn-line">대화방 메뉴 등록</router-link>
-          <!-- 기획서 v1.0 수정 (추가된 내용에 대한 설명입니다. / 검수중 인 경우 : disabled -->
+          <!-- 기획서 v1.0 수정 (추가된 내용에 대한 설명입니다. / 검수중 인 경우 : 버튼 미존재 -->
           <router-link to="/ChatRoomModified" class="btn btn-blue">수정</router-link>
-        </div>
-        <!-- // 기획서 v1.0 수정 (문구 수정 및 링크 연결로 인한 태그변경) -->
-        <!-- 기획서 v1.0 수정 (승인대기 인 경우에 사용됨 / 버튼명 수정될 예정임) -->
-        <div class="button__wrap flex-end">
+          <!-- 기획서 v1.0 수정 (승인대기 인 경우에 사용됨 / 버튼명 수정될 예정임) -->
           <ButtonCmp
             type="btn-blue"
             @click="isCancelRequestModal"
@@ -182,7 +179,7 @@
           승인요청 취소
           </ButtonCmp>
         </div>
-        <!-- // 기획서 v1.0 수정 (승인대기 인 경우에 사용됨 / 버튼명 수정될 예정임) -->
+        <!-- // 기획서 v1.0 수정 -->
       </div>
     </div>
     <!-- 모달 -->

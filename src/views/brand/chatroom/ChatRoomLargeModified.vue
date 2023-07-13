@@ -6,6 +6,7 @@
         <!-- 기획서 v1.0 수정(chatroom-modify__title,chatroom-modify__title-use 클래스 삭제 후 공통컴포넌트 사용 / top-progress-area 클래스 삭제) -->
         <PageTitle :pagetitle="pageTitle" progress="반려" />
         <!-- // 기획서 v1.0 수정(chatroom-modify__title,chatroom-modify__title-use 클래스 삭제 후 공통컴포넌트 사용/ top-progress-area 클래스 삭제) -->
+        <PageTitleH3 titleh3="기본 정보 입력"/> <!-- 기획서 v1.0 수정(내용 추가) -->
         <!-- 기획서 v1.0 수정(editmod  이중클래스 위치 수정) -->
         <div class="chatroom__wrap editmod">
           <div class="chatroom-registration">
@@ -54,9 +55,29 @@
                           </div>
                         </td>
                       </tr>
+                      <!-- 기획서 v1.0 수정(툴팁 추가) -->
                       <tr>
                         <th scope="row">
                           <span class="form-item__label required">통신서비스<br>가입증명원</span>
+                          <!-- 툴팁 -->
+                          <ToolTipEl
+                            direction="bottomPos"
+                            elAlign="leftType"
+                            width="418"
+                            mode="default"
+                          >
+                            <template slot="tooltip-message">
+                              <div class="message__innerbox"
+                              >
+                                <ul>
+                                  <li>통신서비스 가입증명원을 제출하시면 서류 심사 후 등록이 가능합니다.</li>
+                                  <li>입력한 전화번호와 통신서비스 가입증명원의 전화번호가 동일해야만 전화번호가 등록됩니다.</li>
+                                  <li>파일이 여러 개인 경우, zip 파일로 압축하여 등록해 주세요.</li>
+                                </ul>
+                              </div>
+                            </template>
+                          </ToolTipEl>
+                          <!-- // 툴팁 -->
                         </th>
                         <td>
                           <div class="form-item__content exception">
@@ -69,10 +90,8 @@
                               </div>
                               <!-- 기획서 v1.0 수정(타인 소유의 발신번호인 경우 삭제) -->
                             </div>
-                            <p class="guide-text black">&middot; 통신서비스 가입증명원을 제출하시면 서류 심사 후 등록이 가능합니다.</p>
-                            <p class="guide-text black">&middot; 입력한 발신번호와 통신서비스 가입증명원의 전화번호가 동일해야만 발신번호가 등록됩니다.</p>
+                            <!-- 기획서 v1.0 수정(guide-text 내용 삭제) -->
                             <p class="guide-text black">&middot; 파일형식: JPG, PNG, TIFF, PDF, ZIP(최대 70MB)</p>
-                            <p class="guide-text black">&middot; 파파일이 여러 개인 경우, zip 파일로 압축하여 등록해 주세요.</p>
                           </div>
                         </td>
                       </tr>
@@ -104,10 +123,7 @@
               type="btn-blue-line"
               @click="btnRemove"
           >삭제</ButtonCmp>
-          <ButtonCmp
-              type="btn-blue-line"
-              @click="saveTemp"
-          >임시 저장</ButtonCmp>
+          <!-- 기획서 v1.0 수정 (임시 저장 삭제) -->
           <ButtonCmp
               type="btn-blue"
           >승인 요청</ButtonCmp>
@@ -119,23 +135,32 @@
       v-if="isModalViewed"
       @closeModal="isModalViewed = false"
     >
-      <!-- 임시저장 -->
+      <!-- 기획서 v1.0 수정 (임시 저장 모달창 삭제) -->
+      <!-- 기획서 v1.0 수정(삭제 모달창) -->
       <ConfirmMsg
         @closeModal="isModalViewed = false"
-        v-if="isModalSave"
+        v-if="isRemoveModal"
       >
         <div class="msg" slot="msg">
-          입력하신 정보가 임시저장 되었습니다.
+          대화방을 삭제하시겠습니까?
         </div>
         <div class="button__wrap" slot="button">
+          <ButtonCmp
+          type="btn-line"
+          @click="closeMsg"
+          >
+            취소
+          </ButtonCmp>
           <ButtonCmp
           type="btn-blue"
           @click="closeMsg"
           >
-            확인
+            삭제
           </ButtonCmp>
         </div>
       </ConfirmMsg>
+      <!-- // 기획서 v1.0 수정(삭제 모달창) -->
+
     </ModalView>
     <!-- //모달  -->
   </div>
@@ -149,6 +174,8 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
 import ChatEmulator from '@/views/brand/components/ChatEmulator.vue'
+import ToolTipEl from '@/components/common/Tooltip.vue'
+import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 
 export default {
   components: {
@@ -157,7 +184,9 @@ export default {
     ButtonCmp,
     ModalView,
     ConfirmMsg,
-    ChatEmulator
+    ChatEmulator,
+    ToolTipEl,
+    PageTitleH3
   },
   data() {
     return {
@@ -181,7 +210,7 @@ export default {
         }
       ],
       isModalViewed: false,
-      isModalSave: false
+      isRemoveModal: false
     }
   },
   computed: {
@@ -202,16 +231,13 @@ export default {
       this.form.serviceDocument = fileName
       this.url = URL.createObjectURL(file)
     },
-    saveTemp () {
-      this.isModalViewed = true
-      this.isModalSave = true
-    },
     closeMsg () {
       this.isModalViewed = false
-      this.isModalSave = false
+      this.isRemoveModal = false
     },
     btnRemove () {
-      alert('대화방을 삭제하시겠습니까?')
+      this.isModalViewed = true
+      this.isRemoveModal = true
     }
   }
 }

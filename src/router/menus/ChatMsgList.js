@@ -5,10 +5,11 @@ import ChatbotRegistration from '@/views/brand/chatbot/ChatbotRegistration'
 import ChatbotModified from '@/views/brand/chatbot/ChatbotModified'
 import ChatbotView from '@/views/brand/chatbot/ChatbotView'
 // 템플릿
-import Template from '@/views/brand/message/Template'
 import TemplateList from '@/views/brand/message/TemplateList'
 import TemplateMsgList from '@/views/brand/message/TemplateMsgList'
 import TemplateRegistration from '@/views/brand/message/TemplateRegistration'
+import TemplateRegistrationLMS from '@/views/brand/message/TemplateRegistrationLMS'
+import TemplateRegistrationImage from '@/views/brand/message/TemplateRegistrationImage'
 import TemplateView from '@/views/brand/message/TemplateView'
 
 // 레이아웃
@@ -51,14 +52,6 @@ export default [
   },
   // 템플릿
   {
-    path: '/template',
-    component: Template,
-    meta: {
-      tittle: '템플릿',
-      breadcrumb: false
-    }
-  },
-  {
     path: '/TemplateList',
     component: TemplateList,
     meta: {
@@ -88,8 +81,27 @@ export default [
   {
     path: '/TemplateRegistration',
     component: TemplateRegistration,
+    name: 'Creater',
     meta: {
       tittle: '템플릿 작성',
+      breadcrumb: false
+    },
+    props: true
+  },
+  {
+    path: '/TemplateRegistrationLMS',
+    component: TemplateRegistrationLMS,
+    meta: {
+      tittle: '템플릿 작성 LMS',
+      breadcrumb: false
+    },
+    props: true
+  },
+  {
+    path: '/TemplateRegistrationImage',
+    component: TemplateRegistrationImage,
+    meta: {
+      tittle: '템플릿 작성 Image',
       breadcrumb: false
     },
     props: true

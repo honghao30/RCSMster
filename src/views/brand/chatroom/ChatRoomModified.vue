@@ -147,7 +147,7 @@
                         </td>
                       </tr>
                       <!-- // 기획서 v1.0 수정 -->
-                      <tr>
+                      <tr v-if="form.chatRoomUse === 'N'">
                         <th scope="row">
                           <span class="form-item__label required">통신서비스<br>가입증명원</span>
                           <!-- 툴팁 -->
@@ -258,8 +258,8 @@
                                         <div class="inner__input-btn">
                                           <div class="input-item input-limit">
                                             <div class="textarea">
-                                              <!-- 기획서 v1.0 수정 (placeholder 수정) -->
-                                              <textarea maxlength="150" placeholder="검색 시 대화방명과 함께 표시되는 소개글을 입력해주세요." v-model="form.searchIntro"></textarea>
+                                              <!-- 기획서 v1.0 수정 (placeholder 수정 + style 부여) -->
+                                              <textarea maxlength="150" placeholder="검색 시 대화방명과 함께 표시되는 소개글을 입력해주세요." v-model="form.searchIntro" style="height: 76px;"></textarea>
                                               <div class="textarea-limit__text">
                                                 <p>
                                                   {{ form.searchIntro.length }} /150자
@@ -279,13 +279,13 @@
                       </tr>
                       <!-- // 기획서 v1.0 수정 (대행사 연결 → 양방향 대행사 연결 로 수정 및 추가 작업 + bd-bg 클래스 추가) -->
                       <tr>
-                        <th scope="row"><span class="form-item__label required">메시지 입력</span></th>
+                        <th scope="row"><span class="form-item__label required">메시지 입력란</span></th>
                         <td>
                           <div class="form-item__content">
                             <div class="form-item-row">
                               <div class="input-item">
                               <span class="radiobox">
-                                <input type="radio" name="allowMsg" id="allowMsgN" v-model="form.allowMsg" value="N"/>
+                                <input type="radio" name="allowMsg" id="allowMsgN" v-model="form.allowMsg" value="N" disabled/> <!-- 기획서 v1.0 수정 (disabled 추가) -->
                                 <label for="allowMsgN"><span class="checkbox__text">미사용</span></label>
                               </span>
                               <span class="radiobox">
@@ -294,11 +294,12 @@
                               </span>
                               </div>
                             </div>
-                          <p class="guide-text black">&middot; 대화방에서 사용자가 메시지를 입력할 수 없습니다.</p>
+                            <!-- 기획서 v1.0 수정 (문구 수정) -->
+                            <p class="guide-text black" v-if="form.allowMsg === 'Y'">&middot; 수신자가 회신을 할 수 있도록 합니다.(MO / 양방향 등 이용 가능)</p>
                           </div>
                         </td>
                       </tr>
-                      <!-- 기획서 v1.0 수정 (대표번호 문자수신 서비스 삭제 + 안심마크 라디오버튼, 문구 수정, 클래스 추가) -->
+                      <!-- 기획서 v1.0 수정 (대표번호 문자수신 서비스 삭제 + 안심마크 라디오버튼, 문구 수정, 클래스 추가, 안심마크 툴팁 안 이미지 및 문구 수정) -->
                       <tr>
                         <th scope="row" class="safety-bg"><span class="form-item__label">안심마크</span>
                           <!-- 툴팁 -->
@@ -309,11 +310,14 @@
                             mode="default"
                           >
                             <template slot="tooltip-message">
-                              <div class="message__innerbox">
+                              <div class="message__innerbox safety-box">
                                 <strong>안심마크란 무엇인가요?</strong>
+                                <div class="safety-img">
+                                  <img src="@/assets/images/modal/chatroom_safetymark.png" alt="">
+                                </div>
                                 <ul>
-                                  <li>안심마크는 스미싱과 같은 사고가 많이 발생하는 기업에 대해, 실제 해당 기업에서 문자를 보냈음을 알려주는 인증마크와 + 안심문구가 결합된 기능입니다.</li>
-                                  <li>KISA의 승인을 얻은 사업자에 한해 RCS메시지를 보냈을 때 안심마크를 붙일 수 있으며, 이용을 원치 않는 경우 브랜드 관리자가 대화방 단위로 설정 해지할 수 있습니다.</li>
+                                  <li>안심마크는, 불법 사칭 문자와 구분하기 쉽도록 RCS메시지 상단에 "확인된 발신번호"를 보여주는 서비스입니다.</li>
+                                  <li>한국인터넷진흥원(KISA)에서 인증한 기업만 이용할 수 있습니다.</li>
                                 </ul>
                               </div>
                             </template>
@@ -335,7 +339,7 @@
                           </div>
                         </td>
                       </tr>
-                      <!-- // 기획서 v1.0 수정 (대표번호 문자수신 서비스 삭제 + 안심마크 라디오버튼, 문구 수정, 클래스 추가) -->
+                      <!-- // 기획서 v1.0 수정 (대표번호 문자수신 서비스 삭제 + 안심마크 라디오버튼, 문구 수정, 클래스 추가, 안심마크 툴팁 안 이미지 및 문구 수정) -->
                     </tbody>
                   </table>
                 </div>
@@ -352,22 +356,19 @@
           </div>
         </div>
         <div class="top-notice--gray">
-          <ul>
+          <ul><!-- 기획서 v1.0 수정 (문구 수정)  -->
+            <li>- 대화방명을 수정하는 경우 승인 심사가 필요합니다.</li>
             <li>- 승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</li>
-            <li>- 등록 방법 변경 시, 입력한 데이터가 초기화됩니다.</li>
           </ul>
         </div>
         <div class="button__wrap flex-end">
-          <!-- 기획서 v1.0 수정 (P.65 대화방 삭제 플로우 참고)-->
+          <!-- 기획서 v1.0 수정 (P.65 대화방 삭제 플로우 참고) -->
           <ButtonCmp
             type="btn-blue-line"
             @click="removeListModal"
           >삭제</ButtonCmp>
-          <!-- // 기획서 v1.0 수정 (P.65 대화방 삭제 플로우 참고)-->
-          <ButtonCmp
-            type="btn-blue-line"
-            @click="saveTemp"
-          >임시 저장</ButtonCmp>
+          <!-- // 기획서 v1.0 수정 (P.65 대화방 삭제 플로우 참고) -->
+          <!-- 기획서 v1.0 수정 (임시 저장 삭제) -->
           <!-- 기획서 v1.0 수정(p.60 대화방 수정 > 대행사 연결 여부 변경 후 [승인요청] 버튼선택 시 노출되는 Alert 정의 / 노출 기준 : 대행사 사용 → 미사용으로 변경하는 경우) -->
           <ButtonCmp
             type="btn-blue"
@@ -382,23 +383,7 @@
       v-if="isModalViewed"
       @closeModal="isModalViewed = false"
     >
-      <!-- 임시저장 -->
-      <ConfirmMsg
-        @closeModal="isModalViewed = false, isModalSave = false"
-        v-if="isModalSave"
-      >
-        <div class="msg" slot="msg">
-          입력하신 정보가 임시저장 되었습니다.
-        </div>
-        <div class="button__wrap" slot="button">
-          <ButtonCmp
-          type="btn-blue"
-          @click="closeMsg"
-          >
-            확인
-          </ButtonCmp>
-        </div>
-      </ConfirmMsg>
+      <!-- 기획서 v1.0 수정 (임시 저장 모달창 삭제) -->
       <!-- 대화방 유형 > 회신번호 > 번호 선택 시 -->
       <SelectPhoneNum
         @closeModal="isModalViewed = false, isPhoneNumber = false"
@@ -502,7 +487,6 @@ export default {
         }
       ],
       isModalViewed: false,
-      isModalSave: false,
       isPhoneNumber: false,
       isRemoveList: false,
       isNotUse: false
@@ -525,13 +509,8 @@ export default {
       this.form.serviceDocument = fileName
       this.url = URL.createObjectURL(file)
     },
-    saveTemp () {
-      this.isModalViewed = true
-      this.isModalSave = true
-    },
     closeMsg () {
       this.isModalViewed = false
-      this.isModalSave = false
       this.isPhoneNumber = false
       this.isNotUse = false
       this.isRemoveList = false

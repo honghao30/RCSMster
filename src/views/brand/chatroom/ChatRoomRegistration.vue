@@ -186,8 +186,7 @@
                                       <input type="file" id="fileUp" class="input blind" @change="onFileChanged">
                                       <label for="fileUp" class="btn btn-default-line medium">파일 선택</label>
                                     </div>
-                                    <!-- 타인 소유의 발신번호인 경우 : 가이드 팝업 출력 / 정책 수급 필요 -->
-                                    <a class="exception-txt">타인 소유의 발신번호인 경우</a>
+                                    <!-- 기획서 v1.0 수정 (타인 소유의 발신번호인 경우 삭제) -->
                                   </div>
                                   <p class="guide-text black">&middot; 파일형식: JPG, PNG, TIFF, PDF, ZIP(최대 70MB)</p>
                                 </div>
@@ -268,8 +267,8 @@
                                               <div class="inner__input-btn">
                                                 <div class="input-item input-limit">
                                                   <div class="textarea">
-                                                    <!-- 기획서 v1.0 수정 (placeholder 수정) -->
-                                                    <textarea maxlength="150" placeholder="검색 시 대화방명과 함께 표시되는 소개글을 입력해주세요." v-model="form.searchIntro"></textarea>
+                                                    <!-- 기획서 v1.0 수정 (placeholder 수정 + style 부여) -->
+                                                    <textarea maxlength="150" placeholder="검색 시 대화방명과 함께 표시되는 소개글을 입력해주세요." v-model="form.searchIntro" style="height: 76px;"></textarea>
                                                     <div class="textarea-limit__text">
                                                       <p>
                                                         {{ form.searchIntro.length }} /150자
@@ -290,18 +289,18 @@
                             <!-- // 기획서 v1.0 수정 (대행사 연결 → 양방향 대행사 연결 로 수정 및 추가 작업 + 체크박스로 변경 + bd-bg 클래스 추가) -->
                             <!-- 기획서 v1.0 수정 (문구 수정 + bd-bg 클래스 추가) -->
                             <tr>
-                              <th scope="row" class="bd-bg"><span class="form-item__label required">메시지 입력</span></th>
+                              <th scope="row" class="bd-bg"><span class="form-item__label required">메시지 입력란</span></th>
                               <td class="bd-bg">
                                 <div class="form-item__content">
                                   <div class="form-item-row">
                                     <div class="input-item">
                                       <span class="radiobox">
-                                        <input type="radio" name="allowMsg" id="allowMsgN" v-model="form.allowMsg" value="N"/>
-                                        <label for="allowMsgN"><span class="checkbox__text">미사용</span></label>
-                                      </span>
-                                      <span class="radiobox">
                                         <input type="radio" name="allowMsg" id="allowMsgY" v-model="form.allowMsg" value="Y" checked="checked"  />
                                         <label for="allowMsgY"><span class="checkbox__text">사용</span></label>
+                                      </span>
+                                      <span class="radiobox">
+                                        <input type="radio" name="allowMsg" id="allowMsgN" v-model="form.allowMsg" value="N"/>
+                                        <label for="allowMsgN"><span class="checkbox__text">미사용</span></label>
                                       </span>
                                     </div>
                                   </div>
@@ -311,7 +310,7 @@
                               </td>
                             </tr>
                             <!-- // 기획서 v1.0 수정 (문구 수정 + bd-bg 클래스 추가) -->
-                            <!-- 기획서 v1.0 수정 (대표번호 문자수신 서비스 삭제 + 안심마크 라디오버튼, 문구 수정, 클래스 추가) -->
+                            <!-- 기획서 v1.0 수정 (대표번호 문자수신 서비스 삭제 + 안심마크 라디오버튼, 문구 수정, 클래스 추가, 안심마크 툴팁 안 이미지 및 문구 수정) -->
                             <tr>
                               <th scope="row" class="safety-bg"><span class="form-item__label">안심마크</span>
                                 <!-- 툴팁 -->
@@ -322,11 +321,14 @@
                                   mode="default"
                                 >
                                   <template slot="tooltip-message">
-                                    <div class="message__innerbox">
+                                    <div class="message__innerbox safety-box">
                                       <strong>안심마크란 무엇인가요?</strong>
+                                      <div class="safety-img">
+                                        <img src="@/assets/images/modal/chatroom_safetymark.png" alt="">
+                                      </div>
                                       <ul>
-                                        <li>안심마크는 스미싱과 같은 사고가 많이 발생하는 기업에 대해, 실제 해당 기업에서 문자를 보냈음을 알려주는 인증마크와 + 안심문구가 결합된 기능입니다.</li>
-                                        <li>KISA의 승인을 얻은 사업자에 한해 RCS메시지를 보냈을 때 안심마크를 붙일 수 있으며, 이용을 원치 않는 경우 브랜드 관리자가 대화방 단위로 설정 해지할 수 있습니다.</li>
+                                        <li>안심마크는, 불법 사칭 문자와 구분하기 쉽도록 RCS메시지 상단에 "확인된 발신번호"를 보여주는 서비스입니다.</li>
+                                        <li>한국인터넷진흥원(KISA)에서 인증한 기업만 이용할 수 있습니다.</li>
                                       </ul>
                                     </div>
                                   </template>
@@ -348,7 +350,7 @@
                                 </div>
                               </td>
                             </tr>
-                            <!-- // 기획서 v1.0 수정 (대표번호 문자수신 서비스 삭제 + 안심마크 라디오버튼, 문구 수정, 클래스 추가) -->
+                            <!-- // 기획서 v1.0 수정 (대표번호 문자수신 서비스 삭제 + 안심마크 라디오버튼, 문구 수정, 클래스 추가, 안심마크 툴팁 안 이미지 및 문구 수정) -->
                           </tbody>
                         </table>
                       </div>
@@ -464,8 +466,9 @@
           </ul>
         </div>
         <div class="button__wrap flex-end">
+          <!-- 기획서 v1.0 수정(type 변경) -->
           <ButtonCmp
-              type="btn-blue-line"
+              type="btn-line"
               @click="saveTemp"
           >임시 저장</ButtonCmp>
           <ButtonCmp

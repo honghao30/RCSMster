@@ -556,6 +556,12 @@
             &+.message__innerbox-each{
               margin-top: 16px;
             }
+          }
+          &.safety-box{
+            .safety-img{
+              margin: 16px 0;
+              text-align: center;
+            }
           }     
         }      
       }

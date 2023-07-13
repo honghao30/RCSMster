@@ -19,7 +19,7 @@
             <!-- 기획서 v1.0 수정(추가된 내용에 대한 설명입니다. / 검색: 리스트가 10개 이하인 경우 노출 안 됨 : dropdown-search__wrap 클래스 삭제 시 안틀어짐) -->
             <div class="dropdown-search__wrap">
               <!-- 기획서 v1.0 수정(roomlist-dropdown 클래스 추가) -->
-              <Dropdown :options="TitleOptions" class="w109"/>
+              <Dropdown :options="TitleOptions" class="w135"/>
               <!-- 230616 search-area 공통으로 인해 변경 -->
               <div class="search-area">
                 <span class="input search-box">
@@ -67,8 +67,17 @@
                     <label for="all"></label>
                   </span>
                 </th>
-                <!-- 기획서 v1.0 수정(문구 띄어쓰기) -->
-                <th scope="col"><span>대화방 명</span></th>
+                <!-- 기획서 v1.0 수정(문구 띄어쓰기 / 정렬 추가 ) -->
+                <th scope="col">
+                  <div class="title_sort_warp">
+                    <span>대화방 명
+                      <div class="title_sort_box">
+                        <img src="@/assets/images/icon/icon_sort_top.png" alt="">
+                        <img src="@/assets/images/icon/icon_sort_bottom.png" alt="">
+                      </div>
+                    </span>
+                  </div>
+                </th>
                 <th scope="col"><span>발신번호/챗봇 ID</span></th>
                 <!-- 기획서 v1.0 수정(문구 수정) -->
                 <th scope="col"><span>사용 여부</span></th>
@@ -92,10 +101,14 @@
                 <td>
                   <div class="chat_title__wrap">
                     <div class="chat_title">
-                    <span class="large" v-if="item.large">대량</span>
-                    {{ item.chatTitle }}
+                      <span class="large" v-if="item.large">대량</span>
+                      {{ item.chatTitle }}
+                      <!-- 기획서 v1.0 수정 -->
+                      <div class="chat_title-sub">
+                        <span v-if="item.statusText === '임시저장'" class="temporary-date">{{ item.date }}</span>
+                      </div>
+                      <!-- // 기획서 v1.0 수정 -->
                     </div>
-                    <!-- 기획서 v1.0 수정(chat_title-sub 클래스 삭제 및 위치 변경) -->
                   </div>
                 </td>
                 <td>
@@ -113,18 +126,15 @@
                   <span v-if="!item.chatMenu">X</span>
                 </td>
                 <td>
-                  <!-- 기획서 v1.0 수정(flag-progress 클래스 삭제 + 수정작업 + chat_title-sub 클래스 삭제 및 위치 변경) -->
+                  <!-- 기획서 v1.0 수정(flag-progress 클래스 삭제 + 수정작업) -->
                   <div class="chat-status">
                     <span
                       :class="{'reject':item.statusText==='반려'}"
                     >
                       {{ item.statusText }}
                     </span>
-                    <div class="chat_title-sub">
-                        <span v-if="item.statusText === '임시저장'" class="temporary-date">{{ item.date }}</span>
-                    </div>
-                    </div>
-                    <!-- // 기획서 v1.0 수정(flag-progress 클래스 삭제 + 수정작업 + chat_title-sub 클래스 삭제 및 위치 변경) -->
+                  </div>
+                  <!-- // 기획서 v1.0 수정(flag-progress 클래스 삭제 + 수정작업) -->
                 </td>
               </tr>
             </tbody>
@@ -196,8 +206,8 @@
           type="btn-blue"
           @click="closeMsg"
           >
-            확인
-          </ButtonCmp>
+            비전시
+          </ButtonCmp> <!-- 기획서 v1.0 수정(문구 수정) -->
         </div>
       </ConfirmMsg>
       <!-- // 미사용 버튼 선택 시, 회신번호(챗봇 ID)대화방일 경우 / 발신번호 대화방(발신번호를 회신번호로사용하는 대화방이 없는 경우 + 사용중인 마지막 대화방 경우)-->
@@ -207,7 +217,7 @@
         v-if="isRemoveList"
       >
         <div class="msg" slot="msg">
-          선택한 대화방을 삭제하시겠습니까?
+          대화방을 삭제하시겠습니까? <!-- 기획서 v1.0 수정(문구수정) -->
         </div>
         <div class="button__wrap" slot="button">
           <!-- 취소 선택 시, 체크박스 선택된 상태로 alert 종료 -->

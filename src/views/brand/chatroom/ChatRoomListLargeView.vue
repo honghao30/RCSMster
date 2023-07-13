@@ -101,14 +101,11 @@
           </ul>
         </div>
         <!-- // 기획서 v1.0 수정 (반려 추가) -->
-        <!-- 기획서 v1.0 수정 (링크 연결로 인한 태그변경) -->
+        <!-- 기획서 v1.0 수정 -->
         <div class="button__wrap flex-end">
-          <!-- 기획서 v1.0 수정 (추가된 내용에 대한 설명입니다. / 검수중 인 경우 : disabled -->
+          <!-- 기획서 v1.0 수정 (추가된 내용에 대한 설명입니다. / 검수중 인 경우 : 버튼 미존재 -->
           <router-link to="/ChatRoomLargeModified" class="btn btn-blue">수정</router-link>
-        </div>
-        <!-- // 기획서 v1.0 수정 (링크 연결로 인한 태그변경) -->
-        <!-- 기획서 v1.0 수정 (승인대기 인 경우에 사용됨 / 버튼명 수정될 예정임) -->
-        <div class="button__wrap flex-end">
+          <!-- 기획서 v1.0 수정 (승인대기 인 경우에 사용됨 / 버튼명 수정될 예정임) -->
           <ButtonCmp
             type="btn-blue"
             @click="isCancelRequestModal"
@@ -116,7 +113,7 @@
           승인요청 취소
           </ButtonCmp>
         </div>
-        <!-- // 기획서 v1.0 수정 (승인대기 인 경우에 사용됨 / 버튼명 수정될 예정임) -->
+        <!-- // 기획서 v1.0 수정 -->
       </div>
     </div>
     <!-- 기획서 v1.0 수정(모달 추가) -->
