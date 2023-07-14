@@ -1,84 +1,73 @@
 <template>
-  <div class="form-item__content">
-    <div class="form-item-row">
-      <div class="inner__input">
-        <div class="inner__input-box">
-          <span class="form-item__label">내용</span>
-          <div class="inner__input-item">
-            <div class="input-item">
-              <Dropdown v-model="tableInfo.tableRowNum" :options="tableContentNumOption" @change="changetableRow"/>
-            </div>
-            <div class="input-item">
-              <p class="item-title">테이블 1</p>
-            </div>
-            <div class="input-item">
-              <div class="inner-table table__wrap">
-                <table class="table table-list">
-                  <colgroup>
-                    <col width="62px"/>
-                    <col width="114px"/>
-                    <col />
-                  </colgroup>
-                  <thead>
-                    <tr>
-                      <th><span>라인</span></th>
-                      <th><span>배열</span></th>
-                      <th><span>내용</span></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(item, i) in tableInfo.description" :key="i">
-                      <td>
-                        <span class="checkbox">
-                          <input type="checkbox" :id="`chkLine${i+1}`" v-model="item.tableLine"/>
-                          <label :for="`chkLine${i+1}`"></label>
-                        </span>
-                      </td>
-                      <td>
-                        <div class="flex-row">
-                          <span class="icon-radio">
-                            <input type="radio" :id="`col1_${i+1}`" :name="`colNum${i+1}`" v-model="item.colNum" value="1" class="blind">
-                            <label :for="`col1_${i+1}`">
-                              <i class="icon-row"></i>
-                            </label>
-                          </span>
-                          <span class="icon-radio">
-                            <input type="radio" :id="`col2_${i+1}`" :name="`colNum${i+1}`" v-model="item.colNum" value="2" class="blind">
-                            <label :for="`col2_${i+1}`">
-                              <i class="icon-justify"></i>
-                            </label>
-                          </span>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="flex-row">
-                          <span class="input">
-                            <input type="text" v-model="item.itemLabel"/>
-                          </span>
-                          <span class="input" v-if="item.colNum == 2">
-                            <input type="text" v-model="item.itemData"/>
-                          </span>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="input-item table-warp">
+    <div class="flex-row flex-warp table-item-row" v-for="(item, i) in tableInfo.description" :key="i">
+      <div class="flex-radio">
+        <span class="icon-radio">
+          <input type="radio" :id="`col1_${i+1}`" :name="`colNum${i+1}`" v-model="item.colNum" value="1" class="blind">
+          <label :for="`col1_${i+1}`">
+            <i class="icon-row"></i>
+          </label>
+        </span>
+        <span class="icon-radio">
+          <input type="radio" :id="`col2_${i+1}`" :name="`colNum${i+1}`" v-model="item.colNum" value="2" class="blind">
+          <label :for="`col2_${i+1}`">
+            <i class="icon-justify"></i>
+          </label>
+        </span>
       </div>
+      <div class="flex-input">
+        <span class="input">
+          <div class="font-style"><fontStyle /></div>
+          <div class="row-style" v-if="rowStyleLy"><rowStyle /></div>
+          <input type="text" @focusin="rowStyle" v-model="item.itemLabel"/>
+        </span>
+        <span class="input" v-if="item.colNum == 2">
+          <div class="font-style"><fontStyle /></div>
+          <div class="row-style"><rowStyle /></div>
+          <input type="text"  @focusin="rowStyle" v-model="item.itemData"/>
+        </span>
+      </div>
+      <!-- 기존 라인 부분 -->
+      <div class="flex-btn">
+        <ButtonCmp
+          type="btn-default-line"
+          size="small"
+        >
+          라인
+        </ButtonCmp>
+        <ButtonCmp
+          type="btn-default-line"
+          size="small"
+          v-if="tableInfo.description.length > 1"
+          @click="removeRow(index)"
+        >
+          삭제
+        </ButtonCmp>
+      </div>
+    </div>
+    <div class="flex-row flex-start table-item-row">
+      <ButtonCmp
+        type="btn-default-line"
+        @click="addTableRows"
+        v-if="tableInfo.description.length <= 10"
+      >
+        + 추가하기
+      </ButtonCmp>
     </div>
   </div>
 </template>
 
 <script>
 
-import Dropdown from '@/components/common/Dropdown.vue'
+import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import fontStyle from '@/views/brand/message/components/fontStyle.vue'
+import rowStyle from '@/views/brand/message/components/rowStyle'
 
 export default {
   components: {
-    Dropdown
+    ButtonCmp,
+    fontStyle,
+    rowStyle
   },
   props: {
     tableInfo: {
@@ -99,32 +88,32 @@ export default {
       {
         label: '3개',
         value: 3
-      }]
+      }],
+      rowStyleLy: false
     }
   },
   mounted() {
   },
   methods: {
-    changetableRow () {
-      let row = this.tableInfo.tableRowNum
-      let tableData = this.tableInfo.description
-      let tableLength = tableData.length
-      let diff = row - tableLength
-      let tableItem = {
+    addTableRows () {
+      let tblRows = {
         line: false,
         colNum: '1',
         itemLabel: '',
         itemData: ''
       }
-      if (diff > 0) {
-        for (let i = 0; i < diff; i++) {
-          tableData.push(tableItem)
-        }
-      } else if (diff < 0) {
-        for (let i = 0; i < -diff; i++) {
-          tableData.pop()
-        }
+      if (this.tableInfo.description.length < 10) {
+        this.tableInfo.description.push(tblRows)
+        console.log('테이블 추가', tblRows)
       }
+    },
+    removeRow (index) {
+      if (this.tableInfo.description.length > 1) {
+        this.tableInfo.description.splice(index, 1)
+      }
+    },
+    rowStyle () {
+      this.rowStyleLy = !this.rowStyleLy
     }
   }
 }

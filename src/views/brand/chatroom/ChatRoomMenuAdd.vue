@@ -5,16 +5,18 @@
       <div class="brand-info__wrap">
         <PageTitle pagetitle="대화방 메뉴 등록" />
         <!-- 기획서 v1.0 수정 및 추가 작업 -->
-        <div class="chatroom__wrap chatroom-menu__wrap">
+        <div class="chatroom__wrap chatroom-menu__wrap"> <!-- 기획서 v1.0 수정 (chatroom-menu__wrap 이중클래스 추가) -->
           <div class="chatroom-registration">
             <form  ref="form" :model="form">
               <div class="table__wrap menu-add-table">
                 <table class="table table-bodyonly form-table">
                   <colgroup>
+                    <!-- 기획서 v1.0 수정 (col 삭제) -->
                     <col />
                     <col />
                   </colgroup>
                   <tbody>
+                    <!-- 기획서 v1.0 수정 (사용여부 삭제, 대화방 수정) -->
                     <tr>
                       <th scope="row" width="77px"><span class="form-item__label">대화방</span>
                       </th>
@@ -39,6 +41,7 @@
                         </div>
                       </td>
                     </tr>
+                    <!-- // 기획서 v1.0 수정 (사용여부 삭제, 대화방 수정) -->
                     <tr>
                       <td colspan="2" class="card-box">
                         <div class="form-item__content">
@@ -127,7 +130,7 @@
                                         </span>
                                         <span class="radiobox">
                                           <input type="radio" name="chatroomMenu" value="web" v-model="menu.checkItem" id="radio2"  />
-                                          <label for="radio2"><span class="radiobox__text">웹사이트 연결</span></label>
+                                          <label for="radio2"><span class="radiobox__text">웹사이트 연결</span></label> <!-- 기획서 v1.0 수정 (문구 수정) -->
                                         </span>
                                         <span class="radiobox">
                                           <input type="radio" name="chatroomMenu" value="news" v-model="menu.checkItem" id="radio3" />
@@ -153,18 +156,19 @@
                                       </div>
                                     </td>
                                   </tr>
+                                  <!-- 기획서 v1.0 수정 (case01,case02 추가 및 수정) -->
                                   <tr v-if="menu.checkItem === 'web'">
-                                    <th scope="row"><span class="form-item__label">웹사이트</span></th>
+                                    <th scope="row"><span class="form-item__label">웹사이트</span></th> <!--기획서 v1.0 수정(문구 수정) -->
                                     <td>
                                       <div class="form-item__content">
-                                        <!-- Default: 브랜드 개설 시 입력한 웹사이트 노출 -->
+                                        <!-- case01. Default: 브랜드 개설 시 입력한 웹사이트 노출 -->
                                         <div class="form-item-row">
                                           <div class="input-item">
                                             <span class="input"><input type="text" class="input" placeholder="https://www-qa.rcsbizcenter.com/service/brand/BR.13L49F42Mo/psmenu/unit/bot-9467llz2olr" v-model="menu.web" disabled></span>
                                           </div>
                                         </div>
-                                        <!-- // Default: 브랜드 개설 시 입력한 웹사이트 노출 -->
-                                        <!-- 등록된 웹사이트가 없는 경우 -->
+                                        <!-- // case01. Default: 브랜드 개설 시 입력한 웹사이트 노출 -->
+                                        <!-- case02. 등록된 웹사이트가 없는 경우 -->
                                         <div class="form-item-row web-registration-box">
                                           <div>
                                             <p>브랜드 개설 시 입력한 웹사이트가 없습니다.<br>웹사이트를 등록해주세요.</p>
@@ -173,10 +177,11 @@
                                             </div>
                                           </div>
                                         </div>
-                                        <!-- // 등록된 웹사이트가 없는 경우 -->
+                                        <!-- // case02. 등록된 웹사이트가 없는 경우 -->
                                       </div>
                                     </td>
                                   </tr>
+                                  <!-- // 기획서 v1.0 수정 (case01,case02 추가 및 수정) -->
                                   <tr v-if="menu.checkItem === 'news'">
                                     <th scope="row"><span class="form-item__label">URL</span></th>
                                     <td>
@@ -195,21 +200,23 @@
                                     </td>
                                   </tr>
                                   <tr v-if="menu.checkItem === 'chatbot'">
-                                    <th scope="row"><span class="form-item__label">양방향 대행사</span></th>
+                                    <th scope="row"><span class="form-item__label">양방향 대행사</span></th> <!--기획서 v1.0 수정(문구 수정) -->
                                     <td>
-                                      <!-- 청약 대행사 O / 대행사 연결 O / 간편챗봇 메시지 등록 O : 양방향 대행사 선택 경우, chatbot-des 클래스 삭제 -->
-                                      <!-- 청약 대행사 O / 대행사 연결 X : 양방향 대행사 선택 경우, chatbot-des 클래스 필요 -->
+                                      <!-- 기획서 v1.0 수정 (case01,case02 추가 및 수정) -->
+                                      <!-- case01. 청약 대행사 O / 대행사 연결 O / 간편챗봇 메시지 등록 O : 양방향 대행사 선택 경우, chatbot-des 클래스 삭제 -->
+                                      <!-- case02. 청약 대행사 O / 대행사 연결 X : 양방향 대행사 선택 경우, chatbot-des 클래스 필요) -->
                                       <div class="chatbot-agency">
                                         <div class="chatbot-des">
-                                        <p>
-                                          현재 연결된 양방향 대행사가 없습니다.<br>
-                                          대행사 연결 후 간편챗봇 메시지를 등록할 수 있습니다.
-                                        </p>
+                                          <p>
+                                            현재 연결된 양방향 대행사가 없습니다.<br>
+                                            대행사 연결 후 간편챗봇 메시지를 등록할 수 있습니다.
+                                          </p>
+                                        </div>
+                                        <Dropdown :options="chatbotOptions"
+                                          >
+                                        </Dropdown>
                                       </div>
-                                      <Dropdown :options="chatbotOptions"
-                                        >
-                                      </Dropdown>
-                                      </div>
+                                      <!-- // 기획서 v1.0 수정 (case01,case02 추가 및 수정) -->
                                     </td>
                                   </tr>
                                   <tr v-if="menu.checkItem === 'chatbot'">
@@ -223,7 +230,7 @@
                                           <ButtonCmp
                                             type="btn-default-line"
                                             @click="chatBotSelect"
-                                          >간편챗봇 메시지</ButtonCmp>
+                                          >간편챗봇 메시지</ButtonCmp> <!--기획서 v1.0 수정(문구 수정) -->
                                         </div>
                                         <!-- 기획서 v1.0 수정(청약 대행사 X / 대행사 연결 X) -->
                                         <div class="form-item-row notchat__wrap">
@@ -555,7 +562,7 @@ export default {
       newsErrorMsg: false,
       chatbotErrorMsg: false,
       isWebRegistration: false, // 기획서 v1.0 수정
-      isRemoveMenu: false,
+      isRemoveMenu: false, // 기획서 v1.0 수정
       chatInfoData: {
         chatRoomName: 'SYSTEM STUDIOS',
         allowMsg: 'Y'

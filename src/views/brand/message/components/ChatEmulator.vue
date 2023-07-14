@@ -102,7 +102,7 @@
 
         </transition>
       </div>
-      <div class="emulator-footer">
+      <div class="emulator-footer" v-if="hideInputFooter">
         <div class="emulator-footer__inner">
           <div class="emulator-footer__top">
             <ButtonCmp
@@ -193,6 +193,10 @@ export default {
     viewMode: {
       type: String,
       defalut: ''
+    },
+    hideInputFooter: {
+      type: Boolean,
+      default: true
     }
   },
   data () {

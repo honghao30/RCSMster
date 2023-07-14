@@ -654,7 +654,14 @@
   }
   
 }
-
+.btnStyleA {
+  width:25px;
+  height:25px;
+  min-width: fit-content;
+  line-height: 25px;
+  padding:0;
+  background: url('../assets/images/icon/icon_style.png') no-repeat;
+}
 
 .btn__area--top {
   display: flex;
@@ -725,6 +732,126 @@
   gap: 10px;
   padding-bottom: 10px;
 }
+//템플릿 에뮬
+.emulator-template-body{
+  flex: auto;
+  padding: 12px 16px !important;
+  .chat-time {
+    text-align: center;
+    @include fontoption(12px,#888,400,18px);
+  }
+  .safty-icon-wrap {
+    margin-top: 20px;
+    @include fontoption(11px,#888,400,18px);
+    .safty-icon {
+      color: #0381FE;
+      margin-left:4px;
+      &::before {
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        margin-right:4px;
+        width:12px;
+        height:12px;
+        background-image: url('../assets/images/icon/icon_safety_blue.png');
+        background-position: center center;
+        background-repeat: no-repeat;
+        margin-bottom: 3px;
+      }
+    }
+  }
+  .template__wrap--preview {
+   margin-top:4px;
+   padding: 20px 20px 24px 20px;
+   display: flex;
+   flex-direction: column;
+   background-color: #F2F2F2;
+   border-radius: 12px;
+   gap: 20px;
+  }
+}
+.template-cmp-title {  
+  border-bottom: 2px solid #444;
+  min-height: 40px;
+  position: relative;  
+  gap: 4px;
+  display: flex;
+  align-items: center;
+  &.itemPoint {
+    border-bottom:0;
+    flex-direction: column;
+    justify-content: flex-start;
+    .mainTitle {
+      border-bottom: 0;
+      width: 100%;
+      line-height:20px;
+      font-size:20px;
+    }
+  }
+  i {
+    vertical-align: middle;
+    margin-top: 8px;
+  }
+  span {
+    @include fontoption(18px, #000, 700, 24px);
+  }
+  .constName {
+    position: absolute;
+    right:0;
+    top:50%;
+    transform: translateY(-50%);
+    @include fontoption(16px,#2F77FBB2,700,24px);    
+  }
+  .item-poinst-logo {
+    position: absolute;
+    right:0;
+    top:50%;
+    transform: translateY(-50%);
+    width:60px;
+    height:60px;
+    img {
+      width: 100%;
+    }
+  }
+  .mainDesc {
+    @include fontoption(12px,#666666,400,20px); 
+    width: 100%;
+  }
+}
+.table-cmp-title {
+  @include fontoption(16px, #000, 700, 24px);
+  padding-bottom: 8px;
+  border-bottom: 2px solid #444;
+}
+.template-cmp-description {
+  min-height: 66px;
+  @include fontoption(14px, #999, 400, 22px);
+}
+.template-cmp-button {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  .btn-template {
+    border-radius: 8px;
+    width: 100%;
+    background-color: #E4E4E4;
+    height:46px;
+    @include fontoption(14px, #000, 500, 22px);
+    line-height: 46px;
+  }
+}
+.brand-color-select {
+  a {
+    text-decoration: underline;
+  }
+  .radiobox {
+    width:auto;
+    &+.radiobox {
+      margin-left:150px;
+    }
+  }
+}
+//템플릿 에뮬
 .form-table {
   .template-button {
     .input-item {
@@ -738,15 +865,44 @@
   }
 }
 
+.form-table {
+  .input-item {
+    &.table-warp {
+      display: block;
+    }
+  }
+}
 .flex-row {
   display:flex;
-  gap: 8px;
+  gap: 15px;
   align-items: center;
   justify-content: center;
+  &.flex-warp {
+    flex: auto;
+    width: 100%;
+  }
+  .flex-radio {
+    display: flex;
+    gap: 8px;
+  }
+  .flex-input {
+    display: flex;
+    gap: 8px;
+    flex: auto;
+    width: 100%;
+  }
+  .flex-btn {
+    display: flex;
+    gap: 8px;
+  }
   .table-input {
     display: flex;
   }
+  &.flex-start {
+    justify-content: flex-start;
+  }
 }
+
 .icon-radio {
   display:inline-block;
   width: 30px;
@@ -812,6 +968,152 @@
             background-color:#000;
           }
         }
+      }
+    }
+  }
+}
+.input-item +.tem_title{
+    margin-top: 16px;
+}
+.tem_title{
+  .logoList {
+    gap: 4px;
+    .radiobox {
+        width: auto;
+    }
+    input[type=radio] + label {
+      margin-bottom: 8px;
+        &:before {
+          display: flex;
+          padding: 5px 7px;
+          border: 1px solid #ccc;
+          gap: 4px;
+          border-radius: 8px;
+          width: 98px;
+          min-width: 98px;
+          height: 38px;
+          margin-right: 8px;
+          position: relative;
+          align-items: center;
+        }            
+    }      
+    input[type=radio]:checked + label {
+        &:before  {
+            border: 1px solid #000;
+            background: transparent;
+        }
+    }
+    .radiobox__img{
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      vertical-align: middle;
+      position: absolute;
+      left: 7px;
+    }
+    .radiobox__text{
+      position: absolute;
+      left: 38px;
+    }
+    &.logoList_none{
+      .radiobox__img{
+        background-image: url('../assets/images/icon/icon_image_border_delete.png');
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+  .guide-text{
+    margin-top: 0;
+  }
+}
+
+.table__wrap {
+  .btn {
+      line-height: 100%;
+  }
+}
+
+.table-bodyonly {
+  .bdBottom-bg {
+    th,td {
+      border-bottom: 1px solid #BCBCBC;
+    }
+  }
+}
+
+.registration__wrap {
+  .textarea {
+    textarea {
+      max-height: 70px;
+    }
+  }
+}
+
+.input-url {
+  .input {
+    padding-top: 12px;
+    display: flex;
+    &::before {
+      content: '';
+      display: inline-block;
+      position: relative;
+      width: 30px;
+      height: 30px;
+      background-image: url('../assets/images/icon/icon_url.png');
+      top: 3px;
+      margin-right: 12px;
+    }
+  }
+}
+
+.input-left {
+  .input {
+    display: flex;
+    &::before {
+      content: '';
+      display: inline-block;
+      position: relative;
+      width: 30px;
+      height: 30px;
+      background-image: url('../assets/images/icon/icon_input_left.png');
+      top: 3px;
+      margin-right: 12px;
+    }
+  }
+}
+
+.input-right {
+  .input {
+    display: flex;
+    &::before {
+      content: '';
+      display: inline-block;
+      position: relative;
+      width: 30px;
+      height: 30px;
+      background-image: url('../assets/images/icon/icon_input_right.png');
+      top: 3px;
+      margin-right: 12px;
+    }
+  }
+}
+
+.form-table {
+  .form-item__content {
+    .form-template {
+      display: block;
+      .template-detail {
+        padding-left: 42px;
+        padding-bottom: 12px;
+      }
+      .template-button {
+        padding-top: 12px;
+        display: flex;
+        gap: 8px;
       }
     }
   }

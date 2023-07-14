@@ -38,16 +38,16 @@
                       </td>
                     </tr>
                     <!-- //템플릿 유형 -->
-                    <!-- 템플릿 유형 -->
+                    <!-- 템플릿 상품 -->
                     <tr>
                       <th scope="row"><span class="form-item__label">템플릿 상품</span></th>
                       <td>
-                        <span class="text">LMS 템플릿(템플릿 유형)</span>
+                        <span class="text">{{ templateType }}</span>
                       </td>
                     </tr>
-                    <!-- //템플릿 유형 -->
+                    <!-- //템플릿 상품 -->
                     <!-- 템플릿 명 -->
-                    <tr>
+                    <tr class="bdBottom-bg">
                       <th scope="row"><span class="form-item__label required">템플릿 명</span></th>
                       <td>
                         <div class="form-item__content">
@@ -67,312 +67,578 @@
                       </td>
                     </tr>
                     <!-- //템플릿 명 -->
-                    <!-- 타이틀 선택형 - 서술 -->
-                    <tr>
-                      <th scope="row"><span class="form-item__label required">타이틀</span></th>
-                      <td>
-                        <div class="form-item__content">
-
-                          <!-- LMS 로고 등록 -->
-                          <div class="form-item-row">
-                            <div class="inner__input">
-                                <div class="inner__input-box">
-                                  <span class="form-item__label">로고</span>
-                                  <div class="inner__input-item">
-                                    <div class="input-item">
-                                      <span class="radiobox">
-                                        <input type="radio" name="logo" id="basicImage" v-model="form.logoType"  value="basicImage" />
-                                        <label for="basicImage">기본 아이콘</label>
-                                      </span>
-                                      <span class="radiobox">
-                                        <input type="radio" name="logo" id="custom" v-model="form.logoType" value="custom" />
-                                        <label for="custom">직접 등록</label>
-                                      </span>
-                                    </div>
-                                    <template v-if="form.logoType === 'basicImage'">
-                                      <div class="input-item logoList">
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType1" value="logoType1"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType1"><span class="irtext">없음</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType1" value="logoType1"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType1"><span class="irtext">알림</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType2" value="logoType2"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType2"><span class="irtext">이벤트</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType3" value="logoType3"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType3"><span class="irtext">프로모션</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType4" value="logoType4"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType4"><span class="irtext">영수증</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType5" value="logoType5"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType5"><span class="irtext">예약</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType5" value="logoType5"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType5"><span class="irtext">쿠폰</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType5" value="logoType5"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType5"><span class="irtext">승인</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType5" value="logoType5"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType5"><span class="irtext">입금</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType5" value="logoType5"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType5"><span class="irtext">출금</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType5" value="logoType5"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType5"><span class="irtext">취소</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType5" value="logoType5"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType5"><span class="irtext">주문</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType5" value="logoType5"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType5"><span class="irtext">출고</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType5" value="logoType5"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType5"><span class="irtext">배송</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType5" value="logoType5"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType5"><span class="irtext">회원가입</span></label>
-                                        </span>
-                                        <span class="radiobox">
-                                          <input type="radio" name="logo" id="logoType5" value="logoType5"
-                                            v-model="form.title.logoType"
-                                          />
-                                          <label for="logoType5"><span class="irtext">인증</span></label>
-                                        </span>
-                                      </div>
-                                    </template>
-                                    <template  v-if="form.logoType === 'custom'">
-                                      <div class="input-item w--full">
-                                        <span class="input">
-                                          <input type="text" class="input" :value="form.logoFile" disabled>
-                                        </span>
-                                        <input type="file" id="fileUp" class="input blind"
-                                        @change="onFileChanged">
-                                        <label for="fileUp" class="btn btn-default-line">파일 선택</label>
-                                      </div>
-                                      <p class="guide-text black">&middot; 파일형식: PNG, GIF (최대 1MB)</p>
-                                    </template>
-                                  </div>
-                              </div>
-                            </div>
-                          </div>
-                           <!-- // LMS 로고 등록 -->
-                          <!-- 타이틀 자유형_서술-! -->
-                          <div class="form-item-row">
-                            <div class="inner__input">
-                              <div class="inner__input-box">
-                                <span class="form-item__label">제목</span>
-                                <div class="inner__input-item">
-                                  <div class="input-item input-limit">
-                                    <div class="input">
-                                      <input type="text"
-                                        class="input"
-                                        maxlength="30"
-                                        ref="mainTitle"
-                                        @input="e => form.MainTitle.info.mainTitle = e.target.value"
-                                        placeholder="최대 17자 까지 입력할 수 있습니다."
-                                      >
-                                      <div class="input-limit__text">
-                                        <Emoji @input="onSelectEmoji($event, 'mainTitle')" />
-                                        <p>{{ form.MainTitle.info.mainTitle.length }}/30자</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <!-- //타이틀 선택형 - 서술 -->
-                    <!-- 본문 사용 미 사용 -->
-                    <tr>
-                      <th scope="row"><span class="form-item__label">본문</span></th>
-                      <td>
-                        <div class="form-item__content">
-                          <!-- 설명 사용여부 -->
-                          <div class="form-item-row">
-                              <div class="input-item">
-                                <span class="radiobox">
-                                  <input type="radio" name="userCont" checked id="DescriptionN" value="DescriptionN"
-                                    v-model="form.Description.user"
-                                  />
-                                  <label for="DescriptionN">미사용</label>
-                                </span>
-                                <span class="radiobox">
-                                  <input type="radio" name="userCont" id="DescriptionY" value="DescriptionY"
-                                    v-model="form.Description.user"
-                                  />
-                                  <label for="DescriptionY">사용</label>
-                                </span>
-                              </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <!-- //본문 사용 미 사용 -->
-                    <!-- 본문 서술 2단 일  경우 반복 되는 영역 -->
-                    <template v-if="form.Description.user === 'DescriptionY'">
-                      <tr>
-                        <th scope="row"><span class="form-item__label required">본문</span></th>
+                    <!-- 타이틀 -->
+                      <!-- 장문형, 문단형, 청구서형 -->
+                      <tr v-if="isLmsType1 || isLmsType3 || isLmsType4">
+                        <th scope="row"><span class="form-item__label">타이틀 - 로고</span></th>
                         <td>
                           <div class="form-item__content">
-                            <!-- 소제목 사용여부 -->
                             <div class="form-item-row">
-                              <div class="inner__input">
-                                <div class="inner__input-box">
-                                  <span class="form-item__label">소제목</span>
-                                  <div class="inner__input-item">
-                                    <div class="input-item">
-                                      <span class="radiobox">
-                                        <input type="radio" name="minititleuser" id="minititleN" value="minititleN"
-                                          v-model="form.title.minititleuser"
-                                        />
-                                        <label for="minititleN">미사용</label>
-                                      </span>
-                                      <span class="radiobox">
-                                        <input type="radio" name="minititleuser" id="minititleY" value="minititleY"
-                                          v-model="form.title.minititleuser"
-                                        />
-                                        <label for="minititleY">사용</label>
-                                      </span>
-                                    </div>
-                                    <template v-if="form.title.minititleuser === 'minititleY'">
-                                      <div class="input-item input-limit">
-                                        <div class="input">
-                                          <input type="text"
-                                            class="input"
-                                            maxlength="8"
-                                            ref="miniTitle"
-                                            v-model="form.title.minititle"
-                                            @input="e => form.title.minititle = e.target.value"
-                                            placeholder="최대 17자 까지 입력할 수 있습니다."
-                                          >
-                                          <div class="input-limit__text">
-                                            <Emoji @input="onSelectEmoji($event, 'miniTitle')" />
-                                            <p>{{ form.title.minititle.length }}/8자</p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </template>
-                                  </div>
-                                </div>
+                              <div class="input-item">
+                                <span class="radiobox">
+                                  <input type="radio" name="logo" id="basicImage" v-model="form.logoType"  value="basicImage" />
+                                  <label for="basicImage">기본 아이콘</label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="logo" id="custom" v-model="form.logoType" value="custom" />
+                                  <label for="custom">직접 등록</label>
+                                </span>
                               </div>
+                              <template v-if="form.logoType === 'basicImage'">
+                                <TemplateTitleReg
+                                  :titleIconNewData="titleIconNewData"
+                                  :titleIconBasicData="titleIconBasicData"
+                                />
+                              </template>
+                              <template  v-if="form.logoType === 'custom'">
+                                <div class="input-item w--full">
+                                  <span class="input">
+                                    <input type="text" class="input" :value="form.logoFile" disabled>
+                                  </span>
+                                  <input type="file" id="fileUp" class="input blind"
+                                  @change="onFileChanged">
+                                  <label for="fileUp" class="btn btn-default-line">파일 선택</label>
+                                </div>
+                                <p class="guide-text black">&middot; 파일형식: PNG, GIF (최대 1MB)</p>
+                              </template>
                             </div>
-                            <!-- //소제목 사용여부 -->
-                            <!-- 내용 사용 여부 -->
-                            <template>
-                              <div class="form-item-row">
-                                <div class="inner__input">
-                                  <div class="inner__input-box">
-                                    <span class="form-item__label">내용</span>
-                                    <div class="inner__input-item">
-                                      <div class="input-item input-limit">
-                                        <div class="textarea">
-                                          <textarea maxlength="300" placeholder="내용을 입력해주세요."
-                                          @input="e => form.Description.info.description = e.target.value"
-                                          ref="descContent"></textarea>
-                                          <div class="textarea-limit__text">
-                                            <Emoji @input="onSelectEmoji($event, 'descContent')"/>
-                                            <p>
-                                              {{ form.Description.info.description.length }}/300자
-                                            </p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <p class="guide-text error">내용을 선택해주세요.</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </template>
-                            <!-- //내용 사용 여부 -->
-                            <!-- 테이블 일 경우 -->
-                            <template>
-                              <TemplateTableReg
-                                :tableInfo="form.Table.info"
-                              />
-                            </template>
-                            <!-- // 테이블 일 경우 -->
                           </div>
                         </td>
                       </tr>
-                      <!-- // 본문 -->
-                      <!-- 버튼 -->
-                      <tr>
-                        <th scope="row"><span class="form-item__label">버튼</span></th>
+                      <tr class="bdBottom-bg" v-if="isLmsType1 || isLmsType3 || isLmsType4">
+                        <th scope="row"><span class="form-item__label required">타이틀 - 제목</span></th>
                         <td>
                           <div class="form-item__content">
-                              <div class="form-item-row">
-                                <div class="input-item">
-                                  <span class="radiobox">
-                                    <input type="radio" name="btnUse" id="btnUseN" value="N" v-model="form.Buttons.use" @change="buttonUseCheck"/>
-                                    <label for="btnUseN"><span class="radiobox__text">미사용</span></label>
-                                  </span>
-                                  <span class="radiobox">
-                                    <input type="radio" name="btnUse" id="btnUseY" value="Y" v-model="form.Buttons.use" @change="buttonUseCheck"/>
-                                    <label for="btnUseY"><span class="radiobox__text">사용</span></label>
-                                  </span>
+                            <div class="form-item-row">
+                              <div class="input-item input-limit">
+                                <div class="input">
+                                  <input type="text"
+                                    class="input"
+                                    maxlength="17"
+                                    ref="mainTitle"
+                                    @input="e => form.MainTitle.info.mainTitle = e.target.value"
+                                    placeholder="제목을 입력해주세요."
+                                  >
+                                  <div class="input-limit__text">
+                                    <Emoji @input="onSelectEmoji($event, 'mainTitle')" />
+                                    <p>{{ form.MainTitle.info.mainTitle.length }}/17자</p>
+                                  </div>
                                 </div>
                               </div>
+                            </div>
                           </div>
+                        </td>
+                      </tr>
+                      <!-- //장문형, 문단형, 청구서형 -->
+                      <!-- 타이틀 강조형 -->
+                      <tr v-if="isLmsType2">
+                        <th scope="row"><span class="form-item__label required">타이틀 - 제목</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item input-limit">
+                                <div class="input">
+                                  <input type="text"
+                                    class="input"
+                                    maxlength="17"
+                                    ref="mainTitle"
+                                    @input="e => form.MainTitle.info.mainTitle = e.target.value"
+                                    placeholder="제목을 입력해주세요."
+                                  >
+                                  <div class="input-limit__text">
+                                    <Emoji @input="onSelectEmoji($event, 'mainTitle')" />
+                                    <p>{{ form.MainTitle.info.mainTitle.length }}/17자</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr v-if="isLmsType2">
+                        <th scope="row"><span class="form-item__label">타이틀 - 설명</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item">
+                                <span class="radiobox">
+                                  <input type="radio" name="explainUse" id="explainUseN" value="N" v-model="form.explainUse"/>
+                                  <label for="explainUseN"><span class="radiobox__text">미사용</span></label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="explainUse" id="explainUseY" value="Y" v-model="form.explainUse"/>
+                                  <label for="explainUseY"><span class="radiobox__text">사용</span></label>
+                                </span>
+                              </div>
+                              <div class="input-item input-limit" v-if="form.explainUse === 'Y'">
+                                <div class="input">
+                                  <input type="text" class="input" maxlength="20"
+                                    v-model="form.explainContent"
+                                    placeholder="설명을 입력해주세요."
+                                    ref="explainContent"
+                                  >
+                                  <div class="input-limit__text">
+                                    <p>{{ form.MainTitle.info.mainExplain.length }}/20자</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="bdBottom-bg" v-if="isLmsType2">
+                        <th scope="row"><span class="form-item__label">타이틀 - 로고</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item">
+                                <span class="radiobox">
+                                  <input type="radio" name="logo" id="basicImage" v-model="form.logoType"  value="basicImage" />
+                                  <label for="basicImage">기본 아이콘</label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="logo" id="custom" v-model="form.logoType" value="custom" />
+                                  <label for="custom">직접 등록</label>
+                                </span>
+                              </div>
+                              <template v-if="form.logoType === 'basicImage'">
+                                <TemplateTitleReg
+                                  :titleIconNewData="titleIconNewData"
+                                  :titleIconBasicData="titleIconBasicData"
+                                />
+                              </template>
+                              <template  v-if="form.logoType === 'custom'">
+                                <div class="input-item w--full">
+                                  <span class="input">
+                                    <input type="text" class="input" :value="form.logoFile" disabled>
+                                  </span>
+                                  <input type="file" id="fileUp" class="input blind"
+                                  @change="onFileChanged">
+                                  <label for="fileUp" class="btn btn-default-line">파일 선택</label>
+                                </div>
+                                <p class="guide-text black">&middot; 파일형식: PNG, GIF (최대 1MB)</p>
+                              </template>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <!-- //타이틀 강조형 -->
+                    <!-- //타이틀 -->
+                    <!-- 본문 - 장문형, 타이틀 강조형, 청구서형-->
+                    <tr v-if="isLmsType1 || isLmsType2 || isLmsType4">
+                      <th scope="row"><span class="form-item__label required">본문 - 소제목</span></th>
+                      <td>
+                        <div class="form-item__content">
+                          <div class="form-item-row">
+                            <div class="input-item">
+                              <span class="radiobox">
+                                <input type="radio" name="minititleuser" id="minititleN" value="minititleN"
+                                  v-model="form.title.minititleuser"
+                                />
+                                <label for="minititleN">미사용</label>
+                              </span>
+                              <span class="radiobox">
+                                <input type="radio" name="minititleuser" id="minititleY" value="minititleY"
+                                  v-model="form.title.minititleuser"
+                                />
+                                <label for="minititleY">사용</label>
+                              </span>
+                            </div>
+                            <template v-if="form.title.minititleuser === 'minititleY'">
+                              <div class="input-item input-limit">
+                                <div class="input">
+                                  <input type="text"
+                                    class="input"
+                                    maxlength="20"
+                                    ref="miniTitle"
+                                    v-model="form.title.minititle"
+                                    @input="e => form.title.minititle = e.target.value"
+                                    placeholder="제목을 입력해주세요."
+                                  >
+                                  <div class="input-limit__text">
+                                    <Emoji @input="onSelectEmoji($event, 'miniTitle')" />
+                                    <p>{{ form.title.minititle.length }}/20자</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </template>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="bdBottom-bg" v-if="isLmsType1 || isLmsType2 || isLmsType4">
+                      <th scope="row"><span class="form-item__label required">본문 - 내용</span></th>
+                      <td>
+                        <div class="form-item__content">
+                          <div class="form-item-row">
+                            <div class="input-item input-limit">
+                              <div class="textarea">
+                                <textarea maxlength="1300" placeholder="내용을 입력해주세요."
+                                @input="e => form.Description.info.description = e.target.value"
+                                ref="descContent"></textarea>
+                                <div class="textarea-limit__text">
+                                  <Emoji @input="onSelectEmoji($event, 'descContent')"/>
+                                  <p>
+                                    {{ form.Description.info.description.length }}/1,300자
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <p class="guide-text error">내용을 선택해주세요.</p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- //본문 - 장문형, 타이틀 강조형, 청구서형 -->
+                    <!-- 본문 & 버튼 - 문단형 -->
+                      <!-- 본문 1 -->
+                      <tr v-if="isLmsType3">
+                        <th scope="row"><span class="form-item__label required">본문1 - 소제목</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item">
+                                <span class="radiobox">
+                                  <input type="radio" name="minititle1user" id="minititle1N" value="minititle1N"
+                                    v-model="form.title.minititle1user"
+                                  />
+                                  <label for="minititle1N">미사용</label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="minititle1user" id="minititle1Y" value="minititle1Y"
+                                    v-model="form.title.minititle1user"
+                                  />
+                                  <label for="minititle1Y">사용</label>
+                                </span>
+                              </div>
+                              <template v-if="form.title.minititle1user === 'minititle1Y'">
+                                <div class="input-item input-limit">
+                                  <div class="input">
+                                    <input type="text"
+                                      class="input"
+                                      maxlength="20"
+                                      ref="minititle1"
+                                      v-model="form.title.minititle1"
+                                      @input="e => form.title.minititle1 = e.target.value"
+                                      placeholder="최대 17자 까지 입력할 수 있습니다."
+                                    >
+                                    <div class="input-limit__text">
+                                      <Emoji @input="onSelectEmoji($event, 'minititle1')" />
+                                      <p>{{ form.title.minititle1.length }}/20자</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </template>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr v-if="isLmsType3">
+                        <th scope="row"><span class="form-item__label required">본문1 - 내용</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item input-limit">
+                                <div class="textarea">
+                                  <textarea maxlength="1300" placeholder="내용을 입력해주세요."
+                                  @input="e => form.Description.info.description = e.target.value"
+                                  ref="descContent"></textarea>
+                                  <div class="textarea-limit__text">
+                                    <Emoji @input="onSelectEmoji($event, 'descContent')"/>
+                                    <p>
+                                      {{ form.Description.info.description.length }}/1,300자
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <p class="guide-text error">내용을 선택해주세요.</p>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr v-if="isLmsType3" v-for="(button,index) in form.Buttons.info" :key="index">
+                        <th scope="row"><span class="form-item__label">본문1 - 버튼{{ index + 1 }} </span></th>
+                        <td>
                           <TemplateButtonReg
-                          :buttonInfo="form.Buttons.info"
-                            v-if="form.Buttons.use === 'Y'"
+                          :buttonInfo="button"
                           />
                         </td>
                       </tr>
-                      <!-- // 버튼 -->
-                    </template>
+                      <tr class="bdBottom-bg" v-if="isLmsType3">
+                        <th scope="row"><span class="form-item__label">버튼색 </span></th>
+                        <td>
+                          <!-- 버튼 칼라 -->
+                          <div class="form-item-row">
+                              <div class="input-item brand-color-select">
+                                <span class="radiobox">
+                                  <input type="radio" name="bgColor" id="defaultColor" value="#2f77fb"/>
+                                  <label for="defaultColor">기본색</label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="bgColor" id="brandColor" disabled value="#70AD47" />
+                                  <label for="brandColor">브랜드색 (
+                                    <router-link to="#">
+                                    브랜드 색 설정
+                                  </router-link> )</label>
+                                </span>
+                              </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <!-- 본문 2 -->
+                      <tr v-if="isLmsType3">
+                        <th scope="row"><span class="form-item__label required">본문2 - 소제목</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item">
+                                <span class="radiobox">
+                                  <input type="radio" name="minititle2user" id="minititle2N" value="minititle2N"
+                                    v-model="form.title.minititle2user"
+                                  />
+                                  <label for="minititle2N">미사용</label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="minititle2user" id="minititle2Y" value="minititle2Y"
+                                    v-model="form.title.minititle2user"
+                                  />
+                                  <label for="minititle2Y">사용</label>
+                                </span>
+                              </div>
+                              <template v-if="form.title.minititle2user === 'minititle2Y'">
+                                <div class="input-item input-limit">
+                                  <div class="input">
+                                    <input type="text"
+                                      class="input"
+                                      maxlength="20"
+                                      ref="minititle2"
+                                      v-model="form.title.minititle2"
+                                      @input="e => form.title.minititle2 = e.target.value"
+                                      placeholder="제목을 입력해주세요."
+                                    >
+                                    <div class="input-limit__text">
+                                      <Emoji @input="onSelectEmoji($event, 'minititle2')" />
+                                      <p>{{ form.title.minititle2.length }}/20자</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </template>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr v-if="isLmsType3">
+                        <th scope="row"><span class="form-item__label required">본문2 - 내용</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item input-limit">
+                                <div class="textarea">
+                                  <textarea maxlength="1300" placeholder="내용을 입력해주세요."
+                                  @input="e => form.Description.info.description = e.target.value"
+                                  ref="descContent"></textarea>
+                                  <div class="textarea-limit__text">
+                                    <Emoji @input="onSelectEmoji($event, 'descContent')"/>
+                                    <p>
+                                      {{ form.Description.info.description.length }}/1,300자
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <p class="guide-text error">내용을 선택해주세요.</p>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr v-if="isLmsType3" v-for="(button,index) in form.Buttons.info" :key="index">
+                        <th scope="row"><span class="form-item__label">본문2 - 버튼{{ index + 1 }} </span></th>
+                        <td>
+                          <TemplateButtonReg
+                          :buttonInfo="button"
+                          />
+                        </td>
+                      </tr>
+                      <tr class="bdBottom-bg" v-if="isLmsType3">
+                        <th scope="row"><span class="form-item__label">버튼색 </span></th>
+                        <td>
+                          <!-- 버튼 칼라 -->
+                          <div class="form-item-row">
+                              <div class="input-item brand-color-select">
+                                <span class="radiobox">
+                                  <input type="radio" name="bgColor" id="defaultColor" value="#2f77fb"/>
+                                  <label for="defaultColor">기본색</label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="bgColor" id="brandColor" disabled value="#70AD47" />
+                                  <label for="brandColor">브랜드색 (
+                                    <router-link to="#">
+                                    브랜드 색 설정
+                                  </router-link> )</label>
+                                </span>
+                              </div>
+                          </div>
+                        </td>
+                      </tr>
+                    <!-- //본문 & 버튼 - 문단형 -->
+                    <!-- 테이블 & 버튼 - 청구서형  -->
+                      <!-- 테이블1 -->
+                      <tr v-if="isLmsType4">
+                        <th scope="row"><span class="form-item__label required">테이블1 - 제목</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item input-limit">
+                                <div class="input">
+                                  <input type="text" placeholder="제목을 입력해주세요." maxlength="17" v-model="form.Table.tableTitle"
+                                  ref="tableTitle"
+                                  />
+                                  <div class="input-limit__text">
+                                    <p>{{ form.Table.tableTitle.length }}/17자</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr v-if="isLmsType4">
+                        <th scope="row"><span class="form-item__label required">테이블1 - 내용</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <template>
+                                <TemplateTableReg
+                                  :tableInfo="form.Table.info"
+                                />
+                              </template>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr v-if="isLmsType4" v-for="(button,index) in form.Buttons.info" :key="index">
+                        <th scope="row"><span class="form-item__label">테이블1 - 버튼{{ index + 1 }} </span></th>
+                        <td>
+                          <TemplateButtonReg
+                          :buttonInfo="button"
+                          />
+                        </td>
+                      </tr>
+                      <tr class="bdBottom-bg" v-if="isLmsType4">
+                        <th scope="row"><span class="form-item__label">버튼색 </span></th>
+                        <td>
+                          <!-- 버튼 칼라 -->
+                          <div class="form-item-row">
+                              <div class="input-item brand-color-select">
+                                <span class="radiobox">
+                                  <input type="radio" name="bgColor" id="defaultColor" value="#2f77fb"/>
+                                  <label for="defaultColor">기본색</label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="bgColor" id="brandColor" disabled value="#70AD47" />
+                                  <label for="brandColor">브랜드색 (
+                                    <router-link to="#">
+                                    브랜드 색 설정
+                                  </router-link> )</label>
+                                </span>
+                              </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <!-- 테이블2 -->
+                      <tr v-if="isLmsType4">
+                        <th scope="row"><span class="form-item__label required">테이블2 - 제목</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item input-limit">
+                                <div class="input">
+                                  <input type="text" placeholder="제목을 입력해주세요." maxlength="17" v-model="form.Table2.tableTitle"
+                                  ref="tableTitle"
+                                  />
+                                  <div class="input-limit__text">
+                                    <p>{{ form.Table2.tableTitle.length }}/17자</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr v-if="isLmsType4">
+                        <th scope="row"><span class="form-item__label required">테이블2 - 내용</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <template>
+                                <TemplateTableReg
+                                  :tableInfo="form.Table .info"
+                                />
+                              </template>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr v-if="isLmsType4" v-for="(button,index) in form.Buttons.info" :key="index">
+                        <th scope="row"><span class="form-item__label">테이블2 - 버튼{{ index + 1 }} </span></th>
+                        <td>
+                          <TemplateButtonReg
+                          :buttonInfo="button"
+                          />
+                        </td>
+                      </tr>
+                      <tr class="bdBottom-bg" v-if="isLmsType4">
+                        <th scope="row"><span class="form-item__label">버튼색 </span></th>
+                        <td>
+                          <!-- 버튼 칼라 -->
+                          <div class="form-item-row">
+                              <div class="input-item brand-color-select">
+                                <span class="radiobox">
+                                  <input type="radio" name="bgColor" id="defaultColor" value="#2f77fb"/>
+                                  <label for="defaultColor">기본색</label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="bgColor" id="brandColor" disabled value="#70AD47" />
+                                  <label for="brandColor">브랜드색 (
+                                    <router-link to="#">
+                                    브랜드 색 설정
+                                  </router-link> )</label>
+                                </span>
+                              </div>
+                          </div>
+                        </td>
+                      </tr>
+                    <!-- //테이블 & 버튼 - 청구서형  -->
+                    <!-- 버튼 - 장문형, 타이틀 강조형 -->
+                    <tr v-if="isLmsType1 || isLmsType2" v-for="(button,index) in form.Buttons.info" :key="index">
+                      <th scope="row"><span class="form-item__label">버튼{{ index + 1 }} </span></th>
+                      <td>
+                        <TemplateButtonReg
+                         :buttonInfo="button"
+                        />
+                      </td>
+                    </tr>
+                    <tr v-if="isLmsType1 || isLmsType2">
+                      <th scope="row"><span class="form-item__label">버튼색 </span></th>
+                      <td>
+                        <!-- 버튼 칼라 -->
+                        <div class="form-item-row">
+                            <div class="input-item brand-color-select">
+                              <span class="radiobox">
+                                <input type="radio" name="bgColor" id="defaultColor" value="#2f77fb"/>
+                                <label for="defaultColor">기본색</label>
+                              </span>
+                              <span class="radiobox">
+                                <input type="radio" name="bgColor" id="brandColor" disabled value="#70AD47" />
+                                <label for="brandColor">브랜드색 (
+                                  <router-link to="#">
+                                  브랜드 색 설정
+                                </router-link> )</label>
+                              </span>
+                            </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- //버튼 - 장문형, 타이틀 강조형 -->
                   </tbody>
                 </table>
               </div>
@@ -434,6 +700,7 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ChatEmulator from '@/views/brand/message/components/ChatEmulator.vue'
 import TemplateButtonReg from '@/views/brand/message/components/TemplateButtonReg.vue'
 import TemplateTableReg from '@/views/brand/message/components/TemplateTableReg.vue'
+import TemplateTitleReg from '@/views/brand/message/components/TemplateTitleReg.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
 import { textTemplate } from '@/views/brand/message/templateData.js'
@@ -447,7 +714,8 @@ export default {
     // Dropdown,
     ChatEmulator,
     TemplateButtonReg,
-    TemplateTableReg
+    TemplateTableReg,
+    TemplateTitleReg
   },
   data() {
     return {
@@ -458,19 +726,25 @@ export default {
       templateData: [],
       templateProp: 'desc',
       form: {
+        logoType: 'basicImage',
+        logoFile: '',
+        explainUse: 'N',
         title: {
-          logoType: '',
           minititle: '',
-          minititleuser: ''
+          minititleuser: 'minititleN',
+          minititle1: '',
+          minititle1user: 'minititle1N',
+          minititle2: '',
+          minititle2user: 'minititle2N'
         },
         stitle: '',
         MainTitle: {
           info: {
             mainTitle: '',
+            mainExplain: '',
             titleType: '',
             varUse: 'Y',
             logoUse: 'Y',
-            logoFile: '',
             logoUrl: '',
             mainDesc: ''
           }
@@ -482,6 +756,21 @@ export default {
           }
         },
         Table: {
+          tableTitle: '',
+          info: {
+            tableRowNum: 1,
+            description: [
+              {
+                line: false,
+                colNum: '1',
+                itemLabel: '',
+                itemData: ''
+              }
+            ]
+          }
+        },
+        Table2: {
+          tableTitle: '',
           info: {
             tableRowNum: 1,
             description: [
@@ -497,8 +786,9 @@ export default {
         Buttons: {
           use: 'N',
           info: [{
+            id: 1,
             bgColor: '#2f77fb',
-            btnEvent: '',
+            btnEvent: 'none',
             btnEventDropdown: '',
             btnName: '',
             simpleChatbot: '',
@@ -528,8 +818,9 @@ export default {
             }
           },
           {
+            id: 2,
             bgColor: '#2f77fb',
-            btnEvent: '',
+            btnEvent: 'none',
             btnEventDropdown: '',
             btnName: '',
             simpleChatbot: '',
@@ -560,14 +851,106 @@ export default {
           }]
         }
       },
+      titleIconNewData: [
+        {
+          title: '알림',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '이벤트',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '프로모션',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '청구서',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '영수증',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '예약안내',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '일정안내',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '티켓',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '쿠폰',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        }
+      ],
+      titleIconBasicData: [
+        {
+          title: '승인',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '입금',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '출금',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '취소',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '주문',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '출고',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '배송',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '회원가입',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        },
+        {
+          title: '인증',
+          titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
+        }
+      ],
       isSelectType: false,
-      isFreeType: false
-
+      isFreeType: false,
+      isLmsType1: false,
+      isLmsType2: false,
+      isLmsType3: false,
+      isLmsType4: false
     }
   },
   mounted() {
     this.initTemplate(3)
     this.buttonUseCheck()
+    if (this.$route.query.type === 'lms1') {
+      this.isLmsType1 = true
+      this.templateType = '장문형'
+    } else if (this.$route.query.type === 'lms2') {
+      this.isLmsType2 = true
+      this.templateType = '문단형'
+    } else if (this.$route.query.type === 'lms3') {
+      this.isLmsType3 = true
+      this.templateType = '타이틀 강조형'
+    } else if (this.$route.query.type === 'lms4') {
+      this.isLmsType4 = true
+      this.templateType = '청구서형'
+    }
   },
   methods: {
     initTemplate(templateNum) {

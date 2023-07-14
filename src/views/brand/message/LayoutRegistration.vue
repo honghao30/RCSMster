@@ -106,6 +106,7 @@
               :isActiveCmpIndex = isActiveCmpIndex
               @setActiveCmp="setActiveCmp($event)"
               mode="layout"
+              :hideInputFooter = "hideInputFooter"
             />
           </div>
           <!-- // 에뮬레이터 -->
@@ -380,9 +381,9 @@ export default {
         chatType: 'chatBubble',
         chatRoomName: 'SYSTEMSTUDIO',
         saftyMark: 'Y',
-        hideInputFooter: true,
         mode: 'registration'
       },
+      hideInputFooter: false,
       tableCountOption: [
         {
           label: '1개',

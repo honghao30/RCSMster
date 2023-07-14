@@ -395,6 +395,7 @@ const dashboardList = [
     'status': ['0601: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomList',
     'pubData': 'v1 07-13',
+    'isPublished': true,
     'comments': ['기획서 버전: 2023RBC_UIUX개편_화면설계서_대화방_v0.7_20230526']
   },
   {
@@ -403,6 +404,7 @@ const dashboardList = [
     'status': ['0601: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomRegistration',
     'pubData': 'v1 07-13',
+    'isPublished': true,
     'comments': ['주석 : <!-- 입력된 데이터가 있는 상태에서 개별/대량 등록 변경 시 --> 표시함', '양방향 대행사 연결 : 디자인은 현재 라디오박스 / 기획서는 체크박스여서    기획서대로 작업한 상황', '개별등록  탭 → 승인요청 버튼 → 승인요청 alert창 → 닫기 버튼 클릭 시 기획서 p.30(대량등록 결과 알림 팝업) 나오도록 작업함']
   },
   {
@@ -410,7 +412,8 @@ const dashboardList = [
     'screenId': 'R-Brand-Room-Reg-02',
     'status': ['0601: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomRegistrationComplete',
-    'pubData': 'v1 07-13'
+    'pubData': 'v1 07-13',
+    'isPublished': true
   },
   {
     'depth5': '대화방 등록 완료(대량)',
@@ -418,6 +421,7 @@ const dashboardList = [
     'status': ['0601: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomLargeRegistrationComplete',
     'pubData': 'v1 07-13',
+    'isPublished': true,
     'comments': ['개별등록과 대량등록 하나의 버튼을 공유하는듯 한데, 퍼블에서 승인요청 크릭후 뜨는 팝업에서 아니요를 클릭하면 대량등록 완료 페이지로 이동.']
   },
   {
@@ -425,28 +429,32 @@ const dashboardList = [
     'screenId': 'R-Brand-Room-Reg-02',
     'status': ['0602: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomModified',
-    'pubData': 'v1 07-13'
+    'pubData': 'v1 07-13',
+    'isPublished': true
   },
   {
     'depth5': '대화방 수정(대량)',
     'screenId': 'R-Brand-Room-Reg-02',
     'status': ['0602: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomLargeModified',
-    'pubData': 'v1 07-13'
+    'pubData': 'v1 07-13',
+    'isPublished': true
   },
   {
     'depth5': '대화방 상세',
     'screenId': 'R-Brand-Room-View-01',
     'status': ['0602: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomListView',
-    'pubData': 'v1 07-13'
+    'pubData': 'v1 07-13',
+    'isPublished': true
   },
   {
     'depth5': '대화방 상세(대량)',
     'screenId': 'R-Brand-Room-View-01',
     'status': ['0602: 기획 공유', '0612: 개발 공유'],
     'link': '/ChatRoomListLargeView',
-    'pubData': 'v1 07-13'
+    'pubData': 'v1 07-13',
+    'isPublished': true
   },
   // 대화방 메뉴
   {
@@ -456,7 +464,6 @@ const dashboardList = [
     'status': ['0612: 기획 공유', '0613: 개발 공유'],
     'link': '/ChatRoomMenuList',
     'pubData': 'v1 07-18',
-    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
@@ -465,7 +472,6 @@ const dashboardList = [
     'status': ['0612: 기획 공유', '0613: 개발 공유'],
     'link': '/ChatRoomMenuView',
     'pubData': 'v1 07-18',
-    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
@@ -474,7 +480,6 @@ const dashboardList = [
     'status': ['0613: 기획 공유', '0613: 개발 공유'],
     'link': '/ChatRoomMenuAdd',
     'pubData': 'v1 07-18',
-    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
@@ -483,7 +488,6 @@ const dashboardList = [
     'status': ['0613: 기획 공유', '0613: 개발 공유'],
     'link': '/ChatRoomMenuViewModified',
     'pubData': 'v1 07-18',
-    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   // 브랜드 홈
@@ -640,6 +644,33 @@ const dashboardList = [
     'pubData': 'v1 07-10',
     'isPublished': true,
     'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_메시지_v0.8_20230630']
+  },
+  {
+    'depth4': '템플릿 등록 - 텍스트',
+    'screenId': '',
+    'status': [],
+    'link': '/TemplateRegistration',
+    'pubData': 'v1 07-10',
+    'isPublished': true,
+    'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_메시지_v0.92_20230712', '/TemplateRegistration?name=Creater&type=text1 숫자 1~6']
+  },
+  {
+    'depth4': '템플릿 등록 - LMS',
+    'screenId': '',
+    'status': [],
+    'link': '/TemplateRegistrationLMS',
+    'pubData': 'v1 07-10',
+    'isPublished': true,
+    'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_메시지_v0.92_20230712', '/TemplateRegistrationLMS?name=CreaterLMS&type=lms1 숫자 1~6']
+  },
+  {
+    'depth4': '템플릿 등록 - LMS',
+    'screenId': '',
+    'status': [],
+    'link': '/TemplateRegistrationImage',
+    'pubData': 'v1 07-10',
+    'isPublished': true,
+    'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_메시지_v0.92_20230712', '/TemplateRegistrationImage?name=CreaterImg&type=image1 숫자 1~6']
   },
   {
     'depth4': '템플릿 등록',

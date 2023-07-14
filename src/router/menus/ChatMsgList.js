@@ -91,6 +91,7 @@ export default [
   {
     path: '/TemplateRegistrationLMS',
     component: TemplateRegistrationLMS,
+    name: 'CreaterLMS',
     meta: {
       tittle: '템플릿 작성 LMS',
       breadcrumb: false
@@ -100,6 +101,7 @@ export default [
   {
     path: '/TemplateRegistrationImage',
     component: TemplateRegistrationImage,
+    name: 'CreaterImg',
     meta: {
       tittle: '템플릿 작성 Image',
       breadcrumb: false
