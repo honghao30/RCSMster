@@ -295,6 +295,42 @@ const LMSTemplate = [
 const textTemplate = [
   [
     {
+      type: 'MainTitle',
+      info: {
+        varUse: 'N',
+        logoUse: 'N'
+      }
+    },
+    {
+      type: 'Description',
+      info: {}
+    }
+  ],
+  [
+    {
+      type: 'MainTitle',
+      info: {}
+    },
+    {
+      type: 'Table',
+      info: {}
+    }
+  ],
+  [
+    {
+      type: 'MainTitle',
+      info: {
+        varUse: 'Y',
+        logoUse: 'Y'
+      }
+    },
+    {
+      type: 'Description',
+      info: {}
+    }
+  ],
+  [
+    {
       type: 'Item',
       info: {}
     },
@@ -320,34 +356,6 @@ const textTemplate = [
   [
     {
       type: 'Table',
-      info: {}
-    },
-    {
-      type: 'Buttons',
-      info: {}
-    }
-  ],
-  [
-    {
-      type: 'MainTitle',
-      info: {}
-    },
-    {
-      type: 'Description',
-      info: {}
-    },
-    {
-      type: 'Buttons',
-      info: {}
-    }
-  ],
-  [
-    {
-      type: 'MainTitle',
-      info: {}
-    },
-    {
-      type: 'Description',
       info: {}
     },
     {

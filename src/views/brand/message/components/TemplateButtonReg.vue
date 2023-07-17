@@ -26,7 +26,7 @@
           </div>
         </div>
         <!-- 버튼 선택 -->
-        <div class="form-item-row is-emoji">
+        <div class="form-item-row is-emoji" v-if="buttonInfo.btnEvent !== 'none'">
           <div class="input-item input-limit w--full" >
             <div class="input">
               <input type="text" class="input" maxlength="17"

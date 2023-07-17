@@ -16,22 +16,16 @@
         </span>
       </div>
       <div class="flex-input">
-        <span class="input">
-          <div class="font-style"><fontStyle /></div>
-          <div class="row-style" v-if="rowStyleLy"><rowStyle /></div>
-          <input type="text" @focusin="rowStyle" v-model="item.itemLabel"/>
-        </span>
-        <span class="input" v-if="item.colNum == 2">
-          <div class="font-style"><fontStyle /></div>
-          <div class="row-style"><rowStyle /></div>
-          <input type="text"  @focusin="rowStyle" v-model="item.itemData"/>
-        </span>
+        <div class="font-style"><textStyleInput :target="`row${i+1}Col1`" v-model="item.itemLabel" /></div>
+        <div class="font-style" v-show="item.colNum == 2"><textStyleInput :target="`row${i+1}Col2`" v-model="item.itemData" /></div>
+        {{ item.itemLabelStyle }}
       </div>
       <!-- 기존 라인 부분 -->
       <div class="flex-btn">
         <ButtonCmp
           type="btn-default-line"
           size="small"
+          @click="item.line = !item.line"
         >
           라인
         </ButtonCmp>
@@ -60,14 +54,12 @@
 <script>
 
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import fontStyle from '@/views/brand/message/components/fontStyle.vue'
-import rowStyle from '@/views/brand/message/components/rowStyle'
+import TextStyleInput from '@/components/common/TextStyleInput.vue'
 
 export default {
   components: {
     ButtonCmp,
-    fontStyle,
-    rowStyle
+    TextStyleInput
   },
   props: {
     tableInfo: {
@@ -100,7 +92,9 @@ export default {
         line: false,
         colNum: '1',
         itemLabel: '',
-        itemData: ''
+        itemData: '',
+        itemDataStyle: '',
+        itemLabelStyle: ''
       }
       if (this.tableInfo.description.length < 10) {
         this.tableInfo.description.push(tblRows)
@@ -112,13 +106,8 @@ export default {
         this.tableInfo.description.splice(index, 1)
       }
     },
-    rowStyle () {
-      this.rowStyleLy = !this.rowStyleLy
+    onSetStyle(e) {
     }
   }
 }
 </script>
-
-<style>
-
-</style>

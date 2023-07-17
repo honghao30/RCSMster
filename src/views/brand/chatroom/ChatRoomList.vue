@@ -230,13 +230,115 @@
           <!-- 삭제 선택 시, 체크박스 활성화된 대화방 삭제 처리 -->
           <ButtonCmp
           type="btn-blue"
-          @click="closeMsg"
+          @click="remvoeChatRoom"
           >
             삭제
           </ButtonCmp>
         </div>
       </ConfirmMsg>
       <!-- // 삭제 버튼 선택 시, 사용/미사용 상태 상관 없이 체크박스 활성화된 모든 대화방 삭제 Alert 출력 -->
+      <!-- 대화방 삭제 비밀번호 입력 -->
+      <ConfirmMsg
+        @closeModal="isModalViewed = false, isRemoveList = false"
+        v-if="isRemovePassword"
+      >
+        <div class="msg" slot="msg">
+          다수의 대화방 삭제 시<br>
+          비밀번호 인증이 필요합니다.<br>
+          비밀번호를 입력해주세요.
+          <div class="form-item__content">
+            <div class="form-item-row">
+              <input type="text" class="input" maxlength="20" placeholder="비밀번호를 입력해주세요." v-model="passWord">
+            </div>
+          </div>
+        </div>
+        <div class="button__wrap" slot="button">
+          <!-- 취소 선택 시, 체크박스 선택된 상태로 alert 종료 -->
+          <ButtonCmp
+          type="btn-line"
+          @click="closeMsg"
+          >
+            취소
+          </ButtonCmp>
+          <!-- 삭제 선택 시, 체크박스 활성화된 대화방 삭제 처리 -->
+          <ButtonCmp
+          type="btn-blue"
+          @click="closeMsg"
+          >
+            삭제
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+      <!-- // 대화방 삭제 비밀번호 입력 -->
+      <!-- 전시 비전시 대화방 -->
+      <ConfirmMsg
+        @closeModal="isModalViewed = false, isRemoveList = false"
+        modalsize="Max628"
+        v-if="isDisplayChatRoom"
+      >
+        <div class="msg" slot="msg">
+          <div>비전시하는 대화방 중 다른 대화방에서 회신번호로<br>
+지정된 대화방이 $n$개 확인되었습니다.<br>
+함께 비전시 하시겠습니까?
+          </div>
+          <div class="charroom-confirm">
+            <div class="table__wrap">
+              <table class="table table-list">
+                <colgroup>
+                  <col width="50%">
+                  <col width="">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col"><span>회신번호</span></th>
+                    <th scope="col"><span>영향받는 대화방 수</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(item, i) in 4" :key="i">
+                    <td>
+                      <span>02-1234-567{{item}}</span>
+                    </td>
+                    <td class="c-align">
+                      <span>{{ item + 1 }}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="top-notice--gray">
+              <p>- 해당 대화방을 계속 사용하시려면 회신번호를 변경하셔야 합니다.</p>
+            </div>
+            <div class="form-item__content">
+              <div class="form-item-row">
+                <div class="input-item">
+                  <span class="checkbox">
+                    <input type="checkbox" id="saftyMarkY">
+                    <label for="saftyMarkY"><span class="checkbox__text">회신번호로 사용중인 대화방과 함께 비전시합니다.</span></label>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button__wrap" slot="button">
+          <!-- 취소 선택 시, 체크박스 선택된 상태로 alert 종료 -->
+          <ButtonCmp
+          type="btn-line"
+          @click="closeMsg"
+          >
+            취소
+          </ButtonCmp>
+          <!-- 삭제 선택 시, 체크박스 활성화된 대화방 삭제 처리 -->
+          <ButtonCmp
+          type="btn-blue"
+          @click="closeMsg"
+          >
+            비전시
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+      <!-- // 전시 비전시 대화방 -->
     </ModalView>
     <!-- 모달 -->
     <!-- // 기획서 v1.0 수정(모달 추가 작업) -->
@@ -270,6 +372,7 @@ export default {
       large: false,
       disabled: false,
       isOpen: false,
+      passWord: '',
       // 기획서 v1.0 수정(chatSearch 삭제 + chatSort: 챗봇연결에서 양방향 으로 변경 + status 삭제)
       chatRoomList: [
         {
@@ -394,7 +497,9 @@ export default {
       // 기획서 v1.0 수정
       isModalViewed: false,
       isRemoveList: false,
-      isNotUse: false
+      isNotUse: false,
+      isRemovePassword: false,
+      isDisplayChatRoom: false
     }
   },
   methods: {
@@ -423,10 +528,16 @@ export default {
     removeListModal () {
       this.isModalViewed = true
       this.isRemoveList = true
+      this.isRemovePassword = false
     },
     notUseModal () {
       this.isModalViewed = true
       this.isNotUse = true
+    },
+    remvoeChatRoom () {
+      this.isModalViewed = true
+      this.isRemoveList = false
+      this.isRemovePassword = true
     }
   }
 }

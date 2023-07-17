@@ -1,15 +1,14 @@
 <template>
-
-  <div class="template-item__box" v-if="mode === 'layout'">
-    <div class="template-image">
-      <img :src="itemData.info.imgUrl" />
+  <div class="template-item">
+    <div class="template-item__box">
+      <component
+          v-for="cmp in infoData"
+        :key="cmp"
+        :is="cmp.type"
+        :info.sync="cmp.info"
+      />
     </div>
   </div>
-  <component
-    v-else
-    :is="itemData.type"
-    :info.sync="itemData.info"
-  />
 </template>
 
 <script>
@@ -39,19 +38,9 @@ export default {
     ButtonCmp
   },
   props: {
-    mode: {
-      type: String
-    },
-    itemTitle: {
-      type: String
-    },
-    itemData: {
-      type: Object,
+    infoData: {
+      type: Array,
       default: null
-    },
-    isEmpty: {
-      type: Boolean,
-      default: true
     }
   },
   data() {

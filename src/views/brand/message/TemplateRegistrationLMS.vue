@@ -661,7 +661,9 @@
           </div>
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
-            <ChatEmulator
+            <TempEmulator
+              :templateType="templateType"
+              :templData="form"
             />
             <!-- :templateData="templateData" -->
           </div>
@@ -696,23 +698,19 @@
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-// import Dropdown from '@/components/common/Dropdown.vue'
-import ChatEmulator from '@/views/brand/message/components/ChatEmulator.vue'
+import TempEmulator from '@/views/brand/message/components/TempEmulator.vue'
 import TemplateButtonReg from '@/views/brand/message/components/TemplateButtonReg.vue'
 import TemplateTableReg from '@/views/brand/message/components/TemplateTableReg.vue'
 import TemplateTitleReg from '@/views/brand/message/components/TemplateTitleReg.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
-import { textTemplate } from '@/views/brand/message/templateData.js'
-
 export default {
   components: {
     PageTitle,
     BrandLnb,
     ButtonCmp,
     Emoji,
-    // Dropdown,
-    ChatEmulator,
+    TempEmulator,
     TemplateButtonReg,
     TemplateTableReg,
     TemplateTitleReg
@@ -720,7 +718,6 @@ export default {
   data() {
     return {
       templateNameId: 'UBR.13L49F42Mo-8MwF1zkPHUj3xayCJsg3OcPv2',
-      textTemplate,
       templateType: 'textTitle1',
       templateName: '',
       templateData: [],

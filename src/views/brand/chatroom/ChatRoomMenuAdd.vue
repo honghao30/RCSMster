@@ -267,10 +267,7 @@
         </div>
         <!-- // 기획서 v1.0 수정 및 추가 작업 -->
         <div class="button__wrap flex-end">
-          <ButtonCmp
-            type="btn-blue-line"
-            @click="saveTemp"
-          >임시 저장</ButtonCmp>
+          <!-- 기획서 v1.0 수정 (임시저장 버튼 삭제) -->
           <ButtonCmp
             type="btn-blue"
             @click="onSubmit"
@@ -439,24 +436,7 @@
       >
       </DoneChatBotMsgSelect>
       <!-- //간편챗봇 메시지 연결 선택 버튼 : 클릭 시 -->
-      <!-- 임시저장 -->
-      <ConfirmMsg
-        @closeModal="isModalViewed = false, isModalSave = false"
-        v-if="isModalSave"
-      >
-        <div class="msg" slot="msg">
-          임시저장 되었습니다.
-        </div>
-        <div class="button__wrap" slot="button">
-          <ButtonCmp
-          type="btn-blue"
-          @click="closeMsg"
-          >
-            확인
-          </ButtonCmp>
-        </div>
-      </ConfirmMsg>
-      <!-- //임시저장 -->
+      <!-- 기획서 v1.0 수정(임시저장 모달창 삭제) -->
       <!-- 기획서 v1.0 수정(연결항목: 웹사이트 > 등록된 웹사이트가 없는 경우)  -->
       <ConfirmMsg
         v-if="isWebRegistration"
@@ -553,7 +533,7 @@ export default {
       isDoneBrandNews: false,
       isChatBotConnect: false,
       isDoneChatBotConnect: false,
-      isModalSave: false,
+      // 기획서 v1.0 수정 (isModalSave 삭제)
       menuActiveIndex: 0,
       isMenuEdit: false,
       showSpecialCharTitle: false, // 특수문자 선택창 show 여부
@@ -645,11 +625,9 @@ export default {
       this.isDoneBrandNews = false
       this.isChatBotConnect = false
       this.isModalSave = false
+      // 기획서 v1.0 수정 (isModalSave 삭제)
     },
-    saveTemp() {
-      this.isModalViewed = true
-      this.isModalSave = true
-    },
+    // 기획서 v1.0 수정 (saveTemp 삭제)
     // 기획서 v1.0 수정
     webRegistrationModal() {
       this.isModalViewed = true

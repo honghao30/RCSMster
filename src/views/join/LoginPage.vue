@@ -37,7 +37,7 @@
           <label for="check"><span class="checkbox__text">아이디 저장</span></label>
         </span>
       </div>
-      <div class="idfind">
+      <div class="idfind line">
         <router-link to="/IdFind">아이디 찾기</router-link>
         <router-link to="/pwFind">비밀번호 찾기</router-link>
       </div>

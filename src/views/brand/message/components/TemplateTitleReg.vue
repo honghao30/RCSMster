@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     emitChange () {
-      this.$emit('optionSelected', this.selectedOption);
+      this.$emit('optionSelected', this.selectedOption)
     }
   }
 }

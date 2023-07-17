@@ -132,240 +132,238 @@
         &+.table-item-row {
            margin-top:8px;
         }
-        .input {
-            position: relative;
-            .font-style {
-                position: absolute;
-                right:2px;
-                top:2px;
-            }
-            .row-style-layer {
-                position: absolute;
-                width:302px;
-                height:70px;
-                background-color: #fff;
-                left: 50%;
-                transform: translateX(-50%);
-                bottom: -80px;
-                box-shadow: 0px 0px 14px 0px #0000001A;
-                border-radius: 12px;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                justify-content: center;
-                z-index: 5;      
-				&::after {
-					border-color: #fff transparent;
-					border-style: solid;
-					border-width: 0 6px 8px 6.5px;
-					content: '';
-					display: block;
-					left: 149px;
-					position: absolute;
-					top: -7px;
-					width: 0;
-					z-index: 1;
-				}
-				&::before {
-					border-color: #eaeaea transparent;
-					border-style: solid;
-					border-width: 0 6px 8px 6.5px;
-					content: '';
-					display: block;
-					left: 149px;
-					position: absolute;
-					top: -8px;
-					width: 0;
-					z-index: 0;
-				}       
-                .radiobox {
-                    width: fit-content;
-                    input[type=radio] + label {
-                        &::before {
-                            width:30px;
-                            height:31px;
-                            border-radius: 0;
-                            border: 0;
-                            margin-right: 0;
-                        }
-                    }
-                    input[type=radio]:checked + label {
-                        &:before  {
-                            border: 1px solid #000;
-                            border-radius: 6px;
-                        }
-                    }                    
-                    &:nth-child(1) {
-                        input[type=radio] + label {
-                            &::before {
-                                background: url('../assets/images/icon/icon_style_align_left.png') no-repeat;
-                            }
-                        } 
-                        input[type=radio]:checked + label {
-                            &:before  {                                
-                                background: url('../assets/images/icon/icon_style_align_left_on.png') no-repeat;
-                            }
-                        }                        
-                    }
-                    &:nth-child(2) {
-                        input[type=radio] + label {
-                            &::before {
-                                background: url('../assets/images/icon/icon_style_align_right.png') no-repeat;
-                            }
-                        } 
-                        input[type=radio]:checked + label {
-                            &:before  {                                
-                                background: url('../assets/images/icon/icon_style_align_right_on.png') no-repeat;
-                            }
-                        }                         
-                    }     
-                    &:nth-child(3) {
-                        input[type=radio] + label {
-                            &::before {
-                                background: url('../assets/images/icon/style_font_bold.png') no-repeat;
-                            }
-                        }
-                        input[type=radio]:checked + label {
-                            &:before  {                                
-                                background: url('../assets/images/icon/style_font_bold_on.png') no-repeat;
-                            }
-                        }                        
-                    }
-                    &:nth-child(4) {
-                        input[type=radio] + label {
-                            &::before {
-                                background: url('../assets/images/icon/style_font_size1.png') no-repeat;
-                            }
-                        }
-                        input[type=radio]:checked + label {
-                            &:before  {                                
-                                background: url('../assets/images/icon/style_font_size1_on.png') no-repeat;
-                            }
-                        }
-                    }
-                    &:nth-child(5) {
-                        input[type=radio] + label {
-                            &::before {
-                                background: url('../assets/images/icon/style_font_size2.png') no-repeat;
-                            }
-                        }
-                        input[type=radio]:checked + label {
-                            &:before  {                                
-                                background: url('../assets/images/icon/style_font_size2_on.png') no-repeat;
-                            }
-                        }                        
-                    }
-                    &:nth-child(6) {
-                        input[type=radio] + label {
-                            &::before {
-                                background: url('../assets/images/icon/style_font_size3.png') no-repeat;
-                            }
-                        }
-                        input[type=radio]:checked + label {
-                            &:before  {                                
-                                background: url('../assets/images/icon/style_font_size3_on.png') no-repeat;
-                            }
-                        }                          
-                    }
-                    &:nth-child(7) {
-                        input[type=radio] + label {
-                            &::before {
-                                background: url('../assets/images/icon/style_font_style.png') no-repeat;
-                            }
-                        }
-                        input[type=radio]:checked + label {
-                            &:before  {                                
-                                background: url('../assets/images/icon/style_font_style_on.png') no-repeat;
-                            }
-                        }                          
-                    }                                                                                               
-                }
-            }
-            .font-style-layer {
-                position: absolute;
-                width:192px;
-                height:70px;
-                background-color: #fff;
-                right: -20px;
-                bottom: -80px;
-                box-shadow: 0px 0px 14px 0px #0000001A;
-                border-radius: 12px;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                justify-content: center;
-                z-index: 5;
-				&::after {
-					border-color: #fff transparent;
-					border-style: solid;
-					border-width: 0 6px 8px 6.5px;
-					content: '';
-					display: block;
-					left: 80px;
-					position: absolute;
-					top: -7px;
-					width: 0;
-					z-index: 1;
-				}
-				&::before {
-					border-color: #eaeaea transparent;
-					border-style: solid;
-					border-width: 0 6px 8px 6.5px;
-					content: '';
-					display: block;
-					left: 80px;
-					position: absolute;
-					top: -8px;
-					width: 0;
-					z-index: 0;
-				}       
-                .radiobox {
-                    width: fit-content;
-                    input[type=radio] + label {
-                        &::before {
-                            width:30px;
-                            height:31px;
-                            border-radius: 0;
-                            border: 0;
-                            margin-right: 0;
-                        }
-                    }
-                    input[type=radio]:checked + label {
-                        &:before  {
-                            border: 1px solid #000;
-                            border-radius: 6px;
-                        }
-                    }                    
-                    &:nth-child(1) {
-                        input[type=radio] + label {
-                            &::before {
-                                background: url('../assets/images/icon/icon_style_align_left.png') no-repeat;
-                            }
-                        } 
-                    }
-                    &:nth-child(2) {
-                        input[type=radio] + label {
-                            &::before {
-                                background: url('../assets/images/icon/icon_style_align_right.png') no-repeat;
-                            }
-                        } 
-                    }     
-                    &:nth-child(3) {
-                        input[type=radio] + label {
-                            &::before {
-                                background: url('../assets/images/icon/icon_style_font_fefault.png') no-repeat;
-                            }
-                        } 
-                    }
-                    &:nth-child(4) {
-                        input[type=radio] + label {
-                            &::before {
-                                background: url('../assets/images/icon/icon_style_font_bold.png') no-repeat;
-                            }
-                        } 
-                    }
-                }         
-            }
+        // .input {
+        //     position: relative;
+        //     .row-style-layer {
+        //         position: absolute;
+        //         width:302px;
+        //         height:70px;
+        //         background-color: #fff;
+        //         left: 50%;
+        //         transform: translateX(-50%);
+        //         bottom: -80px;
+        //         box-shadow: 0px 0px 14px 0px #0000001A;
+        //         border-radius: 12px;
+        //         display: flex;
+        //         align-items: center;
+        //         gap: 8px;
+        //         justify-content: center;
+        //         z-index: 5;      
+		// 		&::after {
+		// 			border-color: #fff transparent;
+		// 			border-style: solid;
+		// 			border-width: 0 6px 8px 6.5px;
+		// 			content: '';
+		// 			display: block;
+		// 			left: 149px;
+		// 			position: absolute;
+		// 			top: -7px;
+		// 			width: 0;
+		// 			z-index: 1;
+		// 		}
+		// 		&::before {
+		// 			border-color: #eaeaea transparent;
+		// 			border-style: solid;
+		// 			border-width: 0 6px 8px 6.5px;
+		// 			content: '';
+		// 			display: block;
+		// 			left: 149px;
+		// 			position: absolute;
+		// 			top: -8px;
+		// 			width: 0;
+		// 			z-index: 0;
+		// 		}       
+        //         .radiobox {
+        //             width: fit-content;
+        //             input[type=radio] + label {
+        //                 &::before {
+        //                     width:30px;
+        //                     height:31px;
+        //                     border-radius: 0;
+        //                     border: 0;
+        //                     margin-right: 0;
+        //                 }
+        //             }
+        //             input[type=radio]:checked + label {
+        //                 &:before  {
+        //                     border: 1px solid #000;
+        //                     border-radius: 6px;
+        //                 }
+        //             }                    
+        //             &:nth-child(1) {
+        //                 input[type=radio] + label {
+        //                     &::before {
+        //                         background: url('../assets/images/icon/icon_style_align_left.png') no-repeat;
+        //                     }
+        //                 } 
+        //                 input[type=radio]:checked + label {
+        //                     &:before  {                                
+        //                         background: url('../assets/images/icon/icon_style_align_left_on.png') no-repeat;
+        //                     }
+        //                 }                        
+        //             }
+        //             &:nth-child(2) {
+        //                 input[type=radio] + label {
+        //                     &::before {
+        //                         background: url('../assets/images/icon/icon_style_align_right.png') no-repeat;
+        //                     }
+        //                 } 
+        //                 input[type=radio]:checked + label {
+        //                     &:before  {                                
+        //                         background: url('../assets/images/icon/icon_style_align_right_on.png') no-repeat;
+        //                     }
+        //                 }                         
+        //             }     
+        //             &:nth-child(3) {
+        //                 input[type=radio] + label {
+        //                     &::before {
+        //                         background: url('../assets/images/icon/style_font_bold.png') no-repeat;
+        //                     }
+        //                 }
+        //                 input[type=radio]:checked + label {
+        //                     &:before  {                                
+        //                         background: url('../assets/images/icon/style_font_bold_on.png') no-repeat;
+        //                     }
+        //                 }                        
+        //             }
+        //             &:nth-child(4) {
+        //                 input[type=radio] + label {
+        //                     &::before {
+        //                         background: url('../assets/images/icon/style_font_size1.png') no-repeat;
+        //                     }
+        //                 }
+        //                 input[type=radio]:checked + label {
+        //                     &:before  {                                
+        //                         background: url('../assets/images/icon/style_font_size1_on.png') no-repeat;
+        //                     }
+        //                 }
+        //             }
+        //             &:nth-child(5) {
+        //                 input[type=radio] + label {
+        //                     &::before {
+        //                         background: url('../assets/images/icon/style_font_size2.png') no-repeat;
+        //                     }
+        //                 }
+        //                 input[type=radio]:checked + label {
+        //                     &:before  {                                
+        //                         background: url('../assets/images/icon/style_font_size2_on.png') no-repeat;
+        //                     }
+        //                 }                        
+        //             }
+        //             &:nth-child(6) {
+        //                 input[type=radio] + label {
+        //                     &::before {
+        //                         background: url('../assets/images/icon/style_font_size3.png') no-repeat;
+        //                     }
+        //                 }
+        //                 input[type=radio]:checked + label {
+        //                     &:before  {                                
+        //                         background: url('../assets/images/icon/style_font_size3_on.png') no-repeat;
+        //                     }
+        //                 }                          
+        //             }
+        //             &:nth-child(7) {
+        //                 input[type=radio] + label {
+        //                     &::before {
+        //                         background: url('../assets/images/icon/style_font_style.png') no-repeat;
+        //                     }
+        //                 }
+        //                 input[type=radio]:checked + label {
+        //                     &:before  {                                
+        //                         background: url('../assets/images/icon/style_font_style_on.png') no-repeat;
+        //                     }
+        //                 }                          
+        //             }                                                                                               
+        //         }
+        //     }
+        //     .font-style-layer {
+        //         position: absolute;
+        //         width:192px;
+        //         height:70px;
+        //         background-color: #fff;
+        //         right: -20px;
+        //         bottom: -80px;
+        //         box-shadow: 0px 0px 14px 0px #0000001A;
+        //         border-radius: 12px;
+        //         display: flex;
+        //         align-items: center;
+        //         gap: 8px;
+        //         justify-content: center;
+        //         z-index: 5;
+		// 		&::after {
+		// 			border-color: #fff transparent;
+		// 			border-style: solid;
+		// 			border-width: 0 6px 8px 6.5px;
+		// 			content: '';
+		// 			display: block;
+		// 			left: 80px;
+		// 			position: absolute;
+		// 			top: -7px;
+		// 			width: 0;
+		// 			z-index: 1;
+		// 		}
+		// 		&::before {
+		// 			border-color: #eaeaea transparent;
+		// 			border-style: solid;
+		// 			border-width: 0 6px 8px 6.5px;
+		// 			content: '';
+		// 			display: block;
+		// 			left: 80px;
+		// 			position: absolute;
+		// 			top: -8px;
+		// 			width: 0;
+		// 			z-index: 0;
+		// 		}       
+        //         .radiobox {
+        //             width: fit-content;
+        //             input[type=radio] + label {
+        //                 &::before {
+        //                     width:30px;
+        //                     height:31px;
+        //                     border-radius: 0;
+        //                     border: 0;
+        //                     margin-right: 0;
+        //                 }
+        //             }
+        //             input[type=radio]:checked + label {
+        //                 &:before  {
+        //                     border: 1px solid #000;
+        //                     border-radius: 6px;
+        //                 }
+        //             }                    
+        //             &:nth-child(1) {
+        //                 input[type=radio] + label {
+        //                     &::before {
+        //                         background: url('../assets/images/icon/icon_style_align_left.png') no-repeat;
+        //                     }
+        //                 } 
+        //             }
+        //             &:nth-child(2) {
+        //                 input[type=radio] + label {
+        //                     &::before {
+        //                         background: url('../assets/images/icon/icon_style_align_right.png') no-repeat;
+        //                     }
+        //                 } 
+        //             }     
+        //             &:nth-child(3) {
+        //                 input[type=radio] + label {
+        //                     &::before {
+        //                         background: url('../assets/images/icon/icon_style_font_fefault.png') no-repeat;
+        //                     }
+        //                 } 
+        //             }
+        //             &:nth-child(4) {
+        //                 input[type=radio] + label {
+        //                     &::before {
+        //                         background: url('../assets/images/icon/icon_style_font_bold.png') no-repeat;
+        //                     }
+        //                 } 
+        //             }
+        //         }         
+        //     }
+        // }
+        .font-style {
+            flex: 1;
         }
     }
     //브랜드 운영 관리

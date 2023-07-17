@@ -80,7 +80,7 @@
                       <div class="form-item__content">
                         <div class="form-item-row colunl-type">
                           <div class="input-item">
-                              <span class="colorbox" :style="{ background: brandInfoData.brandColor }"></span>
+                              <span class="colorbox" ="{ background: brandInfoData.brandColor }"></span>
                               <span class="input">
                                 #0C22E1
                               </span>

@@ -9,9 +9,7 @@
               <img src="@/assets/images/dummy/brand_logo.png" alt="">
             </div>
             <p>대화방 명</p>
-            <button class="btn-down"
-              @click="btnToggleMenu"
-            ></button>
+            <button class="btn-down"></button>
           </div>
         </div>
         <button class="btn-more"><span class="blind">정보</span></button>
@@ -48,22 +46,21 @@
              </div>
              <!-- // 타이틀 -->
              <!-- 표 -->
-             <template v-if="templateType == '아이템 강조형2'">
-              <div class="emplate-cmp-table" v-if="templData.Table.tableTitle !== ''">
+             <template v-if="templateType == '아이템 강조형2' || templateType == '타이틀 자유형2' || templateType == '텍스트 선택형_스타일'">
+              <div class="template-cmp-table" v-if="templData.Table.tableTitle !== ''">
                   <div class="table-cmp-title">{{ templData.Table.tableTitle }}</div>
-                  <table>
-                    <colgroup>
-                      <col width="50%">
-                      <col width="50%">
-                    </colgroup>
-                    <tbody>
-                      <tr
-                        v-for="(tblinfor, index) in templData.Table.info" :key="index">
-                        <th>{{ tblinfor.description }}</th>
-                        <td></td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <ul class="description" v-if="templData.Table.info.description">
+                    <li v-for="(item, index) in templData.Table.info.description" :key="index" :class="{ 'border' : item.line }">
+                      <div class="item-label">
+                          <span v-if="item.itemLabel" :style="itemLabelStyle">{{ item.itemLabel }}</span>
+                          <span v-else>내용 입력</span>
+                      </div>
+                      <div class="item-data" v-if="item.colNum == 2">
+                          <span v-if="item.itemData" :style="itemDataStyle">{{ item.itemData }}</span>
+                          <span v-else>내용 입력</span>
+                      </div>
+                    </li>
+                  </ul>
               </div>
             </template>
              <!-- //표 -->
@@ -109,20 +106,13 @@ export default {
   },
   data () {
     return {
-      chatMenuList: [{
-        menuTitle: '😍 상담직원 연결 👌🏻'
-      }],
       todayDateFull: '',
       todayData: '',
       currentTime: '',
-      isOpen: false,
-      isBlind: false,
-      isShort: true,
       swiperOption: {
         spaceBetween: 10,
         slidesPerView: 'auto'
       },
-      collapse: false,
       isShowLayerIndex: undefined,
       isCmpEdit: false
     }
@@ -135,38 +125,7 @@ export default {
     // })
   },
   methods: {
-    btnToggleMenu () {
-      this.collapse = !this.collapse
-    },
-    showLayerMenu(idx) {
-      if (this.isShowLayerIndex !== idx) {
-        this.isShowLayerIndex = idx
-      } else {
-        this.isShowLayerIndex = undefined
-      }
-    },
-    removeCmp(idx) {
-      let cmpItem = {
-        type: '',
-        info: {}
-      }
-      this.templateData.splice(idx, 1, cmpItem)
-    },
-    onClickOutside() {
-      this.isShowLayerIndex = undefined
-    },
-    onEditComp() {
-      this.isCmpEdit = !this.isCmpEdit
-      this.templateData.every((item, i) => {
-        if (!item.type) {
-          this.isActiveCmpIndex = i
-          return false
-        } else {
-          return true
-        }
-      })
-      this.$emit('setActiveCmp', this.isActiveCmpIndex)
-    }
+
   }
 }
 </script>

@@ -827,6 +827,25 @@
   min-height: 66px;
   @include fontoption(14px, #999, 400, 22px);
 }
+.template-cmp-table {
+  .description {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+    li {
+      display: flex;
+      &.border {
+        border-bottom: 1px solid #ddd;
+        padding-bottom:8px;
+      }
+      > div {
+        flex: 1;
+        line-height: 1.56em;
+      }
+    }
+  }
+}
 .template-cmp-button {
   display: flex;
   flex-direction: column;
@@ -1116,5 +1135,22 @@
         gap: 8px;
       }
     }
+    .btn-default-line {
+      &.small {
+        min-width: 62px;
+      }
+    } 
   }
+}
+
+//간편챗봇 메시지 상세 bg색
+.chatbot__wrap {
+  .chat-emulator{
+    .emulator-body {
+      .chat-bubble{
+        background-color: #F2F2F2;
+      }
+    }
+  }
+
 }

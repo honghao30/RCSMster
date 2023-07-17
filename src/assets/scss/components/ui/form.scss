@@ -1112,6 +1112,7 @@ $formLabelWidth : 120px;
   }
 }
 
+// 폰트 스타일 인풋
 .custom-textarea {
   position:relative;
   .input {
@@ -1123,31 +1124,64 @@ $formLabelWidth : 120px;
   .style-picker {
     z-index: 20;
     position:absolute;
-    left:0;
-    top:-49px;
-    background-color:#f2f4ff;
-    border:1px solid #ddd;
-    width: 242px;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:-80px;
+    background-color:#fff;
+    box-shadow: 0px 0px 14px 0px #0000001A;
+    border-radius:12px;
+    width: 302px;
+    height: 70px;
+    padding: 20px 24px;
+    &::after {
+      border-color: #fff transparent;
+      border-style: solid;
+      border-width: 0 6px 8px 6.5px;
+      content: '';
+      display: block;
+      left: 149px; 
+      position: absolute;
+      top: -7px;
+      width: 0;
+      z-index: 1;
+    }
+    &::before {
+      border-color: #eaeaea transparent;
+      border-style: solid;
+      border-width: 0 6px 8px 6.5px;
+      content: '';
+      display: block;
+      left: 149px;
+      position: absolute;
+      top: -8px;
+      width: 0;
+      z-index: 0;
+    }    
     &__inner {
       display:flex;
       align-items:center;
       justify-content: space-between;
-      height: 48px;
-      padding:0 24px;
-      gap: 4px;
+      gap: 8px;
       > span, > div {
-        flex:1;
         display:inline-flex;
         align-items: center;
         justify-content: center;
         color: #aaa;
         label {
-          cursor: pointer
+          cursor: pointer;
+          width: 30px;
+          height: 30px;
+          border-radius: 5px;
+          border:1px solid #ddd;
+          display:inline-flex;
+          align-items: center;
+          justify-content: center;
+          overflow:hidden;
         }
         input[type="checkbox"]:checked + label,  
         input[type="radio"]:checked + label {
-            font-weight: 700;
             color:#000;
+            border-color:#000;
         }
         &.align {
           label {
@@ -1156,24 +1190,30 @@ $formLabelWidth : 120px;
           }
           i {
             display:inline-block;
-            width: 14px;
-            height: 13px;
-            background: url('../assets/images/icon/icon_align_left.png') no-repeat 50% 0;
+            width: 28px;
+            height: 28px;
+            background: url('../assets/images/icon/icon_style_align_left.png') no-repeat 50% 50%;
             &.icon-align--right {
-              background-image: url('../assets/images/icon/icon_align_right.png')
+              background-image: url('../assets/images/icon/icon_style_align_right.png')
             }
           }
           input[type="radio"]:checked + label {
             i {
-              background-position: 50% 100%;
+              background-image: url('../assets/images/icon/icon_style_align_left_on.png');
+              &.icon-align--right {
+                background-image: url('../assets/images/icon/icon_style_align_right_on.png')
+              }
             }
           }
         }
+        &.bold {
+          font-weight: 700;
+        }
         &.sml {
-          font-size: 14px;
+          font-size: 10px;
         }
         &.mid {
-          font-size: 16px;
+          font-size: 14px;
         }
         &.big {
           font-size: 18px;
@@ -1183,6 +1223,23 @@ $formLabelWidth : 120px;
         position: relative;
         .btn-font--color {
           cursor: pointer;
+          width: 30px;
+          height: 30px;
+          border-radius: 5px;
+          border:1px solid #ddd;
+          display:inline-flex;
+          align-items: center;
+          justify-content: center;
+          em {
+            display:inline-block;
+            padding:0 1px 2px;
+            line-height:16px;
+            border-bottom:2px solid#BCBCBC;
+            font-style: normal;
+          }
+          &.active {
+            border-color: #000;
+          }
         }
         .palette {
           position:absolute;

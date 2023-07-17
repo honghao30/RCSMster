@@ -20,7 +20,8 @@
                       <td>
                         <div class="form-item__content">
                             <div class="form-item-row">
-                              <div class="input-item input-limit">
+                              <div class="input-item">
+                                UBR.13L49F42Mo-
                                 <div class="input">
                                   <input type="text" maxlength="30" v-model="templateNameId"   />
                                 </div>
@@ -341,10 +342,12 @@
           </div>
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
-            <TempEmulator
+            <!-- <TempEmulator
               :templateType="templateType"
               :templData="form"
-            />
+            /> -->
+
+            <ChatEmulator :templateData="templateData"/>
             <!-- :templateData="templateData" -->
           </div>
           <!-- // 에뮬레이터 -->
@@ -380,6 +383,7 @@ import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
+import ChatEmulator from '@/views/brand/message/components/ChatEmulator.vue'
 import TempEmulator from '@/views/brand/message/components/TempEmulator.vue'
 import TemplateButtonReg from '@/views/brand/message/components/TemplateButtonReg.vue'
 import TemplateTableReg from '@/views/brand/message/components/TemplateTableReg.vue'
@@ -398,13 +402,14 @@ export default {
     TempEmulator,
     TemplateButtonReg,
     TemplateTableReg,
-    TemplateTitleReg
+    TemplateTitleReg,
+    ChatEmulator
   },
   data() {
     return {
-      templateNameId: 'UBR.13L49F42Mo-8MwF1zkPHUj3xayCJsg3OcPv2',
+      templateNameId: '8MwF1zkPHUj3xayCJsg3OcPv2',
       textTemplate,
-      templateType: 'textTemplate',
+      templateType: '텍스트 선택형_스타일',
       templateName: '',
       form: {
         logoType: 'basicImage',
@@ -420,14 +425,15 @@ export default {
           info: {
             mainTitle: '',
             titleType: '',
-            varUse: 'Y',
-            logoUse: 'Y',
             logoFile: '',
             logoUrl: '',
             mainDesc: ''
           }
         },
-        Description: '',
+        Description: {
+          info: {
+          }
+        },
         Table: {
           tableTitle: '',
           info: {
@@ -587,16 +593,16 @@ export default {
           titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
         }
       ],
-      isTextType1: false,
-      isTextType2: false,
-      isTextType3: false,
-      isTextType4: false,
-      isTextType5: false,
-      isTextType6: false
+      isTextType1: false, // 아이템 강조형1
+      isTextType2: false, // 아이템 강조형2
+      isTextType3: false, // 타이틀 자유형1
+      isTextType4: false, // 타이틀 자유형2
+      isTextType5: false, // 텍스트 선택형_서술
+      isTextType6: false // 텍스트 선택형_스타일
     }
   },
   mounted() {
-    this.initTemplate(3)
+    this.initTemplate(1)
     this.buttonUseCheck()
     if (this.$route.query.type === 'text1') {
       this.isTextType1 = true

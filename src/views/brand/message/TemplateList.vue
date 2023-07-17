@@ -195,14 +195,14 @@ export default {
           name: 'CreaterImg',
           title: '이미지 템플릿 - 이미지 템플릿 신규',
           imgUrl: require('@/assets/images/message/image_template_07.png')
+        },
+        {
+          id: 'image8',
+          type: 'image',
+          name: 'CreaterImg',
+          title: '이미지 템플릿 - 이미지 템플릿 캐러셀',
+          imgUrl: require('@/assets/images/message/image_template_08.png')
         }
-        // {
-        //   id: 'image8',
-        //   type: 'image',
-        //   name: 'CreaterImg',
-        //   title: '이미지 템플릿 - 이미지 템플릿 캐러셀',
-        //   imgUrl: require('@/assets/images/message/image_template_08.png')
-        // }
       ]
     }
   },

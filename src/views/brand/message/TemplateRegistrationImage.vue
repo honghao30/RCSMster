@@ -59,9 +59,17 @@
                       </td>
                     </tr>
                     <!-- //템플릿 명 -->
+                  </tbody>
+                </table>
+                <table class="table table-bodyonly form-table">
+                  <colgroup>
+                    <col width="180px">
+                    <col />
+                  </colgroup>
+                  <tbody>
                     <!-- 이미지 - 이미지 & 타이틀 강조형, 이미지 강조형, 썸네일 세로형, 썸네일 가로형 -->
                     <tr v-if="isImageType1 || isImageType2 || isImageType3 || isImageType4">
-                      <th scope="row"><span class="form-item__label">이미지 유형</span></th>
+                      <th scope="row"><span class="form-item__label required">이미지</span></th>
                       <td>
                         <div class="form-item__content">
                           <div class="form-item-row">
@@ -118,6 +126,14 @@
                       </td>
                     </tr>
                     <!-- //이미지 - 이미지 & 타이틀 강조형, 이미지 강조형, 썸네일 세로형, 썸네일 가로형 -->
+                  </tbody>
+                </table>
+                <table class="table table-bodyonly form-table">
+                  <colgroup>
+                    <col width="180px">
+                    <col />
+                  </colgroup>
+                  <tbody>
                     <!-- 타이틀 -->
                       <!-- 이미지 & 타이틀 강조형 -->
                       <tr v-if="isImageType1">
@@ -243,6 +259,14 @@
                       </tr>
                       <!-- //이미지 템플릿 신규 -->
                     <!-- //타이틀 -->
+                  </tbody>
+                </table>
+                <table class="table table-bodyonly form-table">
+                  <colgroup>
+                    <col width="180px">
+                    <col />
+                  </colgroup>
+                  <tbody>
                     <!-- 본문 -->
                       <!-- 본문 - 이미지 강조형, 썸네일 세로형, 썸네일 가로형, SNS형, SNS 중간버튼형, 이미지 템플릿 신규 -->
                       <tr v-if="isImageType2 || isImageType3 || isImageType4 || isImageType5 || isImageType6 || isImageType7">
@@ -351,6 +375,14 @@
                       </tr>
                       <!-- //본문 - 이미지 & 타이틀 강조형 -->
                     <!-- //본문 -->
+                  </tbody>
+                </table>
+                <table class="table table-bodyonly form-table">
+                  <colgroup>
+                    <col width="180px">
+                    <col />
+                  </colgroup>
+                  <tbody>
                     <!-- 버튼 - SNS 중간버튼형 -->
                     <tr v-for="(button,index) in form.Buttons.info" :key="index" v-if="isImageType6">
                       <th scope="row"><span class="form-item__label">버튼{{ index + 1 }} </span></th>
@@ -624,8 +656,8 @@
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
             <ChatEmulator
-              :messageTemplate="messageTemplate"
-              :messageData="form"
+              :templateData="form"
+              :templateType="ImageType1"
             />
           </div>
           <!-- // 에뮬레이터 -->

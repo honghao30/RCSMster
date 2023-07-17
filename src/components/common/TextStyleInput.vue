@@ -1,45 +1,44 @@
 <template>
   <div class="custom-textarea" v-click-outside="onClickOutside">
-    <textarea
+    <input type="text"
       @input="setText" class="input"
       @focus="isShow = true"
-      row="1"
       :style="textStyle"
-    ></textarea>
+    />
     <div class="style-picker" v-show="isShow" >
       <div class="style-picker__inner">
+        <span class="custom-radio align">
+          <input type="radio" name="align" :id="`alignL_${target}`" value="left" v-model="textAlignment"  class="blind"/>
+          <label :for="`alignL_${target}`"><i class="icon-align--left"></i><span class="irtext">좌측정렬</span></label>
+        </span>
+        <span class="custom-radio align">
+          <input type="radio" name="align" :id="`alignR_${target}`" value="right" v-model="textAlignment" class="blind" />
+          <label :for="`alignR_${target}`"><i class="icon-align--right"></i><span class="irtext">우측정렬</span></label>
+        </span>
         <span class="custom-radio bold">
-          <input type="checkbox" name="fontStyle" id="bold" class="blind" v-model="textBold"/>
-          <label for="bold">가</label>
-        </span>
-        <span class="custom-radio align">
-          <input type="radio" name="align" id="alignL" value="left" v-model="textAlignment"  class="blind"/>
-          <label for="alignL"><i class="icon-align--left"></i><span class="irtext">좌측정렬</span></label>
-        </span>
-        <span class="custom-radio align">
-          <input type="radio" name="align" id="alignR" value="right" v-model="textAlignment" class="blind" />
-          <label for="alignR"><i class="icon-align--right"></i><span class="irtext">우측정렬</span></label>
+          <input type="checkbox" name="fontStyle" :id="`bold_${target}`" class="blind" v-model="textBold"/>
+          <label :for="`bold_${target}`">가</label>
         </span>
         <span class="custom-radio sml">
-          <input type="radio" name="fontSize" id="smSize" value="14"
+          <input type="radio" name="fontSize" :id="`smSize_${target}`" value="14"
             v-model="textSize" class="blind"
           />
-          <label for="smSize">가</label>
+          <label :for="`smSize_${target}`">가</label>
         </span>
         <span class="custom-radio mid">
-          <input type="radio" name="fontSize" id="midSize" value="16"
+          <input type="radio" name="fontSize" :id="`midSize_${target}`" value="16"
           v-model="textSize" class="blind"
           />
-          <label for="midSize">가</label>
+          <label :for="`midSize_${target}`">가</label>
         </span>
         <span class="custom-radio big">
-          <input type="radio" name="fontSize" id="bigSize" value="18"
+          <input type="radio" name="fontSize" :id="`bigSize_${target}`" value="18"
           v-model="textSize" class="blind"
           />
-          <label for="bigSize">가</label>
+          <label :for="`bigSize_${target}`">가</label>
         </span>
         <div class="color-palette" v-click-outside="onPaletteClickOutside">
-          <span class="btn-font--color" :style="`color: ${textColor}`" @click="isShowPalette = !isShowPalette">가</span>
+          <div class="btn-font--color" :style="`color: ${textColor}`" :class="{'active' : textColor}" @click="isShowPalette = !isShowPalette"><em :style="`border-color: ${textColor}`">가</em></div>
           <div class="palette" v-if="isShowPalette" >
             <Sketch v-model="textColorSketch" :preset-colors="colors">
             </Sketch>
@@ -87,9 +86,6 @@ export default {
       return style
     }
   },
-  created() {
-    this.textStyle()
-  },
   components: {
     Sketch
   },
@@ -97,7 +93,11 @@ export default {
     'update:modelValue'
   ],
   props: {
-    value: String
+    value: String,
+    target: {
+      type: String,
+      default: ''
+    }
   },
   watch: {
     textColorSketch(val) {

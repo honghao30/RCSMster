@@ -167,8 +167,8 @@
       }
       .chat-bubble {
           padding: 16px;
-          background-color:#F2F2F2;
-          border: 1px solid #F2F2F2;
+          border:1px solid #eaeaea;
+          background-color:#fff;
           border-radius: 16px;
           width: 258px;
           min-height: 160px;
@@ -184,6 +184,8 @@
           &.message {
             min-height: 164px;
             overflow:visible;
+            background-color:#F2F2F2;
+            border: 1px solid #F2F2F2;
             &:after {
               content:'';
               width: 0;
@@ -193,7 +195,7 @@
               bottom:-12px;
               border-style: solid;
               border-width: 0 12px 12px 0;
-              border-color: transparent #D9D9D9 transparent transparent;
+              border-color: transparent #F2F2F2 transparent transparent;
             }
             &:before {
               content:'';
@@ -205,7 +207,7 @@
               z-index: 1;
               border-style: solid;
               border-width: 0 10px 10px 0;
-              border-color: transparent #fff transparent transparent;
+              border-color: transparent #F2F2F2 transparent transparent;
             }
           }
           .text-area {

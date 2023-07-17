@@ -262,6 +262,7 @@ const homeList = [
     'status': ['0512: 개발 공유'],
     'link': '/notice',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['고객센터 기획서 버전: 2023RBC_UIUX개편_화면설계서_HOME(고객센터)_v0.5_20230526_피드백 대기중']
   },
   {
@@ -269,14 +270,16 @@ const homeList = [
     'screenId': 'R-Cust-Noti-View-01',
     'status': ['0512: 개발 공유'],
     'link': '/noticecontent',
-    'pubData': 'v1 07-20'
+    'pubData': 'v1 07-20',
+    'isPublished': true
   },
   {
     'depth2': 'FAQ',
     'screenId': 'R-Cust-Faq-List-01',
     'status': ['0512: 개발 공유'],
     'link': '/faq',
-    'pubData': 'v1 07-20'
+    'pubData': 'v1 07-20',
+    'isPublished': true
   },
   {
     'depth2': '온라인 문의',
@@ -285,6 +288,7 @@ const homeList = [
     'status': ['0512: 개발 공유'],
     'link': '/OnlineInquire',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['0613: <온라인 접수> 와 <로그인> 모달 창 추가']
   },
   {
@@ -292,7 +296,8 @@ const homeList = [
     'screenId': 'R-Cust-Inqur-List-01',
     'status': ['0512: 개발 공유'],
     'link': '/RequireList',
-    'pubData': 'v1 07-20'
+    'pubData': 'v1 07-20',
+    'isPublished': true
   },
   // 알림
   {
@@ -464,6 +469,7 @@ const dashboardList = [
     'status': ['0612: 기획 공유', '0613: 개발 공유'],
     'link': '/ChatRoomMenuList',
     'pubData': 'v1 07-18',
+    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
@@ -472,6 +478,7 @@ const dashboardList = [
     'status': ['0612: 기획 공유', '0613: 개발 공유'],
     'link': '/ChatRoomMenuView',
     'pubData': 'v1 07-18',
+    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
@@ -480,6 +487,7 @@ const dashboardList = [
     'status': ['0613: 기획 공유', '0613: 개발 공유'],
     'link': '/ChatRoomMenuAdd',
     'pubData': 'v1 07-18',
+    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
@@ -488,6 +496,7 @@ const dashboardList = [
     'status': ['0613: 기획 공유', '0613: 개발 공유'],
     'link': '/ChatRoomMenuViewModified',
     'pubData': 'v1 07-18',
+    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   // 브랜드 홈

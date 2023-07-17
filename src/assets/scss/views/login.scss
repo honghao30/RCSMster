@@ -52,6 +52,12 @@
       }
     }      
   }
+  &.login-help{
+    .form-list {
+      border-top:0;
+    }
+  }
+  
   .button__wrap {
     .btn-login {
         display: block;
@@ -64,6 +70,15 @@
     margin-top: 20px;
     .idfind {
       display: flex;
+      &.line::after {
+        content: '';
+        display: block;
+        position: relative;
+        border-left: 1px solid #D7D0D0;
+        height: 10px;
+        right: 93px;
+        top: 9px;
+      }
       a {
         position: relative;
         padding:0 12px; 
