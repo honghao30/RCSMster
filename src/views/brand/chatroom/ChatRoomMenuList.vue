@@ -6,8 +6,10 @@
         <!-- 기획서 v1.0 수정(num 앞에 콜론 붙힘) -->
         <PageTitle pagetitle="대화방 메뉴 목록" :num= 989 />
         <!-- 등록된 대화방 없을때 -->
-        <div class="brand-info__wrap" v-if="chatroomList === ''">
-          <div class="registration__complete">
+        <!-- 기획서 v1.0 수정 (brand-info__wrap 클래스 -> chatroom-none 클래스명 변경, registration__complete -> chatroom-none-txt 클래스 변경, PageTitle 컴포넌트 추가) -->
+        <div class="chatroom-none" v-if="chatroomList === ''">
+          <PageTitle pagetitle="대화방 목록" :num= "0" />
+          <div class="chatroom-none-txt">
             <p>등록된 대화방이 없습니다.<br />
             대화방을 등록하셔야 RBC의 다양한 기능을 사용하실 수 있습니다.</p>
           </div>
@@ -18,13 +20,15 @@
             >대화방 등록하기</router-link>
           </div>
         </div>
+        <!-- // 기획서 v1.0 수정 (brand-info__wrap 클래스 -> chatroom-none 클래스명 변경, registration__complete -> chatroom-none-txt 클래스 변경, PageTitle 컴포넌트 추가) -->
         <!-- //등록된 대화방 없을때 -->
         <div class="top-notice--gray gray-btn">
           <ul>
             <li>- 대화방 메뉴는 사용자의 요청에 대해 기업에서 실시간으로 응답할 수 있는 대화방입니다.</li>
           </ul>
           <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
-          <router-link to="" class="btn btn-blue">대화방 메뉴 등록</router-link>
+          <!--  기획서 v1.0 수정 (링크 연결) -->
+          <router-link to="/ChatRoomMenuAdd" class="btn btn-blue">대화방 메뉴 등록</router-link>
         </div>
         <div class="top-ctrl-area">
           <div class="left-area">
@@ -55,14 +59,14 @@
           </div>
         </div>
         <div class="table__wrap notice-table">
-          <table class="table table-list">
+          <table class="table table-list chatroom-menu-list__wrap"> <!-- 기획서 v1.0 수정 (이중클래스 추가)-->
             <colgroup>
               <col width="56px">
-              <col>
-              <col width="232">
-              <col width="232">
-              <col width="80">
-              <col>
+              <col width="232px">
+              <col width="212px">
+              <col width="212px">
+              <col width="102px">
+              <col width="308px">
             </colgroup>
             <thead>
               <tr>
@@ -108,20 +112,22 @@
             </tbody>
           </table>
         </div>
-        <div class="button__wrap" v-if="checkList.length > 0">
+        <!-- 기획서 v1.0 수정 -->
+        <div class="button__wrap history-btn" v-if="checkList.length > 0">
           <ButtonCmp
-            type="btn-line"
+            type="btn-blue-line"
             @click="activeChatRoom"
           >사용</ButtonCmp>
           <ButtonCmp
-            type="btn-line"
+            type="btn-blue-line"
             @click="disableChatRoom"
           >미사용</ButtonCmp>
           <ButtonCmp
-            type="btn-line"
+            type="btn-blue-line"
             @click="removeConfirmMsg"
           >삭제</ButtonCmp>
         </div>
+        <!-- //기획서 v1.0 수정 -->
         <PagingCmp />
       </div>
     </div>
@@ -250,6 +256,9 @@ export default {
     removeChatRoom () {
       this.chatroomList = this.chatroomList.filter((item, i) => !this.checkList.includes(`item${i + 1}`))
       this.checkList = []
+      // 기획서 v1.0 수정
+      this.isModalViewed = false
+      this.isRemoveConfirmMsgModal = false
     },
     checkAll() {
       if (!this.isAllChecked) {

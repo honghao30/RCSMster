@@ -141,6 +141,9 @@
 										margin-left: 16px;
 										border: 1px solid #eaeaea;
 										border-radius: 8px;
+										img {
+											max-height:40px;
+										}
 									}
 									.brand__title{
 										margin-left: 16px;
@@ -821,6 +824,9 @@
 									margin:0 16px;
 									border:1px solid #EAEAEA;
 									background: #EAEAEA url('../assets/images/icon/icon_potho_frofile.png') no-repeat center;
+									img {
+										max-height:40px;
+									}									
 								}
 								.brnad__new{
 									@include fontoption(12px,$pointColor,700,26px);

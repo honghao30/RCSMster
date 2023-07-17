@@ -127,8 +127,8 @@
               </div>
             </template>
             <!-- // 기획서 v1.0 수정 / 슬라이드 추가 -->
-            <!-- 기획서 v1.0 수정 / 응답버튼 수정 -->
-            <ul class="chip-buttons"  :class="{ 'not-response-box': !chatMsgData.chipButtons.length }">
+            <!-- 기획서 v1.0 수정 / 응답버튼 수정 / 응답버튼 미사용 하는 경우도 있어서 v-if 추가 -->
+            <ul class="chip-buttons"  :class="{ 'not-response-box': !chatMsgData.chipButtons.length }" v-if="!chatInfoData.chipButtons">
               <!-- <template v-if="chatMsgData.chipButtons.length">
                 <li v-for="(btn, k) in chatMsgData.chipButtons" :key="k" >
                   <a href="">{{ btn.btnName }}</a>
@@ -142,8 +142,8 @@
                   <swiper
                     ref="responsecarousel"
                     :options="chipSwiperOption"
-                    :class="{'inactive': chatMsgData.msgData.length < 2 || chatMsgData.msgCardData.length < 2}"
-                  >
+                    :class="{'inactive': chatMsgData.chipButtons.length < 2}"
+                  > <!-- 기획서 v1.0 수정 (inactive 클래스 조건 변경) -->
                     <swiper-slide v-for="(btn, k) in chatMsgData.chipButtons" :key="k">
                       <a href="" class="response-box">{{ btn.btnName }}</a>
                     </swiper-slide>
@@ -156,7 +156,7 @@
                 <span>응답버튼을 등록해주세요.</span>
               </li>
             </ul>
-            <!-- // 기획서 v1.0 수정 / 응답버튼 수정 -->
+            <!-- // 기획서 v1.0 수정 / 응답버튼 수정 / 응답버튼 미사용 하는 경우도 있어서 v-if 추가 -->
           </div>
           <div class="chat-bubble__wrap receiver">
             <div class="chat-bubble">
@@ -275,7 +275,8 @@ export default {
           chatbotMsgName: '',
           allowMsg: 'N',
           mode: 'views',
-          hideInputFooter: false
+          hideInputFooter: false,
+          chipButtons: false // 응답버튼 미사용 하는 경우도 있어서 v-if 추가
         }
       }
     },

@@ -61,15 +61,15 @@
             </table>
           </div>
         </div>
-        <!-- 기획서 v1.0 수정 (v-if/ v-else 수정 / ) -->
+        <!-- 기획서 v1.0 수정 (v-if/ v-else 수정) -->
         <div class="empty-emulator" v-if="radiochk.length === 0">
           <p>브랜드 소식을 선택해주세요.</p>
         </div>
         <!-- 간편챗봇 컴포넌트 완성되면 연결해야함 임시로 피드에뮬레이터 컴포넌트 사용함 -->
         <ChatEmulator
-        v-else
-        :chatInfoData="chatInfoData"
-        :chatMsgData ="chatMsgData"
+          v-else
+          :chatInfoData="chatInfoData"
+          :chatMsgData ="chatMsgData"
         />
         <!-- // 기획서 v1.0 수정 (v-if, v-else 수정) -->
       </div>
@@ -110,6 +110,7 @@ export default {
     return {
       isAllChecked: false,
       radiochk: [],
+      // 기획서 v1.0 수정(이미지형 -> 캐로셀형 으로 문구수정)
       chatbotMsgList: [
         {
           name: '상담 직원 연결',
@@ -119,17 +120,17 @@ export default {
         {
           name: '나에게 맞는 상품 찾기',
           id: 'ARMbv6mWh020A4t',
-          type: '이미지형'
+          type: '캐로셀형'
         },
         {
           name: '나에게 맞는 상품 찾기',
           id: 'ARMbv6mWh020A4t',
-          type: '이미지형'
+          type: '캐로셀형'
         },
         {
           name: '나에게 맞는 상품 찾기',
           id: 'ARMbv6mWh020A4t',
-          type: '이미지형'
+          type: '캐로셀형'
         },
         {
           name: '나에게 맞는 상품 찾기',
@@ -139,7 +140,7 @@ export default {
         {
           name: '나에게 맞는 상품 찾기',
           id: 'ARMbv6mWh020A4t',
-          type: '이미지형'
+          type: '캐로셀형'
         },
         {
           name: '나에게 맞는 상품 찾기',
@@ -159,7 +160,7 @@ export default {
         {
           name: '상담 직원 연결',
           id: 'ARMbv6mWh020A4t',
-          type: '이미지형'
+          type: '캐로셀형'
         }
       ],
       sortOptions: [
@@ -176,27 +177,28 @@ export default {
         chatRoomName: '네스프레소',
         allowMsg: 'N',
         saftyMark: 'Y',
-        chatType: '',
-        hideInputFooter: true
+        hideInputFooter: true,
+        // 기획서 v1.0 수정 (chatType 삭제)
+        mode: 'registration' // 기획서 v1.0 수정
       },
       chatMsgData: {
         chatType: 'card',
-        imgSize: 'medium',
-        chatCardTitle: 'Y',
-        chatCardContent: 'Y',
+        // 기획서 v1.0 수정 (imgSize, chatCardTitle, chatCardContent 삭제)
         chipButtons: [{
           btnName: '🎀 상담직원연결 👋​'
         },
         {
           btnName: '🍉나에게 맞​는 상품은?🍓​'
         }],
-        msgData: [{
+        // 기획서 v1.0 수정 (msgData -> msgCardData 수정)
+        msgCardData: [{
           index: 1,
-          imgFile: 'dummy/template_image.png',
+          imgSize: 'medium', // 기획서 v1.0 수정
+          imgFile: 'dummy/template_image_02.png', // 기획서 v1.0 수정(이미지 수정)
           title: 'SYSTEM STUDIOS',
           cardContent: '5만원 이상 첫 구매 후 응모 시 L Point <br>3천 P 지급합니다.',
           btnUse: 'Y',
-          btnDirection: 'column',
+          // 기획서 v1.0 수정 (btnDirection 삭제)
           buttons: [{
             btnName: '주소찾기'
           }]

@@ -305,18 +305,28 @@
                         <td>
                           <div class="form-item__content">
                             <div class="form-item-row form-template">
-                              <div class="input-item input-left">
+                              <div class="input-item input-limit input-left">
                                 <div class="input">
-                                  <input type="text" placeholder="소제목을 입력해주세요." v-model="form.bodyTitle"
-                                  ref="imageURL"
-                                  />
+                                  <input type="text" class="input" maxlength="4"
+                                    v-model="form.bodyTitle"
+                                    placeholder="소제목을 입력해주세요."
+                                    ref="bodyTitle"
+                                  >
+                                  <div class="input-limit__text">
+                                    <p>{{ form.bodyTitle.length }}/4자</p>
+                                  </div>
                                 </div>
                               </div>
-                              <div class="input-item input-right">
+                              <div class="input-item input-limit input-right">
                                 <div class="input">
-                                  <input type="text" placeholder="내용을 입력해주세요." v-model="form.bodyContent"
-                                  ref="imageURL"
-                                  />
+                                  <input type="text" class="input" maxlength="33"
+                                    v-model="form.bodyContent"
+                                    placeholder="내용을 입력해주세요."
+                                    ref="bodyContent"
+                                  >
+                                  <div class="input-limit__text">
+                                    <p>{{ form.bodyContent.length }}/33자</p>
+                                  </div>
                                 </div>
                               </div>
                               <div class="template-button">

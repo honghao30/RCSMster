@@ -1151,7 +1151,7 @@
     width: 100%;
     gap: 32px;    
     border-top: 3px solid #BCBCBC;
-    border-bottom: 3px solid #BCBCBC;
+    border-bottom: 3px solid #ddd;
     padding:0 0 16px;
     .chatroom-menu__view {
         flex: 1;
@@ -1204,14 +1204,10 @@
     }
 }
 //대화방 메뉴 수정
-.card-box{
-    .item-reg__wrap{
-        &.modify-box{
-        border-top: 2px solid #DDD;
-        border-bottom: 2px solid #DDD;
-        }
+.menu-modify-box{
+    .table__wrap{
+        border-top: 0;
     }
-    
 }
 
 //대화방 등록 && 수정
@@ -1225,6 +1221,9 @@
         &.chatbot__wrap{
             padding-bottom: 16px;
         } // 간편챗봇 메시지 등록
+        &.chatroom-menu__wrap{
+            margin-bottom: 0;
+        } // 대화방 메뉴 등록
         .chatroom-registration{
             flex: 1;
             .tab__wrap{
@@ -1411,7 +1410,7 @@
             border-top: 3px solid #BCBCBC;
             .chatroom-registration{
                 .table__wrap{
-                border-top: 0;
+                    border-top: 0;
                     .form-table{
                         &.table-bodyonly{
                             .modify-type{
@@ -2468,3 +2467,26 @@
         display: none;
     }
 }
+
+// 대화방 메뉴 목록
+.table-list{
+    &.chatroom-menu-list__wrap{
+        th{
+            padding: 16px;
+            span:not(.checkbox){
+                &:before {
+                    left: -16px;
+                }
+            }
+        }
+        td{
+            padding: 16px;
+        }
+    }
+    .chatroom-list-left{
+        .dropdown{
+            min-width: 276px;
+        }
+    }
+}
+

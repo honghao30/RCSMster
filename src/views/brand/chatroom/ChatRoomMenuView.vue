@@ -23,10 +23,12 @@
                             <span class="text">{{ chatroomList[0].status }}</span>
                           </div>
                         </div>
+                        <!-- 기획서 v1.0 수정(사용중지 인 경우 문구 사용 / 고객센터 클릭 시 1:1문의 화면으로 이동) -->
                         <!-- <p class="not-user-msg">
                           현재 해당 대화방은 일시중지 상태입니다.<br>
                           일시중지 상태를 해제하려면 <router-link to="#">고객센터</router-link>에 문의해주세요.
                         </p> -->
+                        <!-- // 기획서 v1.0 수정(사용중지 인 경우 문구 사용 / 고객센터 클릭 시 1:1문의 화면으로 이동) -->
                       </div>
                     </td>
                   </tr>
@@ -71,6 +73,7 @@
             </div>
             <div class="chatroom-munu__h3-wrap">
               <PageTitleH3 titleh3="대화방 메뉴" />
+              <!-- 기획서 v1.0 수정(대화방 메뉴 복사 팝업 삭제 / v1.0 기준 p.30에서 삭제됨) -->
               <ButtonCmp
                 type="btn-line"
                 size="small"
@@ -110,18 +113,23 @@
           </div>
           <div class="chatroom-emulator sticky">
             <ChatEmulator
-              :chatInfoData="chatroomList[0]"
-              :chatMenuList="chatroomList[0].list"
+              :chatInfoData="chatInfoData"
+              :chatMenuList="chatMenuData"
             />
           </div>
         </div>
-        <div class="button__wrap">
+        <!-- 기획서 v1.0 수정 (삭제 : 모달창 추가 / type 변경 , 저장-> 수정 문구변경, 수정: btn컴포넌트 -> router-link 변경 및 링크연결) -->
+        <div class="button__wrap flex-end">
           <ButtonCmp
-              type="btn-blue-line"
+            type="btn-line"
+            @click="modalRemove"
           >삭제</ButtonCmp>
-          <ButtonCmp
-              type="btn-blue"
-          >수정</ButtonCmp>
+          <router-link
+            to="/ChatRoomMenuViewModified"
+            class="btn btn-blue"
+          >수정</router-link>
+          <!-- // 기획서 v1.0 수정 (삭제 : 모달창 추가 , 저장: btn컴포넌트 -> router-link 변경 및 링크연결) -->
+
         </div>
       </div>
     </div>
@@ -130,11 +138,32 @@
       v-if="isModalViewed"
       @closeModal="isModalViewed = false"
     >
-      <DublicationChatMenu
-          @closeModal="isModalViewed = false"
+    <!-- 기획서 v1.0 수정(DublicationChatMenu 삭제 : 대화방 메뉴 복사 팝업 삭제 / v1.0 기준 p.30에서 삭제됨) -->
+    <!-- 기획서 v1.0 수정 (삭제 버튼 선택 시, 대화방 메뉴 삭제 Alert 출력) -->
+    <ConfirmMsg
+      @closeModal="isModalViewed = false, isModalRemove = false"
+      v-if="isModalRemove"
+    >
+      <div class="msg" slot="msg">
+        대화방 메뉴를 삭제하시겠습니까?
+      </div>
+      <div class="button__wrap" slot="button">
+        <ButtonCmp
+          type="btn-line"
+          @click="closeMsg"
+          >
+            아니요
+          </ButtonCmp>
+        <ButtonCmp
+        type="btn-blue"
+        @click="closeMsg"
         >
-      </DublicationChatMenu>
-    </ModalView>
+          예
+        </ButtonCmp>
+      </div>
+    </ConfirmMsg>
+    <!-- // 기획서 v1.0 수정 (삭제 버튼 선택 시, 대화방 메뉴 삭제 Alert 출력) -->
+  </ModalView>
     <!-- modal  -->
   </div>
 </template>
@@ -147,7 +176,7 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ChatEmulator from '@/views/brand/components/ChatEmulator.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ModalView from '@/components/common/ModalView.vue'
-import DublicationChatMenu from '@/views/brand/components/DublicationChatMenu'
+import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
 
 export default {
   components: {
@@ -157,11 +186,19 @@ export default {
     PageTitleH3,
     ModalView,
     ChatEmulator,
-    DublicationChatMenu
+    ConfirmMsg
   },
   data() {
     return {
       isModalViewed: false,
+      isModalRemove: false, // 기획서 v1.0 수정
+      // 기획서 v1.0 수정
+      chatInfoData: {
+        chatRoomName: 'SYSTEM STUDIOS',
+        allowMsg: 'Y',
+        hideInputFooter: false,
+        chipButtons: true
+      },
       chatroomList: [
         {
           chatRoomName: 'SYSTEMSTUDIO',
@@ -172,7 +209,7 @@ export default {
           allowMsg: 'N',
           list: [
             {
-              label: '자주 묻는 질문✋',
+              label: '🎀상담직원 연결👋', // 기획서 v1.0 수정
               value: '🎀상담직원 연결👋',
               menuDetails: [
                 {
@@ -211,12 +248,29 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      chatMenuData: [{
+        menuIndex: '1',
+        menuTitle: '🎀상담직원 연결👋'
+      },
+      {
+        menuIndex: '2',
+        menuTitle: '🍉나에게 맞는 상품은?🍓'
+      },
+      {
+        menuIndex: '3',
+        menuTitle: '🍉23FW 미리보기🍒'
+      }]
     }
   },
   methods: {
-    copyChatRoom () {
+    closeMsg() {
+      this.isModalViewed = false
+      this.isModalRemove = false
+    },
+    modalRemove() {
       this.isModalViewed = true
+      this.isModalRemove = true
     }
   }
 }
