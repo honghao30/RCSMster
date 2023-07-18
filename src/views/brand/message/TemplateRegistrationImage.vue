@@ -1,4 +1,4 @@
-<template>
+template<template>
   <div class="brand__wrap">
     <div class="brand__inner">
       <BrandLnb />
@@ -383,8 +383,9 @@
                     <col />
                   </colgroup>
                   <tbody>
+                  <template v-if="isImageType6">
                     <!-- 버튼 - SNS 중간버튼형 -->
-                    <tr v-for="(button,index) in form.Buttons.info" :key="index" v-if="isImageType6">
+                    <tr v-for="(button,index) in form.Buttons.info" :key="index">
                       <th scope="row"><span class="form-item__label">버튼{{ index + 1 }} </span></th>
                       <td>
                         <TemplateButtonReg
@@ -413,6 +414,7 @@
                         </div>
                       </td>
                     </tr>
+                    </template>
                     <!-- //버튼 - SNS 중간버튼형 -->
                     <!-- 이미지 - SNS형, SNS 중간버튼형 -->
                     <tr v-if="isImageType5 || isImageType6">
@@ -443,7 +445,8 @@
                     </tr>
                     <!-- //이미지 - SNS형, SNS 중간버튼형 -->
                     <!-- 상세 - 썸네일 세로형-->
-                    <tr v-if="isImageType3 && detail" v-for="(detail, index) in detailTemplate" :key="index">
+                    <template  v-if="isImageType3 && detail">
+                    <tr v-for="(detail, index) in detailTemplate" :key="index">
                       <th scope="row"><span class="form-item__label required">상세  {{ index + 1 }}</span></th>
                       <td>
                         <div class="form-item__content">
@@ -499,6 +502,7 @@
                         </div>
                       </td>
                     </tr>
+                    </template>
                     <!-- //상세 - 썸네일 세로형 -->
                     <!-- 상세 이미지 - 썸네일 가로형-->
                     <tr v-if="isImageType4">
@@ -606,38 +610,42 @@
                     </tr>
                     <!-- //테이블 - 이미지 템플릿 신규 -->
                     <!-- 버튼 - SNS 중간버튼형 제외 -->
-                    <tr v-for="(button,index) in form.Buttons.info" :key="index" v-if="!isImageType6">
-                      <th scope="row"><span class="form-item__label">버튼{{ index + 1 }} </span></th>
-                      <td>
-                        <TemplateButtonReg
-                         :buttonInfo="button"
-                        />
-                      </td>
-                    </tr>
-                    <tr v-if="!isImageType6">
-                      <th scope="row"><span class="form-item__label">버튼색 </span></th>
-                      <td>
-                        <!-- 버튼 칼라 -->
-                        <div class="form-item-row">
-                            <div class="input-item brand-color-select">
-                              <span class="radiobox">
-                                <input type="radio" name="bgColor" id="defaultColor" value="#2f77fb"/>
-                                <label for="defaultColor">기본색</label>
-                              </span>
-                              <span class="radiobox">
-                                <input type="radio" name="bgColor" id="brandColor" disabled value="#70AD47" />
-                                <label for="brandColor">브랜드색 (
-                                  <router-link to="#">
-                                  브랜드 색 설정
-                                </router-link> )</label>
-                              </span>
-                            </div>
-                        </div>
-                      </td>
-                    </tr>
+                    <template v-if="!isImageType6 && !isImageType8">
+                      <tr v-for="(button,index) in form.Buttons.info" :key="index">
+                        <th scope="row"><span class="form-item__label">버튼{{ index + 1 }} </span></th>
+                        <td>
+                          <TemplateButtonReg
+                          :buttonInfo="button"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="form-item__label">버튼색 </span></th>
+                        <td>
+                          <!-- 버튼 칼라 -->
+                          <div class="form-item-row">
+                              <div class="input-item brand-color-select">
+                                <span class="radiobox">
+                                  <input type="radio" name="bgColor" id="defaultColor" value="#2f77fb"/>
+                                  <label for="defaultColor">기본색</label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="bgColor" id="brandColor" disabled value="#70AD47" />
+                                  <label for="brandColor">브랜드색 (
+                                    <router-link to="#">
+                                    브랜드 색 설정
+                                  </router-link> )</label>
+                                </span>
+                              </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </template>
                     <!-- // 버튼 - SNS 중간버튼형 제외 -->
                   </tbody>
                 </table>
+                <!-- carousel -->
+                <CarouselReg :slideData="form.slideData" v-if="isImageType8"/>
               </div>
               <div class="form-btm__text">
                 <template v-if="templateType === 'textTitleCustom1' || templateType === 'textTitleCustom2'">
@@ -655,10 +663,10 @@
           </div>
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
-            <ChatEmulator
+            <!-- <ChatEmulator
               :templateData="form"
               :templateType="ImageType1"
-            />
+            /> -->
           </div>
           <!-- // 에뮬레이터 -->
         </div>
@@ -701,6 +709,7 @@ import TemplateTitleReg from '@/views/brand/message/components/TemplateTitleReg.
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
 import { textTemplate } from '@/views/brand/message/templateData.js'
+import CarouselReg from '@/views/brand/message/components/CarouselReg.vue'
 
 export default {
   components: {
@@ -712,7 +721,8 @@ export default {
     Emoji,
     TemplateTableReg,
     TemplateButtonReg,
-    TemplateTitleReg
+    TemplateTitleReg,
+    CarouselReg
   },
   data() {
     return {
@@ -842,7 +852,81 @@ export default {
               viewMode: ''
             }
           }]
-        }
+        },
+        slideData: [{
+          slideIndex: '1',
+          slideTitle: '',
+          slideDescription: '',
+          isActive: true,
+          imgFile: '',
+          buttons:{
+            use: 'Y',
+            info: [{
+              id: 1,
+              bgColor: '#2f77fb',
+              btnEvent: 'none',
+              btnEventDropdown: '',
+              btnName: '',
+              simpleChatbot: '',
+              chatbot: '',
+              call: '',
+              copyContent: '',
+              message: {
+                call: '',
+                content: '',
+                viewSource: ''
+              },
+              map: {
+                latitude: '',
+                longitude: '',
+                location: '',
+                url: '',
+                query: ''
+              },
+              calendar: {
+                date: '',
+                title: '',
+                content: ''
+              },
+              browser: {
+                url: '',
+                viewMode: ''
+              }
+            },
+            {
+              id: 2,
+              bgColor: '#2f77fb',
+              btnEvent: 'none',
+              btnEventDropdown: '',
+              btnName: '',
+              simpleChatbot: '',
+              chatbot: '',
+              call: '',
+              copyContent: '',
+              message: {
+                call: '',
+                content: '',
+                viewSource: ''
+              },
+              map: {
+                latitude: '',
+                longitude: '',
+                location: '',
+                url: '',
+                query: ''
+              },
+              calendar: {
+                date: '',
+                title: '',
+                content: ''
+              },
+              browser: {
+                url: '',
+                viewMode: ''
+              }
+            }],
+          }
+        }],
       },
       bodyTemplate: [
         {
