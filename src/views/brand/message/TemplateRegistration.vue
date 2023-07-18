@@ -20,8 +20,7 @@
                       <td>
                         <div class="form-item__content">
                             <div class="form-item-row">
-                              <div class="input-item">
-                                UBR.13L49F42Mo-
+                              <div class="input-item input-limit">
                                 <div class="input">
                                   <input type="text" maxlength="30" v-model="templateNameId"   />
                                 </div>
@@ -67,263 +66,17 @@
                         </div>
                       </td>
                     </tr>
-                    <!-- //템플릿 명 -->
                     <MainTitle :info="form.MainTitle.info"></MainTitle>
-                    <!-- 타이틀 -->
-                      <!-- 텍스트 선택형_서술, 텍스트 선택형_스타일 -->
-                      <tr class="bdBottom-bg" v-if="isTextType5 || isTextType6">
-                        <th scope="row"><span class="form-item__label required">타이틀</span></th>
-                        <td>
-                          <div class="form-item__content">
-                            <div class="form-item-row">
-                              <TemplateTitleReg
-                                  :titleIconNewData="titleIconNewData"
-                                  :titleIconBasicData="titleIconBasicData"
-                                  @optionSelected="checkTitleSelected"
-                                />
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <!-- //텍스트 선택형_서술, 텍스트 선택형_스타일 -->
-                      <!-- 타이틀 자유형_서술, 타이틀 자유형_스타일 -->
-                      <tr v-if="isTextType3 || isTextType4">
-                        <th scope="row"><span class="form-item__label required">타이틀 - 제목</span></th>
-                        <td>
-                          <div class="form-item__content">
-                            <div class="form-item-row">
-                              <div class="input-item input-limit">
-                                <div class="input">
-                                  <input type="text"
-                                    class="input"
-                                    maxlength="30"
-                                    ref="mainTitle"
-                                    @input="e => form.MainTitle.info.mainTitle = e.target.value"
-                                    placeholder="최대 17자 까지 입력할 수 있습니다."
-                                  >
-                                  <div class="input-limit__text">
-                                    <Emoji @input="onSelectEmoji($event, 'mainTitle')" />
-                                    <p>{{ form.MainTitle.info.mainTitle.length }}/30자</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr class="bdBottom-bg" v-if="isTextType3 || isTextType4">
-                        <th scope="row"><span class="form-item__label required">타이틀 - 변수</span></th>
-                        <td>
-                          <div class="form-item__content">
-                            <div class="form-item-row">
-                              <div class="input-item">
-                                <Dropdown placeholder="변수 선택"/>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <!-- //타이틀 자유형_서술, 타이틀 자유형_스타일 -->
-                      <!-- 아이템 강조형_서술, 아이템 강조형_스타일 -->
-                      <tr v-if="isTextType1 || isTextType2">
-                        <th scope="row"><span class="form-item__label">타이틀 - 설명</span></th>
-                        <td>
-                          <div class="form-item__content">
-                            <div class="form-item-row">
-                              <div class="input-item">
-                                <span class="radiobox">
-                                  <input type="radio" name="desc" id="descN" value="descN"
-                                    v-model="form.title.desc"
-                                  />
-                                  <label for="descN">미사용</label>
-                                </span>
-                                <span class="radiobox">
-                                  <input type="radio" name="desc" id="descY" value="descY"
-                                    v-model="form.title.desc"
-                                  />
-                                  <label for="descY">사용</label>
-                                </span>
-                              </div>
-                              <template v-if="form.title.desc === 'descY'">
-                                <div class="input-item input-limit">
-                                  <div class="input">
-                                    <input type="text"
-                                      class="input"
-                                      maxlength="30"
-                                      ref="mainDesc"
-                                      @input="e => form.MainTitle.info.mainDesc = e.target.value"
-                                      placeholder="최대 17자 까지 입력할 수 있습니다."
-                                    >
-                                    <div class="input-limit__text">
-                                      <Emoji @input="onSelectEmoji($event, 'mainDesc')" />
-                                      <p>{{ form.MainTitle.info.mainDesc.length }}/17자</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </template>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr v-if="isTextType1 || isTextType2">
-                        <th scope="row"><span class="form-item__label required">타이틀 - 제목 </span></th>
-                        <td>
-                          <div class="form-item__content">
-                            <div class="form-item-row">
-                              <div class="input-item input-limit">
-                                <div class="input">
-                                  <input type="text"
-                                    class="input"
-                                    maxlength="30"
-                                    ref="mainTitle"
-                                    @input="e => form.MainTitle.info.mainTitle = e.target.value"
-                                    placeholder="최대 17자 까지 입력할 수 있습니다."
-                                  >
-                                  <div class="input-limit__text">
-                                    <Emoji @input="onSelectEmoji($event, 'mainTitle')" />
-                                    <p>{{ form.MainTitle.info.mainTitle.length }}/30자</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr class="bdBottom-bg" v-if="isTextType1 || isTextType2">
-                        <th scope="row"><span class="form-item__label required">타이틀 - 로고</span></th>
-                        <td>
-                          <div class="form-item__content">
-                            <div class="form-item-row">
-                              <div class="input-item">
-                                <span class="radiobox">
-                                  <input type="radio" name="logo" id="basicImage" v-model="form.logoType"  value="basicImage" />
-                                  <label for="basicImage">기본 아이콘</label>
-                                </span>
-                                <span class="radiobox">
-                                  <input type="radio" name="logo" id="custom" v-model="form.logoType" value="custom" />
-                                  <label for="custom">직접 등록</label>
-                                </span>
-                              </div>
-                              <template v-if="form.logoType === 'basicImage'">
-                                <TemplateTitleReg
-                                  :titleIconNewData="titleIconNewData"
-                                  :titleIconBasicData="titleIconBasicData"
-                                  @optionSelected="checkLogoSelected"
-                                />
-                              </template>
-                              <template  v-if="form.logoType === 'custom'">
-                                <div class="input-item w--full">
-                                  <span class="input">
-                                    <input type="text" class="input" :value="form.logoFile" disabled>
-                                  </span>
-                                  <input type="file" id="fileUp" class="input blind"
-                                  @change="onFileChanged">
-                                  <label for="fileUp" class="btn btn-default-line">파일 선택</label>
-                                </div>
-                                <p class="guide-text black">&middot; 파일형식: PNG, GIF (최대 1MB)</p>
-                              </template>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <!-- //아이템 강조형_서술, 아이템 강조형_스타일 -->
-                    <!-- //타이틀 -->
-                    <!-- 본문 - 텍스트 선택형_서술, 타이틀 자유형_서술, 아이템 강조형_서술-->
-                    <tr class="bdBottom-bg" v-if="isTextType1 || isTextType3 || isTextType5">
-                      <th scope="row"><span class="form-item__label required">본문 -  내용</span></th>
-                      <td>
-                        <template>
-                          <div class="form-item__content">
-                            <div class="form-item-row">
-                              <div class="input-item input-limit">
-                                <div class="textarea">
-                                  <textarea maxlength="1300" placeholder="내용을 입력해주세요."
-                                  @input="e => form.Description = e.target.value"
-                                  v-model="form.Description"
-                                  ref="descContent"></textarea>
-                                  <div class="textarea-limit__text">
-                                    <Emoji @input="onSelectEmoji($event, 'descContent')"/>
-                                    <p>
-                                      {{ form.Description.length }}/1,300자
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                              <p class="guide-text error">내용을 선택해주세요.</p>
-                            </div>
-                          </div>
-                        </template>
-                      </td>
-                    </tr>
-                    <!-- // 본문 - 텍스트 선택형_서술, 타이틀 자유형_서술, 아이템 강조형_서술 -->
-                    <!-- 테이블 - 텍스트 선택형_스타일, 타이틀 자유형_스타일, 아이템 강조형_스타일 -->
-                    <tr v-if="isTextType2 || isTextType4 || isTextType6">
-                      <th scope="row"><span class="form-item__label required">테이블 - 제목</span></th>
-                      <td>
-                        <div class="form-item__content">
-                          <div class="form-item-row">
-                            <div class="input-item input-limit">
-                              <div class="input">
-                                <input type="text" placeholder="제목을 입력해주세요." maxlength="17" v-model="form.Table.tableTitle"
-                                @input="e => form.Table.tableTitle = e.target.value"
-                                ref="tableTitle"
-                                />
-                                <div class="input-limit__text">
-                                  <p>{{ form.Table.tableTitle.length }}/17자</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="bdBottom-bg" v-if="isTextType2 || isTextType4 || isTextType6">
-                      <th scope="row"><span class="form-item__label required">테이블 - 내용</span></th>
-                      <td>
-                        <div class="form-item__content">
-                          <div class="form-item-row">
-                            <template>
-                              <TemplateTableReg
-                                :tableInfo="form.Table.info"
-                              />
-                            </template>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <!-- //테이블 - 텍스트 선택형_스타일, 타이틀 자유형_스타일, 아이템 강조형_스타일 -->
-                    <!-- 버튼 -->
-                    <tr  v-for="(button,index) in form.Buttons.info" :key="index">
-                      <th scope="row"><span class="form-item__label">버튼{{ index + 1 }} </span></th>
-                      <td>
-                        <TemplateButtonReg
-                         :buttonInfo="button"
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row"><span class="form-item__label">버튼색 </span></th>
-                      <td>
-                        <!-- 버튼 칼라 -->
-                        <div class="form-item-row">
-                            <div class="input-item brand-color-select">
-                              <span class="radiobox">
-                                <input type="radio" name="bgColor" id="defaultColor"
-                                checked value="#2f77fb"/>
-                                <label for="defaultColor">기본색</label>
-                              </span>
-                              <span class="radiobox">
-                                <input type="radio" name="bgColor" id="brandColor" disabled value="#70AD47" />
-                                <label for="brandColor">브랜드색 (
-                                  <router-link to="#">
-                                  브랜드 색 설정
-                                </router-link> )</label>
-                              </span>
-                            </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <!-- // 버튼 -->
+                    <!-- <MainTitleFree :info="form.MainTitleFree.info"></MainTitleFree> -->
+                    <!-- <MainTitleSelect :info="form.MainTitleSelect.info"></MainTitleSelect> -->
+                    <!-- <StyleTitleA :info="form.MainTitle.info"></StyleTitleA> -->
+                    <Description :info="form.Description1.info"></Description>
+                    <ImageTall :info="form.Image.info" ></ImageTall>
+                    <ImageSquare :info="form.Image.info"></ImageSquare>
+                    <ButtonHorizontal></ButtonHorizontal>
+                    <ButtonVertical></ButtonVertical>
+                    <Table></Table>
+
                   </tbody>
                 </table>
               </div>
@@ -343,12 +96,10 @@
           </div>
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
-            <!-- <TempEmulator
+            <TempEmulator
               :templateType="templateType"
               :templData="form"
-            /> -->
-
-            <ChatEmulator :templateData="templateData"/>
+            />
             <!-- :templateData="templateData" -->
           </div>
           <!-- // 에뮬레이터 -->
@@ -384,15 +135,22 @@ import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
-import ChatEmulator from '@/views/brand/message/components/ChatEmulator.vue'
 import TempEmulator from '@/views/brand/message/components/TempEmulator.vue'
 import TemplateButtonReg from '@/views/brand/message/components/TemplateButtonReg.vue'
 import TemplateTableReg from '@/views/brand/message/components/TemplateTableReg.vue'
-import TemplateTitleReg from '@/views/brand/message/components/TemplateTitleReg.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
 import { textTemplate } from '@/views/brand/message/templateData.js'
 import MainTitle from './components/MainTitle.vue'
+import MainTitleFree from './components/MainTitleFree.vue'
+import MainTitleSelect from './components/MainTitleSelect.vue'
+import StyleTitleA from './components/StyleTitleA.vue'
+import Description from './components/Description.vue'
+import ImageTall from './components/ImageTall.vue'
+import ImageSquare from './components/ImageSquare.vue'
+import ButtonHorizontal from '@/views/brand/message/components/ButtonHorizontal.vue'
+import ButtonVertical from '@/views/brand/message/components/ButtonVertical.vue'
+import Table from '@/views/brand/message/components/Table.vue'
 
 export default {
   components: {
@@ -404,15 +162,22 @@ export default {
     TempEmulator,
     TemplateButtonReg,
     TemplateTableReg,
-    TemplateTitleReg,
-    ChatEmulator,
-    MainTitle
+    MainTitle,
+    MainTitleFree,
+    MainTitleSelect,
+    StyleTitleA,
+    Description,
+    ImageTall,
+    ImageSquare,
+    ButtonVertical,
+    ButtonHorizontal,
+    Table
   },
   data() {
     return {
-      templateNameId: '8MwF1zkPHUj3xayCJsg3OcPv2',
+      templateNameId: 'UBR.13L49F42Mo-8MwF1zkPHUj3xayCJsg3OcPv2',
       textTemplate,
-      templateType: '텍스트 선택형_스타일',
+      templateType: 'textTemplate',
       templateName: '',
       form: {
         logoType: 'basicImage',
@@ -428,13 +193,59 @@ export default {
           info: {
             mainTitle: '',
             titleType: '',
+            varUse: 'Y',
+            logoUse: 'Y',
             logoFile: '',
             logoUrl: '',
             mainDesc: ''
           }
         },
-        Description: {
+        Image:{
           info: {
+            itemMainTitle: '',
+            itemSubTitle: '',
+            itemImgType: '',
+            itemImgFile: '',
+            imageOptions: 'square',
+            imageFile: '',
+            imageURL: ''
+          }
+        },
+        MainTitleFree: {
+          info: {
+            mainTitle: '',
+            titleType: '',
+            varUse: 'Y',
+            logoUse: 'Y',
+            logoFile: '',
+            logoUrl: '',
+            mainDesc: ''
+          }
+        },
+        MainTitleSelect: {
+          info: {
+            mainTitle: '',
+            titleType: '',
+            varUse: 'Y',
+            logoUse: 'Y',
+            logoFile: '',
+            logoUrl: '',
+            mainDesc: ''
+          }
+        },
+        Description1: {
+          info: {
+            description: ''
+          }
+        },
+        Description2: {
+          info: {
+            description: ''
+          }
+        },
+        Description3: {
+          info: {
+            description: ''
           }
         },
         Table: {
@@ -596,16 +407,16 @@ export default {
           titleIcon: require('../../../assets/images/icon/icon_title_logo_alarm.png')
         }
       ],
-      isTextType1: false, // 아이템 강조형1
-      isTextType2: false, // 아이템 강조형2
-      isTextType3: false, // 타이틀 자유형1
-      isTextType4: false, // 타이틀 자유형2
-      isTextType5: false, // 텍스트 선택형_서술
-      isTextType6: false // 텍스트 선택형_스타일
+      isTextType1: false,
+      isTextType2: false,
+      isTextType3: false,
+      isTextType4: false,
+      isTextType5: false,
+      isTextType6: false
     }
   },
   mounted() {
-    this.initTemplate(1)
+    this.initTemplate(3)
     this.buttonUseCheck()
     if (this.$route.query.type === 'text1') {
       this.isTextType1 = true
