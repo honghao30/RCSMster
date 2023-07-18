@@ -1,46 +1,28 @@
 <template>
-   <tr>
-      <th scope="row"><span class="form-item__label">타이틀 선택형</span></th>
-      <td>
-      <div class="form-item__content">
-      <!-- 로고 등록 -->
-        <div class="form-item-row">
-          <TemplateTitleReg
-            :titleIconNewData="titleIconNewData"
-            :titleIconBasicData="titleIconBasicData"
-            @optionSelected="checkTitleSelected"
-          />
-          <!-- //로고 등록 -->
-        </div>
-        <div class="form-item-row">
-          <div class="inner__input">
-            <div class="inner__input-box">
-              <span class="form-item__label required">제목</span>
-              <div class="inner__input-item">
-                <div class="input-item input-limit">
-                  <div class="input">
-                    <input type="text"
-                      class="input"
-                      maxlength="17"
-                      ref="mainTitleSelect_Title"
-                      id="mainTitleSelect_Title"
-                      v-model="form.MainTitle.info.mainTitle"
-                      @input="calcText()"
-                      placeholder="최대 17자 까지 입력할 수 있습니다."
-                    >
-                    <div class="input-limit__text">
-                      <Emoji @input="onSelectEmoji($event, 'mainTitleSelect_Title')" />
-                      <p>{{ mainTitleLength }}/17자</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <table class="table table-bodyonly form-table">
+    <colgroup>
+      <col width="180px">
+      <col />
+    </colgroup>
+    <tbody>
+    <tr>
+        <th scope="row"><span class="form-item__label required">타이틀</span></th>
+        <td>
+        <div class="form-item__content">
+          <!-- 타이틀 선택 영역 -->
+          <div class="form-item-row">
+            <TemplateTitleReg
+              :titleIconNewData="titleIconNewData"
+              :titleIconBasicData="titleIconBasicData"
+              @optionSelected="checkTitleSelected"
+            />
+            <!-- // 타이틀 선택 영역 -->
           </div>
-        </div>
-      </div>
-      </td>
-    </tr>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>
@@ -156,7 +138,7 @@ export default {
   },
   created() {
     //if (jglib.isEmpty(this.jsonData)) { > 값 가져오는 부분
-    
+
     //} else {
     //}
     this.description = this.inputText

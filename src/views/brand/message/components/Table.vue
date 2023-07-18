@@ -1,39 +1,87 @@
 <template>
-  <div class="desc-area table">
-    <p class="subtitle" v-if="info.title" >
-      <span>{{ info.title }}</span>
-    </p>
-    <ul class="description" v-if="info.description">
-      <li v-for="(item, i) in info.description" :key="i" :class="{ 'border' : item.tableLine}">
-        <div class="item-label">
-            <span v-if="item.itemLabel">{{ item.itemLabel }}</span>
-            <span v-else>내용을 입력해주세요.</span>
-        </div>
-        <div class="item-data" v-if="item.colNum == 2">
-            <span v-if="item.itemData">{{ item.itemData }}</span>
-            <span v-else>내용</span>
-        </div>
-      </li>
-    </ul>
-    <ul v-else class="description">
-      <li>
-        <span class="item-label">
-            <span>내용</span>
-        </span>
-        <span class="item-data">
-            <span>내용</span>
-        </span>
-      </li>
-    </ul>
-  </div>
+  <table class="table table-bodyonly form-table">
+    <colgroup>
+      <col width="180px">
+      <col />
+    </colgroup>
+    <tbody>
+      <!-- 테이블- 제목 -->
+      <tr>
+        <th scope="row"><span class="form-item__label required">테이블 - 제목</span></th>
+        <td>
+          <div class="form-item__content">
+            <div class="form-item-row">
+              <div class="input-item input-limit">
+                <div class="input">
+                  <input type="text" placeholder="제목을 입력해주세요." maxlength="17" v-model="form.Table.tableTitle"
+                  @input="e => form.Table.tableTitle = e.target.value"
+                  ref="tableTitle"
+                  />
+                  <div class="input-limit__text">
+                    <p>{{ form.Table.tableTitle.length }}/17자</p>
+                  </div>
+                </div>
+              </div>
+              <TemplateTableReg
+                :tableInfo="form.Table.info"
+                v-if="form.tableUse === 'Y'"
+              />
+            </div>
+          </div>
+        </td>
+      </tr>
+      <!-- 테이블- 내용 -->
+      <tr>
+        <th scope="row"><span class="form-item__label required">테이블 - 내용</span></th>
+        <td>
+          <div class="form-item__content">
+            <p class="text-limit">
+              0/90자
+            </p>
+            <div class="form-item-row">
+              <template>
+                <TemplateTableReg
+                  :tableInfo="form.Table.info"
+                />
+              </template>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>
+import TemplateTableReg from '@/views/brand/message/components/TemplateTableReg.vue'
 export default {
+  components: {
+    TemplateTableReg
+  },
   props: {
     info: {
       type: Object,
       default: null
+    }
+  },
+  data () {
+    return {
+      form: {
+        Table: {
+          tableTitle: '',
+          info: {
+            tableRowNum: 1,
+            description: [
+              {
+                line: false,
+                colNum: '1',
+                itemLabel: '',
+                itemData: ''
+              }
+            ]
+          }
+        }
+      },
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
    <tr>
-      <th scope="row"><span class="form-item__label">메인타이틀</span></th>
+      <th scope="row"><span class="form-item__label">타이틀</span></th>
       <td>
         <div class="form-item__content">
         <!-- 로고 등록 -->
@@ -188,7 +188,7 @@ export default {
   },
   created() {
     //if (jglib.isEmpty(this.jsonData)) { > 값 가져오는 부분
-    
+
     //} else {
     //}
     this.description = this.inputText

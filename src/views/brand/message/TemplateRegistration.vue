@@ -66,19 +66,22 @@
                         </div>
                       </td>
                     </tr>
-                    <MainTitle :info="form.MainTitle.info"></MainTitle>
-                    <!-- <MainTitleFree :info="form.MainTitleFree.info"></MainTitleFree> -->
-                    <!-- <MainTitleSelect :info="form.MainTitleSelect.info"></MainTitleSelect> -->
-                    <!-- <StyleTitleA :info="form.MainTitle.info"></StyleTitleA> -->
-                    <Description :info="form.Description1.info"></Description>
+
+                    <!-- <MainTitle :info="form.MainTitle.info" ></MainTitle>
+                    <MainTitleFree :info="form.MainTitleFree.info"></MainTitleFree>
+
+                    <StyleTitleA :info="form.MainTitle.info"></StyleTitleA>
+
                     <ImageTall :info="form.Image.info" ></ImageTall>
                     <ImageSquare :info="form.Image.info"></ImageSquare>
                     <ButtonHorizontal></ButtonHorizontal>
-                    <ButtonVertical></ButtonVertical>
-                    <Table></Table>
-
+                    <ButtonVertical></ButtonVertical> -->
                   </tbody>
                 </table>
+                <MainTitleSelect :info="form.MainTitleSelect.info" v-if="isTextType1 || isTextType2"></MainTitleSelect>
+                <MainTitleFree :info="form.MainTitleFree.info" v-if="isTextType3 || isTextType4"></MainTitleFree>
+                <Description :info="form.Description1.info" v-if="isTextType1 || isTextType3 || isTextType5"></Description>
+                <Table :info="form.table" v-if="isTextType2 || isTextType4 || isTextType6"></Table>
               </div>
               <div class="form-btm__text">
                 <template v-if="isTextType3">
@@ -420,22 +423,22 @@ export default {
     this.buttonUseCheck()
     if (this.$route.query.type === 'text1') {
       this.isTextType1 = true
-      this.templateType = '아이템 강조형1'
+      this.templateType = '텍스트 선택형_서술'
     } else if (this.$route.query.type === 'text2') {
       this.isTextType2 = true
-      this.templateType = '아이템 강조형2'
+      this.templateType = '텍스트 선택형_스타일'
     } else if (this.$route.query.type === 'text3') {
       this.isTextType3 = true
-      this.templateType = '타이틀 자유형1'
+      this.templateType = '타이틀 자유형_서술'
     } else if (this.$route.query.type === 'text4') {
       this.isTextType4 = true
-      this.templateType = '타이틀 자유형2'
+      this.templateType = '타이틀 자유형_스타일'
     } else if (this.$route.query.type === 'text5') {
       this.isTextType5 = true
-      this.templateType = '텍스트 선택형_서술'
+      this.templateType = '아이템 강조형_서술'
     } else if (this.$route.query.type === 'text6') {
       this.isTextType6 = true
-      this.templateType = '텍스트 선택형_스타일'
+      this.templateType = '아이템 강조형_스타일'
     }
   },
   methods: {

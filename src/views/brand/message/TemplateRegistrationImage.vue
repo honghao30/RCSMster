@@ -324,7 +324,8 @@ template<template>
                       </tr>
                       <!-- //본문 - 이미지 강조형, 썸네일 세로형, 썸네일 가로형, SNS형, SNS 중간버튼형, 이미지 템플릿 신규 -->
                       <!-- 본문 - 이미지 & 타이틀 강조형 -->
-                      <tr v-if="isImageType1 && image" v-for="(image, index) in imageTemplate" :key="index">
+                      <template v-if="isImageType1 && image">
+                      <tr v-for="(image, index) in imageTemplate" :key="index">
                         <th scope="row"><span class="form-item__label required">본문 {{ index + 1 }} </span></th>
                         <td>
                           <div class="form-item__content">
@@ -373,6 +374,7 @@ template<template>
                           </div>
                         </td>
                       </tr>
+                    </template>
                       <!-- //본문 - 이미지 & 타이틀 강조형 -->
                     <!-- //본문 -->
                   </tbody>
@@ -663,10 +665,7 @@ template<template>
           </div>
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
-            <!-- <ChatEmulator
-              :templateData="form"
-              :templateType="ImageType1"
-            /> -->
+
           </div>
           <!-- // 에뮬레이터 -->
         </div>
@@ -699,13 +698,11 @@ template<template>
 
 <script>
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
-import ChatEmulator from '@/views/brand/message/components/ChatEmulator.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import TemplateTableReg from '@/views/brand/message/components/TemplateTableReg.vue'
 import TemplateButtonReg from '@/views/brand/message/components/TemplateButtonReg.vue'
 import TemplateTitleReg from '@/views/brand/message/components/TemplateTitleReg.vue'
-// import Dropdown from '@/components/common/Dropdown.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
 import { textTemplate } from '@/views/brand/message/templateData.js'
@@ -713,11 +710,9 @@ import CarouselReg from '@/views/brand/message/components/CarouselReg.vue'
 
 export default {
   components: {
-    ChatEmulator,
     PageTitle,
     BrandLnb,
     ButtonCmp,
-    // Dropdown,
     Emoji,
     TemplateTableReg,
     TemplateButtonReg,
