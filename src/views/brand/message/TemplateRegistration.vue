@@ -68,6 +68,7 @@
                       </td>
                     </tr>
                     <!-- //템플릿 명 -->
+                    <MainTitle :info="form.MainTitle.info"></MainTitle>
                     <!-- 타이틀 -->
                       <!-- 텍스트 선택형_서술, 텍스트 선택형_스타일 -->
                       <tr class="bdBottom-bg" v-if="isTextType5 || isTextType6">
@@ -391,6 +392,7 @@ import TemplateTitleReg from '@/views/brand/message/components/TemplateTitleReg.
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
 import { textTemplate } from '@/views/brand/message/templateData.js'
+import MainTitle from './components/MainTitle.vue'
 
 export default {
   components: {
@@ -403,7 +405,8 @@ export default {
     TemplateButtonReg,
     TemplateTableReg,
     TemplateTitleReg,
-    ChatEmulator
+    ChatEmulator,
+    MainTitle
   },
   data() {
     return {

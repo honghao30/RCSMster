@@ -1,6 +1,6 @@
 <template>
    <tr>
-      <th scope="row"><span class="form-item__label">메인타이틀</span></th>
+      <th scope="row"><span class="form-item__label required">스타일 타이틀A</span></th>
       <td>
         <div class="form-item__content">
         <!-- 로고 등록 -->
@@ -18,14 +18,18 @@
                         <input type="radio" name="logoType" id="custom" v-model="form.MainTitle.logoType" value="custom" />
                         <label for="custom">직접 등록</label>
                       </span>
+                      <span class="radiobox">
+                        <input type="radio" name="logoType" id="gone" v-model="form.MainTitle.logoType" value="gone" />
+                        <label for="gone">사용 안함</label>
+                      </span>
                     </div>
                     <template v-if="form.MainTitle.logoType === 'basicImage'">
                       <div class="input-item logoList">
-                      <TemplateTitleReg
+                        <TemplateTitleReg
                         :titleIconNewData="titleIconNewData"
                         :titleIconBasicData="titleIconBasicData"
                         @optionSelected="checkTitleSelected"
-                      />
+                        />
                       </div>
                     </template>
                     <template  v-if="form.MainTitle.logoType === 'custom'">
@@ -39,6 +43,8 @@
                       </div>
                       <p class="guide-text black">&middot; 파일형식: PNG, GIF (최대 1MB)</p>
                     </template>
+                    <template  v-if="form.MainTitle.logoType === 'gone'">
+                    </template>
                   </div>
               </div>
             </div>
@@ -47,22 +53,22 @@
         <div class="form-item-row">
           <div class="inner__input">
             <div class="inner__input-box">
-              <span class="form-item__label required">제목</span>
+              <span class="form-item__label">제목</span>
               <div class="inner__input-item">
                 <div class="input-item input-limit">
                   <div class="input">
                     <input type="text"
                       class="input"
                       maxlength="17"
-                      ref="mainTitle_Title"
-                      id="mainTitle_Title"
+                      ref="styleTitleA_Title"
+                      id="styleTitleA_Title"
                       v-model="form.MainTitle.info.mainTitle"
                       @input="calcText()"
                       placeholder="최대 17자 까지 입력할 수 있습니다."
                     >
                     <div class="input-limit__text">
-                      <Emoji @input="onSelectEmoji($event, 'mainTitle_Title')" />
-                      <p>{{ mainTitleLength }}/30자</p>
+                      <Emoji @input="onSelectEmoji($event, 'styleTitleA_Title')" />
+                      <p>{{ mainTitleLength }}/17자</p>
                     </div>
                   </div>
                 </div>
@@ -208,7 +214,7 @@ export default {
       this.$refs[refName].value += emoji
     },
     calcText() {
-      let length = document.getElementById('mainTitle_Title').value
+      let length = document.getElementById('styleTitleA_Title').value
       this.calcLength(length)
     },
     calcLength(text) {

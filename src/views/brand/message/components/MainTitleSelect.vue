@@ -1,48 +1,16 @@
 <template>
    <tr>
-      <th scope="row"><span class="form-item__label">메인타이틀</span></th>
+      <th scope="row"><span class="form-item__label">타이틀 선택형</span></th>
       <td>
-        <div class="form-item__content">
-        <!-- 로고 등록 -->
-          <div class="form-item-row">
-              <div class="inner__input">
-                <div class="inner__input-box">
-                  <span class="form-item__label">로고</span>
-                  <div class="inner__input-item">
-                    <div class="input-item">
-                      <span class="radiobox">
-                        <input type="radio" name="logoType" id="basicImage" v-model="form.MainTitle.logoType"  value="basicImage" />
-                        <label for="basicImage">기본 아이콘</label>
-                      </span>
-                      <span class="radiobox">
-                        <input type="radio" name="logoType" id="custom" v-model="form.MainTitle.logoType" value="custom" />
-                        <label for="custom">직접 등록</label>
-                      </span>
-                    </div>
-                    <template v-if="form.MainTitle.logoType === 'basicImage'">
-                      <div class="input-item logoList">
-                      <TemplateTitleReg
-                        :titleIconNewData="titleIconNewData"
-                        :titleIconBasicData="titleIconBasicData"
-                        @optionSelected="checkTitleSelected"
-                      />
-                      </div>
-                    </template>
-                    <template  v-if="form.MainTitle.logoType === 'custom'">
-                      <div class="input-item w--full">
-                        <span class="input">
-                          <input type="text" class="input" :value="form.logoFile" disabled>
-                        </span>
-                        <input type="file" id="fileUp" class="input blind"
-                        @change="onFileChanged">
-                        <label for="fileUp" class="btn btn-default-line">파일 선택</label>
-                      </div>
-                      <p class="guide-text black">&middot; 파일형식: PNG, GIF (최대 1MB)</p>
-                    </template>
-                  </div>
-              </div>
-            </div>
-            <!-- //로고 등록 -->
+      <div class="form-item__content">
+      <!-- 로고 등록 -->
+        <div class="form-item-row">
+          <TemplateTitleReg
+            :titleIconNewData="titleIconNewData"
+            :titleIconBasicData="titleIconBasicData"
+            @optionSelected="checkTitleSelected"
+          />
+          <!-- //로고 등록 -->
         </div>
         <div class="form-item-row">
           <div class="inner__input">
@@ -54,15 +22,15 @@
                     <input type="text"
                       class="input"
                       maxlength="17"
-                      ref="mainTitle_Title"
-                      id="mainTitle_Title"
+                      ref="mainTitleSelect_Title"
+                      id="mainTitleSelect_Title"
                       v-model="form.MainTitle.info.mainTitle"
                       @input="calcText()"
                       placeholder="최대 17자 까지 입력할 수 있습니다."
                     >
                     <div class="input-limit__text">
-                      <Emoji @input="onSelectEmoji($event, 'mainTitle_Title')" />
-                      <p>{{ mainTitleLength }}/30자</p>
+                      <Emoji @input="onSelectEmoji($event, 'mainTitleSelect_Title')" />
+                      <p>{{ mainTitleLength }}/17자</p>
                     </div>
                   </div>
                 </div>
@@ -95,7 +63,7 @@ export default {
       mainTitleLength : 0,
       form: {
         MainTitle: {
-          logoType:'basicImage',
+          logoType:'gone',
           info: {
             mainTitle: '',
             titleType: '',
@@ -103,7 +71,7 @@ export default {
             logoUse: 'Y',
             logoFile: '',
             logoUrl: '',
-            logoCategory:'none',
+            logoCategory:'logoType1',
             mainDesc: ''
           }
         }
@@ -208,7 +176,7 @@ export default {
       this.$refs[refName].value += emoji
     },
     calcText() {
-      let length = document.getElementById('mainTitle_Title').value
+      let length = document.getElementById('mainTitleSelect_Title').value
       this.calcLength(length)
     },
     calcLength(text) {
