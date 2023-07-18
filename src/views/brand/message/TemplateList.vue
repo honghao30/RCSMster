@@ -67,86 +67,86 @@ export default {
           id: 'text1',
           type: 'text',
           name: 'Creater',
-          title: '텍스트 템플릿 - 아이템 강조형1',
-          imgUrl: require('@/assets/images/message/text_template_01.png')
+          title: '텍스트 템플릿 - 텍스트 선택형_서술',
+          imgUrl: require('@/assets/images/message/text_template_05.png')
         },
         {
           id: 'text2',
           type: 'text',
           name: 'Creater',
-          title: '텍스트 템플릿 - 아이템 강조형2',
-          imgUrl: require('@/assets/images/message/text_template_02.png')
+          title: '텍스트 템플릿 - 텍스트 선택형_스타일',
+          imgUrl: require('@/assets/images/message/text_template_06.png')
         },
         {
           id: 'text3',
           type: 'text',
           name: 'Creater',
-          title: '텍스트 템플릿 - 타이틀 자유형1',
+          title: '텍스트 템플릿 - 타이틀 자유형_서술',
           imgUrl: require('@/assets/images/message/text_template_03.png')
         },
         {
           id: 'text4',
           type: 'text',
           name: 'Creater',
-          title: '텍스트 템플릿 - 타이틀 자유형2',
+          title: '텍스트 템플릿 - 타이틀 자유형_스타일',
           imgUrl: require('@/assets/images/message/text_template_04.png')
         },
         {
           id: 'text5',
           type: 'text',
           name: 'Creater',
-          title: '텍스트 템플릿 - 타이틀 선택형1',
-          imgUrl: require('@/assets/images/message/text_template_05.png')
+          title: '텍스트 템플릿 - 아이템 강조형_서술',
+          imgUrl: require('@/assets/images/message/text_template_01.png')
         },
         {
           id: 'text6',
           type: 'text',
           name: 'Creater',
-          title: '텍스트 템플릿 - 타이틀 선택형2',
-          imgUrl: require('@/assets/images/message/text_template_06.png')
+          title: '텍스트 템플릿 - 아이템 강조형_스타일',
+          imgUrl: require('@/assets/images/message/text_template_02.png')
         },
         {
           id: 'lms1',
           type: 'lms',
           name: 'CreaterLMS',
-          title: 'LMS 템플릿 - 장문형',
+          title: 'LMS 템플릿 - 서술',
           imgUrl: require('@/assets/images/message/lms_template_01.png')
         },
         {
           id: 'lms2',
           type: 'lms',
           name: 'CreaterLMS',
-          title: 'LMS 템플릿 - 문단형',
+          title: 'LMS 템플릿 - 서술_아이콘',
           imgUrl: require('@/assets/images/message/lms_template_02.png')
         },
         {
           id: 'lms3',
           type: 'lms',
           name: 'CreaterLMS',
-          title: 'LMS 템플릿 - 타이틀 강조형',
+          title: 'LMS 템플릿 - 2단',
           imgUrl: require('@/assets/images/message/lms_template_03.png')
         },
         {
           id: 'lms4',
           type: 'lms',
           name: 'CreaterLMS',
-          title: 'LMS 템플릿 - 청구서형',
+          title: 'LMS 템플릿 - 스타일',
           imgUrl: require('@/assets/images/message/lms_template_04.png')
         },
-        {
-          id: 'lms5',
-          type: 'lms',
-          name: 'CreaterLMS',
-          title: 'LMS 템플릿 - 광고형',
-          imgUrl: require('@/assets/images/message/lms_template_05.png')
-        },
-        {
-          id: 'lms6',
-          type: 'lms',
-          name: 'CreaterLMS',
-          title: 'LMS 템플릿 - 예약/일정 안내형',
-          imgUrl: require('@/assets/images/message/lms_template_06.png')
-        },
+        // {
+        //   id: 'lms5',
+        //   type: 'lms',
+        //   name: 'CreaterLMS',
+        //   title: 'LMS 템플릿 - 광고형',
+        //   imgUrl: require('@/assets/images/message/lms_template_05.png')
+        // },
+        // {
+        //   id: 'lms6',
+        //   type: 'lms',
+        //   name: 'CreaterLMS',
+        //   title: 'LMS 템플릿 - 예약/일정 안내형',
+        //   imgUrl: require('@/assets/images/message/lms_template_06.png')
+        // },
         {
           id: 'image1',
           type: 'image',

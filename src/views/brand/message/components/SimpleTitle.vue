@@ -1,78 +1,42 @@
 <template>
-   <tr>
-      <th scope="row"><span class="form-item__label">메인타이틀</span></th>
-      <td>
-        <div class="form-item__content">
-        <!-- 로고 등록 -->
-          <div class="form-item-row">
-              <div class="inner__input">
-                <div class="inner__input-box">
-                  <span class="form-item__label">로고</span>
-                  <div class="inner__input-item">
-                    <div class="input-item">
-                      <span class="radiobox">
-                        <input type="radio" name="logoType" id="basicImage" v-model="form.MainTitle.logoType"  value="basicImage" />
-                        <label for="basicImage">기본 아이콘</label>
-                      </span>
-                      <span class="radiobox">
-                        <input type="radio" name="logoType" id="custom" v-model="form.MainTitle.logoType" value="custom" />
-                        <label for="custom">직접 등록</label>
-                      </span>
-                    </div>
-                    <template v-if="form.MainTitle.logoType === 'basicImage'">
-                      <div class="input-item logoList">
-                      <TemplateTitleReg
-                        :titleIconNewData="titleIconNewData"
-                        :titleIconBasicData="titleIconBasicData"
-                        @optionSelected="checkTitleSelected"
-                      />
-                      </div>
-                    </template>
-                    <template  v-if="form.MainTitle.logoType === 'custom'">
-                      <div class="input-item w--full">
-                        <span class="input">
-                          <input type="text" class="input" :value="form.logoFile" disabled>
-                        </span>
-                        <input type="file" id="fileUp" class="input blind"
-                        @change="onFileChanged">
-                        <label for="fileUp" class="btn btn-default-line">파일 선택</label>
-                      </div>
-                      <p class="guide-text black">&middot; 파일형식: PNG, GIF (최대 1MB)</p>
-                    </template>
-                  </div>
+   <table class="table table-bodyonly form-table">
+    <colgroup>
+      <col width="180px">
+      <col />
+    </colgroup>
+    <tbody>
+    <tr>
+        <th scope="row"><span class="form-item__label">타이틀</span></th>
+        <td>
+          <div class="form-item__content">
+            <div class="form-item-row">
+              <div class="input-item">
+                <span class="radiobox">
+                  <input type="radio" name="titleUse" id="titleUseN" value="N" v-model="form.titleUse"/>
+                  <label for="titleUseN"><span class="radiobox__text">미사용</span></label>
+                </span>
+                <span class="radiobox">
+                  <input type="radio" name="titleUse" id="titleUseY" value="Y" v-model="form.titleUse"/>
+                  <label for="titleUseY"><span class="radiobox__text">사용</span></label>
+                </span>
               </div>
-            </div>
-            <!-- //로고 등록 -->
-        </div>
-        <div class="form-item-row">
-          <div class="inner__input">
-            <div class="inner__input-box">
-              <span class="form-item__label required">제목</span>
-              <div class="inner__input-item">
-                <div class="input-item input-limit">
-                  <div class="input">
-                    <input type="text"
-                      class="input"
-                      maxlength="17"
-                      ref="mainTitle_Title"
-                      id="mainTitle_Title"
-                      v-model="form.MainTitle.info.mainTitle"
-                      @input="calcText()"
-                      placeholder="최대 17자 까지 입력할 수 있습니다."
-                    >
-                    <div class="input-limit__text">
-                      <Emoji @input="onSelectEmoji($event, 'mainTitle_Title')" />
-                      <p>{{ mainTitleLength }}/30자</p>
-                    </div>
+              <div class="input-item input-limit" v-if="form.titleUse === 'Y'">
+                <div class="input">
+                  <input type="text" class="input" maxlength="30"
+                    v-model="form.title"
+                    placeholder="타이틀을 입력해주세요."
+                  >
+                  <div class="input-limit__text">
+                    <p>{{ form.title.length }}/30자</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      </td>
-    </tr>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>
@@ -94,19 +58,8 @@ export default {
     return {
       mainTitleLength : 0,
       form: {
-        MainTitle: {
-          logoType:'basicImage',
-          info: {
-            mainTitle: '',
-            titleType: '',
-            varUse: 'Y',
-            logoUse: 'Y',
-            logoFile: '',
-            logoUrl: '',
-            logoCategory:'none',
-            mainDesc: ''
-          }
-        }
+        titleUse: '',
+        title: ''
       },
       titleIconNewData: [
         {
@@ -188,7 +141,7 @@ export default {
   },
   created() {
     //if (jglib.isEmpty(this.jsonData)) { > 값 가져오는 부분
-    
+
     //} else {
     //}
     this.description = this.inputText

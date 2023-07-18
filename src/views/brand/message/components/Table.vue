@@ -6,45 +6,49 @@
     </colgroup>
     <tbody>
       <!-- 테이블- 제목 -->
-      <tr>
-        <th scope="row"><span class="form-item__label required">테이블 - 제목</span></th>
+      <tr v-for="(item, i) in form.tableContent" :key="item">
+        <th scope="row"><span class="form-item__label required">본문 {{ i+1 }}</span></th>
         <td>
           <div class="form-item__content">
-            <div class="form-item-row">
-              <div class="input-item input-limit">
-                <div class="input">
-                  <input type="text" placeholder="제목을 입력해주세요." maxlength="17" v-model="form.Table.tableTitle"
-                  @input="e => form.Table.tableTitle = e.target.value"
-                  ref="tableTitle"
-                  />
-                  <div class="input-limit__text">
-                    <p>{{ form.Table.tableTitle.length }}/17자</p>
+            <div class="form-item-row form-template">
+                <div class="input-item input-limit input-left">
+                  <div class="input">
+                    <input type="text" class="input" maxlength="4"
+                      v-model="item.bodyTitle"
+                      placeholder="소제목을 입력해주세요."
+                    >
+                    <div class="input-limit__text">
+                      <p>{{ item.bodyTitle.length }}/4자</p>
+                    </div>
                   </div>
                 </div>
+                <div class="input-item input-limit input-right">
+                  <div class="input">
+                    <input type="text" class="input" maxlength="33"
+                      v-model="item.bodyContent"
+                      placeholder="내용을 입력해주세요."
+                      ref="bodyContent"
+                    >
+                    <div class="input-limit__text">
+                      <p>{{ item.bodyContent.length }}/33자</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="template-button">
+                  <ButtonCmp
+                    type="btn-default-line"
+                    size="small"
+                  >
+                    삭제
+                  </ButtonCmp>
+                  <ButtonCmp
+                    type="btn-default-line"
+                    size="medium"
+                  >
+                  + 추가하기
+                  </ButtonCmp>
+                </div>
               </div>
-              <TemplateTableReg
-                :tableInfo="form.Table.info"
-                v-if="form.tableUse === 'Y'"
-              />
-            </div>
-          </div>
-        </td>
-      </tr>
-      <!-- 테이블- 내용 -->
-      <tr>
-        <th scope="row"><span class="form-item__label required">테이블 - 내용</span></th>
-        <td>
-          <div class="form-item__content">
-            <p class="text-limit">
-              0/90자
-            </p>
-            <div class="form-item-row">
-              <template>
-                <TemplateTableReg
-                  :tableInfo="form.Table.info"
-                />
-              </template>
-            </div>
           </div>
         </td>
       </tr>
@@ -53,10 +57,10 @@
 </template>
 
 <script>
-import TemplateTableReg from '@/views/brand/message/components/TemplateTableReg.vue'
+import ButtonCmp from '@/components/common/ButtonCmp.vue'
 export default {
   components: {
-    TemplateTableReg
+    ButtonCmp
   },
   props: {
     info: {
@@ -67,21 +71,13 @@ export default {
   data () {
     return {
       form: {
-        Table: {
-          tableTitle: '',
-          info: {
-            tableRowNum: 1,
-            description: [
-              {
-                line: false,
-                colNum: '1',
-                itemLabel: '',
-                itemData: ''
-              }
-            ]
+        tableContent: [
+          {
+            bodyTitle: '',
+            bodyContent: ''
           }
-        }
-      },
+        ]
+      }
     }
   }
 }

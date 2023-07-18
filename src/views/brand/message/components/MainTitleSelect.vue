@@ -26,12 +26,9 @@
 </template>
 
 <script>
-import Emoji from '@/components/common/Emoji.vue'
 import TemplateTitleReg from '@/views/brand/message/components/TemplateTitleReg.vue'
-import 'emoji-picker-element'
 export default {
   components: {
-    Emoji,
     TemplateTitleReg
   },
   props: {
@@ -151,11 +148,6 @@ export default {
       const fileName = file.name
       this.form.logoFile = fileName
       this.url = URL.createObjectURL(file)
-    },
-    onSelectEmoji(e, target) {
-      let emoji = e
-      let refName = target
-      this.$refs[refName].value += emoji
     },
     calcText() {
       let length = document.getElementById('mainTitleSelect_Title').value

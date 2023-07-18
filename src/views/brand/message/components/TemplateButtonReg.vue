@@ -26,7 +26,7 @@
           </div>
         </div>
         <!-- 버튼 선택 -->
-        <div class="form-item-row is-emoji" v-if="buttonInfo.btnEvent !== 'none'">
+        <div class="form-item-row" v-if="buttonInfo.btnEvent !== 'none'">
           <div class="input-item input-limit w--full" >
             <div class="input">
               <input type="text" class="input" maxlength="17"
@@ -37,7 +37,6 @@
                 v-model="buttonInfo.btnName"
               >
               <div class="input-limit__text">
-                <Emoji @input="onSelectEmoji($event, 'btnName')"/>
                 <p>{{ buttonInfo.btnName.length }}/17자</p>
               </div>
             </div>
@@ -90,7 +89,6 @@
               ref="copyContent"
               ></textarea>
               <div class="textarea-limit__text">
-                <Emoji @input="onSelectEmoji($event, 'copyContent')"/>
                 <p>
                   {{ buttonInfo.copyContent.length }}/200자
                 </p>
@@ -113,7 +111,6 @@
               ref="msgContent"
               ></textarea>
               <div class="textarea-limit__text">
-                <Emoji @input="onSelectEmoji($event, 'msgContent')"/>
                 <p>
                   {{ buttonInfo.message.content.length }}/100자
                 </p>
@@ -227,7 +224,6 @@
               ref="calContent"
               v-model="buttonInfo.calendar.content"></textarea>
               <div class="textarea-limit__text">
-                <Emoji @input="onSelectEmoji($event, 'calContent')"/>
                 <p>
                   {{ buttonInfo.calendar.content.length }}/500자
                 </p>
@@ -243,14 +239,11 @@
 <script>
 
 import Dropdown from '@/components/common/Dropdown.vue'
-import Emoji from '@/components/common/Emoji.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import 'emoji-picker-element'
 
 export default {
   components: {
     Dropdown,
-    Emoji,
     ButtonCmp
   },
   props: {

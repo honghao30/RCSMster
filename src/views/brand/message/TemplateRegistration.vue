@@ -20,7 +20,8 @@
                       <td>
                         <div class="form-item__content">
                             <div class="form-item-row">
-                              <div class="input-item input-limit">
+                              <div class="input-item">
+                                <p class="text">UBR.13L49F42Mo-</p>
                                 <div class="input">
                                   <input type="text" maxlength="30" v-model="templateNameId"   />
                                 </div>
@@ -66,22 +67,15 @@
                         </div>
                       </td>
                     </tr>
-
-                    <!-- <MainTitle :info="form.MainTitle.info" ></MainTitle>
-                    <MainTitleFree :info="form.MainTitleFree.info"></MainTitleFree>
-
-                    <StyleTitleA :info="form.MainTitle.info"></StyleTitleA>
-
-                    <ImageTall :info="form.Image.info" ></ImageTall>
-                    <ImageSquare :info="form.Image.info"></ImageSquare>
-                    <ButtonHorizontal></ButtonHorizontal>
-                    <ButtonVertical></ButtonVertical> -->
                   </tbody>
                 </table>
                 <MainTitleSelect :info="form.MainTitleSelect.info" v-if="isTextType1 || isTextType2"></MainTitleSelect>
                 <MainTitleFree :info="form.MainTitleFree.info" v-if="isTextType3 || isTextType4"></MainTitleFree>
+                <ItemA v-if="isTextType5 || isTextType6" />
                 <Description :info="form.Description1.info" v-if="isTextType1 || isTextType3 || isTextType5"></Description>
-                <Table :info="form.table" v-if="isTextType2 || isTextType4 || isTextType6"></Table>
+                <StyleTable :info="form.table" v-if="isTextType2 || isTextType4 || isTextType6"></StyleTable>
+                <!-- <ButtonHorizontal></ButtonHorizontal> -->
+                <ButtonVertical></ButtonVertical>
               </div>
               <div class="form-btm__text">
                 <template v-if="isTextType3">
@@ -108,8 +102,8 @@
           <!-- // 에뮬레이터 -->
         </div>
         <div class="top-notice--gray">
-          <p>- 대화방명을 수정하는 경우 승인 심사가 필요합니다.</p>
-          <p>- 승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</p>
+          <p>- 템플릿은 승인 완료 후 사용 및 발송이 가능합니다.</p>
+          <p>- 승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지체될 수 있습니다.</p>
         </div>
         <div class="button__wrap space-between">
           <div>
@@ -119,7 +113,7 @@
           </div>
           <div>
             <ButtonCmp
-              type="btn-line"
+              type="btn-blue-line"
             >임시 저장</ButtonCmp>
             <ButtonCmp
               type="btn-blue"
@@ -137,48 +131,33 @@
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import Dropdown from '@/components/common/Dropdown.vue'
 import TempEmulator from '@/views/brand/message/components/TempEmulator.vue'
-import TemplateButtonReg from '@/views/brand/message/components/TemplateButtonReg.vue'
-import TemplateTableReg from '@/views/brand/message/components/TemplateTableReg.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
 import { textTemplate } from '@/views/brand/message/templateData.js'
-import MainTitle from './components/MainTitle.vue'
 import MainTitleFree from './components/MainTitleFree.vue'
 import MainTitleSelect from './components/MainTitleSelect.vue'
-import StyleTitleA from './components/StyleTitleA.vue'
 import Description from './components/Description.vue'
-import ImageTall from './components/ImageTall.vue'
-import ImageSquare from './components/ImageSquare.vue'
-import ButtonHorizontal from '@/views/brand/message/components/ButtonHorizontal.vue'
 import ButtonVertical from '@/views/brand/message/components/ButtonVertical.vue'
-import Table from '@/views/brand/message/components/Table.vue'
+import StyleTable from '@/views/brand/message/components/StyleTable.vue'
+import ItemA from '@/views/brand/message/components/ItemA.vue'
 
 export default {
   components: {
     PageTitle,
     BrandLnb,
     ButtonCmp,
-    Emoji,
-    Dropdown,
     TempEmulator,
-    TemplateButtonReg,
-    TemplateTableReg,
-    MainTitle,
     MainTitleFree,
     MainTitleSelect,
-    StyleTitleA,
     Description,
-    ImageTall,
-    ImageSquare,
     ButtonVertical,
-    ButtonHorizontal,
-    Table
+    StyleTable,
+    ItemA
   },
   data() {
     return {
-      templateNameId: 'UBR.13L49F42Mo-8MwF1zkPHUj3xayCJsg3OcPv2',
+      templateNameId: '8MwF1zkPHUj3xayCJsg3OcPv2',
       textTemplate,
       templateType: 'textTemplate',
       templateName: '',
@@ -419,8 +398,6 @@ export default {
     }
   },
   mounted() {
-    this.initTemplate(3)
-    this.buttonUseCheck()
     if (this.$route.query.type === 'text1') {
       this.isTextType1 = true
       this.templateType = '텍스트 선택형_서술'
@@ -453,22 +430,6 @@ export default {
           }
         })
       })
-    },
-    buttonUseCheck() {
-      if (this.form.Buttons.use === 'N') {
-        this.templateData.forEach((item, i) => {
-          if (item.type === 'Buttons') {
-            this.templateData.splice(i, 1)
-          }
-        })
-      } else {
-        let buttonCmp = {
-          type: 'Buttons',
-          info: {}
-        }
-        buttonCmp.info = this.form.Buttons.info
-        this.templateData.push(buttonCmp)
-      }
     },
     // 이미지 파일 업로드
     onFileChanged (e) {
