@@ -6,7 +6,7 @@
     </colgroup>
     <tbody>
       <!-- 테이블- 제목 -->
-      <tr v-for="(item, i) in form.tableContent" :key="item">
+      <tr v-for="(item, j) in info.content" :key="j">
         <th scope="row"><span class="form-item__label required">본문 {{ i+1 }}</span></th>
         <td>
           <div class="form-item__content">
@@ -14,23 +14,22 @@
                 <div class="input-item input-limit input-left">
                   <div class="input">
                     <input type="text" class="input" maxlength="4"
-                      v-model="item.bodyTitle"
+                      @input="e => item.itemLabel = e.target.value"
                       placeholder="소제목을 입력해주세요."
                     >
                     <div class="input-limit__text">
-                      <p>{{ item.bodyTitle.length }}/4자</p>
+                      <p>{{ item.itemLabel.length }}/4자</p>
                     </div>
                   </div>
                 </div>
                 <div class="input-item input-limit input-right">
                   <div class="input">
                     <input type="text" class="input" maxlength="33"
-                      v-model="item.bodyContent"
+                      @input="e => item.itemData = e.target.value"
                       placeholder="내용을 입력해주세요."
-                      ref="bodyContent"
                     >
                     <div class="input-limit__text">
-                      <p>{{ item.bodyContent.length }}/33자</p>
+                      <p>{{ item.itemData.length }}/33자</p>
                     </div>
                   </div>
                 </div>
@@ -68,15 +67,11 @@ export default {
       default: null
     }
   },
-  data () {
-    return {
-      form: {
-        tableContent: [
-          {
-            bodyTitle: '',
-            bodyContent: ''
-          }
-        ]
+  methods: {
+    addContent() {
+      let item = {
+        itemLabel: '',
+        itemData: ''
       }
     }
   }

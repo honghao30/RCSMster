@@ -111,7 +111,7 @@
                   <Description :useSelect="true" :subTitleUse="true"
                     :info="form.Description.info"
                   />
-                  <styleTable tableIndex="1" :info="form.Table.info"/>
+                  <styleTable :info="form.Table.info"/>
                   <ButtonVertical></ButtonVertical>
                 </template>
 
@@ -224,6 +224,7 @@ export default {
             },
             {
               useSelect: 'Y',
+              tableUse: 'N',
               tableTitle: '',
               content: [
                 {
@@ -238,6 +239,28 @@ export default {
         },
         DescriptionGroup: {
           info: [
+            {
+              description: {
+                title: '',
+                subTitleUseY: 'N',
+                subTitle: '',
+                content: ''
+              },
+              Buttons: {
+                info: [
+                  {
+                    btnEvent: 'none',
+                    btnEventDropdown: '',
+                    btnName: ''
+                  },
+                  {
+                    btnEvent: 'none',
+                    btnEventDropdown: '',
+                    btnName: ''
+                  }
+                ]
+              }
+            },
             {
               description: {
                 title: '',

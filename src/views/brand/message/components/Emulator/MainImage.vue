@@ -1,8 +1,8 @@
 <template>
-  <div class="image-area">
-    <span class="image">
-      <img :src="info.imgUrl"/>
-    </span>
+  <div class="template-cmp-image">
+    <div class="image" :class="{'square' : info.imgType === 'square'}" v-if="info.imgFile" >
+      <img :src="info.imgFile" />
+    </div>
   </div>
 </template>
 
@@ -15,7 +15,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-
-</style>

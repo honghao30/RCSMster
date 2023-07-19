@@ -15,30 +15,30 @@
               <div class="form-item-row">
                 <div class="input-item">
                   <span class="radiobox">
-                    <input type="radio" name="titleUse" id="titleUseN" value="N"
-                      v-model="item.description.titleUse"
+                    <input type="radio" :name="`titleUse${i+1}`" :id="`titleUseN_${i+1}`" value="N"
+                      v-model="item.description.subTitleUseY"
                     />
-                    <label for="titleUseN">미사용</label>
+                    <label :for="`titleUseN_${i+1}`">미사용</label>
                   </span>
                   <span class="radiobox">
-                    <input type="radio" name="titleUse" id="titleUseY" value="Y"
-                      v-model="item.description.titleUse"
+                    <input type="radio" :name="`titleUse${i+1}`" :id="`titleUseY_${i+1}`" value="Y"
+                      v-model="item.description.subTitleUseY"
                     />
-                    <label for="titleUseY">사용</label>
+                    <label :for="`titleUseY_${i+1}`">사용</label>
                   </span>
                 </div>
               </div>
-              <div class="form-item-row" v-if="item.titleUse === 'Y'">
+              <div class="form-item-row" v-if="item.description.subTitleUseY === 'Y'">
                 <div class="input-item input-limit">
                   <div class="input">
                     <input type="text"
                       class="input"
                       maxlength="30"
-                      @input="e => item.description.title = e.target.value"
+                      @input="e => item.description.subTitle = e.target.value"
                       placeholder="제목을 입력해주세요."
                     >
                     <div class="input-limit__text">
-                      <p>{{ item.description.title.length }}/30자</p>
+                      <p>{{ item.description.subTitle.length }}/30자</p>
                     </div>
                   </div>
                 </div>
@@ -98,108 +98,10 @@ export default {
   },
   data () {
     return {
-      titleLength: 0,
-      descLength: 0,
-      form: {
-        Description: {
-          info: {
-            title: '',
-            titleUse: 'Y',
-            description: ''
-          }
-        },
-        Buttons: {
-          use: 'N',
-          info: [{
-            id: 1,
-            bgColor: '#2f77fb',
-            btnEvent: 'none',
-            btnEventDropdown: '',
-            btnName: '',
-            simpleChatbot: '',
-            chatbot: '',
-            call: '',
-            copyContent: '',
-            message: {
-              call: '',
-              content: '',
-              viewSource: ''
-            },
-            map: {
-              latitude: '',
-              longitude: '',
-              location: '',
-              url: '',
-              query: ''
-            },
-            calendar: {
-              date: '',
-              title: '',
-              content: ''
-            },
-            browser: {
-              url: '',
-              viewMode: ''
-            }
-          },
-          {
-            id: 2,
-            bgColor: '#2f77fb',
-            btnEvent: 'none',
-            btnEventDropdown: '',
-            btnName: '',
-            simpleChatbot: '',
-            chatbot: '',
-            call: '',
-            copyContent: '',
-            message: {
-              call: '',
-              content: '',
-              viewSource: ''
-            },
-            map: {
-              latitude: '',
-              longitude: '',
-              location: '',
-              url: '',
-              query: ''
-            },
-            calendar: {
-              date: '',
-              title: '',
-              content: ''
-            },
-            browser: {
-              url: '',
-              viewMode: ''
-            }
-          }]
-        }
-      }
     }
   },
   methods: {
-    onSelectEmoji(e, target) {
-      let emoji = e
-      let refName = target
-      this.$refs[refName].value += emoji
-    },
-    calcText(text) {
-      if (text ==='title') {
-        let textLength = document.getElementById('descTitle').value
-        this.calcLength(textLength, text)
-      } else {
-        let textLength = document.getElementById('descContent').value
-        this.calcLength(textLength, text)
-      }
-    },
-    calcLength(textLength, text) {
-      if (text ==='title') {
-        this.titleLength = textLength.split(/{{.*?}}/).join('').length
-      } else {
-        this.descLength = textLength.split(/{{.*?}}/).join('').length
-      }
-    }
+
   }
 }
 </script>

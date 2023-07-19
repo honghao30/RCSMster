@@ -41,17 +41,19 @@ t<template>
               <!-- 타이틀 : 자유형-->
               <MainTitle :info="templData.MainTitle.info" />
               <!-- 본문 -->
-              <Description :info="templData.DescriptionGroup.info.description" />
-              <Buttons :info="templData.DescriptionGroup.info.Buttons.info"/>
+              <template v-for="(item, i) in templData.DescriptionGroup.info">
+                <Description :info="item.description" :key="i"/>
+                <Buttons :info="item.Buttons.info" :key="i"/>
+              </template>
             </template>
             <!-- 타이틀 자유형_스타일 -->
             <template v-if="templateType == '스타일'">
-              <!-- 타이틀 : 자유형-->
+              <!-- 타이틀 -->
               <MainTitle :info="templData.MainTitle.info" />
-              <!-- 본문 : 테이블 -->
+              <!-- 본문 -->
+              <Description :info="templData.Description.info" />
               <StyleTable :info="templData.Table.info"/>
             </template>
-
           </div>
           <!-- //템플릿 출력 -->
         </div>

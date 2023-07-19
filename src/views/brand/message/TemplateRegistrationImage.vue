@@ -63,23 +63,23 @@ template<template>
                 </table>
                 <!-- 이미지& 타이틀 강조형 -->
                 <template v-if="isImageType1">
-                  <MainImage />
-                  <SimpleTitle />
-                  <SimpleTable />
+                  <MainImage :info="form.Image.info"/>
+                  <SimpleTitle :info="form.MainTitle.info"/>
+                  <SimpleTable :info="form.Table.info"/>
                   <ButtonVertical :info="form.Buttons.info"/>
                 </template>
                 <!-- 이미지 강조형 -->
                 <template v-if="isImageType2">
-                  <MainImage />
+                  <MainImage :info="form.Image.info"/>
                   <Description :titleUse="true" :info="form.Description.info"/>
-                  <ButtonVertical />
+                  <ButtonVertical :info="form.Buttons.info"/>
                 </template>
                 <!-- 썸네일형(세로) -->
                 <template v-if="isImageType3">
-                  <MainImage />
-                  <Description :titleUse="true" :useSelect="true" :info="form.Description.info"/>
+                  <MainImage :info="form.Image.info" />
+                  <Description :titleUse="true" :info="form.Description.info"/>
                   <ThumbAndDesc />
-                  <ButtonVertical  :info="form.Buttons.info"/>
+                  <ButtonVertical :info="form.Buttons.info"/>
                 </template>
                 <!-- 썸네일형(가로) -->
                 <template v-if="isImageType4">
@@ -91,21 +91,21 @@ template<template>
                 <!-- SNS 형 -->
                 <template v-if="isImageType5">
                   <Description :titleUse="true" :info="form.Description.info"/>
-                  <MainImage />
+                  <MainImage  :info="form.Image.info" />
                   <ButtonVertical :info="form.Buttons.info"/>
                 </template>
                 <!-- SNS 형(중간버튼) -->
                 <template v-if="isImageType6">
                   <Description :titleUse="true" :info="form.Description.info"/>
                   <ButtonVertical :info="form.Buttons.info"/>
-                  <MainImage />
+                  <MainImage  :info="form.Image.info" />
                 </template>
                 <!-- 이미지 템플릿 신규 -->
                 <template v-if="isImageType7">
-                  <MainImage />
-                  <ItemB></ItemB>
+                  <MainImage :info="form.Image.info" />
+                  <ItemB />
                   <Description :titleUse="true" :info="form.Description.info"/>
-                  <StyleTable :useSelect="true" />
+                  <StyleTable :useSelect="true" :info="form.styleTable.info" />
                   <ButtonVertical :info="form.Buttons.info"/>
                 </template>
                 <!-- 캐러셀 -->
@@ -113,14 +113,8 @@ template<template>
                   <Carousel :slideData="form.slideData" />
                 </template>
                 <!-- carousel -->
-
               </div>
               <div class="form-btm__text">
-                <template v-if="templateType === 'textTitleCustom1' || templateType === 'textTitleCustom2'">
-                  <p class="guide-text black">&middot; 변수로 설정하고자 하는 내용을 {{ }} 표시로 작성해주세요. 예) {{이름}}, {{date}}</p>
-                  <p class="guide-text black">&middot; 특수문자, 공란, 줄바꿈 그리고 {{description}} 변수명 사용 불가합니다.</p>
-                  <p class="guide-text black">&middot; 버튼에 들어가는 글자는 90자 제한 대상에 포함되지 않습니다. 메시지 내용은 고정부 메시지와 변수명에 들어가는 메시지를 합쳐서 총 90자 이내로 작성해주세요. (90자 초과시 전송 불가)</p>
-                </template>
                 <p class="guide-text black">&middot; 버튼에 들어가는 글자는 90자 제한 대상에 포함되지 않습니다. 메시지 내용은 고정부 메시지와 변수명에 들어가는 메시지를 합쳐서 총 90자 이내로 작성해주세요. (90자 초과시 전송 불가)</p>
                 <div class="checkbox">
                   <input type="checkbox" id="agreeChk" value="form.agree"/>
@@ -131,7 +125,10 @@ template<template>
           </div>
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
-
+            <TempEmulator
+              :templateType="templateType"
+              :templData="form"
+            />
           </div>
           <!-- // 에뮬레이터 -->
         </div>
@@ -169,6 +166,7 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import TemplateTableReg from '@/views/brand/message/components/TemplateTableReg.vue'
 import TemplateButtonReg from '@/views/brand/message/components/TemplateButtonReg.vue'
 import TemplateTitleReg from '@/views/brand/message/components/TemplateTitleReg.vue'
+import TempEmulator from '@/views/brand/message/components/TempEmulatorImage.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
 import { textTemplate } from '@/views/brand/message/templateData.js'
@@ -192,6 +190,7 @@ export default {
     TemplateTableReg,
     TemplateButtonReg,
     TemplateTitleReg,
+    TempEmulator,
     Carousel,
     MainImage,
     SimpleTitle,
@@ -211,66 +210,65 @@ export default {
       form: {
         templateTitle: '',
         // logoType: 'custom',
-        logoFile: '',
-        mainTitle: '',
-        descTitle: '',
-        descContent: '',
-        tableRowNum: 1,
-        tableTitle: '',
-        tableContent: [{
-          line: false,
-          direction: 'row',
-          key: '',
-          value: ''
-        }],
+        MainTitle: {
+          info: {
+            title: '',
+            titleUse: 'N',
+            titleType: '',
+            titleIcon: '',
+            subVarTitle: ''
+          }
+        },
+        Image: {
+          info: {
+            imgType: 'square',
+            imgFile: require('../../../assets/images/message/image_thum01.png'),
+            imgUrl: ''
+          }
+        },
         Description: {
           info: {
+            titleUseY: 'N',
             title: '',
             subTitleUseY: 'N',
             subTitle: '',
             content: ''
           }
         },
-        varUse: 'Y',
-        varSelect: '',
-        templateProp: 'desc',
-        itemMainTitle: '',
-        itemSubTitle: '',
-        itemImgType: '',
-        itemImgFile: '',
-        templateProduct: '이미지 & 타이틀 강조형',
-        imageOptions: 'square',
-        imageFile: '',
-        imageURL: '',
-        imageFile1: '',
-        imageURL1: '',
-        imageFile2: '',
-        imageURL2: '',
-        imageFile3: '',
-        imageURL3: '',
-        titleUse: 'N',
-        titleName: '',
-        explainUse: 'N',
-        explainContent: '',
-        bodyUse: 'N',
-        bodyTitleUse: 'N',
-        bodyTitle: '',
-        bodyContent: '',
-        logoType: 'basicImage',
-        tableUse: 'Y',
-        buttonUse: 'N',
-        detailContent: '',
+        styleTable: {
+          info: [
+            {
+              tableTitle: '',
+              content: [
+                {
+                  itemLabel: '',
+                  itemData: '',
+                  line: false,
+                  colNum: '1',
+                  itemLabelStyle: '',
+                  itemDataStyle: ''
+                }
+              ]
+            }
+          ]
+        },
         Table: {
           info: {
-            tableRowNum: 1,
-            description: [
+            content: [
               {
-                line: false,
-                colNum: '1',
                 itemLabel: '',
                 itemData: ''
               }
             ]
+          }
+        },
+        Item: {
+          info: {
+            titleDescUse: 'N',
+            titleDesc: '',
+            title: '',
+            logoType: 'basic',
+            logoFile: ''
           }
         },
         Buttons: {

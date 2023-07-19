@@ -1,5 +1,5 @@
 <template>
-  <div class="template-cmp-title" :class="{'styled': info.titleType === 'styleTitle'}">
+  <div class="template-cmp-title" :class="[{'styled': info.titleType === 'styleTitle'}, {'simple' : info.titleType === 'simple'}]">
     <div class="title">
       <i class="icon-type" v-if="info.titleType !== 'styleTitle'">
         <img :src="`${info.titleIcon}`" alt="">

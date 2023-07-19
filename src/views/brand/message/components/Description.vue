@@ -38,19 +38,19 @@
                 <div class="input-item">
                   <span class="radiobox">
                     <input type="radio" name="titleUse" id="titleUseN" value="N"
-                      v-model="titleUseY"
+                      v-model="info.titleUseY"
                     />
                     <label for="titleUseN">미사용</label>
                   </span>
                   <span class="radiobox">
                     <input type="radio" name="titleUse" id="titleUseY" value="Y"
-                      v-model="titleUseY"
+                      v-model="info.titleUseY"
                     />
                     <label for="titleUseY">사용</label>
                   </span>
                 </div>
               </div>
-              <div class="form-item-row" v-if="titleUseY === 'Y'">
+              <div class="form-item-row" v-if="info.titleUseY === 'Y'">
                 <div class="input-item input-limit">
                   <div class="input">
                     <input type="text"
@@ -135,12 +135,7 @@
 </template>
 
 <script>
-import Emoji from '@/components/common/Emoji.vue'
-import 'emoji-picker-element'
 export default {
-  components: {
-    Emoji
-  },
   props: {
     info: {
       type: Object
@@ -162,29 +157,6 @@ export default {
     return {
       useY: 'N',
       titleUseY: 'N'
-    }
-  },
-  methods: {
-    onSelectEmoji(e, target) {
-      let emoji = e
-      let refName = target
-      this.$refs[refName].value += emoji
-    },
-    calcText(text) {
-      if(text ==='title'){
-        let textLength = document.getElementById('descTitle').value
-        this.calcLength(textLength, text)
-      }else{
-        let textLength = document.getElementById('descContent').value
-        this.calcLength(textLength, text)
-      }
-    },
-    calcLength(textLength, text) {
-      if(text ==='title'){
-        this.titleLength = textLength.split(/{{.*?}}/).join('').length
-      }else{
-        this.descLength = textLength.split(/{{.*?}}/).join('').length
-      }
     }
   }
 }

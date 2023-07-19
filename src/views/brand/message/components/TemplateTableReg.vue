@@ -68,19 +68,7 @@ export default {
   },
   data() {
     return {
-      tableContentNumOption: [{
-        label: '1개',
-        value: 1
-      },
-      {
-        label: '2개',
-        value: 2
-      },
-      {
-        label: '3개',
-        value: 3
-      }],
-      rowStyleLy: false
+      styleText: ''
     }
   },
   mounted() {
@@ -103,8 +91,6 @@ export default {
       if (this.tableInfo.length > 1) {
         this.tableInfo.splice(index, 1)
       }
-    },
-    onSetStyle(e) {
     }
   }
 }

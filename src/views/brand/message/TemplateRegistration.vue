@@ -200,30 +200,12 @@ export default {
       templateType: 'textTemplate',
       templateName: '',
       form: {
-        logoType: 'basicImage',
-        logoFile: '',
-        explainUse: 'N',
-        title: {
-          logoType: '',
-          desc: ''
-        },
         MainTitle: {
           info: {
             title: '',
             titleType: '',
             titleIcon: '',
             subVarTitle: ''
-          }
-        },
-        Image: {
-          info: {
-            itemMainTitle: '',
-            itemSubTitle: '',
-            itemImgType: '',
-            itemImgFile: '',
-            imageOptions: 'square',
-            imageFile: '',
-            imageURL: ''
           }
         },
         Description: {
@@ -240,7 +222,9 @@ export default {
                   itemLabel: '',
                   itemData: '',
                   line: false,
-                  colNum: '1'
+                  colNum: '1',
+                  itemLabelStyle: '',
+                  itemDataStyle: ''
                 }
               ]
             }

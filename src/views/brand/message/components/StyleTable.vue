@@ -15,13 +15,13 @@
                 <div class="input-item">
                   <span class="radiobox">
                     <input type="radio" name="tableUse" id="tableUseN" value="N"
-                      v-model="tableUse"
+                      v-model="item.tableUse"
                     />
                     <label for="tableUseN">미사용</label>
                   </span>
                   <span class="radiobox">
                     <input type="radio" name="tableUse" id="tableUseY" value="Y"
-                      v-model="tableUse"
+                      v-model="item.tableUse"
                     />
                     <label for="tableUseY">사용</label>
                   </span>
@@ -30,7 +30,7 @@
             </div>
           </td>
         </tr>
-        <tr :key="i" v-if="!(item.useSelect === 'Y' && tableUse === 'N')">
+        <tr :key="i" v-if="!(item.useSelect === 'Y' && item.tableUse === 'N')">
           <th scope="row"><span class="form-item__label required">테이블<span v-if="info.length > 1">{{i+1}}</span> - 제목</span></th>
           <td>
             <div class="form-item__content">
@@ -39,7 +39,6 @@
                   <div class="input">
                     <input type="text" placeholder="제목을 입력해주세요." maxlength="17"
                     @input="e => item.tableTitle = e.target.value"
-                    ref="tableTitle"
                     />
                     <div class="input-limit__text">
                       <p>{{ item.tableTitle.length }}/17자</p>
@@ -51,7 +50,7 @@
           </td>
         </tr>
         <!-- 테이블- 내용 -->
-        <tr :key="i" v-if="!(item.useSelect === 'Y' && tableUse === 'N')">
+        <tr :key="i" v-if="!(item.useSelect === 'Y' && item.tableUse === 'N')">
           <th scope="row"><span class="form-item__label required">테이블<span v-if="info.length > 1">{{i+1}}</span> - 내용</span></th>
           <td>
             <div class="form-item__content">
@@ -80,10 +79,6 @@ export default {
     TemplateTableReg
   },
   props: {
-    tableIndex: {
-      type: Number,
-      default: null
-    },
     info: {
       type: Array,
       default: null
