@@ -5,44 +5,44 @@
       <col />
     </colgroup>
     <tbody>
+      <template v-for="(item, i) in info">
       <!-- 테이블- 제목 -->
-      <tr v-if="useSelect">
-        <th scope="row"><span class="form-item__label">테이블</span></th>
-        <td>
-          <div class="form-item__content">
-            <div class="form-item-row">
-              <div class="input-item">
-                <span class="radiobox">
-                  <input type="radio" name="tableUse" id="tableUseN" value="N"
-                    v-model="form.tableUse"
-                  />
-                  <label for="tableUseN">미사용</label>
-                </span>
-                <span class="radiobox">
-                  <input type="radio" name="tableUse" id="tableUseY" value="Y"
-                    v-model="form.tableUse"
-                  />
-                  <label for="tableUseY">사용</label>
-                </span>
+        <tr v-if="item.useSelect === 'Y'" :key="i">
+          <th scope="row"><span class="form-item__label">테이블<span v-if="info.length > 1">{{ i+1 }}</span></span></th>
+          <td>
+            <div class="form-item__content">
+              <div class="form-item-row">
+                <div class="input-item">
+                  <span class="radiobox">
+                    <input type="radio" name="tableUse" id="tableUseN" value="N"
+                      v-model="tableUse"
+                    />
+                    <label for="tableUseN">미사용</label>
+                  </span>
+                  <span class="radiobox">
+                    <input type="radio" name="tableUse" id="tableUseY" value="Y"
+                      v-model="tableUse"
+                    />
+                    <label for="tableUseY">사용</label>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        </td>
-      </tr>
-      <template v-if="!(useSelect && form.tableUse === 'N')">
-        <tr>
-          <th scope="row"><span class="form-item__label required">테이블 - 제목</span></th>
+          </td>
+        </tr>
+        <tr :key="i" v-if="!(item.useSelect === 'Y' && tableUse === 'N')">
+          <th scope="row"><span class="form-item__label required">테이블<span v-if="info.length > 1">{{i+1}}</span> - 제목</span></th>
           <td>
             <div class="form-item__content">
               <div class="form-item-row">
                 <div class="input-item input-limit">
                   <div class="input">
-                    <input type="text" placeholder="제목을 입력해주세요." maxlength="17" v-model="form.Table.tableTitle"
-                    @input="e => form.Table.tableTitle = e.target.value"
+                    <input type="text" placeholder="제목을 입력해주세요." maxlength="17"
+                    @input="e => item.tableTitle = e.target.value"
                     ref="tableTitle"
                     />
                     <div class="input-limit__text">
-                      <p>{{ form.Table.tableTitle.length }}/17자</p>
+                      <p>{{ item.tableTitle.length }}/17자</p>
                     </div>
                   </div>
                 </div>
@@ -51,8 +51,8 @@
           </td>
         </tr>
         <!-- 테이블- 내용 -->
-        <tr>
-          <th scope="row"><span class="form-item__label required">테이블 - 내용</span></th>
+        <tr :key="i" v-if="!(item.useSelect === 'Y' && tableUse === 'N')">
+          <th scope="row"><span class="form-item__label required">테이블<span v-if="info.length > 1">{{i+1}}</span> - 내용</span></th>
           <td>
             <div class="form-item__content">
               <p class="text-limit">
@@ -61,7 +61,7 @@
               <div class="form-item-row">
                 <template>
                   <TemplateTableReg
-                    :tableInfo="form.Table.info"
+                    :tableInfo="item.content"
                   />
                 </template>
               </div>
@@ -80,34 +80,18 @@ export default {
     TemplateTableReg
   },
   props: {
-    useSelect: {
-      type: Boolean,
-      default: false
+    tableIndex: {
+      type: Number,
+      default: null
     },
     info: {
-      type: Object,
+      type: Array,
       default: null
     }
   },
   data () {
     return {
-      form: {
-        tableUse: 'N',
-        Table: {
-          tableTitle: '',
-          info: {
-            tableRowNum: 1,
-            description: [
-              {
-                line: false,
-                colNum: '1',
-                itemLabel: '',
-                itemData: ''
-              }
-            ]
-          }
-        }
-      },
+      tableUse: 'N'
     }
   }
 }

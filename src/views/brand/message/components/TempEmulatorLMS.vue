@@ -21,49 +21,37 @@ t<template>
           <!-- 템플릿 출력 -->
           <div class="template__wrap--preview">
             <!-- 텍스트 선택형_서술 -->
-            <template v-if="templateType == '텍스트 선택형_서술'">
+            <template v-if="templateType == '서술'">
               <!-- 타이틀 -->
               <MainTitle :info="templData.MainTitle.info" />
               <!-- 본문 -->
               <Description :info="templData.Description.info" />
+              <Buttons :info="templData.Buttons.info"/>
             </template>
             <!-- 텍스트 선택형_스타일  -->
-            <template v-if="templateType == '텍스트 선택형_스타일'">
+            <template v-if="templateType == '서술_아이콘'">
               <!-- 타이틀 -->
               <MainTitle :info="templData.MainTitle.info" />
-              <!-- 본문 : 테이블 -->
-              <StyleTable :info="templData.Table.info"/>
+              <!-- 본문 -->
+              <Description :info="templData.Description.info" />
+              <Buttons :info="templData.Buttons.info"/>
             </template>
             <!-- 타이틀 자유형_서술 -->
-            <template v-if="templateType == '타이틀 자유형_서술'">
+            <template v-if="templateType == '2단'">
               <!-- 타이틀 : 자유형-->
               <MainTitle :info="templData.MainTitle.info" />
               <!-- 본문 -->
-              <Description :info="templData.Description.info" />
+              <Description :info="templData.DescriptionGroup.info.description" />
+              <Buttons :info="templData.DescriptionGroup.info.Buttons.info"/>
             </template>
             <!-- 타이틀 자유형_스타일 -->
-            <template v-if="templateType == '타이틀 자유형_스타일'">
+            <template v-if="templateType == '스타일'">
               <!-- 타이틀 : 자유형-->
               <MainTitle :info="templData.MainTitle.info" />
               <!-- 본문 : 테이블 -->
               <StyleTable :info="templData.Table.info"/>
             </template>
-            <!-- 타이틀 자유형_스타일 -->
-            <template v-if="templateType == '아이템 강조형_서술'">
-              <!-- 아이템형-->
-              <ItemA :info="templData.Item.info"/>
-              <!-- 본문 -->
-              <Description :info="templData.Description.info" />
-            </template>
-            <!-- 타이틀 자유형_스타일 -->
-            <template v-if="templateType == '아이템 강조형_스타일'">
-              <!-- 아이템형-->
-              <ItemA :info="templData.Item.info"/>
-               <!-- 본문 : 테이블 -->
-              <StyleTable :info="templData.Table.info"/>
-            </template>
-            <!-- 버튼 -->
-            <Buttons :info="templData.Buttons.info"/>
+
           </div>
           <!-- //템플릿 출력 -->
         </div>

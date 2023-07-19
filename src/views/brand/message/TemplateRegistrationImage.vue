@@ -66,47 +66,47 @@ template<template>
                   <MainImage />
                   <SimpleTitle />
                   <SimpleTable />
-                  <ButtonVertical />
+                  <ButtonVertical :info="form.Buttons.info"/>
                 </template>
                 <!-- 이미지 강조형 -->
                 <template v-if="isImageType2">
                   <MainImage />
-                  <Description :titleUse="true" />
+                  <Description :titleUse="true" :info="form.Description.info"/>
                   <ButtonVertical />
                 </template>
                 <!-- 썸네일형(세로) -->
                 <template v-if="isImageType3">
                   <MainImage />
-                  <Description :titleUse="true" :useSelect="true"/>
+                  <Description :titleUse="true" :useSelect="true" :info="form.Description.info"/>
                   <ThumbAndDesc />
-                  <ButtonVertical />
+                  <ButtonVertical  :info="form.Buttons.info"/>
                 </template>
                 <!-- 썸네일형(가로) -->
                 <template v-if="isImageType4">
                   <MainImage />
-                  <Description :titleUse="true" />
+                  <Description :titleUse="true" :info="form.Description.info"/>
                   <Thumnail />
-                  <ButtonVertical />
+                  <ButtonVertical :info="form.Buttons.info"/>
                 </template>
                 <!-- SNS 형 -->
                 <template v-if="isImageType5">
-                  <Description :titleUse="true" />
+                  <Description :titleUse="true" :info="form.Description.info"/>
                   <MainImage />
-                  <ButtonVertical />
+                  <ButtonVertical :info="form.Buttons.info"/>
                 </template>
                 <!-- SNS 형(중간버튼) -->
                 <template v-if="isImageType6">
-                  <Description :titleUse="true" />
-                  <ButtonVertical />
+                  <Description :titleUse="true" :info="form.Description.info"/>
+                  <ButtonVertical :info="form.Buttons.info"/>
                   <MainImage />
                 </template>
                 <!-- 이미지 템플릿 신규 -->
                 <template v-if="isImageType7">
                   <MainImage />
                   <ItemB></ItemB>
-                  <Description :titleUse="true" />
+                  <Description :titleUse="true" :info="form.Description.info"/>
                   <StyleTable :useSelect="true" />
-                  <ButtonVertical />
+                  <ButtonVertical :info="form.Buttons.info"/>
                 </template>
                 <!-- 캐러셀 -->
                 <template v-if="isImageType8">
@@ -223,6 +223,14 @@ export default {
           key: '',
           value: ''
         }],
+        Description: {
+          info: {
+            title: '',
+            subTitleUseY: 'N',
+            subTitle: '',
+            content: ''
+          }
+        },
         varUse: 'Y',
         varSelect: '',
         templateProp: 'desc',

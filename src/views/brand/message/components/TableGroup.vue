@@ -48,14 +48,6 @@
           </div>
         </td>
       </tr>
-      <tr v-for="(button,index) in form.Buttons.info" :key="index">
-        <th scope="row"><span class="form-item__label">테이블{{ groupIdx }} - 버튼{{ index + 1 }} </span></th>
-        <td>
-        <TemplateButtonReg
-        :buttonInfo="button"
-        />
-        </td>
-      </tr>
     </tbody>
   </table>
 </template>

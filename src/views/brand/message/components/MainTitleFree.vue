@@ -16,7 +16,7 @@
                     class="input"
                     maxlength="17"
                     id="mainTitleFree_Title"
-                    @input="calcText()"
+                    @input="e => info.title = e.target.value"
                     placeholder="제목을 입력해주세요."
                   >
                   <div class="input-limit__text">
@@ -35,7 +35,7 @@
           <div class="form-item__content">
             <div class="form-item-row">
               <div class="input-item" >
-                <Dropdown :options="list" placeholder="변수 선택" disabled/>
+                <Dropdown :options="list" placeholder="변수 선택" v-model="info.subVarTitle"/>
               </div>
             </div>
           </div>
@@ -46,13 +46,10 @@
 </template>
 
 <script>
-import Emoji from '@/components/common/Emoji.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
-import 'emoji-picker-element'
 export default {
   components: {
-    Emoji,
-    Dropdown,
+    Dropdown
   },
   props: {
     info: {
@@ -62,60 +59,16 @@ export default {
   },
   data () {
     return {
-      mainTitleLength : 0,
-      form: {
-        MainTitle: {
-          logoType:'gone',
-          info: {
-            mainTitle: '',
-            titleType: '',
-            varUse: 'Y',
-            logoUse: 'Y',
-            logoFile: '',
-            logoUrl: '',
-            logoCategory:'',
-            mainDesc: ''
-          }
-        }
-      },
       list: [
         {
-          codeNm: '미친새끼들',
-          code: 'freak'
+          label: '변수1',
+          value: '변수1'
+        },
+        {
+          label: '변수2',
+          value: '변수2'
         }
       ]
-    }
-  },
-  created() {
-    //if (jglib.isEmpty(this.jsonData)) { > 값 가져오는 부분
-
-    //} else {
-    //}
-    this.description = this.inputText
-  },
-  methods: {
-    // 이미지 파일 업로드
-    onFileChanged (e) {
-      const files = e.target.files
-      const file = files[0]
-      const fileName = file.name
-      this.form.logoFile = fileName
-      this.url = URL.createObjectURL(file)
-    },
-    onSelectEmoji(e, target) {
-      let emoji = e
-      let refName = target
-      this.$refs[refName].value += emoji
-    },
-    calcText() {
-      let length = document.getElementById('mainTitleFree_Title').value
-      this.calcLength(length)
-    },
-    calcLength(text) {
-      this.mainTitleLength = text.split(/{{.*?}}/).join('').length
-    },
-    showLogo(){
-      console.log(this.info.logoUse)
     }
   }
 }

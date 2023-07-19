@@ -7,78 +7,76 @@
     </colgroup>
     <tbody>
       <!-- 본문 - 소제목 -->
-      <tr>
-        <th scope="row"><span class="form-item__label">본문{{ groupIdx }} - 소제목</span></th>
-        <td>
-          <div class="form-item__content">
-            <div class="form-item-row">
-              <div class="input-item">
-                <span class="radiobox">
-                  <input type="radio" name="titleUse" id="titleUseN" value="N"
-                    v-model="form.Description.info.titleUse"
-                  />
-                  <label for="titleUseN">미사용</label>
-                </span>
-                <span class="radiobox">
-                  <input type="radio" name="titleUse" id="titleUseY" value="Y"
-                    v-model="form.Description.info.titleUse"
-                  />
-                  <label for="titleUseY">사용</label>
-                </span>
+      <template v-for="(item, i) in info">
+        <tr :key="i">
+          <th scope="row"><span class="form-item__label">본문{{ i + 1 }} - 소제목</span></th>
+          <td>
+            <div class="form-item__content">
+              <div class="form-item-row">
+                <div class="input-item">
+                  <span class="radiobox">
+                    <input type="radio" name="titleUse" id="titleUseN" value="N"
+                      v-model="item.description.titleUse"
+                    />
+                    <label for="titleUseN">미사용</label>
+                  </span>
+                  <span class="radiobox">
+                    <input type="radio" name="titleUse" id="titleUseY" value="Y"
+                      v-model="item.description.titleUse"
+                    />
+                    <label for="titleUseY">사용</label>
+                  </span>
+                </div>
               </div>
-            </div>
-            <div class="form-item-row" v-if="form.Description.info.titleUse === 'Y'">
-              <div class="input-item input-limit">
-                <div class="input">
-                  <input type="text"
-                    class="input"
-                    maxlength="30"
-
-                    v-model="form.Description.info.title"
-                    @input="calcText('title')"
-                    placeholder="최대 30자 까지 입력할 수 있습니다."
-                  >
-                  <div class="input-limit__text">
-                    <Emoji @input="onSelectEmoji($event, 'descTitle')" />
-                    <p>{{ titleLength }}/30자</p>
+              <div class="form-item-row" v-if="item.titleUse === 'Y'">
+                <div class="input-item input-limit">
+                  <div class="input">
+                    <input type="text"
+                      class="input"
+                      maxlength="30"
+                      @input="e => item.description.title = e.target.value"
+                      placeholder="제목을 입력해주세요."
+                    >
+                    <div class="input-limit__text">
+                      <p>{{ item.description.title.length }}/30자</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </td>
-      </tr>
-      <!-- 본문 - 내용 -->
-      <tr>
-        <th scope="row"><span class="form-item__label required">본문{{ groupIdx }} - 내용</span></th>
-        <td>
-          <div class="form-item__content">
-            <div class="form-item-row">
-              <div class="input-item input-limit">
-                <div class="textarea">
-                  <textarea maxlength="1300" placeholder="내용을 입력해주세요."
-                  v-model="form.Description.info.description"
-                  @input="calcText('desc')"
-                  id="descContent"></textarea>
-                  <div class="textarea-limit__text">
-                    <p>
-                      {{ descLength }}/1,300자
-                    </p>
+          </td>
+        </tr>
+        <!-- 본문 - 내용 -->
+        <tr :key="i">
+          <th scope="row"><span class="form-item__label required">본문{{ i+1 }} - 내용</span></th>
+          <td>
+            <div class="form-item__content">
+              <div class="form-item-row">
+                <div class="input-item input-limit">
+                  <div class="textarea">
+                    <textarea maxlength="1300" placeholder="내용을 입력해주세요."
+                    @input="e => item.description.content = e.target.value"
+                    id="descContent"></textarea>
+                    <div class="textarea-limit__text">
+                      <p>
+                        {{ item.description.content.length }}/1,300자
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </td>
-      </tr>
-      <tr v-for="(button,index) in form.Buttons.info" :key="index">
-        <th scope="row"><span class="form-item__label">본문{{ groupIdx }} - 버튼{{ index + 1 }} </span></th>
-        <td>
-        <TemplateButtonReg
-        :buttonInfo="button"
-        />
-        </td>
-      </tr>
+          </td>
+        </tr>
+        <tr v-for="( button,index ) in item.Buttons.info" :key="i">
+          <th scope="row"><span class="form-item__label">본문{{ i+1 }} - 버튼{{ index + 1 }} </span></th>
+          <td :key="index">
+          <TemplateButtonReg
+          :buttonInfo="button"
+          />
+          </td>
+        </tr>
+      </template>
     </tbody>
   </table>
   <!-- // 본문 -->
@@ -92,7 +90,7 @@ export default {
   },
   props: {
     info: {
-      type: Object
+      type: Array
     },
     groupIdx: {
       type: Number
@@ -105,7 +103,7 @@ export default {
       form: {
         Description: {
           info: {
-            title:'',
+            title: '',
             titleUse: 'Y',
             description: ''
           }
@@ -187,18 +185,18 @@ export default {
       this.$refs[refName].value += emoji
     },
     calcText(text) {
-      if(text ==='title'){
+      if (text ==='title') {
         let textLength = document.getElementById('descTitle').value
         this.calcLength(textLength, text)
-      }else{
+      } else {
         let textLength = document.getElementById('descContent').value
         this.calcLength(textLength, text)
       }
     },
     calcLength(textLength, text) {
-      if(text ==='title'){
+      if (text ==='title') {
         this.titleLength = textLength.split(/{{.*?}}/).join('').length
-      }else{
+      } else {
         this.descLength = textLength.split(/{{.*?}}/).join('').length
       }
     }

@@ -44,7 +44,7 @@
       </div>
     </div>
     <!-- 유형 미 선택 시 경고 메시지 노출 -->
-    <p class="guide-text error">유형을 선택해주세요.</p>
+    <!-- <p class="guide-text error">유형을 선택해주세요.</p> -->
   </div>
 </template>
 

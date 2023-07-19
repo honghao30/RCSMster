@@ -70,14 +70,51 @@
                     <!-- //템플릿 명 -->
                   </tbody>
                 </table>
-                <MainTitle  v-if="!isLmsType2"/>
-                <StyleTitleA v-if="isLmsType2" />
-                <Description  v-if="!isLmsType3" :subTitleUse="true"/>
-                <ButtonVertical v-if="isLmsType1 || isLmsType2"/>
-                <DescriptionGroup :groupIdx="1" v-if="isLmsType3"/>
-                <DescriptionGroup :groupIdx="2" v-if="isLmsType3"/>
-                <TableGroup :groupIdx="1" v-if="isLmsType4"/>
-                <TableGroup :groupIdx="2" v-if="isLmsType4"/>
+                <!-- LMS 서술 -->
+                <template v-if="isLmsType1">
+                  <MainTitle
+                    :titleIconNewData="titleIconNewData"
+                    :titleIconBasicData="titleIconBasicData"
+                    :info="form.MainTitle.info"/>
+                  <Description :subTitleUse="true"
+                    :info="form.Description.info"
+                  />
+                  <ButtonVertical
+                    :info="form.Buttons.info"
+                  />
+                </template>
+                <!-- LMS 서술_아이콘 -->
+                <template v-if="isLmsType2">
+                  <StyleTitleA
+                    :titleIconNewData="titleIconNewData"
+                    :titleIconBasicData="titleIconBasicData"
+                    :info="form.MainTitle.info"
+                  />
+                  <Description :subTitleUse="true"
+                  :info="form.Description.info"
+                  />
+                  <ButtonVertical :info="form.Buttons.info" />
+                </template>
+                <!-- LMS 2단 -->
+                <template v-if="isLmsType3">
+                  <MainTitle
+                    :titleIconNewData="titleIconNewData"
+                    :titleIconBasicData="titleIconBasicData"
+                    :info="form.MainTitle.info"/>
+                  <DescriptionGroup :info="form.DescriptionGroup.info"/>
+                </template>
+                <!-- LMS 템플릿_스타일  -->
+                <template v-if="isLmsType4">
+                  <MainTitle :titleIconNewData="titleIconNewData"
+                    :titleIconBasicData="titleIconBasicData"
+                    :info="form.MainTitle.info"/>
+                  <Description :useSelect="true" :subTitleUse="true"
+                    :info="form.Description.info"
+                  />
+                  <styleTable tableIndex="1" :info="form.Table.info"/>
+                  <ButtonVertical></ButtonVertical>
+                </template>
+
               </div>
               <div class="form-btm__text">
                  <p class="guide-text black">&middot; 버튼에 들어가는 글자는 90자 제한 대상에 포함되지 않습니다. 메시지 내용은 고정부 메시지와 변수명에 들어가는 메시지를 합쳐서 총 90자 이내로 작성해주세요. (90자 초과시 전송 불가)</p>
@@ -90,11 +127,10 @@
           </div>
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
-            <!-- <TempEmulator
+            <TempEmulator
               :templateType="templateType"
               :templData="form"
-            /> -->
-            <!-- :templateData="templateData" -->
+            />
           </div>
           <!-- // 에뮬레이터 -->
         </div>
@@ -127,13 +163,13 @@
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import TempEmulator from '@/views/brand/message/components/TempEmulator.vue'
+import TempEmulator from '@/views/brand/message/components/TempEmulatorLMS.vue'
 import MainTitle from './components/MainTitle.vue'
 import Description from './components/Description.vue'
 import StyleTitleA from '@/views/brand/message/components/StyleTitleA.vue'
 import ButtonVertical from '@/views/brand/message/components/ButtonVertical.vue'
 import DescriptionGroup from '@/views/brand/message/components/DescriptionGroup.vue'
-import TableGroup from '@/views/brand/message/components/TableGroup.vue'
+import StyleTable from '@/views/brand/message/components/StyleTable.vue'
 export default {
   components: {
     PageTitle,
@@ -145,7 +181,7 @@ export default {
     StyleTitleA,
     ButtonVertical,
     DescriptionGroup,
-    TableGroup
+    StyleTable
   },
   data() {
     return {
@@ -155,62 +191,76 @@ export default {
       templateData: [],
       templateProp: 'desc',
       form: {
-        logoType: 'basicImage',
-        logoFile: '',
-        explainUse: 'N',
-        title: {
-          minititle: '',
-          minititleuser: 'minititleN',
-          minititle1: '',
-          minititle1user: 'minititle1N',
-          minititle2: '',
-          minititle2user: 'minititle2N'
-        },
-        stitle: '',
         MainTitle: {
           info: {
-            mainTitle: '',
-            mainExplain: '',
+            title: '',
             titleType: '',
-            varUse: 'Y',
-            logoUse: 'Y',
-            logoUrl: '',
-            mainDesc: ''
+            titleIcon: '',
+            logoType: 'basic',
+            iconType: ''
           }
         },
         Description: {
-          user: 'DescriptionN',
           info: {
-            description: ''
+            title: '',
+            subTitleUseY: 'N',
+            subTitle: '',
+            content: ''
           }
         },
         Table: {
-          tableTitle: '',
-          info: {
-            tableRowNum: 1,
-            description: [
-              {
-                line: false,
-                colNum: '1',
-                itemLabel: '',
-                itemData: ''
-              }
-            ]
-          }
+          info: [
+            {
+              useSelect: 'N',
+              tableTitle: '',
+              content: [
+                {
+                  itemLabel: '',
+                  itemData: '',
+                  line: false,
+                  colNum: '1'
+                }
+              ]
+            },
+            {
+              useSelect: 'Y',
+              tableTitle: '',
+              content: [
+                {
+                  itemLabel: '',
+                  itemData: '',
+                  line: false,
+                  colNum: '1'
+                }
+              ]
+            }
+          ]
         },
-        Table2: {
-          tableTitle: '',
-          info: {
-            tableRowNum: 1,
-            description: [
-              {
-                line: false,
-                colNum: '1',
-                itemLabel: '',
-                itemData: ''
+        DescriptionGroup: {
+          info: [
+            {
+              description: {
+                title: '',
+                subTitleUseY: 'N',
+                subTitle: '',
+                content: ''
+              },
+              Buttons: {
+                info: [
+                  {
+                    btnEvent: 'none',
+                    btnEventDropdown: '',
+                    btnName: ''
+                  },
+                  {
+                    btnEvent: 'none',
+                    btnEventDropdown: '',
+                    btnName: ''
+                  }
+                ]
               }
-            ]
-          }
+            }
+          ]
         },
         Buttons: {
           use: 'N',

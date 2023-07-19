@@ -5,7 +5,7 @@
       <col />
     </colgroup>
     <tbody>
-      <tr v-for="(button,index) in form.Buttons.info" :key="index">
+      <tr v-for="(button, index) in info" :key="index">
         <th scope="row"><span class="form-item__label">버튼{{ index + 1 }} </span></th>
         <td>
         <TemplateButtonReg
@@ -13,10 +13,9 @@
         />
         </td>
       </tr>
-      <tr>
+      <!-- <tr>
         <th scope="row"><span class="form-item__label">버튼색 </span></th>
         <td>
-          <!-- 버튼 칼라 -->
           <div class="form-item-row">
               <div class="input-item brand-color-select">
                 <span class="radiobox">
@@ -34,7 +33,7 @@
               </div>
           </div>
         </td>
-      </tr>
+      </tr> -->
     </tbody>
   </table>
 </template>
@@ -48,7 +47,7 @@ export default {
   },
   props: {
     info: {
-      type: Object
+      type: Array
     }
   },
   data() {

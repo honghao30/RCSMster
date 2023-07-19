@@ -69,21 +69,61 @@
                     </tr>
                   </tbody>
                 </table>
-                <MainTitleSelect :info="form.MainTitleSelect.info" v-if="isTextType1 || isTextType2"></MainTitleSelect>
-                <MainTitleFree :info="form.MainTitleFree.info" v-if="isTextType3 || isTextType4"></MainTitleFree>
-                <ItemA v-if="isTextType5 || isTextType6" />
-                <Description :info="form.Description1.info" v-if="isTextType1 || isTextType3 || isTextType5"></Description>
-                <StyleTable :info="form.table" v-if="isTextType2 || isTextType4 || isTextType6"></StyleTable>
-                <!-- <ButtonHorizontal></ButtonHorizontal> -->
-                <ButtonVertical></ButtonVertical>
+                <!-- 텍스트 선택형_서술 -->
+                <template v-if="isTextType1">
+                  <MainTitleSelect
+                  :titleIconNewData="titleIconNewData"
+                  :titleIconBasicData="titleIconBasicData"
+                  :info="form.MainTitle.info"
+                  />
+                  <Description :info="form.Description.info"/>
+                </template>
+                <!-- 텍스트 선택형_스타일 -->
+                <template v-if="isTextType2">
+                  <MainTitleSelect
+                  :titleIconNewData="titleIconNewData"
+                  :titleIconBasicData="titleIconBasicData"
+                  :info="form.MainTitle.info"
+                  />
+                  <StyleTable :info="form.Table.info"/>
+                </template>
+                <!-- 타이틀 자유형_서술 -->
+                <template v-if="isTextType3">
+                  <MainTitleFree :info="form.MainTitle.info"/>
+                  <Description :info="form.Description.info"/>
+                </template>
+                 <!-- 타이틀 자유형_스타일 -->
+                <template v-if="isTextType4">
+                  <MainTitleFree :info="form.MainTitle.info"/>
+                  <StyleTable :info="form.Table.info"/>
+                </template>
+                <!-- 아이템 강조형_서술 -->
+                <template v-if="isTextType5">
+                  <ItemA
+                  :info="form.Item.info"
+                  :titleIconNewData="titleIconNewData"
+                  :titleIconBasicData="titleIconBasicData"
+                  />
+                  <Description :info="form.Description.info"/>
+                </template>
+                <!-- 아이템 강조형_스타일 -->
+                <template v-if="isTextType6">
+                  <ItemA
+                  :info="form.Item.info"
+                  :titleIconNewData="titleIconNewData"
+                  :titleIconBasicData="titleIconBasicData"
+                  />
+                  <StyleTable :info="form.Table.info"/>
+                </template>
+                <ButtonVertical :info="form.Buttons.info"></ButtonVertical>
               </div>
               <div class="form-btm__text">
-                <template v-if="isTextType3">
+
+                <p class="guide-text black">&middot; 버튼에 들어가는 글자는 90자 제한 대상에 포함되지 않습니다. 메시지 내용은 고정부 메시지와 변수명에 들어가는 메시지를 합쳐서 총 90자 이내로 작성해주세요. (90자 초과시 전송 불가)</p>
+                <template v-if="isTextType3 || isTextType4">
                   <p class="guide-text black">&middot; 변수로 설정하고자 하는 내용을 {{ }} 표시로 작성해주세요. 예) {{ }}, {{}}</p>
                   <p class="guide-text black">&middot; 특수문자, 공란, 줄바꿈 그리고 {{}} 변수명 사용 불가합니다.</p>
-                  <p class="guide-text black">&middot; 버튼에 들어가는 글자는 90자 제한 대상에 포함되지 않습니다. 메시지 내용은 고정부 메시지와 변수명에 들어가는 메시지를 합쳐서 총 90자 이내로 작성해주세요. (90자 초과시 전송 불가)</p>
                 </template>
-                <p class="guide-text black"  v-if="!isTextType3">&middot; 버튼에 들어가는 글자는 90자 제한 대상에 포함되지 않습니다. 메시지 내용은 고정부 메시지와 변수명에 들어가는 메시지를 합쳐서 총 90자 이내로 작성해주세요. (90자 초과시 전송 불가)</p>
                 <div class="checkbox">
                   <input type="checkbox" id="agreeChk" v-model="form.agree" value="form.agree"/>
                   <label for="agreeChk"><span class="checkbox__text">정보성 메시지만 보낼 수 있으며 광고 등 정책에 위배되는 메시지 발송 시 템플릿 사용이 중지될 수 있음을 동의합니다.</span></label>
@@ -132,8 +172,6 @@ import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import TempEmulator from '@/views/brand/message/components/TempEmulator.vue'
-import Emoji from '@/components/common/Emoji.vue'
-import 'emoji-picker-element'
 import { textTemplate } from '@/views/brand/message/templateData.js'
 import MainTitleFree from './components/MainTitleFree.vue'
 import MainTitleSelect from './components/MainTitleSelect.vue'
@@ -169,20 +207,15 @@ export default {
           logoType: '',
           desc: ''
         },
-        SelectedTitle: ['', ''],
-        SelectedLogo: ['', ''],
         MainTitle: {
           info: {
-            mainTitle: '',
+            title: '',
             titleType: '',
-            varUse: 'Y',
-            logoUse: 'Y',
-            logoFile: '',
-            logoUrl: '',
-            mainDesc: ''
+            titleIcon: '',
+            subVarTitle: ''
           }
         },
-        Image:{
+        Image: {
           info: {
             itemMainTitle: '',
             itemSubTitle: '',
@@ -193,55 +226,33 @@ export default {
             imageURL: ''
           }
         },
-        MainTitleFree: {
+        Description: {
           info: {
-            mainTitle: '',
-            titleType: '',
-            varUse: 'Y',
-            logoUse: 'Y',
-            logoFile: '',
-            logoUrl: '',
-            mainDesc: ''
-          }
-        },
-        MainTitleSelect: {
-          info: {
-            mainTitle: '',
-            titleType: '',
-            varUse: 'Y',
-            logoUse: 'Y',
-            logoFile: '',
-            logoUrl: '',
-            mainDesc: ''
-          }
-        },
-        Description1: {
-          info: {
-            description: ''
-          }
-        },
-        Description2: {
-          info: {
-            description: ''
-          }
-        },
-        Description3: {
-          info: {
-            description: ''
+            content: ''
           }
         },
         Table: {
-          tableTitle: '',
+          info: [
+            {
+              tableTitle: '',
+              content: [
+                {
+                  itemLabel: '',
+                  itemData: '',
+                  line: false,
+                  colNum: '1'
+                }
+              ]
+            }
+          ]
+        },
+        Item: {
           info: {
-            tableRowNum: 1,
-            description: [
-              {
-                line: false,
-                colNum: '1',
-                itemLabel: '',
-                itemData: ''
-              }
-            ]
+            titleDescUse: 'N',
+            titleDesc: '',
+            title: '',
+            logoType: 'basic',
+            logoFile: ''
           }
         },
         Buttons: {
@@ -447,9 +458,6 @@ export default {
       this.$refs[refName].value += emoji
     },
     onSubmit () {
-    },
-    checkTitleSelected (option) {
-      this.form.SelectedTitle = option
     },
     checkLogoSelected (option) {
       this.form.SelectedLogo = option

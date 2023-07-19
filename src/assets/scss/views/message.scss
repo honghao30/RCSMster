@@ -788,9 +788,9 @@
       font-size:20px;
     }
   }
+ 
   i {
     vertical-align: middle;
-    margin-top: 8px;
   }
   span {
     @include fontoption(18px, #000, 700, 24px);
@@ -813,9 +813,25 @@
       width: 100%;
     }
   }
-  .mainDesc {
+  .title-desc {
     @include fontoption(12px,#666666,400,20px); 
     width: 100%;
+  }
+  .icon-title {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    overflow:hidden;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &.styled {
+    border-bottom: 0;
+    justify-content: space-between;
+    align-items: flex-end
+
   }
 }
 .table-cmp-title {
@@ -826,13 +842,16 @@
 .template-cmp-description {
   min-height: 66px;
   @include fontoption(14px, #999, 400, 22px);
+  .sub-title {
+    @include fontoption(16px, #000, 700, 24px);
+    margin-bottom:8px;
+  }
 }
 .template-cmp-table {
   .description {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-top: 16px;
     li {
       display: flex;
       &.border {

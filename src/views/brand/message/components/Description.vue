@@ -14,13 +14,13 @@
               <div class="input-item">
                 <span class="radiobox">
                   <input type="radio" name="descUse" id="descUseN" value="N"
-                    v-model="form.DescriptionUse"
+                    v-model="useY"
                   />
                   <label for="descUseN">미사용</label>
                 </span>
                 <span class="radiobox">
                   <input type="radio" name="descUse" id="descUseY" value="Y"
-                    v-model="form.DescriptionUse"
+                    v-model="useY"
                   />
                   <label for="descUseY">사용</label>
                 </span>
@@ -29,7 +29,7 @@
           </div>
         </td>
       </tr>
-      <template v-if="!(useSelect && form.DescriptionUse === 'N')">
+      <template v-if="!(useSelect && useY === 'N')">
         <tr v-if="titleUse">
           <th scope="row"><span class="form-item__label">본문 - 제목</span></th>
           <td>
@@ -38,32 +38,29 @@
                 <div class="input-item">
                   <span class="radiobox">
                     <input type="radio" name="titleUse" id="titleUseN" value="N"
-                      v-model="form.Description.info.titleUse"
+                      v-model="titleUseY"
                     />
                     <label for="titleUseN">미사용</label>
                   </span>
                   <span class="radiobox">
                     <input type="radio" name="titleUse" id="titleUseY" value="Y"
-                      v-model="form.Description.info.titleUse"
+                      v-model="titleUseY"
                     />
                     <label for="titleUseY">사용</label>
                   </span>
                 </div>
               </div>
-              <div class="form-item-row" v-if="form.Description.info.titleUse === 'Y'">
+              <div class="form-item-row" v-if="titleUseY === 'Y'">
                 <div class="input-item input-limit">
                   <div class="input">
                     <input type="text"
                       class="input"
                       maxlength="30"
-
-                      v-model="form.Description.info.title"
-                      @input="calcText('title')"
-                      placeholder="최대 30자 까지 입력할 수 있습니다."
+                      @input="e => info.title = e.target.value"
+                      placeholder="제목을 입력해주세요."
                     >
                     <div class="input-limit__text">
-                      <Emoji @input="onSelectEmoji($event, 'descTitle')" />
-                      <p>{{ titleLength }}/30자</p>
+                      <p>{{ info.title.length }}/30자</p>
                     </div>
                   </div>
                 </div>
@@ -79,33 +76,30 @@
               <div class="form-item-row">
                 <div class="input-item">
                   <span class="radiobox">
-                    <input type="radio" name="titleUse" id="titleUseN" value="N"
-                      v-model="form.Description.info.titleUse"
+                    <input type="radio" name="titleUse" id="subTitleUseN" value="N"
+                      v-model="info.subTitleUseY"
                     />
-                    <label for="titleUseN">미사용</label>
+                    <label for="subTitleUseN">미사용</label>
                   </span>
                   <span class="radiobox">
-                    <input type="radio" name="titleUse" id="titleUseY" value="Y"
-                      v-model="form.Description.info.titleUse"
+                    <input type="radio" name="titleUse" id="subTitleUseY" value="Y"
+                      v-model="info.subTitleUseY"
                     />
-                    <label for="titleUseY">사용</label>
+                    <label for="subTitleUseY">사용</label>
                   </span>
                 </div>
               </div>
-              <div class="form-item-row" v-if="form.Description.info.titleUse === 'Y'">
+              <div class="form-item-row" v-if="info.subTitleUseY === 'Y'">
                 <div class="input-item input-limit">
                   <div class="input">
                     <input type="text"
                       class="input"
                       maxlength="30"
-
-                      v-model="form.Description.info.title"
-                      @input="calcText('title')"
-                      placeholder="최대 30자 까지 입력할 수 있습니다."
+                      @input="e => info.subTitle = e.target.value"
+                      placeholder="제목을 입력해주세요."
                     >
                     <div class="input-limit__text">
-                      <Emoji @input="onSelectEmoji($event, 'descTitle')" />
-                      <p>{{ titleLength }}/30자</p>
+                      <p>{{ info.subTitle.length }}/30자</p>
                     </div>
                   </div>
                 </div>
@@ -121,12 +115,11 @@
                 <div class="input-item input-limit">
                   <div class="textarea">
                     <textarea maxlength="1300" placeholder="내용을 입력해주세요."
-                    v-model="form.Description.info.description"
-                    @input="calcText('desc')"
-                    id="descContent"></textarea>
+                    @input="e => info.content = e.target.value"
+                    ></textarea>
                     <div class="textarea-limit__text">
                       <p>
-                        {{ descLength }}/1,300자
+                        {{ info.content.length }}/1,300자
                       </p>
                     </div>
                   </div>
@@ -167,18 +160,8 @@ export default {
   },
   data () {
     return {
-      titleLength: 0,
-      descLength: 0,
-      form: {
-        DescriptionUse: 'N',
-        Description: {
-          info: {
-            title:'',
-            titleUse: 'Y',
-            description: ''
-          }
-        }
-      }
+      useY: 'N',
+      titleUseY: 'N'
     }
   },
   methods: {

@@ -1,9 +1,9 @@
 <template>
-  <div class="desc-area">
-    <p class="subtitle" v-if="info.subTitle" v-html="info.subTitle"></p>
-    <div class="description">
-      <p v-if="info.description" v-html="info.description"></p>
-      <p v-else>내용을 입력하세요.</p>
+  <div class="template-cmp-description">
+    <p class="sub-title" v-if="info.subTitleUseY === 'Y'">{{ info.subTitle }}</p>
+    <div class="content">
+      <span v-if="!info.content">내용을 입력하세요.</span>
+      <span v-else>{{ info.content }}</span>
     </div>
   </div>
 </template>
@@ -12,7 +12,8 @@
 export default {
   props: {
     info: {
-      type: Object
+      type: Object,
+      default: null
     }
   }
 }
