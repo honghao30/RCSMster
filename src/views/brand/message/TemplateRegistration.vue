@@ -99,7 +99,7 @@
                 </template>
                 <!-- 아이템 강조형_서술 -->
                 <template v-if="isTextType5">
-                  <ItemA
+                  <ItemB
                   :info="form.Item.info"
                   :titleIconNewData="titleIconNewData"
                   :titleIconBasicData="titleIconBasicData"
@@ -108,7 +108,7 @@
                 </template>
                 <!-- 아이템 강조형_스타일 -->
                 <template v-if="isTextType6">
-                  <ItemA
+                  <ItemB
                   :info="form.Item.info"
                   :titleIconNewData="titleIconNewData"
                   :titleIconBasicData="titleIconBasicData"
@@ -178,7 +178,7 @@ import MainTitleSelect from './components/MainTitleSelect.vue'
 import Description from './components/Description.vue'
 import ButtonVertical from '@/views/brand/message/components/ButtonVertical.vue'
 import StyleTable from '@/views/brand/message/components/StyleTable.vue'
-import ItemA from '@/views/brand/message/components/ItemA.vue'
+import ItemB from '@/views/brand/message/components/ItemB.vue'
 
 export default {
   components: {
@@ -191,7 +191,7 @@ export default {
     Description,
     ButtonVertical,
     StyleTable,
-    ItemA
+    ItemB
   },
   data() {
     return {

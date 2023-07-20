@@ -204,11 +204,13 @@
     padding: 24px 0;
     margin-bottom: 48px;
     border-bottom: 2px solid #ddd;
+    position:relative;
     .cmp-item {
       width:calc(33.3% - 16px);
       display:flex;
       flex-direction: column;
       align-items: center;
+      
       .cmp-title {
         width: 100%;
         text-align: left;
@@ -222,12 +224,61 @@
         display:flex;
         align-items:center;
         justify-content: center;
-        height: 120px;
+        height: 152px;
         margin-bottom: 16px;
+        cursor: pointer;
+        &:hover, &:active {
+          border-color: $pointColor;
+        }
+      }
+      .form-table {
+        width: calc(300% + 48px);
+        &.col3 {
+          transform: translateX(calc(-33.3% - 6px));
+        }
+        &.col1 {
+          transform: translateX(calc(50% - 114px));
+        }
+        .radiobox {
+          white-space: nowrap;
+          .link {
+            text-decoration: underline;
+          }
+        }
       }
     }
   }
 }
+
+.layout-info__wrap {
+  .brand-aside {
+    .guide {
+      padding: 0 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      line-height: 26px;
+      margin-bottom: -6px;
+      .link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        span {
+          text-decoration: underline;
+        }
+        &:after {
+          content:'';
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          background: url('../assets/images/icon/icon_arrow_right.png') 50% 50%;
+        }
+      }
+    }
+  }
+}
+
+
 .modal__content--inner {
   .registration-form__wrap {
     border-bottom: 0;
@@ -324,6 +375,14 @@
       &__title {
         text-align:center;
         @include fontoption(16px,#fff,500,28px);
+      }
+      .btn-area {
+        display: flex;
+        gap: 8px;
+      }
+      .btn {
+        max-width: 96px;
+        padding:0;
       }
     }
   }
@@ -902,6 +961,9 @@
     @include fontoption(14px, #000, 500, 22px);
     line-height: 46px;
   }
+  &.horizontal {
+    flex-direction: row;
+  }
 }
 .template-cmp-image {
   .image {
@@ -943,7 +1005,112 @@
     }
   }
 }
-//템플릿 에뮬
+// 레이아웃 에뮬
+.chat-emulator__wrap.layout {
+  border: 0;
+  background: 0,;
+  min-height: inherit;
+  gap: 12px;
+  .chat-emulator {
+    background-color:#fcfcfc;
+    bordeR:1px solid #eaeaea;
+    min-height: 740px;
+    border-radius: 16px;
+    padding: 16px;
+  }
+  .emulator-layout-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  .component-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  .component-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    &__box {
+      border:1px solid #eaeaea;
+      border-radius: 12px;
+      background-color: #fff;
+      padding: 24px 20px;
+      min-height: 68px;
+      flex: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 100%;
+      }
+    }
+    &.inactive {
+      .component-item__box {
+        color:#aaa;
+        background-color:#f4f4f4;
+      }
+    }
+    &.active {
+      .component-item__box {
+        border-color:$pointColor;
+      }
+    }
+    .cmp-ctrl {
+      flex: 0 0 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      .btn {
+        .icon-drag {
+          display:inline-block;
+          width:32px;
+          height: 32px;
+          background:url('../assets/images/icon/icon_drag.png') 50% 50%;
+        }
+        .icon-delete {
+          display:inline-block;
+          width:32px;
+          height: 32px;
+          background:url('../assets/images/icon/icon_btn_del.png') 50% 50%;
+        }
+      }
+    }
+  }
+  .btn-add {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    bordeR:1px solid #ddd;
+    box-shadow: -2px -2px 5px 0px #00000008 inset;
+    font-size: 20px;
+    background-color:#fff;
+  }
+}
+.template-sample__list {
+  ul {
+    display: flex;
+    flex-wrap:wrap;
+    margin-top: -32px;
+    .sample-item {
+      width:33.3%;
+      margin-top: 32px;
+      label {
+        flex-wrap: wrap;
+        .sample-img {
+          margin-top: 6px;
+        }
+        
+      }
+    }
+  }
+}
+
 .form-table {
   .template-button {
     .input-item {

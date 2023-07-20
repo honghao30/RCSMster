@@ -68,7 +68,7 @@ import vClickOutside from 'v-click-outside'
 import MainTitle from './Emulator/MainTitle.vue'
 import Description from './Emulator/Description.vue'
 import StyleTable from './Emulator/StyleTable.vue'
-import ItemA from './Emulator/ItemA.vue'
+import Item from './Emulator/Item.vue'
 import Buttons from './Emulator/Buttons.vue'
 
 export default {
@@ -79,7 +79,7 @@ export default {
     MainTitle,
     Description,
     StyleTable,
-    ItemA,
+    Item,
     Buttons
   },
   props: {

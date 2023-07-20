@@ -65,7 +65,7 @@ template<template>
                 <template v-if="isImageType1">
                   <MainImage :info="form.Image.info"/>
                   <SimpleTitle :info="form.MainTitle.info"/>
-                  <SimpleTable :info="form.Table.info"/>
+                  <SubDescTable :info="form.Table.info"/>
                   <ButtonVertical :info="form.Buttons.info"/>
                 </template>
                 <!-- 이미지 강조형 -->
@@ -103,7 +103,7 @@ template<template>
                 <!-- 이미지 템플릿 신규 -->
                 <template v-if="isImageType7">
                   <MainImage :info="form.Image.info" />
-                  <ItemB />
+                  <ItemA />
                   <Description :titleUse="true" :info="form.Description.info"/>
                   <StyleTable :useSelect="true" :info="form.styleTable.info" />
                   <ButtonVertical :info="form.Buttons.info"/>
@@ -173,11 +173,11 @@ import { textTemplate } from '@/views/brand/message/templateData.js'
 import Carousel from '@/views/brand/message/components/Carousel.vue'
 import MainImage from '@/views/brand/message/components/MainImage.vue'
 import SimpleTitle from '@/views/brand/message/components/SimpleTitle.vue'
-import SimpleTable from '@/views/brand/message/components/Table.vue'
+import SubDescTable from '@/views/brand/message/components/SubDescTable.vue'
 import Description from './components/Description.vue'
 import ThumbAndDesc from './components/ThumbAndDesc.vue'
 import Thumnail from './components/Thumnail.vue'
-import ItemB from './components/ItemB.vue'
+import ItemA from './components/ItemA.vue'
 import StyleTable from './components/StyleTable.vue'
 import ButtonVertical from '@/views/brand/message/components/ButtonVertical.vue'
 
@@ -194,12 +194,12 @@ export default {
     Carousel,
     MainImage,
     SimpleTitle,
-    SimpleTable,
+    SubDescTable,
     ButtonVertical,
     Description,
     ThumbAndDesc,
     Thumnail,
-    ItemB,
+    ItemA,
     StyleTable
   },
   data() {

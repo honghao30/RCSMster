@@ -81,7 +81,7 @@ t<template>
               <!-- 이미지 -->
               <MainImage :info="templData.Image.info" />
                <!-- 아이템형-->
-              <ItemA :info="templData.Item.info"/>
+              <Item :info="templData.Item.info"/>
               <!-- 본문 -->
               <Description :info="templData.Description.info" />
               <!-- 본문 -->
@@ -109,7 +109,7 @@ import MainTitle from './Emulator/MainTitle.vue'
 import Description from './Emulator/Description.vue'
 import Table from './Emulator/Table.vue'
 import StyleTable from './Emulator/StyleTable.vue'
-import ItemA from './Emulator/ItemA.vue'
+import Item from './Emulator/Item.vue'
 import Buttons from './Emulator/Buttons.vue'
 import Carousel from './Emulator/Carousel.vue'
 export default {
@@ -121,7 +121,7 @@ export default {
     MainTitle,
     Description,
     StyleTable,
-    ItemA,
+    Item,
     Buttons,
     Table,
     Carousel

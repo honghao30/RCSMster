@@ -51,14 +51,14 @@ t<template>
             <!-- 타이틀 자유형_스타일 -->
             <template v-if="templateType == '아이템 강조형_서술'">
               <!-- 아이템형-->
-              <ItemA :info="templData.Item.info"/>
+              <Item :info="templData.Item.info"/>
               <!-- 본문 -->
               <Description :info="templData.Description.info" />
             </template>
             <!-- 타이틀 자유형_스타일 -->
             <template v-if="templateType == '아이템 강조형_스타일'">
               <!-- 아이템형-->
-              <ItemA :info="templData.Item.info"/>
+              <Item :info="templData.Item.info"/>
                <!-- 본문 : 테이블 -->
               <StyleTable :info="templData.Table.info"/>
             </template>
@@ -78,7 +78,7 @@ import vClickOutside from 'v-click-outside'
 import MainTitle from './Emulator/MainTitle.vue'
 import Description from './Emulator/Description.vue'
 import StyleTable from './Emulator/StyleTable.vue'
-import ItemA from './Emulator/ItemA.vue'
+import Item from './Emulator/Item.vue'
 import Buttons from './Emulator/Buttons.vue'
 
 export default {
@@ -89,7 +89,7 @@ export default {
     MainTitle,
     Description,
     StyleTable,
-    ItemA,
+    Item,
     Buttons
   },
   props: {

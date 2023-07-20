@@ -2,7 +2,7 @@
   <div class="brand__wrap">
     <div class="brand__inner">
       <BrandLnb />
-      <div class="brand-info__wrap">
+      <div class="brand-info__wrap layout-info__wrap">
         <PageTitle pagetitle="레이아웃 등록" />
         <div class="registration__wrap">
           <div class="registration-form__wrap">
@@ -84,30 +84,207 @@
                 </ul>
               </div>
               <div class="message-cmp__list">
-                <div class="cmp-item" v-for="(item, i) in cmpList" :key="i">
+                <div class="cmp-item"
+                  v-for="(item, i) in cmpList" :key="i"
+                  >
                   <p class="cmp-title">{{ item.title }}</p>
-                  <div class="cmp-box">
+                  <div class="cmp-box"
+                    @click="addCmpItem(item)"
+                  >
                     <img :src="item.imgUrl" alt="">
                   </div>
-                  <ButtonCmp
-                    type="btn-blue-line"
-                    size="medium"
-                    @click="addCmpItem(item)"
-                    :disabled="item.isActive"
-                  >컴포넌트 작성</ButtonCmp>
+                  <table class="table table-bodyonly form-table"
+                    :class="{'col3': i % 3 === 2 }"
+                    v-if="item.regIsActive && item.title === '테이블'"
+                  >
+                    <colgroup>
+                      <col width="196px">
+                      <col />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="form-item__label">테이블 행수</span></th>
+                        <td>
+                          <div class="form-item__content is-emoji">
+                            <div class="form-item-row">
+                              <div class="input-item">
+                                <span class="radiobox">
+                                  <input type="radio" name="tableRow" id="row5" value="5" v-model="form.table.rowNum"/>
+                                  <label for="row5"><span class="radiobox__text">5개</span></label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="tableRow" id="row10" v-model="form.table.rowNum" value="10" />
+                                  <label for="row10"><span class="radiobox__text">10개</span></label>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="form-item__label">1열</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="inner__input">
+                                <div class="inner__input-box">
+                                  <span class="form-item__label">
+                                    정렬
+                                  </span>
+                                  <div class="inner__input-item">
+                                    <div class="input-item">
+                                      <span class="radiobox">
+                                        <input type="radio" name="align" value="left" id="alignLeft" v-model="form.table.fstRow.align"/>
+                                        <label for="alignLeft"><span class="radiobox__text">좌측 정렬</span></label>
+                                      </span>
+                                      <span class="radiobox">
+                                        <input type="radio" name="align" value="right" id="alignRight" v-model="form.table.fstRow.align" />
+                                        <label for="alignRight"><span class="radiobox__text">우측 정렬</span></label>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-item-row">
+                              <div class="inner__input">
+                                <div class="inner__input-box">
+                                  <span class="form-item__label">
+                                    글자 스타일
+                                  </span>
+                                  <div class="inner__input-item">
+                                    <div class="input-item">
+                                      <span class="radiobox">
+                                        <input type="radio" name="fontStyle" value="regular" id="regular" v-model="form.table.fstRow.fontStyle"/>
+                                        <label for="regular"><span class="radiobox__text">레귤러</span></label>
+                                      </span>
+                                      <span class="radiobox">
+                                        <input type="radio" name="fontStyle" value="bold" id="bold" v-model="form.table.fstRow.fontStyle"/>
+                                        <label for="bold"><span class="radiobox__text">볼드</span></label>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="form-item__label">2열</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="inner__input">
+                                <div class="inner__input-box">
+                                  <span class="form-item__label">
+                                    정렬
+                                  </span>
+                                  <div class="inner__input-item">
+                                    <div class="input-item">
+                                      <span class="radiobox">
+                                        <input type="radio" name="align" value="left" id="alignLeft" v-model="form.table.sndRow.align"/>
+                                        <label for="alignLeft"><span class="radiobox__text">좌측 정렬</span></label>
+                                      </span>
+                                      <span class="radiobox">
+                                        <input type="radio" name="align" value="right" id="alignRight" v-model="form.table.sndRow.align" />
+                                        <label for="alignRight"><span class="radiobox__text">우측 정렬</span></label>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-item-row">
+                              <div class="inner__input">
+                                <div class="inner__input-box">
+                                  <span class="form-item__label">
+                                    글자 스타일
+                                  </span>
+                                  <div class="inner__input-item">
+                                    <div class="input-item">
+                                      <span class="radiobox">
+                                        <input type="radio" name="fontStyle" value="regular" id="regular" v-model="form.table.sndRow.fontStyle"/>
+                                        <label for="regular"><span class="radiobox__text">레귤러</span></label>
+                                      </span>
+                                      <span class="radiobox">
+                                        <input type="radio" name="fontStyle" value="bold" id="bold" v-model="form.table.sndRow.fontStyle"/>
+                                        <label for="bold"><span class="radiobox__text">볼드</span></label>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table class="table table-bodyonly form-table"
+                    :class="[{'col3': i % 3 === 2 }, {'col1': i % 3 === 0}]"
+                    v-if=" item.regIsActive  && (item.title === '버튼(좌우)' ||item.title === '버튼(상하)')"
+                  >
+                    <colgroup>
+                      <col width="166px">
+                      <col />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="form-item__label">버튼</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item">
+                                <span class="radiobox">
+                                  <input type="radio" name="btnUse" v-model="form.buttons.btnUse" id="btnUseN" value="N"/>
+                                  <label for="btnUseN"><span class="radiobox__text">미사용</span></label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="btnUse" v-model="form.buttons.btnUse" id="btnUseY" value="Y"/>
+                                  <label for="btnUseY"><span class="radiobox__text">사용</span></label>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="form-item__label">버튼 컬러</span></th>
+                        <td>
+                          <div class="form-item__content">
+                            <div class="form-item-row">
+                              <div class="input-item">
+                                <span class="radiobox">
+                                  <input type="radio" name="btnColor" id="basicColor" value="basic" v-model="form.buttons.btnColor"/>
+                                  <label id="basicColor"><span class="radiobox__text">기본 컬러</span></label>
+                                </span>
+                                <span class="radiobox">
+                                  <input type="radio" name="btnColor" id="brand" value="brand" v-model="form.buttons.btnColor"/>
+                                  <label id="brand"><span class="radiobox__text">브랜드 컬러</span>
+                                  <a role="button" class="link">(브랜드 색 설정하기)</a>
+                                  </label>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </form>
           </div>
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
-            <ChatEmulator
-              :templateData="templateData"
-              :isActiveCmpIndex = isActiveCmpIndex
-              @setActiveCmp="setActiveCmp($event)"
-              mode="layout"
-              :hideInputFooter = "hideInputFooter"
-            />
+            <div class="guide">
+              <p>레이아웃 등록이 어려우세요?</p>
+              <a role="button" class="link"
+                @click="isModalViewed = true"
+              ><span>샘플 메시지</span></a>
+            </div>
+            <LayoutEmulator :cmpList="selectedCmpList"/>
           </div>
           <!-- // 에뮬레이터 -->
         </div>
@@ -123,19 +300,11 @@
       v-if="isModalViewed"
       @closeModal="isModalViewed = false"
     >
-      <!-- 버튼 설정 팝업 -->
-      <ButtonReg
-        :info="form.subDescTable"
-        v-if="isShowBtnReg"
-        modalsize="Max628"
-        @closeModal="isShowBtnReg = false, isModalViewed = false"
-        />
-      <!-- 테이블 설정 팝업 -->
-      <TableReg
-        :info="form.table"
-        v-if="isShowTableReg"
-        modalsize="Max628"
-        @closeModal="isShowTableReg = false, isModalViewed = false"
+      <!-- 샘플 팝업 -->
+      <SampleListModal
+        modalsize="Max1080"
+        @closeModal="isModalViewed = false"
+        v-if="isModalViewed"
       />
     </ModalView>
   </div>
@@ -144,32 +313,36 @@
 <script>
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
-import ChatEmulator from '@/views/brand/message/components/ChatEmulator.vue'
+import LayoutEmulator from '@/views/brand/message/components/LayoutEmulator.vue'
+import SampleListModal from '@/views/brand/message/components/SampleListModal.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import ModalView from '@/components/common/ModalView.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
-import ButtonReg from '@/views/brand/message/components/ButtonReg.vue'
-import TableReg from '@/views/brand/message/components/TableReg.vue'
+import ModalView from '@/components/common/ModalView.vue'
 
 export default {
   components: {
     PageTitle,
-    ChatEmulator,
-    ModalView,
+    LayoutEmulator,
     BrandLnb,
     ButtonCmp,
     Emoji,
-    ButtonReg,
-    TableReg
+    ModalView,
+    SampleListModal
   },
   data() {
     return {
+      selectedCmpList: [{
+        title: '',
+        imgUrl: '',
+        viewImgUrl: '',
+        isActive: true
+      }],
       form: {
         layoutType: 'sms',
         layoutName: '',
         table: {
-          row: 5,
+          rowNum: 5,
           fstRow: {
             align: 'left',
             fontStyle: 'regular'
@@ -177,231 +350,206 @@ export default {
           sndRow: {
             align: 'left',
             fontStyle: 'regular'
-          },
-          btnUse: 'Y',
-          btnAlign: 'column',
-          btnColor: 'basic'
+          }
         },
-        subDescTable: {
-          type: 'subDescTable',
-          btnUse: 'Y',
-          btnAlign: 'column',
-          btnColor: 'basic'
-        },
-        desc: {
-          type: 'desc',
+        buttons: {
           btnUse: '',
-          btnColor: '',
-          btnAlign: ''
+          btnColor: ''
         }
-
       },
-      isModalViewed: false,
-      isActiveCmpIndex: 0,
-      templateData: [],
+      isShowTableReg: false,
+      isShowButtonReg: false,
       cmpList: [],
       smsCmpList: [
         {
           title: '메인 타이틀',
           imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
-          cmpType: 'MainTitle',
+          viewImgUrl: require('@/assets/images/message/emul_cmp_title.png'),
           isActive: false,
-          btnCmp: false
+          regIsActive: false
         },
         {
-          title: '스타일 타이틀A',
-          imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
-          cmpType: 'Item',
+          title: '스타일타이틀 A',
+          imgUrl: require('@/assets/images/message/icon_cmp_title_styled.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_title_styled.png'),
           isActive: false,
-          btnCmp: false
+          regIsActive: false
         },
         {
           title: 'A 아이템',
-          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
-          cmpType: 'itemA',
+          imgUrl: require('@/assets/images/message/icon_cmp_itemA.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_itemA.png'),
           isActive: false,
-          btnCmp: true
+          regIsActive: false
         },
         {
           title: 'B 아이템',
-          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
-          cmpType: 'itemB',
+          imgUrl: require('@/assets/images/message/icon_cmp_itemB.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_itemB.png'),
           isActive: false,
-          btnCmp: true
-        },
-        {
-          title: 'C 아이템',
-          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
-          cmpType: 'itemC',
-          isActive: false,
-          btnCmp: true
+          regIsActive: false
         },
         {
           title: '디스크립션',
           imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
-          cmpType: 'Description',
+          viewImgUrl: require('@/assets/images/message/emul_cmp_desc.png'),
           isActive: false,
-          btnCmp: true
+          regIsActive: false
+        },
+        {
+          title: '버튼(좌우)',
+          imgUrl: require('@/assets/images/message/icon_cmp_button_hor.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_button_hor.png'),
+          isActive: false,
+          regIsActive: false
+        },
+        {
+          title: '버튼(상하)',
+          imgUrl: require('@/assets/images/message/icon_cmp_button_ver.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_button_ver.png'),
+          isActive: false,
+          regIsActive: false
         }
       ],
       lmsCmpList: [
         {
-          title: '메인 타이틀',
+          title: '메인타이틀',
           imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
-          cmpType: 'MainTitle',
-          isActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_title.png')
         },
         {
-          title: '스타일 타이틀A',
-          imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
-          cmpType: 'MainTitle',
-          isActive: false
+          title: '스타일 타이틀 A',
+          imgUrl: require('@/assets/images/message/icon_cmp_title_styled.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_title_styled.png')
         },
         {
           title: '테이블',
           imgUrl: require('@/assets/images/message/icon_cmp_table.png'),
-          cmpType: 'table',
-          isActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_table.png')
         },
         {
-          title: '서브 디스크립션 테이블',
-          imgUrl: require('@/assets/images/message/icon_cmp_table.png'),
-          cmpType: 'table',
-          isActive: false,
-          btnCmp: true
+          title: '서브 디스크립션 태이블',
+          imgUrl: require('@/assets/images/message/icon_cmp_tableB.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_tableB.png')
         },
         {
           title: 'A 아이템',
-          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
-          cmpType: 'item',
-          isActive: false,
-          btnCmp: true
+          imgUrl: require('@/assets/images/message/icon_cmp_itemA.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_itemA.png')
         },
         {
           title: 'B 아이템',
-          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
-          cmpType: 'item',
-          isActive: false,
-          btnCmp: true
+          imgUrl: require('@/assets/images/message/icon_cmp_itemB.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_itemB.png')
         },
         {
           title: '디스크립션',
           imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
-          cmpType: 'Description',
-          isActive: false,
-          btnCmp: true
+          viewImgUrl: require('@/assets/images/message/emul_cmp_desc.png')
         },
         {
-          title: '서브 디스크립션',
-          imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
-          cmpType: 'Description',
-          isActive: false
+          title: '서브 디스크립션 이미지',
+          imgUrl: require('@/assets/images/message/icon_cmp_sub_desc_img.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_sub_desc_img.png')
         },
         {
           title: '노티스',
-          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
-          cmpType: 'notice',
-          isActive: false
+          imgUrl: require('@/assets/images/message/icon_cmp_notice.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_notice.png')
+        },
+        {
+          title: '버튼(좌우)',
+          imgUrl: require('@/assets/images/message/icon_cmp_button_hor.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_button_hor.png')
+        },
+        {
+          title: '버튼(상하)',
+          imgUrl: require('@/assets/images/message/icon_cmp_button_ver.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_button_ver.png')
         }
       ],
       mmsCmpList: [
         {
           title: '메인 타이틀',
           imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
-          cmpType: 'MainTitle',
-          isActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_title.png')
         },
         {
-          title: '스타일 타이틀A',
-          imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
-          cmpType: 'MainTitle',
-          isActive: false
+          title: '스타일 타이틀 A',
+          imgUrl: require('@/assets/images/message/icon_cmp_title_styled.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_title_styled.png')
         },
         {
           title: '정형 이미지',
           imgUrl: require('@/assets/images/message/icon_cmp_image_square.png'),
-          cmpType: 'MainImage',
-          isActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_image_square.png')
         },
         {
           title: '가로형 이미지',
           imgUrl: require('@/assets/images/message/icon_cmp_image.png'),
-          cmpType: 'MainImage',
-          isActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_image.png')
         },
         {
           title: '테이블',
           imgUrl: require('@/assets/images/message/icon_cmp_table.png'),
-          cmpType: 'table',
-          isActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_table.png')
         },
         {
           title: '서브 디스크립션 테이블',
-          imgUrl: require('@/assets/images/message/icon_cmp_table.png'),
-          cmpType: 'table',
-          isActive: false,
-          btnCmp: true
+          imgUrl: require('@/assets/images/message/icon_cmp_tableB.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_tableB.png')
         },
         {
           title: 'A 아이템',
-          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
-          cmpType: 'item',
-          isActive: false,
-          btnCmp: true
+          imgUrl: require('@/assets/images/message/icon_cmp_itemA.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_itemA.png')
         },
         {
           title: 'B 아이템',
-          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
-          cmpType: 'item',
-          isActive: false,
-          btnCmp: true
+          imgUrl: require('@/assets/images/message/icon_cmp_itemB.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_itemB.png')
         },
         {
           title: '디스크립션',
           imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
-          cmpType: 'Description',
-          isActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_desc.png')
         },
         {
-          title: '서브 디스크립션',
-          imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
-          cmpType: 'Description',
-          isActive: false
+          title: '서브 디스크립션 이미지',
+          imgUrl: require('@/assets/images/message/icon_cmp_sub_desc_img.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_sub_desc_img.png')
         },
         {
           title: '노티스',
-          imgUrl: require('@/assets/images/message/icon_cmp_item.png'),
-          cmpType: 'notice',
-          isActive: false
+          imgUrl: require('@/assets/images/message/icon_cmp_notice.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_notice.png')
+        },
+        {
+          title: '썸네일',
+          imgUrl: require('@/assets/images/message/icon_cmp_thumnail.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_thumnail.png')
+        },
+        {
+          title: '배너',
+          imgUrl: require('@/assets/images/message/icon_cmp_banner.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_banner.png')
+        },
+        {
+          title: '버튼(좌우)',
+          imgUrl: require('@/assets/images/message/icon_cmp_button_hor.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_button_hor.png')
+        },
+        {
+          title: '버튼(상하)',
+          imgUrl: require('@/assets/images/message/icon_cmp_button_ver.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_button_ver.png')
         }
       ],
-      isShowTableReg: false,
-      isShowBtnReg: false,
-      chatInfoData: {
-        chatType: 'chatBubble',
-        chatRoomName: 'SYSTEMSTUDIO',
-        saftyMark: 'Y',
-        mode: 'registration'
-      },
-      hideInputFooter: false,
-      tableCountOption: [
-        {
-          label: '1개',
-          value: 1
-        },
-        {
-          label: '2개',
-          value: 2
-        },
-        {
-          label: '3개',
-          value: 3
-        }
-      ]
+      isModalViewed: false
+
     }
   },
   mounted() {
-    this.setCmpItems()
     this.cmpList = this.smsCmpList
   },
   methods: {
@@ -414,30 +562,6 @@ export default {
       } else {
         this.cmpList = this.mmsCmpList
       }
-      this.setCmpItems()
-    },
-    setCmpItems() {
-      let cmpItem = {
-        type: '',
-        info: {}
-      }
-      let cmpCount = 2
-      if (this.form.layoutType === 'sms') {
-        cmpCount = 2
-      } else {
-        cmpCount = 6
-      }
-      let diff = cmpCount - this.templateData.length
-      if (diff >= 0) {
-        for (let i = 0; i < diff; i++) {
-          this.templateData.push(cmpItem)
-        }
-      } else {
-        for (let i = 0; i < -diff; i++) {
-          let num = this.templateData - 1
-          this.templateData.splice(num, 1)
-        }
-      }
     },
     onSelectEmoji(e, target, idx) {
       let emoji = e
@@ -449,36 +573,25 @@ export default {
       }
     },
     addCmpItem(cmp) {
+      let activeIndex = 0
       let cmpItem = {
-        type: cmp.cmpType,
-        info: {
-          imgUrl: cmp.imgUrl
+        title: '',
+        imgUrl: '',
+        viewImgUrl: '',
+        isActive: true
+      }
+      this.selectedCmpList.forEach((item, i) => {
+        if (item.isActive === true) {
+          activeIndex = i
         }
+      })
+      if (cmp.title === '테이블' || cmp.title === '버튼(상하)' || cmp.title === '버튼(좌우)') {
+        cmp.regIsActive = true
       }
-      if (cmp.cmpType === 'table') {
-        this.isModalViewed = true
-        this.isShowTableReg = true
-      } else if (cmp.btnCmp) {
-        this.isModalViewed = true
-        this.isShowBtnReg = true
-      } else {
-        cmp.isActive = true
-        this.templateData.splice(this.isActiveCmpIndex, 1, cmpItem)
-        this.templateData.every((item, i) => {
-          if (!item.type) {
-            this.isActiveCmpIndex = i
-            return false
-          } else {
-            return true
-          }
-        })
+      this.selectedCmpList.splice(activeIndex, 1, cmp)
+      if (this.selectedCmpList.length - 1 === activeIndex) {
+        this.selectedCmpList.push(cmpItem)
       }
-    },
-    setActiveCmp(e) {
-      this.isActiveCmpIndex = e
-    },
-    closeReg() {
-      this.isShowBtnReg = false
     }
   }
 }

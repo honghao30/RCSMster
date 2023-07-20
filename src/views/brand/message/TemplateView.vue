@@ -70,7 +70,7 @@
           <div class="brand-aside">
             <!-- 에뮬레이터 -->
             <div class="brand-aside">
-              <ChatEmulator
+              <TempEmulator
                 :templateData="templateData"
                 mode="template"
               />
@@ -105,13 +105,13 @@
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import ChatEmulator from '@/views/brand/message/components/ChatEmulator.vue'
+import TempEmulator from '@/views/brand/message/components/TempEmulator.vue'
 export default {
   components: {
     PageTitle,
     BrandLnb,
     ButtonCmp,
-    ChatEmulator
+    TempEmulator
   },
   data() {
     return {

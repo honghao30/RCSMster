@@ -95,7 +95,7 @@
           </div>
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
-            <ChatEmulator
+            <LayoutEmulator
               :templateData="templateData"
               mode="layout"
               :viewMode="viewMode"
@@ -130,13 +130,13 @@
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import ChatEmulator from '@/views/brand/message/components/ChatEmulator.vue'
+import LayoutEmulator from '@/views/brand/message/components/LayoutEmulator.vue'
 export default {
   components: {
     PageTitle,
     BrandLnb,
     ButtonCmp,
-    ChatEmulator
+    LayoutEmulator
   },
   data() {
     return {

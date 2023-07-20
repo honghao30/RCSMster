@@ -14,7 +14,7 @@
 <script>
 // import MainTitle from '@/views/brand/message/components/Emulator/MainTitle.vue'
 import MainImage from '@/views/brand/message/components/Emulator/MainImage.vue'
-import Item from '@/views/brand/message/components/Emulator/ItemA.vue'
+import Item from '@/views/brand/message/components/Emulator/Item.vue'
 import Buttons from '@/views/brand/message/components/Emulator/Buttons.vue'
 import Description from '@/views/brand/message/components/Emulator/Description.vue'
 import Table from '@/views/brand/message/components/Emulator/StyleTable.vue'

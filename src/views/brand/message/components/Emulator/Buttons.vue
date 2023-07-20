@@ -1,5 +1,5 @@
 <template>
-  <div class="template-cmp-button">
+  <div class="template-cmp-button"> <!-- 좌우일 때 : horizontal 추가 -->
     <template v-for="(btn, i) in info">
       <button type="button" :key="i"
         class="btn-template"
