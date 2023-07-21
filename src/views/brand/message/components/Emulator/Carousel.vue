@@ -5,13 +5,15 @@
       :options="swiperOption"
     >
       <swiper-slide v-for="(slide, i) in info" :key="i" class="slide">
-        <div class="image" >
+        <div class="image">
           <img :src="slide.imgFile" />
         </div>
-        <p class="title">{{ slide.slideTitle }}</p>
         <div class="description" >
-          <span v-html="slide.slideDescription" v-if="slide.slideDescription"></span>
-          <span v-else>내용을 입력하세요.</span>
+          <p class="title" v-if="slide.title">{{ slide.title }}</p>
+          <div class="content">
+            <span v-html="slide.content" v-if="slide.content"></span>
+            <span v-else>내용을 입력하세요.</span>
+          </div>
         </div>
       </swiper-slide>
     </swiper>
@@ -34,7 +36,7 @@ export default {
   data() {
     return {
       swiperOption: {
-        spaceBetween: 10,
+        spaceBetween: 12,
         slidesPerView: 'auto'
       }
     }

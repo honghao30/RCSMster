@@ -24,8 +24,6 @@ t<template>
             <template v-if="templateType == '이미지 & 타이틀 강조형'">
               <!-- 이미지 -->
               <MainImage :info="templData.Image.info" />
-              <!-- 타이틀 -->
-              <MainTitle :info="templData.MainTitle.info" />
               <!-- 본문 -->
               <Table :info="templData.Table.info" />
                <!-- 버튼 -->
@@ -46,17 +44,20 @@ t<template>
               <MainImage :info="templData.Image.info" />
               <!-- 본문 -->
               <Description :info="templData.Description.info" />
+              <!-- 본문 -->
+              <SubDescription :info="templData.subDescription.info" />
                <!-- 버튼 -->
                <Buttons :info="templData.Buttons.info"/>
             </template>
             <!-- 썸네일  가로형 -->
-            <template v-if="templateType == '썸네일  가로형'">
+            <template v-if="templateType == '썸네일 가로형'">
               <!-- 이미지 -->
               <MainImage :info="templData.Image.info" />
               <!-- 본문 -->
               <Description :info="templData.Description.info" />
+              <Thumnail :info="templData.thumnail.info" />
                <!-- 버튼 -->
-               <Buttons :info="templData.Buttons.info"/>
+              <Buttons :info="templData.Buttons.info"/>
             </template>
             <!-- SNS형 -->
             <template v-if="templateType == 'SNS형'">
@@ -85,7 +86,7 @@ t<template>
               <!-- 본문 -->
               <Description :info="templData.Description.info" />
               <!-- 본문 -->
-              <StyleTable :info="templData.Table.info" />
+              <StyleTable :info="templData.styleTable.info" />
               <!-- 버튼 -->
               <Buttons :info="templData.Buttons.info"/>
             </template>
@@ -105,12 +106,13 @@ t<template>
 import { getTodayDate } from '@/utils/time.js'
 import vClickOutside from 'v-click-outside'
 import MainImage from './Emulator/MainImage.vue'
-import MainTitle from './Emulator/MainTitle.vue'
 import Description from './Emulator/Description.vue'
+import SubDescription from './Emulator/SubDescription.vue'
 import Table from './Emulator/Table.vue'
 import StyleTable from './Emulator/StyleTable.vue'
-import Item from './Emulator/Item.vue'
+import Item from './Emulator/ItemA.vue'
 import Buttons from './Emulator/Buttons.vue'
+import Thumnail from './Emulator/Thumnail.vue'
 import Carousel from './Emulator/Carousel.vue'
 export default {
   directives: {
@@ -118,13 +120,14 @@ export default {
   },
   components: {
     MainImage,
-    MainTitle,
     Description,
     StyleTable,
     Item,
     Buttons,
     Table,
-    Carousel
+    Carousel,
+    SubDescription,
+    Thumnail
   },
   props: {
     templateType: String,

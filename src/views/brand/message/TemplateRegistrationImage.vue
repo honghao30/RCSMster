@@ -64,7 +64,6 @@ template<template>
                 <!-- 이미지& 타이틀 강조형 -->
                 <template v-if="isImageType1">
                   <MainImage :info="form.Image.info"/>
-                  <SimpleTitle :info="form.MainTitle.info"/>
                   <SubDescTable :info="form.Table.info"/>
                   <ButtonVertical :info="form.Buttons.info"/>
                 </template>
@@ -77,15 +76,15 @@ template<template>
                 <!-- 썸네일형(세로) -->
                 <template v-if="isImageType3">
                   <MainImage :info="form.Image.info" />
-                  <Description :titleUse="true" :info="form.Description.info"/>
-                  <ThumbAndDesc />
+                  <Description :useSelect="true" :titleUse="true" :info="form.Description.info"/>
+                  <ThumbAndDesc :info="form.subDescription.info"/>
                   <ButtonVertical :info="form.Buttons.info"/>
                 </template>
                 <!-- 썸네일형(가로) -->
                 <template v-if="isImageType4">
-                  <MainImage />
+                  <MainImage :info="form.Image.info"/>
                   <Description :titleUse="true" :info="form.Description.info"/>
-                  <Thumnail />
+                  <Thumnail :info="form.thumnail.info" />
                   <ButtonVertical :info="form.Buttons.info"/>
                 </template>
                 <!-- SNS 형 -->
@@ -103,7 +102,11 @@ template<template>
                 <!-- 이미지 템플릿 신규 -->
                 <template v-if="isImageType7">
                   <MainImage :info="form.Image.info" />
-                  <ItemA />
+                  <ItemA
+                  :info="form.Item.info"
+                  :titleIconNewData="titleIconNewData"
+                  :titleIconBasicData="titleIconBasicData"
+                  />
                   <Description :titleUse="true" :info="form.Description.info"/>
                   <StyleTable :useSelect="true" :info="form.styleTable.info" />
                   <ButtonVertical :info="form.Buttons.info"/>
@@ -163,16 +166,10 @@ template<template>
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import TemplateTableReg from '@/views/brand/message/components/TemplateTableReg.vue'
-import TemplateButtonReg from '@/views/brand/message/components/TemplateButtonReg.vue'
-import TemplateTitleReg from '@/views/brand/message/components/TemplateTitleReg.vue'
 import TempEmulator from '@/views/brand/message/components/TempEmulatorImage.vue'
-import Emoji from '@/components/common/Emoji.vue'
-import 'emoji-picker-element'
 import { textTemplate } from '@/views/brand/message/templateData.js'
 import Carousel from '@/views/brand/message/components/Carousel.vue'
 import MainImage from '@/views/brand/message/components/MainImage.vue'
-import SimpleTitle from '@/views/brand/message/components/SimpleTitle.vue'
 import SubDescTable from '@/views/brand/message/components/SubDescTable.vue'
 import Description from './components/Description.vue'
 import ThumbAndDesc from './components/ThumbAndDesc.vue'
@@ -186,14 +183,9 @@ export default {
     PageTitle,
     BrandLnb,
     ButtonCmp,
-    Emoji,
-    TemplateTableReg,
-    TemplateButtonReg,
-    TemplateTitleReg,
     TempEmulator,
     Carousel,
     MainImage,
-    SimpleTitle,
     SubDescTable,
     ButtonVertical,
     Description,
@@ -254,6 +246,8 @@ export default {
         },
         Table: {
           info: {
+            titleUse: '',
+            title: '',
             content: [
               {
                 itemLabel: '',
@@ -270,6 +264,45 @@ export default {
             logoType: 'basic',
             logoFile: ''
           }
+        },
+        subDescription: {
+          info: {
+            titleUse: 'N',
+            title: '',
+            content: [
+              {
+                imgFile: require('../../../assets/images/message/thum_01.png'),
+                imgUrl: '',
+                itemData: ''
+              },
+              {
+                imgFile: require('../../../assets/images/message/thum_02.png'),
+                imgUrl: '',
+                itemData: ''
+              },
+              {
+                imgFile: require('../../../assets/images/message/thum_02.png'),
+                imgUrl: '',
+                itemData: ''
+              }
+            ]
+          }
+        },
+        thumnail: {
+          info: [
+            {
+              imgFile: require('../../../assets/images/message/thum_04.png'),
+              imgUrl: ''
+            },
+            {
+              imgFile: require('../../../assets/images/message/thum_05.png'),
+              imgUrl: ''
+            },
+            {
+              imgFile: require('../../../assets/images/message/thum_06.png'),
+              imgUrl: ''
+            }
+          ]
         },
         Buttons: {
           use: 'N',
@@ -340,11 +373,11 @@ export default {
         },
         slideData: [{
           slideIndex: '1',
-          slideTitle: '',
-          slideDescription: '',
+          title: '',
+          content: '',
           isActive: true,
           imgFile: '',
-          buttons:{
+          buttons: {
             use: 'Y',
             info: [{
               id: 1,

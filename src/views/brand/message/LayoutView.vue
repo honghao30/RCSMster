@@ -96,9 +96,8 @@
           <!-- 에뮬레이터 -->
           <div class="brand-aside">
             <LayoutEmulator
-              :templateData="templateData"
-              mode="layout"
-              :viewMode="viewMode"
+              :cmpList="selectedCmpList"
+              :viewMode="true"
             />
           </div>
           <!-- // 에뮬레이터 -->
@@ -140,18 +139,28 @@ export default {
   },
   data() {
     return {
-      templateData: [
+      selectedCmpList: [
         {
-          type: 'MainTitle',
-          info: {
-            imgUrl: require('@/assets/images/message/icon_cmp_title.png')
-          }
+          title: '메인 타이틀',
+          imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_title.png'),
+          isActive: false,
+          regIsActive: false
         },
         {
-          type: 'Description',
-          info: {
-            imgUrl: require('@/assets/images/message/icon_cmp_desc.png')
-          }
+          title: '서브 디스크립션 태이블',
+          imgUrl: require('@/assets/images/message/icon_cmp_tableB.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_tableB.png')
+        },
+        {
+          title: '노티스',
+          imgUrl: require('@/assets/images/message/icon_cmp_notice.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_notice.png')
+        },
+        {
+          title: '버튼(상하)',
+          imgUrl: require('@/assets/images/message/icon_cmp_button_ver.png'),
+          viewImgUrl: require('@/assets/images/message/emul_cmp_button_ver.png')
         }
       ],
       viewMode: 'isView'

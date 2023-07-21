@@ -30,7 +30,7 @@
             </div>
           </td>
         </tr>
-        <tr :key="i" v-if="!(item.useSelect === 'Y' && item.tableUse === 'N')">
+        <tr v-if="!(item.useSelect === 'Y' && item.tableUse === 'N')">
           <th scope="row"><span class="form-item__label required">테이블<span v-if="info.length > 1">{{i+1}}</span> - 제목</span></th>
           <td>
             <div class="form-item__content">
@@ -50,7 +50,7 @@
           </td>
         </tr>
         <!-- 테이블- 내용 -->
-        <tr :key="i" v-if="!(item.useSelect === 'Y' && item.tableUse === 'N')">
+        <tr v-if="!(item.useSelect === 'Y' && item.tableUse === 'N')">
           <th scope="row"><span class="form-item__label required">테이블<span v-if="info.length > 1">{{i+1}}</span> - 내용</span></th>
           <td>
             <div class="form-item__content">

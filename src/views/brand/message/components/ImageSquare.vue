@@ -48,19 +48,6 @@ export default {
       type: Object
     }
   },
-  data(){
-    return{
-      form: {
-        ImageTall:{
-          info:{
-            imageOptions: 'square',
-            imageFile: '',
-            imageURL: ''
-          }
-        }
-      }
-    }
-  },
   methods: {
     // 이미지 파일 업로드
     onFileChanged (e) {
@@ -69,7 +56,7 @@ export default {
       const fileName = file.name
       this.form.logoFile = fileName
       this.url = URL.createObjectURL(file)
-    },
+    }
   }
 }
 </script>

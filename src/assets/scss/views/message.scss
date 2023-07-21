@@ -896,11 +896,15 @@
       @include fontoption(16px, #000, 700, 24px);
     }
   }
+  &.item {
+    border-bottom: 0;
+  }
 }
 .table-cmp-title {
   @include fontoption(16px, #000, 700, 24px);
   padding-bottom: 8px;
   border-bottom: 2px solid #444;
+ 
 }
 .template-cmp-description {
   min-height: 66px;
@@ -913,8 +917,33 @@
     @include fontoption(16px, #000, 700, 24px);
     margin-bottom:8px;
   }
+  .sub-description {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      .item-text {
+        flex: auto;
+        @include fontoption(14px, #000, 400, 22px);
+      }
+      .thum {
+        display: inline-block;
+        flex: 0 0 72px;
+        height: 72px;
+        background-color:#eaeaea;
+        border-radius: 6px;
+        overflow:hidden;
+      }
+    }
+  }
 }
 .template-cmp-table {
+  .table-cmp-title {
+    border: 0;
+  }
   .description {
     display: flex;
     flex-direction: column;
@@ -970,6 +999,7 @@
     display: block;
     overflow: hidden;
     position: relative;
+    background-color: #eaeaea;
     img {
       width: 100%;
       max-height: 100%;
@@ -992,6 +1022,57 @@
   
   &:first-child {
     margin:-20px -20px 0;
+    .image {
+      border-radius: 12px 12px 0 0;
+    }
+  }
+}
+.template-cmp-thumnail {
+  display: flex;
+  gap: 12px;
+  .thum {
+    flex: 1;
+    border-radius: 6px;
+    overflow:hidden;
+    background-color:#eaeaea;
+  }
+}
+.template-cmp-carousel {
+  .slide {
+    border-radius: 12px;
+    background: linear-gradient(0deg, #F2F2F2, #F2F2F2),
+    linear-gradient(0deg, #F2F2F2, #F2F2F2);
+    width: 258px !important;
+    overflow:hidden;
+    .image {
+      display: block;
+      overflow: hidden;
+      position: relative;
+      background-color: #eaeaea;
+      img {
+        width: 100%;
+        max-height: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+      }
+      &:after {
+        content: '';
+        display:block;
+        padding-top: 100%;
+      }
+    }
+    .description {
+      padding: 16px;
+      .title {
+        @include fontoption(14px, #000, 500, 22px);
+        margin-bottom: 8px;
+      }
+      .content {
+        @include fontoption(14px, #000, 400, 22px);
+      }
+    }
   }
 }
 .brand-color-select {
@@ -1104,6 +1185,7 @@
         flex-wrap: wrap;
         .sample-img {
           margin-top: 6px;
+          max-width: 316px;
         }
         
       }

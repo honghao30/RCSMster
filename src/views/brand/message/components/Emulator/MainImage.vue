@@ -1,6 +1,6 @@
 <template>
   <div class="template-cmp-image">
-    <div class="image" :class="{'square' : info.imgType === 'square'}" v-if="info.imgFile" >
+    <div class="image" :class="{'square' : info.imgType === 'square'}">
       <img :src="info.imgFile" />
     </div>
   </div>

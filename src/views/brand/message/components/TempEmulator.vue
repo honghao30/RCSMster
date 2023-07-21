@@ -78,7 +78,7 @@ import vClickOutside from 'v-click-outside'
 import MainTitle from './Emulator/MainTitle.vue'
 import Description from './Emulator/Description.vue'
 import StyleTable from './Emulator/StyleTable.vue'
-import Item from './Emulator/Item.vue'
+import Item from './Emulator/ItemB.vue'
 import Buttons from './Emulator/Buttons.vue'
 
 export default {

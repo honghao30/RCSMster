@@ -40,6 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-shrink: 0;
       // height:60px;
       .modal-title {
         font-size: 24px;
@@ -51,13 +52,15 @@
     .modal__content--body {
       height: calc(100% - 50px - 50px);
       position:relative;
-      width: 100%;       
-      // overflow-y: scroll;
+      width: 100%;    
+      flex: auto;   
+      overflow-y: auto;
     }
     .modal__content--footer {
       display: flex;
       align-content: center;
       justify-content: center;
+      flex-shrink: 0;
       // background: #c9c8c8;
       .button__wrap {
         margin-top:0;

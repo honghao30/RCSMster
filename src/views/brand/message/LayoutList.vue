@@ -33,7 +33,7 @@
         <div class="table__wrap chatroom__table">
           <table class="table table-list">
             <colgroup>
-              <col width="15%"/>
+              <col width="12%"/>
               <col/>
               <col width="12%"/>
               <col width="12%" />
@@ -77,6 +77,20 @@
           </table>
         </div>
         <PagingCmp />
+        <!-- 레이아웃 등록 건수가 없을 떄  -->
+        <div class="chatroom-none">
+          <PageTitle pagetitle="레이아웃 목록" :num= "0" />
+          <div class="chatroom-none-txt">
+            <h3>등록된 레이아웃이 없습니다.</h3>
+            <p>관리자의 승인 없이도 레이아웃을 등록하여 SMS, LMS, MMS를 발송 할 수 있습니다.​<br>지금 바로 레이아웃을 등록 해보세요.​</p>
+          </div>
+          <div class="button__wrap">
+            <router-link
+              to=""
+              class="btn btn-blue"
+            >레이아웃 등록하기</router-link>
+          </div>
+        </div>
       </div>
     </div>
   </div>

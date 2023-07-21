@@ -56,7 +56,7 @@
                 <div class="form-item-row">
                   <div class="input-item">
                     <span class="input">
-                      <input type="text" class="input" :value="slide.imageFile" disabled placeholder="파일찾기를 통해 이미지를 업로드하세요.">
+                      <input type="text" class="input" :value="slide.imgFile" disabled placeholder="파일찾기를 통해 이미지를 업로드하세요.">
                     </span>
                     <input type="file" id="fileUp" class="input blind"
                     @change="onFileChanged">
@@ -78,11 +78,11 @@
                       <input type="text"
                         class="input"
                         maxlength="20"
-                        @input="e => slide.slideTitle = e.target.value"
+                        @input="e => slide.title = e.target.value"
                         placeholder="제목을 입력해주세요."
                       >
                       <div class="input-limit__text">
-                        <p>{{ slide.slideTitle.length }}/20자</p>
+                        <p>{{ slide.title.length }}/20자</p>
                       </div>
                     </div>
                   </div>
@@ -98,10 +98,10 @@
                   <div class="input-item input-limit">
                     <div class="textarea">
                       <textarea maxlength="1300" placeholder="내용을 입력해주세요."
-                      @input="e => slide.slideDescription = e.target.value"></textarea>
+                      @input="e => slide.content = e.target.value"></textarea>
                       <div class="textarea-limit__text">
                         <p>
-                          {{ slide.slideDescription.length }}/1,300자
+                          {{ slide.content.length }}/1,300자
                         </p>
                       </div>
                     </div>
@@ -194,8 +194,8 @@ export default {
     addSlide () {
       let slide = {
         slideIndex: this.slideData.length + 1,
-        slideTitle: '',
-        slideDescription: '',
+        title: '',
+        content: '',
         isActive: true,
         imgFile: '',
         buttons: {

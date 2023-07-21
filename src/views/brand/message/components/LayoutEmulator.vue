@@ -41,39 +41,41 @@
         </draggable>
         <button class="btn-add"
           @click="addCmpItem"
-          v-if="!(showPreview || isEdit)"
+          v-if="!(showPreview || isEdit || viewMode)"
         >
           +<span class="irtext">추가</span>
         </button>
       </div>
     </div>
-    <div class="button__wrap" v-if="!showPreview && !isEdit">
-      <ButtonCmp
-        type="btn-blue-line"
-        @click="EditCmpList"
+    <template v-if="!viewMode">
+      <div class="button__wrap" v-if="!showPreview && !isEdit">
+        <ButtonCmp
+          type="btn-blue-line"
+          @click="EditCmpList"
 
-      >편집</ButtonCmp>
-      <ButtonCmp
-        type="btn-blue-line"
-        @click="preview"
-      >미리보기</ButtonCmp>
-    </div>
-    <div class="button__wrap" v-if="isEdit">
-      <ButtonCmp
-        type="btn-line"
-        @click="cancleEditCmpList"
-      >취소</ButtonCmp>
-      <ButtonCmp
-        type="btn-blue-line"
-        @click="cancleEditCmpList"
-      >저장</ButtonCmp>
-    </div>
-    <div class="button__wrap" v-if="showPreview">
-      <ButtonCmp
-        type="btn-blue-line"
-        @click="cancleEditCmpList"
-      >닫기</ButtonCmp>
-    </div>
+        >편집</ButtonCmp>
+        <ButtonCmp
+          type="btn-blue-line"
+          @click="preview"
+        >미리보기</ButtonCmp>
+      </div>
+      <div class="button__wrap" v-if="isEdit">
+        <ButtonCmp
+          type="btn-line"
+          @click="cancleEditCmpList"
+        >취소</ButtonCmp>
+        <ButtonCmp
+          type="btn-blue-line"
+          @click="cancleEditCmpList"
+        >저장</ButtonCmp>
+      </div>
+      <div class="button__wrap" v-if="showPreview">
+        <ButtonCmp
+          type="btn-blue-line"
+          @click="cancleEditCmpList"
+        >닫기</ButtonCmp>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -90,6 +92,10 @@ export default {
     cmpList: {
       type: Array,
       default: null
+    },
+    viewMode: {
+      type: Boolean,
+      default: false
     }
   },
   data () {

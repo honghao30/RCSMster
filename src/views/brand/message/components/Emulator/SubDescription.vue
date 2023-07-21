@@ -1,12 +1,17 @@
 <template>
-  <div class="desc-area sub">
-    <p class="subtitle" v-if="info.subTitle">{{ info.subTitle }}</p>
-    <div class="description" v-if="info.type == 'title'">
-      <dl v-for="(item, i) in info.description" :key="i">
-        <dt class="desc-title" v-html="item.title "></dt>
-        <dd class="desc-text" v-html="item.desc"></dd>
-      </dl>
-    </div>
+  <div class="template-cmp-description">
+    <p class="title" v-if="info.title">{{ info.title }}</p>
+    <ul class="sub-description">
+      <li v-for="(item, i) in info.content" :key="i">
+        <div class="thum">
+          <img :src="item.imgFile" alt="">
+        </div>
+        <div class="item-text">
+          <span v-if="item.itemData" v-html="item.itemData"></span>
+          <span v-else>내용을 입력하세요.</span>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 

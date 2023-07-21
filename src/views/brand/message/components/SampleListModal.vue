@@ -11,8 +11,8 @@
         <ul>
           <li v-for="(item, i) in sampleList" :key="i" class="sample-item">
             <span class="radiobox">
-              <input type="radio" name="sample" id="sample1" />
-              <label for="sample1">
+              <input type="radio" name="sample" :id="`sample${i+1}`" />
+              <label :for="`sample${i+1}`">
                 <span class="radiobox__text">{{ item.templateTitle }}</span>
                 <div class="sample-img">
                   <img :src="item.templateImg" alt="">

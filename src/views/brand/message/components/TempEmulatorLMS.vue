@@ -42,7 +42,7 @@ t<template>
               <MainTitle :info="templData.MainTitle.info" />
               <!-- 본문 -->
               <template v-for="(item, i) in templData.DescriptionGroup.info">
-                <Description :info="item.description" :key="i"/>
+                <Description :info="item.description" />
                 <Buttons :info="item.Buttons.info" :key="i"/>
               </template>
             </template>
@@ -68,7 +68,6 @@ import vClickOutside from 'v-click-outside'
 import MainTitle from './Emulator/MainTitle.vue'
 import Description from './Emulator/Description.vue'
 import StyleTable from './Emulator/StyleTable.vue'
-import Item from './Emulator/Item.vue'
 import Buttons from './Emulator/Buttons.vue'
 
 export default {
@@ -79,7 +78,6 @@ export default {
     MainTitle,
     Description,
     StyleTable,
-    Item,
     Buttons
   },
   props: {
