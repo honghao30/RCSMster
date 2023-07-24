@@ -45,19 +45,21 @@
                 </div>
               </td>
             </tr>
-            <tr>
+            <tr class="bdBottom-bg"> <!-- 기획서 v1.0 수정 - 스타일 추가 -->
               <th scope="row"><span class="form-item__label">휴대폰(관리자)</span></th>
               <td colspan="3">
                   <div class="form-item__content">
                       <div class="form-item-row">
-                          <div class="input-item">
+                          <!-- 기획서 v1.0 수정 - 이름 추가 -->
+                          <div class="input-item input-list">
+                            <span class="text input-list__title">{{ form.name }}</span>
                             <span class="text">{{ form.phone }}</span>
                           </div>
                       </div>
                   </div>
               </td>
             </tr>
-            <tr class="tr__border">
+            <tr> <!-- 기획서 v1.0 수정 - 스타일 삭제 -->
               <th scope="row"><span class="form-item__label">휴대폰(담당자)</span></th>
               <td colspan="3">
                 <div class="form-item__content">
@@ -76,7 +78,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label">담당자 이메일</span></th>
+              <th scope="row"><span class="form-item__label">이메일</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td colspan="3">
                 <div class="form-item__content">
                   <div class="form-item-row">
@@ -88,7 +90,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label">담당자 연락처</span></th>
+              <th scope="row"><span class="form-item__label">연락처</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td colspan="3">
                 <div class="form-item__content">
                   <div class="form-item-row">
@@ -157,30 +159,21 @@
               <th scope="row"><span class="form-item__label">Agency Key</span></th>
               <td>
                 <div class="form-item__content">
-                  <div class="form-item-row agency-key">
-                    <div class="input-item">
-                      <table class="inner-table">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <span class="flag-progress">동기화 완료</span>
-                            </td>
-                            <td><span class="text">AK.TxMIxUI1s20cgR5</span></td>
-                            <td><span class="text">2022. 03. 30</span></td>
-                            <td><span class="text">15:40:08</span></td>
-                            <td><span class="text">system</span></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span class="flag-progress">동기화 완료</span>
-                            </td>
-                            <td><span class="text">AK.TxMIxUI1s20cgR5</span></td>
-                            <td><span class="text">2022. 03. 30</span></td>
-                            <td><span class="text">15:40:08</span></td>
-                            <td><span class="text">system</span></td>
-                          </tr>
-                        </tbody>
-                      </table>
+                  <!-- 기획서 v1.0 수정 - 구조변경 -->
+                  <div class="form-item-row">
+                    <div class="input-item agency-key">
+                      <span class="flag-progress">동기화 완료</span>
+                      <span class="text">AK.TxMIxUI1s20cgR5</span>
+                      <span class="text">2022. 03. 30</span>
+                      <span class="text">15:40:08</span>
+                      <span class="text">system</span>
+                    </div>
+                    <div class="input-item agency-key">
+                      <span class="flag-progress">동기화 완료</span>
+                      <span class="text">AK.TxMIxUI1s20cgR5</span>
+                      <span class="text">2022. 03. 30</span>
+                      <span class="text">15:40:08</span>
+                      <span class="text">system</span>
                     </div>
                   </div>
                 </div>

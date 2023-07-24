@@ -65,6 +65,7 @@ const homeList = [
     'status': ['0512: 개발 공유'],
     'link': '/LoginPage',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['공통적으로 임의의 값을 입력시 다음 페이지로 넘어감.', '0613: 버튼 여섯 번 클릭 시 비밀번호 변경 모달 창 켜짐', '회원 공통: 기획서 버전 : 2023RBC_UIUX개편_화면설계서_회원_v0.4_20230605']
   },
   {
@@ -72,35 +73,40 @@ const homeList = [
     'screenId': 'R-Mem-ID-Reg-01',
     'status': ['0512: 개발 공유'],
     'link': '/IdFind',
-    'pubData': 'v1 07-20'
+    'pubData': 'v1 07-20',
+    'isPublished': true
   },
   {
     'depth3': '아이디 찾기 결과',
     'screenId': 'R-Mem-ID-View-01',
     'status': ['0512: 개발 공유'],
     'link': '/IdResult',
-    'pubData': 'v1 07-20'
+    'pubData': 'v1 07-20',
+    'isPublished': true
   },
   {
     'depth2': '비밀번호 찾기',
     'screenId': 'R-Mem-Pass-Reg-01',
     'status': ['0512: 개발 공유'],
     'link': '/pwFind',
-    'pubData': 'v1 07-20'
+    'pubData': 'v1 07-20',
+    'isPublished': true
   },
   {
     'depth3': '비밀번호 변경',
     'screenId': '',
     'status': ['0512: 개발 공유'],
     'link': '/PwReset',
-    'pubData': 'v1 07-20'
+    'pubData': 'v1 07-20',
+    'isPublished': true
   },
   {
     'depth3': '비밀번호 찾기',
     'screenId': '',
     'status': ['0512: 개발 공유'],
     'link': '/PwChange',
-    'pubData': 'v1 07-20'
+    'pubData': 'v1 07-20',
+    'isPublished': true
   },
   {
     'depth1': '회원가입',
@@ -108,7 +114,8 @@ const homeList = [
     'screenId': '',
     'status': ['0512: 개발 공유'],
     'link': '/SignUp',
-    'pubData': 'v1 07-20'
+    'pubData': 'v1 07-20',
+    'isPublished': true
   },
   // 기업 담당자 회원가입
   {
@@ -118,6 +125,7 @@ const homeList = [
     'status': ['0512: 개발 공유'],
     'link': '/joinStep01',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['공통적으로 임의의 값을 입력시 다음 페이지로 넘어감.']
   },
   {
@@ -126,6 +134,7 @@ const homeList = [
     'status': ['0512: 개발 공유'],
     'link': '/joinStep02',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['사업자등록번호 123 입력시 기압중인 단계 확인 가능.']
   },
   {
@@ -134,6 +143,7 @@ const homeList = [
     'status': ['0512: 개발 공유'],
     'link': '/joinStep03',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['휴대폰 번호 1 입력시 심사 중, 123 입력시 인증번호 받기']
   },
   {
@@ -142,6 +152,7 @@ const homeList = [
     'status': ['0512: 개발 공유'],
     'link': '/joinStep04',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['단순 문구만 다른 케이스라, 요청시 지원 예정','0613: 회원가입 완료시 상황에 따른 화면 추가. 각 상황 앞에 주석 달아두었습니다.']
   },
   // 대행사 회원가입
@@ -151,21 +162,24 @@ const homeList = [
     'screenId': 'R-Mem-Join-Reg-05',
     'status': ['0512: 개발 공유'],
     'link': '/AgencyJoinStep01',
-    'pubData': 'v1 07-20'
+    'pubData': 'v1 07-20',
+    'isPublished': true
   },
   {
     'depth3': '대행사정보 입력',
     'screenId': 'R-Mem-Join-Reg-06',
     'status': ['0512: 개발 공유'],
     'link': '/AgencyJoinStep02',
-    'pubData': 'v1 07-20'
+    'pubData': 'v1 07-20',
+    'isPublished': true
   },
   {
     'depth3': '회원정보 입력',
     'screenId': 'R-Mem-Join-Reg-07',
     'status': ['0512: 개발 공유'],
     'link': '/AgencyJoinStep03',
-    'pubData': 'v1 07-20'
+    'pubData': 'v1 07-20',
+    'isPublished': true
   },
   {
     'depth3': '완료',
@@ -173,6 +187,7 @@ const homeList = [
     'status': ['0512: 개발 공유'],
     'link': '/AgencyJoinStep04',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['0613: 회원가입 완료시 상황에 따른 화면 추가. 각 상황 앞에 주석 달아두었습니다.']
   },
   // 마이 페이지
@@ -184,6 +199,7 @@ const homeList = [
     'status': ['0620: 추가', '0621: 개발 공유'],
     'link': '/myinfo',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['0620: 추가 된 페이지 매니저,마스터_개인정보 관리 (기존 MyInfo.vue -> MyInfoEdit.vue)', 'view 페이지와 edit 분리로 인해 파일명 변경']
   },
   {
@@ -192,6 +208,7 @@ const homeList = [
     'status': ['0512: 개발 공유', '0620: 파일명 변경 MyInfo = > MyInfoEdit', '0621: 개발 2차 공유'],
     'link': '/myinfoedit',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['0620: 파일 명 변경 된 페이지 (기존 파일 명:MyInfo.vue ) - 매니저,마스터_개인정보 관리 편집']
   },
   {
@@ -201,6 +218,7 @@ const homeList = [
     'status': ['0620: 신규 추가', '0621: 개발 공유'],
     'link': '/agencymyinfo',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['0620: 추가 된 페이지 - 대행사_개인정보 관리']
   },
   {
@@ -209,6 +227,7 @@ const homeList = [
     'status': ['0620: 파일명 변경 MyInfoAgency > agencymyinfoedit', '0621: 개발 공유'],
     'link': '/agencymyinfoedit',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['0620: 파일 명 변경 된 페이지 (기존 파일 명:MyInfoAgency.vue ) - 대행사_개인정보 관리 편집']
   },
   {
@@ -218,6 +237,7 @@ const homeList = [
     'status': ['0620: 신규 추가', '0621: 개발 공유'],
     'link': '/corpinfo',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['0620: 추가 된 페이지 매니저,마스터_비지니스 정보 관리 (기존 CorpInfo.vue -> AgencyCorpInfoEdit.vue)', '0620: 모든 페이지 "기업 정보" -> "비지니스 정보" 로 수정']
   },
   {
@@ -226,6 +246,7 @@ const homeList = [
     'status': [''],
     'link': '/corpinfoedit',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['0620: 기존 파일 명 사용 - 매니저,마스터_비지니스 정보 관리 편집']
   },
   {
@@ -235,6 +256,7 @@ const homeList = [
     'status': ['0620: 신규 추가', '0621: 개발 공유'],
     'link': '/agencycorpinfo',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['0620: 추가 된 페이지 - 대행사_비지니스 정보 관리', '0628: 선거용 배너 추가']
   },
   {
@@ -243,6 +265,7 @@ const homeList = [
     'status': [''],
     'link': '/agencycorpinfoedit',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['0620: 파일 명 변경 된 페이지 (기존 파일 명:CorpInfo.vue ) - 대행사_비지니스 정보 관리 편집']
   },
   {
@@ -251,6 +274,7 @@ const homeList = [
     'status': ['0512: 개발 공유'],
     'link': '/withdrawal',
     'pubData': 'v1 07-20',
+    'isPublished': true,
     'comments': ['']
   },
   // 고객센터
@@ -567,7 +591,8 @@ const dashboardList = [
     'screenId': 'R-Brand-Chat-Reg-02',
     'status': ['0621: 기획 공유'],
     'link': '/ChatbotRegistration',
-    'pubData': 'v1 07-13'
+    'pubData': 'v1 07-13',
+    'isPublished': true
   },
   // 통계
   {
@@ -577,14 +602,17 @@ const dashboardList = [
     'screenId': 'R-Brand-Stat-List-01',
     'status': ['0622: 기획 공유'],
     'link': '/MsgStatList',
-    'pubData': 'v1 07-24'
+    'pubData': 'v1 07-24',
+    'isPublished': true,
+    'comments': ['고객 피드백에 따른 통계 칼라 변경 예정.']
   },
   {
     'depth5': '상세',
     'screenId': 'R-Brand-Stat-View-01',
     'status': ['0622: 기획 공유'],
     'link': '/MsgStatListView',
-    'pubData': 'v1 07-24'
+    'pubData': 'v1 07-24',
+    'isPublished': true
   },
   {
     'depth4': '대화방 메뉴 통계',
@@ -592,7 +620,8 @@ const dashboardList = [
     'screenId': 'R-Brand-Stat-List-02',
     'status': ['0622: 기획 공유'],
     'link': '/ChatRoomMenuStat',
-    'pubData': 'v1 07-24'
+    'pubData': 'v1 07-24',
+    'isPublished': true
   },
   {
     'depth4': '브랜드 소식 통계',
@@ -600,14 +629,16 @@ const dashboardList = [
     'screenId': 'R-Brand-Stat-List-03',
     'status': ['0622: 기획 공유'],
     'link': '/BrandFeedStat',
-    'pubData': 'v1 07-24'
+    'pubData': 'v1 07-24',
+    'isPublished': true
   },
   {
     'depth5': '상세',
     'screenId': 'R-Brand-Stat-View-03',
     'status': ['0622: 기획 공유'],
     'link': '/BrandFeedStatView',
-    'pubData': 'v1 07-24'
+    'pubData': 'v1 07-24',
+    'isPublished': true
   },
   // 브랜드 개설
   {
@@ -655,6 +686,14 @@ const dashboardList = [
     'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_메시지_v0.8_20230630']
   },
   {
+    'depth4': '템플릿 목록',
+    'screenId': '',
+    'link': '/TemplateMsgList',
+    'pubData': 'v1 07-21',
+    'isPublished': true,
+    'comments': ['']
+  },
+  {
     'depth4': '템플릿 등록 - 텍스트',
     'screenId': '',
     'status': [],
@@ -682,14 +721,6 @@ const dashboardList = [
     'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_메시지_v0.92_20230712', '/TemplateRegistrationImage?name=CreaterImg&type=image1 숫자 1~6']
   },
   {
-    'depth4': '템플릿 등록',
-    'screenId': '',
-    'status': [''],
-    'link': '',
-    'pubData': 'v1 07-14',
-    'comments': ['']
-  },
-  {
     'depth4': '레이아웃 목록',
     'screenId': '',
     'status': ['0710: 기획 공유', '0710: 개발 공유'],
@@ -702,16 +733,10 @@ const dashboardList = [
     'depth4': '레이아웃 등록',
     'screenId': '',
     'status': [''],
-    'link': '',
-    'pubData': 'v1 07-14',
+    'link': '/LayoutRegistration',
+    'pubData': 'v1 07-21',
+    'isPublished': true,
     'comments': ['']
-  },
-  {
-    'screenId': '',
-    'status': [''],
-    'link': '',
-    'pubData': 'v1 07-18',
-    'comments': ['최종 기획서 동기화']
   },
   // 브랜드 대시보드
   {
@@ -721,6 +746,7 @@ const dashboardList = [
     'status': ['0630: 기획 공유', '0630: 개발 공유'],
     'link': '/BrandDashboard',
     'pubData': 'v1 07-31',
+    'isPublished': true,
     'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_브랜드대시보드_v0.6_20230623']
   },
   // 선거 대시보드
@@ -732,6 +758,7 @@ const dashboardList = [
     'status': ['0628: 기획 공유', '0628: 개발 공유'],
     'link': '/ElectionDashboard',
     'pubData': 'v1 07-24',
+    'isPublished': true,
     'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_선거_v0.7_20230623']
   },
   {
@@ -740,6 +767,7 @@ const dashboardList = [
     'status': ['0628: 기획 공유', '0628: 개발 공유'],
     'link': '/OperatingBrandList',
     'pubData': 'v1 07-24',
+    'isPublished': true,
     'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_선거_v0.7_20230623']
   },
   {
@@ -748,6 +776,7 @@ const dashboardList = [
     'status': ['0628: 기획 공유', '0628: 개발 공유'],
     'link': '/ChatroomOpen',
     'pubData': 'v1 07-24',
+    'isPublished': true,
     'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_선거_v0.7_20230623']
   }
 ]

@@ -13,12 +13,15 @@
       </div>
       <div class="search-result__wrap">
         <div class="top-ctrl-area">
-          <div class="left-area">
-            <div class="search-area">
-              <span class="input search">
-                <input type="text" placeholder="발신번호를 입력해 주세요."/>
-              </span>
-            </div>
+          <div class="search-area fit-width">
+            <span class="input search-box">
+              <input type="text" placeholder="검색어를 입력하세요."/>
+              <ButtonCmp
+                type="btn-only-icon"
+                iconname='icon-search'
+              >
+              </ButtonCmp>
+            </span>
           </div>
           <!-- 기획서 v1.0 수정(right-area 클래스 삭제) -->
         </div>

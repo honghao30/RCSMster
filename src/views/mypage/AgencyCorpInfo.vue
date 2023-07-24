@@ -66,7 +66,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label">법인명(단체명)</span></th>
+              <th scope="row"><span class="form-item__label">법인명</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td>
                 <span class="text">{{ form.companyname }}</span>
               </td>
@@ -84,7 +84,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label">기업주소</span></th>
+              <th scope="row"><span class="form-item__label">주소</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td>
                 <span class="text">{{ form.postcode }} {{ form.addr1 }} {{ form.addr2 }}</span>
               </td>
@@ -115,7 +115,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">제공 서비스</span></th>
+              <th scope="row"><span class="form-item__label">제공 서비스</span></th> <!-- 기획서 v1.0 수정 - 스타일 수정 -->
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
@@ -127,7 +127,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">중계사</span></th>
+              <th scope="row"><span class="form-item__label">중계사</span></th> <!-- 기획서 v1.0 수정 - 스타일 수정 -->
               <td>
                 <div class="form-item__content agency">
                   <div class="form-item-row">
@@ -139,7 +139,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">특수부가통신<br>사업자등록증</span></th>
+              <th scope="row"><span class="form-item__label">특수부가통신<br>사업자등록증</span></th> <!-- 기획서 v1.0 수정 - 스타일 수정 -->
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
@@ -151,7 +151,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label">대행사 서비스 범위</span></th>
+              <th scope="row"><span class="form-item__label">대행사 서비스 범위</span></th> <!-- 기획서 v1.0 수정 - 스타일 수정 -->
               <td>
                 <div class="form-item__content service-range">
                   <div class="form-item-row">
@@ -159,7 +159,7 @@
                       <span class="text">{{ form.agencyService1 }}</span>
                   </div>
                   <div class="form-item-row">
-                    <span class="form-item-row__title">계약가능 서비스</span>
+                    <span class="form-item-row__title">최소 계약 가능 물량</span> <!-- 기획서 v1.0 수정 - 문구 수정 -->
                       <span class="text">{{ form.agencyService2 }}</span>
                   </div>
                   <div class="form-item-row">
@@ -170,12 +170,25 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">대행사 로고</span></th>
+              <th scope="row"><span class="form-item__label">대행사 로고</span></th> <!-- 기획서 v1.0 수정 - 스타일 수정 -->
               <td>
                 <div class="form-item__content agency">
                   <div class="form-item-row">
                     <div class="input-item">
                       <span class="text">{{ form.agencyLogoFile }}</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <!-- 기획서 v1.0 수정 - 웹사이트 추가 -->
+            <tr>
+              <th scope="row"><span class="form-item__label">웹사이트</span></th> <!-- 기획서 v1.0 수정 - 스타일 수정 -->
+              <td>
+                <div class="form-item__content agency">
+                  <div class="form-item-row">
+                    <div class="input-item">
+                      <span class="text">{{ form.agencyWeb }}</span>
                     </div>
                   </div>
                 </div>
@@ -285,7 +298,8 @@ export default {
         agencyService1: '웹 발송 / API 연동',
         agencyService2: '없음',
         agencyService3: '이미지 템플릿',
-        agencyLogoFile: 'Logo_final.jpg'
+        agencyLogoFile: 'Logo_final.jpg',
+        agencyWeb: 'https://www-qa.rcsbizcenter.com/main '
       },
       selecteAuth: ['Auth_1'],
       filesName: '사업자등록증_2023.pdf',

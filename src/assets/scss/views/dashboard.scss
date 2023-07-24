@@ -28,17 +28,17 @@
 			@include fontoption(20px,#000,700,32px);
 		}
 		&.document-not{
-			background: linear-gradient(0deg, rgba(255, 131, 16, 0.05), rgba(255, 131, 16, 0.05)), #FFFFFF;
-			border: 1px solid rgba(255, 131, 16, 0.5);
-			strong {
-				color: #FF8310;
-			}
-		}
-		&.approval-ing{
 			background: #F8F8F8;
 			border: 1px solid #ccc;
 			strong {
 				color: #888;
+			}
+		}
+		&.approval-ing{
+			background: linear-gradient(0deg, rgba(255, 131, 16, 0.05), rgba(255, 131, 16, 0.05)), #FFFFFF;
+			border: 1px solid rgba(255, 131, 16, 0.5);
+			strong {
+				color: #FF8310;
 			}
 		}
 		&.approval-reject{
@@ -223,34 +223,109 @@
 			}
 		}
 	}
-	.brand-banner__box {
-		width: 100%;
-		background: rgba(220, 242, 255, 0.5);
-		border: 1px solid rgba(234, 234, 234, 1);
-		border-radius: 16px;
-		display: flex;
-		align-items: center;
-    justify-content: space-between;
-		padding:32px 48px;
-		strong {
-			@include fontoption(18px,#000,500,30px);
-		}
-		.btn-blue{
-			position: relative;
-			min-width: 227px;
-			&::before{
-				content:'';
-				display:inline-block;
-				position:absolute;
-				left: 16%;
-				width:20px;
-				height: 20px;
-				background: url('../assets/images/icon/icon_plus.png') no-repeat 50% 50%;
-				cursor: pointer;
+	// 브랜드 리스트 
+	.brand-list__wrap {
+		li {
+			border-top: 1px solid #EAEAEA;
+			border-bottom: 1px solid #EAEAEA;			
+			background: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			padding:24px 32px 24px 16px;
+			&+li {
+				margin-top: 8px;
 			}
-		}
-		&+.brand-banner__box {
-			margin-top:24px;
+			.brand-data__box {
+				width:328px;
+				height:78px;
+				background-color: #F8F8F8;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				border-radius: 8px;
+				.brand-data {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					flex-direction: column;
+					.data-chat {
+						@include fontoption(16px, #000, 500, 26px);
+					}
+					.data-name {
+						@include fontoption(14px, #000, 400, 26px);
+					}
+				}
+			}
+			.check-fava {
+				flex: 1;
+				.brandname {
+					padding: 0px 16px;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					&.mybrandname{
+						padding: 0;
+					}
+					.brand__mark {
+						height: 20px;
+						&__core{
+							display: inline-block;
+							width: 20px;
+							height: 20px;
+							background-position: 50% 50%;
+							background-repeat: no-repeat;
+							background-size: 100%;
+							background-image:url('../assets/images/icon/icon_bookmark_de_act.png');
+							cursor: pointer;
+						}
+						input[type="checkbox"] {
+							@include hiddens;
+							&:checked {
+								+.brand__mark__core {
+									background-image:url('../assets/images/icon/icon_bookmark_act.png')
+								}
+							}
+						}
+					}
+					.brand {
+						display: flex;
+						align-items: center;
+						.brand__logo {
+							min-width: 40px;
+							height: 40px;
+							margin-left: 16px;
+							border: 1px solid #eaeaea;
+							border-radius: 8px;
+							img {
+								max-height:40px;
+								border-radius: 8px;
+
+							}
+						}
+						.brand__title{
+							margin:0 16px;
+							@include fontoption(20px,#000,400,32px);
+							a {
+								&:hover {
+									text-decoration: underline;
+								}
+							}
+						}
+						.brnad__new{
+							@include fontoption(12px,$pointColor,700,26px);
+							margin-left: 8px;
+							flex-shrink: 0;
+						}
+					}
+					.brand__message {
+						@include fontoption(12px,#999,500,22px);
+						border: 1px solid #CCC;
+						border-radius: 20px;
+						min-width: 103px;
+					}
+				}
+			}
 		}
 	}
 	.brand-banner__box {
@@ -262,10 +337,12 @@
 		align-items: center;
     justify-content: space-between;
 		position: relative;
+		width: 100%;
 		h3{
 			@include fontoption(18px,#000,700,26px);
 		}
 		p{
+			margin-top: 2px;
 			@include fontoption(12px,#666,400,18px);
 		}
 		.brand-banner__link {
@@ -587,6 +664,14 @@
 				border-radius: 16px;
 				position: relative;
 				padding: 24px 32px;
+				&.banner_flex {
+					display: flex;
+					gap: 16px;
+					padding: 24px 20px;
+					.side-box-img {
+						margin-top: 0;
+					}
+				}
 				.side-company-btn {
 					margin-top: 16px;
 					display: block;
@@ -616,6 +701,17 @@
 						height: 82px;
 						background-color: #fff;
 						border-radius: 82px;
+					}
+					.brand_icon{
+						width: 60px;
+						height: 60px;
+						background-color: #fff;
+						border-radius: 82px;
+					}
+				}
+				.banner_side-box {
+					h3 {
+						@include fontoption(16px,#000,700,26px);
 					}
 				}
 			}
@@ -862,7 +958,7 @@
 		}
 	}
 	.brand-banner__box {
-		margin: 15px 0 45px;
+		margin: 24px 0 45px;
 	}
 	.dropdown {		
 		min-width: 328px;
@@ -912,6 +1008,7 @@
 }
 .board-main__box--roun-type{
 	&.brand-make{
+		flex: 0 0 auto;
 		.page-title__wrap{
 			padding-bottom: 0;
 		}
@@ -1098,6 +1195,9 @@
 								.brand{
 									.brand__logo{
 										background: none;
+										img {
+											max-height:40px;
+										}
 									}
 								}
 								.brand__title{

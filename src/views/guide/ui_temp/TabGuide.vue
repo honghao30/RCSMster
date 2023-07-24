@@ -38,6 +38,17 @@
         <div>Tab4 내용</div>
       </TabItem>
     </TabCmp>
+    <!-- 기획서 v1.0 수정 (로그인페이지에 사용하는 tab 추가작업) -->
+    <TitleH3 titleh3="Tab (로그인) " />
+    <TabCmp class="only-border">
+      <TabItem title="Tab1">
+        <div>Tab1 내용</div>
+      </TabItem>
+      <TabItem title="Tab2">
+        <div>Tab2 내용</div>
+      </TabItem>
+    </TabCmp>
+    <!-- // 기획서 v1.0 수정 (로그인페이지에 사용하는 tab 추가작업) -->
   </div>
 </template>
 

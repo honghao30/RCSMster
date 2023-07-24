@@ -10,7 +10,7 @@
            <form  ref="form" :model="form">
             <!-- 1차 디자인 수정 -->
             <div class="brand__wrap--edit">
-              <div class="table__wrap">
+              <div class="table__wrap no-line">
                 <table class="table table-bodyonly form-table">
                   <colgroup>
                     <col width="196px">
@@ -68,6 +68,7 @@
                         </div>
                       </td>
                     </tr>
+                    <!-- 기획서 v1.0 수정: 선거용 -->
                     <!-- <tr>
                       <th scope="row"><span class="form-item__label required">본인인증</span>
                         <ToolTipEl
@@ -98,7 +99,8 @@
                           </ButtonCmp>
                         </div>
                       </td>
-                    </tr> 기획서 v1.0 수정: 삭제 -->
+                    </tr> 기획서 v1.0 수정: 선거용 -->
+                    </tr> 기획서 v1.0 수정: -->
                     <tr>
                       <th scope="row"><span class="form-item__label required">백그라운드 이미지</span></th>
                       <td>
@@ -187,40 +189,55 @@
                     <tr>
                       <th scope="row"><span class="form-item__label required">카테고리</span></th>
                       <td>
+                        <!-- 기획서 1.0 수정 -->
                         <div class="form-item__content">
-                          <div class="form-item-row">
-                            <div class="input-item">
-                              <Dropdown :options="categoryOptions" placeholder="선택하세요" v-model="form.category1" >
-                              </Dropdown>
+                          <div class="form-item-row space-between">
+                            <div class="input-item w--half">
+                              <div class="input-item-category">
+                                <Dropdown :options="categoryOptions" placeholder="선택하세요" v-model="form.category1" >
+                                </Dropdown>
+                              </div>
                             </div>
-                          </div>
-                          <div class="form-item-row" v-if="form.category1">
-                            <div class="input-item">
-                              <Dropdown :options="categoryOptions" placeholder="선택하세요" v-model="form.category2">
-                              </Dropdown>
+                            <div class="input-item w--half"  v-if="form.category1">
+                              <div class="input-item-category">
+                                <Dropdown :options="categoryOptions" placeholder="선택하세요" v-model="form.category2">
+                                </Dropdown>
+                              </div>
                             </div>
                           </div>
                           <div class="form-item-row" v-if="form.category2">
                             <div class="input-item">
-                              <span class="input">
-                                  <input type="text" class="input" placeholder="검색용 키워드를 입력하세요." v-model="form.category3">
-                              </span>
+                              <div class="input-item-category">
+                                <span class="input">
+                                    <input type="text" class="input" placeholder="검색용 키워드를 입력하세요." v-model="form.category3">
+                                </span>
+                              </div>
                             </div>
                           </div>
                           <p class="guide-text">※ 보다 좋은 서비스 제공을 위하여 운영자가 임의 변경할 수 있습니다.</p>
                           <p class="guide-text error" v-if="categoryErrorMsg" >카테고리를 선택해주세요.</p>
                         </div>
+                        <!-- //기획서 1.0 수정 -->
                       </td>
                     </tr>
                     <tr>
                       <th scope="row"><span class="form-item__label required">전화번호</span></th>
                       <td>
                         <div class="form-item__content">
-                          <div class="form-item-row">
+                          <!-- <div class="form-item-row">
                             <div class="input-item">
                               <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요."  v-model="form.tel"></span>
                             </div>
-                          </div>
+                          </div> -->
+                          <div class="form-item-row">
+                            <div class="input-item">
+                                <span class="dropdown-tel"><Dropdown :options="dropdownTel" value="선택" @beforeChange="isChange" v-model="form.telFirst" /></span>
+                                <span>-</span>
+                                <span class="input input-tel"><input type="text" class="input" placeholder="" v-model="form.mblNum"></span>
+                                <span>-</span>
+                                <span class="input input-tel"><input type="text" class="input" placeholder="" v-model="form.mblNum"></span>
+                              </div>
+                            </div>
                           <p class="guide-text error" v-if="telErrorMsg" >전화번호를 입력해주세요.</p>
                         </div>
                       </td>

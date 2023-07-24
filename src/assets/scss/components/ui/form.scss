@@ -7,7 +7,7 @@ $textareaHeight: 100px;
 
 @mixin inputBasic {  
     background-color: #fff;    
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px solid $bordersColor;    
     color: #000;
     display: inline-block;
@@ -399,6 +399,10 @@ $textareaHeight: 100px;
     border-radius:0 0 8px 8px;
     z-index:10;
     overflow:hidden;
+    .drodown__option {
+      max-height: 130px;
+      overflow-y: auto;
+    }
     li {
       padding:8px 16px;
       line-height: 26px;
@@ -812,6 +816,16 @@ $formLabelWidth : 120px;
           flex: none;
         }
       }
+      &.space-between {
+        display: flex !important;        
+        justify-content: space-between !important;
+        &+.form-item-row {
+          margin-top:0px;
+        }
+        .input-item + .input-item {
+          margin-top: 0px  !important;
+        }
+      }
       &+.form-item-row {
         margin-top:10px;
       }
@@ -843,6 +857,7 @@ $formLabelWidth : 120px;
     &.w--half {
       width: 50%;
       padding:0 5px;
+      flex: initial;
       &:first-child {
         padding-left:0;
       }
@@ -914,6 +929,13 @@ $formLabelWidth : 120px;
   }
 }
 
+.input-item-category {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
 .guide-text {
   margin-top:8px;
   width: 100%;
@@ -1019,6 +1041,9 @@ $formLabelWidth : 120px;
     width: 100%;
     position:relative;
     width: 300px;
+    &.fit-width {
+      width: fit-content;
+    }
     input {
       padding-right:52px;
     }

@@ -1,20 +1,58 @@
 //가입 페이지
-.join {
-    width: 100%;
-    max-width: $contentWidth2;
+.join {    
+    width: $contentWidth2;
     margin: 0 auto;
     padding-bottom: 80px;
+    .page-title{
+        padding-top: 48px;
+        margin-bottom: 32px;
+    }
     .table__wrap {
         .form-table {
             th {
-                padding: 20px 0 20px 16px;
+                padding: 16px 0 16px 16px;
                 &.th-tel {
                     padding: 20px 0 20px 8px;
                     width: 83px;
                 }
             }
             td {
-                padding: 20px 16px 20px 0;
+                padding: 16px 16px 16px 0;
+                &.align--top{
+                    .input-tel{
+                        max-width: 120px;
+                        .input{
+                            width: 120px;
+                        }
+                    }
+                }
+            }
+            .tr-total-tel{
+                th {
+                    &.th-tel {
+                        padding: 16px 0 0 24px;
+                        border: 0;
+                        vertical-align: middle;
+                    }
+                }
+                td {
+                    border-bottom: 0;
+                    padding: 16px 0 0;
+                    &.align--top{
+                        padding: 16px 16px 0 16px;
+                        .input-tel{
+                            max-width: 120px;
+                            .input{
+                                width: 120px;
+                            }
+                        }
+                    }
+                }
+            }
+            .tr-tel-notice{
+                td {
+                    padding: 0px 0px 16px 0px;
+                }
             }
             .input-item {
                 &.service {
@@ -32,6 +70,19 @@
                 &.input-half {
                     gap: 180px;
                 }
+                &.ip{
+                    width: 100%;
+                    margin-bottom: 8px;
+                    &+.ip{
+                        margin-top: 0;
+                    }
+                }
+                &.master-change-btn{
+                    gap: 32px;
+                }
+            }
+            .input-item + .master-change-btn{
+                margin-top: 0;
             }
             .service-range {
                 .form-item-row {
@@ -39,7 +90,7 @@
                 }
                 .form-item-row__title {
                     font-weight: 700;
-                    flex:0 240px;
+                    flex:0 0 200px;
                     line-height: 42px;
                 }
                 .service-list {
@@ -47,7 +98,7 @@
                     display: flex;
                     flex-wrap:wrap;
                     li {
-                        width: 33.3%;
+                        width: 50%;
                         height: 42px;
                         display:inline-flex;
                         align-items: center;
@@ -106,23 +157,11 @@
                 }
             }
             .agency-key {
-                .inner-table {
-                    td {
-                        // padding:7px 16px;
-                        border:0;
-                        &:first-child {
-                            padding-left: 0;
-                        }
-                    }
-                    tr:first-child {
-                        td {
-                            padding-top: 0;
-                        }
-                    }
-                }
+                gap: 60px;
                 .flag-progress {
+                    margin-right: -60px;
                     color:$pointColor;
-                    line-height: 26px;
+                    line-height: 10px;
                     padding: 7px 12px;
                     border-radius: 21px;
                     border: 0;
@@ -137,6 +176,18 @@
                 }
                 .btn-only-icon {
                     margin-left: 6px;
+                }
+            }
+            .agency-edit {
+                .agency-key {
+                    gap: 0;
+                    justify-content: space-between;
+                    .flag-progress {
+                        margin-right: -35px;
+                    }
+                    .agency-btn {
+                        min-width: 165px;
+                    }
                 }
             }
         }
@@ -347,7 +398,7 @@
 }
 .join-compt__wrap {
     text-align: center;
-    padding: 80px 0 50px;
+    padding: 48px 0 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -360,22 +411,6 @@
     .text {
         font-size: 18px;
         line-height: 28px;
-    }
-    +.button__wrap {
-        padding-bottom:70px;
-    }
-    .top-notice--gray {
-        margin-top: 32px;
-        padding: 30px 127px;
-        text-align: center;
-        p {
-            margin-bottom: 16px;
-            @include fontoption(14px,#000,400,24px);
-        }
-        ul {
-            text-align: left;
-            @include fontoption(12px,#000,400,22px);
-        }
     }
 }
 
@@ -391,30 +426,67 @@
     border:1px solid #999;
     height: 24px;
     line-height: 100%;
+    border:0;
     &.done {
-        border-color:$pointColor;
-        color:$pointColor;
-    }
-    &.reject {
-        border-color: $errorColor;
-        color:$errorColor;
-    }
-    &.ing {
-        border-color:#FF8310;
-        color:#FF8310;
-    }
+        background-color: rgba(238, 249, 255, 1);
+        color:rgba(47, 119, 251, 1);  
+     }
+     &.ing {
+        background-color: rgba(248, 248, 248, 1);
+        color:rgba(136, 136, 136, 1);                
+     }
+     &.return {
+        background-color: rgba(255, 72, 48, 0.1);
+        color:#FF4830;            
+     }
+     // 요청 (기업 대시보드에서 사용됨)
+     &.request {
+        background-color: rgba(255, 131, 16, 0.1);
+        color: #FF8310;
+     }
 }
 
-.withdrawal-text__wrap {
-    padding:32px 0 0;
-    .guide-text {
-        font-size: 16px;
-        line-height: 26px;
+.withdrawal__wrap {
+    .text {
+        text-align: center;
+        margin-top: -44px;
+        @include fontoption(14px,#000,400,26px);
+    }
+    .guide-list {
+        margin: 32px 0 16px;
+        border-radius: 8px;
+        border: 1px solid #DDD;
+        padding: 24px;
+        p {
+            @include fontoption(14px,#666,400,26px);
+        }
     }
     .checkbox {
-        margin-top: 32px;
         &__text {
             font-weight: 700;
         }
     }
+}
+
+.title-guide {
+    margin-top: -20px;
+    padding: 16px 0;
+}
+
+.add-link{
+    a{
+        text-decoration: underline;
+        margin-left: 4px;
+    }
+}
+
+.table-bodyonly{
+    tr{
+        &.tr-tel-notice{
+            border-bottom: 2px solid #ddd;
+            td {
+                border: 0;
+            }
+        }
+    }   
 }

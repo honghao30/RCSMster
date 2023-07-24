@@ -83,7 +83,17 @@
         <!-- // 전화하기 -->
       <!-- 대화방 -->
       <div class="form-item-row" v-if="button.btnType == 'chatroom'">
-        <div class="input-item input-limit" >
+        <div class="input-item">
+          <div class="input">
+            <input type="text" placeholder="대화방을 선택해주세요." v-model="button.message.call" disabled/>
+          </div>
+          <ButtonCmp
+            type="btn-default-line"
+            @click="selectChatModal"
+          >대화방 선택
+          </ButtonCmp>
+        </div>
+        <!-- <div class="input-item input-limit" >
           <div class="input">
             <input type="text" placeholder="-없이 번호만 입력해주세요." v-model="button.message.call" maxlength="40"/>
             <p class="input-limit__text">
@@ -103,7 +113,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <!-- //대화방 -->
     </div>

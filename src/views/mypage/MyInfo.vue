@@ -60,7 +60,7 @@
                 </div>
               </td>
             </tr>
-            <tr>
+            <tr class="bdBottom-bg"> <!-- 기획서 v1.0 수정 - 스타일 추가 -->
               <th scope="row"><span class="form-item__label">휴대폰 번호</span></th>
               <td colspan="3">
                   <div class="form-item__content">
@@ -73,7 +73,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label">담당자 이메일</span></th>
+              <th scope="row"><span class="form-item__label">이메일</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td colspan="3">
                 <div class="form-item__content">
                   <div class="form-item-row">
@@ -85,7 +85,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label">담당자 연락처</span></th>
+              <th scope="row"><span class="form-item__label">연락처</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td colspan="3">
                 <div class="form-item__content">
                   <div class="form-item-row">

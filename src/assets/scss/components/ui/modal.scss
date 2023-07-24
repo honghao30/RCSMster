@@ -52,7 +52,7 @@
     .modal__content--body {
       height: calc(100% - 50px - 50px);
       position:relative;
-      width: 100%;    
+      width: 100%;       
       flex: auto;   
       overflow-y: auto;
     }
@@ -86,7 +86,7 @@
   .modal__content--inner {
     &.small-message__modal {
         max-width:403px;               
-        padding:40px;  
+        padding: 48px 40px 40px 40px;  
         border-radius: 16px;
         background-color: #fff;    
         transition: opacity .3s ease;  
@@ -153,7 +153,10 @@
             font-size: 18px;
             line-height: 30px;                
             text-align: center;                
-            color: #000000;                
+            color: #000000;
+            &.same-box{
+              @include fontoption(14px,#000,400,26px);
+            }                
         }   
         .modal__content--title {
           @include fontoption(28px,#000,700,36px);
@@ -178,23 +181,34 @@
             .phone-cert__msg {
               margin:32px 0 10px;
             }
-            .phone-cert__number {
-              padding:16px 0;
-              background-color: #F4F4F4;
-              border-radius: 8px;
+            .phone-cert__des{
+              width: 400px;
+              margin: 16px auto 0;
+              .phone-cert__number {
+                padding:16px 24px;
+                background-color: #F4F4F4;
+                border-radius: 8px;
+                height: 58px;
+              }
             }
             .phone-cert__number-input {
               position: relative;
               margin: 32px 0 0;
               display: flex;
-              justify-content: space-between;      
+              justify-content: space-between; 
+              align-items: center;     
               gap: 8px;
               .input {
-                width: 100%;
-              }        
+                flex: auto;
+                &.input-time{
+                  input{
+                    padding: 0px 50px 0px 16px;
+                  }
+                }
+              } 
               .time {
                 position: absolute;
-                right:150px;
+                right:170px;
                 top:5px;
                 &.hide {
                   opacity: 0;
@@ -203,15 +217,34 @@
                   color: #FF4830;
                 }
               }
-              .btn-gray-line {
-                border: 1px solid #4A5567;
-                background-color: #fff;
-                white-space: nowrap;
-                min-width: 129px;
-                padding: 0 24px;
-                height:42px;    
+              .btn {
+                &.medium{
+                  white-space: nowrap;
+                  min-width: 145px;
+                  max-width: 145px;
+                  padding: 0 32px;
+                }
               }
-            }          
+            }
+            .phone-cert__number-input + .guide-text.error{
+              align-items: center;
+              &::before{
+                top: 0;
+              }
+            }
+            .number-input__before{
+              display: flex;
+              flex-wrap: wrap;
+              margin-top: 16px;
+              padding: 16px;
+              gap:12px;
+              align-items: flex-start;
+              .number-input__tit{
+                flex: 0 0 100px;
+                margin-right: 12px;
+                @include fontoption(16px,#000,500,28px);
+              }
+            }
         }
     }    
     &.Modalmax480 {
@@ -228,6 +261,7 @@
     }
     &.Max628 {
       max-width: 628px;
+      padding: 48px 40px 40px 40px;
       .modal__content--footer {
         button {
           flex: none;
@@ -291,7 +325,7 @@
       border-radius: 8px;
       background-color:#f9f9f9;
       .main-text {
-        margin-bottom: 12px;
+        margin-bottom: 16px;
       }
       li {
         font-size: 14px;
@@ -314,17 +348,21 @@
             display:flex;
             justify-content: flex-start;
             align-items: flex-start;
+            line-height: 24px;
             &:before {
               content:'도로명';
-              width: 54px;
-              display: inline-block;
+              width: 50px;
+              display: inline-flex;
+              justify-content: center;
+              align-items: center;
               font-size: 12px;
               font-weight: 500;
+              line-height: 24px;
               border:1px solid #ddd;
-              padding:2px 9px;
               border-radius: 20px;
               color: #999;
               margin-right: 8px;
+              height: 24px;
             }
             &.place {
               margin-top: 8px;
@@ -372,6 +410,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
+        border-bottom: 2px solid #ddd;
         .item-label {
           flex: 0 0 100px; 
           font-weight: 500;
@@ -719,7 +758,30 @@
         margin-bottom: 32px;
       }
       .safetymark_des{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
         margin-top: 16px;
+        p + p {
+          margin-top: -8px;
+        }
+        .safety_icon{
+          display: inline-flex;
+          position: relative;
+          width: 16px;
+          height: 16px;
+          top: 3px;
+          background-position: 50% 50%;
+          background-repeat: no-repeat;
+          background-size: 100%;
+          background-image:url('../assets/images/icon/icon_safety_blue.png');
+        }
+        .safety_icon-text{
+          color: $pointColor;
+        }
+        .safetymark_mail {
+          text-decoration: underline;
+        }
       }
       .top-notice--center{
         padding: 16px 24px;
@@ -840,6 +902,55 @@
     .new-email-default{
       +.new-email-default{
         margin-top: 8px;
+      }
+    }
+  }
+}
+
+.top-ctrl-area  {
+  .search-area {
+    &.w--full {
+      width: 100%;
+    }
+  }
+}
+
+.modal__content--body {
+  &.masterChange {
+    padding: 32px 16px 0;
+    .title {
+      text-align: center;
+    }
+    .form-item__content {
+      .form-item-row {
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
+      }
+    }
+    .input-item {
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      position: relative;
+      flex: auto;
+      .input {
+        padding: 0 6px;
+      }
+      input[type='file'] {
+        position: absolute;
+        width: calc(100% - 110px);
+        left:0;
+        top:0;
+        opacity: 0;
+        height: 100%;
+        border-radius: 8px;
+      }
+    }
+    .btn-default-line {
+      min-width:100px;
+      &.small {
+        min-width: 74px;
       }
     }
   }

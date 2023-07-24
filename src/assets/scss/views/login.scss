@@ -14,26 +14,26 @@
     }
   }
   .form-list {
-    border-top:2px solid #BCBCBC;
+    border-top:3px solid #BCBCBC;
     margin:32px 0 0 0;
     .form-item {
       border-bottom:1px solid #F0F0F0;
-      padding: 20px 20px 20px 10px;
+      padding: 16px;
       margin:0;
       &.form-item:last-child {
         border-bottom:2px solid #dddddd;
       }
       .form-item__label {           
-        flex: 0 0 200px;
+        flex: 0 0 153px;
         @include fontoption(16px,$defaultColor,500,26px);
       }
       .form-item__content {
         position: relative;
         .btn-only-icon {
           position: absolute;
-          right: 19px;
-          width: 30px;
-          height: 30px;
+          right: 16px;
+          width: 20px;
+          height: 20px;
           top: 50%;
           transform: translateY(-50%);                
           z-index: 10;
@@ -45,7 +45,7 @@
         }
       }
       .guide-text{
-        padding-left: 200px;
+        padding-left: 153px;
         &.error {
           width: 100%;
         }
@@ -61,13 +61,12 @@
   .button__wrap {
     .btn-login {
         display: block;
-        width:100%;
     }
   }
   .help-menu__wrap--bottom {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 16px;
     .idfind {
       display: flex;
       &.line::after {
@@ -125,10 +124,12 @@
   }
   &.login-result {
     .login-result__wrap{
-      margin-top: 32px;
-      border-top: 2px solid #2f77fb;
       border-bottom: 2px solid #DDDDDD;
       padding: 132px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       .login-result__id{
         p{
@@ -138,6 +139,9 @@
           @include fontoption(24px,#000,700,44px);
           margin-top: 8px;
         }
+      }
+      .button__wrap{
+        padding: 24px 0 0;
       }
     }
   }
@@ -168,6 +172,8 @@
           width: 100%;
           padding-right: 0;
           .btn-only-icon {
+            width: 21px;
+            height: 21px;
             right: 12px;
           }
         }
@@ -184,9 +190,17 @@
         }
       }
     }
+    .button__wrap {
+      .btn-login {
+        width: 100%;
+      }
+    }
     .help-menu__wrap--bottom {
-      margin-top: 13.5px;
+      margin-top: 12px;
       font-size: 14px;
+    }
+    .help-menu__wrap--bottom + .button__wrap{
+      padding: 22px 0 0;
     }
     &.login-help {
       .form-list { 
@@ -202,6 +216,7 @@
           }
       }  
       .button__wrap {
+        padding-bottom: 24px;
         .btn-help {
           width:100%;
         }
@@ -212,7 +227,6 @@
         margin-bottom: 32px;
       }
       .login-result__wrap{
-        margin-top: 24px;
         padding: 100px 0;
         .login-result__id{
           p{
@@ -229,7 +243,8 @@
     }
     &.login-pwchange{
       .button__wrap {
-        .btn-blue-line{
+        padding-bottom: 24px;
+        .btn-line{
           width: 50%;
         }
         .btn-blue {
@@ -239,7 +254,7 @@
     }
     &.login-pwreset{
       .button__wrap {
-        .btn-blue-line{
+        .btn-line{
           width: 50%;
         }
         .btn-blue {

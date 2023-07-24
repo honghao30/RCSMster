@@ -1,6 +1,6 @@
 <template>
   <div class="join">
-    <PageTitle pagetitle="대행사 회원가입" />
+    <PageTitle pagetitle="대행사 가입" /> <!-- 기획서 v1.0 수정 (문구 수정) -->
     <StepList :stepActiveIndex="2" :stepTitle="stepTitle" />
     <PageTitleH3 titleh3="대행사정보 입력" />
     <form  ref="form" :model="form">
@@ -28,7 +28,7 @@
                   </div>
                   <p class="guide-text error" v-if="certificateErrorMsg">사업자등록번호를 입력해주세요.</p>
                   <p class="guide-text black">&bull; 사업자등록번호 인증 후 회원가입을 진행 할 수 있습니다.</p>
-                  <p class="guide-text black guide-text__link">선거 후보자/정치/공인입니다. <a href="./FAQ">FAQ</a>    <a href="./OnlineInquire">온라인 문의</a></p>
+                  <p class="guide-text black guide-text__link">선거 후보자/정치/공인입니다. <router-link to="/FAQ">FAQ</router-link><router-link to="/OnlineInquire">온라인 문의</router-link></p> <!-- 기획서 v1.0 수정 (공통으로 수정) -->
                 </div>
                 <div class="form-item__content" v-else>
                   <div class="form-item-row">
@@ -59,15 +59,15 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">법인명(단체명)</span></th>
+              <th scope="row"><span class="form-item__label required">법인명</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
               <td>
                 <div  v-if="joinIng" class="form-item__content">
                   <div class="form-item-row">
-                    <div class="input-item">
-                    <span class="input input-info"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명(단체명)을 입력해주세요." :disabled="disabled" v-model="form.companyname"></span>
-                    </div>
+                    <div class="input-item"> <!-- 기획서 v1.0 수정 (placeholder 수정) -->
+                      <span class="input input-info"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명을 입력해주세요." :disabled="disabled" v-model="form.companyname"></span>
                   </div>
-                  <p class="guide-text error" v-if="companynameErrorMsg">법인명(단체명)을 입력해주세요.</p>
+                  </div>
+                  <p class="guide-text error" v-if="companynameErrorMsg">법인명을 입력해주세요.</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
                 </div>
                 <div v-else class="form-item__content">더피프티원</div>
               </td>
@@ -103,7 +103,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">기업주소</span></th>
+              <th scope="row"><span class="form-item__label required">주소</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
               <td>
                 <div v-if="joinIng" class="form-item__content">
                   <div class="form-item-row">
@@ -121,7 +121,7 @@
                     <span class="input input-info"><input type="text" class="input" v-model="form.addr1"></span> <span class="input input-info"><input type="text" class="input" v-model="form.addr2"></span>
                     </div>
                   </div>
-                  <p class="guide-text error" v-if="postcodeErrorMsg">기업주소를 입력해주세요.</p>
+                  <p class="guide-text error" v-if="postcodeErrorMsg">주소를 입력해주세요.</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
                 </div>
                 <div v-else class="form-item__content">06128 서울시 강남구 봉은사로 18길</div>
               </td>
@@ -191,11 +191,11 @@
                       <div class="input-item service input-half">
                         <div class="checkbox">
                           <input type="checkbox" id="A2P" v-model="form.service" value="A2P"/>
-                          <label for="A2P"><span class="checkbox__text">RCS A2P</span></label>
+                          <label for="A2P"><span class="checkbox__text">RCS SMS / LMS / MMS / 텍스트 템플릿 이미지 템플릿</span></label> <!-- 기획서 v1.0 수정 (문구 수정) -->
                         </div>
                         <div class="checkbox">
                           <input type="checkbox" id="chatbot" value="chatbot" v-model="form.service"/>
-                          <label for="chatbot"><span class="checkbox__text">RCS 챗봇(양방향)</span></label>
+                          <label for="chatbot"><span class="checkbox__text">RCS 양방향</span></label> <!-- 기획서 v1.0 수정 (문구 수정) -->
                         </div>
                       </div>
                     </div>
@@ -203,23 +203,24 @@
                   </div>
                 </td>
               </tr>
-
               <tr>
                 <th scope="row"><span class="form-item__label required">중계사</span></th>
                 <td>
                   <div class="form-item__content agency">
                     <div class="form-item-row">
+                      <!-- 기획서 v1.0 수정 (기획서 p.54 중계사임/중계사아님 라디오버튼 클릭 시 모달창에 따라 추가) -->
                       <!-- 0620: 디자인 1차 수정 - 'w--half' -> 'input-half' class명 수정 -->
                       <div class="input-item input-half">
                         <div class="radiobox">
-                          <input type="radio" name="agency" id="agencyY" v-model="form.agency" value="agencyY"/>
+                          <input type="radio" name="agency" id="agencyY" v-model="form.agency" value="agencyY" @click="agenceySelect"/>
                           <label for="agencyY"><span class="checkbox__text">중계사임</span></label>
                         </div>
                         <div class="radiobox">
-                          <input type="radio" name="agency" id="agencyN" value="agencyN" v-model="form.agency"/>
+                          <input type="radio" name="agency" id="agencyN" value="agencyN" v-model="form.agency"  @click="agenceySelect"/>
                           <label for="agencyN"><span class="checkbox__text">중계사 아님</span></label>
                         </div>
                       </div>
+                      <!-- // 기획서 v1.0 수정 (기획서 p.54 중계사임/중계사아님 라디오버튼 클릭 시 모달창에 따라 추가) -->
                       <!-- 0620: 디자인 1차 수정 - 'w--half' -> 'w--full' class명 수정 -->
                       <div class="input-item w--full"  v-if="form.agency === 'agencyY'">
                         <label for="url" class="item-label">대화방 수신 URL</label>
@@ -232,17 +233,19 @@
                         <span class="item-label">중계사 선택</span>
                         <ButtonCmp
                           type="btn-default-line"
-                          @click="agenceySelect"
+                          @click="agencyManagement"
                         >
                         중계사 선택
-                        </ButtonCmp>
+                        </ButtonCmp> <!-- 기획서 v1.0 수정 (기획서 p.55 중계사 선택 팝업으로 인한 @clcik="agencyManagement" 변경) -->
                         <span class="result-text">선택 중계사 <em class="point">4</em>개</span>
                       </div>
                     </div>
                     <p class="guide-text black">&bull; 중계사를 선택해주세요.</p>
                     <!-- <p class="guide-text error" v-if="agencyErrorMsg">중계사를 선택해주세요.</p> -->
-                    <p class="guide-text black" v-if="form.agency === 'agencyY'">※ 중계사 지정 안내<br>중계사로 지정된 브랜드의 모든 메시지 및 자동응답메시지의 트래픽이 모두 중계사에게 부과됩니다.<br>대행사가 중계사로 지정되는 경우 해당 대행사가 메시지 청약 및 과금을 대행한다는 것에 대한 동의 절차를 진행해야 합니다.</p>
-                    <p class="guide-text black" v-if="form.agency === 'agencyN'">※ 중계사 선택 안내<br>반드시 청약이 완료된 중계사를 선택해야 하며 메시지를 수신하기 위한 webhook.url 정보를 해당 중계사의 시스템에 등록해야 합니다. </p>
+                    <!-- 기획서 v1.0 수정 (특수문자 수정) -->
+                    <p class="guide-text black" v-if="form.agency === 'agencyY'">&bull; 중계사 지정 안내<br>중계사로 지정된 브랜드의 모든 메시지 및 자동응답메시지의 트래픽이 모두 중계사에게 부과됩니다.<br>대행사가 중계사로 지정되는 경우 해당 대행사가 메시지 청약 및 과금을 대행한다는 것에 대한 동의 절차를 진행해야 합니다.</p>
+                    <p class="guide-text black" v-if="form.agency === 'agencyN'">&bull; 중계사 선택 안내<br>반드시 청약이 완료된 중계사를 선택해야 하며 메시지를 수신하기 위한 webhook.url 정보를 해당 중계사의 시스템에 등록해야 합니다. </p>
+                    <!-- // 기획서 v1.0 수정 (특수문자 수정) -->
                   </div>
                 </td>
               </tr>
@@ -252,7 +255,7 @@
                   <div class="form-item__content">
                     <div class="form-item-row">
                       <div class="input-item">
-                      <span class="input input-info"><input type="text" class="input" :value="filesName2" :disabled="disabled" placeholder="특수부가통신 사업자등록증을 등록해주세요."></span>
+                        <span class="input input-info"><input type="text" class="input" :disabled="disabled" placeholder="특수부가통신 사업자등록증을 등록해주세요." v-model="form.files"></span>
                       <input type="file" id="fileUp2" class="input" >
                       <label for="fileUp2" class="btn btn-default-line">파일찾기</label>
                       </div>
@@ -271,7 +274,7 @@
                   <div class="form-item__content service-range">
                     <div class="form-item-row">
                       <!-- 0620: 디자인 1차 수정 - '인하우스 개발' 삭제 및 넘버링 변경 -->
-                      <span class="form-item-row__title">제공서비스</span>
+                      <span class="form-item-row__title">제공 서비스</span> <!-- 기획서 v1.0 수정 (띄어쓰기) -->
                       <ul class="service-list">
                         <li>
                           <span class="checkbox">
@@ -289,7 +292,7 @@
                     </div>
                     <div class="form-item-row">
                       <!-- 0620: 디자인 1차 수정 - '단기 계약','선거용 RVS 메시지 계약' 삭제 및 넘버링 변경 -->
-                      <span class="form-item-row__title">계약가능 서비스</span>
+                      <span class="form-item-row__title">최소 계약 가능 물량</span> <!-- 기획서 v1.0 수정 (문구 수정) -->
                       <ul class="service-list">
                         <li>
                           <span class="checkbox">
@@ -312,15 +315,23 @@
                         <li>
                           <span class="checkbox">
                             <input type="checkbox" id="service5" value="service5" v-model="form.serviceRange"/>
-                            <label for="service5"><span class="checkbox__text">텍스트 템플릿</span></label>
+                            <label for="service5"><span class="checkbox__text">RCS SMS / LMS / MMS / 텍스트 템플릿</span></label> <!-- 기획서 v1.0 수정 (문구 수정) -->
                           </span>
                         </li>
                         <li>
                           <span class="checkbox">
                             <input type="checkbox" id="service6" value="service6"  v-model="form.serviceRange"/>
-                            <label for="service6"><span class="checkbox__text">이미지 템플릿</span></label>
+                            <label for="chatbot"><span class="checkbox__text">이미지 템플릿</span></label>
                           </span>
                         </li>
+                        <!-- 기획서 v1.0 수정 (RCS 양방향 추가) -->
+                        <li>
+                          <span class="checkbox">
+                            <input type="checkbox" id="service7" value="service7"  v-model="form.serviceRange"/>
+                            <label for="service7"><span class="checkbox__text">RCS 양방향</span></label>
+                          </span>
+                        </li>
+                        <!-- // 기획서 v1.0 수정 (RCS 양방향 추가) -->
                       </ul>
                     </div>
                   </div>
@@ -388,8 +399,12 @@
           </ButtonCmp>
         </div>
       </ConfirmMsg>
+      <!-- 기획서 v1.0 수정
+        (기존 : 중계사 선택 버튼 클릭 시 나오는 모달창이었으나
+        기획서 p.54 : 중계사임/중계사아님 라디오버튼 클릭 시 모달창 으로 재확인
+        화면 구현을 위해 변경된 부분 : [예 버튼] click 이벤트 closeMsg 로 변경) -->
       <ConfirmMsg
-        v-else-if="AgencyModal"
+        v-if="AgencyModal"
         @closeModal="isModalViewed = false"
       >
         <div slot="msg">
@@ -404,10 +419,11 @@
             >아니오</ButtonCmp>
             <ButtonCmp
             type="btn-blue"
-            @click="agencyManagement"
+            @click="closeMsg"
             >예</ButtonCmp>
         </div>
       </ConfirmMsg>
+      <!-- // 기획서 v1.0 수정 -->
       <FormModals
         v-else-if="AgencyManage"
         @closeModal="isModalViewed = false"
@@ -419,18 +435,22 @@
         <div slot="modal-body">
           <div class="agency-list__wrap">
               <div class="agency-list__search">
-                <div class="form-item__content">
-                  <span class="input search">
-                    <input type="text"
-                      name="Search"
-                      class="input"
-                      placeholder="중계사명을 입력해주세요."
-                      v-model="searchWord"
+              <!-- 기획서 v1.0 수정 - search 변경 -->
+              <div class="top-ctrl-area">
+                <div class="search-area w--full">
+                  <span class="input search-box">
+                    <input type="text" name="Search" class="input" placeholder="중계사명을 입력해주세요." v-model="searchWord"/>
+                    <ButtonCmp
+                      type="btn-only-icon"
+                      iconname='icon-search'
                       @click="search"
                     >
+                    </ButtonCmp>
                   </span>
                 </div>
-                <p class="guide-text error" v-if="agentErrorMsg">중계사명을 입력해주세요.</p>
+              </div>
+              <p class="guide-text error" v-if="agentErrorMsg">중계사명을 입력해주세요.</p>
+              <!-- //기획서 v1.0 수정 - search 변경 -->
               </div>
               <div class="agency-list__selelect">
                 <div class="agency-list__left">
@@ -614,7 +634,7 @@ export default {
       AgencyModal: false,
       certificatetemp: '123456789',
       isAgencyModal: false,
-      stepTitle: ['약관동의', '대행사정보 입력', '회원정보 입력', '가입완료'],
+      stepTitle: ['약관동의', '대행사정보 입력', '회원정보 입력', '가입 신청 완료'], //  기획서 v1.0 수정 (문구 수정)
       disabled: true,
       AgencyManage: false,
       agencyList: ['경민중계', '더피프티원', '더피프티원1', '성문대행', '더피프티원2', '더피프티원3', '더피프티원4', '더피프티원5', '성문대행2', '성문대행3'],
@@ -729,6 +749,7 @@ export default {
     agencyManagement () {
       this.AgencyModal = false
       this.AgencyManage = true
+      this.isModalViewed = true //  기획서 v1.0 수정 (추가)
     },
     selectCheck (e) {
       this.agencyListSelect.push(e.target.value)

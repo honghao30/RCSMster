@@ -7,7 +7,7 @@
         <!-- <PageTitleH3 titleh3="기본 정보 입력"/> -->
         <form  ref="form" :model="form">
           <div class="brand_wrap">
-            <div class="table__wrap">
+            <div class="table__wrap no-line">  <!-- 기획서 1.0 수정 -->
               <table class="table table-bodyonly form-table">
                 <colgroup>
                   <col width="230px">
@@ -273,29 +273,38 @@
                   <tr>
                     <th scope="row"><span class="form-item__label required">카테고리</span></th>
                     <td>
+                      <!-- 기획서 1.0 수정 -->
                       <div class="form-item__content">
-                        <div class="form-item-row">
-                          <div class="input-item">
-                            <Dropdown :options="categoryOptions" placeholder="카테고리를 선택하세요" v-model="form.category1" >
-                            </Dropdown>
+                        <div class="form-item-row space-between">
+                          <div class="input-item w--half">
+                            <div class="input-item-category">
+                              <div class="item-row-title">카테고리1</div>
+                              <Dropdown :options="categoryOptions" placeholder="카테고리를 선택하세요" v-model="form.category1" >
+                              </Dropdown>
+                            </div>
                           </div>
-                        </div>
-                        <div class="form-item-row" v-if="form.category1">
-                          <div class="input-item">
-                            <Dropdown :options="categoryOptions2" placeholder="카테고리를 선택하세요" v-model="form.category2">
-                            </Dropdown>
+                          <div class="input-item w--half" v-if="form.category1">
+                            <div class="input-item-category">
+                              <div class="item-row-title">카테고리2</div>
+                              <Dropdown :options="categoryOptions2" placeholder="카테고리를 선택하세요" v-model="form.category2">
+                              </Dropdown>
+                            </div>
                           </div>
                         </div>
                         <div class="form-item-row" v-if="form.category2">
-                          <div class="input-item">
-                            <span class="input">
-                                <input type="text" class="input" placeholder="검색용 키워드를 입력하세요." v-model="category3">
-                            </span>
+                          <div class="input-item-category">
+                            <div class="item-row-title">카테고리3</div>
+                            <div class="input-item">
+                              <span class="input">
+                                  <input type="text" class="input" placeholder="검색용 키워드를 입력하세요." v-model="category3">
+                              </span>
+                            </div>
                           </div>
                         </div>
                         <p class="guide-text">※ 보다 좋은 서비스 제공을 위하여 운영자가 임의 변경할 수 있습니다.</p>
                         <p class="guide-text error" v-if="categoryErrorMsg" >카테고리를 선택해주세요.</p>
                       </div>
+                      <!-- //기획서 1.0 수정 -->
                     </td>
                   </tr>
                   <tr>

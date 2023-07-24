@@ -36,7 +36,8 @@
                       <span class="text">마스터</span>
                     </div>
                     <!-- 매니저일 때 -->
-                    <div class="input-item">
+                    <!-- 기획서 v1.0 수정 (이중클래스 추가)  -->
+                    <div class="input-item master-change-btn">
                       <span class="text">매니저</span>
                       <ButtonCmp
                         type="btn-default-line"
@@ -63,29 +64,29 @@
                 </div>
               </td>
             </tr>
+            <tr class="bdBottom-bg"> <!-- 기획서 v1.0 수정 - 스타일 추가 -->
+              <th scope="row"><span class="form-item__label required">휴대폰 번호</span></th>
+              <td colspan="3">
+                  <div class="form-item__content">
+                      <div class="form-item-row">
+                          <div class="input-item">
+                          <!-- 0620: 디자인 1차 수정 - 'input-info' class명 추가 -->
+                              <span class="input input-info"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요." v-model="form.phone"></span>
+                              <ButtonCmp
+                                  type="btn-default-line"
+                                  @click="phoneCertificate"
+                              >
+                              휴대폰 번호 변경
+                              </ButtonCmp>
+                          </div>
+                          <p class="guide-text black">&middot; 휴대폰번호 변경 시 본인인증은 필수입니다.</p>
+                          <p class="guide-text error" v-if="phoneErrorMsg">휴대폰 번호을 입력해주세요.</p>
+                      </div>
+                  </div>
+              </td>
+            </tr>
             <tr>
-                <th scope="row"><span class="form-item__label required">휴대폰 번호</span></th>
-                <td colspan="3">
-                    <div class="form-item__content">
-                        <div class="form-item-row">
-                            <div class="input-item">
-                            <!-- 0620: 디자인 1차 수정 - 'input-info' class명 추가 -->
-                                <span class="input input-info"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요." v-model="form.phone"></span>
-                                <ButtonCmp
-                                    type="btn-default-line"
-                                    @click="phoneCertificate"
-                                >
-                                휴대폰 번호 변경
-                                </ButtonCmp>
-                            </div>
-                            <p class="guide-text black">&middot; 휴대폰번호 변경 시 본인인증은 필수입니다.</p>
-                            <p class="guide-text error" v-if="phoneErrorMsg">휴대폰 번호을 입력해주세요.</p>
-                        </div>
-                    </div>
-                </td>
-              </tr>
-            <tr>
-              <th scope="row"><span class="form-item__label required">담당자 이메일</span></th>
+              <th scope="row"><span class="form-item__label required">이메일</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td colspan="3">
                 <div class="form-item__content">
                   <div class="form-item-row">
@@ -94,13 +95,13 @@
                       <span class="input input-info"><input type="text" class="input" placeholder="이메일을 입력해 주세요." v-model="form.email"></span>
                     </div>
                   </div>
-                  <p class="guide-text black">&middot; 담당자 이메일을 입력해주세요.</p>
-                  <!-- <p class="guide-text error" v-if="emailErrorMsg">담당자 이메일을 입력해주세요.</p> -->
+                  <p class="guide-text black">&middot; 이메일을 입력해주세요.</p> <!-- 기획서 v1.0 수정 - 문구 수정 -->
+                  <!-- <p class="guide-text error" v-if="emailErrorMsg">이메일을 입력해주세요.</p> --> <!-- 기획서 v1.0 수정 - 문구 수정 -->
                 </div>
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label">담당자 연락처</span></th>
+              <th scope="row"><span class="form-item__label">연락처</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
@@ -112,7 +113,6 @@
                       <span class="input input-tel"><input type="text" class="input" placeholder="" v-model="form.telLast"></span>
                     </div>
                   </div>
-                  <p class="guide-text error" v-if="telErrorMsg">담당자 연락처를 입력해주세요.</p>
                 </div>
               </td>
               <th scope="row" class="th-tel"><span class="form-item__label">내선번호</span></th>
@@ -166,52 +166,59 @@
     <ModalView
       v-if="isModalViewed" @closeModal="isModalViewed = false"
     >
+      <!-- 기획서 v1.0 수정 (휴대폰 인증 버튼 클릭 시: 전체 수정) -->
       <ConfirmMsg
         @closeModal="isModalViewed = false"
-        modalsize="Modalmax480"
+        modalsize="Max628"
         v-if="phoneNumberCheck"
-      >
+      > <!-- 기획서 v1.0 수정 (modalsize 수정) -->
         <div slot="msg">
           <div class="msg">
-            <div class="phone-cert__title">
-              휴대폰 인증
+            <div class="phone-cert__title"> <!-- 기획서 v1.0 수정 (문구 수정) -->
+              휴대폰번호 인증
             </div>
-            <div class="phone-cert__msg">
+            <div class="phone-cert__msg"> <!-- 기획서 v1.0 수정 (마침표 추가) -->
               인증번호를 발송하였습니다.<br>
-              수신 받은 인증번호를 입력해주세요
+              수신 받은 인증번호를 입력해주세요.
             </div>
-            <div class="phone-cert__number">홍*동 010-****-5410</div>
-            <div  class="phone-cert__number-input">
-              <span class="input">
-                <input ref="number" type="text" placeholder="인증번호"  v-model="form.certNumber">
-              </span>
-                <span class="time hide" ref="time">{{ TimerStr }}</span>
-                <ButtonCmp
-                  type="btn-gray-line"
-                  :disabled="isButtonDisabled"
-                  @click="start"
-                >
-                  인증번호 요청
-                </ButtonCmp>
+            <!-- 기획서 v1.0 수정 (phone-cert__des 부모 클래스 추가) -->
+            <div class="phone-cert__des">
+              <div class="phone-cert__number">홍*동 010-****-5410</div>
+              <div class="phone-cert__number-input">
+                <span class="input">
+                  <input ref="number" type="text" placeholder="인증번호"  v-model="form.certNumber">
+                </span>
+                  <span class="time hide" ref="time">{{ TimerStr }}</span>
+                  <ButtonCmp
+                    type="btn-blue"
+                    size="medium"
+                    :disabled="isButtonDisabled"
+                    @click="start"
+                  > <!-- 기획서 v1.0 수정 (type 수정, size 추가) -->
+                    인증번호 요청
+                  </ButtonCmp>
+              </div>
+              <p class="guide-text error" v-if="phoneCheckTimeout">인증 유효시간이 지났습니다.</p>
             </div>
-            <p class="guide-text error" v-if="phoneCheckTimeout">인증 유효시간이 지났습니다.</p>
+            <!-- // 기획서 v1.0 수정 (phone-cert__des 부모 클래스 추가) -->
           </div>
         </div>
         <div class="button__wrap" slot="button">
-            <ButtonCmp
-              type="btn-blue-line"
-              @click="closeMsg"
-            >닫기
-            </ButtonCmp>
-            <ButtonCmp
-              type="btn-blue"
-              :disabled="!isDisabled"
-              @click="closeMsg"
-            >
-              인증
-            </ButtonCmp>
+          <ButtonCmp
+            type="btn-blue-line"
+            @click="closeMsg"
+          >닫기
+          </ButtonCmp>
+          <ButtonCmp
+            type="btn-blue"
+            :disabled="!isDisabled"
+            @click="closeMsg"
+          >
+            인증
+          </ButtonCmp>
         </div>
       </ConfirmMsg>
+      <!-- // 기획서 v1.0 수정 (휴대폰 인증 버튼 클릭 시: 전체 수정) -->
       <ConfirmMsg
         @closeModal="isModalViewed = false"
         v-if="myInfoSave"
@@ -230,6 +237,41 @@
             </ButtonCmp>
         </div>
       </ConfirmMsg>
+      <!-- 기획서 v1.0 수정 - 모달 추가 제출 버튼 클릭시 '마스터 변경요청이 완료되었습니다.' 모달 표시 (충돌 위험으로 스크립트 작업을 안 해두었습니다.) -->
+      <FormModals
+        @closeModal="isModalViewed = false"
+        v-if="masterChangeModal"
+        modalsize="Max628"
+      >
+      <div class="modal__content--title" slot="title">
+        사업자등록증 제출
+      </div>
+      <div class="modal__content--body masterChange" slot="modal-body">
+        <div class="title">사업자등록을 제출해주세요.</div>
+        <div class="form-item__content">
+          <div class="form-item-row">
+            <div class="input-item">
+              <span class="input input-info"><input type="text" class="input" :value="filesName" :disabled="disabled" placeholder="사업자등록증을 등록해주세요."></span>
+              <input type="file" id="fileUp" class="input" @change="onFileChanged">
+              <label for="fileUp" class="btn btn-default-line">파일찾기</label>
+            </div>
+          </div>
+          <p class="guide-text black">&bull; 파일형식 : JPEG, PNG, PDF, TIFF (최대 5MB)</p>
+          <p class="guide-text black">&bull; 사업자등록증이 없는 경우 사업자등록증명 또는 고유번호증을 등록해주세요.</p>
+          <p class="guide-text black">&bull; 비영리법인/국가기관인 경우 고유번호증을 등록해주세요.</p>
+        </div>
+      </div>
+      <div class="button__wrap" slot="button">
+          <ButtonCmp
+          type="btn-blue-line"
+          @click="closeMsg"
+          >닫기</ButtonCmp>
+          <ButtonCmp
+          type="btn-blue"
+          @click="nextMsg"
+          >제출</ButtonCmp>
+      </div>
+      </FormModals>
       <ConfirmMsg
         @closeModal="isModalViewed = false"
         v-if="masterChangeModal"
@@ -249,6 +291,7 @@
             </ButtonCmp>
         </div>
       </ConfirmMsg>
+      <!-- //기획서 v1.0 수정 - 모달 추가 제출 버튼 클릭시 '마스터 변경요청이 완료되었습니다.' 모달 표시 -->
     </ModalView>
   </div>
 </template>
@@ -260,6 +303,7 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import ConfirmMsg from '@/views/join/components/ConfirmMsg.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
+import FormModals from '@/views/join/components/FormModals.vue'
 
 export default {
   components: {
@@ -268,7 +312,8 @@ export default {
     PageTitleH3,
     ModalView,
     ConfirmMsg,
-    Dropdown
+    Dropdown,
+    FormModals
   },
   data() {
     return {

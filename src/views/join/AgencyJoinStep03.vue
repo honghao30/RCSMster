@@ -1,6 +1,6 @@
 <template>
   <div class="join">
-    <PageTitle pagetitle="대행사 회원가입" />
+    <PageTitle pagetitle="대행사 가입" /> <!-- 기획서 v1.0 수정 (문구 수정) -->
     <StepList :stepActiveIndex="3" :stepTitle="stepTitle" />
     <PageTitleH3 titleh3="회원정보 입력" />
     <form  ref="form" :model="form">
@@ -10,8 +10,8 @@
             <colgroup>
               <col width="230px">
               <col width="390px">
-              <col />
-              <col />
+              <col width="92px"> <!--  기획서 v1.0 수정 (colgroup width값 수정) -->
+              <col width="341px"> <!--  기획서 v1.0 수정 (colgroup width값 수정) -->
             </colgroup>
             <tbody>
               <tr>
@@ -100,7 +100,7 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row"><span class="form-item__label required">담당자 이메일</span></th>
+                <th scope="row"><span class="form-item__label required">이메일</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
                 <td colspan="3">
                   <div class="form-item__content">
                     <div class="form-item-row">
@@ -108,12 +108,13 @@
                         <span class="input input-info"><input type="text" class="input" placeholder="이메일을 입력해 주세요." v-model="form.email"></span>
                       </div>
                     </div>
-                    <p class="guide-text error" v-if="emailErrorMsg">담당자 이메일을 입력해주세요.</p>
+                    <p class="guide-text error" v-if="emailErrorMsg">이메일을 입력해주세요.</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
                   </div>
                 </td>
               </tr>
-              <tr>
-                <th scope="row"><span class="form-item__label required">담당자 연락처</span></th>
+              <!-- 기획서 v1.0 수정 (안내문구 추가로 인한 table 수정 및 안내문구 위치 변경) -->
+              <tr class="tr-total-tel">
+                <th scope="row" rowspan="2"><span class="form-item__label required">연락처</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
                 <td>
                   <div class="form-item__content">
                     <div class="form-item-row">
@@ -125,7 +126,6 @@
                         <span class="input input-tel"><input type="text" class="input" placeholder="" v-model="form.telLast"></span>
                       </div>
                     </div>
-                    <p class="guide-text error" v-if="telErrorMsg">담당자 연락처를 입력해주세요.</p>
                   </div>
                 </td>
                 <th scope="row" class="th-tel"><span class="form-item__label">내선번호</span></th>
@@ -139,6 +139,14 @@
                   </div>
                 </td>
               </tr>
+              <tr class="tr-tel-notice"> <!-- 기획서 v1.0 수정 (tr 추가) -->
+                <td colspan="3">
+                  <!-- 기획서 v1.0 수정 (안내문구 미 사용 시, p태그 삭제) -->
+                  <p class="guide-text black">&middot; RCS Biz Center의 기업정보관리 및 운영과 관련하여 연락가능한 유효한 정보로 등록해 주시기 바랍니다.</p> <!-- 기획서 v1.0 수정 (문구추가) -->
+                  <p class="guide-text error" v-if="telErrorMsg">연락처를 입력해주세요.</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                </td>
+              </tr>
+              <!-- // 기획서 v1.0 수정 (안내문구 추가로 인한 table 수정 및 안내문구 위치 변경) -->
             </tbody>
           </table>
         </div>
@@ -180,35 +188,41 @@
             </ButtonCmp>
         </div>
       </ConfirmMsg>
+      <!-- 기획서 v1.0 수정 (휴대폰 인증 버튼 클릭 시: 전체 수정) -->
       <ConfirmMsg
         @closeModal="isModalViewed = false"
-        modalsize="Modalmax480"
+        modalsize="Max628"
         v-else
-      >
+      > <!-- 기획서 v1.0 수정 (modalsize 수정) -->
         <div slot="msg">
           <div class="msg">
-            <div class="phone-cert__title">
-              휴대폰 인증
+            <div class="phone-cert__title"> <!-- 기획서 v1.0 수정 (문구 수정) -->
+              휴대폰번호 인증
             </div>
-            <div class="phone-cert__msg">
+            <div class="phone-cert__msg"> <!-- 기획서 v1.0 수정 (마침표 추가) -->
               인증번호를 발송하였습니다.<br>
-              수신 받은 인증번호를 입력해주세요
+              수신 받은 인증번호를 입력해주세요.
             </div>
-            <div class="phone-cert__number">홍*동 010-****-5410</div>
-            <div  class="phone-cert__number-input">
-              <span class="input">
-                <input ref="number" type="text" placeholder="인증번호"  v-model="form.certNumber">
-              </span>
-                <span class="time hide" ref="time">{{ TimerStr }}</span>
-                <ButtonCmp
-                  type="btn-gray-line"
-                  :disabled="isButtonDisabled"
-                  @click="start"
-                >
-                  인증번호 요청
-                </ButtonCmp>
+            <!-- 기획서 v1.0 수정 (phone-cert__des 부모 클래스 추가) -->
+            <div class="phone-cert__des">
+              <div class="phone-cert__number">홍*동 010-****-5410</div>
+              <div class="phone-cert__number-input">
+                <span class="input">
+                  <input ref="number" type="text" placeholder="인증번호"  v-model="form.certNumber">
+                </span>
+                  <span class="time hide" ref="time">{{ TimerStr }}</span>
+                  <ButtonCmp
+                    type="btn-blue"
+                    size="medium"
+                    :disabled="isButtonDisabled"
+                    @click="start"
+                  > <!-- 기획서 v1.0 수정 (type 수정, size 추가) -->
+                    인증번호 요청
+                  </ButtonCmp>
+              </div>
+              <p class="guide-text error" v-if="phoneCheckTimeout">인증 유효시간이 지났습니다.</p>
             </div>
-            <p class="guide-text error" v-if="phoneCheckTimeout">인증 유효시간이 지났습니다.</p>
+            <!-- // 기획서 v1.0 수정 (phone-cert__des 부모 클래스 추가) -->
           </div>
         </div>
         <div class="button__wrap" slot="button">
@@ -226,6 +240,7 @@
             </ButtonCmp>
         </div>
       </ConfirmMsg>
+      <!-- // 기획서 v1.0 수정 (휴대폰 인증 버튼 클릭 시: 전체 수정) -->
     </ModalView>
   </div>
 </template>
@@ -286,7 +301,7 @@ export default {
       Timer: null,
       TimeCounter: 180,
       TimerStr: '03:00',
-      stepTitle: ['약관동의', '대행사정보 입력', '회원정보 입력', '가입완료']
+      stepTitle: ['약관동의', '대행사정보 입력', '회원정보 입력', '가입 신청 완료'] //  기획서 v1.0 수정 (문구 수정)
     }
   },
   watch: {

@@ -16,12 +16,14 @@
           </div>
         </div>
       </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"
+      ></div>
     </swiper>
   </div>
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import { Swiper, SwiperSlide} from 'vue-awesome-swiper'
 export default {
   components: {
     Swiper,
@@ -37,7 +39,11 @@ export default {
     return {
       swiperOption: {
         spaceBetween: 12,
-        slidesPerView: 'auto'
+        slidesPerView: 'auto',
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true
+        },
       }
     }
   }

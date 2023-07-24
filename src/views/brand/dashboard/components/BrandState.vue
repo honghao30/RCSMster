@@ -7,7 +7,7 @@
       </div>
       <ul>
         <li v-for="subItem in item.list" :key="subItem">
-          <p v-if="subItem.number === ''">-</p>
+          <p v-if="subItem.number < 1">-</p>
           <p v-else>{{ subItem.number }}</p>
           <span>{{ subItem.title }}</span>
         </li>

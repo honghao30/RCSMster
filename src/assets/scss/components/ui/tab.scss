@@ -1,11 +1,10 @@
 .tab__wrap {
   margin-bottom: 32px;
-  	.tab-list {
-      display:flex;
-      align-items:center;
-      background-color:#F9F9F9;
-      
-      	li  {
+	.tab-list {
+    display:flex;
+    align-items:center;
+    background-color:#F9F9F9;
+		li {
 			flex: 1;
 			a {
 				display:flex;
@@ -50,14 +49,13 @@
 					}
 				}
 			}
-      	}
+		}
 		&.fixed { // 넓이 고정 
 			.tab-item {
 				flex:none;
 			}
 		}
-		
-  	}
+	}
 	&.small {
 		.tab-list {
 			margin-top: 12px;
@@ -84,6 +82,31 @@
 	}
 	.table__wrap {
 		border-top: 0;
+	}
+	&.only-border{
+		margin-bottom: 0;
+		border-bottom: 1px solid #ddd;
+		.tab-list {
+			li {
+				a {
+					height:65px;
+					border-bottom:none;
+					background-color:#fff;
+					span {
+						line-height: 24px;
+					}
+				}
+				&.active {
+					a {
+						background-color:#fff;
+						border-radius:0;
+						border:none;
+						border-bottom: 3px solid $pointColor;
+						color:#000;
+					}
+				}
+			}
+		}
 	}
 }
 .category-tab {
@@ -129,17 +152,36 @@
 
 @media #{$phone} {
 	.tab__wrap  {
-        margin-bottom: 24px;
-        ul {
-            a {
-                height:54px;
-                font-size:14px;
-                span {
-                    line-height: 14px;
-                }
+    margin-bottom: 24px;
+    ul {
+        a {
+            height:54px;
+            font-size:14px;
+            span {
+                line-height: 14px;
             }
         }
     }
+		&.only-border{
+			.tab-list {
+				li {
+					a {
+						height:36px;
+						font-size:15px;
+						line-height: 21px;
+						span {
+							line-height: 21px;
+						}
+					}
+					&.active {
+						a {
+							border-bottom: 2.5px solid $pointColor;
+						}
+					}
+				}
+			}
+		}
+  }
 	.category-tab {
 		margin:0 -16px 24px -16px;
 		overflow:hidden;

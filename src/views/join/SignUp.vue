@@ -7,24 +7,28 @@
     <div class="signup__wrap">
       <div class="signup-item">
         <div class="signup-item__tit">
-          <p>서비스를 이용하고 있는<br/><span>기업 담당자</span> 인가요?</p>
+          <p>서비스를 이용하고 있는<br/><span>기업인가요?</span></p> <!-- 기획서 v1.0 수정(문구 수정 + span 태그 위치 변경) -->
         </div>
         <div class="signup-item__des">
           <p>브랜드개설 및 관리가 가능하며<br/>담당자를 초대하여 등록이 가능합니다</p>
+          <!-- 기획서 v1.0 수정(감싸는 btn 컴포넌트 삭제 + 클래스 추가 + 문구수정) -->
           <div class="button__wrap">
-            <ButtonCmp type="btn-blue btn-person"><router-link to="/JoinStep01">기업 담당자 회원가입</router-link></ButtonCmp>
+            <router-link to="/JoinStep01" class="btn btn-blue btn-person">운영자 가입</router-link>
           </div>
+          <!-- // 기획서 v1.0 수정(감싸는 btn 컴포넌트 삭제 + 클래스 추가 + 문구수정) -->
         </div>
       </div>
       <div class="signup-item">
         <div class="signup-item__tit">
-          <p>여러 서비스를 관리하고 있는<br/><span>대행사 담당자</span> 인가요?</p>
+          <p>여러 서비스를 관리하고 있는<br/><span>대행사인가요?</span></p> <!-- 기획서 v1.0 수정(문구 수정 + span 태그 위치 변경) -->
         </div>
         <div class="signup-item__des">
           <p>관리자에게 운영권한을 받아 관리가 가능하며<br/>여러 회사의 서비스 운영이 가능합니다</p>
+          <!-- 기획서 v1.0 수정(감싸는 btn 컴포넌트 삭제 + 클래스 추가 + 문구수정) -->
           <div class="button__wrap">
-            <ButtonCmp type="btn-blue btn-people"><router-link to="/AgencyJoinStep01">대행사 회원가입</router-link></ButtonCmp>
+            <router-link to="/AgencyJoinStep01" class="btn btn-blue btn-people">대행사 가입</router-link>
           </div>
+          <!-- // 기획서 v1.0 수정(감싸는 btn 컴포넌트 삭제 + 클래스 추가 + 문구수정) -->
         </div>
       </div>
     </div>
@@ -33,11 +37,9 @@
 
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
-import ButtonCmp from '@/components/common/ButtonCmp.vue'
 export default {
   components: {
-    PageTitle,
-    ButtonCmp
+    PageTitle
   },
   data() {
     return {

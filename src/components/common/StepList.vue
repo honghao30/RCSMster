@@ -21,7 +21,7 @@ export default {
       type: Number,
       default: 0
     },
-    stepTitle: Object
+    stepTitle: Array
   },
   mounted() {
     this.activeStep = this.stepActiveIndex - 1

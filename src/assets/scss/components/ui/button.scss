@@ -187,11 +187,12 @@ $iconBsUrl: '../assets/images/icon/';
 }
 //icon List
 .icon-eye {
-  width: 22px;
-  height:18px;
+  width: 20px;
+  height:20px;
   background-image: url('#{$iconBsUrl}icon_eye.png');
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 100%;
   &.blue{
     background-image: url('#{$iconBsUrl}icon_eye_blue.png');
   }

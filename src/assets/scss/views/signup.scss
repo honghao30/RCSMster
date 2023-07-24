@@ -66,11 +66,14 @@
       .signup-item__des {
         background-color: #F8F8F8;
         text-align: center;
-        padding: 32px 0 24px;
+        padding: 24px 0 32px;
         border-radius: 0 0 8px 8px;
         p{
           color: #666;
           line-height: 22px;
+        }
+        .button__wrap {
+          padding-top: 24px;
         }
       }
     }
@@ -223,7 +226,7 @@
   .agency-list__select {
     dl {
       margin-top: 16px;
-      border-top: 2px solid #2F77FB;
+      border-top: 2px solid #DDD;
       dt {
         padding: 15px;
         height: 54px;

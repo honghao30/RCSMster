@@ -143,7 +143,7 @@ export default {
     ButtonCmp
   },
   props: {
-    stepData: String
+    stepData: Object
   },
   data () {
     return {

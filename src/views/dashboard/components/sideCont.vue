@@ -6,7 +6,7 @@
       <div class="side-box__info-top">
         <div class="side-box-top">
           <h4>더피프티원</h4>
-          <span class="authority master">마스터</span>
+          <span class="authority master">운영자</span> <!-- 기획서 v1.0 수정 - 문구 수정(마스터 -> 운영자) -->
         </div>
         <div class="side-box-middle">
           <span class="id">CO.K0803h0r0O</span>
@@ -87,6 +87,22 @@
       <router-link to="/dashboardOperationManage" class="btn btn-blue-line">전체 브랜드 운영 관리</router-link>
     </div>
     <!-- // 전체 브랜드 운영 관리 (마스터, 매니저) -->
+    <!-- 기획서 v1.0 수정 - 배너 추가 -->
+    <!-- 가변 배너 -->
+    <div class="side-box side-box__banner banner_flex">
+      <div class="side-box-img">
+        <div class="brand_icon">
+          <img src="@/assets/images/icon/brand_icon.png" alt="">
+        </div>
+      </div>
+      <div class="banner_side-box">
+        <h3>기업과 고객 간 연결을 위한<br>
+          다양한 RBC서비스를 이용하세요.</h3>
+        <router-link to="" class="side-company-btn">브랜드 개설하기</router-link>
+      </div>
+    </div>
+    <!-- // 가변 배너 -->
+    <!-- //기획서 v1.0 수정 - 배너 추가 -->
     <!-- 운영권한 관리 및 신청 내역 (마스터) -->
     <div class="side-box side-box__authority">
       <div class="side-box-top">
@@ -110,19 +126,27 @@
               </ul>
             </li>
           </ul>
+          <!-- 기획서 v1.0 수정(pub2Dev 기록으로 작성함) -->
           <div class="button__wrap">
+            <!-- 반려 버튼 선택 시,
+              1. 운영권한 승인 신청 반려 팝업 출력 → ModalView에서 작성함 주석 중 '◆' 특수문자 있는 부분입니다.( pub-hongsh : 모달창 화면 구현 O / pub2Dev : 모달창 화면 구현 X)
+              2. 반려 시 운영권한 승인 신청 내역에서 해당 내역 삭제)
+            -->
             <ButtonCmp
               type="btn-line"
               size="small"
               @click="rejectModal"
-            >반려</ButtonCmp>
-            <!-- 승인 선택 시) 1. 운영권한 승인 신청 내역 내 숨김 처리 2. 운영권한 신청자의 계정권한에 따라 권한 부여
-            마스터가 운영권한 신청 시 마스터 권한 부여 / 매니저가 운영권한 신청 시 매니저 권한 부여 -->
+            >반려</ButtonCmp> <!-- 기획서 v1.0 수정 (@click="rejectModal" 추가)-->
+            <!-- 승인 선택 시,
+              1. 운영권한 승인 신청 내역 내 숨김 처리
+              2. 운영권한 신청자의 계정권한에 따라 권한 부여
+                마스터가 운영권한 신청 시 마스터 권한 부여 / 매니저가 운영권한 신청 시 매니저 권한 부여) -->
             <ButtonCmp
               type="btn-blue-line"
               size="small"
             >승인</ButtonCmp>
           </div>
+          <!-- // 기획서 v1.0 수정(pub2Dev 기록으로 작성함) -->
         </div>
         <div class="authority-list-none">
           <p>운영권한 승인 신청 내역이 없습니다.</p>
@@ -137,7 +161,7 @@
     <!-- 1. 멤버 초대하기 (마스터) -->
     <div class="side-box side-box__invite">
       <div class="side-box-top">
-        <h4>브랜드 운영자 초대하기</h4>
+        <h4>브랜드 운영자 초대하기</h4> <!-- 기획서 v1.0 수정 - 문구 수정(마스터 -> 운영자) -->
       </div>
       <div class="side-box-cont">
         <p>함께 관리하고 운영하는 멤버를 초대하세요.</p>
@@ -182,7 +206,7 @@
     <!-- 4. 마스터 계정 설정 -기업회원 (매니저) -->
     <div class="side-box side-box__invite">
       <div class="side-box-top">
-        <h4>마스터 계정 설정</h4>
+        <h4>운영자 계정 설정</h4> <!-- 기획서 v1.0 수정 - 문구 수정(마스터 -> 운영자) -->
         <p>승인이 완료되면 모든 기능을 사용할 수 있어요.</p>
       </div>
       <div class="side-box-cont">
@@ -190,12 +214,13 @@
           <li>
             <strong>1</strong>
             <!-- 마이페이지 > 기업정보관리 페이지로 이동  -->
+            <!-- 사업자등록증 제출 : 글자 컬러 스타일(검정), 꺽쇠 없는 경우 : step-more, submit-more 클래스 삭제 -->
             <router-link to="" class="step-more submit-more">사업자등록증 제출</router-link>
           </li>
           <li>
             <strong>2</strong>
             <!-- 마스터 승격 완료 글자 컬러 스타일 변경될 시 : step-more 클래스 추가 -->
-            <a>마스터 승격 완료</a>
+            <a>운영자 승격 완료</a> <!-- 기획서 v1.0 수정 - 문구 수정(마스터 -> 운영자) -->
           </li>
         </ul>
       </div>
@@ -210,6 +235,7 @@
         <p>브랜드의 관리자에게 대행사 권한을 신청합니다.<br>권한이 부여되면 RCS 메시지 발송이 가능합니다.</p>
       </div>
       <div class="button__wrap side-box-bottom">
+        <!--  @click="BrandAuthorityRequestModal" : ModalView에서 작성함 주석 중 '★' 특수문자 있는 부분입니다. ( pub-hongsh : 모달창 화면 구현 O / pub2Dev : 모달창 화면 구현 X) -->
         <ButtonCmp
           type="btn-blue-line"
           size=" medium"
@@ -287,14 +313,24 @@
       >
         <div class="msg" slot="msg">
           <h3>안심마크 서비스란 무엇인가요?</h3>
-          <img src="@/assets/images/modal/dashboard_safetymark.png" alt="">
+          <!-- 기획서 v1.0 수정 - 구조 변경 및 문구 수정 -->
           <div class="safetymark_des">
-            <p>안심마크 서비스는, 불법 메시지로 인해 피해가 많이 발생하는 금융 / 공공기관 등을 대상으로 “실제 해당 기업에서 메시지를 보냈음”을 시각적으로 확인할 수 있도록 돕는 서비스입니다.</p>
-            <br>
-            <p>실제 해당번호를 소유한 기업이 보내는 RCS 메시지에만 “확인된 발신번호”라는 안심마크 붙게 되어, 발신변작을 통한 스팸/스미싱 등의 불법 메시지와 쉽게 구분할 수 있습니다.</p>
-            <br>
-            <p>해당 서비스는 KISA(한국인터넷진흥원)에서 인증한 브랜드만 이용 가능하며, 기업에서는 대화방 단위로 안심마크의 표시 여부를 설정할 수 있습니다</p>
+            <p>안심마크는 사칭 문자 가능성이 있는 일반 문자와 쉽게 구분할 수 있도록, 기업용 RCS 메시지에서
+              만 제공되는 서비스입니다. 인증마크(<span class="safety_icon"></span>)와, 안심문구(<span class="safety_icon-text">확인된 발신번호</span>)를 결합한 형태로 RCS
+              메시지 카드 상단에 표시되며 실제 해당 기업에서 발송했음을 증명합니다.
+            </p>
+            <img src="@/assets/images/modal/dashboard_safetymark.png" alt="">
+            <p>안심마크는 한국인터넷진흥원(KISA)의 허가를 받은 기업만 사용 가능하며, 해당 기업의 발신번
+              호로 전송되는 RCS메시지는 기본적으로 안심마크가 붙게 됩니다. 이용을 원치 않는 경우 대화방
+              별 안심마크를 설정 해제 할 수 있습니다. (RCS Biz Center > 안심마크 관리 메뉴)
+            </p>
+            <p>
+              한국인터넷진흥원은 스미싱 사고가 자주 발생하는 금융/공공기관 등을 대상으로 사용권한을 부
+              여하고 있으니, 안심마크 서비스 도입을 희망하시는 경우 한국인터넷진흥원
+              (<a href="mailto:numbers@kisa.or.kr" class="safetymark_mail">numbers@kisa.or.kr</a>)으로 문의해주세요.
+            </p>
           </div>
+          <!-- //기획서 v1.0 수정 - 구조 변경 및 문구 수정 -->
         </div>
         <div class="button__wrap" slot="button">
           <ButtonCmp
@@ -306,7 +342,7 @@
         </div>
       </ConfirmMsg>
       <!-- // 안심마크 -->
-      <!-- 운영권한 신청 반려 버튼 클릭 시 -->
+      <!-- ◆ 운영권한 신청 반려 버튼 클릭 시 -->
       <BrandAuthorityReject
         @closeModal="isModalViewed = false, isModalReject = false"
         @rejectFinish="rejectFinishModal"
@@ -314,8 +350,8 @@
         modalsize="dashboard_modal"
       >
       </BrandAuthorityReject>
-      <!-- // 운영권한 신청 반려 버튼 클릭 시 -->
-      <!-- 운영권한 신청 반려 버튼 클릭 시 > 반려 버튼 -->
+      <!-- // ◆ 운영권한 신청 반려 버튼 클릭 시 -->
+      <!-- ◆ 운영권한 신청 반려 버튼 클릭 시 > 반려 버튼 -->
       <ConfirmMsg
         @closeModal="isModalViewed = false, isRejectFinish = false"
         v-if="isRejectFinish"
@@ -333,15 +369,15 @@
           </ButtonCmp>
         </div>
       </ConfirmMsg>
-      <!-- // 운영권한 신청 반려 버튼 클릭 시 > 반려 버튼 -->
-      <!-- 사용 가이드 > 브랜드 운영권한 신청 (대행사) > 브랜드 운영권한 신청 버튼 클릭 시 -->
+      <!-- // ◆ 운영권한 신청 반려 버튼 클릭 시 > 반려 버튼 -->
+      <!-- ★ 브랜드 운영권한 신청 (대행사) > 브랜드 운영권한 신청 버튼 클릭 시 -->
       <BrandAuthorityRequest
         @closeModal="isModalViewed = false, isAuthorityRequest = false"
         v-if="isAuthorityRequest"
         modalsize="dashboard_modal"
       >
       </BrandAuthorityRequest>
-      <!-- // 사용 가이드 > 브랜드 운영권한 신청 (대행사) > 브랜드 운영권한 신청 버튼 클릭 시 -->
+      <!-- // ★ 브랜드 운영권한 신청 (대행사) > 브랜드 운영권한 신청 버튼 클릭 시 -->
     </ModalView>
     <!-- // 모달 -->
   </div>

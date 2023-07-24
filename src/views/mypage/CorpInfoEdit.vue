@@ -1,16 +1,8 @@
 <!-- 0620: 기존 파일 명 사용 매니저,마스터_비지니스 정보 관리 편집 -->
 <template>
   <div class="join">
-    <PageTitle pagetitle="비지니스 정보 관리" />
-    <!-- 0620: 디자인 1차 수정 - top-progress-area 수정 -->
-    <div class="top-progress-area">
-      <!-- 승인대기 -->
-      <span class="flag-progress">승인대기</span>
-      <!-- 승인완료 -->
-      <span class="flag-progress done">승인완료</span>
-      <!-- 반려 -->
-      <span class="flag-progress reject">반려</span>
-    </div>
+    <PageTitle pagetitle="비지니스 정보 관리" progress="승인완료"/>
+    <!-- 기획서 v1.0 수정 - flag 삭제 -->
     <PageTitleH3 titleh3="비지니스 정보"/>
     <form  ref="form" :model="form">
       <div class="table__wrap">
@@ -85,13 +77,13 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">법인명(단체명)</span></th>
+              <th scope="row"><span class="form-item__label required">법인명</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
                     <div class="input-item">
                     <!-- 0620: 디자인 1차 수정 - 'input-info' class명 추가 -->
-                      <span class="input input-info"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명(단체명)을 입력해주세요." v-model="form.companyname"></span>
+                      <span class="input input-info"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명을 입력해주세요." v-model="form.companyname"></span> <!-- 기획서 v1.0 수정 - 문구 수정 -->
                     </div>
                   </div>
                 </div>
@@ -125,7 +117,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">기업주소</span></th>
+              <th scope="row"><span class="form-item__label required">주소</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
@@ -177,10 +169,11 @@
           type="btn btn-line"
           @click="myInfo"
         >개인정보 관리</ButtonCmp>
+        <!-- 기획서 v1.0 수정 - 저장 -> 승인 요청 -->
         <ButtonCmp
           type="btn-blue"
           @click="onSubmit"
-        >저장</ButtonCmp>
+        >승인 요청</ButtonCmp>
       </div>
     </div>
   </div>

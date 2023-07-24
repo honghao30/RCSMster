@@ -15,7 +15,7 @@
     <div class="approval-statu__box approval-reject">
       <strong>가입 승인 반려</strong>
       <p class="reject-reason">반려 사유 : 인터넷 광고 금지 메시지</p>
-      <p>반려 사유를 확인하고 수정해 주세요. 3일 안에 다시 신청하지 않으면 지금까지 등록한 모든 데이터가 삭제됩니다.</p>
+      <p>반려 사유를 확인하시고, D+3일 이내에 보완 요청사항을 반영하여 재요청해 주세요. 기간만료 후에는 요청내용이 자동 삭제됩니다.</p> <!-- 기획서 v1.0 수정 (p.10 참고 > 가입 승인 반려 approval-reject 경우 > 문구 수정) -->
     </div>
     <!-- 가입 승인 완료 -->
     <div class="approval-statu__box approval-done">
@@ -26,16 +26,19 @@
     <!-- 등록된 브랜드가 있는 경우(마스터, 매니저) : 내가 운영중인 브랜드 영역 -->
     <!-- 내가 운영중인 브랜드 -->
     <div class="board-main__box mymain-box">
+      <!-- 기획서 v1.0 수정 후 : PageTitleH3 컴포넌트에 totalCount와 doropdown이 추가되어 사용 -->
       <PageTitleH3 titleh3="내가 운영중인 브랜드" totalCount="982" :DropDataSearchable="MyBrandOptions" />
       <brandListCmp>
         <template  slot="col">
-          <col>
+          <col> <!-- 기획서 v1.0 수정 (col 4개 삭제) -->
         </template>
+        <!-- 기획서 v1.0 수정 (thead 삭제) -->
         <template  slot="tbody">
           <tr v-for="(item,i) in brandData" :key="i">
+            <!-- 기획서 v1.0 수정 -->
             <td>
-              <div class="first-row">
-                <div class="row-left">
+              <div class="first-row"> <!-- 기획서 v1.0 수정 (first-row 태그 추가) -->
+                <div class="row-left"> <!-- 기획서 v1.0 수정 (row-left 태그 추가) -->
                   <div class="brandname">
                     <div class="brand">
                       <div class="brand__mark" role="bookmark">
@@ -45,17 +48,19 @@
                       <div class="brand__logo">
                         <img :src="item.brandLogo" alt="">
                       </div>
-                      <span class="brand__title link"><router-link to="">{{ item.title }}</router-link></span>
+                      <span class="brand__title link"><router-link to="">{{ item.title }}</router-link></span> <!-- 기획서 v1.0 수정 (이중클래스 link 추가) -->
+                      <!-- 기획서 v1.0 수정 (brnad__new, brand__message 클래스 삭제) -->
                     </div>
                   </div>
+                  <!-- 기획서 v1.0 수정 (브랜드 상태(item.status, item.aprvRetNm) : 위치, 스타일 변경으로 인해 methods 추가) -->
                   <div class="status">
                     <span class="flag-progress"
                       :class="getstatus(item.status)"
                     >{{ item.status }}
                     </span>
                   </div>
-                </div>
-                <div class="row-right">
+                </div> <!-- // 기획서 v1.0 수정 (row-left 태그 추가) -->
+                <div class="row-right"> <!-- 기획서 v1.0 수정 (row-right 태그 추가 및 underline으로 인해 v-if,v-else 추가 / 수정 전 각 td에 있는 내용 사용함) -->
                   <div class="row-box">
                     <div class="row-data">
                       <span class="data-chat underline" v-if="item.chatData >= 999">999+</span>
@@ -83,9 +88,10 @@
                       <span>대행사</span>
                     </div>
                   </div>
-                </div>
-              </div>
+                </div> <!-- // 기획서 v1.0 수정 (row-right 태그 추가 및 underline으로 인해 v-if,v-else 추가 / 수정 전 각 td에 있는 내용 사용함) -->
+              </div> <!-- // 기획서 v1.0 수정 (first-row 태그 추가) -->
             </td>
+            <!-- // 기획서 v1.0 수정 -->
           </tr>
         </template>
       </brandListCmp>
@@ -176,6 +182,7 @@
               <td class="l-align">
                 <span class="data-brandname underline">{{ item.brandName }}</span>
               </td>
+              <!-- 기획서 v1.0 수정 후 (999개 이상일 때, 999+ 로 사용으로 인해 /pub2Dev 기록으로 작성함) -->
               <td>
                 <span class="data-chat underline" v-if="item.chatData >= 999">999+</span>
                 <span class="data-chat" :class="{'underline': item.chatData > 0 }" v-else>{{ item.chatData }}</span>
@@ -184,6 +191,7 @@
                 <span class="data-template underline" v-if="item.message >= 999">999+</span>
                 <span class="data-template" :class="{'underline': item.message > 0 }" v-else>{{ item.message }}</span>
               </td>
+              <!-- 기획서 v1.0 수정 후 (999개 이상일 때, 999+ 로 사용으로 인해 /pub2Dev 기록으로 작성함) -->
               <td>
                 <span class="data-send">{{ item.messageSend }}</span>
               </td>
@@ -223,6 +231,12 @@
     </div>
     <!-- // 브랜드 개설 배너(마스터, 매니저, 대행사) -->
     <!-- 내가 운영할 수 있는 브랜드 영역 -->
+    <!-- 기획서 v1.0 수정
+      (pub2Dev에서 이미 적용되어있었음
+      찾아보니 아래 히스토리에서 추가되었음
+      git > 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 07.04에 추가된 내용 기준으로 추가로 수정된 부분 주석작업함)
+      (기록으로 작성한 거여서 pub2Dev 주석 내용과 상이함)
+    -->
     <div class="board-main__box mymain-box cando-box">
       <PageTitleH3 titleh3="내가 운영할 수 있는 브랜드" totalCount="982" :DropDataSearchable="MyBrandCanDoOptions" />
       <brandListCmp>
@@ -239,7 +253,8 @@
                       <div class="brand__logo">
                         <img :src="item.brandLogo" alt="">
                       </div>
-                      <span class="brand__title link"><router-link to="">{{ item.title }}</router-link></span>
+                      <span class="brand__title link"><router-link to="">{{ item.title }}</router-link></span> <!-- 기획서 v1.0 수정 (이중클래스 link 추가) -->
+                      <!-- 기획서 v1.0 수정 (brand__message 클래스 삭제) -->
                     </div>
                   </div>
                   <div class="manage-authority">
@@ -258,7 +273,7 @@
                 <div class="row-right">
                   <div class="row-box">
                     <div class="row-data">
-                      <span class="data-chat underline" v-if="item.chatData >= 999">999+</span>
+                      <span class="data-chat underline" v-if="item.chatData >= 999">999+</span> <!-- 기획서 v1.0 수정 (999개 이상일 때, 999+ 로 사용) / git 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 내용 중 빠진 부분 추가 pub2Dev에 추가한다고 주석 작성함 (기록으로 작성한 거여서 pub2Dev 주석 내용과 상이함) -->
                       <span class="data-chat" :class="{'underline': item.chatData > 0 }" v-else><router-link to="">{{ item.chatData }}</router-link></span>
                     </div>
                     <div class="row-data-tit">
@@ -267,7 +282,7 @@
                   </div>
                   <div class="row-box">
                     <div class="row-data">
-                      <span class="data-template underline" v-if="item.message >= 999">999+</span>
+                      <span class="data-template underline" v-if="item.message >= 999">999+</span> <!-- 기획서 v1.0 수정 (999개 이상일 때, 999+ 로 사용) / git 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 내용 중 빠진 부분 추가 pub2Dev에 추가한다고 주석 작성함 (기록으로 작성한 거여서 pub2Dev 주석 내용과 상이함) -->
                       <span class="data-template" :class="{'underline': item.message > 0 }" v-else><router-link to="">{{ item.message }}</router-link></span>
                     </div>
                     <div class="row-data-tit">
@@ -276,7 +291,7 @@
                   </div>
                   <div class="row-box">
                     <div class="row-data">
-                      <span class="data-agency underline" v-if="item.agencyData >= 999">999+</span>
+                      <span class="data-agency underline" v-if="item.agencyData >= 999">999+</span> <!-- 기획서 v1.0 수정 (999개 이상일 때, 999+ 로 사용) / git 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 내용 중 빠진 부분 추가 pub2Dev에 추가한다고 주석 작성함 (기록으로 작성한 거여서 pub2Dev 주석 내용과 상이함) -->
                       <span class="data-agency" :class="{'underline': item.agencyData > 0 }" v-else><router-link to="">{{ item.agencyData }}</router-link></span>
                     </div>
                     <div class="row-data-tit">
@@ -586,13 +601,13 @@ export default {
     getstatus (status) {
       switch (status) {
         case '승인 요청':
-          return 'ing'
+          return 'request'
         case '진행중':
-          return 'weit'
+          return 'ing'
         case '임시저장':
-          return 'weit'
+          return 'ing'
         case '삭제 처리중':
-          return 'weit'
+          return 'ing'
         case '반려':
           return 'return'
         case '승인 완료':

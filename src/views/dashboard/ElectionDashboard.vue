@@ -25,104 +25,94 @@
             <!-- // 가입 상태 안내 메시지 -->
             <div class="board-main__box">
               <PageTitleH3 titleh3="내가 운영중인 브랜드" totalCount="982" />
-              <brandListCmp>
-                <template  slot="col">
-                  <col width="58%">
-                  <col>
-                  <col>
-                  <col>
-                  <col>
-                </template>
-                <template  slot="thead">
-                  <th scope="col"><span>브랜드 명</span></th>
-                  <th scope="col"><span>대화방</span></th>
-                  <th scope="col"><span>템플릿</span></th>
-                  <th scope="col"><span>대행사</span></th>
-                  <th scope="col"><span>승인상태</span></th>
-                </template>
-                <template  slot="tbody">
-                  <tr v-for="(item,i) in brandData" :key="i">
-                    <td>
-                        <div class="brandname">
-                          <div class="brand">
-                            <div class="brand__mark" role="bookmark">
-                              <input type="checkbox" :id="`bookmark${i}`" :checked="item.mark" >
-                              <label class="brand__mark__core" :for="`bookmark${i}`"></label>
-                            </div>
-                            <div class="brand__logo"></div>
-                            <span class="brand__title"><router-link to="#">{{ item.title }}</router-link></span>
-                            <span class="brnad__new" v-if="item.new">NEW</span>
-                          </div>
+              <!-- 기획서 1.0 수정 -->
+              <ul class="brand-list__wrap">
+                <li  v-for="(item,i) in brandData" :key="i">
+                  <div class="check-fava">
+                    <div class="brandname">
+                      <div class="brand">
+                        <div class="brand__mark" role="bookmark">
+                          <input type="checkbox" :id="`bookmark${i}`" :checked="item.mark" >
+                          <label class="brand__mark__core" :for="`bookmark${i}`"></label>
                         </div>
-                      </td>
-                      <td>
+                        <div class="brand__logo"></div>
+                        <span class="brand__title"><router-link to="#">{{ item.title }}</router-link></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="brand-data__box">
+                      <div class="brand-data">
                         <span class="data-chat underline" v-if="item.chatData >= 999">999+</span>
                         <span class="data-chat" v-else>{{ item.chatData }}</span>
-                      </td>
-                      <td>
-                        <span class="data-template underline"  v-if="item.message >= 999">999+</span>
+                        <div class="data-name">대화방</div>
+                      </div>
+                      <div class="brand-data">
+                        <span class="data-chat underline" v-if="item.message >= 999">999+</span>
                         <span class="data-chat" v-else>{{ item.message }}</span>
-                      </td>
-                      <td>
-                        <span class="data-agency">{{ item.agencyData }}</span>
-                      </td>
-                      <td>
-                        <span class="data-agency" :class="{ isReturn: item.status === '반려' }">{{ item.status }}</span>
-                      </td>
-                  </tr>
-                </template>
-              </brandListCmp>
+                        <div class="data-name">메시지</div>
+                      </div>
+                      <div class="brand-data">
+                        <span class="data-chat underline">99</span>
+                        <div class="data-name">대행사</div>
+                      </div>
+                  </div>
+                </li>
+              </ul>
+              <!-- //기획서 1.0 수정 -->
               <!-- // 내가 운영중인 브랜드 -->
+              <!-- 07.20 기업대시보드와 동일하게 수정 -->
               <div class="brand-banner__box">
-                <strong>브랜드를 만들고 고객과 연결될 수 있는<br/>RBC의 다양한 기능을 사용하세요.</strong>
-                <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
-                <router-link to="" class="btn btn-blue">브랜드 개설하기</router-link>
+                <div class="brand-banner__txt">
+                  <h3>고객과 연결될 수 있는 RBC의 다양한 기능을 이용하세요.</h3>
+                  <p>브랜드를 만들어 다양한 레이아웃과 컨텐츠를 생성, 기업과 고객 간 원활한 연결로 손쉽게 브랜드 정보를 공유합니다.</p>
+                  <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
+                  <router-link :to="{name: 'createBrand'}" class="brand-banner__link">브랜드 개설하기</router-link>
+                </div>
+                <div class="brand-banner__img">
+                  <img src="@/assets/images/icon/icon_banner_brand.png" alt="">
+                </div>
               </div>
+              <!-- // 07.20 기업대시보드와 동일하게 수정 -->
               <!-- // 브랜드 배너 -->
               <PageTitleH3
                 titleh3="내가 운영할 수 있는 브랜드"
                 totalCount="982"
                 :DropData="BrandList"
               />
-              <brandListCmp>
-                <template  slot="col">
-                  <col width="58%">
-                  <col>
-                  <col>
-                  <col>
-                  <col>
-                </template>
-                <template  slot="thead">
-                  <th scope="col"><span>브랜드 명</span></th>
-                  <th scope="col"><span>대화방</span></th>
-                  <th scope="col"><span>메시지</span></th>
-                  <th scope="col"><span>대행사</span></th>
-                </template>
-                <template  slot="tbody">
-                  <tr v-for="(item,i) in brandData" :key="i">
-                    <td>
-                        <div class="brandname">
-                          <div class="brand">
-                            <div class="brand__logo"></div>
-                            <span class="brand__title"><router-link to="#">{{ item.title }}</router-link></span>
-                            <span class="brnad__new" v-if="item.new">NEW</span>
-                          </div>
+              <!-- 기획서 1.0 수정 -->
+              <ul class="brand-list__wrap">
+                <li  v-for="(item,i) in brandData" :key="i">
+                  <div class="check-fava">
+                    <div class="brandname">
+                      <div class="brand">
+                        <div class="brand__mark" role="bookmark">
+                          <input type="checkbox" :id="`bookmark${i}`" :checked="item.mark" >
+                          <label class="brand__mark__core" :for="`bookmark${i}`"></label>
                         </div>
-                      </td>
-                      <td>
+                        <div class="brand__logo"></div>
+                        <span class="brand__title"><router-link to="#">{{ item.title }}</router-link></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="brand-data__box">
+                      <div class="brand-data">
                         <span class="data-chat underline" v-if="item.chatData >= 999">999+</span>
                         <span class="data-chat" v-else>{{ item.chatData }}</span>
-                      </td>
-                      <td>
-                        <span class="data-template underline"  v-if="item.message >= 999">999+</span>
+                        <div class="data-name">대화방</div>
+                      </div>
+                      <div class="brand-data">
+                        <span class="data-chat underline" v-if="item.message >= 999">999+</span>
                         <span class="data-chat" v-else>{{ item.message }}</span>
-                      </td>
-                      <td>
-                        <span class="data-agency">{{ item.agencyData }}</span>
-                      </td>
-                  </tr>
-                </template>
-              </brandListCmp>
+                        <div class="data-name">메시지</div>
+                      </div>
+                      <div class="brand-data">
+                        <span class="data-chat underline">99</span>
+                        <div class="data-name">대행사</div>
+                      </div>
+                  </div>
+                </li>
+              </ul>
+              <!-- //기획서 1.0 수정 -->
               <PagingCmp />
               <!-- // 내가 운영할수 있는 브랜드 -->
             </div>

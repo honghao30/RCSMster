@@ -23,42 +23,48 @@ export default [
     path: '/LoginPage',
     component: LoginPage,
     meta: {
-      tittle: '로그인'
+      tittle: '로그인',
+      respons: true
     }
   },
   {
     path: '/IdFind',
     component: IdFind,
     meta: {
-      tittle: '아이디 찾기'
+      tittle: '아이디 찾기',
+      respons: true
     }
   },
   {
     path: '/pwFind',
     component: pwFind,
     meta: {
-      tittle: '비밀번호 찾기'
+      tittle: '비밀번호 찾기',
+      respons: true
     }
   },
   {
     path: '/IdResult',
     component: IdResult,
     meta: {
-      tittle: '아이디찾기결과'
+      tittle: '아이디찾기결과',
+      respons: true
     }
   },
   {
     path: '/PwReset',
     component: PwReset,
     meta: {
-      tittle: '비밀번호 리셋하기'
+      tittle: '비밀번호 리셋하기',
+      respons: true
     }
   },
   {
     path: '/PwChange',
     component: PwChange,
     meta: {
-      tittle: '비밀번호 변경하기'
+      tittle: '비밀번호 변경하기',
+      respons: true
     }
   },
   // 가입

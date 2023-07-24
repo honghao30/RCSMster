@@ -1,10 +1,8 @@
 <template>
   <div class="join">
-    <PageTitle pagetitle="대행사 회원가입" />
+    <PageTitle pagetitle="대행사 가입" /> <!-- 기획서 v1.0 수정 (문구 수정) -->
     <StepList :stepActiveIndex="1" :stepTitle="stepTitle" />
-    <div class="top-notice--gray">
-      원활한 기업담당자 가입신청을 위해서 기업의 사업자등록증 사본을 준비해주세요.
-    </div>
+    <!-- 기획서 v1.0 수정 (top-notice--gray 클래스 삭제) -->
     <form  ref="form" :model="form">
     <div class="agree__wrap">
       <h3 class="agree__title">약관동의</h3>
@@ -62,6 +60,13 @@
       >다음</ButtonCmp>
     </div>
   </form>
+  <!-- 기획서 v1.0 수정 (p.25 회원가입 진입 전 Alert MSG 노출) -->
+  <ModalView
+    v-if="isModalViewed" @closeModal="isModalViewed = false"
+  >
+    <LicenseReadyMsg @closeModal="isModalViewed = false" />
+  </ModalView>
+  <!-- // 기획서 v1.0 수정 (p.25 회원가입 진입 전 Alert MSG 노출) -->
   </div>
 </template>
 
@@ -69,19 +74,22 @@
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import StepList from '@/components/common/StepList.vue'
+import LicenseReadyMsg from '@/views/join/LicenseReadyMsg.vue' // 기획서 v1.0 수정
 
 export default {
   components: {
     PageTitle,
     ButtonCmp,
-    StepList
+    StepList,
+    LicenseReadyMsg // 기획서 v1.0 수정
+
   },
   data() {
     return {
       allSelected: false,
       checkedAgreement1: false,
       checkedAgreement2: false,
-      stepTitle: ['약관동의', '대행사정보 입력', '회원정보 입력', '가입완료']
+      stepTitle: ['약관동의', '대행사정보 입력', '회원정보 입력', '가입 신청 완료'] //  기획서 v1.0 수정 (문구 수정)
     }
   },
   methods: {

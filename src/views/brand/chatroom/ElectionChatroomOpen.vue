@@ -7,7 +7,7 @@
         <div class="chatroom__wrap">
           <div class="chatroom-registration">
             <form  ref="form" :model="form">
-              <div class="table__wrap">
+              <div class="table__wrap no-line">
                 <table class="table table-bodyonly form-table">
                   <colgroup>
                     <col width="196px">
@@ -264,8 +264,10 @@
                         </div>
                       </td>
                     </tr>
+                    <!-- // 기획서 v1.0 수정 (문구 수정 + bd-bg 클래스 추가) -->
+                    <!-- 기획서 v1.0 수정 (대표번호 문자수신 서비스 삭제 + 안심마크 라디오버튼, 문구 수정, 클래스 추가, 안심마크 툴팁 안 이미지 및 문구 수정) -->
                     <tr>
-                      <th scope="row"><span class="form-item__label">안심마크</span>
+                      <th scope="row" class="safety-bg"><span class="form-item__label">안심마크</span>
                         <!-- 툴팁 -->
                         <ToolTipEl
                           direction="bottomPos"
@@ -274,30 +276,36 @@
                           mode="default"
                         >
                           <template slot="tooltip-message">
-                            <div class="message__innerbox">
+                            <div class="message__innerbox safety-box">
                               <strong>안심마크란 무엇인가요?</strong>
-                              <p class="safty-img"><img src="../../../assets/images/cmp/img_safty_mark.png" alt=""></p>
+                              <div class="safety-img">
+                                <img src="@/assets/images/modal/chatroom_safetymark.png" alt="">
+                              </div>
                               <ul>
-                                <li>안심마크는 스미싱과 같은 사고가 많이 발생하는 기업에 대해, 실제 해당 기업에서 문자를 보냈음을 알려주는 인증마크와 + 안심문구가 결합된 기능입니다.</li>
-                                <li>KISA의 승인을 얻은 사업자에 한해 RCS메시지를 보냈을 때 안심마크를 붙일 수 있으며, 이용을 원치 않는 경우 브랜드 관리자가 대화방 단위로 설정 해지할 수 있습니다.</li>
+                                <li>안심마크는, 불법 사칭 문자와 구분하기 쉽도록 RCS메시지 상단에 "확인된 발신번호"를 보여주는 서비스입니다.</li>
+                                <li>한국인터넷진흥원(KISA)에서 인증한 기업만 이용할 수 있습니다.</li>
                               </ul>
                             </div>
                           </template>
                         </ToolTipEl>
                         <!-- // 툴팁 -->
                       </th>
-                      <td>
+                      <td class="safety-bg">
                         <div class="form-item__content">
-                          <div class="checkbox">
-                              <input type="checkbox" id="saftymark" v-model="form.saftyMark">
-                              <label for="saftymark">
-                                  <span class="checkbox__text">사용</span>
-                              </label>
+                          <div class="form-item-row">
+                            <div class="input-item">
+                              <span class="checkbox">
+                                <input type="checkbox" id="saftyMarkY" v-model="form.saftyMark" />
+                                <label for="saftyMarkY"><span class="checkbox__text">사용</span></label>
+                              </span>
+                            </div>
                           </div>
-                          <p class="guide-text black">&middot; 한국인터넷진흥원(KISA)에서 인증된 사업자로 이 대화방에 표시되는 모든 RCS 메시지에 “인증마크”가 표시됩니다.</p>
+                          <p class="guide-text black" v-if="!form.saftyMark">&middot; 이 대화방에서는 “안심마크”를 표시하지 않습니다.</p>
+                          <p class="guide-text black" v-else-if="form.saftyMark">&middot; 한국인터넷진흥원(KISA)에서 인증된 사업자로 이 대화방에 표시되는 모든 RCS 메시지에 “인증마크”가 표시됩니다.</p>
                         </div>
                       </td>
                     </tr>
+                    <!-- // 기획서 v1.0 수정 (대표번호 문자수신 서비스 삭제 + 안심마크 라디오버튼, 문구 수정, 클래스 추가, 안심마크 툴팁 안 이미지 및 문구 수정) -->
                   </tbody>
                 </table>
               </div>

@@ -13,35 +13,40 @@ export default [
     path: '/notice',
     component: NoticeView,
     meta: {
-      tittle: '공지사항'
+      tittle: '공지사항',
+      respons: true
     }
   },
   {
     path: '/noticecontent',
     component: NoticeContent,
     meta: {
-      tittle: '공지사항 상세'
+      tittle: '공지사항 상세',
+      respons: true
     }
   },
   {
     path: '/faq',
     component: FAQ,
     meta: {
-      tittle: 'FAQ'
+      tittle: 'FAQ',
+      respons: true
     }
   },
   {
     path: '/OnlineInquire',
     component: OnlineInquire,
     meta: {
-      tittle: '온라인 문의'
+      tittle: '온라인 문의',
+      respons: true
     }
   },
   {
     path: '/RequireList',
     component: RequireList,
     meta: {
-      tittle: '온라인 문의 목록'
+      tittle: '온라인 문의 목록',
+      respons: true
     }
   },
   // 알림
@@ -49,7 +54,8 @@ export default [
     path: '/notification',
     component: Notification,
     meta: {
-      tittle: '알림'
+      tittle: '알림',
+      respons: true
     }
   }
 ]

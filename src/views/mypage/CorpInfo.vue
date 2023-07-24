@@ -1,15 +1,8 @@
 <!-- 0620: 추가 된 페이지 매니저,마스터_비지니스 정보 관리 (기존 CorpInfo.vue -> AgencyCorpInfoEdit.vue) -->
 <template>
   <div class="join">
-    <PageTitle pagetitle="비지니스 정보 관리" />
-    <div class="top-progress-area">
-      <!-- 승인대기 -->
-      <span class="flag-progress">승인대기</span>
-      <!-- 승인완료 -->
-      <span class="flag-progress done">승인완료</span>
-      <!-- 반려 -->
-      <span class="flag-progress reject">반려</span>
-    </div>
+    <PageTitle pagetitle="비지니스 정보 관리" progress="승인완료"/>
+    <!-- 기획서 v1.0 수정 - flag 삭제 -->
     <PageTitleH3 titleh3="비지니스 정보"/>
     <form  ref="form" :model="form">
       <div class="table__wrap">
@@ -44,7 +37,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label">법인명(단체명)</span></th>
+              <th scope="row"><span class="form-item__label">법인명</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td>
                 <span class="text">{{ form.companyname }}</span>
               </td>
@@ -62,7 +55,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label">기업주소</span></th>
+              <th scope="row"><span class="form-item__label">주소</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td>
                 <span class="text">{{ form.postcode }} {{ form.addr1 }} {{ form.addr2 }}</span>
               </td>
@@ -139,7 +132,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$router.push('./AgencyCorpInfoEdit')
+      this.$router.push('./CorpInfoEdit')
     },
     corpInfo () {
       this.$router.push('./myInfo')

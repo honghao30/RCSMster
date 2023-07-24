@@ -3,7 +3,7 @@
     <HeaderCmp />
     <div
       class="contents"
-      :class="{ bgcontainer: ShowBgcolor }"
+      :class="[{ bgcontainer: ShowBgcolor }, { respons: respons }]"
       id="contents"
       role="main"
     >
@@ -22,12 +22,17 @@ export default {
   name: 'DefaultLayout',
   components: {
     HeaderCmp,
-    FooterCmp,
+    FooterCmp
     // BreadCrumb
   },
   data() {
     return {
       ShowBgcolor: false
+    }
+  },
+  computed: {
+    respons () {
+      return this.$route.meta.respons === true
     }
   },
   mounted() {

@@ -9,14 +9,20 @@
         <p class="modal-title">우편번호 찾기</p>
       </div>
       <div class="modal__content--body">
-        <div class="top-search__wrap">
-          <div class="search-area">
-            <span class="input search">
-              <input type="text" placeholder="도로명 또는 건물명(아파트)을 입력해주세요."
-                @focusin="zipcodeSearch"
-              />
+        <!-- 기획서 v1.0 수정 - search 변경 -->
+        <div class="top-ctrl-area">
+          <div class="search-area w--full">
+            <span class="input search-box">
+              <input type="text" placeholder="도로명 또는 건물명(아파트)을 입력해주세요."/>
+              <ButtonCmp
+                type="btn-only-icon"
+                iconname='icon-search'
+                @click="zipcodeSearch"
+              >
+              </ButtonCmp>
             </span>
           </div>
+          <!-- //기획서 v1.0 수정 - search 변경 -->
           <!-- // validate check error -->
           <!-- <p class="guide-text error" >도로명 또는 건물명(아파트)을 입력해주세요.</p>
           <p class="guide-text error">최소 두 글자 이상 입력해주세요.</p>
@@ -27,11 +33,12 @@
           <div class="top-ctrl-area">
             <p class="total">총 <strong>1,294</strong>건이 검색되었습니다.</p>
             <div class="ctrl">
-              <div class="pager">
+              <!-- 기획서 v1.0 수정 - pager 삭제 -->
+              <!-- <div class="pager">
                 <span class="num">1/3</span>
                 <a role="button" class="btn-prev" ><span class="blind">이전으로</span></a>
                 <a role="button" class="btn-next" ><span class="blind">다음으로</span></a>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="table__wrap">
@@ -70,6 +77,8 @@
               </tbody>
             </table>
           </div>
+          <!-- 기획서 v1.0 수정 - pager 삭제 -> PagingCmp 추가-->
+          <PagingCmp />
         </div>
         <div class="guide-box"
           v-else
@@ -134,9 +143,12 @@
 
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import PagingCmp from '@/components/common/PagingCmp.vue'
+
 export default {
   components: {
-    ButtonCmp
+    ButtonCmp,
+    PagingCmp
   },
   data() {
     return {

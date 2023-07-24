@@ -15,7 +15,7 @@ t<template>
         <button class="btn-more"><span class="blind">정보</span></button>
       </div>
       <div class="emulator-template-body">
-        <div class="template__emulate--view">
+        <div class="template__emulate--view" :class="{'carousel': templateType == '이미지 템플릿 캐러셀'}">
           <div class="chat-time">{{ currentTime }}</div>
           <div class="safty-icon-wrap">[WEB발신]<span class="safty-icon">확인된 발신번호</span></div>
           <!-- 템플릿 출력 -->

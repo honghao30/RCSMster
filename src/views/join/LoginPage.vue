@@ -48,63 +48,77 @@
         @click="onSubmit"
       >로그인</ButtonCmp>
     </div>
-    <!-- 메시지 모달 -->
+    <!-- 기획서 v1.0 수정 (디자인 적용을 위해 pub2Dev > LoginPage.vue에 내용 그대로 들고옴) -->
+    <!-- 예외 처리 모달 -->
     <ModalView
-      v-if="pwChangeModalViewed" @closeModal="isModalViewed = false"
+      v-if="isErrorMsgViewed" @closeModal="isErrorMsgViewed = false"
     >
-      <ConfirmMsg
-        @closeModal="isModalViewed = false"
-        v-if="pwChangeModal"
+    <ConfirmMsg
+        v-if="ErrorMsg"
+        @closeModal="ErrorMsg = false"
       >
         <div class="msg" slot="msg">
-          5회 이상 아이디 또는 비밀번호를 잘못<br />
-          입력했습니다. 비밀번호를 다시 설정해주세요.
+          {{ ErrorMsgText }}
+          <!-- 5회 이상 아이디 또는 비밀번호를 잘못<br />
+          입력했습니다. 비밀번호를 다시 설정해주세요. -->
         </div>
         <div class="button__wrap" slot="button">
           <ButtonCmp
              type="btn-blue-line"
-             @click="closeMsg"
+             @click="closeErrorMsg"
           >
             닫기
           </ButtonCmp>
           <ButtonCmp
              type="btn-blue"
-             @click="moveChange"
+             @click="moveChage"
+             v-if="isMoveChage"
           >
             비밀번호 변경
           </ButtonCmp>
         </div>
       </ConfirmMsg>
-     <!-- // 휴대폰 인증 -->
-     <ConfirmMsg
+    </ModalView>
+    <!-- //예외 처리 모달 -->
+    <!-- 메시지 모달 -->
+    <ModalView
+      v-if="isModalViewed" @closeModal="isModalViewed = false"
+    >
+      <!-- // 휴대폰 인증 -->
+      <ConfirmMsg
         @closeModal="isModalViewed = false"
-        modalsize="Modalmax480"
+        modalsize="Max628"
         v-if="PhoneCertModal"
-      >
+      > <!-- 기획서 v1.0 수정 (modalsize 수정) -->
         <div slot="msg">
           <div class="msg">
-            <div class="phone-cert__title">
-              휴대폰 인증
+            <div class="phone-cert__title"> <!-- 기획서 v1.0 수정 (문구 수정) -->
+              휴대폰번호 인증
             </div>
-            <div class="phone-cert__msg">
+            <div class="phone-cert__msg"> <!-- 기획서 v1.0 수정 (마침표 추가) -->
               인증번호를 발송하였습니다.<br>
-              수신 받은 인증번호를 입력해주세요
+              수신 받은 인증번호를 입력해주세요.
             </div>
-            <div class="phone-cert__number">홍*동 010-****-5410</div>
-            <div  class="phone-cert__number-input">
-              <span class="input">
-                <input ref="number" type="text" placeholder="인증번호"  v-model="form.certNumber">
-              </span>
-                <span class="time active" ref="time">{{ TimerStr }}</span>
-                <ButtonCmp
-                  type="btn-gray-line"
-                  :disabled="isButtonDisabled"
-                  @click="start"
-                >
-                  인증번호 재요청
-                </ButtonCmp>
+            <!-- 기획서 v1.0 수정 (phone-cert__des 부모 클래스 추가) -->
+            <div class="phone-cert__des">
+              <div class="phone-cert__number">{{ maskNm }} {{ maskHp }}</div>
+              <div  class="phone-cert__number-input">
+                <span class="input input-time"> <!-- 기획서 v1.0 수정 (input-time 이중 클래스 추가) -->
+                  <input ref="number" type="text" placeholder="인증번호" @keyup.enter="chkAuthNum()" v-model="form.certNumber">
+                </span>
+                  <span class="time active" ref="time">{{ TimerStr }}</span>
+                  <ButtonCmp
+                    type="btn-blue"
+                    size="medium"
+                    :disabled="isButtonDisabled"
+                    @click="start"
+                  > <!-- 기획서 v1.0 수정 (type 수정, size 추가) -->
+                    인증번호 재요청
+                  </ButtonCmp>
+              </div>
+              <p class="guide-text error" v-if="phoneCheckTimeout">{{ phoneCheckTimeoutText }}</p>
             </div>
-            <p class="guide-text error" v-if="phoneCheckTimeout">인증 유효시간이 지났습니다.</p>
+            <!-- // 기획서 v1.0 수정 (phone-cert__des 부모 클래스 추가) -->
           </div>
         </div>
         <div class="button__wrap" slot="button">
@@ -116,7 +130,7 @@
             <ButtonCmp
               type="btn-blue"
               :disabled="!isDisabled"
-              @click="closeMsg"
+              @click="chkAuthNum"
             >
               인증
             </ButtonCmp>
@@ -124,6 +138,53 @@
       </ConfirmMsg>
     </ModalView>
     <!-- //메시지 모달 -->
+    <!-- 핸드폰 번호 입력 모달 -->
+    <ModalView
+      v-if="isPhoneNumInputViewed" @closeModal="isPhoneNumInputViewed = false"
+    >
+    <!-- // 휴대폰 인증 -->
+    <ConfirmMsg
+        @closeModal="isPhoneNumInputViewed = false"
+        modalsize="Max628"
+        v-if="PhoneCertModal"
+      >
+        <div slot="msg">
+          <div class="msg">
+            <!-- <div class="phone-cert__title">
+              휴대폰번호 인증
+            </div> --> <!-- 기획서 v1.0 수정 (문구 수정) -->
+            <div class="phone-cert__msg">
+              인증번호 발송을 위해<br/>
+              담당자로 등록된 휴대폰번호를 입력해주세요.
+            </div> <!-- 기획서 v1.0 수정 (문구 수정) -->
+            <div  class="phone-cert__number-input number-input__before"> <!-- 기획서 v1.0 수정 (number-input__before 이중클래스 추가) -->
+              <span class="number-input__tit"> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                휴대폰 번호
+              </span>
+              <span class="input">
+                <input ref="number" type="text" placeholder="휴대폰 번호" @keyup.enter="inputMblNum()" v-model="mblNum">
+                <p class="guide-text error">올바른 휴대폰 번호를 입력해주세요.</p> <!-- 기획서 v1.0 수정 (에러메시지 추가) -->
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="button__wrap" slot="button">
+            <ButtonCmp
+              type="btn-blue-line"
+              @click="closePhoneNumInputMsg"
+            >닫기
+            </ButtonCmp>
+            <ButtonCmp
+              type="btn-blue"
+              @click="inputMblNum"
+            >
+              인증
+            </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+    </ModalView>
+    <!-- //핸드폰 번호 입력 모달 -->
+
     <ModalView
       :class="{ topPositon : IsTopPos }"
       v-if="isSendMsgViewed" @closeModal="isSendMsgViewed = false"
@@ -146,6 +207,7 @@
         </div>
       </ConfirmMsg>
     </ModalView>
+    <!-- // 기획서 v1.0 수정 (디자인 적용을 위해 pub2Dev > LoginPage.vue 내용 그대로 들고옴) -->
   </div>
 </template>
 

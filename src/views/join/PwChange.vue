@@ -55,9 +55,8 @@
         </div>
       </div>
       <div class="button__wrap">
-        <ButtonCmp
-          type="btn-blue-line"
-        >나중에 변경</ButtonCmp>
+        <!-- 기획서 v1.0 수정 (나중에 변경 버튼 > 메인 화면으로 이동 으로 인한 태그 수정) -->
+        <router-link to="#" class="btn btn-line">나중에 변경</router-link>
         <ButtonCmp
           type="btn-blue"
           @click="onSubmit"

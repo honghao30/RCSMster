@@ -1,6 +1,8 @@
 <template>
   <footer class="footer">
-    <div class="inner">
+    <div class="inner"
+      :class="{ respons: respons }"
+    >
       <ul class="policy-list">
         <li><a href="">이용약관</a></li>
         <li><a href="">온라인 문의</a></li>
@@ -18,7 +20,12 @@
 
 <script>
 export default {
-  name: 'DefaultFooter'
+  name: 'DefaultFooter',
+  computed: {
+    respons () {
+      return this.$route.meta.respons === true
+    }
+  }
 }
 </script>
 

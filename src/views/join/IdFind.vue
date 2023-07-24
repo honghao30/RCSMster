@@ -1,9 +1,9 @@
 <template>
   <div class="login login-help">
     <div class="login-title__wrap--top">
-      <PageTitle pagetitle="아이디 찾기" />
+      <PageTitle pagetitle="아이디 / 비밀번호 찾기" /> <!-- 기획서 v1.0 수정(문구 수정) -->
     </div>
-    <div class="tab__wrap">
+    <div class="tab__wrap only-border"> <!-- 기획서 v1.0 수정(only-border 이중클래스 추가) -->
       <ul class="tab-list">
         <li class="tab-item active">
             <router-link
@@ -38,7 +38,7 @@
             <p class="guide-text error" v-if="nameErrorMsg">이름을 입력해주세요.</p>
           </div>
           <div class="form-item">
-            <span class="form-item__label">휴대폰</span>
+            <span class="form-item__label">휴대폰번호</span> <!-- 기획서 v1.0 수정 (문구 수정) -->
             <div class="form-item__content">
               <span class="input"><input ref="phone" type="text" placeholder="‘-’없이 숫자만 입력해주세요."  v-model="form.phone"></span>
               <ButtonCmp

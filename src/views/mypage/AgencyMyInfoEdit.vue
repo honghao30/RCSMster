@@ -53,7 +53,7 @@
                 </div>
               </td>
             </tr>
-            <tr class="tr__border">
+            <tr class="bdBottom-bg"> <!-- 기획서 v1.0 수정 - 스타일 추가 -->
               <th scope="row"><span class="form-item__label required">휴대폰(관리자)</span></th>
               <td colspan="3">
                   <div class="input">
@@ -74,7 +74,7 @@
                   </div>
               </td>
             </tr>
-            <tr>
+            <tr class="bdBottom-bg"> <!-- 기획서 v1.0 수정 - 스타일 추가 -->
               <th scope="row"><span class="form-item__label required">휴대폰(담당자)</span></th>
               <td colspan="3">
                 <div class="form-item__content">
@@ -133,7 +133,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">담당자 이메일</span></th>
+              <th scope="row"><span class="form-item__label required">이메일</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td colspan="3">
                 <div class="form-item__content">
                   <div class="form-item-row">
@@ -142,13 +142,13 @@
                       <span class="input input-info"><input type="text" class="input" placeholder="이메일을 입력해 주세요." v-model="form.email"></span>
                     </div>
                   </div>
-                  <p class="guide-text black">&bull; 담당자 이메일을 입력해주세요.</p>
-                  <!-- <p class="guide-text error" v-if="emailErrorMsg">담당자 이메일을 입력해주세요.</p> -->
+                  <p class="guide-text black">&bull; 이메일을 입력해주세요.</p> <!-- 기획서 v1.0 수정 - 문구 수정 -->
+                  <!-- <p class="guide-text error" v-if="emailErrorMsg">이메일을 입력해주세요.</p> --> <!-- 기획서 v1.0 수정 - 문구 수정 -->
                 </div>
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label">담당자 연락처</span></th>
+              <th scope="row"><span class="form-item__label">연락처</span></th> <!-- 기획서 v1.0 수정 - 문구 수정 -->
               <td>
                 <div class="form-item__content">
                   <div class="form-item-row">
@@ -160,7 +160,6 @@
                       <span class="input input-tel"><input type="text" class="input" placeholder="" v-model="form.telLast"></span>
                     </div>
                   </div>
-                  <p class="guide-text error" v-if="telErrorMsg">담당자 연락처를 입력해주세요.</p>
                 </div>
               </td>
               <th scope="row" class="th-tel"><span class="form-item__label">내선번호</span></th>
@@ -189,7 +188,16 @@
         </table>
       </div>
     </form>
+    <!-- 기획서 v1.0 수정 - 회원 탈퇴 버튼 추가 -->
+    <div class="button__wrap flex-end">
+      <ButtonCmp
+        @click="goMemberWithdraw"
+        type="btn-line medium"
+      >회원 탈퇴</ButtonCmp>
+    </div>
     <PageTitleH3 titleh3="서비스정보 입력" />
+    <!-- 기획서 v1.0 수정 - 타이틀 가이드 텍스트 추가 -->
+    <p class="guide-text black title-guide">&bull; 대행사 담당자는 API Client IP와 Agency Key 정보만 수정할 수 있습니다.</p>
     <form  ref="form" :model="form">
       <div class="table__wrap">
         <table class="table table-bodyonly form-table">
@@ -206,11 +214,7 @@
                   <div class="form-item-row">
                     <div class="input-item justify">
                       <span class="text">SK.U2OEo9pOzelDe0T</span>
-                      <ButtonCmp
-                              type="btn-default-line"
-                          >
-                          API KEY 재발급
-                      </ButtonCmp>
+                      <!-- 기획서 v1.0 수정 - API KEY 재발급 버튼 삭제 -->
                     </div>
                   </div>
                 </div>
@@ -259,47 +263,40 @@
               <th scope="row"><span class="form-item__label">Agency Key</span></th>
               <td>
                 <div class="form-item__content">
-                  <div class="form-item-row agency-key">
-                    <div class="input-item">
-                      <table class="inner-table">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <span class="flag-progress">동기화 완료</span>
-                            </td>
-                            <td><span class="text">AK.TxMIxUI1s20cgR5</span></td>
-                            <td><span class="text">2022. 03. 30</span></td>
-                            <td><span class="text">15:40:08</span></td>
-                            <td><span class="text">system</span></td>
-                            <td><ButtonCmp
-                                  type="btn-default-line"
-                                    >
-                                    Agency Key 삭제
-                                </ButtonCmp>
-                                <ButtonCmp
-                                    type="btn-only-icon"
-                                    iconname="icon-tooltip"
-                                ><span class="irtext">설명</span>
-                                </ButtonCmp>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span class="flag-progress">동기화 완료</span>
-                            </td>
-                            <td><span class="text">AK.TxMIxUI1s20cgR5</span></td>
-                            <td><span class="text">2022. 03. 30</span></td>
-                            <td><span class="text">15:40:08</span></td>
-                            <td><span class="text">system</span></td>
-                            <td><ButtonCmp
-                                  type="btn-default-line"
-                                    >
-                                    Agency Key 재발급
-                                </ButtonCmp>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                  <!-- 기획서 v1.0 수정 - 구조변경 -->
+                  <div class="form-item-row agency-edit">
+                    <div class="input-item agency-key">
+                      <span class="flag-progress">동기화 완료</span>
+                      <span class="text">AK.TxMIxUI1s20cgR5</span>
+                      <span class="text">2022. 03. 30</span>
+                      <span class="text">15:40:08</span>
+                      <span class="text">system</span>
+                      <div class="agency-btn">
+                        <ButtonCmp
+                          type="btn-default-line">
+                          Agency Key 삭제
+                        </ButtonCmp>
+                        <ButtonCmp
+                          type="btn-only-icon"
+                          iconname="icon-tooltip">
+                          <span class="irtext">설명</span>
+                        </ButtonCmp>
+                      </div>
+                    </div>
+                    <div class="input-item agency-key">
+                      <span class="flag-progress">동기화 완료</span>
+                      <span class="text">AK.TxMIxUI1s20cgR5</span>
+                      <span class="text">2022. 03. 30</span>
+                      <span class="text">15:40:08</span>
+                      <span class="text">system</span>
+                      <div class="agency-btn">
+                        <ButtonCmp
+                          type="btn-default-line"
+                          disabled="disabled"
+                            >
+                            Agency Key 재발급
+                        </ButtonCmp>
+                      </div>
                     </div>
                     <p class="guide-text black">&bull; Biz RCS 메시지 발송 시 필요한 대행사별 특수키입니다. 보안을 위해 외부에 노출되지 않도록 유의하세요.</p>
                     <p class="guide-text black">&bull; Biz RCS 메시지 신규 보안 정책 적용 시 최초 발송 대행사는 반드시 Agency Key를 삽입하여 발송해야 합니다.</p>
@@ -312,12 +309,7 @@
       </div>
     </form>
     <!-- 0620: 디자인 1차 수정 - 버튼 구조 및 class 수정 -->
-    <div class="button__wrap flex-end">
-      <ButtonCmp
-        @click="goMemberWithdraw"
-        type="btn-line medium"
-      >회원 탈퇴</ButtonCmp>
-    </div>
+    <!-- 기획서 v1.0 수정- 회원탈퇴 버튼 삭제 -->
     <div class="button__wrap space-between">
       <ButtonCmp
         type="btn-line"
@@ -337,52 +329,59 @@
     <ModalView
       v-if="isModalViewed" @closeModal="isModalViewed = false"
     >
+      <!-- 기획서 v1.0 수정 (휴대폰 인증 버튼 클릭 시: 전체 수정) -->
       <ConfirmMsg
         @closeModal="isModalViewed = false"
-        modalsize="Modalmax480"
+        modalsize="Max628"
         v-if="phoneNumberCheck"
-      >
+      > <!-- 기획서 v1.0 수정 (modalsize 수정) -->
         <div slot="msg">
           <div class="msg">
-            <div class="phone-cert__title">
-              휴대폰 인증
+            <div class="phone-cert__title"> <!-- 기획서 v1.0 수정 (문구 수정) -->
+              휴대폰번호 인증
             </div>
-            <div class="phone-cert__msg">
+            <div class="phone-cert__msg"> <!-- 기획서 v1.0 수정 (마침표 추가) -->
               인증번호를 발송하였습니다.<br>
-              수신 받은 인증번호를 입력해주세요
+              수신 받은 인증번호를 입력해주세요.
             </div>
-            <div class="phone-cert__number">홍*동 010-****-5410</div>
-            <div  class="phone-cert__number-input">
-              <span class="input">
-                <input ref="number" type="text" placeholder="인증번호"  v-model="form.certNumber">
-              </span>
-                <span class="time hide" ref="time">{{ TimerStr }}</span>
-                <ButtonCmp
-                  type="btn-gray-line"
-                  :disabled="isButtonDisabled"
-                  @click="start"
-                >
-                  인증번호 요청
-                </ButtonCmp>
+            <!-- 기획서 v1.0 수정 (phone-cert__des 부모 클래스 추가) -->
+            <div class="phone-cert__des">
+              <div class="phone-cert__number">홍*동 010-****-5410</div>
+              <div class="phone-cert__number-input">
+                <span class="input">
+                  <input ref="number" type="text" placeholder="인증번호"  v-model="form.certNumber">
+                </span>
+                  <span class="time hide" ref="time">{{ TimerStr }}</span>
+                  <ButtonCmp
+                    type="btn-blue"
+                    size="medium"
+                    :disabled="isButtonDisabled"
+                    @click="start"
+                  > <!-- 기획서 v1.0 수정 (type 수정, size 추가) -->
+                    인증번호 요청
+                  </ButtonCmp>
+              </div>
+              <p class="guide-text error" v-if="phoneCheckTimeout">인증 유효시간이 지났습니다.</p>
             </div>
-            <p class="guide-text error" v-if="phoneCheckTimeout">인증 유효시간이 지났습니다.</p>
+            <!-- // 기획서 v1.0 수정 (phone-cert__des 부모 클래스 추가) -->
           </div>
         </div>
         <div class="button__wrap" slot="button">
-            <ButtonCmp
-              type="btn-blue-line"
-              @click="closeMsg"
-            >닫기
-            </ButtonCmp>
-            <ButtonCmp
-              type="btn-blue"
-              :disabled="!isDisabled"
-              @click="closeMsg"
-            >
-              인증
-            </ButtonCmp>
+          <ButtonCmp
+            type="btn-blue-line"
+            @click="closeMsg"
+          >닫기
+          </ButtonCmp>
+          <ButtonCmp
+            type="btn-blue"
+            :disabled="!isDisabled"
+            @click="closeMsg"
+          >
+            인증
+          </ButtonCmp>
         </div>
       </ConfirmMsg>
+      <!-- // 기획서 v1.0 수정 (휴대폰 인증 버튼 클릭 시: 전체 수정) -->
       <ConfirmMsg
         @closeModal="isModalViewed = false"
         v-if="myInfoSave"

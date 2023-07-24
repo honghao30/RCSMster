@@ -54,17 +54,37 @@
                   >템플릿 메시지 작성</ButtonCmp>
                 </div>
                 <div class="template__list--wrap">
+                  <!-- 기획서 1.0 수정 -->
                   <div class="template-list">
-                    <TemplateItem
-                      itemTitle="상품권/티켓형"
-                      :infoData=ImageTemplate[0] />
-                    <TemplateItem
-                      itemTitle="이미지 강조형3"
-                      :infoData=ImageTemplate[1] />
-                    <TemplateItem
-                      itemTitle="이미지 강조형1"
-                      :infoData=ImageTemplate[2] />
+                    <div class="template-item">
+                      <div class="template-item__title">
+                        아이템 강조형1
+                      </div>
+                      <div class="template-item__box">
+                        <img src="../../../assets/images/message/image_template_01.png" alt="">
+                      </div>
+                    </div>
+                    <!-- // item -->
+                    <div class="template-item">
+                      <div class="template-item__title">
+                        아이템 강조형2
+                      </div>
+                      <div class="template-item__box">
+                        <img src="../../../assets/images/message/image_template_02.png" alt="">
+                      </div>
+                    </div>
+                    <!-- // item -->
+                    <div class="template-item">
+                      <div class="template-item__title">
+                        아이템 강조형2
+                      </div>
+                      <div class="template-item__box">
+                        <img src="../../../assets/images/message/image_template_03.png" alt="">
+                      </div>
+                    </div>
+                    <!-- // item -->
                   </div>
+                  <!-- //기획서 1.0 수정 -->
 
                 </div>
               </div>
@@ -72,7 +92,7 @@
           </div>
           <!-- // 브랜드 대시보드 -->
           <div class="brand-aside">
-            <BrandEmulator :brandInfoData="form" curTab="info"/>
+            <BrandEmulator :brandInfoData="form" :feedData="feedData" :feedList="feedList" curTab="feed"/>
             <div class="side-box side-box__banner">
               <router-link to="">
                 <img src="../../../assets/images/customer/baner_side.png" alt="">
@@ -112,7 +132,7 @@ export default {
         desc: '최상의 품질을 가진 환경에 긍정적인 영향을 줄수있는 커피브랜드 기업',
         bgImgFileUrl: 'dummy/brand_image.png',
         profileImgFileUrl: 'dummy/brand_logo.png',
-        quickButton: [],
+        quickButton: ['chat', 'call', 'store'],
         url: 'http://www.nespresso.com',
         email: 'contactus@nespresso.com',
         tel: '080-734-1111',
@@ -122,7 +142,10 @@ export default {
         ticketURL: '',
         storeURL: ''
       },
-      brendInfo: {},
+      feedData: {
+        title: '영업 시간 안내',
+        content: '월~금 : 10:30 ~ 20:00 주말 및 공휴일은 휴무입니다.'
+      },
       dataChat: [{
         title: '대화방',
         state: '',

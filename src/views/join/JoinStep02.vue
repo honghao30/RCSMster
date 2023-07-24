@@ -1,6 +1,6 @@
 <template>
   <div class="join">
-    <PageTitle pagetitle="운영자 회원가입" />
+    <PageTitle pagetitle="운영자 가입" /> <!-- 기획서 v1.0 수정 (문구 수정) -->
     <StepList :stepActiveIndex="2" :stepTitle="stepTitle" />
     <PageTitleH3 titleh3="비지니스 정보 입력" />
     <form  ref="form" :model="form">
@@ -29,6 +29,7 @@
                     </div>
                     <p class="guide-text error" v-if="certificateErrorMsg">사업자등록번호를 입력해주세요.</p>
                     <p class="guide-text black">&bull; 사업자등록번호 인증 후 회원가입을 진행 할 수 있습니다.</p>
+                    <p class="guide-text black guide-text__link">선거 후보자/정치/공인입니다. <router-link to="/FAQ">FAQ</router-link><router-link to="/OnlineInquire">온라인 문의</router-link></p> <!-- 기획서 v1.0 수정 (공통으로 수정) -->
                     <p class="guide-text black">&bull; 최대 5개까지 첨부 가능합니다.</p>
                   </div>
                   <div class="form-item__content" v-else>
@@ -56,20 +57,21 @@
                   <p class="guide-text black">&bull; 사업자등록증이 없는 경우 사업자등록증명 또는 고유번호증을 등록해주세요.</p>
                   <p class="guide-text black">&bull; 비영리법인/국가기관인 경우 고유번호증을 등록해주세요.</p>
                   <p class="guide-text black">&bull; 파일형식: JPG, PNG, PDF, TIFF(최대 5MB)</p>
+                  <p class="guide-text black">&bull; 사업자등록증 제출 : 마스터 권한 / 사업자등록증 미 제출 : 매니저 권한</p> <!-- 기획서 v1.0 수정 (문구 추가) -->
                   <p class="guide-text black">&bull; 최대 5개까지 첨부 가능합니다.</p>
                 </div>
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">법인명(단체명)</span></th>
+              <th scope="row"><span class="form-item__label required">법인명</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
               <td>
                 <div v-if="joinIng" class="form-item__content">
                   <div class="form-item-row">
-                    <div class="input-item">
-                      <span class="input input-info"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명(단체명)을 입력해주세요." :disabled="disabled" v-model="form.companyname"></span>
+                    <div class="input-item"> <!-- 기획서 v1.0 수정 (placeholder 수정) -->
+                      <span class="input input-info"><input type="text" class="input" placeholder="사업자등록증에 등록된 법인명을 입력해주세요." :disabled="disabled" v-model="form.companyname"></span>
                     </div>
                   </div>
-                  <p class="guide-text error" v-if="companynameErrorMsg">법인명(단체명)을 입력해주세요.</p>
+                  <p class="guide-text error" v-if="companynameErrorMsg">법인명을 입력해주세요.</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
                 </div>
                 <div v-else class="form-item__content">더피프티원</div>
               </td>
@@ -105,7 +107,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><span class="form-item__label required">기업주소</span></th>
+              <th scope="row"><span class="form-item__label required">주소</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
               <td>
                 <div v-if="joinIng" class="form-item__content">
                   <div class="form-item-row">
@@ -126,7 +128,7 @@
                       <span class="input input-info"><input type="text" class="input" placeholder="" v-model="form.addr2"></span>
                     </div>
                   </div>
-                  <p class="guide-text error" v-if="postcodeErrorMsg">기업주소를 입력해주세요.</p>
+                  <p class="guide-text error" v-if="postcodeErrorMsg">주소를 입력해주세요.</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
                 </div>
                 <div v-else class="form-item__content">06128 서울시 강남구 봉은사로 18길</div>
               </td>
@@ -147,26 +149,28 @@
   <ModalView
     v-if="isModalViewed" @closeModal="isModalViewed = false"
   >
+  <!-- 기획서 v1.0 수정 (동일한 사업자등록번호 회원가입 진행중 경우) -->
     <ConfirmMsg
       v-if="certifMessage"
       @closeModal="isModalViewed = false"
     >
       <div slot="msg">
-        <div class="msg">
-          동일한 사업자등록번호로 회원가입을<br />
-          진행하고 있습니다. 최초의 회원가입 완료 후<br />
-          추가 회원가입이 가능합니다.
+        <div class="msg"> <!-- 기획서 v1.0 수정 (문구수정) -->
+          동일한 사업자등록번호로 기업 등록을 이미 진행하고 <br />
+          있습니다. 기업 등록이 완료된 이후 회원가입이 가능하오니
+          아래 담당자에게 기업 등록 완료를 확인하신 후 <br />
+          회원가입을 진행해 주시기 바랍니다.
         </div>
-        <div class="msg2">
+        <div class="msg2 same-box"> <!-- 기획서 v1.0 수정 (same-box 이중클래스 추가) -->
           홍*동(hkp***@the-51.com)
         </div>
       </div>
       <div class="button__wrap" slot="button">
           <ButtonCmp
-            type="btn-blue-line"
+            type="btn-line"
             @click="closeMsg"
           >닫기
-          </ButtonCmp>
+          </ButtonCmp> <!-- 기획서 v1.0 수정 (type 변경) -->
           <ButtonCmp
           type="btn-blue"
           @click="closeMsg"
@@ -175,6 +179,7 @@
           </ButtonCmp>
         </div>
       </ConfirmMsg>
+      <!-- 기획서 v1.0 수정 (동일한 사업자등록번호 회원가입 진행중 경우) -->
       <ZipCode
         @closeModal="isModalViewed = false"
         v-else
@@ -227,7 +232,7 @@ export default {
       isModalViewed: false,
       joinIng: true,
       certificatetemp: '123456789',
-      stepTitle: ['약관동의', '비지니스 정보 입력', '회원정보 입력', '가입완료'],
+      stepTitle: ['약관동의', '비지니스 정보 입력', '회원정보 입력', '가입 신청 완료'], //  기획서 v1.0 수정 (문구 수정)
       disabled: true
     }
   },

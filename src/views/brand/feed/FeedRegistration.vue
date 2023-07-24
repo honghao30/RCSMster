@@ -548,7 +548,7 @@
           <ButtonCmp
               type="btn-blue"
           >수정</ButtonCmp>
-        </div> -->
+        </div> --> 
         <feedList :feedViewData="feedViewData"/>
       </div>
     </div>

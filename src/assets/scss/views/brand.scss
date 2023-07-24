@@ -744,6 +744,34 @@
             transform: translate(-50%, -50%);
         }
     }
+    .feed-list__wrap {
+        margin-top: 16px;
+        width: 100%;
+        display: flex;
+        gap: 8px;
+        flex-direction: column;
+        li {
+            a {
+                display: block;
+                border: 1px solid #ddd;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                @include fontoption(14px,#000, 500, 22px);
+                border-radius: 8px;
+                padding-left: 56px;                
+            }
+            &.tel {
+                background: url('../assets/images/icon/icon_feed_phone.png') no-repeat 16px center;
+            }
+            &.web {
+                background: url('../assets/images/icon/icon_feed_world.png') no-repeat 16px center;
+            }
+            &.reservation {
+                background: url('../assets/images/icon/icon_feed_calendar-check.png') no-repeat 16px center;
+            }                         
+        }
+    }
     .brand-quick-icons {
         margin-top: 16px;
         display: flex;
@@ -847,6 +875,10 @@
                     @include fontoption(14px,#666,700,22px);
                 }
             }                
+        }
+        .tab-panel {
+            max-height: 300px;
+            overflow-y: auto;
         }
     }
     dl {
@@ -1604,7 +1636,7 @@
         flex-direction: column;
         gap: 40px;
         .chatroom-none-txt{
-            margin-bottom:-40px;
+            margin-bottom: 80px;
             text-align: center;
             h3{
                 @include fontoption(28px,#000,500,38px);

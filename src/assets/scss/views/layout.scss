@@ -160,6 +160,7 @@ $contentWidth2: 1024px;
     .user {
         position:relative;
         margin-right: 24px;
+        z-index: 10;
         > a {
             font-size: 14px;
             position:relative;
@@ -199,6 +200,7 @@ $contentWidth2: 1024px;
     // padding-top: $headerHeight;
     position: relative;
     min-height:880px;
+    min-width: 1440px;
     // padding-bottom: 80px;
     .page-title {
         font-weight: 700;
@@ -341,7 +343,9 @@ $contentWidth2: 1024px;
     $mobileNavWidth: 240px;
     $headerHeight: 48px;
     .inner { 
-        width:100%;
+        &.respons {
+          width:100%;
+        }        
     }
     // 컨텐츠 넓이 조정
     .header {
@@ -416,6 +420,10 @@ $contentWidth2: 1024px;
         // padding-top: $headerHeight;
         padding-bottom: 56px;
         min-height:calc(100vh - 176px);
+        &.respons {
+            width:100%;
+            min-width: auto;
+        }           
         .inner {
             padding:0 16px;
         }
@@ -432,6 +440,7 @@ $contentWidth2: 1024px;
     .footer {
         .inner {
             padding:32px 0;
+            background: #e6e6e6;
         }
         .policy-list {
             margin-bottom: 20px;

@@ -868,7 +868,11 @@ export default {
         {
           label: '10개',
           value: '10'
-        }
+        },
+        {
+          label: '11개',
+          value: '11'
+        }        
       ],
       cardButtonCount: [
         {

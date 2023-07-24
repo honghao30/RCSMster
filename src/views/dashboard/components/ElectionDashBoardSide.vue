@@ -35,7 +35,7 @@
       </div>
     </div>
     <!-- 매니저 일 경우 노출 -->
-    <div class="side-box side-box__invite">
+    <!-- <div class="side-box side-box__invite">
       <div class="side-box-top">
         <h4>브랜드 운영자 초대하기</h4>
         <p>함께 관리하고 운영하는 멤버를 초대하세요.</p>
@@ -52,7 +52,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
     <!-- // 마스터 계정 설정 -->
     <div class="link-area">
       <router-link to="" class="arrow-link">기업 히스토리</router-link>

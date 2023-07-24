@@ -69,12 +69,10 @@
           </div>
           <div class="brand-aside">
             <!-- 에뮬레이터 -->
-            <div class="brand-aside">
-              <TempEmulator
-                :templateData="templateData"
-                mode="template"
-              />
-            </div>
+            <TempEmulator
+              :templateType="templateType"
+              :templData="templateData"
+            />
             <!-- // 에뮬레이터 -->
           </div>
         </div>
@@ -88,7 +86,6 @@
           <div class="right">
             <ButtonCmp
                 type="btn-line"
-                @click="openDeleteMsg"
             >삭제</ButtonCmp>
             <ButtonCmp
                 type="btn-blue"
@@ -115,7 +112,31 @@ export default {
   },
   data() {
     return {
-      templateData: []
+      templateType: '텍스트 선택형_서술',
+      templateData: {
+        MainTitle: {
+          info: {
+            title: '문의사항',
+            titleType: '',
+            titleIcon: '',
+            subVarTitle: ''
+          }
+        },
+        Description: {
+          info: {
+            content: '문의사항이 있으시다면 채팅방에 문의 내용과 성함/연락처를 남겨주세요. ​<br> SYSTEM STUDIOS의 MD팀이 최대한 빠르게 답변 드리도록 하겠습니다!​'
+          }
+        },
+        Buttons: {
+          use: 'Y',
+          info: [{
+            id: 1,
+            bgColor: '#2f77fb',
+            btnEvent: 'url',
+            btnName: '등록하기'
+          }]
+        }
+      }
     }
   },
   methods: {

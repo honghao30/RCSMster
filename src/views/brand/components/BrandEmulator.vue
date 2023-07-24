@@ -32,6 +32,23 @@
               <span v-else>알림 내용을 입력해주세요.</span>
             </p>
           </div>
+          <ul class="feed-list__wrap">
+            <li class="tel">
+                <a href="#">
+                  전화하기
+                </a>
+            </li>
+            <li class="web">
+                <a href="#">
+                  웹사이트
+                </a>
+            </li>
+            <li class="reservation">
+                <a href="#">
+                  예약하기
+                </a>
+            </li>
+          </ul>
         </TabItem>
         <TabItem title="정보">
           <dl class="tel">
@@ -91,9 +108,6 @@ export default {
         }
       }
     }
-  },
-  mounted() {
-    console.log(this.brandInfoData)
   }
 }
 </script>

@@ -41,8 +41,9 @@
         </div>
       </div>
       <div class="button__wrap">
+        <!-- 기획서 v1.0 수정 (type 수정) -->
         <ButtonCmp
-          type="btn-blue-line"
+          type="btn-line"
         >취소</ButtonCmp>
         <ButtonCmp
           type="btn-blue"
