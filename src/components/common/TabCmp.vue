@@ -46,11 +46,6 @@ export default {
   mounted() {
     this.tabs[this.activeIndex].isActive = true
   },
-  watch: {
-    activeIndex(newValue, oldValue){
-      this.tabCtrl(newValue);
-    }
-  },
   methods: {
     tabCtrl: function(num) {
       this.activeIndex = num

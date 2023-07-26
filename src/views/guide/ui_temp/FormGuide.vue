@@ -122,8 +122,8 @@
       <label class="switch__core" for="switch"></label>
     </div>
     <TitleH3 titleh3="폰트 스타일 레이어 input" />
-    <TextStyleInput :info="textStyleInput"/>
-    <p :style="setStyle(textStyleInput)">{{ textStyleInput.text }}</p>
+    <TextStyleInput v-model="textStyleInput" @onSetStyle="onSetStyle($event)"/>
+    <p v-html="textStyleInput" :style="textStyle"></p>
     <!-- <TitleH3 titleh3="Form List" />
     <div class="wsg-guide-content">
       <div class="form-list">
@@ -213,7 +213,7 @@ export default {
         switch: '',
         guideInputEmoji: ''
       },
-      textStyleInput: {},
+      textStyleInput: '',
       textStyle: {},
       emojiCode: '',
       showSpecialCharTitle: false, // 특수문자 선택창 show 여부
@@ -285,19 +285,6 @@ export default {
     },
     dropdownBeforeChange(e) {
       alert('aaaa')
-    },
-    setStyle(target) {
-      let bold = '400'
-      if (target.textBold) {
-        bold = '700'
-      }
-      let style = {
-        fontWeight: bold,
-        textAlign: target.textAlign,
-        fontSize: `${target.textSize}px`,
-        color: target.textColor
-      }
-      return style
     }
   }
 

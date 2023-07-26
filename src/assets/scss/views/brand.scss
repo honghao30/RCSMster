@@ -364,7 +364,6 @@
         // }
         .font-style {
             flex: 1;
-            height: 36px;
         }
     }
     //브랜드 운영 관리
@@ -407,6 +406,9 @@
     }
     .manage-table{ 
         .table-list{
+            td{
+                @include fontoption(16px,#000,400,26px);
+            } 
             .info-right{
                 text-align: initial;
                 padding-left: 15px;
@@ -414,8 +416,10 @@
                 @include fontoption(14px,#666,400,24px);
                 }
                 .user{
-                    color: #000;
                     display: block;
+                    font-size: 16px;
+                    color: #000;
+                    line-height: 26px;
                 }
             }
             .application-date{
@@ -429,6 +433,9 @@
             .button__wrap{
                 padding: 0;
                 gap:6px;
+                .btn {
+                padding: 0 5px;
+                }
             }
         }
     }
@@ -446,8 +453,6 @@
         border-bottom: 2px solid #ddd;   
     }
     .table__wrap {
-        border-top: 0;
-        border-bottom: 0;   
         .form-table {
             .btn {
                 height: 36px;
@@ -458,7 +463,6 @@
                     .input-item {
                         .text-item__title {
                             width: 92px;
-                            font-weight: 500;
                         }
                     }
                 }
@@ -489,14 +493,6 @@
                 th,
                 td {
                     padding: 0;
-                    border-bottom: 1px solid #bcbcbc;
-                }
-            }
-            .brand_feedinfo{
-                th,
-                td {
-                    border-top: 1px solid #bcbcbc;
-                    border-bottom: 1px solid #ddd;
                 }
             }
             .text-item {
@@ -506,7 +502,6 @@
                 .text-item__title {
                     display: inline-block;
                     width: 100px;
-                    font-weight: 500;
                     &.required:after {
                         content:'*';
                         color: $pointColor;
@@ -527,10 +522,6 @@
             .guide-wrap {
                 th {
                     padding: 0;
-                    border-bottom: 0;
-                    .guide-text{
-                        margin-top: 16px;
-                    }
                 }
             }
             .btn-brandTip {
@@ -595,8 +586,8 @@
 .brand-tip__wrap {
     border-radius: 12px;
     background-color: #f8f8f8;
-    padding: 12px;
-    margin-bottom: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
     .brand-tip__box {
         display: flex;
         gap: 12px;
@@ -766,45 +757,19 @@
                 height: 48px;
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
                 @include fontoption(14px,#000, 500, 22px);
                 border-radius: 8px;
-                padding: 12px 16px 12px 56px;    
-                position: relative; 
-                span{
-                    @include fontoption(12px,#999, 400, 20px);
-                    &::after {
-                        content: '';
-                        display: block;
-                        position: absolute;
-                        transform: translateY(-50%);
-                        width: 16px;
-                        height:16px;
-                        background-image: url('../assets/images/icon/icon_more.png');
-                        background-position: center center;
-                        background-repeat: no-repeat;
-                        transform: rotate(-90deg);
-                        cursor: pointer;
-                        right: 8px;
-                        top: 16px;
-                    }
-                }          
+                padding-left: 56px;                
             }
             &.tel {
-                background: url('../assets/images/icon/icon_feed_phone.png') no-repeat 24px center;
+                background: url('../assets/images/icon/icon_feed_phone.png') no-repeat 16px center;
             }
             &.web {
-                background: url('../assets/images/icon/icon_feed_world.png') no-repeat 24px center;
+                background: url('../assets/images/icon/icon_feed_world.png') no-repeat 16px center;
             }
             &.reservation {
-                background: url('../assets/images/icon/icon_feed_calendar-check.png') no-repeat 24px center;
-            }
-            &.appdownload{
-                background: url('../assets/images/icon/icon_feed_calendar-check.png') no-repeat 24px center;
-            }   
-            &.consultation-chat{
-                background: url('../assets/images/icon/icon_feed_chat.png') no-repeat 24px center;
-            }                    
+                background: url('../assets/images/icon/icon_feed_calendar-check.png') no-repeat 16px center;
+            }                         
         }
     }
     .brand-quick-icons {
@@ -840,13 +805,13 @@
                 background-color:#666;
             }
             &.icon-ticket {
-                background-image:url('../assets/images/icon/icon_ticket.png')
+                background-color:#666;
             }
             &.icon-store {
                 background-image:url('../assets/images/icon/icon_building_store.png')
             }
             &.icon-info {
-                background-image:url('../assets/images/icon/icon_info.png')
+                background-color:#666;
             }                                                                            
         }
     }
@@ -1742,7 +1707,7 @@
     justify-content: space-between;
     gap: 32px;
     border-bottom: 2px solid #ddd;
-    border-top: 3px solid #bcbcbc;
+    border-top: 2px solid #ddd;
     margin-bottom:32px;
     .brand-info__view {
         flex:1;
@@ -1759,10 +1724,6 @@
                     }
                 }
             }            
-        }
-        .page-title__wrap{
-            margin-top: 60px;
-            border-bottom: 2px solid #bcbcbc;
         }
     }
 }
@@ -2559,23 +2520,3 @@
     }
 }
 
-.brandcolor-box{
-    margin-top: 8px;
-    .input-item{
-        margin-top: 12px;
-    }
-}
-
-.table-bodyonly tr.bd-bottom-none {
-    &:last-child
-    {
-        th,td{
-        border-bottom: 0;
-        }
-    }
-}
-.flag-approval{
-    &.flag-mt-none{
-        margin-left: 0;
-    }
-}

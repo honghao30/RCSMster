@@ -8,7 +8,7 @@
         <div class="case-box">
           <div class="case-box__type">
             <div class="case-box__type-txt">
-              <img src="@/assets/images/icon/icon_company_operator.png" alt="">  <!--기획서 v1.0 수정 (이미지 파일 수정) -->
+              <img src="@/assets/images/icon/icon_company_person.png" alt="">
               <p>
               함께 브랜드를 운영할<br/>
               <span>운영자를</span>
@@ -58,10 +58,10 @@
           <div class="table__wrap manage-table">
             <table class="table table-list">
               <colgroup>
-                <col width="92px"> <!-- 기획서 v1.0 수정 (width값 추가) -->
-                <col width="232px"> <!-- 기획서 v1.0 수정 (width값 추가) -->
-                <col width="648px"> <!-- 기획서 v1.0 수정 (width값 추가) -->
-                <col width="152px"> <!-- 기획서 v1.0 수정 (width값 추가) -->
+                <col>
+                <col>
+                <col>
+                <col>
               </colgroup>
               <thead>
                 <tr>
@@ -81,7 +81,7 @@
                     <span>/</span>
                     <span>{{ item.phone }}</span>
                   </td>
-                  <td class="right-box"> <!-- 기획서 v1.0 수정 (right-box 클래스 추가) -->
+                  <td>
                     <div class="button__wrap" v-if="item.manage">
                       <ButtonCmp
                         v-if="item.manage === 'delete'"
@@ -92,6 +92,7 @@
                         type="btn-line small"
                         @click="BrandAuthorityMandate"
                       >권한 위임</ButtonCmp>
+
                       <!--기획서 v1.0 수정: 권한 위임 버튼 추가 -->
                     </div>
                   </td>
@@ -142,16 +143,14 @@
                   <span>{{ item.date }}</span>
                 </td>
                 <td>
-                  <!-- 기획서 v1.0 수정(type 변경) -->
                   <div class="button__wrap">
                     <ButtonCmp
                       type="btn-line small"
-                    >반려</ButtonCmp> <!-- 기획서 v1.0 수정 (운영권한 신청 반려 팝업 출력 시 모달창 BrandAuthorityReject 필요하여 아래에 추가만 함, script 추가 안함)  -->
+                    >반려</ButtonCmp>
                     <ButtonCmp
-                      type="btn-blue-line small"
+                      type="btn-blue small"
                     >승인</ButtonCmp>
                   </div>
-                  <!-- // 기획서 v1.0 수정(type 변경) -->
                 </td>
               </tr>
             </tbody>
@@ -184,31 +183,6 @@
         @closeModal="isModalViewed = false"
       >
       </BrandAuthorityMandate>
-      <!-- 기획서 v1.0 수정 (운영권한 신청 반려 팝업 출력 시 모달창 BrandAuthorityReject 필요하여 dashboardOperationManage에서 가져왔음, script 추가 안함)  -->
-      <BrandAuthorityReject
-        modalsize="dashboard_modal"
-        @closeModal="isModalViewed = false"
-      >
-      </BrandAuthorityReject>
-      <!-- 운영권한 신청 반려 버튼 클릭 시 > 반려 버튼 -->
-      <ConfirmMsg
-        modalsize="dashboard_small_modal"
-        @closeModal="isModalViewed = false"
-      >
-        <div class="msg" slot="msg">
-          <p>운영권한 신청이 반려되었습니다.</p>
-        </div>
-        <div class="button__wrap" slot="button">
-          <ButtonCmp
-            type="btn-line"
-            @click="closeMsg"
-          >
-            확인
-          </ButtonCmp>
-        </div>
-      </ConfirmMsg>
-      <!-- // 운영권한 신청 반려 버튼 클릭 시 > 반려 버튼 -->
-      <!-- // 기획서 v1.0 수정 (운영권한 신청 반려 팝업 출력 시 모달창 BrandAuthorityReject 필요하여 dashboardOperationManage에서 가져왔음, script 추가 안함)  -->
     </ModalView>
   </div>
 </template>
@@ -225,9 +199,6 @@ import ModalView from '@/components/common/ModalView.vue'
 import BrandInvite from '@/views/brand/create/components/BrandInvite.vue'
 import BrandAuthority from '@/views/brand/create/components/BrandAuthority.vue'
 import BrandAuthorityMandate from '@/views/brand/create/components/BrandAuthorityMandate.vue'
-import BrandAuthorityReject from '@/views/dashboard/components/BrandAuthorityReject.vue' // 기획서 v1.0 수정(BrandAuthorityReject 추가)
-import ConfirmMsg from '@/views/dashboard/components/ConfirmMsg.vue' // 기획서 v1.0 수정(ConfirmMsg 추가)
-
 export default {
   components: {
     PageTitle,
@@ -239,9 +210,7 @@ export default {
     ModalView,
     BrandInvite,
     BrandAuthority,
-    BrandAuthorityMandate,
-    BrandAuthorityReject, // 기획서 v1.0 수정(BrandAuthorityReject 추가)
-    ConfirmMsg // 기획서 v1.0 수정(ConfirmMsg 추가)
+    BrandAuthorityMandate
   },
   data() {
     return {

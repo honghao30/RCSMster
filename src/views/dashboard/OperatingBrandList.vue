@@ -169,12 +169,12 @@ export default {
       ],
       BrandList: [
         {
-          codeNm: '브랜드 리스트1',
-          code: '브랜드 리스트1'
+          label: '브랜드 리스트1',
+          value: '브랜드 리스트1'
         },
         {
-          codeNm: '브랜드 리스트2',
-          code: '브랜드 리스트2'
+          label: '브랜드 리스트2',
+          value: '브랜드 리스트2'
         }
       ]
     }

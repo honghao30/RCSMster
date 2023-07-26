@@ -36,19 +36,11 @@
             <li class="tel">
                 <a href="#">
                   전화하기
-                  <!-- 기획서 v1.0 수정 (디자인 추가로 인해 데이터 들어오는 영역 만들어놓음) -->
-                  <span class="feed_custom-box">
-                  </span>
-                  <!-- // 기획서 v1.0 수정 (디자인 추가로 인해 데이터 들어오는 영역 만들어놓음) -->
                 </a>
             </li>
             <li class="web">
                 <a href="#">
                   웹사이트
-                  <!-- 기획서 v1.0 수정 (디자인 추가로 인해 데이터 들어오는 영역 만들어놓음) -->
-                  <span class="feed_custom-box">
-                  </span>
-                  <!-- // 기획서 v1.0 수정 (디자인 추가로 인해 데이터 들어오는 영역 만들어놓음) -->
                 </a>
             </li>
             <li class="reservation">
@@ -56,18 +48,6 @@
                   예약하기
                 </a>
             </li>
-            <!-- 기획서 v1.0 수정 (디자인 추가로 인해 주석으로 추가함) -->
-            <!-- <li class="appdownload">
-                <a href="#">
-                  앱 다운로드
-                </a>
-            </li>
-            <li class="consultation-chat">
-                <a href="#">
-                  상담채팅 시작하기
-                </a>
-            </li> -->
-            <!-- // 기획서 v1.0 수정 (디자인 추가로 인해 주석으로 추가함) -->
           </ul>
         </TabItem>
         <TabItem title="정보">

@@ -247,16 +247,6 @@ let jglibObj = {
 
     return false
   },
-  isMobileNumber(phoneNumber) {
-    // 휴대폰 번호 유효성 검증
-    const regPhoneNumber = /^(01[016789]{1})([0-9]{3,4})([0-9]{4})$/
-
-    if (regPhoneNumber.test(phoneNumber)) {
-      return true
-    }
-
-    return false
-  },
   isUrl(urlAdd) {
     // url 유효성 검증
     // const regUrl = /^(https?):\/\/([0-9a-zA-Z|-]+\.)+[a-zA-Z]{2,6}(|:[0-9]+)?(\/\S*)?/

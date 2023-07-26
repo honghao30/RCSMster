@@ -36,23 +36,22 @@
         </div>
       </td>
     </tr>
-    <tr>
-      <th scope="row"><span class="form-item__label required">상세</span></th>
+    <tr v-for="(item, index) in info.content" :key="index">
+      <th scope="row"><span class="form-item__label required">상세  {{ index + 1 }}</span></th>
       <td>
         <div class="form-item__content">
-          <!-- [0726 반복 구간 변경 ] -->
-          <div class="form-item-row form-template" v-for="(item, index) in info.content" :key="index">
+          <div class="form-item-row form-template">
             <div class="input-item input-left">
               <span class="input">
                 <input type="text" class="input" disabled :value="item.imgFile">
               </span>
               <input type="file" id="fileUp" class="input blind"
               @change="onFileChanged">
-              <label for="fileUp" class="btn btn-default-line">파일 찾기</label>
+              <label for="fileUp" class="btn btn-default-line">파일 선택</label>
             </div>
             <div class="template-detail">
-              <!-- [0726 문구 통합 : 텍스트 수정] -->
-              <p class="guide-text black">&middot; 파일형식: PNG, GIF (최대 1MB) / 권장 사이즈 : 300 * 300px (또는 1:1 비율)</p>
+              <p class="guide-text black">&middot; 파일형식: PNG, GIF (최대 1MB)</p>
+              <p class="guide-text black">&middot; 권장 사이즈: 300*300px(또는 1:1 비율)</p>
               <div class="input-item input-url">
                 <div class="input">
                   <input type="text" placeholder="http로 시작하는 URL 주소를 입력해주세요." v-model="item.url"
@@ -71,21 +70,17 @@
                   <p>{{ item.itemData.length }}/33자</p>
                 </div>
               </div>
-              <ButtonCmp
-                type="btn-default-line"
-                size="small"
-                @click="removeRow(index)"
-              >
-                삭제
-              </ButtonCmp>
             </div>
-          </div>
-          <div class="form-item-row">
             <div class="template-button">
               <ButtonCmp
                 type="btn-default-line"
+                size="small"
+              >
+                삭제
+              </ButtonCmp>
+              <ButtonCmp
+                type="btn-default-line"
                 size="medium"
-                @click="addRows"
               >
               + 추가하기
               </ButtonCmp>
@@ -122,21 +117,6 @@ export default {
       const fileName = file.name
       this.info.imgFile = fileName
       this.url = URL.createObjectURL(file)
-    },
-    addRows () {
-      let row = {
-        imgFile: '',
-        url: '',
-        itemData: ''
-      }
-      if (this.info.content.length < 10) {
-        this.info.content.push(row)
-      }
-    },
-    removeRow (index) {
-      if (this.info.content.length > 1) {
-        this.info.content.splice(index, 1)
-      }
     }
   }
 }

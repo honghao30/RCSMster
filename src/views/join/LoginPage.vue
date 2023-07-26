@@ -11,7 +11,7 @@
           <div class="form-item__content">
             <span class="input"><input ref="usrid" type="text" class="input" placeholder="아이디를 입력해주세요." v-model="form.id"></span>
           </div>
-          <p class="guide-text error" v-if="form.error.target === 'id' && form.error.msg !== ''">{{ form.error.msg }}</p>
+          <p class="guide-text error" v-if="idErrorMsg">아이디를 입력해주세요.</p>
         </div>
         <div class="form-item">
           <span class="form-item__label">비밀번호</span>
@@ -20,25 +20,24 @@
               type="btn-only-icon"
               :iconname=iconName
               @click="toggleShow"
-            >
-            <span class="irtext">비밀번호 보이기</span></ButtonCmp>
-            <span class="input">
-              <input ref="usrid" v-if="showPassword" type="text" class="input" placeholder="비밀번호를 입력해주세요."  v-model="form.pw">
+            ><span class="irtext">비밀번호 보이기</span></ButtonCmp>
+            <span class="input"><input ref="usrid" v-if="showPassword" type="text" class="input" placeholder="비밀번호를 입력해주세요."  v-model="form.pw">
               <input ref="usrpw" v-else type="password" class="input" placeholder="비밀번호를 입력해주세요."  v-model="form.pw">
             </span>
           </div>
-          <p class="guide-text error" v-if="form.error.target === 'pw' && form.error.msg !== ''">{{ form.error.msg }}</p>
+          <p class="guide-text error" v-if="pwErrorMsg">비밀번호를 입력해주세요.</p>
+          <p class="guide-text error" v-if="pwChangeErrorMsg">아이디 또는 비밀번호가 맞지 않습니다. 비밀번호를 5회 이상 잘못 입력하는 경우 로그인이 제한됩니다.</p>
         </div>
       </div>
     </form>
     <div class="help-menu__wrap--bottom">
       <div class="autosave">
         <span class="checkbox">
-          <input type="checkbox" id="check" :value="form.isIdSaved"/>
+          <input type="checkbox" id="check" value="form.check"/>
           <label for="check"><span class="checkbox__text">아이디 저장</span></label>
         </span>
       </div>
-      <div class="idfind">
+      <div class="idfind line">
         <router-link to="/IdFind">아이디 찾기</router-link>
         <router-link to="/pwFind">비밀번호 찾기</router-link>
       </div>
@@ -46,18 +45,18 @@
     <div class="button__wrap">
       <ButtonCmp
         type="btn-blue btn-login"
-        @click="loginAction"
+        @click="onSubmit"
       >로그인</ButtonCmp>
     </div>
-    <!-- 모달 영역 시작   -->
+    <!-- 기획서 v1.0 수정 (디자인 적용을 위해 pub2Dev > LoginPage.vue에 내용 그대로 들고옴) -->
+    <!-- 예외 처리 모달 -->
     <ModalView
-      v-if="isModalViewed" @closeModal="isModalViewed = false"
+      v-if="isErrorMsgViewed" @closeModal="isErrorMsgViewed = false"
     >
-      <!-- 예외 처리 모달 -->
-      <ConfirmMsg
-          v-if="isErrorMsgViewed"
-          @closeModal="isErrorMsgViewed = false, isModalViewed = false"
-        >
+    <ConfirmMsg
+        v-if="ErrorMsg"
+        @closeModal="ErrorMsg = false"
+      >
         <div class="msg" slot="msg">
           {{ ErrorMsgText }}
           <!-- 5회 이상 아이디 또는 비밀번호를 잘못<br />
@@ -66,7 +65,7 @@
         <div class="button__wrap" slot="button">
           <ButtonCmp
              type="btn-blue-line"
-             @click="isErrorMsgViewed = false, isModalViewed = false"
+             @click="closeErrorMsg"
           >
             닫기
           </ButtonCmp>
@@ -79,12 +78,17 @@
           </ButtonCmp>
         </div>
       </ConfirmMsg>
-      <!-- //예외 처리 모달 -->
-      <!-- 휴대폰 인증번호 모달 -->
+    </ModalView>
+    <!-- //예외 처리 모달 -->
+    <!-- 메시지 모달 -->
+    <ModalView
+      v-if="isModalViewed" @closeModal="isModalViewed = false"
+    >
+      <!-- // 휴대폰 인증 -->
       <ConfirmMsg
-        @closeModal="isModalViewed = false, isPhoneCertViewed = false"
+        @closeModal="isModalViewed = false"
         modalsize="Max628"
-        v-if="isPhoneCertViewed"
+        v-if="PhoneCertModal"
       > <!-- 기획서 v1.0 수정 (modalsize 수정) -->
         <div slot="msg">
           <div class="msg">
@@ -112,7 +116,7 @@
                     인증번호 재요청
                   </ButtonCmp>
               </div>
-              <p class="guide-text error" v-if="form.error.target === 'certNumber' && form.error.msg !== ''">{{ form.error.msg }}</p>
+              <p class="guide-text error" v-if="phoneCheckTimeout">{{ phoneCheckTimeoutText }}</p>
             </div>
             <!-- // 기획서 v1.0 수정 (phone-cert__des 부모 클래스 추가) -->
           </div>
@@ -120,7 +124,7 @@
         <div class="button__wrap" slot="button">
             <ButtonCmp
               type="btn-blue-line"
-              @click="closeModal"
+              @click="closeMsg"
             >닫기
             </ButtonCmp>
             <ButtonCmp
@@ -132,15 +136,23 @@
             </ButtonCmp>
         </div>
       </ConfirmMsg>
-      <!-- // 휴대폰 인증번호 모달 -->
-      <!-- 대행사 휴대폰 번호 입력 모달 -->
-      <ConfirmMsg
-          @closeModal="isModalViewed = false, isPhoneNumInputViewed = false"
-          modalsize="Max628"
-          v-if="isPhoneNumInputViewed"
-        >
+    </ModalView>
+    <!-- //메시지 모달 -->
+    <!-- 핸드폰 번호 입력 모달 -->
+    <ModalView
+      v-if="isPhoneNumInputViewed" @closeModal="isPhoneNumInputViewed = false"
+    >
+    <!-- // 휴대폰 인증 -->
+    <ConfirmMsg
+        @closeModal="isPhoneNumInputViewed = false"
+        modalsize="Max628"
+        v-if="PhoneCertModal"
+      >
         <div slot="msg">
           <div class="msg">
+            <!-- <div class="phone-cert__title">
+              휴대폰번호 인증
+            </div> --> <!-- 기획서 v1.0 수정 (문구 수정) -->
             <div class="phone-cert__msg">
               인증번호 발송을 위해<br/>
               담당자로 등록된 휴대폰번호를 입력해주세요.
@@ -150,8 +162,8 @@
                 휴대폰 번호
               </span>
               <span class="input">
-                <input ref="mblNum" type="text" placeholder="휴대폰 번호" @keyup.enter="inputMblNum()" v-model="mblNum">
-                <p class="guide-text error" v-if="form.error.target === 'mblNum' && form.error.msg !== ''">{{ form.error.msg }}</p>
+                <input ref="number" type="text" placeholder="휴대폰 번호" @keyup.enter="inputMblNum()" v-model="mblNum">
+                <p class="guide-text error">올바른 휴대폰 번호를 입력해주세요.</p> <!-- 기획서 v1.0 수정 (에러메시지 추가) -->
               </span>
             </div>
           </div>
@@ -159,7 +171,7 @@
         <div class="button__wrap" slot="button">
             <ButtonCmp
               type="btn-blue-line"
-              @click="closeModal"
+              @click="closePhoneNumInputMsg"
             >닫기
             </ButtonCmp>
             <ButtonCmp
@@ -170,32 +182,32 @@
             </ButtonCmp>
         </div>
       </ConfirmMsg>
-      <!-- // 대행사 휴대폰 번호 입력 모달 -->
     </ModalView>
-    <!-- 인증 번호 발송 완료 모달 -->
+    <!-- //핸드폰 번호 입력 모달 -->
+
     <ModalView
       :class="{ topPositon : IsTopPos }"
       v-if="isSendMsgViewed" @closeModal="isSendMsgViewed = false"
     >
       <!-- // 문자 발송 -->
       <ConfirmMsg
-        v-if="isSendMsgViewed"
+        v-if="SendSmsMsg"
         @closeModal="isSendMsgViewed = false"
       >
         <div class="msg" slot="msg">
-          {{ sendAuthNumViewedMsg }}
+          인증번호가 발송 되었습니다.
         </div>
         <div class="button__wrap" slot="button">
           <ButtonCmp
              type="btn-blue"
-             @click="isSendMsgViewed = false"
+             @click="closeSmsMsg"
           >
             확인
           </ButtonCmp>
         </div>
       </ConfirmMsg>
     </ModalView>
-    <!-- // 인증 번호 발송 완료 모달 -->
+    <!-- // 기획서 v1.0 수정 (디자인 적용을 위해 pub2Dev > LoginPage.vue 내용 그대로 들고옴) -->
   </div>
 </template>
 
@@ -204,8 +216,6 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
 import ConfirmMsg from '@/views/join/components/ConfirmMsg.vue'
-import store from '@/store'
-import { mapActions, mapGetters } from 'vuex'
 export default {
   components: {
     PageTitle,
@@ -218,203 +228,104 @@ export default {
       form: {
         id: '',
         pw: '',
-        certNumber: '',
-        isIdSaved: false,
-        error: {
-          target: '',
-          msg: ''
-        }
+        certNumber: ''
       },
-      showPassword: false, // 비밀번호 보기 여부
-      isModalViewed: false, // 전체 모달 창
-      isErrorMsgViewed: false, // 예외 처리 모달
-      isPhoneCertViewed: false, // 폰 인증번호 입력 모달
-      isPhoneNumInputViewed: false, // 휴대폰번호 입력 모달(대행사)
-      phoneNumInputViewedMsg: '', // 휴대폰 번호 입력 모달 문구
-      isSendMsgViewed: false, // 인증번호 전송 완료 팝업창
-      sendAuthNumViewedMsg: '', // 인증번호 모달 문구
-      ErrorMsgText: '', // 로그인 에러 발생시 에러 문구
-      isButtonDisabled: false,
+      idErrorMsg: false,
+      pwErrorMsg: false,
+      pwChangeErrorMsg: false,
+      showPassword: false,
+      isModalViewed: false,
+      pwChangeModalViewed: false,
+      isSendMsgViewed: false,
+      SendSmsMsg: false,
+      PhoneCertModal: false,
+      pwChangeModal: false,
       iconName: 'icon-eye',
       IsTopPos: true,
-      interval: '',
+      Timer: null,
       TimeCounter: 180,
       TimerStr: '03:00',
-      count: 0,
-      isMoveChage: false,
-      maskNm: '',
-      maskHp: '',
-      mblNum: ''
+      count: 0
     }
   },
   watch: {
     isModalViewed () {
       if (this.isModalViewed) {
         document.documentElement.style.overflow = 'hidden'
-        // this.start()
+        this.start()
         return
       }
       document.documentElement.style.overflow = 'auto'
-      if (this.interval !== '') {
-        this.timerStop()
-      }
-    }
-  },
-  created() {
-    let savedLoginId = window.localStorage.getItem('savedLoginId')
-    if (!jglib.isEmpty(savedLoginId)) {
-      this.form.id = savedLoginId
-      this.form.isIdSaved = true
     }
   },
   computed: {
-    ...mapGetters({
-      userInfo: 'getUserForAuth'
-    }),
     isDisabled() {
       return this.form.certNumber.length > 0
     }
   },
   methods: {
-    ...mapActions({
-      loginByPassword: 'LoginByPassword',
-      updateUserForAuthSms: 'updateUserForAuthSms',
-      sendAuthSmsNum: 'Authsms',
-      selectAgencyMbl: 'SelectAgencyMbl',
-      authsmsConfirm: 'AuthsmsConfirm'
-    }),
-    // 로그인
-    loginAction () {
-      this.form.error.target = ''
-      this.form.error.msg = ''
-      this.isMoveChage = false
-      // 아이디 비번 빈값 체크
+    onSubmit () {
+      this.count++
+      if (this.count > 5) {
+        this.pwChangeModalViewed = true
+        this.pwChangeModal = true
+        this.pwChangeErrorMsg = true
+      }
       if (this.form.id === '') {
-        this.form.error.target = 'id'
-        this.form.error.msg = '아이디를 입력해주세요.'
+        this.idErrorMsg = true
         this.$refs.usrid.focus()
         return
       }
       if (this.form.pw === '') {
-        this.form.error.target = 'pw'
-        this.form.error.msg = '비밀번호를 입력해주세요.'
+        this.pwErrorMsg = true
         this.$refs.usrpw.focus()
         return
       }
-      // 로그인 요청
-      this.loginByPassword({
-        userId: this.form.id,
-        userPassword: this.form.pw
-      }).then(response => {
-        // 로컬 스토리지에 아이디 저장
-        if (this.form.isIdSaved) {
-          window.localStorage.setItem('savedLoginId', this.form.id)
-        }
-        // 회원 정보 스토어에 저장(아이디, 이름, 폰번호, 회원유형)
-        this.updateUserForAuthSms(response.result)
-        if (response.result.userType === 'AGENCY') {
-          // 대행사 유형이면 담당자 핸드폰번호 입력 모달 오픈
-          this.isModalViewed = true
-          this.isPhoneNumInputViewed = true
-        } else {
-          // 휴대폰 인증번호 입력 모달 오픈
-          this.isModalViewed = true
-          this.isPhoneCertViewed = true
-          // 기업 회원이면 인증 번호 발송
-          this.sendAuthNumber()
-        }
-      }).catch(reject => {
-        // Login이 실패할 경우
-        if (reject.code === '64472') { // 5회이상 로그인 실패
-          this.isMoveChage = true
-          this.isModalViewed = true
-          this.isErrorMsgViewed = true
-          this.ErrorMsgText = reject.desc
-        } else {
-          this.form.error.target = 'pw'
-          this.form.error.msg = reject.desc
-        }
-      })
+      this.isSendMsgViewed = true
+      this.SendSmsMsg = true
+      this.start()
     },
-    // 인증 번호 발송
-    sendAuthNumber() {
-      let param = { userId: this.userInfo.userId }
-      if (this.userInfo.userType === 'AGENCY') {
-        // param.mblNum = this.userInfo.mblNum
-        param.mblNum = this.mblNum
-        param.userType = this.userInfo.userType
+    toggleShow () {
+      if (this.showPassword) {
+        this.iconName = 'icon-eye'
+      } else {
+        this.iconName = 'icon-eye blue'
       }
-      // masking
-      this.maskNm = this.userInfo.userNm.substring(0, 1) + '*' + this.userInfo.userNm.substring(2)
-      this.maskHp = this.userInfo.mblNum.substring(0, 3) + '-****-' + this.userInfo.mblNum.substring(7)
-      // 인증 번호 발송
-      this.sendAuthSmsNum(param).then(response => {
-        this.isSendMsgViewed = true // 인증 번호 발송 완료 모달 오픈
-        if (response.code === '20000000') {
-          this.start() // 타이머 시작
-          this.sendAuthNumViewedMsg = '인증번호가 발송 되었습니다.'
-        } else {
-          this.sendAuthNumViewedMsg = '인증번호 받기에 실패했습니다.' + (response.message ? ' (' + response.message + ')' : '')
-        }
-      }).catch(e => {
-        this.isSendMsgViewed = true
-        this.sendAuthNumViewedMsg = e.desc
-      })
+      this.showPassword = !this.showPassword
     },
-    // 핸드폰 번호 전송(대행사)
-    inputMblNum() {
-      this.form.error.target = ''
-      this.form.error.msg = ''
-      if (!this.mblNum) {
-        this.form.error.target = 'mblNum'
-        this.form.error.msg = '핸드폰 번호를 입력해 주세요.'
-        this.$refs.mblNum.focus()
-        return false
-      }
-      if (!/^(0(1(0|1|6|7|8|9)))(\d{3,4})(\d{4}$)/.test(this.mblNum)) {
-        this.form.error.target = 'mblNum'
-        this.form.error.msg = '올바른 휴대폰번호를 입력해주세요.'
-        this.$refs.mblNum.focus()
-        return false
-      }
-      // 핸드폰 번호 전송
-      this.selectAgencyMbl({
-        userId: this.userInfo.userId,
-        mblNum: this.mblNum
-      }).then(response => {
-        // 유저 정보 세팅
-        this.updateUserForAuthSms(response.result)
-        this.closeModal()
-        // 휴대폰 인증번호 입력 모달 오픈
-        this.isModalViewed = true
-        this.isPhoneCertViewed = true
-        // 인증 번호 전송
-        this.sendAuthNumber()
-      }).catch(error => {
-        if (error.code === '64433') {
-          this.form.error.target = 'mblNum'
-          this.form.error.msg = '등록된 휴대폰 번호가 아닙니다.'
-        } else {
-          this.form.error.target = 'mblNum'
-          this.form.error.msg = error.desc
-        }
-      })
+    moveChange () {
+      this.$router.push('./pwFind')
+      document.documentElement.style.overflow = 'auto'
+    },
+    closeSmsMsg () {
+      this.SendSmsMsg = false
+      this.isSendMsgViewed = false
+    },
+    closeMsg () {
+      this.isModalViewed = false
+      this.pwChangeModalViewed = false
+      this.PhoneCertModal = false
+      this.pwChangeModal = false
     },
     start() {
+      this.isModalViewed = true
+      this.PhoneCertModal = true
       this.isButtonDisabled = true
       // 1초에 한번씩 start 호출
       this.TimeCounter = 180
-      this.interval = setInterval(() => {
+      var interval = setInterval(() => {
         this.TimeCounter-- // 1초씩 감소
         this.TimerStr = this.prettyTime()
-        if (this.TimeCounter <= 0) this.timerStop()
+        if (this.TimeCounter <= 0) this.timerStop(interval)
       }, 1000)
+      return interval
     },
-    timerStop: function() {
-      clearInterval(this.interval)
+    timerStop: function(Timer) {
+      clearInterval(Timer)
       this.TimeCounter = 0
-      this.isButtonDisabled = false
-      this.TimerStr = '00:00'
+      if (this.form.certNumber === '') {
+        this.phoneCheckTimeout = true
+      }
     },
     prettyTime: function() {
       // 시간 형식으로 변환 리턴
@@ -426,54 +337,6 @@ export default {
         ':' +
         secondes.toString().padStart(2, '0')
       )
-    },
-    chkAuthNum() {
-      this.form.error.target = ''
-      this.form.error.msg = ''
-      if (!this.form.certNumber) {
-        this.form.error.target = 'certNumber'
-        this.form.error.msg = '인증번호를 입력해 주세요.'
-        return false
-      }
-      let param = { userId: this.userInfo.userId, authStr: this.form.certNumber }
-      if (this.userInfo.userType === 'SUBAGENCY') {
-        param.mblNum = this.userInfo.mblNum
-        param.userType = this.userInfo.userType
-      }
-      this.authsmsConfirm(param).then(response => {
-        this.timerStop()
-        if (response.code === '20000000') {
-          if (response.result.exceed90days) {
-            // 로그인한지 90일 초과
-            this.$router.replace({ name: 'PwChange' })
-          } else {
-            // 로그인 이후 페이지는 대시보드로 고정
-            this.closeModal()
-            this.$router.push({ name: 'corpDashboardUrl', params: { corpId: response.result.corpId } })
-          }
-        }
-      }).catch(error => {
-        this.form.error.target = 'certNumber'
-        this.form.error.msg = typeof error.desc === 'string' ? error.desc : error.desc.desc
-      })
-    },
-    toggleShow () {
-      if (this.showPassword) {
-        this.iconName = 'icon-eye'
-      } else {
-        this.iconName = 'icon-eye blue'
-      }
-      this.showPassword = !this.showPassword
-    },
-    closeModal () {
-      this.isModalViewed = false
-      this.isErrorMsgViewed = false
-      this.isPhoneCertViewed = false
-      this.isPhoneNumInputViewed = false
-      this.isSendMsgViewed = false
-    },
-    moveChage() {
-      this.$router.push({ 'name': 'pwFind' })
     }
   }
 }

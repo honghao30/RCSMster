@@ -6,18 +6,6 @@ import store from '@/store'
 // login 검증을 위함
 import { getToken } from '@/utils/token'
 
-// 개발 router import
-import brand from './modules/brand'
-import chatbot from './modules/chatbot'
-import corp from './modules/corp'
-import template from './modules/template'
-import layout from './modules/layout'
-import autoreplymsg from './modules/autoreplymsg'
-import feed from './modules/feed'
-import utility from './modules/utility'
-import psmenu from './modules/psmenu'
-import cs from './modules/cs'
-
 import NotFound from '@/views/errors/404.vue'
 // import ServerError from '@/views/errors/500.vue'
 
@@ -43,16 +31,6 @@ Vue.use(Router)
 let router = new Router({
   mode: 'history',
   routes: [
-    brand,
-    chatbot,
-    corp,
-    autoreplymsg,
-    feed,
-    utility,
-    psmenu,
-    cs,
-    template,
-    layout,
     {
       path: '*',
       component: NotFound,

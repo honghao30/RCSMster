@@ -3,7 +3,7 @@
     <div class="brand__inner">
       <BrandLnb />
       <div class="brand-info__wrap">
-        <PageTitle :pagetitle="pageTitle" />
+        <PageTitle pagetitle="SYSTEM STUDIOS 대화방 메뉴" />
         <PageTitleH3 titleh3="대화방 정보" />
         <div class="chatroom__wrap--view">
           <div class="chatroom-menu__view">
@@ -20,13 +20,15 @@
                       <div class="form-item__content">
                         <div class="form-item-row">
                           <div class="input-item">
-                            <span class="text">{{ twowayChatbotData.psMenuYn  === 'Y' ? '사용' : twowayChatbotData.psMenuYn === 'PAUSE' ? '사용중지' : '미사용' }}</span>
+                            <span class="text">{{ chatroomList[0].status }}</span>
                           </div>
                         </div>
-                        <p class="not-user-msg" v-if="twowayChatbotData.psMenuYn  !== 'Y' && twowayChatbotData.psMenuYn === 'PAUSE'">
+                        <!-- 기획서 v1.0 수정(사용중지 인 경우 문구 사용 / 고객센터 클릭 시 1:1문의 화면으로 이동) -->
+                        <!-- <p class="not-user-msg">
                           현재 해당 대화방은 일시중지 상태입니다.<br>
                           일시중지 상태를 해제하려면 <router-link to="#">고객센터</router-link>에 문의해주세요.
-                        </p>
+                        </p> -->
+                        <!-- // 기획서 v1.0 수정(사용중지 인 경우 문구 사용 / 고객센터 클릭 시 1:1문의 화면으로 이동) -->
                       </div>
                     </td>
                   </tr>
@@ -36,7 +38,7 @@
                       <div class="form-item__content">
                         <div class="form-item-row">
                           <div class="input-item">
-                            <span class="text">{{ twowayChatbotData.subTitle }}</span>
+                            <span class="text">{{ chatroomList[0].chatRoomName }}</span>
                           </div>
                         </div>
                       </div>
@@ -48,7 +50,7 @@
                       <div class="form-item__content">
                         <div class="form-item-row">
                           <div class="input-item">
-                            <span class="text">{{ isA2pChatbot ? twowayChatbotData.chatbotId : twowayChatbotData.subNum }}</span>
+                            <span class="text">{{ chatroomList[0].phoneNUm }}</span>
                           </div>
                         </div>
                       </div>
@@ -60,7 +62,7 @@
                       <div class="form-item__content">
                         <div class="form-item-row">
                           <div class="input-item">
-                            <span class="text">{{ twowayChatbotData.chatbotId }}</span>
+                            <span class="text">{{ chatroomList[0].chatID }}</span>
                           </div>
                         </div>
                       </div>
@@ -69,101 +71,99 @@
                 </tbody>
               </table>
             </div>
-            <template v-if="psMenuList.length > 0">
-              <div class="chatroom-munu__h3-wrap">
-                <PageTitleH3 titleh3="대화방 메뉴" />
-                <ButtonCmp
-                  type="btn-line"
-                  size="small"
-                >
-                  대화방 메뉴 복사
-                </ButtonCmp>
-              </div>
-              <div class="table__wrap">
-                <table class="table table-bodyonly form-table">
-                  <colgroup>
-                    <col width="280px"/>
-                    <col />
-                  </colgroup>
-                  <tbody>
+            <div class="chatroom-munu__h3-wrap">
+              <PageTitleH3 titleh3="대화방 메뉴" />
+              <!-- 기획서 v1.0 수정(대화방 메뉴 복사 팝업 삭제 / v1.0 기준 p.30에서 삭제됨) -->
+              <ButtonCmp
+                type="btn-line"
+                size="small"
+                @click="copyChatRoom"
+              >
+                대화방 메뉴 복사
+              </ButtonCmp>
+            </div>
+            <div class="table__wrap">
+              <table class="table table-bodyonly form-table">
+                <colgroup>
+                  <col width="280px"/>
+                  <col />
+                </colgroup>
+                <tbody>
                   <tr
-                    v-for="(menu, index) in psMenuList"
+                    v-for="(menu, index) in chatroomList[0].list"
                     :key="index"
                   >
-                    <th scope="row"><span class="form-item__label">{{ menu.title }}</span></th>
-                    <td v-if="menu.type === 'dial_phone_number'">
+                    <th scope="row"><span class="form-item__label">{{ menu.label }}</span></th>
+                    <td>
                       <div class="form-item__content">
                         <ul class="chatroom-menu__list">
-                          <li>전화연결</li>
-                          <li>{{ menu.dialPhoneNumber.phoneNumber }}</li>
-                        </ul>
-                      </div>
-                    </td>
-                    <td v-if="menu.type === 'auto_reply'">
-                      <div class="form-item__content">
-                        <ul class="chatroom-menu__list">
-                          <li>간편 챗봇 연결</li>
-                          <li>{{ menu.armIdName }}</li>
-                        </ul>
-                      </div>
-                    </td>
-                    <td v-if="menu.type === 'basic_url_action'">
-                      <div class="form-item__content">
-                        <ul class="chatroom-menu__list">
-                          <li>홈페이지 연결</li>
-                          <li>{{ menu.basic.openUrl.url }}</li>
-                        </ul>
-                      </div>
-                    </td>
-                    <td v-if="menu.type === 'feed_url_action'">
-                      <div class="form-item__content">
-                        <ul class="chatroom-menu__list">
-                          <li>브랜드 소식 연결</li>
-                          <li>{{ menu.feed.openUrl.url }}</li>
+                          <li
+                            v-for="(item, index) in menu.menuDetails"
+                            :key="index"
+                          >
+                          {{ item.title }} <br v-if="item.sevice !== ''"> {{ item.sevice }}
+                          </li>
                         </ul>
                       </div>
                     </td>
                   </tr>
-                  </tbody>
-                </table>
-              </div>
-            </template>
+                </tbody>
+              </table>
+            </div>
           </div>
           <div class="chatroom-emulator sticky">
             <ChatEmulator
-              :chatInfoData="twowayChatbotData"
-              :chatMenuList="psMenuList"
+              :chatInfoData="chatInfoData"
+              :chatMenuList="chatMenuData"
             />
           </div>
         </div>
-        <div class="button__wrap" v-if="psMenuList.length > 0">
+        <!-- 기획서 v1.0 수정 (삭제 : 모달창 추가 / type 변경 , 저장-> 수정 문구변경, 수정: btn컴포넌트 -> router-link 변경 및 링크연결) -->
+        <div class="button__wrap flex-end">
           <ButtonCmp
-              type="btn-blue-line"
-              @click="remove"
+            type="btn-line"
+            @click="modalRemove"
           >삭제</ButtonCmp>
-          <ButtonCmp
-              type="btn-blue"
-              @click="goWrite"
-          >수정</ButtonCmp>
-        </div>
-        <div class="button__wrap" v-else>
-          <ButtonCmp
-            type="btn-blue"
-            @click="goWrite"
-          >등록</ButtonCmp>
+          <router-link
+            to="/ChatRoomMenuViewModified"
+            class="btn btn-blue"
+          >수정</router-link>
+          <!-- // 기획서 v1.0 수정 (삭제 : 모달창 추가 , 저장: btn컴포넌트 -> router-link 변경 및 링크연결) -->
+
         </div>
       </div>
     </div>
     <!-- modal  -->
-<!--    <ModalView-->
-<!--      v-if="isModalViewed"-->
-<!--      @closeModal="isModalViewed = false"-->
-<!--    >-->
-<!--      <DublicationChatMenu-->
-<!--          @closeModal="isModalViewed = false"-->
-<!--        >-->
-<!--      </DublicationChatMenu>-->
-<!--    </ModalView>-->
+    <ModalView
+      v-if="isModalViewed"
+      @closeModal="isModalViewed = false"
+    >
+    <!-- 기획서 v1.0 수정(DublicationChatMenu 삭제 : 대화방 메뉴 복사 팝업 삭제 / v1.0 기준 p.30에서 삭제됨) -->
+    <!-- 기획서 v1.0 수정 (삭제 버튼 선택 시, 대화방 메뉴 삭제 Alert 출력) -->
+    <ConfirmMsg
+      @closeModal="isModalViewed = false, isModalRemove = false"
+      v-if="isModalRemove"
+    >
+      <div class="msg" slot="msg">
+        대화방 메뉴를 삭제하시겠습니까?
+      </div>
+      <div class="button__wrap" slot="button">
+        <ButtonCmp
+          type="btn-line"
+          @click="closeMsg"
+          >
+            아니요
+          </ButtonCmp>
+        <ButtonCmp
+        type="btn-blue"
+        @click="closeMsg"
+        >
+          예
+        </ButtonCmp>
+      </div>
+    </ConfirmMsg>
+    <!-- // 기획서 v1.0 수정 (삭제 버튼 선택 시, 대화방 메뉴 삭제 Alert 출력) -->
+  </ModalView>
     <!-- modal  -->
   </div>
 </template>
@@ -172,76 +172,105 @@
 
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
-import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import ChatEmulator from '@/views/brand/components/ChatEmulatorCustom.vue'
-import { getTwowayChatbotDetail } from '@/api/service/chatbot'
-import { parsePersistentMenu, getPersistentDetail, deletePersistentMenu } from '@/api/service/persistentMenu'
+import ChatEmulator from '@/views/brand/components/ChatEmulator.vue'
+import PageTitleH3 from '@/components/common/PageTitleH3.vue'
+import ModalView from '@/components/common/ModalView.vue'
+import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
 
 export default {
   components: {
-    ChatEmulator,
-    ButtonCmp,
     PageTitle,
     BrandLnb,
-    PageTitleH3
+    ButtonCmp,
+    PageTitleH3,
+    ModalView,
+    ChatEmulator,
+    ConfirmMsg
   },
   data() {
     return {
-      brandId: '',
-      chatbotId: '',
-      pageTitle: '',
-      twowayChatbotData: {},
-      psMenuList: [],
-      topMenuList: [], // 상위메뉴 리스트
-      subMenuList: [] // 하위메뉴 리스트
+      isModalViewed: false,
+      isModalRemove: false, // 기획서 v1.0 수정
+      // 기획서 v1.0 수정
+      chatInfoData: {
+        chatRoomName: 'SYSTEM STUDIOS',
+        allowMsg: 'Y',
+        hideInputFooter: false,
+        chipButtons: true
+      },
+      chatroomList: [
+        {
+          chatRoomName: 'SYSTEMSTUDIO',
+          phoneNUm: '010-5151-5151',
+          chatID: 'bot-i7ke7f30e6c',
+          status: '사용',
+          saftyMark: 'Y',
+          allowMsg: 'N',
+          list: [
+            {
+              label: '🎀상담직원 연결👋', // 기획서 v1.0 수정
+              value: '🎀상담직원 연결👋',
+              menuDetails: [
+                {
+                  title: '전화연결',
+                  sevice: '010-5151-5151'
+                }
+              ]
+            },
+            {
+              label: '🍉나에게 맞는 상품은?🍓',
+              value: '🍉나에게 맞는 상품은?🍓',
+              menuDetails: [
+                {
+                  title: '간편 챗붓 연결',
+                  sevice: 'SYSTEM STUDIO 간편 챗봇 1'
+                }
+              ]
+            },
+            {
+              label: '🍉23FW 미리보기🍒',
+              value: '🍉23FW 미리보기🍒',
+              menuDetails: [
+                {
+                  title: '브랜드 소식 연결',
+                  sevice: ''
+                },
+                {
+                  title: '많이 찾는 FAQ 미리보기',
+                  sevice: ''
+                },
+                {
+                  title: 'BR.13L49F42Mo.28tF0K7EuV',
+                  sevice: ''
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      chatMenuData: [{
+        menuIndex: '1',
+        menuTitle: '🎀상담직원 연결👋'
+      },
+      {
+        menuIndex: '2',
+        menuTitle: '🍉나에게 맞는 상품은?🍓'
+      },
+      {
+        menuIndex: '3',
+        menuTitle: '🍉23FW 미리보기🍒'
+      }]
     }
   },
-  computed: {
-    isA2pChatbot() { return this.twowayChatbotData.service === 'a2p' } // 발신번호 기반 대화방 여부
-  },
-  created() {
-    this.brandId = this.$route.params.brandId
-    this.chatbotId = this.$route.params.chatbotId
-    this.init()
-  },
   methods: {
-    async init() {
-      let twowayInfo = await getTwowayChatbotDetail(this.brandId, { chatbotId: this.chatbotId }).catch(() => {})
-      if (twowayInfo.code === '20000000') {
-        this.twowayChatbotData = twowayInfo.result
-        this.pageTitle = this.twowayChatbotData.subTitle + ' 대화방 메뉴'
-      }
-      let psMenuInfo = await getPersistentDetail(this.brandId, { brandId: this.brandId, chatbotId: this.chatbotId }).catch(() => {})
-      // 등록된 대화방 메뉴가 있음
-      if (psMenuInfo.result.length > 0) {
-        // upPostbackId 의 유무로 상위/하위 메뉴를 나눈다.
-        this.topMenuList = psMenuInfo.result.filter(menu => jglib.isEmpty(menu.upPostbackId))
-        this.subMenuList = psMenuInfo.result.filter(menu => !jglib.isEmpty(menu.upPostbackId))
-        this.psMenuList = parsePersistentMenu(this.topMenuList, this.subMenuList)
-      }
+    closeMsg() {
+      this.isModalViewed = false
+      this.isModalRemove = false
     },
-    remove() {
-      this.$confirmMsg('대화방메뉴를 삭제 하시겠습니까?').then(() => {
-        let data = { chatbotId: this.twowayChatbotData.chatbotId }
-        deletePersistentMenu(this.brandId, data).then(res => {
-          if (res.code === '20000000') this.goList()
-        }).catch((err) => {
-          this.$alertMsg(err.desc).then(() => {})
-        })
-      })
-    },
-    goWrite() {
-      this.$router.push({
-        name: 'ChatRoomMenuWrite',
-        params: {
-          brandId: this.brandId,
-          chatbotId: this.chatbotId
-        }
-      })
-    },
-    goList() {
-      this.$router.push({ name: 'ChatRoomMenuList', params: { brandId: this.brandId } })
+    modalRemove() {
+      this.isModalViewed = true
+      this.isModalRemove = true
     }
   }
 }

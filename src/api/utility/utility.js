@@ -34,34 +34,12 @@ export function retrieveCorpInfo(params) {
   }
 }
 
-export function retrieveSeasonInfo(params) {
-  // TODO: URL 수정
-  if (isUseAPI()) {
-    return request({
-      url: `/joining/virtualcorp`,
-      method: 'get',
-      meta: { useErrorMessage: false }
-    })
-  }
-}
-
 export function updateCorpInfo(corpId, formData) {
   // TODO: URL 수정
 
   if (isUseAPI()) {
     return request({
       url: `/corp/${corpId}`,
-      method: 'put',
-      data: formData,
-      meta: { useErrorMessage: false }
-    })
-  }
-}
-
-export function updateCorpFileInfo(formData) {
-  if (isUseAPI()) {
-    return request({
-      url: `/info/member/admin/authority`,
       method: 'put',
       data: formData,
       meta: { useErrorMessage: false }

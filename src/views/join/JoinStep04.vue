@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     goLogin () {
-      this.$router.push('./login')
+      this.$router.push('./LoginPage')
     },
     goService () {
       this.$router.push('./')

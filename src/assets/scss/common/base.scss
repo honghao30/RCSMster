@@ -46,8 +46,8 @@ body {
 
 //23.05.10 남다현 & 스크롤 스타일 수정 (textarea 안 스크롤 작업으로 인해 변경)
 ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    width: 10px;
+    height: 10px
 }
 ::-webkit-scrollbar-track,::-webkit-scrollbar-track-piece {
     background-color: none

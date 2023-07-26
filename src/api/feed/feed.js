@@ -46,7 +46,7 @@ export function custReactStatus(reqObj) {
 }
 
 // 소식목록
-export function getFeedList(reqObj) {
+export function feedList(reqObj) {
   if (isUseAPI()) {
     return requestFeed({
       url: '/brand/feed',
@@ -164,8 +164,7 @@ export function createFeed(brandId, reqObj) {
     return requestFeed({
       url: `/brand/${brandId}/feed`,
       method: 'post',
-      headers: { 'Content-Type': 'multipart/form-data' },
-      // headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       data: reqObj,
       meta: { useErrorMessage: false }
     })
@@ -215,41 +214,6 @@ export function statInit(reqObj) {
       url: '/brand/feed/stat/init',
       method: 'get',
       params: reqObj,
-      meta: { useErrorMessage: false }
-    })
-  }
-}
-
-// 소식등록 / 브랜드 승인 가능 여부
-export function getAlimpan(brandId) {
-  if (isUseAPI()) {
-    return requestFeed({
-      url: `/brand/${brandId}/init`,
-      method: 'get',
-      meta: { useErrorMessage: false }
-    })
-  }
-}
-
-export function editAlimpan(brandId, data) {
-  if (isUseAPI()) {
-    return requestFeed({
-      url: `/brand/${brandId}/init`,
-      headers: { 'Content-Type': 'application/json' },
-      method: 'put',
-      data: data,
-      meta: { useErrorMessage: false }
-    })
-  }
-}
-
-export function updateDisplayFeed(brandId, feedId, params) {
-  if (isUseAPI()) {
-    return requestFeed({
-      url: `/brand/${brandId}/feed/${feedId}/displayFeed`,
-      headers: { 'Content-Type': 'application/json' },
-      method: 'put',
-      data: params,
       meta: { useErrorMessage: false }
     })
   }

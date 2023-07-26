@@ -85,7 +85,7 @@ export function getCertificationNum(NumData) {
   }
 }
 
-export function getCheckBrandDelete(params) {
+export function getCheckTplYnChatbotYn(params) {
   // local 개발 환경이 아닐 경우, 무조건 서버를 조회해야 함
   if (isUseAPI()) {
     // 차후 변경될 Restful 형식에 따라 수정해야 함
@@ -155,12 +155,12 @@ export function setModifyChatBot(reqData) {
   }
 }
 
-export function getAllAprved(corpId) {
+export function getAllAprved(params) {
   // local 개발 환경이 아닐 경우, 무조건 서버를 조회해야 함
   if (isUseAPI()) {
     // 차후 변경될 Restful 형식에 따라 수정해야 함
     return request({
-      url: `corp/${corpId}/aprved`,
+      url: `brand/aprved/${params}`,
       method: 'get',
       // 에러 메시지를 출력하는 옵션 - useErrorMessage, false로 정의하면 에러가 나와도 출력되지 않는다. default는 true
       meta: { useErrorMessage: false }
@@ -174,19 +174,6 @@ export function getMasterBrand(params) {
     // 차후 변경될 Restful 형식에 따라 수정해야 함
     return request({
       url: '/brand/master/' + params.brandId,
-      method: 'get',
-      params: params,
-      // 에러 메시지를 출력하는 옵션 - useErrorMessage, false로 정의하면 에러가 나와도 출력되지 않는다. default는 true
-      meta: { useErrorMessage: false }
-    })
-  }
-}
-
-export function isCreatedBrandMaaP(params) {
-  if (isUseAPI()) {
-    // 차후 변경될 Restful 형식에 따라 수정해야 함
-    return request({
-      url: '/brand/createdMaap/' + params.brandId,
       method: 'get',
       params: params,
       // 에러 메시지를 출력하는 옵션 - useErrorMessage, false로 정의하면 에러가 나와도 출력되지 않는다. default는 true

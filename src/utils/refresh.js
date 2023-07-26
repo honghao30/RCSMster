@@ -28,14 +28,14 @@ export function refreshToken() {
           store.dispatch('SetAccessToken', response.data.result.accessToken)
           store.dispatch('SetRefreshToken', response.data.result.refreshToken)
           resolve(response.data.result.accessToken)
-        } else if (response.data.code === '61004' || response.data.code === '40000002') {
+        } else if (response.data.code === '40000002') {
           reject(response.data.code)
         }
         reject()
       })
       .catch(error => {
         const response = error.response
-        if (response.data.code === '61004' || response.data.code === '40000002') {
+        if (response.data.code === '40000002') {
           // console.log("refresh 토큰 만료")
           reject(response.data.code)
         }

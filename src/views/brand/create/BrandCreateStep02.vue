@@ -10,7 +10,7 @@
             <div class="table__wrap">
               <table class="table table-bodyonly form-table">
                 <colgroup>
-                  <col width="196px"> <!-- 기획서 v1.0 수정 (width값 수정) -->
+                  <col width="230px">
                   <col />
                 </colgroup>
                 <tbody>
@@ -33,7 +33,7 @@
                     </td>
                   </tr>
                   <tr v-if="form.quickButton.includes('call')">
-                    <th scope="row"><span class="form-item__label required">전화번호</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                    <th scope="row"><span class="form-item__label required">Call</span></th>
                     <td>
                       <div class="form-item__content">
                         <div class="form-item-row">
@@ -41,13 +41,13 @@
                             <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요."  v-model="form.tel" disabled ></span>
                           </div>
                         </div>
-                        <p class="guide-text black">&middot; 브랜드 기본정보에서 입력한 값과 동일하게 반영됩니다.</p> <!-- 기획서 v1.0 수정 (특수문자 추가 및 black 클래스 추가) -->
+                        <p class="guide-text">※ 브랜드 기본정보에서 입력한 값과 동일하게 반영됩니다.</p>
                         <p class="guide-text error" v-if="telErrorMsg" >전화번호를 입력해주세요.</p>
                       </div>
                     </td>
                   </tr>
                   <tr v-if="form.quickButton.includes('info')">
-                    <th scope="row"><span class="form-item__label required">정보</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                    <th scope="row"><span class="form-item__label required">More info</span></th>
                     <td>
                       <div class="form-item__content">
                         <div class="form-item-row">
@@ -60,7 +60,7 @@
                     </td>
                   </tr>
                   <tr v-if="form.quickButton.includes('order')">
-                    <th scope="row"><span class="form-item__label required">주문</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                    <th scope="row"><span class="form-item__label required">Order</span></th>
                     <td>
                       <div class="form-item__content">
                         <div class="form-item-row">
@@ -73,7 +73,7 @@
                     </td>
                   </tr>
                   <tr v-if="form.quickButton.includes('buy')">
-                    <th scope="row"><span class="form-item__label required">구매</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                    <th scope="row"><span class="form-item__label required">Buy</span></th>
                     <td>
                       <div class="form-item__content">
                         <div class="form-item-row">
@@ -86,7 +86,7 @@
                     </td>
                   </tr>
                   <tr v-if="form.quickButton.includes('ticket')">
-                    <th scope="row"><span class="form-item__label required">티켓</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                    <th scope="row"><span class="form-item__label required">Ticket</span></th>
                     <td>
                       <div class="form-item__content">
                         <div class="form-item-row">
@@ -99,7 +99,7 @@
                     </td>
                   </tr>
                   <tr v-if="form.quickButton.includes('web')">
-                    <th scope="row"><span class="form-item__label required">웹사이트</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                    <th scope="row"><span class="form-item__label required">Web</span></th>
                     <td>
                       <div class="form-item__content">
                         <div class="form-item-row">
@@ -107,12 +107,12 @@
                             <span class="input"><input type="text" class="input" placeholder="웹 사이트 URL 주소를 입력해주세요. (예:http://www.portal.com)"  v-model="form.url" ></span>
                           </div>
                         </div>
-                        <p class="guide-text error" v-if="webErrorMsg" >URL을 입력하세요.</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                        <p class="guide-text error" v-if="webErrorMsg" >기타 안내용 URL 주소를 입력해주세요.</p>
                       </div>
                     </td>
                   </tr>
                   <tr v-if="form.quickButton.includes('store')">
-                    <th scope="row"><span class="form-item__label required">스토어</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                    <th scope="row"><span class="form-item__label required">Store</span></th>
                     <td>
                       <div class="form-item__content">
                         <div class="form-item-row">
@@ -227,11 +227,11 @@ export default {
       storeErrorMsg: false,
       quickComp: [
         {
-          label: '전화번호', // 기획서 1.0 수정 (문구 수정)
+          label: '전화',
           value: 'call'
         },
         {
-          label: '정보', // 기획서 1.0 수정 (문구 수정)
+          label: '더보기',
           value: 'info'
         },
         {
@@ -247,7 +247,7 @@ export default {
           value: 'ticket'
         },
         {
-          label: '웹사이트', // 기획서 1.0 수정 (문구 수정)
+          label: '웹',
           value: 'web'
         },
         {

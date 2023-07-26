@@ -91,7 +91,6 @@
                 <template v-if="isTextType3">
                   <MainTitleFree :info="form.MainTitle.info"/>
                   <Description :info="form.Description.info"/>
-                  <Table :info="form.simpleTable.info" />
                 </template>
                  <!-- 타이틀 자유형_스타일 -->
                 <template v-if="isTextType4">
@@ -180,7 +179,6 @@ import Description from './components/Description.vue'
 import ButtonVertical from '@/views/brand/message/components/ButtonVertical.vue'
 import StyleTable from '@/views/brand/message/components/StyleTable.vue'
 import ItemB from '@/views/brand/message/components/ItemB.vue'
-import Table from '@/views/brand/message/components/Table.vue'
 
 export default {
   components: {
@@ -193,8 +191,7 @@ export default {
     Description,
     ButtonVertical,
     StyleTable,
-    ItemB,
-    Table
+    ItemB
   },
   data() {
     return {
@@ -222,26 +219,16 @@ export default {
               tableTitle: '',
               content: [
                 {
-                  itemLabel: {},
-                  itemData: {},
+                  itemLabel: '',
+                  itemData: '',
                   line: false,
-                  colNum: '1'
+                  colNum: '1',
+                  itemLabelStyle: '',
+                  itemDataStyle: ''
                 }
               ]
             }
           ]
-        },
-        simpleTable: {
-          info: {
-            titleUse: 'N',
-            tableTitle: '',
-            content: [
-              {
-                itemLabel: '',
-                itemData: ''
-              }
-            ]
-          }
         },
         Item: {
           info: {
@@ -427,6 +414,18 @@ export default {
     }
   },
   methods: {
+    initTemplate(templateNum) {
+      this.templateData = this.textTemplate[templateNum]
+      console.log(this.textTemplate[templateNum])
+      this.templateData.forEach((item) => {
+        let type = item.type
+        Object.keys(this.form).forEach((key) => {
+          if (type === key) {
+            item.info = this.form[key].info
+          }
+        })
+      })
+    },
     // 이미지 파일 업로드
     onFileChanged (e) {
       const files = e.target.files

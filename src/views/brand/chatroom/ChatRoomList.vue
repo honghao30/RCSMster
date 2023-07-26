@@ -230,7 +230,7 @@
           <!-- 삭제 선택 시, 체크박스 활성화된 대화방 삭제 처리 -->
           <ButtonCmp
           type="btn-blue"
-          @click="closeMsg"
+          @click="remvoeChatRoom"
           >
             삭제
           </ButtonCmp>
@@ -372,6 +372,7 @@ export default {
       large: false,
       disabled: false,
       isOpen: false,
+      passWord: '',
       // 기획서 v1.0 수정(chatSearch 삭제 + chatSort: 챗봇연결에서 양방향 으로 변경 + status 삭제)
       chatRoomList: [
         {
@@ -496,7 +497,9 @@ export default {
       // 기획서 v1.0 수정
       isModalViewed: false,
       isRemoveList: false,
-      isNotUse: false
+      isNotUse: false,
+      isRemovePassword: false,
+      isDisplayChatRoom: false
     }
   },
   methods: {
@@ -525,10 +528,16 @@ export default {
     removeListModal () {
       this.isModalViewed = true
       this.isRemoveList = true
+      this.isRemovePassword = false
     },
     notUseModal () {
       this.isModalViewed = true
       this.isNotUse = true
+    },
+    remvoeChatRoom () {
+      this.isModalViewed = true
+      this.isRemoveList = false
+      this.isRemovePassword = true
     }
   }
 }

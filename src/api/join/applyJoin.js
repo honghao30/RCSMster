@@ -68,32 +68,10 @@ export function createJoinCorp(data) {
   }
 }
 
-export function createJoinSeason(data) {
-  if (isUseAPI()) {
-    return request({
-      url: '/joining/corp/season',
-      method: 'post',
-      data: data,
-      meta: { useErrorMessage: false }
-    })
-  }
-}
-
 export function createJoinAgency(data) {
   if (isUseAPI()) {
     return request({
       url: '/joining/agency',
-      method: 'post',
-      data: data,
-      meta: { useErrorMessage: false }
-    })
-  }
-}
-
-export function tokenCerti(data) {
-  if (isUseAPI()) {
-    return request({
-      url: '/joining/invite/tokenCerti',
       method: 'post',
       data: data,
       meta: { useErrorMessage: false }

@@ -4,29 +4,91 @@
       v-for="(button,index) in buttonList"
       :key="index"
     >
+    <!-- 위에 div 2개는 v-for 돌리기 위해서 추가한 태그  - 기획서 1.0 수정 내용 -->
       <div class="form-item__content chip-btn__reg">
         <div class="form-item-row">
+          <!-- 버튼 선택 - 기획서 1.0 변경 내용 -->
           <div class="input-item select-button-type">
             <span class="radiobox">
-              <input type="radio" :name="`btnEvent${index}`" :id="`url${index}`" value="urlExternal" checked v-model="button.btnEvent"/>
-              <label :for="`url${index}`"><span class="radiobox__text">URL 연결</span></label>
+              <input type="radio" :name="`btnChip${index}`" :id="`btnChipUrl${index}`" value="urlExternal" checked v-model="button.btnEvent"/>
+              <label :for="`btnChipUrl${index}`"><span class="radiobox__text">URL 연결</span></label>
             </span>
             <span class="radiobox">
-              <input type="radio" :name="`btnEvent${index}`" :id="`call${index}`" value="call" v-model="button.btnEvent"/>
-              <label :for="`call${index}`"><span class="radiobox__text">전화하기</span></label>
+              <input type="radio" :name="`btnChip${index}`" :id="`btnChipCall${index}`" value="call" v-model="button.btnEvent"/>
+              <label :for="`btnChipCall${index}`"><span class="radiobox__text">전화하기</span></label>
             </span>
             <span class="radiobox">
-              <input type="radio" :name="`btnEvent${index}`" :id="`otherType${index}`" value="other" v-model="button.btnEvent"/>
-              <label :for="`otherType${index}`"><span class="radiobox__text">기타</span></label>
+              <input type="radio" :name="`btnChip${index}`" :id="`btnChipOtherType${index}`" value="other" v-model="button.btnEvent"/>
+              <label :for="`btnChipOtherType${index}`"><span class="radiobox__text">기타</span></label>
             </span>
             <div class="input">
-              <Dropdown :options="buttonEventOptions" v-model="button.btnEvent"
+              <!-- 기획서 v1.0 수정  -- placeholder / v-model 수정 -->
+              <Dropdown :options="buttonEventOptions" v-model="button.btnEventDropdown"
                 :disabled="button.btnEvent !== 'other' && !isEdit"
+                placeholder="선택해주세요"
               />
             </div>
           </div>
+          <!-- //버튼 선택 - 기획서 1.0 변경 내용 -->
         </div>
-        <div class="form-item-row is-emoji">
+        <!-- 기획서 v1.0 수정  -- URL 연결 -->
+        <div v-if="button.btnEvent == 'urlExternal'" class="response-inner-box">
+          <div class="form-item-row is-emoji">
+            <div class="input-item input-limit w--full">
+              <div class="input">
+                <input type="text" class="input" maxlength="17"
+                  ref="btnName"
+                  :disabled="button.length > 1 && !isEdit"
+                  placeholder="사용자에게 보여지는 버튼이름을 입력해주세요." v-model="button.btnName"
+                >
+                <div class="input-limit__text">
+                  <Emoji @input="onSelectEmoji($event, 'btnName')"/>
+                  <p>{{ button.btnName.length }}/17자</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="input-item w--full">
+            <div class="input">
+              <input type="text" class="input"
+                placeholder="http:// 형식으로 입력해주세요." v-model="button.btnNameUrl"
+              >
+            </div>
+          </div>
+          <p class="guide-text black">&middot; 브랜드 개설 시 입력한 웹사이트 주소로 연결됩니다.</p>
+        </div>
+        <!-- // 기획서 v1.0 수정  -- URL 연결 -->
+        <!-- 기획서 v1.0 수정  -- 전화하기 -->
+        <div v-if="button.btnEvent == 'call'" class="response-inner-box">
+          <div class="form-item-row is-emoji">
+            <div class="input-item input-limit w--full">
+              <div class="input">
+                <input type="text" class="input" maxlength="17"
+                  ref="btnName"
+                  :disabled="button.length > 1 && !isEdit"
+                  placeholder="사용자에게 보여지는 버튼이름을 입력해주세요." v-model="button.btnName"
+                >
+                <div class="input-limit__text">
+                  <Emoji @input="onSelectEmoji($event, 'btnName')"/>
+                  <p>{{ button.btnName.length }}/17자</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="input-item input-limit w--full">
+            <div class="input">
+              <input type="text" class="input"
+                placeholder="http:// 형식으로 입력해주세요." v-model="button.btnNameCall"
+              >
+              <div class="input-limit__text">
+                  <p>{{ button.btnNameCall.length }}/40자</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- // 기획서 v1.0 수정  -- 전화하기 -->
+        <!-- 기획서 v1.0 수정  -- 기타 / 공통부분 -->
+        <div class="form-item-row is-emoji" v-if="button.btnEvent == 'other'">
           <div class="input-item input-limit w--full" >
             <div class="input">
               <input type="text" class="input" maxlength="17"
@@ -41,8 +103,8 @@
             </div>
           </div>
         </div>
-
-        <div class="form-item-row" v-if="button.btnEvent == 'simpleChatbot'">
+        <!-- // 기획서 v1.0 수정  -- 기타 / 공통부분 -->
+        <div class="form-item-row" v-if="button.btnEventDropdown == 'simpleChatbot'"> <!-- 기획서 v1.0 수정  -- v-if 수정 -->
           <div class="input-item w--full" >
             <span class="input">
               <input type="text" placeholder="연결할 간편챗봇 메시지를 선택하세요." v-model="button.simpleChatbot" disabled/>
@@ -54,14 +116,14 @@
             </ButtonCmp>
           </div>
         </div>
-        <div class="form-item-row" v-if="button.btnEvent == 'chatbot'">
+        <div class="form-item-row" v-if="button.btnEventDropdown == 'chatbot'"> <!-- 기획서 v1.0 수정  -- v-if 수정 -->
           <div class="input-item w--full" >
             <span class="input">
               <input type="text" placeholder="http://api.import.kr/application/json" v-model="button.chatbot" disabled/>
             </span>
           </div>
         </div>
-        <div class="form-item-row" v-if="button.btnEvent == 'call'">
+        <div class="form-item-row" v-if="button.btnEventDropdown == 'call'"> <!-- 기획서 v1.0 수정  -- v-if 수정 -->
           <div class="input-item input-limit">
             <div class="input">
               <input type="text" placeholder="-없이 번호만 입력해주세요." v-model="button.call" maxlength="40"/>
@@ -71,7 +133,7 @@
             </div>
           </div>
         </div>
-        <div class="form-item-row" v-if="button.btnEvent == 'feed'">
+        <div class="form-item-row" v-if="button.btnEventDropdown == 'feed'"> <!-- 기획서 v1.0 수정  -- v-if 수정 -->
           <div class="input-item w--full" >
             <span class="input">
               <input type="text" placeholder="http://brandnews/pages/viewpage.action?pag" v-model="button.call" disabled/>
@@ -82,7 +144,7 @@
             </ButtonCmp>
           </div>
         </div>
-        <div class="form-item-row" v-if="button.btnEvent == 'copy'">
+        <div class="form-item-row" v-if="button.btnEventDropdown == 'copy'"> <!-- 기획서 v1.0 수정  -- v-if 수정 -->
           <div class="input-item  w--full" >
             <div class="textarea">
               <textarea maxlength="200" placeholder="복사할 내용을 입력해주세요."  v-model="button.copyContent"
@@ -97,7 +159,7 @@
             </div>
           </div>
         </div>
-        <div class="form-item-row" v-if="button.btnEvent == 'chatroom'">
+        <div class="form-item-row" v-if="button.btnEventDropdown == 'chatroom'"> <!-- 기획서 v1.0 수정  -- v-if 수정 -->
           <div class="input-item input-limit" >
             <div class="input">
               <input type="text" placeholder="-없이 번호만 입력해주세요." v-model="button.message.call" maxlength="40"/>
@@ -120,7 +182,7 @@
             </div>
           </div>
         </div>
-        <div class="form-item-row" v-if="button.btnEvent == 'urlExternal'">
+        <div class="form-item-row" v-if="button.btnEventDropdown == 'urlExternal'"> <!-- 기획서 v1.0 수정  -- v-if 수정 -->
           <div class="input-item input-limit">
             <div class="input">
               <input type="text" placeholder="http:// 형식으로 입력해주세요." v-model="button.browser.url" maxlength="100"/>
@@ -130,7 +192,7 @@
             </div>
           </div>
         </div>
-        <div class="form-item-row" v-if="button.btnEvent == 'urlInternal'">
+        <div class="form-item-row" v-if="button.btnEventDropdown == 'urlInternal'"> <!-- 기획서 v1.0 수정  -- v-if 수정 -->
           <div class="input-item input-limit">
             <div class="input">
               <input type="text" placeholder="http:// 형식으로 입력해주세요." v-model="button.browser.url" maxlength="100"/>
@@ -167,8 +229,8 @@
             </div>
           </div>
         </div>
-        <div class="form-item-row" v-if="button.btnEvent == 'mapPoint' || button.btnEvent == 'mapQuery'">
-          <div class="input-item input-limit" v-if="button.btnEvent == 'mapPoint'">
+        <div class="form-item-row" v-if="button.btnEventDropdown == 'mapPoint' || button.btnEventDropdown == 'mapQuery'"> <!-- 기획서 v1.0 수정  -- v-if 수정 -->
+          <div class="input-item input-limit" v-if="button.btnEventDropdown == 'mapPoint'"> <!-- 기획서 v1.0 수정  -- v-if 수정 -->
             <div class="input">
               <input type="text" placeholder="위도를 입력해주세요." v-model="button.map.latitude" maxlength="40"/>
               <p class="input-limit__text">
@@ -176,7 +238,7 @@
               </p>
             </div>
           </div>
-          <div class="input-item input-limit" v-if="button.btnEvent == 'mapPoint'">
+          <div class="input-item input-limit" v-if="button.btnEventDropdown == 'mapPoint'"> <!-- 기획서 v1.0 수정  -- v-if 수정 -->
             <div class="input">
               <input type="text" placeholder="경도를 입력해주세요." v-model="button.map.longitude" maxlength="40"/>
               <p class="input-limit__text">
@@ -201,7 +263,7 @@
             </div>
           </div>
         </div>
-        <div class="form-item-row" v-if="button.btnEvent == 'calendar'">
+        <div class="form-item-row" v-if="button.btnEventDropdown == 'calendar'"> <!-- 기획서 v1.0 수정  -- v-if 수정 -->
           <div class="input-item w--full">
             <el-date-picker
               v-model="button.calendar.date"
@@ -234,6 +296,7 @@
             </div>
           </div>
         </div>
+        <!-- 기획서 1.0 수정 -- 버튼 노출 방식 변경으로 삭제 -->
       <!-- <div class="form-item-row">
         <ButtonCmp
           type="btn-default-line"
@@ -249,7 +312,7 @@
           >수정
         </ButtonCmp>
       </div> -->
-        <div class="form-item-row" v-if="buttons.length">
+        <!-- <div class="form-item-row" v-if="buttons.length">
           <ul class="button-reg-list">
             <template v-for="(btn, j) in buttons">
               <li
@@ -263,7 +326,7 @@
               </li>
             </template>
           </ul>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -294,7 +357,10 @@ export default {
       activeBtnIndex: undefined,
       buttonList: [{
         btnName: '',
+        btnNameUrl: '', // 기획서 v1.0 수정
+        btnNameCall: '', // 기획서 v1.0 수정
         btnEvent: '',
+        btnEventDropdown: '', // 기획서 v1.0 수정
         simpleChatbot: '',
         chatbot: '',
         call: '',
@@ -323,10 +389,7 @@ export default {
         }
       }],
       buttonEventOptions: [
-        {
-          label: '선택하세요',
-          value: ''
-        },
+        // 기획서 v1.0 수정  -- label: '선택하세요' 삭제
         {
           label: '간편챗봇 연결',
           value: 'simpleChatbot'
@@ -374,6 +437,8 @@ export default {
     this.$watch('buttonLen', function(newVal, oldVal) {
       let btn = {
         btnName: '',
+        btnNameUrl: '', // 기획서 v1.0 수정
+        btnNameCall: '', // 기획서 v1.0 수정
         btnEvent: '',
         simpleChatbot: '',
         chatbot: '',
@@ -420,6 +485,8 @@ export default {
     resetButtonData() {
       let btn = {
         btnName: '',
+        btnNameUrl: '', // 기획서 v1.0 수정
+        btnNameCall: '', // 기획서 v1.0 수정
         btnEvent: '',
         simpleChatbot: '',
         chatbot: '',
@@ -450,29 +517,29 @@ export default {
       }
       this.button = btn
     },
-    addBtn() {
-      let btn = Object.assign({}, this.buttonInfo)
-      this.buttons.push(btn)
-      this.resetButtonData()
-    },
-    editBtnInfo (index) {
-      this.activeBtnIndex = index
-      let btn = this.buttons[index]
-      this.buttonInfo = Object.assign({}, btn)
-      this.isEdit = true
-    },
-    saveBtnInfo() {
-      let btn = Object.assign({}, this.buttonInfo)
-      this.buttons[this.activeBtnIndex] = btn
-      this.resetButtonData()
-      this.isEdit = false
-      this.activeBtnIndex = undefined
-    },
-    removeBtn(index) {
-      this.buttons.splice(index, 1)
-      this.resetButtonData()
-      this.isEdit = false
-    },
+    // addBtn() {
+    //   let btn = Object.assign({}, this.buttonInfo)
+    //   this.buttons.push(btn)
+    //   this.resetButtonData()
+    // },
+    // editBtnInfo (index) {
+    //   this.activeBtnIndex = index
+    //   let btn = this.buttons[index]
+    //   this.buttonInfo = Object.assign({}, btn)
+    //   this.isEdit = true
+    // },
+    // saveBtnInfo() {
+    //   let btn = Object.assign({}, this.buttonInfo)
+    //   this.buttons[this.activeBtnIndex] = btn
+    //   this.resetButtonData()
+    //   this.isEdit = false
+    //   this.activeBtnIndex = undefined
+    // },
+    // removeBtn(index) {
+    //   this.buttons.splice(index, 1)
+    //   this.resetButtonData()
+    //   this.isEdit = false
+    // },
     onSelectEmoji(e, target) {
       let emoji = e
       let refName = target

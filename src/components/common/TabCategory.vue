@@ -3,16 +3,16 @@
       <ul>
         <li
           v-show="allTabUseYn"
-          :class="{active: activeTab === 'ALL' || activeTab === ''}"
+          :class="[{active: activeTabIndex === -1}, {new: newTabIndex.includes(i)}]"
         >
           <a role="button" @click="tabCtrl(-1, null)">전체</a>
         </li>
         <li
           v-for="(item, i) in category"
           :key="i"
-          :class="[{active: activeTab === item.code}, {new: newTabList.includes(item.code)}]"
+          :class="[{active: activeTabIndex === i}, {new: newTabIndex.includes(i)}]"
         >
-          <a role="button" @click="tabCtrl(i, item)">{{ item.codeNm }}</a>
+          <a role="button" @click="tabCtrl(i, item)">{{ item }}</a>
         </li>
       </ul>
     </div>
@@ -21,18 +21,10 @@
 <script>
 export default {
   props: {
-    allTabUseYn: {
-      type: Boolean,
-      default: false
-    },
-    category: Array,
-    activeTab: String,
-    newTabList: {
-      type: Array,
-      default() {
-        return []
-      }
-    }
+    allTabUseYn: Boolean,
+    category: Object,
+    activeTabIndex: Number,
+    newTabIndex: Array
   },
   created() {
     if (!this.newTabIndex) {
@@ -50,8 +42,8 @@ export default {
     return {}
   },
   methods: {
-    tabCtrl: function(index, item) {
-      this.$emit('click', index, item)
+    tabCtrl: function(num) {
+      this.activeTabIndex = num
     }
   }
 }

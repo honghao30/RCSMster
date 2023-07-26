@@ -30,7 +30,23 @@
     "level": 1,
     "sort": 2,
     "name": "파트너사"
-  }, 
+  },
+  {
+    "menuId": "M0201",
+    "parentMenuId": "M0200",
+    "path": "/service/dashboard",
+    "level": 2,
+    "sort": 1,
+    "name": "브랜드"
+  },
+  {
+    "menuId": "M0202",
+    "parentMenuId": "M0200",
+    "path": "/service/support",
+    "level": 2,
+    "sort": 2,
+    "name": "기술지원"
+  },
   {
     "menuId": "M0300",
     "parentMenuId": "",

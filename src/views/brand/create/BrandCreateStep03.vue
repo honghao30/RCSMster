@@ -4,24 +4,24 @@
       <div class="brand-info__wrap">
         <PageTitle pagetitle="브랜드 개설" />
         <StepList :stepActiveIndex="3" :stepTitle="stepTitle" />
-        <!-- 기획서 v1.0 수정('브랜드 홈 탭 설정' 문구 삭제) -->
+        <PageTitleH3 titleh3="브랜드 홈 탭 설정"/>
         <form  ref="form" :model="form">
           <div class="brand_wrap">
             <div class="table__wrap">
               <table class="table table-bodyonly form-table">
                 <colgroup>
-                  <col width="196px"> <!-- 기획서 v1.0 수정 (width 값 수정) -->
+                  <col width="230px">
                   <col />
                 </colgroup>
                 <tbody>
-                  <tr class="bdBottom-bg"> <!-- 기획서 v1.0 수정 (bdBottom-bg 클래스 추가) -->
+                  <tr>
                     <th scope="row"><span class="form-item__label required">우선 노출 탭 설정</span></th>
                     <td>
                         <div class="form-item__content">
                           <div class="form-item-row">
                             <div class="input-item">
                               <span class="radiobox">
-                                <input type="radio" id="feed" name="tab" value="feed" v-model="form.curTab"><label for="feed">소식 탭 우선</label>
+                                <input type="radio" id="feed" name="'tab" value="feed" v-model="form.curTab"><label for="feed">소식 탭 우선</label>
                               </span>
                               <span class="radiobox">
                                 <input type="radio" id="info" name="tab" value="info" v-model="form.curTab"><label for="info">정보 탭 우선</label>
@@ -32,9 +32,8 @@
                         </div>
                     </td>
                   </tr>
-                  <!-- 기획서 v1.0 수정 (소식 탭 우선 클릭 → 영업정보 나타남 / 알림판 작성 가이드 버튼 삭제 및 처음부터 나타남) -->
-                  <tr class="brand_board" v-if="form.curTab === 'feed'">
-                    <th scope="row"><span class="form-item__label">영업정보</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                  <tr class="brand_board">
+                    <th scope="row"><span class="form-item__label">알림판</span></th>
                     <td>
                       <div class="form-item__content">
                         <div class="text-item">
@@ -80,13 +79,20 @@
                             </div>
                           </template>
                         </div>
+                        <button
+                          class="btn-brandTip"
+                          @click=onBrandTip
+                          type="button"
+                          :class="{open: isOpen}"
+                        >
+                          알림판 작성 가이드
+                        </button>
                       </div>
                     </td>
                   </tr>
-                  <tr class="brand_boardTip" v-if="form.curTab === 'feed' && form.noticeUse === 'use'"> <!-- 기획서 v1.0 수정 (brand-tip__wrap 클래스 영업정보 사용 클릭 시에 나타나도록 v-if 추가) -->
-                    <th></th> <!-- 기획서 v1.0 수정 (h 추가) -->
-                    <td> <!-- 기획서 v1.0 수정 (colspan 삭제) -->
-                      <div class="brand-tip__wrap"> <!-- 기획서 v1.0 수정 (v-if="isOpen" 삭제) -->
+                  <tr class="brand_boardTip">
+                    <td colspan="2">
+                      <div class="brand-tip__wrap" v-if="isOpen">
                         <ul class="brand-tip__box">
                           <li>
                             <h5>1. 영업시간 안내</h5>
@@ -113,7 +119,7 @@
                             >적용</ButtonCmp>
                           </li>
                           <li>
-                            <h5>3. 강조하고 싶은 내용 안내</h5> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                            <h5>3. 강조하고 싶은 내용 인재</h5>
                             <div class="brand-tip__example">
                               <strong>출시기념!</strong>
                               <p>단 7일간! 이 메시지를 보여주시는 <br />
@@ -128,48 +134,29 @@
                       </div>
                     </td>
                   </tr>
-                  <!-- 기획서 v1.0 수정 (소식 탭 우선 클릭 → 노출정보 나타남 / 새로 추가작업) -->
-                  <tr class="brand_feedinfo" v-if="form.curTab === 'feed'">
-                    <th scope="row"><span class="form-item__label">노출정보</span></th>
+                  <tr>
+                    <th scope="row"><span class="form-item__label">소식</span></th>
                     <td>
                       <div class="form-item__content">
                         <div class="text-item">
                           <div class="text-item__content">
-                            <span class="checkbox">
-                              <input type="checkbox" id="check01" v-model="form.feedtel"/>
-                              <label for="check01"><span class="checkbox__text text-item__title">전화번호</span></label>
-                              <span class="text">010-5151-5151</span>
-                            </span>
+                            <span class="text-item__title">전화</span>
+                            <span class="text">{{ form.tel }}</span>
                           </div>
                           <div class="text-item__content">
-                            <span class="checkbox">
-                              <input type="checkbox" id="check02" v-model="form.feedinfo"/>
-                              <label for="check02"><span class="checkbox__text text-item__title">정보</span></label>
-                              <span class="text">http://www/portal.com</span>
-                            </span>
+                            <span class="text-item__title">더보기</span>
+                            <span class="text">{{ form.moreInfo }}</span>
                           </div>
                           <div class="text-item__content">
-                            <span class="checkbox">
-                              <input type="checkbox" id="check03" v-model="form.feedweb"/>
-                              <label for="check03"><span class="checkbox__text text-item__title">웹사이트</span></label>
-                              <span class="text">http://www.brandportal.com</span>
-                            </span>
-                          </div>
-                          <div class="text-item__content">
-                            <span class="checkbox">
-                              <input type="checkbox" id="check04" v-model="form.feedsearch"/>
-                              <label for="check04"><span class="checkbox__text text-item__title">포탈검색</span></label>
-                              <span class="text">#브랜드명#</span>
-                            </span>
+                            <span class="text-item__title">웹</span>
+                            <span class="text">{{ form.url }}</span>
                           </div>
                         </div>
                       </div>
                     </td>
                   </tr>
-                  <!-- 기획서 v1.0 수정 (소식 탭 우선 클릭 → 노출정보 나타남 / 새로 추가작업) -->
-                  <!-- 기획서 v1.0 수정 (정보 탭 우선 클릭 → 노출정보 나타남 / v-if="form.curTab === 'info' 추가) -->
-                  <tr v-if="form.curTab === 'info'">
-                    <th scope="row"><span class="form-item__label">노출정보</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                  <tr>
+                    <th scope="row"><span class="form-item__label">정보</span></th>
                     <td>
                       <div class="form-item__content">
                         <div class="form-item-row text-item">
@@ -215,7 +202,6 @@
                       </div>
                     </td>
                   </tr>
-                  <!-- // 기획서 v1.0 수정 (정보 탭 우선 클릭 → 노출정보 나타남 / v-if="form.curTab === 'info' 추가) -->
                   <tr class="guide-wrap">
                     <th colspan="2">
                       <p class="guide-text black">&bull; 퀵 버튼 설정 시 입력한 정보가 동일하게 반영됩니다.</p>
@@ -323,116 +309,25 @@
             to="/brandcreatestep01"
             class="btn btn-line"
           >이전</router-link>
-          <div>
+        <div>
             <ButtonCmp
                 type="btn-line"
                 @click="isModalViewed = true"
             >임시저장</ButtonCmp>
-            <!-- 기획서 v1.0 수정 (문구 수정 / 승인요청 버튼 클릭 시 모달창 출력되어 모달창 추가 @click="onSubmit"변경 필요) -->
             <ButtonCmp
                 type="btn-blue"
                 @click="onSubmit"
-            >승인 요청</ButtonCmp>
-            <!-- // 기획서 v1.0 수정 (문구 수정 / 승인요청 버튼 클릭 시 모달창 출력되어 모달창 추가 @click="onSubmit"변경 필요) -->
+            >다음</ButtonCmp>
           </div>
         </div>
       </div>
     </div>
-    <!-- 기획서 v1.0 수정 (모달 추가) -->
-    <ModalView
-      v-if="isModalViewed"
-      @closeModal="isModalViewed = false"
-    >
-      <!-- 임시저장 버튼 클릭 시 -->
-      <ConfirmMsg
-          @closeModal="isModalViewed = false"
-        >
-          <div class="msg" slot="msg">
-            입력하신 정보가 임시저장 되었습니다.
-          </div>
-          <div class="button__wrap" slot="button">
-              <ButtonCmp
-              type="btn-blue"
-              @click="closeMsg"
-              >
-                확인
-              </ButtonCmp>
-          </div>
-      </ConfirmMsg>
-      <!-- // 임시저장 버튼 클릭 시 -->
-      <!-- 승인요청 버튼 클릭 시 -->
-      <ConfirmMsg
-          @closeModal="isModalViewed = false"
-        >
-          <div class="msg" slot="msg">
-            입력하신 정보로 브랜드를 개설합니다.
-          </div>
-          <div class="button__wrap" slot="button">
-            <!-- [닫기]선택 시, Alert 종료 후 브랜드 개설 페이지 유지 -->
-            <ButtonCmp
-              type="btn-line"
-              @click="closeMsg"
-              >
-                닫기
-              </ButtonCmp>
-              <!-- [승인 요청]선택 시, 전화번호 사용 여부 Check
-                    1.사용 가능한 전화번호인 경우 : 브랜드 개설 완료 페이지로 이동
-                    2.사용중인 전화번호인 경우 [3]Alert 출력 -->
-              <ButtonCmp
-              type="btn-blue"
-              @click="closeMsg"
-              >
-                승인요청
-              </ButtonCmp>
-          </div>
-      </ConfirmMsg>
-      <!-- // 승인요청 버튼 클릭 시 -->
-      <!-- 승인요청 버트 클릭 시 > 모달창의 승인요청 버튼 클릭 시 > 사용중인 전화번호인 경우 > case1. 다른회사에서 사용 중인 경우 (기획서 v1.0 p.31 참고) -->
-      <ConfirmMsg
-          @closeModal="isModalViewed = false"
-        >
-          <div class="msg" slot="msg">
-            해당 전화번호는 다른 기업에서<br>이미 사용중인 전화번호입니다.<br>등록하고자 하는 전화번호의 통신사실증명원을<br>RCS Biz Center 고객센터로 전달하여 발신번호 소유자<br>확인을 먼저 의뢰하신 후 진행해 주시기 바랍니다.
-          </div>
-          <div class="button__wrap" slot="button">
-            <!-- [닫기]버튼 선택 시, 기본 정보 입력 STEP > 전화번호 영역 포커싱 + 유효성 체크 출력 -->
-            <ButtonCmp
-              type="btn-line"
-              @click="closeMsg"
-              >
-                닫기
-              </ButtonCmp>
-          </div>
-      </ConfirmMsg>
-      <!-- // 승인요청 버트 클릭 시 > 모달창의 승인요청 버튼 클릭 시 > 사용중인 전화번호인 경우 > case1. 다른회사에서 사용 중인 경우 (기획서 v1.0 p.31 참고) -->
-      <!-- 승인요청 버트 클릭 시 > 모달창의 승인요청 버튼 클릭 시 > 사용중인 전화번호인 경우 > case2. 같은회사에서 다른 브랜드가 사용중인 경우 (기획서 v1.0 p.31 참고) -->
-      <ConfirmMsg
-          @closeModal="isModalViewed = false"
-        >
-          <div class="msg" slot="msg">
-            #브랜드명# 브랜드에서<br>이미 해당 전화번호를 등록하여 사용중입니다.<br>#브랜드명# 브랜드 담당자에게 문의하시기 바랍니다.
-          </div>
-          <div class="button__wrap" slot="button">
-            <!-- [닫기]버튼 선택 시, 기본 정보 입력 STEP > 전화번호 영역 포커싱 + 유효성 체크 출력 -->
-            <ButtonCmp
-              type="btn-line"
-              @click="closeMsg"
-              >
-                닫기
-              </ButtonCmp>
-          </div>
-      </ConfirmMsg>
-      <!-- // 승인요청 버트 클릭 시 > 모달창의 승인요청 버튼 클릭 시 > 사용중인 전화번호인 경우 > case2. 같은회사에서 다른 브랜드가 사용중인 경우 (기획서 v1.0 p.31 참고) -->
-    </ModalView>
-    <!-- // 기획서 v1.0 수정 (모달 추가) -->
   </div>
 </template>
 
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
-// 기획서 v1.0 수정(PageTitleH3 미사용으로 인해 삭제 / ModalView, ConfirmMsg 추가)
-import ModalView from '@/components/common/ModalView.vue'
-import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue'
+import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import StepList from '@/components/common/StepList.vue'
 import BrandEmulator from '@/views/brand/components/BrandEmulator.vue'
@@ -442,9 +337,7 @@ export default {
   components: {
     PageTitle,
     ButtonCmp,
-    // 기획서 v1.0 수정(PageTitleH3 미사용으로 인해 삭제 / ModalView, ConfirmMsg 추가)
-    ModalView,
-    ConfirmMsg,
+    PageTitleH3,
     StepList,
     BrandEmulator,
     Emoji

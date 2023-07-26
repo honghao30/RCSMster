@@ -25,7 +25,7 @@ export default {
     },
     pageSize: {
       type: [Number, String],
-      default: 5
+      default: 10
     },
     currentPage: {
       type: [Number, String],
@@ -37,7 +37,7 @@ export default {
     },
     rangeMax: {
       type: [Number, String],
-      default: 5
+      default: 10
     }
   },
   data() {

@@ -25,6 +25,8 @@ export default {
     if (this.breadcrumbInfo === false) {
       this.Showbreadcrumb = false
     }
+  },
+  methods() {
   }
 }
 </script>

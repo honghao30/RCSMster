@@ -54,8 +54,6 @@ const defMenu = {
   armId: '', // 자동응답 메시지 id(기 등록 자동응답 메시지 선택시)
   armIdName: '', // 자동응답 메시지 명(기 등록 자동응답 메시지 선택시)
   dialPhoneNumber: { phoneNumber: '' }, // 전화걸기
-  basic: { openUrl: { url: '' } },
-  feed: { openUrl: { url: '' } },
   isLoadAutoReply: '' // 자동응답 선택(Y:선택/N:직접입력)
 }
 export function getMenuObj(opt) {
@@ -99,14 +97,6 @@ export function parsePersistentMenu(topList, subList) {
       if (top.actType === 'dialerAction') {
         menu.type = 'dial_phone_number'
         menu.dialPhoneNumber.phoneNumber = actionToJson.dialerAction.dialPhoneNumber.phoneNumber // 전화걸기
-      } else if (top.actType === 'urlAction') {
-        menu.type = 'basic_url_action'
-        menu.basic.openUrl.url = actionToJson.urlAction.openUrl.url
-      }
-    } else if (top.type === 'feed') {
-      if (top.actType === 'urlAction') {
-        menu.type = 'feed_url_action'
-        menu.feed.openUrl.url = actionToJson.urlAction.openUrl.url
       }
     } else { // 하위메뉴
       menu.type = 'sub_menu'

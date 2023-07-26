@@ -43,7 +43,7 @@
                               <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요."  v-model="form.tel" disabled ></span>
                             </div>
                           </div>
-                          <p class="guide-text black">&middot; 브랜드 기본정보에서 입력한 값과 동일하게 반영됩니다.</p> <!-- 기획서 v1.0 수정 (특수문자 추가 및 black 클래스 추가) -->
+                          <p class="guide-text">※ 브랜드 기본정보에서 입력한 값과 동일하게 반영됩니다.</p>
                           <p class="guide-text error" v-if="telErrorMsg" >전화번호를 입력해주세요.</p>
                         </div>
                       </td>
@@ -109,7 +109,7 @@
                               <span class="input"><input type="text" class="input" placeholder="웹 사이트 URL 주소를 입력해주세요. (예:http://www.portal.com)"  v-model="form.url" ></span>
                             </div>
                           </div>
-                          <p class="guide-text error" v-if="webErrorMsg" >URL을 입력하세요.</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                          <p class="guide-text error" v-if="webErrorMsg" >기타 안내용 URL 주소를 입력해주세요.</p>
                         </div>
                       </td>
                     </tr>
@@ -152,8 +152,8 @@
             </div>
             <div class="right">
               <ButtonCmp
-              type="btn-line"
-            >수정완료</ButtonCmp> <!-- 기획서 v1.0 수정 ([수정 완료] 선택 시, 수정 완료 얼럿 출력 / 기획서 p.09 참고 / 모달창 작업 완료함) -->
+                type="btn-line"
+              >수정완료</ButtonCmp>
               <ButtonCmp
                 type="btn-blue"
                 @click="onSubmit"
@@ -162,49 +162,6 @@
           </div>
       </div>
     </div>
-    <!-- 기획서 v1.0 수정 (모달 추가 / script 추가 안함) -->
-    <ModalView
-      v-if="isModalViewed"
-      @closeModal="isModalViewed = false"
-    >
-      <!-- 수정완료 버튼 클릭 시 -->
-      <!-- case01. 승인 필요 항목 수정한 경우 브랜드 명, 프로필 이미지 수정 시 노출되는 Alert -->
-      <ConfirmMsg
-          @closeModal="isModalViewed = false"
-        >
-          <div class="msg" slot="msg">
-            브랜드 명, 프로필 이미지 수정 시<br>승인완료 후 반영됩니다.
-          </div>
-          <div class="button__wrap" slot="button">
-              <!-- [확인] 버튼 선택 시, 승인 대기 상태로 변경 -->
-              <ButtonCmp
-              type="btn-blue"
-              @click="closeMsg"
-              >
-                확인
-              </ButtonCmp>
-          </div>
-      </ConfirmMsg>
-      <!-- case02. 승인 없이 즉시 저장되는 항목 수정한 경우 -->
-      <ConfirmMsg
-          @closeModal="isModalViewed = false"
-        >
-          <div class="msg" slot="msg">
-            입력하신 정보가 수정되었습니다.
-          </div>
-          <div class="button__wrap" slot="button">
-              <!-- [확인] 버튼 선택 시, 수정 항목 저장 및 승인 완료 상태로 변경 -->
-              <ButtonCmp
-              type="btn-blue"
-              @click="closeMsg"
-              >
-                확인
-              </ButtonCmp>
-          </div>
-      </ConfirmMsg>
-      <!-- // 수정완료 버튼 클릭 시 -->
-    </ModalView>
-    <!-- // 기획서 v1.0 수정 (모달 추가 / script 추가 안함) -->
   </div>
 </template>
 
@@ -217,8 +174,6 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import StepList from '@/components/common/StepList.vue'
 import BrandEmulator from '@/views/brand/components/BrandEmulator.vue'
 import imgcategoryOptions from '@/views/brand/create/brandBasicImg'
-import ModalView from '@/components/common/ModalView.vue' // 기획서 v1.0 수정(ModalView 추가)
-import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue' // 기획서 v1.0 수정(ConfirmMsg 추가)
 
 export default {
   components: {
@@ -227,9 +182,7 @@ export default {
     // PageTitleH3,
     StepList,
     BrandLnb,
-    BrandEmulator,
-    ModalView, // 기획서 v1.0 수정(ModalView 추가)
-    ConfirmMsg // 기획서 v1.0 수정(ConfirmMsg 추가)
+    BrandEmulator
   },
   data() {
     return {

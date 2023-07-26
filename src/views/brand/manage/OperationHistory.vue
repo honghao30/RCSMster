@@ -6,11 +6,12 @@
         <PageTitle pagetitle="작업 히스토리" />
         <div class="top-ctrl-area">
           <div>
-            <p>총 <strong>{{ brandHistoryData.totalSize }}</strong>건</p>  <!-- 기획서 v1.0 수정 소팅 결과 소팅 건수 추가 -->
+            <p>총 <strong>7</strong>건</p>  <!-- 기획서 v1.0 수정 소팅 결과 소팅 건수 추가 -->
           </div>
           <div class="right-area">
-            <Dropdown :options="dropdownManageBrandType" v-model='brandHistoryData.formData.workType' @change='changeWorktype' placeholder="유형" />
-            <Dropdown :options="dropdownManageBrandStatus" v-model='brandHistoryData.formData.histType' @change='changeHisttype' placeholder="상태" />
+            <Dropdown :options="categoryOptions" placeholder="유형" />
+            <Dropdown :options="statusOptions" placeholder="상태" />
+            <!-- <Dropdown :options="orderOptions" placeholder="최신순" /> --> <!-- 기획서 v1.0 수정 최신순 소팅 삭제 -->
           </div>
         </div>
         <div class="table__wrap notice-table">
@@ -35,27 +36,27 @@
             </thead>
             <tbody>
               <tr
-                v-for="(item, i) in brandHistoryData.list" :key="i"
+                v-for="(item, i) in historyList" :key="i"
               >
                 <td>
-                  {{ item.updateDt }}
+                  {{ item.updateDate }}
                 </td>
                 <td>
-                  {{ item.workTypeNm }}
+                  {{ item.category }}
                 </td>
                 <td>
-                  {{ item.modCtn }}
+                  {{ item.title }}
                 </td>
                 <td>
-                  {{ item.histTypeNm }}
-                  <p v-if="item.statusReason" class="more-detail">{{ item.statusReason }}</p>
+                  {{ item.statusText }}
+                  <p v-if="item.statusDetail" class="more-detail">{{ item.statusDetail }}</p>
                 </td>
                 <td>
-                  {{ item.userId }}
-                  <p v-if="item.agencyNm" class="more-detail">{{ item.agencyNm }}</p>
+                  {{ item.person }}
+                  <p v-if="item.agencyName" class="more-detail">{{ item.agencyName }}</p>
                 </td>
                 <td>
-                  {{ item.chType }}
+                  {{ item.method }}
                 </td>
               </tr>
             </tbody>
@@ -73,7 +74,7 @@
             type="btn-blue-line"
           >삭제</ButtonCmp>
         </div> -->
-        <PagingCmp :total='brandHistoryData.totalCount' :current-page='brandHistoryData.formData.page' :page-size='brandHistoryData.formData.size' @change='changeHistPage' />
+        <PagingCmp />
       </div>
     </div>
   </div>
@@ -83,10 +84,9 @@
 
 import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
+// import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
 import PagingCmp from '@/components/common/PagingCmp.vue'
-import uiCommon from '@/components/js/uiCommon'
-import { retrieveBrandHistList } from '@/api/service/service'
 
 export default {
   components: {
@@ -98,54 +98,118 @@ export default {
   },
   data() {
     return {
-      initTotal: 0,
-      userType: '',
-      corpAdmYn: '',
-      dropdownManageBrandHistory: [],
-      dropdownManageBrandStatus: [],
-      dropdownManageBrandType: [
-        { codeNm: '대화방', code: 'CHATBOT' },
-        { codeNm: '간편챗봇', code: 'AUTO_REPLY' },
-        { codeNm: '템플릿', code: 'TPL' },
-        { codeNm: '운영자', code: 'BRAND_OPER_AUTH_CORP' },
-        { codeNm: '대행사', code: 'BRAND_OPER_AUTH_AGENCY' }
-      ],
-      brandHistoryData: {
-        list: [],
-        totalSize: 0,
-        formData: {
-          userType: '',
-          corpAdmYn: '',
-          workType: '',
-          histType: '',
-          page: 1,
-          size: 10,
-          brandId: this.brandId
+      checkList: [],
+      historyList: [
+        {
+          updateDate: '2023.04.25 13:00',
+          category: '대화방',
+          title: 'SYSTEM STUDIOS​',
+          status: 'request',
+          statusText: '수정요청',
+          statusDetail: '시스템 스튜디오 대화방',
+          person: '오동동',
+          agencyName: 'SYSTEM STUDIO',
+          method: 'web'
+        },
+        {
+          updateDate: '2023.04.25 13:00',
+          category: '템플릿 메시지',
+          title: '23FW 미리보기​​',
+          status: 'done',
+          statusText: '승인완료',
+          statusDetail: '',
+          person: '김미미',
+          agencyName: '',
+          method: 'web'
+        },
+        {
+          updateDate: '2023.04.25 13:00',
+          category: '템플릿 레이아웃',
+          title: '23FW 미리보기​​',
+          status: 'reject',
+          statusText: '반려',
+          statusDetail: '인터넷 광고 금지 메시지​',
+          person: '김미미',
+          agencyName: '',
+          method: 'web'
+        },
+        {
+          updateDate: '2023.04.25 13:00',
+          category: '간편 챗봇',
+          title: '23FW 미리보기​​',
+          status: '',
+          statusText: '최초등록',
+          statusDetail: '',
+          person: '김미미',
+          agencyName: '',
+          method: 'web'
         }
-      }
+      ],
+      categoryOptions: [
+        {
+          label: '대화방',
+          value: 'chat'
+        },
+        {
+          label: '간편 챗봇',
+          value: 'chatbot'
+        },
+        {
+          label: '템플릿 레이아웃',
+          value: 'templateLayout'
+        },
+        {
+          label: '템플릿 메시지',
+          value: 'templateMsg'
+        },
+        {
+          label: '운영자',
+          value: ''
+        },
+        {
+          label: '대행사',
+          value: 'agency'
+        }
+      ],
+      statusOptions: [
+        {
+          label: '최초등록',
+          value: 'reg'
+        },
+        {
+          label: '수정요청',
+          value: 'editRequest'
+        },
+        {
+          label: '승인요청 취소',
+          value: 'requestCancle'
+        },
+        {
+          label: '반려',
+          value: 'reject'
+        },
+        {
+          label: '승인완료',
+          value: 'done'
+        },
+        {
+          label: '삭제',
+          value: 'delete'
+        }
+      ],
+      orderOptions: [
+        {
+          label: '최신순',
+          value: 'newest'
+        },
+        {
+          label: '오래된 순',
+          value: 'oldest'
+        }
+      ]
     }
-  },
-  computed: {
-    brandId () {
-      return this.$router.currentRoute.params.brandId
-    }
-  },
-  created() {},
-  mounted() {
-    this.getBrandHistList()
   },
   methods: {
-    getBrandHistList () {
-      retrieveBrandHistList(this.brandId, this.brandHistoryData.formData).then((res) => {
-        this.brandHistoryData.list = res.result.list
-        this.brandHistoryData.totalSize = res.result.totalSize
-        if (this.initTotal === 0) {
-          this.initTotal = res.result.totalSize
-        }
-      }).catch(e => {
-        this.$alertMsg(e.desc)
-      })
-    },
     labelStatus(status) {
       if (status === 'done') {
         return 'done'
@@ -153,77 +217,6 @@ export default {
       if (status === 'reject') {
         return 'reject'
       }
-    },
-    changeWorktype(type) {
-      let arr = []
-      switch (type) {
-        case 'CHATBOT' :
-          arr = [
-            { typeNm: '임시저장', typeId: 'SAVED' },
-            { typeNm: '등록', typeId: 'REG' },
-            { typeNm: '수정', typeId: 'MOD' },
-            { typeNm: '삭제', typeId: 'DEL' }
-          ]
-          this.dropdownManageBrandStatus = uiCommon.getDropDownCodes(arr, 'typeNm', 'typeId', true)
-          break
-        case 'AUTO_REPLY' :
-          arr = [
-            { typeNm: '임시저장', typeId: 'SAVED' },
-            { typeNm: '등록', typeId: 'REG' },
-            { typeNm: '수정', typeId: 'MOD' },
-            { typeNm: '삭제', typeId: 'DEL' }
-          ]
-          this.dropdownManageBrandStatus = uiCommon.getDropDownCodes(arr, 'typeNm', 'typeId', true)
-          break
-        case 'CHATBOT_TWOWAY' :
-          arr = [
-            { typeNm: '등록', typeId: 'REG' },
-            { typeNm: '수정', typeId: 'MOD' },
-            { typeNm: '삭제', typeId: 'DEL' }
-          ]
-          this.dropdownManageBrandStatus = uiCommon.getDropDownCodes(arr, 'typeNm', 'typeId', true)
-          break
-        case 'LAYOUT' :
-          arr = [
-            { typeNm: '가입', typeId: 'JOIN' },
-            { typeNm: '수정', typeId: 'MOD' },
-            { typeNm: '초대', typeId: 'INVITE' },
-            { typeNm: '탈퇴', typeId: 'LEAVED' }
-          ]
-          this.dropdownManageBrandStatus = uiCommon.getDropDownCodes(arr, 'typeNm', 'typeId', true)
-          break
-        case 'TPL' :
-          arr = [
-            { typeNm: '가입', typeId: 'JOIN' },
-            { typeNm: '수정', typeId: 'MOD' },
-            { typeNm: '초대', typeId: 'INVITE' },
-            { typeNm: '탈퇴', typeId: 'LEAVED' }
-          ]
-          this.dropdownManageBrandStatus = uiCommon.getDropDownCodes(arr, 'typeNm', 'typeId', true)
-          break
-        case 'BRAND_OPER_AUTH_CORP' :
-          arr = [
-            { typeNm: '추가', typeId: 'MGR_ADD' },
-            { typeNm: '삭제', typeId: 'MGR_DEL' },
-            { typeNm: '초대', typeId: 'INVITE' }
-          ]
-          this.dropdownManageBrandStatus = uiCommon.getDropDownCodes(arr, 'typeNm', 'typeId', true)
-          break
-        case 'BRAND_OPER_AUTH_AGENCY' :
-          arr = [
-            { typeNm: '추가', typeId: 'AGENCY_ADD' },
-            { typeNm: '삭제', typeId: 'AGENCY_DEL' }
-          ]
-          this.dropdownManageBrandStatus = uiCommon.getDropDownCodes(arr, 'typeNm', 'typeId', true)
-          break
-      }
-    },
-    changeHisttype() {
-      this.getBrandHistList()
-    },
-    changeHistPage(page) {
-      this.brandHistoryData.formData.page = page
-      this.getBrandHistList()
     }
   }
 }
