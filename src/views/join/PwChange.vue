@@ -14,11 +14,11 @@
               :iconname=iconCurrnetName
               @click="toggleShowCurrent"
             ><span class="irtext">비밀번호 보이기</span></ButtonCmp>
-            <span class="input"><input ref="usrid" v-if="showPasswordCurrent" type="text" class="input" placeholder="현재 비밀번호를 입력해주세요."  v-model="form.pwcurrent">
-              <input ref="usrpwcurrent" v-else type="password" class="input" placeholder="현재 비밀번호를 입력해주세요."  v-model="form.pwcurrent">
+            <span class="input"><input ref="usrpwcurrentid" v-if="showPasswordCurrent" type="text" class="input" placeholder="현재 비밀번호를 입력해주세요."  v-model="userPwd">
+              <input ref="usrpwcurrent" v-else type="password" class="input" placeholder="현재 비밀번호를 입력해주세요."  v-model="userPwd">
             </span>
           </div>
-          <p class="guide-text error" v-if="pwCurrentErrorMsg">현재 비밀번호를 다시 입력해주세요.</p>
+          <p class="guide-text error" v-if="pwCurrentErrorMsg">{{pwCurrentErrorMsgTxt}}</p>
         </div>
         <div class="form-item">
           <span class="form-item__label">새 비밀번호</span>
@@ -29,11 +29,11 @@
               @click="toggleShow"
             ><span class="irtext">비밀번호 보이기</span></ButtonCmp>
             <span class="input">
-              <input ref="usrid" v-if="showPassword" type="text" class="input" placeholder="변경할 비밀번호를 입력해주세요."  v-model="form.pw">
-              <input ref="usrpw" v-else type="password" class="input" placeholder="변경할 비밀번호를 입력해주세요."  v-model="form.pw">
+              <input ref="usrpwid" v-if="showPassword" type="text" class="input" placeholder="변경할 비밀번호를 입력해주세요."  v-model="userNewPwd">
+              <input ref="usrpw" v-else type="password" class="input" placeholder="변경할 비밀번호를 입력해주세요."  v-model="userNewPwd">
             </span>
           </div>
-          <p class="guide-text error" v-if="pwErrorMsg">새 비밀번호을 입력해주세요.</p>
+          <p class="guide-text error" v-if="pwErrorMsg">{{pwErrorMsgTxt}}</p>
           <p class="guide-text validation">영문, 숫자, 특수문자 중 2개 이상 사용 (2개 조합 시 10자리 이상 / 3개 조합 시 8자리 이상)</p>
           <p class="guide-text error">연속적인 숫자 또는 문자 사용 불가 (예 : 1234, abcd)</p>
           <p class="guide-text validation">아이디, 핸드폰 번호와 동일한 숫자 또는 문자 사용 불가</p>
@@ -47,19 +47,21 @@
               :iconname=iconChangeName
               @click="toggleShowCheck"
             ><span class="irtext">비밀번호 보이기</span></ButtonCmp>
-            <span class="input"><input ref="usrid" v-if="showPasswordCheck" type="text" class="input" placeholder="한번 더 입력해주세요."  v-model="form.pwcheck">
-              <input ref="usrpwcheck" v-else type="password" class="input" placeholder="한번 더 입력해주세요."  v-model="form.pwcheck">
+            <span class="input"><input ref="usrpwcheckid" v-if="showPasswordCheck" type="text" class="input" placeholder="한번 더 입력해주세요."  v-model="userNewPwdConfirm">
+              <input ref="usrpwcheck" v-else type="password" class="input" placeholder="한번 더 입력해주세요."  v-model="userNewPwdConfirm">
             </span>
           </div>
-          <p class="guide-text error" v-if="pwcheckErrorMsg">새 비밀번호를 한번 더 입력해주세요.</p>
+          <p class="guide-text error" v-if="pwcheckErrorMsg">{{pwcheckErrorMsgTxt}}</p>
         </div>
       </div>
       <div class="button__wrap">
-        <!-- 기획서 v1.0 수정 (나중에 변경 버튼 > 메인 화면으로 이동 으로 인한 태그 수정) -->
-        <router-link to="#" class="btn btn-line">나중에 변경</router-link>
+        <ButtonCmp
+          type="btn-blue-line"
+          @click="updateExpiredDt"
+        >나중에 변경</ButtonCmp>
         <ButtonCmp
           type="btn-blue"
-          @click="onSubmit"
+          @click="updatePassword"
         >비밀번호 변경</ButtonCmp>
       </div>
     </form>
@@ -69,6 +71,9 @@
 <script>
 import PageTitle from '@/components/common/PageTitle.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import { updatePassword, updatePasswordExpiredDt } from '@/api/utility/password'
+import store from '@/store'
+
 export default {
   components: {
     PageTitle,
@@ -76,14 +81,15 @@ export default {
   },
   data() {
     return {
-      form: {
-        pw: '',
-        pwcheck: '',
-        pwcurrent: ''
-      },
+      userPwd: '',
+      userNewPwd: '',
+      userNewPwdConfirm: '',
       pwCurrentErrorMsg: false,
       pwErrorMsg: false,
       pwcheckErrorMsg: false,
+      pwCurrentErrorMsgTxt: '',
+      pwErrorMsgTxt: '',
+      pwcheckErrorMsgTxt: '',
       showPassword: false,
       showPasswordCheck: false,
       showPasswordCurrent: false,
@@ -94,26 +100,100 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      if (this.form.pwcurrent === '') {
+    updatePassword() {
+      // 유효성 검증
+      if (!this.validationPassword()) {
+        return false
+      }
+      let data = {
+        userPwd: this.userPwd,
+        userNewPwd: this.userNewPwd
+      }
+      updatePassword(data).then(res => {
+        if (res.code === '20000000') {
+          // 비밀번호가 변경되면 로그아웃 후 로그인 화면으로 이동한다.
+          // TODO: 메시지 설계서에 없어서 임시로 노출
+          this.$alertMsg(
+            '비밀번호가 변경 완료 되었습니다.변경하신 비밀번호로 다시 로그인 해 주세요.',
+            '알림'
+          ).then(res => {
+            store.dispatch('Logout').then(res => {
+              this.$router.push('/login')
+            })
+          })
+        }
+      }).catch(res => {
+        if (res.code === '64439') { // 현제 비번이 맞지 않음
+          this.pwCurrentErrorMsg = true
+          this.pwCurrentErrorMsgTxt = res.desc
+          this.showPasswordCurrent ? this.$refs.usrpwcurrentid.focus() : this.$refs.usrpwcurrent.focus()
+        } else {
+          this.pwcheckErrorMsg = true
+          this.pwcheckErrorMsgTxt = res.desc
+          this.showPasswordCheck ? this.$refs.usrpwcheckid.focus() : this.$refs.usrpwcheck.focus()
+        }
+      })
+    },
+    validationPassword() {
+      if (jglib.isEmpty(this.userPwd)) {
         this.pwCurrentErrorMsg = true
-        this.$refs.usrpwcurrent.focus()
-        return
+        this.pwCurrentErrorMsgTxt = '현재 비밀번호를 입력해주세요.'
+        this.showPasswordCurrent ? this.$refs.usrpwcurrentid.focus() : this.$refs.usrpwcurrent.focus()
+        return false
+      } else {
+        this.pwCurrentErrorMsg = false
+        this.pwCurrentErrorMsgTxt = ''
       }
 
-      if (this.form.pw === '') {
+      if (jglib.isEmpty(this.userNewPwd)) {
         this.pwErrorMsg = true
-        this.$refs.usrpw.focus()
-        return
+        this.pwErrorMsgTxt = '새 비밀번호를 입력해주세요'
+        this.showPassword ? this.$refs.usrpwid.focus() : this.$refs.usrpw.focus()
+        return false
+      } else {
+        this.pwErrorMsg = false
+        this.pwErrorMsgTxt = ''
       }
 
-      if (this.form.pwcheck === '') {
+      if (jglib.isEmpty(this.userNewPwdConfirm)) {
         this.pwcheckErrorMsg = true
-        this.$refs.usrpwcheck.focus()
-        return
+        this.pwcheckErrorMsgTxt = '새 비밀번호 확인을 입력해주세요.'
+        this.showPasswordCheck ? this.$refs.usrpwcheckid.focus() : this.$refs.usrpwcheck.focus()
+        return false
+      } else {
+        this.pwcheckErrorMsg = false
+        this.pwcheckErrorMsgTxt = ''
       }
-      alert('비밀번호 변경되었습니다.')
-      this.$router.push('./LoginPage')
+
+      if (!jglib.isPw(this.userNewPwd)) {
+        this.pwErrorMsg = true
+        this.pwErrorMsgTxt = '비밀번호는 영문, 숫자, 특수문자 중 2가지 이상을 조합하여 10자리 이상 또는 3가지 이상을 조합하여 8자리 이상으로 설정해 주세요.'
+        this.showPassword ? this.$refs.usrpwid.focus() : this.$refs.usrpw.focus()
+        return false
+      } else {
+        this.pwErrorMsg = false
+        this.pwErrorMsgTxt = ''
+      }
+
+      if (this.userNewPwd !== this.userNewPwdConfirm) {
+        this.pwcheckErrorMsg = true
+        this.pwcheckErrorMsgTxt = '입력한 비밀번호와 일치하지 않습니다.'
+        this.showPasswordCheck ? this.$refs.usrpwcheckid.focus() : this.$refs.usrpwcheck.focus()
+        return false
+      } else {
+        this.pwcheckErrorMsg = false
+        this.pwcheckErrorMsgTxt = ''
+      }
+
+      return true
+    },
+    updateExpiredDt() { // 다음에 변경
+      updatePasswordExpiredDt().then(res => {
+        this.$router.push('/service/dashboard')
+      }).catch(err => {
+        this.$alertMsg(err.desc)
+      })
+      this.$router.push('/service/dashboard')
     },
     toggleShowCurrent () {
       if (this.showPasswordCurrent) {

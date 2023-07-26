@@ -1,9 +1,9 @@
 
 // 챗봇
-import ChatbotList from '@/views/brand/chatbot/ChatbotList'
-import ChatbotRegistration from '@/views/brand/chatbot/ChatbotRegistration'
+import ChatbotList from '@/views/brand/autoreply/autoReplyMsgList.vue'
+import ChatbotRegistration from '@/views/brand/autoreply/autoReplyMsgReg.vue'
 import ChatbotModified from '@/views/brand/chatbot/ChatbotModified'
-import ChatbotView from '@/views/brand/chatbot/ChatbotView'
+import ChatbotView from '@/views/brand/autoreply/autoReplyMsgDetail.vue'
 // 템플릿
 import TemplateList from '@/views/brand/message/TemplateList'
 import TemplateMsgList from '@/views/brand/message/TemplateMsgList'

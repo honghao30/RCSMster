@@ -126,7 +126,7 @@ service.interceptors.response.use(
       })
     }
 
-    if (error.response.data.error.code === '40000002' || error.response.data.error.code === '40000001') {
+    if (error.response.data.error.code === '61004' || error.response.data.error.code === '40000002' || error.response.data.error.code === '40000001') {
       const originalRequest = error.response.config
       const retryRequest = new Promise((resolve, reject) => {
         refreshToken()
@@ -139,7 +139,7 @@ service.interceptors.response.use(
                 resolve(response.data)
               })
               .catch(error => {
-                if (!store.state.ui.sessionTimeout && error.response.data.error.code === '40000002') {
+                if (!store.state.ui.sessionTimeout && (error.response.data.error.code === '61004' || error.response.data.error.code === '40000002')) {
                   store.dispatch('SetSessionTimeout', true)
                   MessageBox.alert('세션이 만료되었거나, 로그인이 실패되었습니다.', '안내', { confirmButtonText: '확인' }).then(() => {
                     store.dispatch('ClearSession')
@@ -151,7 +151,7 @@ service.interceptors.response.use(
               })
           })
           .catch(errorcode => {
-            if (errorcode && errorcode === '40000002') {
+            if (errorcode && (errorcode === '61004' || errorcode === '40000002')) {
               if (getToken()) {
                 store.dispatch('ClearSession')
                 MessageBox.alert('세션이 만료되었습니다. 로그인을 다시 진행하세요.', '안내', { confirmButtonText: '확인' }).then(() => {

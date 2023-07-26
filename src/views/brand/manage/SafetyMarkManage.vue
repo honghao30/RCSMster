@@ -89,9 +89,7 @@
           <ButtonCmp
             type="btn-blue-line"
           >미사용</ButtonCmp>
-          <ButtonCmp
-            type="btn-blue-line"
-          >삭제</ButtonCmp>
+          <!-- 기획서 v1.0 수정 (삭제 버튼 제거) -->
         </div>
         <PagingCmp />
       </div>

@@ -107,7 +107,7 @@ service.interceptors.response.use(
     } else if (error.response.status === 500) {
       let rej = {
         code: error.response.data.code || '',
-        desc: error.response.data.code === '50000011' ? '서버 오류가 발생했습니다. 관리자에게 문의하세요.' : error.response.data.desc //  error.response.data
+        desc: error.response.data.code === '69999' || error.response.data.code === '50000011' ? '서버 오류가 발생했습니다. 관리자에게 문의하세요.' : error.response.data.desc //  error.response.data
       }
       store.dispatch('SetLoading', false)
       return Promise.reject(rej)
@@ -123,15 +123,20 @@ service.interceptors.response.use(
     let msg = error.message
     // error.response가 없을 경우도 존재 - Network 문제
     if (error.response && meta.useAuth && error.response.status === 401) {
-      msg = '세션이 만료되었거나, 로그인이 실패되었습니다.'
-      MessageBox.alert(msg, '안내', { confirmButtonText: '확인' }).then(confirm => {
-        store.dispatch('ClearSession')
-        store.dispatch('SetLoading', false)
-        router.push('/login')
-      })
+      if (error.response.data && error.response.data.code && (error.response.data.code === '61003' || error.response.data.code === '61004')) {
+        // nothing to do
+        // ASIS -> TOBE Exception type 값의 status 리턴이 400 -> 401로 변경 되어 code 값 까지 체크 하도록 변경 함.
+      } else {
+        msg = '세션이 만료되었거나, 로그인이 실패되었습니다.'
+        MessageBox.alert(msg, '안내', { confirmButtonText: '확인' }).then(confirm => {
+          store.dispatch('ClearSession')
+          store.dispatch('SetLoading', false)
+          router.push('/login')
+        })
+      }
     }
 
-    if (error.response.data.code === '40000002' || error.response.data.code === '40000001') {
+    if (error.response.data.code === '61003' || error.response.data.code === '61004' || error.response.data.code === '40000002' || error.response.data.code === '40000001') {
       const originalRequest = error.response.config
       const retryRequest = new Promise((resolve, reject) => {
         refreshToken()
@@ -144,7 +149,7 @@ service.interceptors.response.use(
                 resolve(response.data)
               })
               .catch(error => {
-                if (!store.state.ui.sessionTimeout && error.response.data.code === '40000002') {
+                if (!store.state.ui.sessionTimeout && (error.response.data.code === '61004' || error.response.data.code === '40000002')) {
                   store.dispatch('SetSessionTimeout', true)
                   MessageBox.alert('세션이 만료되었거나, 로그인이 실패되었습니다.', '안내', { confirmButtonText: '확인' }).then(() => {
                     store.dispatch('ClearSession')
@@ -156,7 +161,7 @@ service.interceptors.response.use(
               })
           })
           .catch(errorcode => {
-            if (errorcode && errorcode === '40000002') {
+            if (errorcode && (errorcode === '61004' || errorcode === '40000002')) {
               if (getToken()) {
                 store.dispatch('ClearSession')
                 MessageBox.alert('세션이 만료되었습니다. 로그인을 다시 진행하세요.', '안내', { confirmButtonText: '확인' }).then(() => {

@@ -39,9 +39,13 @@ export default {
     }
   },
   getters: {
-    GET_USER_FOR_AUTHSMS: state => state.forAuth,
+    getUserForAuth: state => state.forAuth,
     userType: state => state.userType,
-    corpInfo: state => state.corpInfo
+    corpInfo: state => state.corpInfo,
+    userName: state => state.userName,
+    userId: state => state.userId,
+    corpId: state => state.corpId,
+    corpAdmYn: state => state.corpAdmYn
   },
   mutations: {
     SET_USER_FOR_AUTHSMS: (state, userInfo) => {
@@ -201,6 +205,7 @@ export default {
             }
             let result = response.result
             commit('SET_USER_ID', result.userId)
+            commit('SET_USER_NAME', result.userNm)
             commit('SET_USER_TYPE', result.userType)
             commit('SET_CORP_ID', result.corpId)
             commit('SET_CORP_ADM_YN', result.corpAdmYn)

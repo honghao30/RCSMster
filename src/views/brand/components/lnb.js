@@ -27,7 +27,7 @@ const brandLnbList = [
       },
       {
         'label': '템플릿 목록',
-        'to': ''
+        'to': { name: 'layoutList', params: { brandId: this.$router.currentRoute.params.brandId } }
       },
       {
         'label': '레이아웃 등록',
@@ -43,10 +43,6 @@ const brandLnbList = [
     'label': '챗봇',
     'to': '',
     'children': [
-      {
-        'label': '챗봇 연결',
-        'to': ''
-      },
       {
         'label': '간편챗봇 메시지 등록',
         'to': ''
@@ -113,7 +109,7 @@ const brandLnbList = [
       },
       {
         'label': '브랜드 운영 관리',
-        'to': ''
+        'to': { name: 'brandManage', params: { brandId: this.$router.currentRoute.params.brandId } }
       },
       {
         'label': '안심마크 관리',

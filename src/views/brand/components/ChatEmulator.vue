@@ -50,85 +50,41 @@
                 <p v-else v-html="chatMsgData.bubbleContent"> </p>
               </div>
             </div>
-            <!-- 기획서 v1.0 수정 / 카드 추가 -->
-            <template v-if="chatMsgData.chatType == 'card'">
-                <div class="chat-bubble__wrap carousel">
-                    <swiper
-                      ref="carousel"
-                      :options="swiperOption"
-                      :class="{'inactive': chatMsgData.msgCardData.length < 2}"
+            <div class="chat-bubble__wrap carousel"  v-if="chatMsgData.chatType == 'slider'"> <!-- 기획서 v1.0 수정 (card에서 slider로 변경)-->
+              <swiper
+                ref="carousel"
+                :options="swiperOption"
+                :class="{'inactive': chatMsgData.msgData.length < 2}"
+              >
+                <swiper-slide v-for="(msg, i) in chatMsgData.msgData" :key="i">
+                  <div class="chat-bubble">
+                    <div
+                      v-if="msg.imgFile" class="image-area"
+                      :class="{'full' : chatMsgData.imgSize == 'full'}"
                     >
-                      <swiper-slide v-for="(msg, i) in chatMsgData.msgCardData" :key="i">
-                        <div class="chat-bubble chatcard-innerbox">
-                          <div
-                            v-if="msg.imgFile" class="image-area chatcard-box"
-                            :class="{'full' : msg.imgSize == 'full', 'medium' : msg.imgSize == 'medium'}"
-                          >
-                            <span class="image" :style="{backgroundImage: `url(${require('@/assets/images/'+ msg.imgFile)})`}"></span>
-                          </div>
-
-                          <div class="item--none chatcard-box" v-else :class="{'full' : msg.imgSize == 'full', 'medium' : msg.imgSize == 'medium'}">
-                            <p class="img">이미지를 등록해주세요.</p>
-                          </div>
-                          <div class="text-area" v-if="msg.title || msg.cardContent">
-                            <p class="msg-title" v-html="msg.title"></p>
-                            <p class="msg-text" v-html="msg.cardContent"></p>
-                          </div>
-                          <div class="btn-area"
-                            v-if="msg.buttons.length"
-                            :class="{'column' : msg.btnDirection === 'column'}"
-                          >
-                            <template v-for="(btn, k) in msg.buttons" >
-                              <a href="" :key="k" v-if="btn.btnName">{{ btn.btnName }}</a>
-                            </template>
-                          </div>
-                        </div>
-                      </swiper-slide>
-                  </swiper>
-                </div>
-            </template>
-            <!-- // 기획서 v1.0 수정 / 카드 추가 -->
-            <!-- 기획서 v1.0 수정 / 슬라이드 추가 -->
-            <!-- 기획서 v1.0 수정 (card에서 slider로 변경)-->
-            <template   v-if="chatMsgData.chatType == 'slider'">
-              <div class="chat-bubble__wrap carousel">
-                <swiper
-                  ref="carousel"
-                  :options="swiperOption"
-                  :class="{'inactive': chatMsgData.msgData.length < 2}"
-                >
-                  <swiper-slide v-for="(msg, i) in chatMsgData.msgData" :key="i">
-                    <div class="chat-bubble">
-                      <div
-                        v-if="msg.imgFile" class="image-area"
-                        :class="{'full' : chatMsgData.imgSize == 'full'}"
-                      >
-                        <span class="image" :style="{backgroundImage: `url(${require('@/assets/images/'+ msg.imgFile)})`}"></span>
-                      </div>
-
-                      <div class="item--none" v-else>
-                        <p class="img">이미지를 등록해주세요.</p>
-                      </div>
-                      <div class="text-area" v-if="msg.title || msg.cardContent">
-                        <p class="msg-title" v-html="msg.title"></p>
-                        <p class="msg-text" v-html="msg.cardContent"></p>
-                      </div>
-                      <div class="btn-area"
-                        v-if="msg.buttons.length"
-                        :class="{'column' : msg.btnDirection === 'column'}"
-                      >
-                        <template v-for="(btn, k) in msg.buttons" >
-                          <a href="" :key="k" v-if="btn.btnName">{{ btn.btnName }}</a>
-                        </template>
-                      </div>
+                      <span class="image" :style="{backgroundImage: `url(${require('@/assets/images/'+ msg.imgFile)})`}"></span>
                     </div>
-                  </swiper-slide>
-                </swiper>
-              </div>
-            </template>
-            <!-- // 기획서 v1.0 수정 / 슬라이드 추가 -->
-            <!-- 기획서 v1.0 수정 / 응답버튼 수정 / 응답버튼 미사용 하는 경우도 있어서 v-if 추가 -->
-            <ul class="chip-buttons"  :class="{ 'not-response-box': !chatMsgData.chipButtons.length }" v-if="!chatInfoData.chipButtons">
+
+                    <div class="item--none" v-else>
+                      <p class="img">이미지를 등록해주세요.</p>
+                    </div>
+                    <div class="text-area" v-if="msg.title || msg.cardContent">
+                      <p class="msg-title" v-html="msg.title"></p>
+                      <p class="msg-text" v-html="msg.cardContent"></p>
+                    </div>
+                    <div class="btn-area"
+                      v-if="msg.buttons.length"
+                      :class="{'column' : msg.btnDirection === 'column'}"
+                    >
+                      <template v-for="(btn, k) in msg.buttons" >
+                        <a href="" :key="k" v-if="btn.btnName">{{ btn.btnName }}</a>
+                      </template>
+                    </div>
+                  </div>
+                </swiper-slide>
+              </swiper>
+            </div>
+            <ul class="chip-buttons"  :class="{ 'not-response-box': !chatMsgData.chipButtons.length }">
               <!-- <template v-if="chatMsgData.chipButtons.length">
                 <li v-for="(btn, k) in chatMsgData.chipButtons" :key="k" >
                   <a href="">{{ btn.btnName }}</a>
@@ -140,15 +96,15 @@
               <template v-if="chatMsgData.chipButtons.length">
                 <li>
                   <swiper
-                    ref="responsecarousel"
+                    ref="carousel"
                     :options="chipSwiperOption"
-                    :class="{'inactive': chatMsgData.chipButtons.length < 2}"
-                  > <!-- 기획서 v1.0 수정 (inactive 클래스 조건 변경) -->
+                    :class="{'inactive': chatMsgData.msgData.length < 2}"
+                  >
                     <swiper-slide v-for="(btn, k) in chatMsgData.chipButtons" :key="k">
                       <a href="" class="response-box">{{ btn.btnName }}</a>
                     </swiper-slide>
-                    <div class="swiper-button-prev" slot="button-prev" @click="$refs.responsecarousel.swiperInstance.slidePrev()"></div>
-                    <div class="swiper-button-next" slot="button-next" @click="$refs.responsecarousel.swiperInstance.slideNext()"></div>
+                    <div class="swiper-button-prev" slot="button-prev" @click="$refs.carousel.swiperInstance.slidePrev()"></div>
+                    <div class="swiper-button-next" slot="button-next" @click="$refs.carousel.swiperInstance.slideNext()"></div>
                   </swiper>
                 </li>
               </template>
@@ -156,7 +112,6 @@
                 <span>응답버튼을 등록해주세요.</span>
               </li>
             </ul>
-            <!-- // 기획서 v1.0 수정 / 응답버튼 수정 / 응답버튼 미사용 하는 경우도 있어서 v-if 추가 -->
           </div>
           <div class="chat-bubble__wrap receiver">
             <div class="chat-bubble">
@@ -179,8 +134,8 @@
               :class="{ collapse : collapse }"
             >
               <li
-                v-for="list in chatMenuList"
-                :key="list"
+                v-for="(list, idx) in chatMenuList"
+                :key="idx"
               >
                 <router-link to="#">{{ list.menuTitle }}</router-link>
               </li>
@@ -229,8 +184,8 @@
               :class="{ collapse : collapse }"
             >
               <li
-                v-for="list in chatMenuList"
-                :key="list"
+                v-for="(list, idx) in chatMenuList"
+                :key="idx"
               >
                 <router-link to="#">{{ list.label }}</router-link>
               </li>
@@ -272,11 +227,9 @@ export default {
       default: () => {
         return {
           chatRoomName: '',
-          chatbotMsgName: '',
           allowMsg: 'N',
           mode: 'views',
-          hideInputFooter: false,
-          chipButtons: false // 응답버튼 미사용 하는 경우도 있어서 v-if 추가
+          hideInputFooter: false
         }
       }
     },
@@ -291,21 +244,6 @@ export default {
           chipButtons: [],
           msgData: [{
             index: 0,
-            imgFile: '',
-            title: '',
-            cardContent: '',
-            bubbleContent: '',
-            btnUse: 'N',
-            btnDirection: 'row',
-            buttons: [{
-              btnName: '',
-              btnEvent: '',
-              isActive: true
-            }]
-          }],
-          msgCardData: [{
-            index: 0,
-            imgSize: 'full',
             imgFile: '',
             title: '',
             cardContent: '',

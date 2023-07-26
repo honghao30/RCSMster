@@ -321,7 +321,7 @@
                         <li>
                           <span class="checkbox">
                             <input type="checkbox" id="service6" value="service6"  v-model="form.serviceRange"/>
-                            <label for="chatbot"><span class="checkbox__text">이미지 템플릿</span></label>
+                            <label for="service6"><span class="checkbox__text">이미지 템플릿</span></label>
                           </span>
                         </li>
                         <!-- 기획서 v1.0 수정 (RCS 양방향 추가) -->

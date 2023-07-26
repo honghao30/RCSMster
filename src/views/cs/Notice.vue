@@ -112,12 +112,12 @@ export default {
       },
       dropdownOptions: [
         {
-          label: '제목',
-          value: 'subject'
+          codeNm: '제목',
+          code: 'subject'
         },
         {
-          label: '내용',
-          value: 'ctn'
+          codeNm: '내용',
+          code: 'ctn'
         }
       ],
       notiCateList: [],

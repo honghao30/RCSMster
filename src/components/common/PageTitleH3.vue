@@ -9,9 +9,9 @@
     <Dropdown
       v-if="DropData !== null"
       :options="DropData"/>
-    <Dropdown searchable
-    v-if="DropDataSearchable !== null"
-    :options="DropDataSearchable"/>
+<!--    <Dropdown searchable
+      v-if="DropDataSearchable !== null"
+      :options="DropDataSearchable"/>-->
 </div>
 </template>
 
@@ -29,15 +29,15 @@ export default {
       default: null
     },
     totalCount: {
-      type: String,
+      type: Number,
       default: null
     },
     DropData: {
-      type: Object,
+      type: Array,
       default: null
     },
     DropDataSearchable: {
-      type: Object,
+      type: Array,
       default: null
     }
   }

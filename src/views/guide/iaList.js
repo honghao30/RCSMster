@@ -366,6 +366,7 @@ const dashboardList = [
     'status': ['0524: 기획 공유', '0526: 개발 공유', '0630: 2차 공유'],
     'link': '/DashBoard',
     'pubData': 'v1 07-13',
+    'isPublished': true,
     'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_기업대시보드_v0.9_20230623']
   },
   {
@@ -374,6 +375,7 @@ const dashboardList = [
     'status': ['0630: 기획,개발 공유'],
     'link': '/ManageHistory',
     'pubData': 'v1 07-13',
+    'isPublished': true,
     'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_기업대시보드_v0.9_20230623']
   },
   {
@@ -382,6 +384,7 @@ const dashboardList = [
     'status': ['0630: 기획,개발 공유'],
     'link': '/dashboardOperationManage',
     'pubData': 'v1 07-13',
+    'isPublished': true,
     'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_기업대시보드_v0.9_20230623']
   },
   // 브랜드 관리

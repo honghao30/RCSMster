@@ -1,6 +1,19 @@
 import moment from 'moment'
 import request from '@/utils/request'
 import { isUseAPI } from '@/utils/check'
+import actionData from '@/components/js/openrichcardDefaultRefData'
+
+/* 브랜드 소식 */
+export function brandFeedList(brandId, params) {
+  if (isUseAPI) {
+    return request({
+      url: `/brand/${brandId}/autoreply/brandFeed`,
+      method: 'get',
+      params: params,
+      meta: { useErrorMessage: false }
+    })
+  }
+}
 
 /** 자동응답 메시지 > 목록 조회 */
 export function retireveAutoReplyList(brandId, params) {
@@ -62,12 +75,12 @@ export function createAutoReply(brandId, data) {
   }
 }
 /** 자동응답 메시지 > 수정 */
-export function saveAutoReply(brandId, data) {
+export function saveAutoReply(brandId, armId, params) {
   if (isUseAPI) {
     return request({
-      url: `/brand/${brandId}/autoreply`,
+      url: `/brand/${brandId}/autoreplymsg/${armId}`,
       method: 'put',
-      data: data,
+      data: params,
       meta: { useErrorMessage: false }
     })
   }
@@ -85,78 +98,122 @@ export function removeAutoReply(brandId, armId) {
   }
 }
 
+/** 등록수정시 템플릿 아이디 조회 용도 */
+export function getTemplateInfo(brandId, params) {
+  if (isUseAPI) {
+    return request({
+      url: `/brand/${brandId}/autoreply/template`,
+      method: 'get',
+      params: params,
+      meta: { useErrorMessage: false }
+    })
+  }
+}
+
 // 화면에서 설정된 Suggestion 정보를 서버 저장 포맷에 맞도록 변환 처리
 export function reformSuggestionForRequest (suggestions) {
   const utcSplitor = ':00'
   suggestions.forEach(sugg => {
-    // console.log("reformSuggestionForRequest", sugg)
-    // 캘린더 값이 있으면 TimeZone에 맞게 변경해준다.
-    if (sugg.action.calendarAction && sugg.action.calendarAction.createCalendarEvent) {
-      const cal = sugg.action.calendarAction.createCalendarEvent
-      if (!cal.useVariable) {
-        if (cal.startTime) {
-          let utc = moment.utc(cal.startTime).utcOffset(9 * 60).format()
-          cal.startTime = utc.substring(0, utc.lastIndexOf(utcSplitor))
+    // 버튼 타입에 맞게 세팅한다.
+    let btnType = ''
+    if (sugg.btnEvent === 'other') {
+      btnType = sugg.btnOtherEvent
+    } else {
+      btnType = sugg.btnEvent
+    }
+    // 간편 챗봇 이랑 챗봇 연결은 action이 아니라 reply로 해야된다.
+    if (btnType === 'auto_reply' || btnType === 'basic_reply') {
+      // reply 인 버튼들 세팅
+      // 버튼 명 입력
+      sugg.reply.displayText = sugg.btnName
+      delete sugg.action
+    } else {
+      // action 인 버튼들 세팅
+      // 버튼 명 입력
+      sugg.action.displayText = sugg.btnName
+      // 캘린더 값이 있으면 TimeZone에 맞게 변경해준다.
+      if (sugg.action.calendarAction && sugg.action.calendarAction.createCalendarEvent) {
+        const cal = sugg.action.calendarAction.createCalendarEvent
+        if (!cal.useVariable) {
+          if (cal.startTime) {
+            let utc = moment.utc(cal.startTime).utcOffset(9 * 60).format()
+            cal.startTime = utc.substring(0, utc.lastIndexOf(utcSplitor))
+          }
+          if (cal.endTime) {
+            let utc = moment.utc(cal.endTime).utcOffset(9 * 60).format()
+            cal.endTime = utc.substring(0, utc.lastIndexOf(utcSplitor))
+          }
         }
-        if (cal.endTime) {
-          let utc = moment.utc(cal.endTime).utcOffset(9 * 60).format()
-          cal.endTime = utc.substring(0, utc.lastIndexOf(utcSplitor))
+        delete cal.useVariable
+      } else if (sugg.action.localBrowserAction && sugg.action.localBrowserAction.openUrl) {
+        // postParameter 는 json 형태로 문자열로 변환되어야 함
+        let postParameter = sugg.action.localBrowserAction.openUrl.postParameter
+        if (postParameter) {
+          try {
+            let json = JSON.parse('{ ' + postParameter + '}')
+            sugg.action.localBrowserAction.openUrl.postParameter = json
+          } catch (e) {
+            console.error(e)
+          }
         }
-      }
-      delete cal.useVariable
-    } else if (sugg.action.localBrowserAction && sugg.action.localBrowserAction.openUrl) {
-      // postParameter 는 json 형태로 문자열로 변환되어야 함
-      let postParameter = sugg.action.localBrowserAction.openUrl.postParameter
-      if (postParameter) {
-        try {
-          let json = JSON.parse('{ ' + postParameter + '}')
-          sugg.action.localBrowserAction.openUrl.postParameter = json
-        } catch (e) {
-          console.error(e)
-        }
-      }
-    } else if (sugg.action.mapAction) {
-      if (sugg.action.mapAction.showLocation && (sugg.action.mapAction.showLocation.location.latitude || sugg.action.mapAction.showLocation.location.longitude)) {
-      // 위경도는 실수 형태로 저장되어야 함
-        if (sugg.action.mapAction.showLocation.location.latitude) {
-          let latitude = Number(sugg.action.mapAction.showLocation.location.latitude)
-          sugg.action.mapAction.showLocation.location.latitude = latitude
-        }
+      } else if (sugg.action.mapAction) {
+        if (sugg.action.mapAction.showLocation && (sugg.action.mapAction.showLocation.location.latitude || sugg.action.mapAction.showLocation.location.longitude)) {
+          // 위경도는 실수 형태로 저장되어야 함
+          if (sugg.action.mapAction.showLocation.location.latitude) {
+            let latitude = Number(sugg.action.mapAction.showLocation.location.latitude)
+            sugg.action.mapAction.showLocation.location.latitude = latitude
+          }
 
-        if (sugg.action.mapAction.showLocation.location.longitude) {
-          let longitude = Number(sugg.action.mapAction.showLocation.location.longitude)
-          sugg.action.mapAction.showLocation.location.longitude = longitude
+          if (sugg.action.mapAction.showLocation.location.longitude) {
+            let longitude = Number(sugg.action.mapAction.showLocation.location.longitude)
+            sugg.action.mapAction.showLocation.location.longitude = longitude
+          }
         }
       }
+      delete sugg.reply
     }
     // 체크 용도의 type 삭제
     delete sugg.type
+    delete sugg.btnEvent
+    delete sugg.btnOtherEvent
   })
 }
 
 // 서버에 저장된 정보 화면 데이터 변환 처리
 export function reformSuggestForView(brandId, json, templateContent) {
   let autoReplyData = {
-    'brandId': brandId,
-    'armId': json.armId,
-    'name': json.name,
-    'tplId': json.tplId,
-    'tplNm': json.tplNm,
-    'copyAllowedYn': json.copyAllowedYn,
-    'status': json.status,
-    'aprvRet': json.aprvRet,
-    'aprvRetNm': json.aprvRetNm,
-    'regUserNm': json.regUserNm,
-    'modUserNm': json.modUserNm,
-    'dpRegDt': json.dpRegDt,
-    'dpModDt': json.dpModDt
+    brandId: brandId, // 브랜드 아이디
+    armId: json.autoReplyMsgId, // 간편 챗봇 아이디
+    name: json.autoReplyMsgName, // 간편 챗봇 명
+    imgSize: json.imgSize, // 간편챗봇 이미지 사이즈
+    tplId: json.messagebaseId, // 템플릿 아이디
+    tplNm: json.tplNm, // 템플릿 명
+    copyAllowedYn: json.copyAllowed, // 간편 챗봇 복사 기능 사용 여부
+    status: json.status, // 상태
+    statusNm: json.statusNm, // 상태
+    aprvRet: json.aprvRet, // 승인 결과
+    aprvRetNm: json.aprvRetNm, // 승인 결과
+    regUserNm: json.regUserNm,
+    modUserNm: json.modUserNm,
+    dpRegDt: json.dpRegDt,
+    dpModDt: json.dpModDt,
+    maxMediaSize: json.maxMediaSize
   }
-
+  // 간편 챗봇 시작
+  if (json.autoReplyMsgType === 'CARD') {
+    autoReplyData.chatType = 'card'
+  } else if (json.autoReplyMsgType === 'SLIDER') {
+    autoReplyData.chatType = 'slider'
+  } else {
+    autoReplyData.chatType = 'chatBubble'
+  }
   autoReplyData.cardData = reformBodyAndButtonForView(json.body, json.buttons, templateContent)
+  if (autoReplyData.chatType === 'card' || autoReplyData.chatType === 'slider') {
+    autoReplyData.chatCardTitle = (jglib.isEmpty(autoReplyData.cardData[0].title)) ? 'N' : 'Y' // 간편챗봇 타이틀 사용 여부
+    autoReplyData.chatCardContent = (jglib.isEmpty(autoReplyData.cardData[0].description)) ? 'N' : 'Y' // 간편챗봇 타이틀 사용 여부
+  }
   autoReplyData.chipSuggestions = reformChipListForView(json.chipList)
-
-  // console.log('reformSuggestForView', JSON.stringify(autoReplyData))
-
+  autoReplyData.chipBtnUse = (jglib.isEmpty(json.chipList)) ? 'N' : 'Y' // 응답 버튼 사용 여부
   return autoReplyData
 }
 
@@ -186,16 +243,24 @@ export function retireveBrandInfo(brandId) {
 // 서버의 Body 와 Buttons 정보를 화면의 card 정보에 맞도록 변환 처리
 function reformBodyAndButtonForView(body, buttons, templateContent) {
   if (jglib.isEmpty(body)) return []
-
   let cardList = []
-  let jsonBody = JSON.parse(body)
   let jsonButtons
   if (jglib.isEmpty(buttons) || buttons === null) {
     jsonButtons = []
   } else {
-    jsonButtons = JSON.parse(buttons)
+    // jsonButtons = JSON.parse(buttons)
+    jsonButtons = buttons
   }
-
+  // let jsonBody = JSON.parse(body)
+  // 키 순서대로 정렬
+  let jsonBody = Object.keys(body).sort().reduce(
+    (newObj, key) => {
+      newObj[key] = body[key]
+      return newObj
+    },
+    {}
+  )
+  let cardNo = 1
   for (let key in jsonBody) {
     let cardInfo = { fileName: '', fileRaw: '' } // 이미지 관련 default 세팅
     let cardIdx
@@ -213,7 +278,10 @@ function reformBodyAndButtonForView(body, buttons, templateContent) {
     }
 
     if (jglib.isEmpty(cardList[cardIdx])) {
+      cardInfo.cardNo = cardNo
+      cardInfo.isActive = cardIdx === 0 // 수정시 카드 선택 여부(기본 : 비활성)
       cardList.push(cardInfo)
+      cardNo++
     } else {
       cardInfo = cardList[cardIdx]
     }
@@ -223,6 +291,10 @@ function reformBodyAndButtonForView(body, buttons, templateContent) {
     for (let idx in cardList) {
       cardList[idx]['suggestions'] = []
       cardList[idx]['buttonUseYn'] = 'N'
+      // 카드별 유효성 검증 변수 정의
+      cardList[idx].isImgError = { isShow: false, txt: '' }
+      cardList[idx].isTitleError = { isShow: false, txt: '' }
+      cardList[idx].isContentsError = { isShow: false, txt: '' }
     }
   } else {
     for (let idx in jsonButtons) {
@@ -233,7 +305,24 @@ function reformBodyAndButtonForView(body, buttons, templateContent) {
           if (jglib.isEmpty(sugg)) {
             suggestions.splice(i, 1)
           } else {
-            suggestions[i]['type'] = getSuggestionType(sugg)
+            let type = getSuggestionType(sugg)
+            if (type === 'open_url' || type === 'dial_phone_number') {
+              suggestions[i]['btnEvent'] = type
+            } else {
+              suggestions[i]['btnEvent'] = 'other'
+              suggestions[i]['btnOtherEvent'] = type
+            }
+            if (suggestions[i].action) {
+              suggestions[i]['btnName'] = sugg.action['displayText']
+            }
+            if (suggestions[i].reply) {
+              suggestions[i]['btnName'] = sugg.reply['displayText']
+            }
+            for (const key in actionData['suggestions'][type]) {
+              if (key.indexOf('Error') > -1) {
+                suggestions[i]['action'][key] = actionData['suggestions'][type][key]
+              }
+            }
           }
         }
         cardList[idx]['suggestions'] = suggestions
@@ -242,6 +331,10 @@ function reformBodyAndButtonForView(body, buttons, templateContent) {
         cardList[idx]['suggestions'] = []
         cardList[idx]['buttonUseYn'] = 'N'
       }
+      // 카드별 유효성 검증 변수 정의
+      cardList[idx].isImgError = { isShow: false, txt: '' }
+      cardList[idx].isTitleError = { isShow: false, txt: '' }
+      cardList[idx].isContentsError = { isShow: false, txt: '' }
     }
   }
 
@@ -252,14 +345,47 @@ function reformBodyAndButtonForView(body, buttons, templateContent) {
 function reformChipListForView(chipList) {
   if (jglib.isEmpty(chipList) || chipList === null) return []
 
-  let suggestions = JSON.parse(chipList)
+  // let suggestions = JSON.parse(chipList)
+  let suggestions = chipList
   if (!jglib.isEmpty(suggestions)) {
     for (let i = suggestions.length - 1; i >= 0; i--) {
       let sugg = suggestions[i]
       if (jglib.isEmpty(sugg)) {
         suggestions.splice(i, 1)
       } else {
-        suggestions[i]['type'] = getSuggestionType(sugg)
+        let type = getSuggestionType(sugg)
+        if (type === 'open_url' || type === 'dial_phone_number') {
+          sugg['btnEvent'] = type
+        } else {
+          sugg['btnEvent'] = 'other'
+          sugg['btnOtherEvent'] = type
+        }
+        if (sugg.action) {
+          sugg['btnName'] = sugg.action['displayText']
+          for (const key in actionData['suggestions'][type]) {
+            if (key.indexOf('Error') > -1) {
+              sugg.action[key] = actionData['suggestions'][type][key]
+            }
+          }
+        }
+        if (sugg.reply) {
+          sugg['btnName'] = sugg.reply['displayText']
+          sugg['isAutoReplyMsgIdError'] = {
+            isShow: false,
+            autoReplyMsgId: ''
+          }
+        }
+        // 캘린더는 데이트 피커에 맞춰서 배열을 만든다.
+        if (sugg.action.calendarAction) {
+          let start, end
+          if (sugg.action.calendarAction.createCalendarEvent.startTime) {
+            start = sugg.action.calendarAction.createCalendarEvent.startTime.split('T')[0].replaceAll('-', '')
+          }
+          if (sugg.action.calendarAction.createCalendarEvent.endTime) {
+            end = sugg.action.calendarAction.createCalendarEvent.endTime.split('T')[0].replaceAll('-', '')
+          }
+          sugg.action.calendarAction['datePicker'] = [start, end]
+        }
       }
     }
   }
@@ -323,13 +449,18 @@ export function getAutoReplySubmitData(brandId, productType, armData, armTemplat
         body['title' + (disIdx + 1)] = _cardData[idx].title
         body['description' + (disIdx + 1)] = _cardData[idx].description
         body['media' + (disIdx + 1)] = _cardData[idx].media
-      } else {
-        if (armTemplate.cardType !== 'SAS') body['title'] = _cardData[idx].title // 기본 말풍선은 title 항목이 없음
+      } else if (productType === 'standalone') {
+        body['title'] = _cardData[idx].title
         body['description'] = _cardData[idx].description
-        if (productType === 'standaloneMedia') body['media'] = _cardData[idx].media // Standalone Media Top 상품만 이미지가 있음(carousel을 제외하고..)
+        body['media'] = _cardData[idx].media
+      } else {
+        if (armTemplate.cardType !== 'SAS') {
+          // body['title'] = _cardData[idx].title // 기본 말풍선은 title 항목이 없음
+        }
+        body['description'] = _cardData[idx].description
       }
       // 버튼을 사용가능하고, 사용자가 추가한 버튼이 있다면
-      if (armTemplate.btnUseYn === 'Y' && !jglib.isEmpty(_cardData[idx].suggestions) && _cardData[idx].suggestions.length > 0) {
+      if (armTemplate.btnUseYn === 'Y' && !jglib.isEmpty(_cardData[idx].suggestions) && _cardData[idx].suggestions.length > 0 && _cardData[idx].buttonUseYn === 'Y') {
         // 데이터 형식 set
         reformSuggestionForRequest(_cardData[idx].suggestions)
         let suggestions = { suggestions: _cardData[idx].suggestions }
@@ -342,7 +473,7 @@ export function getAutoReplySubmitData(brandId, productType, armData, armTemplat
   // 2.칩리스트 정보
   let chipList = []
   let _chipSuggestions = armData.chipSuggestions
-  if (!jglib.isEmpty(_chipSuggestions) && _chipSuggestions.length > 0) {
+  if (!jglib.isEmpty(_chipSuggestions) && _chipSuggestions.length > 0 && armData.chipBtnUse === 'Y') {
     reformSuggestionForRequest(_chipSuggestions)
     chipList = _chipSuggestions
   }
@@ -366,8 +497,11 @@ export function getAutoReplySubmitData(brandId, productType, armData, armTemplat
   if (armData.cardData && armData.cardData.length > 0) {
     for (let index in armData.cardData) {
       let cardData = armData.cardData[index]
-      if (productType === 'carousel') formData.append(`file${(parseInt(index) + 1)}`, cardData.fileRaw)
-      else formData.append('file', cardData.fileRaw)
+      if (productType === 'carousel') {
+        formData.append(`file${(parseInt(index) + 1)}`, cardData.fileRaw)
+      } else {
+        formData.append('file', cardData.fileRaw)
+      }
     }
   }
   return formData

@@ -48,7 +48,7 @@
                     @change="setCmpList"
                     />
                     <label for="sms">
-                      <i class="icon-chatbubble"></i>
+                      <i class="icon-sms"></i>
                       <dl>
                         <dt class="tab-title">SMS<span> (40~45자)</span></dt>
                         <dd class="tab-text">간단한 알림이나 짧은 공지를 메시지로 발송</dd>
@@ -61,7 +61,7 @@
                     @change="setCmpList"
                     />
                     <label for="lms">
-                      <i class="icon-chatbubble"></i>
+                      <i class="icon-lms"></i>
                       <dl>
                         <dt class="tab-title">LMS<span> (1,000자)</span></dt>
                         <dd class="tab-text">내용이 긴 메시지를 한번에 발송</dd>
@@ -73,7 +73,7 @@
                     v-model="form.layoutType" class="blind"
                     @change="setCmpList" />
                     <label for="mms">
-                      <i class="icon-card"></i>
+                      <i class="icon-mms"></i>
 
                       <dl>
                         <dt class="tab-title">MMS<span> (텍스트+사진첨부)</span></dt>

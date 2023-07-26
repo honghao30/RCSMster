@@ -17,8 +17,10 @@ import menu from './modules/menu'
 import ui from './modules/ui'
 import user from './modules/user'
 import brand from './modules/brand'
+import corp from './modules/corp'
 import searchcondition from './modules/search-condition'
 import chatbot from './modules/chatbot'
+import autoReply from './modules/autoReplyMsg'
 import getters from './getters'
 
 Vue.use(Vuex)
@@ -29,8 +31,10 @@ export default new Vuex.Store({
     ui,
     user,
     brand,
+    corp,
     searchcondition,
-    chatbot
+    chatbot,
+    autoReply
   },
   getters
 })

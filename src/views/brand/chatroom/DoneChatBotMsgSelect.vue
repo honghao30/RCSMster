@@ -61,17 +61,16 @@
             </table>
           </div>
         </div>
-        <!-- 기획서 v1.0 수정 (v-if/ v-else 수정) -->
-        <div class="empty-emulator" v-if="radiochk.length === 0">
-          <p>브랜드 소식을 선택해주세요.</p>
-        </div>
+<!--        <div class="empty-emulator" v-if="radiochk">-->
+<!--          <p>브랜드 소식을 선택해주세요.</p>-->
+<!--        </div>-->
         <!-- 간편챗봇 컴포넌트 완성되면 연결해야함 임시로 피드에뮬레이터 컴포넌트 사용함 -->
-        <ChatEmulator
-          v-else
-          :chatInfoData="chatInfoData"
-          :chatMsgData ="chatMsgData"
-        />
-        <!-- // 기획서 v1.0 수정 (v-if, v-else 수정) -->
+<!--        <feedEmulator-->
+<!--          v-if="!radiochk"-->
+<!--          :brandInfoData="brandInfoData"-->
+<!--          :feedInfoData="form"-->
+<!--          :showBrandHeader="true"-->
+<!--        />-->
       </div>
     </div>
     <div class="modal__content--footer">
@@ -95,114 +94,41 @@
 
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import ChatEmulator from '@/views/brand/components/ChatEmulator.vue'
 import PagingCmp from '@/components/common/PagingCmp.vue'
-import Dropdown from '@/components/common/Dropdown.vue'
+import { retireveAutoReplyList, retireveAutoReplyInfo } from '@/api/service/autoReply'
 
 export default {
   components: {
-    ButtonCmp,
-    ChatEmulator,
     PagingCmp,
-    Dropdown
+    ButtonCmp
+  },
+  props: {
+    brandId: { type: String },
+    armId: { type: String, default: '' }
   },
   data() {
     return {
-      isAllChecked: false,
-      radiochk: [],
-      // 기획서 v1.0 수정(이미지형 -> 캐로셀형 으로 문구수정)
-      chatbotMsgList: [
-        {
-          name: '상담 직원 연결',
-          id: 'ARMs5STz7Akth2L',
-          type: '카드형'
-        },
-        {
-          name: '나에게 맞는 상품 찾기',
-          id: 'ARMbv6mWh020A4t',
-          type: '캐로셀형'
-        },
-        {
-          name: '나에게 맞는 상품 찾기',
-          id: 'ARMbv6mWh020A4t',
-          type: '캐로셀형'
-        },
-        {
-          name: '나에게 맞는 상품 찾기',
-          id: 'ARMbv6mWh020A4t',
-          type: '캐로셀형'
-        },
-        {
-          name: '나에게 맞는 상품 찾기',
-          id: 'ARMbv6mWh020A4t',
-          type: '카드형'
-        },
-        {
-          name: '나에게 맞는 상품 찾기',
-          id: 'ARMbv6mWh020A4t',
-          type: '캐로셀형'
-        },
-        {
-          name: '나에게 맞는 상품 찾기',
-          id: 'ARMbv6mWh020A4t',
-          type: '카드형'
-        },
-        {
-          name: '나에게 맞는 상품 찾기',
-          id: 'ARMbv6mWh020A4t',
-          type: '말풍선형'
-        },
-        {
-          name: '상담 직원 연결',
-          id: 'ARMbv6mWh020A4t',
-          type: '말풍선형'
-        },
-        {
-          name: '상담 직원 연결',
-          id: 'ARMbv6mWh020A4t',
-          type: '캐로셀형'
-        }
-      ],
-      sortOptions: [
-        {
-          label: '최신순',
-          value: 'latest'
-        },
-        {
-          label: '이름순',
-          value: 'name'
-        }
-      ],
-      chatInfoData: {
-        chatRoomName: '네스프레소',
-        allowMsg: 'N',
-        saftyMark: 'Y',
-        hideInputFooter: true,
-        // 기획서 v1.0 수정 (chatType 삭제)
-        mode: 'registration' // 기획서 v1.0 수정
+      isLoad: false,
+      totalCount: 0,
+      searchParam: {
+        aprvRet: 'OK',
+        inputValue: '',
+        orderKey: 'MOD_DT ',
+        orderValue: 'ASC',
+        page: 1,
+        offset: 0,
+        limit: 10
       },
-      chatMsgData: {
-        chatType: 'card',
-        // 기획서 v1.0 수정 (imgSize, chatCardTitle, chatCardContent 삭제)
-        chipButtons: [{
-          btnName: '🎀 상담직원연결 👋​'
-        },
-        {
-          btnName: '🍉나에게 맞​는 상품은?🍓​'
-        }],
-        // 기획서 v1.0 수정 (msgData -> msgCardData 수정)
-        msgCardData: [{
-          index: 1,
-          imgSize: 'medium', // 기획서 v1.0 수정
-          imgFile: 'dummy/template_image_02.png', // 기획서 v1.0 수정(이미지 수정)
-          title: 'SYSTEM STUDIOS',
-          cardContent: '5만원 이상 첫 구매 후 응모 시 L Point <br>3천 P 지급합니다.',
-          btnUse: 'Y',
-          // 기획서 v1.0 수정 (btnDirection 삭제)
-          buttons: [{
-            btnName: '주소찾기'
-          }]
-        }]
+      autoReplyList: [],
+      autoReplyData: {},
+      autoReplyTemplate: {},
+      selectedArmId: ''
+    }
+  },
+  computed: {
+    validation() {
+      if (jglib.isEmpty(this.selectedArmId)) {
+        return true
       }
     }
   },

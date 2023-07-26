@@ -10,7 +10,7 @@
            <form  ref="form" :model="form">
             <!-- 1차 디자인 수정 -->
             <div class="brand__wrap--edit">
-              <div class="table__wrap no-line">
+              <div class="table__wrap">
                 <table class="table table-bodyonly form-table">
                   <colgroup>
                     <col width="196px">
@@ -41,7 +41,7 @@
                                     {{ form.name.length }}/20자
                                   </p>
                                 </span>
-                                <span class="flag-approval">승인필요</span>
+                                <span class="flag-approval flag-mt-none">승인필요</span> <!-- 기획서 1.0 수정 (flag-mt-none 이중클래스 추가) -->
                               </div>
                             </div>
                               <p class="guide-text error" v-if="brandNameErrorMsg">브랜드명을 입력해주세요.</p>
@@ -99,7 +99,6 @@
                           </ButtonCmp>
                         </div>
                       </td>
-                    </tr> 기획서 v1.0 수정: 선거용 -->
                     </tr> 기획서 v1.0 수정: -->
                     <tr>
                       <th scope="row"><span class="form-item__label required">백그라운드 이미지</span></th>
@@ -138,10 +137,15 @@
                                 <input type="file" id="fileUpCumtom" class="input blind" @change="onFileBgChanged">
                                 <label for="fileUpCumtom" class="btn btn-default-line">파일찾기</label>
                               </div>
-                              <p class="guide-text black">&middot; 사이즈 : 388 X 388px ~ 1080 X 1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 1MB)</p> <!-- 기획서 v1.0 수정: 텍스트 수정 -->
+                              <p class="guide-text black">&middot; 사이즈 : 388px*388px ~1080px*1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 1MB)</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
                             </template>
                           </div>
                           <p class="guide-text error"  v-if="bgImageErrorMsg">백그라운드 이미지를 선택하세요.</p>
+                          <!-- 기획서 1.0 수정(문구 추가 / p.11 참고) -->
+                          <p class="guide-text error"  v-if="bgImageErrorMsg">Jpg, jpeg, png 형식의 파일만 업로드 할 수 있습니다.</p>
+                          <p class="guide-text error"  v-if="bgImageErrorMsg">1MB 이하의 파일만 업로드 할 수 있습니다.</p>
+                          <p class="guide-text error"  v-if="bgImageErrorMsg">388 X 388px ~ 1080 X 1080px 사이즈의 파일만 업로드 할 수 있습니다.</p>
+                          <!-- // 기획서 1.0 수정(문구 추가/ p.11 참고) -->
                         </div>
                         <!-- // 디자인 1차 수정 : 이벤트 처리 수정 -->
                       </td>
@@ -179,10 +183,15 @@
                                 <input type="file" id="fileUp" class="input blind" @change="onFileChanged()">
                                 <label for="fileUp" class="btn btn-default-line">파일찾기</label>
                               </div>
-                              <p class="guide-text black">&middot; 사이즈 : 388 X 388px ~ 1080 X 1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 1MB)</p> <!-- 기획서 v1.0 수정: 텍스트 수정 -->
+                              <p class="guide-text black">&middot; 사이즈 : 388px*388px ~1080px*1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 1MB)</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
                             </template>
                           </div>
                           <p class="guide-text error"  v-if="profileImageErrorMsg">프로필 이미지를 선택하세요.</p>
+                          <!-- 기획서 1.0 수정(문구 추가 / p.11 참고) -->
+                          <p class="guide-text error"  v-if="profileImageErrorMsg">Jpg, jpeg, png 형식의 파일만 업로드 할 수 있습니다.</p>
+                          <p class="guide-text error"  v-if="profileImageErrorMsg">1MB 이하의 파일만 업로드 할 수 있습니다.</p>
+                          <p class="guide-text error"  v-if="profileImageErrorMsg">388 X 388px ~ 1080 X 1080px 사이즈의 파일만 업로드 할 수 있습니다.</p>
+                          <!-- // 기획서 1.0 수정(문구 추가/ p.11 참고) -->
                         </div>
                       </td>
                     </tr>
@@ -194,54 +203,53 @@
                           <div class="form-item-row space-between">
                             <div class="input-item w--half">
                               <div class="input-item-category">
+                              <div class="item-row-title">카테고리1</div> <!-- 기획서 v1.0 수정 (item-row-title 클래스 추가) -->
                                 <Dropdown :options="categoryOptions" placeholder="선택하세요" v-model="form.category1" >
                                 </Dropdown>
                               </div>
                             </div>
                             <div class="input-item w--half"  v-if="form.category1">
                               <div class="input-item-category">
+                              <div class="item-row-title">카테고리2</div> <!-- 기획서 v1.0 수정 (item-row-title 클래스 추가) -->
                                 <Dropdown :options="categoryOptions" placeholder="선택하세요" v-model="form.category2">
                                 </Dropdown>
                               </div>
                             </div>
                           </div>
                           <div class="form-item-row" v-if="form.category2">
-                            <div class="input-item">
-                              <div class="input-item-category">
+                            <!-- 기획서 v1.0 수정 (input-item-category 클래스 수정) -->
+                            <div class="input-item-category">
+                              <div class="item-row-title">카테고리3</div>
+                              <div class="input-item">
                                 <span class="input">
-                                    <input type="text" class="input" placeholder="검색용 키워드를 입력하세요." v-model="form.category3">
+                                    <input type="text" class="input" placeholder="검색용 키워드를 입력하세요." v-model="category3">
                                 </span>
                               </div>
                             </div>
+                            <!-- // 기획서 v1.0 수정 (input-item-category 클래스 수정) -->
                           </div>
-                          <p class="guide-text">※ 보다 좋은 서비스 제공을 위하여 운영자가 임의 변경할 수 있습니다.</p>
+                          <p class="guide-text black">&middot; 보다 좋은 서비스 제공을 위하여 운영자가 임의 변경할 수 있습니다.</p> <!-- 기획서 v1.0 수정 (특수문자 추가 및 black 클래스 추가) -->
                           <p class="guide-text error" v-if="categoryErrorMsg" >카테고리를 선택해주세요.</p>
                         </div>
                         <!-- //기획서 1.0 수정 -->
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row"><span class="form-item__label required">전화번호</span></th>
-                      <td>
-                        <div class="form-item__content">
-                          <!-- <div class="form-item-row">
-                            <div class="input-item">
-                              <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요."  v-model="form.tel"></span>
-                            </div>
-                          </div> -->
-                          <div class="form-item-row">
-                            <div class="input-item">
-                                <span class="dropdown-tel"><Dropdown :options="dropdownTel" value="선택" @beforeChange="isChange" v-model="form.telFirst" /></span>
-                                <span>-</span>
-                                <span class="input input-tel"><input type="text" class="input" placeholder="" v-model="form.mblNum"></span>
-                                <span>-</span>
-                                <span class="input input-tel"><input type="text" class="input" placeholder="" v-model="form.mblNum"></span>
-                              </div>
-                            </div>
-                          <p class="guide-text error" v-if="telErrorMsg" >전화번호를 입력해주세요.</p>
+                    <th scope="row"><span class="form-item__label required">전화번호</span></th>
+                    <!-- 기획서 v1.0수정 (전화번호 input 3개 → 1개 변경) -->
+                    <td>
+                      <div class="form-item__content">
+                        <div class="form-item-row">
+                          <div class="input-item">
+                            <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요."  v-model="form.tel"></span>
+                          </div>
                         </div>
-                      </td>
-                    </tr>
+                        <!-- 기획서 v1.0 수정 (문구 수정 / p.10 참고 : 전화번호 010 입력 시 입력 내용 사라지고 경고 메시지 노출) -->
+                        <p class="guide-text error" v-if="telErrorMsg" >휴대폰번호는 입력할 수 없습니다.</p>
+                      </div>
+                    </td>
+                    <!-- // 기획서 v1.0수정 (전화번호 input 3개 → 1개 변경) -->
+                  </tr>
                     <!-- 1차 디자인 수정 - 삭제 -->
                     <!-- <tr>
                       <th scope="row"><span class="form-item__label">웹사이트</span></th>
@@ -293,7 +301,7 @@
                     </tr> -->
                     <!-- // 1차 디자인 수정 - 삭제 -->
                     <!-- 1차 디자인 수정 - 추가 -->
-                    <tr>
+                    <tr class="bd-bottom-none"> <!-- 1차 디자인 수정 (bd-bottom-none 클래스 추가) -->
                       <th scope="row"><span class="form-item__label">브랜드 컬러</span></th>
                       <td>
                         <div class="form-item__content">
@@ -309,11 +317,16 @@
                               </span>
                             </div>
                             <template v-if="form.brandColorType === 'Color'">
-                              <div class="input-item">
-                                <el-color-picker v-model="form.brandColor"></el-color-picker>
-                                <span class="input">
-                                  <input type="text" class="input colorPickCode" v-model="form.brandColor"></span>
+                              <!-- 기획서 v1.0 수정 (brandcolor-box 클래스 추가) -->
+                              <div class="brandcolor-box">
+                                <p class="guide-text black">&middot; 브랜드 컬러값 설정 시 템플릿의 메시지의 버튼에 브랜드 컬러를 적용할 수 있습니다.</p> <!-- 기획서 v1.0 수정 (p태그 추가) -->
+                                <div class="input-item">
+                                  <el-color-picker v-model="form.brandColor"></el-color-picker>
+                                  <span class="input">
+                                    <input type="text" class="input colorPickCode" v-model="form.brandColor"></span>
+                                </div>
                               </div>
+                              <!-- // 기획서 v1.0 수정 (brandcolor-box 클래스 추가) -->
                             </template>
                           </div>
                         </div>
@@ -338,6 +351,7 @@
               <p>- 승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지연될 수 있습니다.</p>
           </div>
           <div class="button__wrap flex-end">
+            <!-- 기획서 v1.0 수정 ([수정 완료] 선택 시, 수정 완료 얼럿 출력 / 기획서 p.09 참고 ) -->
             <ButtonCmp
               type="btn-line"
             >수정완료</ButtonCmp>
@@ -348,6 +362,49 @@
           </div>
         </div>
       </div>
+      <!-- 기획서 v1.0 수정 (모달 추가 / script 추가 안함) -->
+      <ModalView
+        v-if="isModalViewed"
+        @closeModal="isModalViewed = false"
+      >
+        <!-- 수정완료 버튼 클릭 시 -->
+        <!-- case01. 승인 필요 항목 수정한 경우 브랜드 명, 프로필 이미지 수정 시 노출되는 Alert -->
+        <ConfirmMsg
+            @closeModal="isModalViewed = false"
+          >
+            <div class="msg" slot="msg">
+              브랜드 명, 프로필 이미지 수정 시<br>승인완료 후 반영됩니다.
+            </div>
+            <div class="button__wrap" slot="button">
+                <!-- [확인] 버튼 선택 시, 승인 대기 상태로 변경 -->
+                <ButtonCmp
+                type="btn-blue"
+                @click="closeMsg"
+                >
+                  확인
+                </ButtonCmp>
+            </div>
+        </ConfirmMsg>
+        <!-- case02. 승인 없이 즉시 저장되는 항목 수정한 경우 -->
+        <ConfirmMsg
+            @closeModal="isModalViewed = false"
+          >
+            <div class="msg" slot="msg">
+              입력하신 정보가 수정되었습니다.
+            </div>
+            <div class="button__wrap" slot="button">
+                <!-- [확인] 버튼 선택 시, 수정 항목 저장 및 승인 완료 상태로 변경 -->
+                <ButtonCmp
+                type="btn-blue"
+                @click="closeMsg"
+                >
+                  확인
+                </ButtonCmp>
+            </div>
+        </ConfirmMsg>
+        <!-- // 수정완료 버튼 클릭 시 -->
+      </ModalView>
+      <!-- // 기획서 v1.0 수정 (모달 추가 / script 추가 안함) -->
     </div>
 </template>
 
@@ -362,6 +419,8 @@ import Dropdown from '@/components/common/Dropdown.vue'
 import BrandEmulator from '@/views/brand/components/BrandEmulator.vue'
 import imgcategoryOptions from '@/views/brand/create/brandBasicImg'
 import ToolTipEl from '@/components/common/Tooltip.vue' // 선거 대시 보드 추가
+import ModalView from '@/components/common/ModalView.vue' // 기획서 v1.0 수정(ModalView 추가)
+import ConfirmMsg from '@/views/brand/create/components/ConfirmMsg.vue' // 기획서 v1.0 수정(ConfirmMsg 추가)
 
 export default {
   components: {
@@ -372,7 +431,9 @@ export default {
     Dropdown,
     BrandLnb,
     BrandEmulator,
-    ToolTipEl
+    ToolTipEl,
+    ModalView, // 기획서 v1.0 수정(ModalView 추가)
+    ConfirmMsg // 기획서 v1.0 수정(ConfirmMsg 추가)
   },
   data() {
     return {

@@ -31,7 +31,7 @@ t<template>
             <!-- 텍스트 선택형_스타일  -->
             <template v-if="templateType == '서술_아이콘'">
               <!-- 타이틀 -->
-              <MainTitle :info="templData.MainTitle.info" />
+              <Item :info="templData.Item.info" />
               <!-- 본문 -->
               <Description :info="templData.Description.info" />
               <Buttons :info="templData.Buttons.info"/>
@@ -42,7 +42,7 @@ t<template>
               <MainTitle :info="templData.MainTitle.info" />
               <!-- 본문 -->
               <template v-for="(item, i) in templData.DescriptionGroup.info">
-                <Description :info="item.description" />
+                <Description :info="item.description" :key="i" />
                 <Buttons :info="item.Buttons.info" :key="i"/>
               </template>
             </template>
@@ -69,6 +69,7 @@ import MainTitle from './Emulator/MainTitle.vue'
 import Description from './Emulator/Description.vue'
 import StyleTable from './Emulator/StyleTable.vue'
 import Buttons from './Emulator/Buttons.vue'
+import Item from './Emulator/ItemA.vue'
 
 export default {
   directives: {
@@ -78,7 +79,8 @@ export default {
     MainTitle,
     Description,
     StyleTable,
-    Buttons
+    Buttons,
+    Item
   },
   props: {
     templateType: String,

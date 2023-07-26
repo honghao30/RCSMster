@@ -142,7 +142,9 @@
 										border: 1px solid #eaeaea;
 										border-radius: 8px;
 										img {
-											max-height:40px;
+											max-height:38px;
+											border-radius: 7px;
+											max-width: 38px;
 										}
 									}
 									.brand__title{
@@ -298,9 +300,9 @@
 							border: 1px solid #eaeaea;
 							border-radius: 8px;
 							img {
-								max-height:40px;
-								border-radius: 8px;
-
+								max-height:38px;
+								border-radius: 7px;
+								max-width: 38px;
 							}
 						}
 						.brand__title{
@@ -458,7 +460,7 @@
 			}
 			.side-box-cont {
 				.authority-list {
-					border-bottom: 1px solid #EAEAEA;
+					border-bottom: 1px solid #F0F0F0;
 					padding: 8px 0 12px 0;
 					&:last-child{
 						border-bottom: 0;
@@ -649,7 +651,7 @@
 						}
 					}
 					.authority-list-none{
-						border-bottom: 1px solid #ddd;
+						border-bottom: 1px solid #f0f0f0;
 						p{
 							line-height: 22px;
 							color: #999;
@@ -921,8 +923,10 @@
 									border:1px solid #EAEAEA;
 									background: #EAEAEA url('../assets/images/icon/icon_potho_frofile.png') no-repeat center;
 									img {
-										max-height:40px;
-									}									
+										max-height:38px;
+										border-radius: 7px;
+										max-width: 38px;
+									}						
 								}
 								.brnad__new{
 									@include fontoption(12px,$pointColor,700,26px);
@@ -1196,7 +1200,9 @@
 									.brand__logo{
 										background: none;
 										img {
-											max-height:40px;
+											max-height:38px;
+											border-radius: 7px;
+											max-width: 38px;
 										}
 									}
 								}
@@ -1221,6 +1227,9 @@
 									flex: 1;
 									.manage-authority{
 										flex: 0 0 auto;
+										.btn-blue-line{
+											border-radius: 4px;
+										}
 									}
 								}
 							}

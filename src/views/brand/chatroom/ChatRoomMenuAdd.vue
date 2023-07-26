@@ -199,12 +199,12 @@
                                       </div>
                                     </td>
                                   </tr>
-                                  <!-- 기획서 v1.0 수정 (case 추가 및 수정) -->
-                                  <!-- case01. 청약 대행사 O / 대행사 연결 O / 간편챗봇 메시지 등록 O : 양방향 대행사 사용 + chatbot-des 클래스 삭제 -->
-                                  <!-- case02. 청약 대행사 O / 대행사 연결 X : 양방향 대행사 사용 + chatbot-des 클래스 필요) -->
                                   <tr v-if="menu.checkItem === 'chatbot'">
                                     <th scope="row"><span class="form-item__label">양방향 대행사</span></th> <!--기획서 v1.0 수정(문구 수정) -->
                                     <td>
+                                      <!-- 기획서 v1.0 수정 (case01,case02 추가 및 수정) -->
+                                      <!-- case01. 청약 대행사 O / 대행사 연결 O / 간편챗봇 메시지 등록 O : 양방향 대행사 선택 경우, chatbot-des 클래스 삭제 -->
+                                      <!-- case02. 청약 대행사 O / 대행사 연결 X : 양방향 대행사 선택 경우, chatbot-des 클래스 필요) -->
                                       <div class="chatbot-agency">
                                         <div class="chatbot-des">
                                           <p>
@@ -216,6 +216,7 @@
                                           >
                                         </Dropdown>
                                       </div>
+                                      <!-- // 기획서 v1.0 수정 (case01,case02 추가 및 수정) -->
                                     </td>
                                   </tr>
                                   <tr v-if="menu.checkItem === 'chatbot'">
@@ -231,7 +232,7 @@
                                             @click="chatBotSelect"
                                           >간편챗봇 메시지</ButtonCmp> <!--기획서 v1.0 수정(문구 수정) -->
                                         </div>
-                                        <!-- case03.청약 대행사 X / 대행사 연결 X : form-item-row notchat__wrap 사용 -->
+                                        <!-- 기획서 v1.0 수정(청약 대행사 X / 대행사 연결 X) -->
                                         <div class="form-item-row notchat__wrap">
                                           <ul>
                                             <li>현재 연결된 양방향 대행사가 없습니다.</li>
@@ -245,7 +246,6 @@
                                       </div>
                                     </td>
                                   </tr>
-                                  <!-- // 기획서 v1.0 수정 (case 추가 및 수정) -->
                                 </tbody>
                               </table>
                             </template>
@@ -267,7 +267,10 @@
         </div>
         <!-- // 기획서 v1.0 수정 및 추가 작업 -->
         <div class="button__wrap flex-end">
-          <!-- 기획서 v1.0 수정 (임시저장 버튼 삭제) -->
+          <ButtonCmp
+            type="btn-blue-line"
+            @click="saveTemp"
+          >임시 저장</ButtonCmp>
           <ButtonCmp
             type="btn-blue"
             @click="onSubmit"
@@ -436,7 +439,24 @@
       >
       </DoneChatBotMsgSelect>
       <!-- //간편챗봇 메시지 연결 선택 버튼 : 클릭 시 -->
-      <!-- 기획서 v1.0 수정(임시저장 모달창 삭제) -->
+      <!-- 임시저장 -->
+      <ConfirmMsg
+        @closeModal="isModalViewed = false, isModalSave = false"
+        v-if="isModalSave"
+      >
+        <div class="msg" slot="msg">
+          임시저장 되었습니다.
+        </div>
+        <div class="button__wrap" slot="button">
+          <ButtonCmp
+          type="btn-blue"
+          @click="closeMsg"
+          >
+            확인
+          </ButtonCmp>
+        </div>
+      </ConfirmMsg>
+      <!-- //임시저장 -->
       <!-- 기획서 v1.0 수정(연결항목: 웹사이트 > 등록된 웹사이트가 없는 경우)  -->
       <ConfirmMsg
         v-if="isWebRegistration"
@@ -533,7 +553,7 @@ export default {
       isDoneBrandNews: false,
       isChatBotConnect: false,
       isDoneChatBotConnect: false,
-      // 기획서 v1.0 수정 (isModalSave 삭제)
+      isModalSave: false,
       menuActiveIndex: 0,
       isMenuEdit: false,
       showSpecialCharTitle: false, // 특수문자 선택창 show 여부
@@ -543,13 +563,9 @@ export default {
       chatbotErrorMsg: false,
       isWebRegistration: false, // 기획서 v1.0 수정
       isRemoveMenu: false, // 기획서 v1.0 수정
-      // 기획서 v1.0 수정
       chatInfoData: {
         chatRoomName: 'SYSTEM STUDIOS',
-        allowMsg: 'Y',
-        hideInputFooter: false,
-        chipButtons: true,
-        mode: 'registration'
+        allowMsg: 'Y'
       },
       // 기획서 v1.0 수정
       chatbotOptions: [
@@ -583,10 +599,9 @@ export default {
       }
       // return this.form.switch ? '대화방 메뉴 사용' : '대화방 메뉴 미사용'
     },
-    // 기획서 v1.0 수정
     isDisabled() {
       // 버튼 활성화에 대한 예시
-      return this.form.chatMenuData.every(menu => menu.menuTitle.length === 0)
+      return this.form.chatMenuData[this.menuActiveIndex].menuTitle.length <= 0
     }
   },
   methods: {
@@ -625,9 +640,11 @@ export default {
       this.isDoneBrandNews = false
       this.isChatBotConnect = false
       this.isModalSave = false
-      // 기획서 v1.0 수정 (isModalSave 삭제)
     },
-    // 기획서 v1.0 수정 (saveTemp 삭제)
+    saveTemp() {
+      this.isModalViewed = true
+      this.isModalSave = true
+    },
     // 기획서 v1.0 수정
     webRegistrationModal() {
       this.isModalViewed = true

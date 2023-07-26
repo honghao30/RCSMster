@@ -40,6 +40,7 @@ t<template>
               <MainTitle :info="templData.MainTitle.info" />
               <!-- 본문 -->
               <Description :info="templData.Description.info" />
+              <Table :info="templData.simpleTable.info" />
             </template>
             <!-- 타이틀 자유형_스타일 -->
             <template v-if="templateType == '타이틀 자유형_스타일'">
@@ -80,6 +81,7 @@ import Description from './Emulator/Description.vue'
 import StyleTable from './Emulator/StyleTable.vue'
 import Item from './Emulator/ItemB.vue'
 import Buttons from './Emulator/Buttons.vue'
+import Table from './Emulator/Table.vue'
 
 export default {
   directives: {
@@ -90,7 +92,8 @@ export default {
     Description,
     StyleTable,
     Item,
-    Buttons
+    Buttons,
+    Table
   },
   props: {
     templateType: String,

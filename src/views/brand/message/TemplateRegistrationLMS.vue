@@ -85,10 +85,10 @@
                 </template>
                 <!-- LMS 서술_아이콘 -->
                 <template v-if="isLmsType2">
-                  <StyleTitleA
-                    :titleIconNewData="titleIconNewData"
-                    :titleIconBasicData="titleIconBasicData"
-                    :info="form.MainTitle.info"
+                  <ItemA
+                  :info="form.Item.info"
+                  :titleIconNewData="titleIconNewData"
+                  :titleIconBasicData="titleIconBasicData"
                   />
                   <Description :subTitleUse="true"
                   :info="form.Description.info"
@@ -166,7 +166,7 @@ import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import TempEmulator from '@/views/brand/message/components/TempEmulatorLMS.vue'
 import MainTitle from './components/MainTitle.vue'
 import Description from './components/Description.vue'
-import StyleTitleA from '@/views/brand/message/components/StyleTitleA.vue'
+import ItemA from '@/views/brand/message/components/ItemA.vue'
 import ButtonVertical from '@/views/brand/message/components/ButtonVertical.vue'
 import DescriptionGroup from '@/views/brand/message/components/DescriptionGroup.vue'
 import StyleTable from '@/views/brand/message/components/StyleTable.vue'
@@ -178,7 +178,7 @@ export default {
     TempEmulator,
     MainTitle,
     Description,
-    StyleTitleA,
+    ItemA,
     ButtonVertical,
     DescriptionGroup,
     StyleTable
@@ -206,6 +206,15 @@ export default {
             subTitleUseY: 'N',
             subTitle: '',
             content: ''
+          }
+        },
+        Item: {
+          info: {
+            titleDescUse: 'N',
+            titleDesc: '',
+            title: '',
+            logoType: 'basic',
+            logoFile: ''
           }
         },
         Table: {

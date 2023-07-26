@@ -16,8 +16,8 @@
         </span>
       </div>
       <div class="flex-input">
-        <div class="font-style"><textStyleInput :target="`row${i+1}Col1`" v-model="item.itemLabel" /></div>
-        <div class="font-style" v-show="item.colNum == 2"><textStyleInput :target="`row${i+1}Col2`" v-model="item.itemData" /></div>
+        <div class="font-style"><textStyleInput  :info="item.itemLabel" index="itemL" /></div>
+        <div class="font-style" v-show="item.colNum == 2"><textStyleInput :info="item.itemData" index="itemD"/></div>
       </div>
       <!-- 기존 라인 부분 -->
       <div class="flex-btn">
@@ -78,10 +78,8 @@ export default {
       let tblRows = {
         line: false,
         colNum: '1',
-        itemLabel: '',
-        itemData: '',
-        itemDataStyle: '',
-        itemLabelStyle: ''
+        itemLabel: {},
+        itemData: {},
       }
       if (this.tableInfo.length < 10) {
         this.tableInfo.push(tblRows)

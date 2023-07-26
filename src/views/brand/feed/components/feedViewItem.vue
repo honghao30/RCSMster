@@ -18,20 +18,20 @@
     <div class="feed-view__top">
       <ul class="feed-view__info">
         <li class="id"><span class="label">소식 ID</span>{{ feedData.feedId }}</li>
-        <li class="type">{{ feedData.feedType }}</li>
-        <li class="status">{{ feedData.feedStatus }}</li>
+        <li class="type">{{ feedData.typeNm }}</li>
+        <li class="status">{{ feedData.statusNm }}</li>
       </ul>
       <ul class="feed-view__info">
-        <li class="author"><span class="label">등록자</span>{{ feedData.feedAuthor }}</li>
-        <li class="date"><span class="label">최종 작업일</span>{{ feedData.feedDate }}</li>
-        <li class="date"><span class="label">게시(예약)일</span>{{ feedData.feedPublishDate }}</li>
+        <li class="author"><span class="label">등록자</span>{{ feedData.userNm }}</li>
+        <li class="date"><span class="label">최종 작업일</span>{{ feedData.updateDate }}</li>
+        <li class="date" v-if='feedData.publishType === "reservation"' ><span class="label">게시(예약)일</span>{{ feedData.publishDate }}</li>
       </ul>
       <ul class="ctrl">
         <li>
           <ButtonCmp
             type="btn-only-icon"
             iconname='icon-pin'
-            v-if="feedData.isFixed"
+            v-if="feedData.pinYn === 'Y'"
           >
           </ButtonCmp>
         </li>
@@ -44,13 +44,13 @@
           </ButtonCmp>
           <ul class="layer__more-menu" v-if="isLayerOpen" >
             <li>
-              <a role="button">미게시</a>
+              <a role="button" @click='noDisplay(feedData)'>{{ displayChangeBtnNm }}</a>
             </li>
             <li>
-              <a role="button">수정</a>
+              <a role="button" @click='mod(feedData)'>수정</a>
             </li>
             <li>
-              <a role="button">삭제</a>
+              <a role="button" @click='deleteFeed(feedData)'>삭제</a>
             </li>
           </ul>
         </li>
@@ -58,7 +58,7 @@
     </div>
     <div class="feed-view">
       <feedEmulator
-        :feedInfoData="feedData.feedItem"
+        :feedInfoData="feedData"
         :showBrandHeader="false"
       />
     </div>
@@ -69,6 +69,8 @@
 import vClickOutside from 'v-click-outside'
 import feedEmulator from '@/views/brand/feed/components/feedEmulator.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import { mapGetters } from 'vuex'
+import { feedRemove, updateDisplayFeed } from '@/api/feed/feed'
 export default {
   directives: {
     clickOutside: vClickOutside.directive
@@ -80,13 +82,27 @@ export default {
   props: {
     feedData: {
       type: Object
+    },
+    noResult: {
+      type: Boolean,
+      default: false
+    },
+    noData: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      isLayerOpen: false,
-      noResult: false,
-      noData: false
+      isLayerOpen: false
+    }
+  },
+  computed: {
+    ...mapGetters('brand', {
+      brandDetail: 'getBrandDetail'
+    }),
+    displayChangeBtnNm () {
+      return (this.feedData.status === 'ok') ? '미게시' : '게시'
     }
   },
   methods: {
@@ -95,6 +111,40 @@ export default {
     },
     onClickOutside() {
       this.isLayerOpen = false
+    },
+    mod(item) {
+      this.$emit('mod', JSON.parse(JSON.stringify(item)))
+      this.isLayerOpen = false
+    },
+    deleteFeed(feed) {
+      this.$confirmMsg('삭제 하시겠습니까?').then(() => {
+        feedRemove(feed.brandId, feed.feedId).then((res) => {
+          if (res.code === '20000000') {
+            this.$parent.getFeedList()
+            this.$parent.initFeedForm()
+          } else {
+            this.$alertMsg('서버와 통신중 오류가 발생하였습니다.')
+          }
+        })
+      })
+    },
+    noDisplay(feed) {
+      this.$confirmMsg('미게시 하시겠습니까?').then(() => {
+        let param = {}
+        if (feed.status === 'ok') {
+          param.display = 'save'
+        } else {
+          param.display = 'ok'
+        }
+        updateDisplayFeed(feed.brandId, feed.feedId, param).then((res) => {
+          if (res.code === '20000000') {
+            this.$parent.getFeedList()
+            this.$parent.initFeedForm()
+          } else {
+            this.$alertMsg('서버와 통신중 오류가 발생하였습니다.')
+          }
+        })
+      })
     }
   }
 }

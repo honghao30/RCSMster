@@ -20,7 +20,7 @@
                     placeholder="제목을 입력해주세요."
                   >
                   <div class="input-limit__text">
-                    <p>{{ mainTitleLength }}/17자</p>
+                    <p>{{ info.title.length }}/17자</p>
                   </div>
                 </div>
               </div>

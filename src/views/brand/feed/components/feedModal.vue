@@ -23,7 +23,7 @@
           v-model="fileList"
         >
           <div
-            v-for="(imgFile, index) in displayedFileList" :key="imgFile"
+            v-for="(imgFile, index) in displayedFileList" :key="index"
           >
             <div class="msg__image-delete" v-if="imgFile.url !== ''">
               <button class="delete-button" @click="deleteImage(index)"></button>
@@ -47,7 +47,7 @@
         >닫기</ButtonCmp>
         <ButtonCmp
           type="btn-blue"
-          @click="$emit('modalSave')"
+          @click="$emit('modalSave', fileList)"
         >저장</ButtonCmp>
       </div>
     </div>
@@ -68,14 +68,19 @@ export default {
     modalsize: {
       type: String,
       default: ''
+    },
+    propFileList: {
+      type: Array
     }
-    // fileList: {
-    //   type: Array
-    // }
   },
   data() {
     return {
       fileList: [ ]
+    }
+  },
+  created() {
+    if (this.propFileList.length > 0) {
+      this.fileList = JSON.parse(JSON.stringify(this.propFileList))
     }
   },
   computed: {
@@ -88,10 +93,12 @@ export default {
   methods: {
     onFileChanged (e) {
       const files = e.target.files
-      const file = e.target.files[0]
+      const file = e.target.files
       const fileName = files[0].name
-      const url = URL.createObjectURL(file)
-      const newFile = { fileName, url }
+      const url = URL.createObjectURL(file[0])
+      // 사이즈 계산
+      let fileSize = this.getByteSize(file[0].size)
+      const newFile = { fileName, url, file, fileSize }
       if (this.fileList.length < 11) {
         this.fileList.push(newFile)
         this.$emit('fileListUpdated', this.fileList)
@@ -101,6 +108,15 @@ export default {
     },
     deleteImage(index) {
       this.fileList.splice(index, 1)
+    },
+    getByteSize (size) {
+      const byteUnits = ['KB', 'MB', 'GB', 'TB']
+      for (let i = 0; i < byteUnits.length; i++) {
+        size = Math.floor(size / 1024)
+        if (size < 1024) {
+          return size.toFixed(1) + byteUnits[i]
+        }
+      }
     }
   }
 }

@@ -3,7 +3,7 @@
     <ol :class="`step--0${stepTitle.length}`">
       <li v-for="(step, i) in stepTitle"
         :key="i"
-        :class="[{ing: activeStep === i}, {end: activeStep > i}]"
+        :class="[{ing: getStepActiveIndex === i}, {end: getStepActiveIndex > i}]"
       >
         <div class="step__inner">
           <i class="step__icon" v-if="activeStep > i"></i>
@@ -28,7 +28,12 @@ export default {
   },
   data() {
     return {
-      activeStep: undefined
+      activeStep: 0
+    }
+  },
+  computed: {
+    getStepActiveIndex() {
+      return this.stepActiveIndex - 1
     }
   }
 }

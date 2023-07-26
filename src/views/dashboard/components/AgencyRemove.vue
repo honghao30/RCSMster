@@ -8,7 +8,7 @@
     </div>
     <div class="modal__content--body">
       <div class="top-notice--center">
-        <p>선택한 대행사로 등록된 <span class="agency-num">3개</span>의 대화방이 있습니다.<br>
+        <p>선택한 대행사로 등록된 <span class="agency-num">{{ agencyChatRoomData.length }}개</span>의 대화방이 있습니다.<br>
         대행사를 삭제하면 연결된 대화방이 ‘비전시’됩니다.<br>
         대행사를 삭제하시겠습니까?</p>
       </div>
@@ -28,9 +28,9 @@
             <tbody>
               <tr v-for="(item,i) in agencyChatRoomData" :key="i">
                 <td class="l-align">
-                  <span>{{ item.title }}</span>
+                  <span>{{ item.subTitle }}</span>
                 </td>
-                <td class="l-align"><span>{{ item.id }}</span></td>
+                <td class="l-align"><span>{{ item.chatbotId }}</span></td>
               </tr>
             </tbody>
           </table>
@@ -53,7 +53,7 @@
         <!-- 삭제 버튼 > 권한 리스트에서 해당 대행사 즉시 삭제 -->
         <ButtonCmp
           type="btn-blue"
-          @click="$emit('closeModal')"
+          @click="$emit('authRemove')"
           :disabled="this.chkRemove.length < 1"
         >삭제</ButtonCmp>
       </div>
@@ -63,6 +63,7 @@
 
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import { retrieveChatbotByAgencyList } from '@/api/service/manage'
 
 export default {
   components: {
@@ -72,29 +73,44 @@ export default {
     modalsize: {
       type: String,
       default: ''
+    },
+    manageItem: {
+      type: Object
+    },
+    paramCorpId: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
       isAllChecked: false,
       chkRemove: [],
-      agencyChatRoomData: [
-        {
-          title: 'SYSTEM HOMME',
-          id: 'bot-i7ke7f30e6c'
-        },
-        {
-          title: 'LANVIN COLLECTION',
-          id: 'bot-i7ke7f30e7b'
-        },
-        {
-          title: '타미힐피거',
-          id: 'bot-i7ke7f30e8a'
-        }
-      ]
+      agencyChatRoomData: []
+    }
+  },
+  created() {
+    this.getChatbotByAgency()
+  },
+  computed: {
+    corpId() {
+      if (this.paramCorpId) {
+        return this.paramCorpId
+      } else {
+        return this.$router.currentRoute.params.corpId
+      }
     }
   },
   methods: {
+    getChatbotByAgency() {
+      retrieveChatbotByAgencyList(this.corpId, { brandId: this.manageItem.brandId, mgrUserId: this.manageItem.mgrUserId }).then((res) => {
+        if (res.code === '20000000') {
+          this.agencyChatRoomData = res.result
+        }
+      }).catch(e => {
+        this.$alertMsg(e.desc)
+      })
+    }
   }
 }
 </script>

@@ -21,7 +21,7 @@
                     <col />
                   </colgroup>
                   <tbody>
-                    <tr>
+                    <tr class="bdBottom-bg"> <!-- 기획서 v1.0 수정 (bdBottom-bg 클래스 추가) -->
                       <th scope="row"><span class="form-item__label required">우선 노출 탭 설정</span></th>
                       <td>
                           <div class="form-item__content">
@@ -40,221 +40,200 @@
                           </div>
                       </td>
                     </tr>
+                    <!-- 기획서 v1.0 수정(BrandEditStep03 과 동일하게 적용을 위해 수정) -->
+                    <!-- 기획서 v1.0 수정 (소식 탭 우선 클릭 → 영업정보 나타남 / 알림판 작성 가이드 버튼 삭제 및 처음부터 나타남) -->
+                    <tr class="brand_board" v-if="form.curTab === 'feed'">
+                      <th scope="row"><span class="form-item__label">영업정보</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                      <td>
+                        <div class="form-item__content">
+                          <div class="text-item">
+                            <div class="input-item">
+                              <span class="radiobox">
+                                <input type="radio" name="noticeChk" id="noticeUseN" v-model="form.noticeUse" value="useN"/>
+                                <label for="noticeUseN"><span class="checkbox__text">미사용</span></label>
+                              </span>
+                              <span class="radiobox">
+                                <input type="radio" name="noticeChk" id="noticeUse" v-model="form.noticeUse" value="use"/>
+                                <label for="noticeUse"><span class="checkbox__text">사용</span></label>
+                              </span>
+                            </div>
+                            <template v-if="form.noticeUse === 'useN'">
+                            </template>
+                            <template v-if="form.noticeUse === 'use'">
+                              <div class="form-item__content is-emoji">
+                                <div class="form-item-row text-item">
+                                  <div class="input-item input-limit">
+                                    <span class="text-item__title required">제목</span>
+                                    <div class="input">
+                                      <input type="text" class="input" maxlength="20" placeholder="알림 제목을 입력해주세요." v-model="form.title" ref="title">
+                                      <div class="input-limit__text">
+                                        <Emoji @input="onSelectEmoji($event, 'title', j)"/>
+                                        <p>{{ form.title.length }}/20자</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="input-item input-limit input-item_start">
+                                    <span class="text-item__title required">내용</span>
+                                    <div class="textarea feed__textarea" >
+                                      <textarea maxlength="150" placeholder="알림 내용을 입력해주세요." v-model="form.content" ref="content"></textarea>
+                                      <div class="textarea-limit__text">
+                                        <Emoji @input="onSelectEmoji($event, 'content', j)"/>
+                                        <p>
+                                          {{ form.content.length }}/200자
+                                        </p>
+                                      </div>
+                                      <p class="guide-text error" v-if="brandContentErrorMsg">알림 내용을 입력해주세요.</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </template>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="brand_boardTip" v-if="form.curTab === 'feed' && form.noticeUse === 'use'"> <!-- 기획서 v1.0 수정 (brand-tip__wrap 클래스 영업정보 사용 클릭 시에 나타나도록 v-if 추가) -->
+                      <!-- 기획서 v1.0 수정 (BrandEditStep03 에서는 <th></th> 존재했으나 BrandEditStep03에서는 삭제) -->
+                      <td colspan="2"> <!-- 기획서 v1.0 수정 (BrandEditStep03 에서는 colspan 삭제했으나 BrandEditStep03에서는 미삭제) -->
+                        <div class="brand-tip__wrap"> <!-- 기획서 v1.0 수정 (v-if="isOpen" 삭제) -->
+                          <ul class="brand-tip__box">
+                            <li>
+                              <h5>1. 영업시간 안내</h5>
+                              <div class="brand-tip__example">
+                                <strong>영업시간 안내</strong>
+                                <p>월~금 : 10:30 ~ 20:00 <br />
+                                  주말 및 공휴일은 휴무입니다.</p>
+                              </div>
+                              <ButtonCmp
+                                type="btn-blue-line small"
+                                @click=brandTip1
+                              >적용</ButtonCmp>
+                            </li>
+                            <li>
+                              <h5>2. 임시휴무 안내</h5>
+                              <div class="brand-tip__example">
+                                <strong>1월 23일 임시휴무 안내</strong>
+                                <p>내부 인테리어로 임시휴무입니다. <br />
+                                  더 산뜻하게 다시 모시겠습니다!</p>
+                              </div>
+                              <ButtonCmp
+                                type="btn-blue-line small"
+                                @click=brandTip2
+                              >적용</ButtonCmp>
+                            </li>
+                            <li>
+                              <h5>3. 강조하고 싶은 내용 안내</h5> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                              <div class="brand-tip__example">
+                                <strong>출시기념!</strong>
+                                <p>단 7일간! 이 메시지를 보여주시는 <br />
+                                  분들께만 10% 할인!</p>
+                              </div>
+                              <ButtonCmp
+                                type="btn-blue-line small"
+                                @click=brandTip3
+                              >적용</ButtonCmp>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- 기획서 v1.0 수정 (소식 탭 우선 클릭 → 노출정보 나타남 / 새로 추가작업) -->
+                    <tr class="brand_feedinfo" v-if="form.curTab === 'feed'">
+                      <th scope="row"><span class="form-item__label">노출정보</span></th>
+                      <td>
+                        <div class="form-item__content">
+                          <div class="text-item">
+                            <div class="text-item__content">
+                              <span class="checkbox">
+                                <input type="checkbox" id="check01" v-model="form.feedtel"/>
+                                <label for="check01"><span class="checkbox__text text-item__title">전화번호</span></label>
+                                <span class="text">010-5151-5151</span>
+                              </span>
+                            </div>
+                            <div class="text-item__content">
+                              <span class="checkbox">
+                                <input type="checkbox" id="check02" v-model="form.feedinfo"/>
+                                <label for="check02"><span class="checkbox__text text-item__title">정보</span></label>
+                                <span class="text">http://www/portal.com</span>
+                              </span>
+                            </div>
+                            <div class="text-item__content">
+                              <span class="checkbox">
+                                <input type="checkbox" id="check03" v-model="form.feedweb"/>
+                                <label for="check03"><span class="checkbox__text text-item__title">웹사이트</span></label>
+                                <span class="text">http://www.brandportal.com</span>
+                              </span>
+                            </div>
+                            <div class="text-item__content">
+                              <span class="checkbox">
+                                <input type="checkbox" id="check04" v-model="form.feedsearch"/>
+                                <label for="check04"><span class="checkbox__text text-item__title">포탈검색</span></label>
+                                <span class="text">#브랜드명#</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- 기획서 v1.0 수정 (소식 탭 우선 클릭 → 노출정보 나타남 / 새로 추가작업) -->
+                    <!-- 기획서 v1.0 수정 (정보 탭 우선 클릭 → 노출정보 나타남 / v-if="form.curTab === 'info' 추가) -->
+                    <tr v-if="form.curTab === 'info'">
+                      <th scope="row"><span class="form-item__label">노출정보</span></th> <!-- 기획서 v1.0 수정 (문구 수정) -->
+                      <td>
+                        <div class="form-item__content">
+                          <div class="form-item-row text-item">
+                            <div class="input-item">
+                              <span class="text-item__title required">웹사이트</span>
+                              <span class="input">
+                                <input type="text" class="input" v-model="form.website">
+                              </span>
+                            </div>
+                            <div class="input-item">
+                              <span class="text-item__title required">이메일</span>
+                              <span class="input">
+                                <input type="text" class="input" v-model="form.email">
+                              </span>
+                            </div>
+                            <div class="input-item input-item_start">
+                              <span class="text-item__title required">주소</span>
+                              <div class="input">
+                                <div class="form-item-row">
+                                  <div class="input-item post">
+                                    <span class="input input-post"><input type="text" class="input" v-model="form.postcode" disabled></span>
+                                    <ButtonCmp
+                                        type="btn-default-line"
+                                        @click="findPost"
+                                    >
+                                      우편번호
+                                    </ButtonCmp>
+                                  </div>
+                                </div>
+                                <div class="form-item-row">
+                                  <div class="input-item address">
+                                    <span class="input input-info">
+                                      <input type="text" class="input" v-model="form.addr1" disabled>
+                                    </span>
+                                    <span class="input input-info">
+                                      <input type="text" class="input" v-model="form.addr2" disabled>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- // 기획서 v1.0 수정 (정보 탭 우선 클릭 → 노출정보 나타남 / v-if="form.curTab === 'info' 추가) -->
+                    <tr class="guide-wrap">
+                      <th colspan="2">
+                        <p class="guide-text black">&bull; 퀵 버튼 설정 시 입력한 정보가 동일하게 반영됩니다.</p>
+                      </th>
+                    </tr>
+                    <!-- // 기획서 v1.0 수정(BrandEditStep03 과 동일하게 적용을 위해 수정) -->
                   </tbody>
                 </table>
-                <template v-if="form.curTab === 'feed'">
-                  <table class="table table-bodyonly form-table">
-                    <colgroup>
-                      <col width="196px">
-                      <col width="100px">
-                      <col />
-                    </colgroup>
-                    <tbody>
-                      <tr class="brand_board">
-                        <th scope="row"><span class="form-item__label">영업정보</span></th>
-                        <td colspan="2">
-                          <div class="form-item__content">
-                            <div class="text-item">
-                              <div class="input-item">
-                                <span class="radiobox">
-                                  <input type="radio" name="noticeChk" id="noticeUse" v-model="form.noticeUse" value="use"/>
-                                  <label for="noticeUse"><span class="checkbox__text">사용</span></label>
-                                </span>
-                                <span class="radiobox">
-                                  <input type="radio" name="noticeChk" id="noticeUseN" v-model="form.noticeUse" value="useN"/>
-                                  <label for="noticeUseN"><span class="checkbox__text">미사용</span></label>
-                                </span>
-                              </div>
-                            </div>
-                            <button
-                              class="btn-brandTip"
-                              @click=onBrandTip
-                              type="button"
-                              :class="{open: isOpen}"
-                            >
-                              영업정보 작성 예시
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr class="brand_boardTip">
-                        <td colspan="3">
-                          <div class="brand-tip__wrap" v-if="isOpen">
-                            <ul class="brand-tip__box">
-                              <li>
-                                <h5>1. 영업시간 안내</h5>
-                                <div class="brand-tip__example">
-                                  <strong>영업시간 안내</strong>
-                                  <p>월~금 : 10:30 ~ 20:00 <br />
-                                    주말 및 공휴일은 휴무입니다.</p>
-                                </div>
-                                <ButtonCmp
-                                  type="btn-blue-line small"
-                                  @click=brandTip1
-                                >적용</ButtonCmp>
-                              </li>
-                              <li>
-                                <h5>2. 임시휴무 안내</h5>
-                                <div class="brand-tip__example">
-                                  <strong>1월 23일 임시휴무 안내</strong>
-                                  <p>내부 인테리어로 임시휴무입니다. <br />
-                                    더 산뜻하게 다시 모시겠습니다!</p>
-                                </div>
-                                <ButtonCmp
-                                  type="btn-blue-line small"
-                                  @click=brandTip2
-                                >적용</ButtonCmp>
-                              </li>
-                              <li>
-                                <h5>3. 강조하고 싶은 내용 인재</h5>
-                                <div class="brand-tip__example">
-                                  <strong>출시기념!</strong>
-                                  <p>단 7일간! 이 메시지를 보여주시는 <br />
-                                    분들께만 10% 할인!</p>
-                                </div>
-                                <ButtonCmp
-                                  type="btn-blue-line small"
-                                  @click=brandTip3
-                                >적용</ButtonCmp>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="form-item__label required">제목</span></th>
-                        <td colspan="2">
-                          <div class="form-item__content">
-                            <div class="form-item-row">
-                              <div class="input-item input-limit">
-                                <div class="input">
-                                  <input type="text" class="input" maxlength="20" placeholder="알림 제목을 입력해주세요." v-model="form.title" ref="title">
-                                  <div class="input-limit__text">
-                                    <Emoji @input="onSelectEmoji($event, 'title', j)"/>
-                                    <p>{{ form.title.length }}/20자</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="form-item__label required">내용</span></th>
-                        <td colspan="2">
-                          <div class="form-item__content">
-                            <div class="form-item-row">
-                              <div class="input-item input-limit">
-                                <div class="textarea feed__textarea" >
-                                  <textarea maxlength="150" placeholder="알림 내용을 입력해주세요." v-model="form.content" ref="content"></textarea>
-                                  <div class="textarea-limit__text">
-                                    <Emoji @input="onSelectEmoji($event, 'content', j)"/>
-                                    <p>
-                                      {{ form.content.length }}/200자
-                                    </p>
-                                  </div>
-                                  <p class="guide-text error" v-if="brandContentErrorMsg">알림 내용을 입력해주세요.</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row" rowspan="4" class="cell--last"><span class="form-item__label">노출 정보</span></th>
-                        <th scope="row"><span class="form-item__label sub">전화번호</span></th>
-                        <td>
-                          <span class="text">{{ form.tel }}</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="form-item__label sub">정보</span></th>
-                        <td>
-                          <span class="text">{{ form.moreInfo }}</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="form-item__label sub">웹사이트</span></th>
-                        <td>
-                          <span class="text">{{ form.url }}</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="form-item__label sub">포탈검색</span></th>
-                        <td>
-                          <span class="text">{{ form.hashtag }}</span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p class="guide-text black">&bull; 퀵 버튼 설정 시 입력한 정보가 동일하게 반영됩니다.</p>
-                </template>
-                <template v-if="form.curTab === 'info'">
-                  <table class="table table-bodyonly form-table">
-                    <colgroup>
-                      <col width="196px">
-                      <col width="100px">
-                      <col />
-                    </colgroup>
-                    <tbody>
-                      <tr>
-                        <th scope="row" rowspan="4" class="cell--last"><span class="form-item__label">노출 정보</span></th>
-                        <th scope="row"><span class="form-item__label sub">전화번호</span></th>
-                        <td>
-                          <div class="form-item__content">
-                            <div class="form-item-row text-item">
-                              <div class="input-item">
-                                <span class="text">
-                                  010-2345-5678
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="form-item__label sub">웹사이트</span></th>
-                        <td>
-                          <div class="forn-item__content">
-                            <div class="form-item-row">
-                              <div class="input-item">
-                                  <span class="input">
-                                    <input type="text" class="input" v-model="form.email">
-                                  </span>
-                                </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><span class="form-item__label sub">주소</span></th>
-                        <td>
-                          <div class="forn-item__content">
-                            <div class="form-item-row">
-                              <span class="input-item post">
-                                <span class="input input-post"><input type="text" class="input" v-model="form.postcode" disabled></span>
-                                <ButtonCmp
-                                    type="btn-default-line"
-                                    @click="findPost"
-                                >
-                                  우편번호
-                                </ButtonCmp>
-                              </span>
-                              <span class="input-item address">
-                                <span class="input input-info">
-                                  <input type="text" class="input" v-model="form.addr1" disabled>
-                                </span>
-                                <span class="input input-info">
-                                  <input type="text" class="input" v-model="form.addr2" disabled>
-                                </span>
-                              </span>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-               </template>
+                <!-- 기획서 v1.0 수정 (BrandEditStep03 과 동일하게 적용을 위해 <template v-if="form.curTab === 'feed'">, <template v-if="form.curTab === 'info'"> 삭제) -->
                 <!-- <div class="agree__area">
                   <span class="checkbox">
                     <input type="checkbox" id="agreeY" v-model="form.agree" value="agreeY"><label for="agreeY">메시지 발송 시 Free 템플릿은 정보성에 한하여 이용 가능합니다. 규정 위반시, 서비스 이용이 제한될 수 있습니다.</label>

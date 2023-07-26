@@ -12,13 +12,13 @@
             <div class="left-area">
               <div class="search-area">
                 <span class="input search">
-                  <input type="text" placeholder="검색어를 입력하세요."/>
+                  <input type="text" placeholder="검색어를 입력하세요." v-model="searchParam.keyword" @keypress.enter="search" />
                 </span>
               </div>
             </div>
           </div>
           <div class="table__wrap">
-            <table class="table table-list">
+            <table class="table table-list" v-if="isLoad">
               <colgroup>
                 <col width="10%">
                 <col width="">
@@ -30,48 +30,53 @@
                   <th scope="col"><span>소식 ID</span></th>
                 </tr>
               </thead>
-              <tbody>
-                <tr v-for="(item, i) in barndNewsList" :key="i">
+              <tbody v-if="feedList.length > 0">
+                <tr v-for="(feed, idx) in feedList" :key="idx" @click="selectFeed(feed.feedId)">
                   <td>
                     <span class="radiobox">
-                      <input type="radio" :id="`item${i+1}`" :value="`item${i+1}`" v-model="radiochk">
-                      <label :for="`item${i+1}`"></label>
+                      <input type="radio" :id="`radio_${idx}`" :checked="feed.feedId == selectedFeedId" />
+                      <label :for="`radio_${idx}`"></label>
                     </span>
                   </td>
                   <td class="l-align">
-                    <span>{{ item.name }}</span>
+                    <span>{{ feed.title }}</span>
                   </td>
                   <td>
-                    <span>{{ item.id }}</span>
+                    <span>{{ feed.feedId }}</span>
                   </td>
+                </tr>
+              </tbody>
+              <tbody v-else>
+                <tr>
+                  <td colspan="3">검색결과가 없습니다.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <div class="empty-emulator" v-if="radiochk.length === 0">
-          <p>브랜드 소식을 선택해주세요.</p>
-        </div>
-        <feedEmulator
-          v-else
-          :brandInfoData="brandInfoData"
-          :feedInfoData="form"
-          :showBrandHeader="true"
-        />
+<!--        <div class="empty-emulator" v-if="radiochk.length === 0">-->
+<!--          <p>브랜드 소식을 선택해주세요.</p>-->
+<!--        </div>-->
+<!--        <feedEmulator-->
+<!--          v-else-->
+<!--          :brandInfoData="brandInfoData"-->
+<!--          :feedInfoData="form"-->
+<!--          :showBrandHeader="true"-->
+<!--        />-->
       </div>
     </div>
     <div class="modal__content--footer">
-      <PagingCmp />
+      <PagingCmp :total="totalCount" :pageSize="searchParam.limit" :current-page.sync="searchParam.page" @change="changePage" />
       <div class="button__wrap">
         <ButtonCmp
           type="btn-blue-line"
-          @click="$emit('closeModal')"
+          @click="closePopup"
         >닫기</ButtonCmp>
         <!-- 브랜드 소식 연결 버튼 클릭 시 브랜드 소식 명 출력 및 연결 처리 -->
         <ButtonCmp
           type="btn-blue"
-          @click="$emit('closeModal')"
-          :disabled="radiochk.length === 0"
+          @click="confirm"
+          :disabled="validation"
         >브랜드 소식 연결</ButtonCmp>
         <!-- //브랜드 소식 연결 버튼 클릭 시 브랜드 소식 명 출력 및 연결 처리 -->
       </div>
@@ -80,76 +85,90 @@
 </template>
 
 <script>
-import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import feedEmulator from '@/views/brand/feed/components/feedEmulator.vue'
+
 import PagingCmp from '@/components/common/PagingCmp.vue'
+import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import { getFeedList, feedDetail } from '@/api/feed/feed'
 
 export default {
   components: {
     ButtonCmp,
-    feedEmulator,
     PagingCmp
+  },
+  props: {
+    brandId: { type: String }
   },
   data() {
     return {
-      isAllChecked: false,
-      radiochk: [],
-      barndNewsList: [
-        {
-          name: 'SK 텔레콤의 스마트한 제안',
-          id: '12223313'
-        },
-        {
-          name: '미리 만나는 프리미엄 페스타',
-          id: '12223314'
-        },
-        {
-          name: '2주간 즐기는 프리미엄 회원 특별혜택!',
-          id: '12223315'
-        },
-        {
-          name: '요가하는 선생님',
-          id: '12223316'
-        },
-        {
-          name: '멋진 오늘의 건축물 역사와 현대가 함께 흐르는 공간',
-          id: '12223317'
-        },
-        {
-          name: '아이들 나라 보고 레고랜드 놀러가요',
-          id: '12223318'
-        },
-        {
-          name: '메시지 허브로 문자, RCS, 알림톡까지 한번에 이용하세요',
-          id: '12223319'
-        },
-        {
-          name: '뉴스레터 구독 시 기프티콘 증정​',
-          id: '12223412'
-        },
-        {
-          name: '아이들 나라 보고 레고랜드 놀러가요​',
-          id: '12223413'
-        },
-        {
-          name: '요가하는 선생님​',
-          id: '12223414'
-        }
-      ],
-      brandInfoData: {
-        name: '네스프레소',
-        profileImgFileUrl: 'dummy/brand_logo.png'
+      isLoad: false,
+      totalCount: 0,
+      searchParam: {
+        searchType: 'title',
+        keyword: '',
+        page: 1,
+        offset: 0,
+        limit: 10
       },
-      form: {
-        type: 'gallery',
-        feedDate: '4월 19일 오후 3:00',
-        feedTitle: 'SK 텔레콤의 스마트한 제안​',
-        feedContent: 'SK텔레콤을 다양하게 만나보세요! #SKT Insight · SK텔레콤 네이버 포스트 스크랩 · SK텔레콤 페이스북 #Facebook · SK텔레콤 유튜브 #YouTube ​레콤 네이버 포스트 스크랩 · SK텔레콤 페이스북 #Facebook · SK텔레콤 유튜브 #YouTube ​레콤 네이버 포스트 스크랩 · SK텔레콤 페이스북 #Facebook · SK텔레콤 유튜브 #YouTube',
-        imgFiles: ['dummy/feed_image_02.png', 'dummy/feed_image_02.png']
-      }
+      feedList: [],
+      feedData: {},
+      feedTemplate: {},
+      selectedFeedId: ''
     }
   },
+  computed: {
+    validation() {
+      if (jglib.isEmpty(this.selectedFeedId)) {
+        return true
+      }
+      return false
+    }
+  },
+  created() {
+    this.getFeedList()
+  },
   methods: {
+    getFeedList() {
+      this.totalCount = 0
+      this.feedList = []
+      this.isLoad = true
+      this.searchParam.brandId = this.brandId
+      getFeedList(this.searchParam).then(res => {
+        if (res.code === '20000000') {
+          this.totalCount = res.pagination.total
+          this.feedList = res.result.feedList
+          this.isLoad = true
+        }
+      }).catch(() => {})
+    },
+    search() {
+      this.updatePageData(1)
+      this.getFeedList()
+    },
+    selectFeed(feedId) {
+      this.selectedFeedId = feedId
+      feedDetail(this.brandId, feedId)
+        .then(res => {
+          this.feedData = {
+            feedId: res.result.feedId,
+            feedUrl: res.result.feedUrl
+          }
+        })
+    },
+    changePage(page) {
+      this.updatePageData(page)
+      this.searchParam.offset = (page - 1) * this.searchParam.limit // 시작 row(0부터)
+      this.getFeedList()
+    },
+    updatePageData(page) {
+      this.searchParam.page = page
+    },
+    confirm() {
+      this.$emit('selectFeed', { feedId: this.feedData.feedId, feedUrl: this.feedData.feedUrl })
+      this.$emit('closeModal')
+    },
+    closePopup() {
+      this.$emit('closeModal')
+    }
   }
 }
 </script>

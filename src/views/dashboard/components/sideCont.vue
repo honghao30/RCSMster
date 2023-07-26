@@ -1,20 +1,23 @@
 <template>
   <div class="dashBoard-side">
     <!-- 기업정보 -->
-    <!-- 마스터 -->
     <div class="side-box side-box__info">
       <div class="side-box__info-top">
         <div class="side-box-top">
-          <h4>더피프티원</h4>
-          <span class="authority master">운영자</span> <!-- 기획서 v1.0 수정 - 문구 수정(마스터 -> 운영자) -->
+          <h4>{{corpInfo.name}}</h4>
+           <!-- 20230630 마스터 master, 매니저 manager, 대행사에 agency 클래스 바인딩
+           :class="{'master': authority === '마스터', 'manager': authority === '매니저', 'agency': authority === '대행사'}"
+          -->
+          <span class="authority"
+          >{{authority}}</span>  <!-- 기획서 v1.0 수정 - 문구 수정(마스터 -> 운영자) -->
         </div>
         <div class="side-box-middle">
-          <span class="id">CO.K0803h0r0O</span>
-          <span class="date">2023.03.09</span>
+          <span class="id">{{corpInfo.corpId}}</span>
+          <span class="date">{{corpInfo.regDt}}</span>
         </div>
       </div>
       <!-- 안심마크 사용 기업 -->
-      <div class="side-box-cont" v-if="safetyMarkCompany">
+      <div class="side-box-cont" v-if="corpInfo.saftyStatus === 'SET'">
         <div>RCS 메시지 상단에
           “<a
             role="button"
@@ -32,61 +35,11 @@
       </div>
       <!-- // 안심마크 사용 기업 -->
     </div>
-    <!-- // 마스터 -->
-    <!-- 매니저 -->
-    <div class="side-box side-box__info">
-      <div class="side-box__info-top">
-        <div class="side-box-top">
-          <h4>더피프티원</h4>
-          <span class="authority manager">매니저</span>
-        </div>
-        <div class="side-box-middle">
-          <span class="id">CO.K0803h0r0O</span>
-          <span class="date">2023.03.09</span>
-        </div>
-      </div>
-      <!-- 안심마크 사용 기업 -->
-      <div class="side-box-cont" v-if="safetyMarkCompany">
-        <div>RCS 메시지 상단에
-          “<a
-            role="button"
-            class="safetymark"
-            @click="safetyDesModal"
-            >안심마크</a>(
-            <span class="safety_icon-text">
-            <span class="safety_icon"></span>
-              확인된 발신번호
-            </span>
-            )”를
-        </div>
-        <div>표시하여 사칭 문자로 인한 스미싱 범죄 등에 안전함을 안내할 수 있습니다.
-        </div>
-      </div>
-      <!-- // 안심마크 사용 기업 -->
-    </div>
-    <!-- // 매니저 -->
-    <!-- 대행사 -->
-    <div class="side-box side-box__info">
-      <div class="side-box__info-top">
-        <div class="side-box-top">
-          <h4>비즈뿌리오</h4>
-          <span class="authority agency">대행사</span>
-        </div>
-        <div class="side-box-middle">
-          <span class="id">CO.K0803h0r0O</span>
-          <span class="date">2023.03.09</span>
-        </div>
-      </div>
-      <div class="side-box-cont" v-if="safetyMarkCompany===false"></div>
-    </div>
-    <!-- // 대행사 -->
-    <!-- // 기업정보 -->
-    <!-- 전체 브랜드 운영 관리 (마스터, 매니저) -->
+    <!-- router -->
     <div class="side-btn">
       <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
-      <router-link to="/dashboardOperationManage" class="btn btn-blue-line">전체 브랜드 운영 관리</router-link>
+      <router-link class="btn btn-blue-line" :to="{name: 'corpManageUrl', params: {corpId: corpInfo.corpId}}">전체 브랜드 운영 관리</router-link>
     </div>
-    <!-- // 전체 브랜드 운영 관리 (마스터, 매니저) -->
     <!-- 기획서 v1.0 수정 - 배너 추가 -->
     <!-- 가변 배너 -->
     <div class="side-box side-box__banner banner_flex">
@@ -103,40 +56,54 @@
     </div>
     <!-- // 가변 배너 -->
     <!-- //기획서 v1.0 수정 - 배너 추가 -->
-    <!-- 운영권한 관리 및 신청 내역 (마스터) -->
-    <div class="side-box side-box__authority">
+    <!-- 운영권한 관리 및 신청 내역 -->
+    <div class="side-box side-box__authority" v-if='this.authReqBrandData.length > 0'>
       <div class="side-box-top">
-        <h4>운영권한 승인 신청 내역 ({{authorityList.length}})</h4>
+        <h4>운영권한 승인 신청 내역 ({{authReqBrandData.length}})</h4>
       </div>
       <div class="side-box-cont">
-        <div class="authority-list" v-for="(item,i) in authorityList" :key="i">
+        <div class="authority-list" v-for="(item,i) in authReqBrandData" :key="i">
           <ul>
-            <li class="authority-list__company">{{ item.company }}</li>
+            <li class="authority-list__company">{{ item.name }}</li>
             <li class="authority-list-between">
               <ul>
-                <li class="authority-list__name">{{ item.name }}</li>
-                <li class="authority-list__date">{{ item.date }}</li>
+                <li class="authority-list__name">{{ item.userNm }}</li>
+                <li class="authority-list__date">{{ item.reqDt }}</li>
               </ul>
             </li>
             <li class="authority-list-center">
               <ul>
-                <li class="authority-list__phone">{{ item.phone }}</li>
+                <li class="authority-list__phone">{{ item.mblNum }}</li>
                 <li>&nbsp;/&nbsp;</li>
-                <li class="authority-list__mail">{{ item.mail }}</li>
+                <li class="authority-list__mail">{{ item.email }}</li>
               </ul>
             </li>
           </ul>
-          <!-- 기획서 v1.0 수정(pub2Dev 기록으로 작성함) -->
+          <!-- 기획서 v1.0 수정 전 (데이터 있는 부분들은 참고를 위해 삭제하지 않고 주석으로 했습니다.) -->
+          <!-- <div class="button__wrap">
+            <ButtonCmp
+              type="btn-line"
+              size="small"
+              @click='reject(false, item.brandId, item.name, item.userNm, item.mgrUserId)'
+            >반려</ButtonCmp>
+            <ButtonCmp
+              type="btn-blue"
+              size="small"
+              @click="onSubmit(item)"
+            >승인</ButtonCmp>
+          </div> -->
+          <!-- // 기획서 v1.0 수정 전 -->
+          <!-- 기획서 v1.0 수정 후 -->
           <div class="button__wrap">
             <!-- 반려 버튼 선택 시,
-              1. 운영권한 승인 신청 반려 팝업 출력 → ModalView에서 작성함 주석 중 '◆' 특수문자 있는 부분입니다.( pub-hongsh : 모달창 화면 구현 O / pub2Dev : 모달창 화면 구현 X)
+              1. 운영권한 승인 신청 반려 팝업 출력 → ModalView에서 작성함 주석 중 '◆' 특수문자 있는 부분입니다. (모달창 화면 구현 X)
               2. 반려 시 운영권한 승인 신청 내역에서 해당 내역 삭제)
             -->
             <ButtonCmp
               type="btn-line"
               size="small"
-              @click="rejectModal"
-            >반려</ButtonCmp> <!-- 기획서 v1.0 수정 (@click="rejectModal" 추가)-->
+              @click='reject(false, item.brandId, item.name, item.userNm, item.mgrUserId)'
+            >반려</ButtonCmp>
             <!-- 승인 선택 시,
               1. 운영권한 승인 신청 내역 내 숨김 처리
               2. 운영권한 신청자의 계정권한에 따라 권한 부여
@@ -144,20 +111,20 @@
             <ButtonCmp
               type="btn-blue-line"
               size="small"
-            >승인</ButtonCmp>
+              @click="onSubmit(item)"
+            >승인</ButtonCmp> <!-- 기획서 v1.0 수정 (type 변경) -->
           </div>
-          <!-- // 기획서 v1.0 수정(pub2Dev 기록으로 작성함) -->
+          <!-- // 기획서 v1.0 수정 후 -->
         </div>
-        <div class="authority-list-none">
+  <!-- <div class="authority-list-none">
           <p>운영권한 승인 신청 내역이 없습니다.</p>
         </div>
         <div class="authority-list-more">
           <a role="button" :class="{open: isOpen}" @click="toggleMore">더보기</a>
-        </div>
+        </div> -->
       </div>
     </div>
-    <!-- // 운영권한 관리 및 신청 내역 (마스터) -->
-    <!-- 사용 가이드 -->
+    <!-- 멤버 초대하기 -->
     <!-- 1. 멤버 초대하기 (마스터) -->
     <div class="side-box side-box__invite">
       <div class="side-box-top">
@@ -235,7 +202,7 @@
         <p>브랜드의 관리자에게 대행사 권한을 신청합니다.<br>권한이 부여되면 RCS 메시지 발송이 가능합니다.</p>
       </div>
       <div class="button__wrap side-box-bottom">
-        <!--  @click="BrandAuthorityRequestModal" : ModalView에서 작성함 주석 중 '★' 특수문자 있는 부분입니다. ( pub-hongsh : 모달창 화면 구현 O / pub2Dev : 모달창 화면 구현 X) -->
+        <!--  @click="BrandAuthorityRequestModal" : ModalView에서 작성함 주석 중 '★' 특수문자 있는 부분입니다. (모달창 화면 구현 X) -->
         <ButtonCmp
           type="btn-blue-line"
           size=" medium"
@@ -246,8 +213,7 @@
       </div>
     </div>
     <!-- // 5. 브랜드 운영권한 신청 (대행사) -->
-    <!-- // 사용 가이드 -->
-    <!-- 가변 배너 (마스터, 매니저) -->
+    <!-- 가변 배너 -->
     <div class="side-box side-box__banner">
       <div class="side-box-top">
         <h3>양방향 대행사<br>필요하지 않으세요?</h3>
@@ -260,12 +226,50 @@
         </div>
       </div>
     </div>
-    <!-- // 가변 배너 (마스터, 매니저) -->
+    <!-- // 가변 배너 -->
     <!-- 기업 히스토리 (마스터, 매니저, 대행사) -->
     <div class="link-area">
-      <router-link to="/ManageHistory" class="arrow-link">기업 히스토리</router-link>
+      <router-link :to="{name: 'corpHistory', params: {userType: userType, corpAdmYn: corpAdmYn}}" class="arrow-link">기업 히스토리</router-link>
     </div>
     <!-- // 기업 히스토리 (마스터, 매니저, 대행사) -->
+    <auth-req-reject-popup v-if="visible" :visible.sync="visible" :reject-info='rejectInfo' @reject="reject" />
+    <!-- 승인 내역 -->
+    <!-- <div class="side-box side-box__approve">
+      <div class="side-box-top">
+        <h4>승인 내역</h4>
+      </div>
+      <div class="side-box-cont">
+        <TabCmp size="small">
+          <TabItem title="전체">
+            <div class="approve-cont" v-for="(item,i) in approveList" :key="i">
+              <ul>
+                <li class="approve-cont-top">
+                  <ul>
+                    <li class="flag-progress" :class="item.status">{{ item.statusText }}</li>
+                    <li class="approve-cont__date">{{ item.date }}</li>
+                  </ul>
+                </li>
+                <li class="approve-cont-between">
+                  <ul>
+                    <li class="approve-cont__name">{{ item.name }}</li>
+                    <li class="approve-cont__chat">{{ item.chat }}</li>
+                  </ul>
+                </li>
+                <li class="authority-list-btm">{{ item.des }}</li>
+              </ul>
+            </div>
+            <div class="approve-cont-more">
+              <a role="button" :class="{open: isOpen}" @click="toggleMore">더보기</a>
+            </div>
+          </TabItem>
+          <TabItem title="진행중">
+          </TabItem>
+          <TabItem title="완료" :isNew="true">
+          </TabItem>
+      </TabCmp>
+      </div>
+    </div> -->
+    <!-- 기획서 v1.0 수정 - 모달 추가 (화면구현은 안함 / script 꼬일 수 있어서 script는 작업 안함) -->
     <!-- 모달 -->
     <ModalView
       v-if="isModalViewed"
@@ -380,93 +384,126 @@
       <!-- // ★ 브랜드 운영권한 신청 (대행사) > 브랜드 운영권한 신청 버튼 클릭 시 -->
     </ModalView>
     <!-- // 모달 -->
+    <!-- 기획서 v1.0 수정 - 모달 추가 (화면구현은 안함 / script 꼬일 수 있어서 script는 작업 안함) -->
   </div>
 </template>
 
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import ModalView from '@/components/common/ModalView.vue'
-import ConfirmMsg from '@/views/dashboard/components/ConfirmMsg.vue'
-import BrandAuthorityRequest from '@/views/dashboard/components/BrandAuthorityRequest.vue'
-import BrandAuthorityReject from '@/views/dashboard/components/BrandAuthorityReject.vue'
+import store from '@/store'
+import { getAuthReqbrandList, operationAuthorityApproval } from '@/api/service/corp'
+import AuthReqRejectPopup from '@/views/dashboard/components/authReqRejectPopup.vue'
+import { mapGetters } from 'vuex'
 
 export default {
+
   components: {
-    ButtonCmp,
-    ModalView,
-    ConfirmMsg,
-    BrandAuthorityRequest,
-    BrandAuthorityReject
+    AuthReqRejectPopup,
+    ButtonCmp
+  },
+  props: {
+    corpInfo: {
+      type: Object,
+      required: true
+    }
   },
   data() {
     return {
-      authorityList: [
-        {
-          company: 'SYSTEM STUDIOS',
-          name: '김솔솔(solsol51)',
-          date: '2023.04.18',
-          phone: '010-1234-5678',
-          mail: 'solsol@studios.com'
-        },
-        {
-          company: 'SYSTEM HOME',
-          name: '오동동(DDoh123)',
-          date: '2023.04.18',
-          phone: '010-1234-5678',
-          mail: 'solsol@studios.com'
-        },
-        {
-          company: '롯데홈쇼핑',
-          name: '김미미(mimmim)',
-          date: '2023.04.18',
-          phone: '010-1234-5678',
-          mail: 'solsol@studios.com'
-        }
-      ],
+      corpId: '',
+      authReqBrandsearchParam: {
+        corpId: ''
+      },
+      authReqBrandData: [],
+      approveList: [],
       isOpen: false,
-      safetyMarkCompany: true,
-      isModalViewed: false,
-      isModalSafetyDes: false,
-      isModalReject: false,
-      isRejectFinish: false,
-      isMemberInvite: false,
-      isAuthorityRequest: false
+      visible: false,
+      rejectInfo: {}
     }
   },
+  created() {
+    this.corpId = this.$router.currentRoute.params.corpId
+  },
   computed: {
+    ...mapGetters({
+      corpAdmYn: 'corpAdmYn',
+      userType: 'userType'
+    }),
+    store() {
+      return store
+    },
+    authority() {
+      if (this.$store.getters.corpAdmYn === 'Y' && this.$store.getters.userType === 'CORP') {
+        return '마스터'
+      } else if (this.$store.getters.corpAdmYn === 'N' && this.$store.getters.userType === 'CORP') {
+        return '매니저'
+      } else {
+        return '대행사'
+      }
+    }
+  },
+  mounted() {
+    this.getAuthReqBrandList()
   },
   methods: {
+    safetyMarkCompany () {
+      return true
+    },
+    getAuthReqBrandList () {
+      this.authReqBrandsearchParam.corpId = this.corpId
+      getAuthReqbrandList(this.authReqBrandsearchParam).then(res => {
+        if (res.code === '20000000') {
+          this.authReqBrandData = res.result.authReqBrandList
+        }
+      }).catch(e => {
+        this.$alertMsg(e.desc)
+      })
+    },
     toggleMore () {
       this.isOpen = !this.isOpen
     },
-    closeMsg () {
-      this.isModalViewed = false
-      this.isModalSafetyDes = false
-      this.isModalReject = false
-      this.isRejectFinish = false
-      this.isMemberInvite = false
+    labelStatus(status) {
+      if (status === 'done') {
+        return 'done'
+      }
+      if (status === 'reject') {
+        return 'reject'
+      }
     },
-    MemberInvite () {
-      this.isModalViewed = true
-      this.isMemberInvite = true
+    onSubmit (item) {
+      let rejectData = {
+        brandId: item.brandId,
+        mgrUserId: item.mgrUserId,
+        aprvYn: 'Y'
+      }
+      operationAuthorityApproval(rejectData).then(() => {
+        this.$alertMsg('운영권한 신청을 승인하였습니다.').then(() => {
+          // this.$emit('update:visible', false)
+          // this.$emit('reject', true)
+          this.getAuthReqBrandList()
+        })
+      }).catch(e => {
+        this.$alertMsg(e.desc)
+      })
     },
-    safetyDesModal () {
-      this.isModalViewed = true
-      this.isModalSafetyDes = true
+    reject(reloadFlag, brandId, brandNm, userNm, mgrUserId) {
+      if (reloadFlag) {
+        // 브랜드 운영권한 승인 요청 내역 API 호출
+        this.getAuthReqBrandList()
+      } else {
+        this.rejectInfo = {
+          brandId: brandId,
+          brandNm: brandNm,
+          userNm: userNm,
+          mgrUserId: mgrUserId
+        }
+        this.visible = true
+      }
     },
-    rejectModal () {
-      this.isModalViewed = true
-      this.isModalReject = true
-      this.isRejectFinish = false
+    safetyDesModal() {
+      console.log('asdf')
     },
-    rejectFinishModal () {
-      this.isModalViewed = true
-      this.isRejectFinish = true
-      this.isModalReject = false
-    },
-    BrandAuthorityRequestModal () {
-      this.isModalViewed = true
-      this.isAuthorityRequest = true
+    BrandAuthorityRequestModal() {
+      console.log('asdf')
     }
   }
 }

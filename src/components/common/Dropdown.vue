@@ -1,16 +1,14 @@
 <template>
   <div class="dropdown" :class="[{ 'open': isOpen }, { 'disabled' : disabled }]" v-click-outside="onClickOutside">
     <a role="button"
-      class="dropdown__trigger"
-      @click="toggleSelect">
-        <span class="selected-text">{{ selectedOption }}</span>
-      </a>
+       class="dropdown__trigger"
+       @click="toggleSelect">{{ selectedOption }}</a>
     <div class="dropdown__menu" v-if="isOpen">
       <div class="search__area" v-if="searchable">
         <span class="input search"><input type="text" placeholder="검색어 입력" v-model="searchWord"/></span>
       </div>
       <ul class="drodown__option">
-        <li v-for="(option, i) in filteredOption" :key="i" @click="selectOption(option, i)" :data-value="option.value" :class="{'active' : isSelectedIndex == i}">{{  option.label }}</li>
+        <li v-for="(option, i) in filteredOption" :key="i" @click="selectOption(option)" :data-value="option.code">{{ option.codeNm }}</li>
       </ul>
     </div>
   </div>
@@ -29,63 +27,95 @@ export default {
       isOpen: false,
       searchWord: '',
       valueIndex: '',
-      isSelectedIndex: undefined,
-      filteredOption: []
+      style: { border: 'border: 1px solid #DDDDDD' }
     }
   },
   props: {
     options: {
-      type: Array,
-      default: null
+      type: Array
     },
-    searchable: {
-      type: Boolean,
-      default: false
-    },
+    searchable: Boolean,
     placeholder: String,
     value: String,
-    disabled: Boolean
+    disabled: Boolean,
+    beforeChange: {
+      type: Function
+    },
+    labelFieldName: String,
+    valueFieldName: String
   },
   emits: [
     'update:modelValue'
   ],
+  mounted() {},
   created() {
-    let $value = this.value
-    if ($value) {
-      this.options.forEach((option, index) => {
-        if (option.value === $value) {
-          this.isSelectedIndex = index
-          this.selectedOption = option.label
+    this.init()
+  },
+  watch: {
+    options: {
+      deep: true,
+      handler() {
+        if (this.labelFieldName || this.valueFieldName) {
+          this.options.forEach((opt, idx) => {
+            if (this.labelFieldName) {
+              opt['codeNm'] = opt[this.labelFieldName]
+            }
+            if (this.valueFieldName) {
+              opt['code'] = opt[this.valueFieldName]
+            }
+          })
         }
-      })
-    } else {
-      if (this.placeholder) {
-        this.selectedOption = this.placeholder
-      } else {
-        this.selectedOption = this.options[0].label
-        this.isSelectedIndex = 0
+      }
+    },
+    value: {
+      deep: true,
+      handler() {
+        this.init()
       }
     }
-    this.filteredOption = this.options
   },
   computed: {
-    // filteredOption() {
-    //   return this.options.filter(option => {
-    //     return option.label.toLowerCase().includes(this.searchWord.toLowerCase())
-    //   })
-    // }
+    filteredOption: {
+      get() {
+        return this.options.filter(option => {
+          if (option.codeNm) return option.codeNm.toLowerCase().includes(this.searchWord.toLowerCase())
+        })
+      },
+      set(value) {
+        this.options = value
+      }
+    }
   },
   methods: {
-    selectOption(option, idx) {
+    init() {
       let $value = this.value
-      this.selectedOption = option.label
-      if ($value !== option.value) {
-        this.$emit('beforeChange')
+      if ($value) {
+        this.options.forEach((option, index) => {
+          if (option.code === $value) {
+            this.selectedOption = option.codeNm
+          }
+        })
+      } else {
+        if (this.placeholder) {
+          this.selectedOption = this.placeholder
+        } else {
+          this.selectedOption = this.options[0].codeNm
+        }
       }
-      this.$emit('input', option.value)
-      this.$emit('change', option.value)
+      // this.filteredOption(this.options)
+    },
+    selectOption(option) {
+      let $value = this.value
+      this.selectedOption = option.codeNm
+
+      // input 값 먼저 변경 되고 change 이벤트 발생
+      this.$emit('input', option.code)
+
+      if ($value !== option.code) {
+        this.$emit('beforeChange')
+        this.$emit('change', option.code, option.codeNm)
+      }
       this.isOpen = false
-      this.isSelectedIndex = idx
     },
     toggleSelect() {
       if (!this.disabled) {
@@ -94,6 +124,9 @@ export default {
     },
     onClickOutside() {
       this.isOpen = false
+    },
+    focus() {
+      this.$refs['dropdown'].focus()
     }
   }
 }

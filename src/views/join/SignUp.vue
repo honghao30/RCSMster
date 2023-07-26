@@ -13,7 +13,8 @@
           <p>브랜드개설 및 관리가 가능하며<br/>담당자를 초대하여 등록이 가능합니다</p>
           <!-- 기획서 v1.0 수정(감싸는 btn 컴포넌트 삭제 + 클래스 추가 + 문구수정) -->
           <div class="button__wrap">
-            <router-link to="/JoinStep01" class="btn btn-blue btn-person">운영자 가입</router-link>
+            <!-- <router-link to="/JoinStep01" class="btn btn-blue btn-person">운영자 가입</router-link> -->
+            <router-link to="/utility/join/corp" class="btn btn-blue btn-person">운영자 가입</router-link>
           </div>
           <!-- // 기획서 v1.0 수정(감싸는 btn 컴포넌트 삭제 + 클래스 추가 + 문구수정) -->
         </div>
@@ -26,7 +27,8 @@
           <p>관리자에게 운영권한을 받아 관리가 가능하며<br/>여러 회사의 서비스 운영이 가능합니다</p>
           <!-- 기획서 v1.0 수정(감싸는 btn 컴포넌트 삭제 + 클래스 추가 + 문구수정) -->
           <div class="button__wrap">
-            <router-link to="/AgencyJoinStep01" class="btn btn-blue btn-people">대행사 가입</router-link>
+            <!-- <router-link to="/AgencyJoinStep01" class="btn btn-blue btn-people">대행사 가입</router-link> -->
+            <router-link to="/utility/join/agency" class="btn btn-blue btn-people">대행사 가입</router-link>
           </div>
           <!-- // 기획서 v1.0 수정(감싸는 btn 컴포넌트 삭제 + 클래스 추가 + 문구수정) -->
         </div>
@@ -46,6 +48,12 @@ export default {
     }
   },
   methods: {
+    joinCorp() {
+      this.$router.push('/utility/join/corp')
+    },
+    joinAgency() {
+      this.$router.push('/utility/join/agency')
+    }
   }
 }
 </script>

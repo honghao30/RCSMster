@@ -7,7 +7,7 @@
         <!-- <PageTitleH3 titleh3="기본 정보 입력"/> -->
         <form  ref="form" :model="form">
           <div class="brand_wrap">
-            <div class="table__wrap no-line">  <!-- 기획서 1.0 수정 -->
+            <div class="table__wrap">
               <table class="table table-bodyonly form-table">
                 <colgroup>
                   <col width="230px">
@@ -180,7 +180,7 @@
                             <input type="file" id="fileUp" class="input blind" @change="onFileChanged">
                             <label for="fileUp" class="btn btn-default-line">파일찾기</label>
                           </div>
-                          <p class="guide-text black">&middot; 사이즈 : 388 X 388px ~ 1080 X 1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 5MB)</p>
+                          <p class="guide-text black">&middot; 사이즈 : 388px*388px ~1080px*1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 1MB)</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
                         </div>
                         <!-- <p class="guide-text error">백그라운드 이미지를 선택하세요.</p> -->
                       </div>
@@ -223,10 +223,15 @@
                               <input type="file" id="fileUpCumtom" class="input blind" @change="onFileBgChanged">
                               <label for="fileUpCumtom" class="btn btn-default-line">파일찾기</label>
                             </div>
-                            <p class="guide-text black">&middot; 사이즈 : 388 X 388px ~ 1080 X 1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 5MB)</p>
+                            <p class="guide-text black">&middot; 사이즈 : 388px*388px ~1080px*1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 1MB)</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
                           </template>
                         </div>
                         <p class="guide-text error"  v-if="bgImageErrorMsg">백그라운드 이미지를 선택하세요.</p>
+                        <!-- 기획서 1.0 수정(문구 추가 / p.11 참고) -->
+                        <p class="guide-text error"  v-if="bgImageErrorMsg">Jpg, jpeg, png 형식의 파일만 업로드 할 수 있습니다.</p>
+                        <p class="guide-text error"  v-if="bgImageErrorMsg">1MB 이하의 파일만 업로드 할 수 있습니다.</p>
+                        <p class="guide-text error"  v-if="bgImageErrorMsg">388 X 388px ~ 1080 X 1080px 사이즈의 파일만 업로드 할 수 있습니다.</p>
+                        <!-- // 기획서 1.0 수정(문구 추가/ p.11 참고) -->
                       </div>
                     </td>
                   </tr>
@@ -263,10 +268,15 @@
                               <input type="file" id="fileUp" class="input blind" @change="onProfileFileChange()">
                               <label for="fileUp" class="btn btn-default-line">파일찾기</label>
                             </div>
-                            <p class="guide-text black">&middot; 사이즈 : 388 X 388px ~ 1080 X 1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 5MB)</p>
+                            <p class="guide-text black">&middot; 사이즈 : 388px*388px ~1080px*1080px / 1:1 비율 / 파일형식: JPG, PNG (최대 1MB)</p> <!-- 기획서 v1.0 수정 (문구 수정) -->
                           </template>
                         </div>
                         <p class="guide-text error"  v-if="profileImageErrorMsg">프로필 이미지를 선택하세요.</p>
+                        <!-- 기획서 1.0 수정(문구 추가 / p.11 참고) -->
+                        <p class="guide-text error"  v-if="profileImageErrorMsg">Jpg, jpeg, png 형식의 파일만 업로드 할 수 있습니다.</p>
+                        <p class="guide-text error"  v-if="profileImageErrorMsg">1MB 이하의 파일만 업로드 할 수 있습니다.</p>
+                        <p class="guide-text error"  v-if="profileImageErrorMsg">388 X 388px ~ 1080 X 1080px 사이즈의 파일만 업로드 할 수 있습니다.</p>
+                        <!-- // 기획서 1.0 수정(문구 추가/ p.11 참고) -->
                       </div>
                     </td>
                   </tr>
@@ -301,7 +311,7 @@
                             </div>
                           </div>
                         </div>
-                        <p class="guide-text">※ 보다 좋은 서비스 제공을 위하여 운영자가 임의 변경할 수 있습니다.</p>
+                        <p class="guide-text black">&middot; 보다 좋은 서비스 제공을 위하여 운영자가 임의 변경할 수 있습니다.</p> <!-- 기획서 v1.0 수정 (특수문자 추가 및 black 클래스 추가) -->
                         <p class="guide-text error" v-if="categoryErrorMsg" >카테고리를 선택해주세요.</p>
                       </div>
                       <!-- //기획서 1.0 수정 -->
@@ -316,12 +326,13 @@
                             <span class="input"><input type="text" class="input" placeholder="‘-’없이 입력해주세요."  v-model="form.tel"></span>
                           </div>
                         </div>
-                        <p class="guide-text error" v-if="telErrorMsg" >전화번호를 입력해주세요.</p>
+                        <!-- 기획서 v1.0 수정 (문구 수정 / p.10 참고 : 전화번호 010 입력 시 입력 내용 사라지고 경고 메시지 노출) -->
+                        <p class="guide-text error" v-if="telErrorMsg" >휴대폰번호는 입력할 수 없습니다.</p>
                       </div>
                     </td>
                   </tr>
                   <!-- 1차 디자인 수정 - 추가 -->
-                  <tr>
+                  <tr class="bd-bottom-none"> <!-- 1차 디자인 수정 (bd-bottom-none 클래스 추가) -->
                     <th scope="row"><span class="form-item__label">브랜드 컬러</span></th>
                     <td>
                       <div class="form-item__content">
@@ -337,11 +348,16 @@
                             </span>
                           </div>
                           <template v-if="form.brandColorType === 'Color'">
-                            <div class="input-item">
-                              <el-color-picker v-model="form.brandColor"></el-color-picker>
-                              <span class="input">
-                                <input type="text" class="input colorPickCode" v-model="form.brandColor"></span>
+                            <!-- 기획서 v1.0 수정 (brandcolor-box 클래스 추가) -->
+                            <div class="brandcolor-box">
+                              <p class="guide-text black">&middot; 브랜드 컬러값 설정 시 템플릿의 메시지의 버튼에 브랜드 컬러를 적용할 수 있습니다.</p> <!-- 기획서 v1.0 수정 (p태그 추가) -->
+                              <div class="input-item">
+                                <el-color-picker v-model="form.brandColor"></el-color-picker>
+                                <span class="input">
+                                  <input type="text" class="input colorPickCode" v-model="form.brandColor"></span>
+                              </div>
                             </div>
+                            <!-- // 기획서 v1.0 수정 (brandcolor-box 클래스 추가) -->
                           </template>
                         </div>
                       </div>
@@ -402,8 +418,8 @@
               type="btn-blue"
               @click="closeMsg"
               >
-                확인
-              </ButtonCmp>
+                닫기
+              </ButtonCmp> <!-- 기획서 v1.0 수정 (문구 수정) -->
           </div>
       </ConfirmMsg>
     </ModalView>
