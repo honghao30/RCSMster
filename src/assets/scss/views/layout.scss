@@ -501,10 +501,10 @@ $contentWidth2: 1024px;
                 h1 {
                     a {
                         display: block;
-                        width: 80px;
-                        height:11px;
+                        width: 90px;
+                        height:15px;
                         background: url('../assets/images/layout/logo_mo.png') no-repeat left center;
-                        background-size: 100% auto;
+                        background-size: auto 11px;
                     }
                 }
             }
