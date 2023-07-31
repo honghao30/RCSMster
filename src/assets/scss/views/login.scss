@@ -4,27 +4,27 @@
   width: 100%;
   max-width:628px;
   margin: 0 auto;
-  .tab__wrap {
-    margin-top: 32px;
-  }  
   .login-title__wrap--top {
     text-align: center;
     .page-title {
-      margin-bottom:12px;
+      margin-bottom: 12px;
     }
   }
+  .tab__wrap {
+    margin-top: 32px;
+  }  
   .form-list {
-    border-top:3px solid #BCBCBC;
+    border-top:2px solid #BCBCBC;
     margin:32px 0 0 0;
     .form-item {
       border-bottom:1px solid #F0F0F0;
       padding: 16px;
       margin:0;
-      &.form-item:last-child {
+      &:last-child {
         border-bottom:2px solid #dddddd;
       }
       .form-item__label {           
-        flex: 0 0 153px;
+        flex: 0 0 154px;
         @include fontoption(16px,$defaultColor,500,26px);
       }
       .form-item__content {
@@ -87,10 +87,10 @@
             display: block;
             width:1px;
             height: 10px;
-            background-image: url('../assets/images/icon/icon_tel.png');
             position: absolute;
             right:0;
             top:50%;
+            background-color: #D7D0D0;
             transform: translateY(-50%);
           }
         }
@@ -163,6 +163,9 @@
       .form-item {
         font-size: 14px;
         padding: 16px 0;
+        &:last-child {
+          border-bottom-width: 1px;
+        }
         .form-item__label {      
           padding: 0 0 12px 0;
           font-size: 14px;

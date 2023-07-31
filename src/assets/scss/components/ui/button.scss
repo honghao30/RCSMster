@@ -149,7 +149,7 @@ $radius: 8px;
 }
 
 .btn-default-line {
-  @include btntype(14px,#4A5567,#fff,#4A5567,8px,  #fff,#4A5567, #4A5567);  
+  @include btntype(14px,#bdbdbd,#fff, #6E7581, 8px, #fff,#bdbdbd, #bdbdbd);  
   line-height: 36px;
   min-width: auto;
   height: 36px;

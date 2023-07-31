@@ -1,107 +1,23 @@
 <template>
+  <div class="dashboard__wrap election__wrap">
   <div class="dashBoard-main__content">
-    <!-- 가입 승인 배너(마스터, 매니저, 대행사) -->
-    <!-- 가입 승인 진행중(서류 미제출) -->
-    <div class="approval-statu__box document-not">
-      <strong>가입 승인 진행중(서류 미제출)</strong>
-      <p>사업자등록증을 제출하지 않았습니다. 사업자등록증을 제출해주세요.</p>
+    <!-- 선거용 가상 계정일 경우 선거 배너 노출 영역 -->
+    <div class="election__box" v-for="(item, index) in corpInfo.seasons" :key="index">
+      <strong>{{ item.name }}</strong>
+      <p>선거 운동 기간 : {{ item.expireDt }} ~ {{ item.expireDt }}</p>
     </div>
-    <!-- 가입 승인 진행중 -->
-    <div class="approval-statu__box approval-ing">
-      <strong>가입 승인 진행중</strong>
-      <p>가입 승인 완료 전에도 RBC의 기능을 이용하실 수 있으나, 일부기능은 승인 완료 후 정상적으로 사용하실 수 있습니다.</p>
+    <!-- // 가입 상태 안내 메시지 -->
+    <!-- 가입 상태 안내 메시지 -->
+    <!-- 상태에 따라 document-not,approval-ing, approval-reject, approval-done 클래스 바인딩-->
+    <!-- 기획서 v1.0 수정 (p.10 참고 > 가입 승인 반려 approval-reject 경우 > 문구 수정) -->
+    <div :class="[{ 'approval-statu__box': true }, { 'document-not' : getGuideMgsClass == 'document-not' }, { 'approval-ing' : getGuideMgsClass == 'approval-ing' }, { 'approval-reject' : getGuideMgsClass == 'approval-reject' }, { 'approval-done' : getGuideMgsClass == 'approval-done' }]" v-if="getIsApprovalStatus">
+      <strong>{{corpInfo.corpApprovalStatusTit}}</strong>
+      <p :v-if='(corpInfo.corpInfo.aprvRetDescr !== "")'>{{corpInfo.corpInfo.aprvRetDescr}}</p>
+      <p>{{corpInfo.corpApprovalStatusTxt}}</p>
     </div>
-    <!-- 가입 승인 반려 -->
-    <div class="approval-statu__box approval-reject">
-      <strong>가입 승인 반려</strong>
-      <p class="reject-reason">반려 사유 : 인터넷 광고 금지 메시지</p>
-      <p>반려 사유를 확인하시고, D+3일 이내에 보완 요청사항을 반영하여 재요청해 주세요. 기간만료 후에는 요청내용이 자동 삭제됩니다.</p> <!-- 기획서 v1.0 수정 (p.10 참고 > 가입 승인 반려 approval-reject 경우 > 문구 수정) -->
-    </div>
-    <!-- 가입 승인 완료 -->
-    <div class="approval-statu__box approval-done">
-      <strong>가입 승인 완료</strong>
-      <p>RBC의 모든 기능을 자유롭게 이용하실 수 있습니다.</p>
-    </div>
-    <!-- // 가입 승인 배너(마스터, 매니저, 대행사) -->
-    <!-- 등록된 브랜드가 있는 경우(마스터, 매니저) : 내가 운영중인 브랜드 영역 -->
-    <!-- 내가 운영중인 브랜드 -->
-    <div class="board-main__box mymain-box">
-      <!-- 기획서 v1.0 수정 후 : PageTitleH3 컴포넌트에 totalCount와 doropdown이 추가되어 사용 -->
-      <PageTitleH3 titleh3="내가 운영중인 브랜드" totalCount="982" :DropDataSearchable="MyBrandOptions" />
-      <brandListCmp>
-        <template  slot="col">
-          <col> <!-- 기획서 v1.0 수정 (col 4개 삭제) -->
-        </template>
-        <!-- 기획서 v1.0 수정 (thead 삭제) -->
-        <template  slot="tbody">
-          <tr v-for="(item,i) in brandData" :key="i">
-            <!-- 기획서 v1.0 수정 -->
-            <td>
-              <div class="first-row"> <!-- 기획서 v1.0 수정 (first-row 태그 추가) -->
-                <div class="row-left"> <!-- 기획서 v1.0 수정 (row-left 태그 추가) -->
-                  <div class="brandname">
-                    <div class="brand">
-                      <div class="brand__mark" role="bookmark">
-                        <input type="checkbox" :id="`bookmark${i}`" :checked="item.mark" >
-                        <label class="brand__mark__core" :for="`bookmark${i}`"></label>
-                      </div>
-                      <div class="brand__logo">
-                        <img :src="item.brandLogo" alt="">
-                      </div>
-                      <span class="brand__title link"><router-link to="">{{ item.title }}</router-link></span> <!-- 기획서 v1.0 수정 (이중클래스 link 추가) -->
-                      <!-- 기획서 v1.0 수정 (brnad__new, brand__message 클래스 삭제) -->
-                    </div>
-                  </div>
-                  <!-- 기획서 v1.0 수정 (브랜드 상태(item.status, item.aprvRetNm) : 위치, 스타일 변경으로 인해 methods 추가) -->
-                  <div class="status">
-                    <span class="flag-progress"
-                      :class="getstatus(item.status)"
-                    >{{ item.status }}
-                    </span>
-                  </div>
-                </div> <!-- // 기획서 v1.0 수정 (row-left 태그 추가) -->
-                <div class="row-right"> <!-- 기획서 v1.0 수정 (row-right 태그 추가 및 underline으로 인해 v-if,v-else 추가 / 수정 전 각 td에 있는 내용 사용함) -->
-                  <div class="row-box">
-                    <div class="row-data">
-                      <span class="data-chat underline" v-if="item.chatData >= 999">999+</span>
-                      <span class="data-chat" :class="{'underline': item.chatData > 0 }" v-else><router-link to="">{{ item.chatData }}</router-link></span>
-                    </div>
-                    <div class="row-data-tit">
-                      <span>대화방</span>
-                    </div>
-                  </div>
-                  <div class="row-box">
-                    <div class="row-data">
-                      <span class="data-template underline" v-if="item.message >= 999">999+</span>
-                      <span class="data-template" :class="{'underline': item.message > 0 }" v-else><router-link to="">{{ item.message }}</router-link></span>
-                    </div>
-                    <div class="row-data-tit">
-                      <span>템플릿</span>
-                    </div>
-                  </div>
-                  <div class="row-box">
-                    <div class="row-data">
-                      <span class="data-agency underline" v-if="item.agencyData >= 999">999+</span>
-                      <span class="data-agency" :class="{'underline': item.agencyData > 0 }" v-else><router-link to="">{{ item.agencyData }}</router-link></span>
-                    </div>
-                    <div class="row-data-tit">
-                      <span>대행사</span>
-                    </div>
-                  </div>
-                </div> <!-- // 기획서 v1.0 수정 (row-right 태그 추가 및 underline으로 인해 v-if,v-else 추가 / 수정 전 각 td에 있는 내용 사용함) -->
-              </div> <!-- // 기획서 v1.0 수정 (first-row 태그 추가) -->
-            </td>
-            <!-- // 기획서 v1.0 수정 -->
-          </tr>
-        </template>
-      </brandListCmp>
-      <PagingCmp />
-      <!-- // 내가 운영중인 브랜드 -->
-    </div>
-    <!-- // 내가 운영중인 브랜드 -->
     <!-- // 등록된 브랜드가 있는 경우(마스터, 매니저) : 내가 운영중인 브랜드 영역 -->
     <!-- 등록된 브랜드가 없는 경우(마스터, 매니저) : 내 브랜드를 개설하세요 영역 -->
-    <div class="board-main__box--roun-type brand-make">
+    <div class="board-main__box--roun-type brand-make" v-if="userType === 'CORP' && myBrandTotal === 0">
       <PageTitleH3 titleh3="내 브랜드를 개설하세요." />
       <div class="board-main__description">
         고객과 RCS 메시지를 이용해 커뮤니케이션하려면 브랜드를 개설하셔야 합니다.<br>
@@ -114,8 +30,8 @@
           <div class="sub-text">
             프로필 이미지, 브랜드 소개를 이용해 고객에게 브랜드 이미지를 전달할 수 있어요.
             <div class="tips-layer">
-                <p class="active"><span>미리 준비하면 좋아요</span></p>
-                <p><span>통신서비스 가입증명원</span></p>
+              <p class="active"><span>미리 준비하면 좋아요</span></p>
+              <p><span>통신서비스 가입증명원</span></p>
             </div>
           </div>
         </li>
@@ -136,145 +52,51 @@
       </ol>
     </div>
     <!-- // 등록된 브랜드가 없는 경우(마스터, 매니저) : 내 브랜드를 개설하세요 영역 -->
-    <!-- 등록된 브랜드가 있는 경우(대행사) : 내가 운영중인 브랜드 영역 -->
-    <div class="board-main__box--roun-type agency-brand">
-      <PageTitleH3 titleh3="운영중인 브랜드" />
-      <div class="top-ctrl-area">
-        <div class="left-area num-area">
-          <p class="company-ing">기업 <span>999</span>개</p>
-          <p class="company-ing">브랜드 <span>999</span>개</p>
-        </div>
-        <div class="right-area">
-          <Dropdown searchable :options="dropdownOptions" placeholder="기업명">
-          </Dropdown>
-          <Dropdown searchable :options="BarndOptions" placeholder="브랜드명">
-          </Dropdown>
-        </div>
+    <!-- // 가입 상태 안내 메시지 -->
+    <div class="board-main__box  mymain-box" v-if="userType === 'CORP' && myBrandTotal > 0" > <!-- mymain-box 이중클래스 추가 -->
+      <div class="page-title__wrap">
+        <h3>
+          내가 운영중인 브랜드<span v-if="myBrandTotal !== null">({{ myBrandTotal }})</span>
+        </h3>
+        <Dropdown
+          v-if="myBrandTotal > 5"
+          :options="myBrandDropdownOptions"/>
       </div>
-      <div class="table__wrap">
-        <table class="table table-list">
-          <thead>
-            <tr>
-              <th scope="col" width="25%"><span>기업 명</span></th>
-              <th scope="col" width="12.5%"><span>안심마크</span></th>
-              <th scope="col" width="25%"><span>브랜드 명</span></th>
-              <th scope="col" width="12.5%"><span>대화방</span></th>
-              <th scope="col" width="12.5%"><span>템플릿</span></th>
-              <th scope="col" width="12.5%"><span>메시지 발송</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item,i) in agencyBrandData" :key="i">
-              <td>
-                <div class="brandname mybrandname">
-                  <div class="brand">
-                    <div class="brand__mark" role="bookmark">
-                      <input type="checkbox" :id="`bookmark${i}`" :checked="item.mark" >
-                      <label class="brand__mark__core" :for="`bookmark${i}`"></label>
-                    </div>
-                    <span class="brand__title link"><router-link to="">{{ item.companyName }}</router-link></span>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <span class="data-safety">{{ item.safetyMark }}</span>
-              </td>
-              <td class="l-align">
-                <span class="data-brandname underline">{{ item.brandName }}</span>
-              </td>
-              <!-- 기획서 v1.0 수정 후 (999개 이상일 때, 999+ 로 사용으로 인해 /pub2Dev 기록으로 작성함) -->
-              <td>
-                <span class="data-chat underline" v-if="item.chatData >= 999">999+</span>
-                <span class="data-chat" :class="{'underline': item.chatData > 0 }" v-else>{{ item.chatData }}</span>
-              </td>
-              <td>
-                <span class="data-template underline" v-if="item.message >= 999">999+</span>
-                <span class="data-template" :class="{'underline': item.message > 0 }" v-else>{{ item.message }}</span>
-              </td>
-              <!-- 기획서 v1.0 수정 후 (999개 이상일 때, 999+ 로 사용으로 인해 /pub2Dev 기록으로 작성함) -->
-              <td>
-                <span class="data-send">{{ item.messageSend }}</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <PagingCmp />
-    </div>
-    <!-- // 등록된 브랜드가 있는 경우(대행사) : 내가 운영중인 브랜드 영역 -->
-    <!-- 등록된 브랜드가 없는 경우(대행사) -->
-    <div class="board-main__box--roun-type agency-brand">
-      <div class="agency-brand_none">
-        <h3>현재 개설된 브랜드의 운영권한이 필요하세요?</h3>
-        <p>브랜드에게 대행사 권한을 신청합니다.<br>권한이 부여되면 RCS메시지 발송이 가능합니다.</p>
-        <div class="button__wrap side-box-bottom">
-          <ButtonCmp
-            type="btn-blue"
-          >
-          대행사 운영권한 신청
-          </ButtonCmp>
-        </div>
-      </div>
-    </div>
-    <!-- // 등록된 브랜드가 있는 경우(대행사) -->
-    <!-- 브랜드 개설 배너(마스터, 매니저, 대행사) -->
-    <div class="brand-banner__box">
-      <div class="brand-banner__txt">
-      <h3>고객과 연결될 수 있는 RBC의 다양한 기능을 이용하세요.</h3>
-      <p>브랜드를 만들어 다양한 레이아웃과 컨텐츠를 생성, 기업과 고객 간 원활한 연결로 손쉽게 브랜드 정보를 공유합니다.</p>
-      <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
-      <router-link to="/BrandCreateStep01" class="brand-banner__link">브랜드 개설하기</router-link>
-      </div>
-      <div class="brand-banner__img">
-        <img src="@/assets/images/icon/icon_banner_brand.png" alt="">
-      </div>
-    </div>
-    <!-- // 브랜드 개설 배너(마스터, 매니저, 대행사) -->
-    <!-- 내가 운영할 수 있는 브랜드 영역 -->
-    <!-- 기획서 v1.0 수정
-      (pub2Dev에서 이미 적용되어있었음
-      찾아보니 아래 히스토리에서 추가되었음
-      git > 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 07.04에 추가된 내용 기준으로 추가로 수정된 부분 주석작업함)
-      (기록으로 작성한 거여서 pub2Dev 주석 내용과 상이함)
-    -->
-    <div class="board-main__box mymain-box cando-box">
-      <PageTitleH3 titleh3="내가 운영할 수 있는 브랜드" totalCount="982" :DropDataSearchable="MyBrandCanDoOptions" />
       <brandListCmp>
         <template  slot="col">
-          <col>
+          <col> <!-- 기획서 v1.0 수정 (col 4개 삭제) -->
         </template>
+        <!-- 기획서 v1.0 수정 (thead 삭제) -->
         <template  slot="tbody">
-          <tr v-for="(item,i) in canBrandData" :key="i">
+          <tr v-for="(item,i) in myBrandData" :key="i">
+          <!-- 기획서 v1.0 수정 -->
             <td>
-              <div class="first-row">
-                <div class="row-left">
+              <div class="first-row"> <!-- 기획서 v1.0 수정 (first-row 태그 추가) -->
+                <div class="row-left"> <!-- 기획서 v1.0 수정 (row-left 태그 추가) -->
                   <div class="brandname">
                     <div class="brand">
-                      <div class="brand__logo">
-                        <img :src="item.brandLogo" alt="">
+                      <div class="brand__mark" role="bookmark">
+                        <input type="checkbox" :id="`bookmark${i}`" v-model='item.mark' @change='bookmark(item)' :checked="item.mark" >
+                        <label class="brand__mark__core" :for="`bookmark${i}`"></label>
                       </div>
-                      <span class="brand__title link"><router-link to="">{{ item.title }}</router-link></span> <!-- 기획서 v1.0 수정 (이중클래스 link 추가) -->
-                      <!-- 기획서 v1.0 수정 (brand__message 클래스 삭제) -->
+                      <div class="brand__logo">
+                        <img :src="item.profileImgFileUrl" alt="">
+                      </div>
+                      <span class="brand__title link"><router-link :to='{name: "brandDashboard", params: {brandId: item.brandId}}'>{{ item.brandNm }}</router-link></span> <!-- 기획서 v1.0 수정 (이중클래스 link 추가) -->
+                      <!-- 기획서 v1.0 수정 (brnad__new, brand__message 클래스 삭제) -->
                     </div>
                   </div>
-                  <div class="manage-authority">
-                    <!-- 권한신청 버튼 > 운영권한 신청 팝업 출력 -->
-                    <ButtonCmp
-                      v-if="item.authority"
-                      type="btn-blue-line"
-                      size="small"
-                      @click="authorityModal"
-                    >
-                    권한신청
-                    </ButtonCmp>
-                    <span class="flag-progress" v-if="!item.authority">승인대기</span>
+                  <div class="status"> <!-- 기획서 v1.0 수정 (브랜드 상태(item.status, item.aprvRetNm) : 위치, 스타일 변경으로 인해 methods 추가) -->
+                    <span class="flag-progress"
+                      :class="getstatus(item.aprvRetNm)"
+                    >{{ item.aprvRetNm }}</span>
                   </div>
-                </div>
-                <div class="row-right">
+                </div> <!-- // 기획서 v1.0 수정 (row-left 태그 추가) -->
+                <div class="row-right"> <!-- 기획서 v1.0 수정 (row-right 태그 추가 및 underline으로 인해 v-if,v-else 추가 / 수정 전 각 td에 있는 내용 사용함) -->
                   <div class="row-box">
                     <div class="row-data">
-                      <span class="data-chat underline" v-if="item.chatData >= 999">999+</span> <!-- 기획서 v1.0 수정 (999개 이상일 때, 999+ 로 사용) / git 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 내용 중 빠진 부분 추가 pub2Dev에 추가한다고 주석 작성함 (기록으로 작성한 거여서 pub2Dev 주석 내용과 상이함) -->
-                      <span class="data-chat" :class="{'underline': item.chatData > 0 }" v-else><router-link to="">{{ item.chatData }}</router-link></span>
+                      <span class="data-chat underline" v-if="item.chatbotCnt >= 999">999+</span>
+                      <span class="data-chat" :class="{'underline': item.chatbotCnt > 0 }" v-else><router-link to="">{{ item.chatbotCnt }}</router-link></span>
                     </div>
                     <div class="row-data-tit">
                       <span>대화방</span>
@@ -282,8 +104,8 @@
                   </div>
                   <div class="row-box">
                     <div class="row-data">
-                      <span class="data-template underline" v-if="item.message >= 999">999+</span> <!-- 기획서 v1.0 수정 (999개 이상일 때, 999+ 로 사용) / git 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 내용 중 빠진 부분 추가 pub2Dev에 추가한다고 주석 작성함 (기록으로 작성한 거여서 pub2Dev 주석 내용과 상이함) -->
-                      <span class="data-template" :class="{'underline': item.message > 0 }" v-else><router-link to="">{{ item.message }}</router-link></span>
+                      <span class="data-template underline" v-if="item.tplCnt >= 999">999+</span>
+                      <span class="data-template" :class="{'underline': item.tplCnt > 0 }" v-else><router-link :to='{name: "templateList", params: {brandId: item.brandId}}'>{{ item.tplCnt }}</router-link></span>
                     </div>
                     <div class="row-data-tit">
                       <span>템플릿</span>
@@ -291,22 +113,221 @@
                   </div>
                   <div class="row-box">
                     <div class="row-data">
-                      <span class="data-agency underline" v-if="item.agencyData >= 999">999+</span> <!-- 기획서 v1.0 수정 (999개 이상일 때, 999+ 로 사용) / git 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 내용 중 빠진 부분 추가 pub2Dev에 추가한다고 주석 작성함 (기록으로 작성한 거여서 pub2Dev 주석 내용과 상이함) -->
-                      <span class="data-agency" :class="{'underline': item.agencyData > 0 }" v-else><router-link to="">{{ item.agencyData }}</router-link></span>
+                      <span class="data-agency underline" v-if="item.agencyCnt >= 999">999+</span>
+                      <span class="data-agency" :class="{'underline': item.agencyCnt > 0 }" v-else><router-link to="">{{ item.agencyCnt }}</router-link></span>
                     </div>
                     <div class="row-data-tit">
                       <span>대행사</span>
                     </div>
                   </div>
-                </div>
+                </div> <!-- // 기획서 v1.0 수정 (row-right 태그 추가 및 underline으로 인해 v-if,v-else 추가 / 수정 전 각 td에 있는 내용 사용함) -->
+              </div> <!-- // 기획서 v1.0 수정 (first-row 태그 추가) -->
+            </td>
+          </tr>
+          <tr v-if='myBrandDataCnt === 0'>
+            <td colspan="6">
+              <div class="result-none">
+                <p>검색 결과가 없습니다.</p>
               </div>
             </td>
           </tr>
         </template>
       </brandListCmp>
-      <PagingCmp />
+      <PagingCmp :total='myBrandDataCnt' v-if='myBrandTotal > 5' :current-page='myBrandsearchParam.page' :page-size='myBrandPageSize' @change='myBrandChangePage'  />
+      <!-- // 페이지 게이션 -->
     </div>
+    <!-- 등록된 브랜드가 있는 경우(대행사) : 내가 운영중인 브랜드 영역 -->
+    <div class="board-main__box--roun-type agency-brand" v-if="userType === 'AGENCY' && myBrandTotal > 0">
+      <div class="page-title__wrap">
+        <h3>
+          운영중인 브랜드<span v-if="myBrandTotal !== null">({{ myBrandTotal }})</span>
+        </h3>
+<!--        <Dropdown
+          v-if="myBrandTotal > 10"
+          :options="myBrandDropdownOptions"/>-->
+      </div>
+      <div class="top-ctrl-area">
+        <div class="left-area num-area">
+          <p class="company-ing">기업 <span>{{ corpInfo.operateCorpCnt }}</span>개</p>
+          <p class="company-ing">브랜드 <span>{{ corpInfo.operateBrandCnt }}</span>개</p>
+        </div>
+        <div class="right-area" v-if="myBrandTotal > 5">
+          <Dropdown searchable :options="myCorpDropdownOptions" v-model='myBrandsearchParam.searchCorpId' @change='setMyBrandParams' placeholder="기업명"  />
+          <Dropdown searchable :options="myBrandDropdownOptions" v-model='myBrandsearchParam.brandId' @change='setMyBrandParams' placeholder="브랜드명" />
+        </div>
+      </div>
+      <div class="table__wrap">
+        <table class="table table-list">
+          <thead>
+          <tr>
+            <th scope="col" width="25%"><span>기업 명</span></th>
+            <th scope="col" width="12.5%"><span>안심마크</span></th>
+            <th scope="col" width="25%"><span>브랜드 명</span></th>
+            <th scope="col" width="12.5%"><span>대화방</span></th>
+            <th scope="col" width="12.5%"><span>템플릿</span></th>
+            <th scope="col" width="12.5%"><span>메시지 발송</span></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(item,i) in myBrandData" :key="i">
+            <td>
+              <div class="brandname mybrandname">
+                <div class="brand">
+                  <div class="brand__mark" role="bookmark">
+                    <input type="checkbox" :id="`bookmark${i}`" v-model='item.mark' @change='bookmark(item)' :checked="item.mark" >
+                    <label class="brand__mark__core" :for="`bookmark${i}`"></label>
+                  </div>
+                  <span class="brand__title link"><router-link :to='{name: "brandDashboard", params: {brandId: item.brandId}}'>{{ item.corpNm }}</router-link></span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="data-safety">{{ corpInfo.saftyStatus === 'SET' ? '사용':'미사용' }}</span>
+            </td>
+            <td class="l-align">
+              <span class="data-brandname underline">{{ item.brandNm }}</span>
+            </td>
+            <!-- 기획서 v1.0 수정 후 (999개 이상일 때, 999+ 로 사용으로 인해) -->
+            <td>
+              <span class="data-chat underline" v-if="item.chatbotCnt >= 999">999+</span>
+              <span class="data-chat underline" :class="{'underline': item.chatbotCnt > 0 }" v-else>{{ item.chatbotCnt }}</span>
+            </td>
+            <td>
+              <span class="data-template underline" v-if="item.tplCnt >= 999">999+</span>
+              <span class="data-template underline" :class="{'underline': item.tplCnt > 0 }" v-else>{{ item.tplCnt }}</span>
+            </td>
+            <!-- // 기획서 v1.0 수정 후 -->
+            <td>
+              <span class="data-send">{{ (item.messageSend)?'발송가능':'발송불가' }}</span>
+            </td>
+          </tr>
+          <tr v-if='myBrandDataCnt === 0'>
+            <td colspan="6">
+              <div class="result-none">
+                <p>검색 결과가 없습니다.</p>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <PagingCmp v-if="myBrandTotal > 5" :total='myBrandDataCnt' :current-page='myBrandsearchParam.page' :page-size='myBrandPageSize' @change='myBrandChangePage'  />
+    </div>
+    <!-- // 등록된 브랜드가 있는 경우(대행사) : 내가 운영중인 브랜드 영역 -->
+    <!-- 브랜드 개설 배너(마스터, 매니저) -->
+    <div class="brand-banner__box" v-if='userType === "CORP"'>
+      <div class="brand-banner__txt">
+        <h3>고객과 연결될 수 있는 RBC의 다양한 기능을 이용하세요.</h3>
+        <p>브랜드를 만들어 다양한 레이아웃과 컨텐츠를 생성, 기업과 고객 간 원활한 연결로 손쉽게 브랜드 정보를 공유합니다.</p>
+        <!-- 230616 [a태그 + router-link태그] →  [router-link태그] 수정 -->
+        <router-link :to="{name: 'createBrand'}" class="brand-banner__link">브랜드 개설하기</router-link>
+      </div>
+      <div class="brand-banner__img">
+        <img src="@/assets/images/icon/icon_banner_brand.png" alt="">
+      </div>
+    </div>
+    <!-- // 브랜드 개설 배너(마스터, 매니저, 대행사) -->
+
+    <!-- 등록된 브랜드가 없는 경우(대행사) -->
+    <div class="board-main__box--roun-type agency-brand" v-if="userType !== 'CORP' && !myBrandTotal">
+      <div class="agency-brand_none">
+        <h3>현재 개설된 브랜드의 운영권한이 필요하세요?</h3>
+        <p>브랜드에게 대행사 권한을 신청합니다.<br>권한이 부여되면 RCS메시지 발송이 가능합니다.</p>
+        <div class="button__wrap side-box-bottom">
+          <ButtonCmp
+            type="btn-blue"
+            @click='openBrandAuthority'
+          >
+            대행사 운영권한 신청
+          </ButtonCmp>
+        </div>
+      </div>
+    </div>
+    <!-- // 등록된 브랜드가 있는 경우(대행사) -->
+    <!-- 내가 운영할 수 있는 브랜드 영역 -->
+    <!-- 기획서 v1.0 수정 (git > 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 07.04에 추가된 내용에서 수정했습니다.) -->
+    <div class="board-main__box mymain-box cando-box" v-if="userType === 'CORP' && corpBrandDataCnt > 0">
+      <template v-if='corpBrandTotal > 0'>
+        <div class="page-title__wrap">
+          <h3>
+            내가 운영할 수 있는 브랜드<span v-if="corpBrandTotal !== null">({{ corpBrandTotal }})</span>
+          </h3>
+          <Dropdown
+            v-if="corpBrandTotal > 5"
+            :options="corpBrandDropdownOptions"/>
+        </div>
+        <brandListCmp>
+          <template  slot="col">
+            <col>
+          </template>
+          <template  slot="tbody">
+            <tr v-for="(item,i) in corpBrandData" :key="i">
+              <td>
+                <div class="first-row">
+                  <div class="row-left">
+                    <div class="brandname">
+                      <div class="brand">
+                        <div class="brand__logo">
+                          <img :src="item.profileImgFileUrl" alt="">
+                        </div>
+                        <span class="brand__title link">{{ item.brandNm }}</span> <!-- 기획서 v1.0 수정 (이중클래스 link 추가) -->
+                        <!-- 기획서 v1.0 수정 (brand__message 클래스 삭제) -->
+                      </div>
+                    </div>
+                    <div class="manage-authority">
+                      <!-- 권한신청 버튼 > 운영권한 신청 팝업 출력 -->
+                      <ButtonCmp
+                        v-if="(!item.authority) || item.aprvRet === 'REJECTED'"
+                        type="btn-blue-line"
+                        size="small"
+                        @click='brandAuthority(item)'
+                      >
+                        권한신청
+                      </ButtonCmp>
+                      <span class="flag-progress" v-if="item.authority">{{ item.aprvRet === 'REJECTED' ? '반려' : '승인대기중' }}</span>
+                      <span v-if="item.aprvRet === 'REJECTED'">{{ item.aprvRetDescr }}</span>
+                    </div>
+                  </div>
+                  <div class="row-right">
+                    <div class="row-box">
+                      <div class="row-data">
+                        <span class="data-chat underline" v-if="item.chatbotCnt >= 999">999+</span> <!-- 기획서 v1.0 수정 (999개 이상일 때, 999+ 로 사용) / git 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 내용 중 빠진 부분 추가 -->
+                        <span class="data-chat underline">{{ item.chatbotCnt }}</span>
+                      </div>
+                      <div class="row-data-tit">
+                        <span>대화방</span>
+                      </div>
+                    </div>
+                    <div class="row-box">
+                      <div class="row-data">
+                        <span class="data-template underline" v-if="item.tplCnt >= 999">999+</span> <!-- 기획서 v1.0 수정 (999개 이상일 때, 999+ 로 사용) / git 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 내용 중 빠진 부분 추가 -->
+                        <span class="data-chat underline">{{ item.tplCnt }}</span>
+                      </div>
+                      <div class="row-data-tit">
+                        <span>템플릿</span>
+                      </div>
+                    </div>
+                    <div class="row-box">
+                      <div class="row-data">
+                        <span class="data-agency underline" v-if="item.agencyCnt >= 999">999+</span> <!-- 기획서 v1.0 수정 (999개 이상일 때, 999+ 로 사용) / git 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 내용 중 빠진 부분 추가-->
+                        <span class="data-chat underline">{{ item.agencyCnt }}</span>
+                      </div>
+                      <div class="row-data-tit">
+                        <span>대행사</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </template>
+        </brandListCmp>
+        <PagingCmp :total='corpBrandDataCnt' v-if='corpBrandTotal > 5' :current-page='corpBrandsearchParam.page' :page-size='corpBrandPageSize' @change='corpBrandChangePage'  />
+      </template>
+    </div>
+    <!-- // 기획서 v1.0 수정 (git > 히스토리> 07.04 기업대시보드 재작업(b6c1fb3) > 07.04에 추가된 내용에서 수정했습니다.) -->
     <!-- // 내가 운영할 수 있는 브랜드 영역 -->
+    <!-- // 페이지 게이션 -->
     <!-- 모달 -->
     <ModalView
       v-if="isModalViewed"
@@ -340,266 +361,234 @@
           </ButtonCmp>
         </div>
       </ConfirmMsg>
+      <brandAuthorityReq
+        v-if='isBrandAuthority'
+        @closeModal="isModalViewed = false, isBrandAuthority = false"
+        modalsize="dashboard_modal"
+      />
       <!-- // 운영권한 신청 팝업 출력 -->
     </ModalView>
     <!-- // 모달 -->
   </div>
+  </div>
 </template>
-
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
-import PagingCmp from '@/components/common/PagingCmp.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
+import { getMybrandList, getCorpBrandList, setFavorites, brandAuthority } from '@/api/service/corp'
+import PagingCmp from '@/components/common/PagingCmp.vue'
 import brandListCmp from '@/views/dashboard/components/brandListCmp.vue'
 import ModalView from '@/components/common/ModalView.vue'
-import ConfirmMsg from '@/views/dashboard/components/ConfirmMsg.vue'
+import uiCommon from '@/components/js/uiCommon'
+import brandAuthorityReq from '@/views/dashboard/components/BrandAuthorityReq.vue'
+import { mapGetters } from 'vuex'
+import ConfirmMsg from '@/views/join/components/ConfirmMsg.vue'
 
 export default {
   components: {
+    ConfirmMsg,
+    brandListCmp,
+    PagingCmp,
     ButtonCmp,
     Dropdown,
-    PagingCmp,
     PageTitleH3,
-    brandListCmp,
     ModalView,
-    ConfirmMsg
+    brandAuthorityReq
+  },
+  props: {
+    corpInfo: {
+      type: Object,
+      required: true
+    },
+    isShowFavoriteGuide: {
+      type: Boolean
+    },
+    isShowBrandInviteGuide: Boolean
   },
   data() {
     return {
-      MyBrandOptions: [
-        {
-          label: '브랜드 명 1',
-          value: '01'
-        },
-        {
-          label: '브랜드 명 2',
-          value: '02'
-        },
-        {
-          label: '브랜드 명 3',
-          value: '03'
-        },
-        {
-          label: '브랜드 명 4',
-          value: '04'
+      isCorpBrandSearch: false,
+      isBrandAuthority: false,
+      corpId: '',
+      isViewCorpApprovalStatus: false,
+      myBrandsearchParam: {
+        page: 1,
+        limit: 5,
+        offset: 0,
+        corpId: '',
+        searchCorpId: '',
+        brandId: '',
+        userId: ''
+      },
+      corpBrandsearchParam: {
+        page: 1,
+        limit: 5,
+        offset: 0,
+        corpId: '',
+        brandId: '',
+        userId: ''
+      },
+      myBrandTotal: 0,
+      myBrandPageSize: 5,
+      myBrandDropdownOptions: [],
+      corpBrandTotal: 0,
+      corpBrandPageSize: 5,
+      corpBrandDropdownOptions: [],
+      corpBrandData: [],
+      corpBrandDataCnt: 0,
+      myBrandData: [],
+      myBrandDataCnt: 0,
+      isAuthority: false,
+      isModalViewed: false
+    }
+  },
+  created() {
+    this.corpId = this.$router.currentRoute.params.corpId
+  },
+  computed: {
+    ...mapGetters({
+      userType: 'userType',
+      corpAdmYn: 'corpAdmYn'
+    }),
+    myCorpDropdownOptions () {
+      return uiCommon.getDropDownCodes(this.corpInfo.dropDownCorps, 'name', 'corpId', true)
+    },
+    getGuideMgsClass () {
+      switch (this.corpInfo.aprvRet) {
+        case 'WAITING' :
+          return 'document-not'
+        case 'INSPECTING' :
+          return 'approval-ing'
+        case 'REJECTED' :
+          return 'approval-reject'
+        case 'OK' :
+          return 'approval-done'
+        default :
+          return ''
+      }
+    },
+    getIsApprovalStatus () {
+      let isView = false
+      if (!this.corpInfo.isViewApprovalStatus) {
+        return isView
+      }
+      if ((this.corpInfo.aprvRet === 'OK')) {
+        // 로컬 스토리지에 기업 승인 상태 배너 show 여부 조회
+        if (this.getLocalStorageCorpDashboardStatus) {
+          isView = false
+        } else {
+          isView = true
         }
-      ],
-      dropdownOptions: [
-        {
-          label: '기업 명 1',
-          value: '01'
-        },
-        {
-          label: '기업 명 2',
-          value: '02'
-        },
-        {
-          label: '기업 명 3',
-          value: '03'
-        },
-        {
-          label: '기업 명 4',
-          value: '04'
-        }
-      ],
-      BarndOptions: [
-        {
-          label: '브랜드 명 1',
-          value: '01'
-        },
-        {
-          label: '브랜드 명 2',
-          value: '02'
-        },
-        {
-          label: '브랜드 명 3',
-          value: '03'
-        },
-        {
-          label: '브랜드 명 4',
-          value: '04'
-        }
-      ],
-      MyBrandCanDoOptions: [
-        {
-          label: '브랜드 명 1',
-          value: '01'
-        },
-        {
-          label: '브랜드 명 2',
-          value: '02'
-        },
-        {
-          label: '브랜드 명 3',
-          value: '03'
-        },
-        {
-          label: '브랜드 명 4',
-          value: '04'
-        }
-      ],
-      brandData: [
-        {
-          mark: true,
-          brandLogo: require('../../../assets/images/dummy/brand_logo_1.png'),
-          title: '더피프티원더피프티원더피프티원더피프티원...',
-          status: '승인 완료',
-          chatData: 0,
-          message: 654,
-          agencyData: 0
-        },
-        {
-          mark: true,
-          brandLogo: require('../../../assets/images/dummy/brand_logo_2.png'),
-          title: 'CX hub',
-          status: '승인 요청',
-          chatData: 275,
-          message: 999,
-          agencyData: 3
-        },
-        {
-          mark: false,
-          brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
-          title: 'SYSTEM HOMME',
-          status: '진행중',
-          chatData: 102,
-          message: 87,
-          agencyData: 2
-        },
-        {
-          mark: false,
-          brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
-          title: 'SYSTEM STUDIO HOUSE',
-          status: '반려',
-          chatData: 714,
-          message: 69,
-          agencyData: 1
-        },
-        {
-          mark: false,
-          brandLogo: require('../../../assets/images/dummy/brand_logo_4.png'),
-          title: '롯데홈쇼핑',
-          status: '임시저장',
-          chatData: 999,
-          message: 999,
-          agencyData: 5
-        }
-      ],
-      canBrandData: [
-        {
-          brandLogo: require('../../../assets/images/dummy/brand_logo_1.png'),
-          title: 'LANVIN COLLECTION',
-          authority: false,
-          chatData: 872,
-          message: 654,
-          agencyData: 0
-        },
-        {
-          brandLogo: require('../../../assets/images/dummy/brand_logo_2.png'),
-          title: '더캐시미어',
-          authority: true,
-          chatData: 275,
-          message: 106,
-          agencyData: 3
-        },
-        {
-          brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
-          title: '타미힐피거',
-          authority: true,
-          chatData: 872,
-          message: 654,
-          agencyData: 0
-        },
-        {
-          brandLogo: require('../../../assets/images/dummy/brand_logo_3.png'),
-          title: 'TOMMY JEANS',
-          authority: true,
-          chatData: 87,
-          message: 29,
-          agencyData: 2
-        },
-        {
-          brandLogo: require('../../../assets/images/dummy/brand_logo_4.png'),
-          title: '클럽모나코​',
-          authority: true,
-          chatData: 127,
-          message: 106,
-          agencyData: 3
-        }
-      ],
-      agencyBrandData: [
-        {
-          mark: true,
-          companyName: '더피프티원',
-          safetyMark: '사용',
-          brandName: '더피프티원',
-          chatData: 999,
-          message: 654,
-          messageSend: '발송불가'
-        },
-        {
-          mark: true,
-          companyName: '더피프티원',
-          safetyMark: '사용',
-          brandName: '더피프티원',
-          chatData: 999,
-          message: 654,
-          messageSend: '발송불가'
-        },
-        {
-          mark: true,
-          companyName: '더피프티원',
-          safetyMark: '사용',
-          brandName: '더피프티원',
-          chatData: 800,
-          message: 654,
-          messageSend: '발송불가'
-        },
-        {
-          mark: true,
-          companyName: '더피프티원',
-          safetyMark: '사용',
-          brandName: '더피프티원',
-          chatData: 600,
-          message: 654,
-          messageSend: '발송불가'
-        },
-        {
-          mark: true,
-          companyName: '더피프티원',
-          safetyMark: '사용',
-          brandName: '더피프티원',
-          chatData: 4,
-          message: 654,
-          messageSend: '발송불가'
-        },
-        {
-          mark: true,
-          companyName: '더피프티원',
-          safetyMark: '사용',
-          brandName: '더피프티원',
-          chatData: 0,
-          message: 654,
-          messageSend: '발송불가'
-        },
-        {
-          mark: true,
-          companyName: '더피프티원',
-          safetyMark: '사용',
-          brandName: '더피프티원',
-          chatData: 10,
-          message: 654,
-          messageSend: '발송불가'
-        }
-      ],
-      isModalViewed: false,
-      isAuthority: false
+        return isView
+      }
+      return this.corpInfo.isViewApprovalStatus
+    }
+  },
+  mounted () {
+    if (!this.getLocalStorageCorpDashboardStatus) {
+      window.localStorage.getItem('isCorpDashboardStatusView', 'ok')
+    }
+    // 운영 중인 브랜드
+    this.getMyBrandList()
+    // 내기업 브랜드
+    this.getCorpBrandList()
+    if (this.corpAdmYn === 'Y' && this.userType === 'CORP') {
+      this.$emit('update:isShowBrandInviteGuide', true)
     }
   },
   methods: {
-    getstatus (status) {
-      switch (status) {
+    getLocalStorageCorpDashboardStatus () {
+      return window.localStorage.getItem('isCorpDashboardStatusView')
+    },
+    getMyBrandList () {
+      this.myBrandsearchParam.corpId = this.corpId
+      getMybrandList(this.myBrandsearchParam).then(res => {
+        if (res.code === '20000000') {
+          let searchList = res.result.searchList
+          this.myBrandData = res.result.myBrandList
+          this.myBrandTotal = parseInt(res.result.myBrandTotal)
+          this.myBrandDataCnt = parseInt(res.result.count)
+          // 처음 실행만
+          if (this.myBrandDropdownOptions.length === 0) {
+            // 10개 이상일 경우 검색 기능 페이징 기능 노출
+            this.myBrandDropdownOptions = uiCommon.getDropDownCodes(searchList, 'brandNm', 'brandId', true)
+          }
+          // 즐겨 찾기 가이드 노출 여부
+          if (this.myBrandTotal > 1) {
+            this.$emit('update:isShowFavoriteGuide', true)
+            this.myBrandData.forEach((item, index) => {
+              if (item.mark) {
+                this.$emit('update:isShowFavoriteGuide', false)
+              }
+            })
+          }
+        }
+      }).catch(e => {
+        this.$alertMsg(e.desc)
+      })
+    },
+    getCorpBrandList () {
+      this.corpBrandsearchParam.corpId = this.corpId
+      getCorpBrandList(this.corpBrandsearchParam).then(res => {
+        if (res.code === '20000000') {
+          let searchList = res.result.searchList
+          this.corpBrandData = res.result.corpBrandList
+          this.corpBrandDataCnt = parseInt(res.result.count)
+          // 처음 실행만
+          if (this.corpBrandDropdownOptions.length === 0) {
+            // 10개 이상일 경우 검색 기능 페이징 기능 노출
+            this.corpBrandTotal = res.result.count
+            this.corpBrandDropdownOptions = uiCommon.getDropDownCodes(searchList, 'brandNm', 'brandId', true)
+            this.isCorpBrandSearch = (this.corpBrandDropdownOptions.length >= 10)
+          }
+        }
+      }).catch(e => {
+        this.$alertMsg(e.desc)
+      })
+    },
+    myBrandChangePage(page) {
+      this.myBrandsearchParam.page = page
+      this.getMyBrandList()
+    },
+    setMyBrandParams() {
+      this.myBrandsearchParam.page = 1
+      this.getMyBrandList()
+    },
+    corpBrandChangePage(page) {
+      this.corpBrandsearchParam.page = this.corpBrandsearchParam.page = page
+      this.getCorpBrandList()
+    },
+    setCorpBrandParams(brandId) {
+      this.corpBrandsearchParam.page = 1
+      this.getCorpBrandList()
+    },
+    bookmark(brand) {
+      setFavorites({ 'corpId': this.corpId, 'brandId': brand.brandId, 'mark': brand.mark, 'userId': brand.userId }).then(res => {
+        if (res.code === '20000000') {
+          this.getMyBrandList()
+        }
+      }).catch(e => {
+        this.$alertMsg(e.desc)
+      })
+    },
+    brandAuthority(brand) {
+      brand.corpId = this.corpId
+      brandAuthority(brand).then(res => {
+        if (res.code === '20000000') {
+          this.getCorpBrandList()
+        }
+      }).catch(e => {
+        this.$alertMsg(e.desc)
+      })
+    },
+    openBrandAuthority() {
+      this.isModalViewed = true
+      this.isBrandAuthority = true
+    },
+    // 기획서 v1.0 수정 (브랜드 상태 화면 구현을 위해 getstatus 작업함)
+    getstatus () {
+      switch (this.status) {
         case '승인 요청':
           return 'request'
         case '진행중':
@@ -615,14 +604,6 @@ export default {
         default:
           return ''
       }
-    },
-    closeMsg () {
-      this.isModalViewed = false
-      this.isAuthority = false
-    },
-    authorityModal () {
-      this.isModalViewed = true
-      this.isAuthority = true
     }
   }
 }

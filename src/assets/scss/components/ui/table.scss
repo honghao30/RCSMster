@@ -33,9 +33,10 @@
     }
     .l-align {
       text-align: left;
+      padding:0 16px;
     }
     .date {
-      color: #888;
+      color: #999;
     }
     &.align--top {
       vertical-align:top
@@ -79,7 +80,7 @@
     }
   }
   td {
-    padding: 15px 0;
+    padding: 16px 0;
     &.l-align {
       text-align: left;
       padding:15px;
@@ -129,7 +130,7 @@
   width: 100%;
   position: relative;
   border-top: 2px solid #BCBCBC;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 1px solid #ddd;
   &.no-line {
     border-top:0;
     border-bottom:0;
@@ -161,10 +162,10 @@
   @include tableBodyType;
   &.form-table {
     th {
-      padding:23px 0 23px 16px;
+      padding:16px 0 16px 16px;
     }
     td {
-      padding: 23px 16px 23px 0;
+      padding: 16px 16px 16px 0;
     }
   }
 }
@@ -241,6 +242,7 @@
   }
 
   .table__wrap {
+    border-width:2px 0 1px;
     .table-list {
       @include tableListType
     }
@@ -274,3 +276,4 @@
     }
   }
 }
+

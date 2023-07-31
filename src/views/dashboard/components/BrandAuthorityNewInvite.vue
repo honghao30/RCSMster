@@ -21,30 +21,18 @@
             <tr>
               <th scope="row">초대 브랜드</th>
               <td>
-                <Dropdown :options="dropdownBarndInviteOptions" placeholder="브랜드를 선택하세요." />
+                <Dropdown :options="dropdownBarndInviteOptions" v-model='formData.brandId' placeholder="브랜드를 선택하세요." />
               </td>
             </tr>
             <tr class="new-mail">
               <th scope="row">이메일</th>
               <td>
                 <div class="new-mail-box">
-                  <div class="new-email-default" v-if="emails.length===0">
-                    <div class="new-email">
-                      <span class="input">
-                        <input type="text" placeholder="이메일을 입력해주세요." v-model="value" @input="inviteMail"/>
-                      </span>
-                    </div>
-                    <ButtonCmp
-                      type="btn-default-line"
-                      size="medium"
-                      @click="emailAdd"
-                    >추가</ButtonCmp>
-                  </div>
-                  <div class="new-email-add" v-else v-for="(email, index) in emails" :key="index">
+                  <div class="new-email-add" v-for="(email, index) in formData.emails" :key="index">
                     <div class="new-email-default">
                       <div class="new-email">
                         <span class="input">
-                          <input type="text" placeholder="이메일을 입력해주세요." v-model="email.value"  @input="inviteMail"/>
+                          <input type="text" placeholder="이메일을 입력해주세요." :ref="`email${index}`" v-model="email.value"  @input="inviteMail"/>
                         </span>
                       </div>
                       <ButtonCmp
@@ -58,7 +46,7 @@
                     type="btn-default-line"
                     size="medium"
                     @click="emailAdd"
-                    v-if="emails.length < 5 && emails.length > 0"
+                    v-if="formData.emails.length < 5 && formData.emails.length > 0"
                   >추가</ButtonCmp>
                 </div>
               </td>
@@ -67,7 +55,6 @@
         </table>
       </div>
     </div>
-    <PagingCmp />
     <div class="modal__content--footer">
       <div class="button__wrap">
         <ButtonCmp
@@ -78,7 +65,7 @@
         <ButtonCmp
           type="btn-blue"
           :disabled="!inviteMailNot"
-          @click="$emit('closeModal')"
+          @click="sendEmail"
         >초대</ButtonCmp>
       </div>
     </div>
@@ -88,61 +75,105 @@
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
-import PagingCmp from '@/components/common/PagingCmp.vue'
+import { retrieveMyCorpBrandList, sendInviteEmail } from '@/api/service/manage'
+import uiCommon from '@/components/js/uiCommon'
 
 export default {
   components: {
     ButtonCmp,
-    Dropdown,
-    PagingCmp
+    Dropdown
   },
   props: {
     modalsize: {
+      type: String,
+      default: ''
+    },
+    paramCorpId: {
       type: String,
       default: ''
     }
   },
   data() {
     return {
-      dropdownBarndInviteOptions: [
-        {
-          label: 'SYSTEM STUDIOS',
-          value: '01'
-        },
-        {
-          label: 'LANVIN COLLECTION',
-          value: '02'
-        },
-        {
-          label: '더캐시미어',
-          value: '03'
-        },
-        {
-          label: '클럽모나코​',
-          value: '04'
-        }
-      ],
-      emails: [],
+      dropdownBarndInviteOptions: [],
       value: '',
-      inviteMailNot: false
+      inviteMailNot: false,
+      formData: {
+        corpId: this.$router.currentRoute.params.corpId,
+        brandId: '',
+        emails: [{ value: '' }]
+      }
     }
   },
+  computed: {
+    corpId () {
+      if (jglib.isEmpty(this.paramCorpId)) {
+        return this.$router.currentRoute.params.corpId
+      } else {
+        return this.paramCorpId
+      }
+    }
+  },
+  created() {
+    this.retrieveMyCorpBrandList()
+  },
   methods: {
+    retrieveMyCorpBrandList() {
+      retrieveMyCorpBrandList(this.corpId).then((res) => {
+        this.dropdownBarndInviteOptions = uiCommon.getDropDownCodes(res.result, 'brandNm', 'brandId', false)
+      })
+    },
     emailAdd() {
-      if (this.emails.length === 0) {
-        this.emails.push({ value: this.value })
+      if (this.formData.emails.length === 0) {
+        this.formData.emails.push({ value: this.value })
         this.value = ''
       } else {
-        this.emails.push({ value: '' })
+        this.formData.emails.push({ value: '' })
       }
       this.inviteMail()
     },
     emailRemove (index) {
-      this.emails.splice(index, 1)
+      this.formData.emails.splice(index, 1)
       this.inviteMail()
     },
-    inviteMail () {
-      this.inviteMailNot = this.emails.some(input => input.value !== '') || this.value !== ''
+    inviteMail (e) {
+      if (!jglib.isEmail(e.target.value)) {
+        e.target.style.border = '1px solid red'
+        return false
+      }
+      e.target.style.border = '1px solid #dddddd'
+      this.inviteMailNot = this.formData.emails.some(input => input.value !== '') || this.value !== ''
+    },
+    validateEmail () {
+      if (jglib.isEmpty(this.formData.brandId)) {
+        this.$alertMsg('초대 브랜드를 선택해 주세요.')
+        return false
+      }
+      for (let i = 0; i < this.formData.emails.length; i++) {
+        let email = this.formData.emails[i].value
+        this.$refs['email' + i][0].style.border = '1px solid #dddddd'
+        if (!jglib.isEmail(email) || jglib.isEmpty(email)) {
+          this.$refs['email' + i][0].style.border = '1px solid red'
+          this.$refs['email' + i][0].focus()
+          return false
+        }
+      }
+      return true
+    },
+    sendEmail() {
+      if (this.validateEmail()) {
+        let formData = new FormData()
+        formData.append('brandId', this.formData.brandId)
+        for (let key in this.formData.emails) {
+          formData.append('emails', this.formData.emails[key].value)
+        }
+        sendInviteEmail(this.formData.corpId, formData).then((res) => {
+          if (res.code === '20000000') {
+            this.$alertMsg('전송되었습니다.')
+            this.$emit('closeModal')
+          }
+        })
+      }
     }
   }
 }

@@ -3,10 +3,6 @@
     width: $contentWidth2;
     margin: 0 auto;
     padding-bottom: 80px;
-    .page-title{
-        padding-top: 48px;
-        margin-bottom: 32px;
-    }
     .table__wrap {
         .form-table {
             th {
@@ -359,6 +355,8 @@
                 &.chkAll {
                     font-size: 18px;
                     line-height: 30px;
+                    position:relative;
+                    top: -4px;
                 }
             }
         }
@@ -367,13 +365,10 @@
         max-height: 240px;
         border:1px solid #ddd;
         border-radius: 8px;
-        padding:16px 24px;
-        font-size: 16px;
+        padding:24px;
         line-height: 26px;
-        color: #666;
         overflow-y:auto;
         .terms {
-            color: #666;
             font-size: 14px;
             line-height: 26px;
             &__h1 {
@@ -426,6 +421,7 @@
     border:1px solid #999;
     height: 24px;
     line-height: 100%;
+    border:0;
     border:0;
     &.done {
         background-color: rgba(238, 249, 255, 1);

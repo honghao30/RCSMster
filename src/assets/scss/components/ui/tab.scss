@@ -4,6 +4,7 @@
     display:flex;
     align-items:center;
     background-color:#F9F9F9;
+	
 		li {
 			flex: 1;
 			a {
@@ -16,7 +17,6 @@
 				font-weight: 500;
 				position:relative;
 				border-bottom:2px solid $pointColor;
-				background-color:#F8F8F8 ;
 				color: #999;
 				cursor:pointer;
 				span {
@@ -29,8 +29,9 @@
 					background-color:#fff;
 					border-radius:8px 8px 0 0;
 					border:2px solid $pointColor ;
-					border-bottom: none ;
+					border-bottom-color:transparent;
 					color:#000;
+					font-weight: 700;
 				}
 			}
 			&.new {
@@ -90,8 +91,8 @@
 			li {
 				a {
 					height:65px;
-					border-bottom:none;
 					background-color:#fff;
+					border-bottom-color: transparent;
 					span {
 						line-height: 24px;
 					}
@@ -124,7 +125,8 @@
 				color: #999999;
 				font-size: 20px;
 				border-bottom:3px solid transparent;
-				padding: 8px 0 9px;	
+				padding: 0 0 6px;	
+				font-weight: 500;
 			}
 			&.active {
 				a {
@@ -166,16 +168,12 @@
 			.tab-list {
 				li {
 					a {
-						height:36px;
+						height:auto;
 						font-size:15px;
 						line-height: 21px;
 						span {
 							line-height: 21px;
-						}
-					}
-					&.active {
-						a {
-							border-bottom: 2.5px solid $pointColor;
+							padding:0 0 15px 0;
 						}
 					}
 				}
@@ -186,19 +184,23 @@
 		margin:0 -16px 24px -16px;
 		overflow:hidden;
 		ul {
-			padding:0 4px;
-			gap:0px;
+			padding:0 16px;
+			gap:25px;
 			justify-content: flex-start;
 			overflow-x:auto;
+			-ms-overflow-style: none; /* IE and Edge */
+			scrollbar-width: none; /* Firefox */		
+			&::-webkit-scrollbar {
+				display: none; /* Chrome, Safari, Opera*/
+			}	
 			li {
-				margin:0 12px;
 				flex: 1;
 				a {
 					white-space: nowrap;
 					font-size:15px;
 					line-height: 21px;
 					border-width:0 0 2px;
-					padding:0 0 7px;
+					padding:0 0 5px;
 				}
 			}
 		}

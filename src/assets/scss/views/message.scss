@@ -44,6 +44,11 @@
     display:flex;
     flex-direction: column;
     gap: 12px;
+    .form-item-row {
+      + .form-item-row {
+        margin-top: 0;
+      }
+    }
     .inner__input-box{
       display: flex;
       flex-direction: row;
@@ -227,7 +232,7 @@
         height: 152px;
         margin-bottom: 16px;
         cursor: pointer;
-        &:hover, &:active {
+        &.active, &:hover, &:active {
           border-color: $pointColor;
       }
     }
@@ -250,45 +255,7 @@
   }
 }
 
-
 .layout-info__wrap {
-  .type__radio-tab {
-    label {
-      i {
-        width: 58px;
-        height: 58px;
-        flex-shrink: 0;
-        border-radius: 100%;
-        background-color: #F8F8F8;
-        &.icon-sms {
-          background-image: url('../assets/images/icon/icon_sms.png')
-        }
-        &.icon-lms {
-          background-image: url('../assets/images/icon/icon_lms.png')
-        }
-        &.icon-mms {
-          background-image: url('../assets/images/icon/icon_mms.png')
-        }
-      }
-    }
-    input[type="radio"]:checked {
-      + label {
-        border-color: $pointColor;
-        i {
-          background-color: rgba(220, 242, 255, 0.5);
-          &.icon-sms {
-            background-image: url('../assets/images/icon/icon_sms_on.png')
-          }
-          &.icon-lms {
-            background-image: url('../assets/images/icon/icon_lms_on.png')
-          }
-          &.icon-mms {
-            background-image: url('../assets/images/icon/icon_mms_on.png')
-          }
-        }
-      }
-    }
-  }
   .brand-aside {
     .guide {
       padding: 0 26px;
@@ -360,7 +327,7 @@
         align-items: center;
         justify-content: center;
         border-radius:100px;
-        padding:0 20px;
+        padding:0 18px;
         &:before {
           display: none !important;
         }
@@ -1012,10 +979,11 @@
           flex-grow: inherit;
           flex-shrink: 0;
           flex-basis: fit-content;
-          @include fontoption(14px, #000, 700, 24px);
+          @include fontoption(14px, #000, 700, 22px);
 }
         .item-data {
           flex: auto;
+          @include fontoption(14px, #000, 400, 22px);
         }
       }
     }
@@ -1074,8 +1042,7 @@
   display: flex;
   gap: 12px;
   .thum {
-    width: 88px;
-    height: 88px;
+    flex: 1;
     border-radius: 6px;
     overflow:hidden;
     background-color:#eaeaea;
@@ -1470,62 +1437,39 @@
   }
 }
 
-.input-url {
-  .input {
-    padding-top: 12px;
-    display: flex;
-    &::before {
-      content: '';
-      display: inline-block;
-      position: relative;
-      width: 30px;
-      height: 30px;
-      background-image: url('../assets/images/icon/icon_url.png');
-      top: 3px;
-      margin-right: 12px;
-    }
-  }
-}
+// .input-url {
+//   .input {
+//     padding-top: 12px;
+//     display: flex;
+//     &::before {
+//       content: '';
+//       display: inline-block;
+//       position: relative;
+//       width: 30px;
+//       height: 30px;
+//       background-image: url('../assets/images/icon/icon_url.png');
+//       top: 3px;
+//       margin-right: 12px;
+//     }
+//   }
+// }
 
-.input-left {
-  .input {
-    display: flex;
-    &::before {
-      content: '';
-      display: inline-block;
-      position: relative;
-      width: 30px;
-      height: 30px;
-      background-image: url('../assets/images/icon/icon_input_left.png');
-      top: 3px;
-      margin-right: 12px;
-    }
-  }
-}
-
-.input-right {
-  .input {
-    display: flex;
-    &::before {
-      content: '';
-      display: inline-block;
-      position: relative;
-      width: 30px;
-      height: 30px;
-      background-image: url('../assets/images/icon/icon_input_right.png');
-      top: 3px;
-      margin-right: 12px;
-    }
-  }
-}
 
 .form-table {
   .form-item__content {
     .form-template {
       display: block;
+      +.form-template {
+        margin-top: 24px;
+      }
+      .input-left {
+        width: calc(100%  - 70px);
+      }
       .template-detail {
-        padding-left: 42px;
-        padding-bottom: 12px;
+        padding-bottom: 8px;
+        .guide-text {
+          margin-bottom: 8px;
+        }
       }
       .template-button {
         padding-top: 12px;

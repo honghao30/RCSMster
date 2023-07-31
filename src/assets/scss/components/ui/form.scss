@@ -231,7 +231,7 @@ $textareaHeight: 100px;
       background:#fff;
       margin-right:10px;
       position: relative;
-      top:3px;
+      top:2px;
       border-radius:4px;
     }    
   } 
@@ -358,7 +358,7 @@ $textareaHeight: 100px;
     border:1px solid $bordersColor;
     padding:0 12px;
     border-radius: 8px;
-    padding:8px 30px 8px 15px;
+    padding:8px 24px 8px 16px;
     color:#000;
     background-color:#fff;
     height:$inputHeight;
@@ -375,7 +375,6 @@ $textareaHeight: 100px;
       height: 8px; 
       position:relative;
       top:-2px;
-      right:-14px;
       border: 1px solid #888; 
       border-width: 2px 2px 0 0;
       transform: rotate(135deg) translate(-50%, -50%);
@@ -445,22 +444,25 @@ $textareaHeight: 100px;
 .dropdown-search__wrap{
   display: flex;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 6px;
   .dropdown{
-    width: 100px;
     min-width: 100px;
+    display: inline-flex;
+    align-items: center;
       .dropdown__trigger{
         border-color: transparent;
-        // border-radius: 0;
-          &::before{
-              content: '';
-              position: absolute;
-              width: 1px;
-              height: 12px;
-              background-color: #ddd;
-              display: inline-block;
-              right: 0;
-          }
+        padding-right: 20px;
+        &::before{
+            content: '';
+            position:absolute;
+            right:0;
+            top:50%;
+            margin-top: -6px;
+            width: 1px;
+            height: 12px;
+            background-color: #ddd;
+            display: inline-block;
+        }
       }
       &.open{
           .dropdown__trigger{
@@ -471,6 +473,7 @@ $textareaHeight: 100px;
               }
           }
       }
+      
   }
   .input{
       input{
@@ -484,7 +487,7 @@ $textareaHeight: 100px;
       display: flex;
       align-items: center;
       .btn-only-icon{
-        padding:0 16px;
+        padding:0 15px 0 8px;
         position: static;
         .icon-search {
           display:inline-block;
@@ -939,9 +942,11 @@ $formLabelWidth : 120px;
 .guide-text {
   margin-top:8px;
   width: 100%;
-  @include fontoption(12px,#2F77FB,400,22px);   
+  @include fontoption(12px,#2F77FB,400,22px); 
   &.black {
     color: #000;
+    padding-left:8px;
+    text-indent: -8px;  
   }
   &.validation {
     margin:10px 0 0;
@@ -990,7 +995,7 @@ $formLabelWidth : 120px;
 .search-table {
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  align-items:flex-end;
   margin-bottom: 16px;
   .ctrl {
     display:flex;
@@ -1013,7 +1018,10 @@ $formLabelWidth : 120px;
     display: none;
   }
   .btn {
-    width: 74px;
+    &:not(.btn-only-icon) {
+      width: 74px;
+    }
+    
   }
   .list-number {
     white-space: nowrap;
@@ -1307,6 +1315,16 @@ $formLabelWidth : 120px;
     }
   }
 
+  .input-limit {
+    .input {
+      input {
+        padding-right: 72px;
+      }
+      .input-limit__text {
+        line-height: 43px;
+      }
+    }
+  }
   .dropdown {
     min-width: 80px;
     &__trigger {
@@ -1325,35 +1343,46 @@ $formLabelWidth : 120px;
         font-size: 14px;
       }
     }
-    
+  }
+  .dropdown-search__wrap{
+    width: 100%;
+    .dropdown {
+      min-width: 80px;
+    }
+    .dropdown__trigger {
+      height: 41px;
+    }
+    .input {
+      input {
+        height: 41px;
+      }
+    }
+    .btn {
+      height: 38px;
+    }
   }
   .search-table {
     margin-bottom: 8px;
     flex-direction: column;
     align-items: flex-start;
     .input {
-      display: none;
-    }
-    .input-m {
-      display: block;
-      width: auto;
-      flex: auto;
+      width:auto;
+      font-size: 14px;
       input {
-        height: 45px;
+        height: 41px;
         font-size: 14px;
       }
-      
     }
     .btn {
-      flex-shrink: 0;
-      width: 74px;
+      &:not(.btn-only-icon) {
+        width: 74px;
+      }
     }
     .list-number {
       margin-top: 24px;
       width: 100%;
-      span {
-        font-weight: 700;
-      }
+      line-height: 20px;
+      font-size: 13px;
     }
   }
   .guide-text {
@@ -1368,6 +1397,13 @@ $formLabelWidth : 120px;
         content:'';
         top:2px;
         
+      }
+    }
+  }
+  .form-table {
+    .input-item {
+      &.w--half {
+        width: 100%;
       }
     }
   }

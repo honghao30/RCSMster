@@ -103,18 +103,22 @@
 }
 .step-compt__wrap {
     text-align:center;
-    padding:66px 0 72px;
+    padding:40px 0 0;
     .title {
-        font-size: 28px;
+        font-size: 24px;
         font-weight: 500;
-        line-height: 38px;
+        line-height: 36px;
         margin-bottom: 16px;
     }
     .text {
         font-size: 18px;
-        line-height: 28px;
+        line-height: 30px;
+        margin-bottom: 16px;
     }
     +.button__wrap {
-        padding-bottom:70px;
+        &:last-child{
+            padding-bottom: 80px;
+            margin-bottom: 54px;
+        }
     }
 }

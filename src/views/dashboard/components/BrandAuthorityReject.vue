@@ -8,8 +8,8 @@
     </div>
     <div class="modal__content--body">
       <div class="top-notice--center">
-        <h5>SYSTEM STUDIO</h5>
-        <p>신청자 : <span>김솔솔(solsol51)</span></p>
+        <h5>{{ rejectInfo.brandNm }}</h5>
+        <p>신청자 : <span>{{ rejectInfo.userNm }}</span></p>
       </div>
       <div class="input-item input-limit">
         <div class="textarea">
@@ -32,7 +32,7 @@
       <ButtonCmp
         type="btn-blue"
         :disabled="form.textarea.length === 0"
-        @click="$emit('rejectFinish')"
+        @click="reject()"
       >
         반려
       </ButtonCmp>
@@ -42,6 +42,7 @@
 
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import { operationAuthorityApproval } from '@/api/service/corp'
 
 export default {
   components: {
@@ -51,6 +52,9 @@ export default {
     modalsize: {
       type: String,
       default: ''
+    },
+    rejectInfo: {
+      type: Object
     }
   },
   data() {
@@ -61,6 +65,17 @@ export default {
     }
   },
   methods: {
+    reject() {
+      let rejectData = {
+        brandId: this.rejectInfo.brandId,
+        mgrUserId: this.rejectInfo.mgrUserId,
+        aprvRetDescr: this.form.textarea,
+        aprvYn: 'N'
+      }
+      operationAuthorityApproval(rejectData).then(() => {
+        this.$emit('rejectFinish')
+      })
+    }
   }
 }
 </script>
