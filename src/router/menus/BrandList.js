@@ -55,7 +55,7 @@ export default [
     }
   },
   {
-    path: '/brand',
+    path: '/brandHome',
     component: BrandHome,
     meta: {
       tittle: '브랜드 홈',

@@ -7,23 +7,23 @@ export default {
     {
       path: 'list/:brandId',
       name: 'layoutList',
-      component: () => import('@/views/brand/message/LayoutList'),
+      component: () => import('@/views/brand/message/layout/LayoutList'),
       meta: {
         loginRequired: true,
         title: '레이아웃 홈',
         breadcrumb: false
       }
-    }
-    // {
-    //   path: 'create/:brandId',
-    //   name: 'createTemplate',
-    //   component: () => import('@/views/brand/message/TemplateRegistration'),
-    //   meta: {
-    //     loginRequired: true,
-    //     title: '템플릿 생성',
-    //     breadcrumb: false
-    //   }
-    // },
+    },
+    {
+      path: 'create/:brandId',
+      name: 'createLayout',
+      component: () => import('@/views/brand/message/layout/LayoutRegistration'),
+      meta: {
+        loginRequired: true,
+        title: '레이아웃 홈',
+        breadcrumb: false
+      }
+    },
     // {
     //   path: 'edit/:messagebaseFormId',
     //   name: 'editTemplate',

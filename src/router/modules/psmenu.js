@@ -8,7 +8,7 @@ export default {
     {
       path: 'psmenu',
       name: 'ChatRoomMenuList',
-      component: () => import('@/views/brand/chatroom/ChatRoomMenuList'),
+      component: () => import('@/views/brand/psmenu/ChatRoomMenuList.vue'),
       meta: {
         breadcrumb: false,
         loginRequired: true
@@ -17,16 +17,34 @@ export default {
     {
       path: ':chatbotId/psmenu',
       name: 'ChatRoomMenuView',
-      component: () => import('@/views/brand/chatroom/ChatRoomMenuView'),
+      component: () => import('@/views/brand/psmenu/ChatRoomMenuView.vue'),
       meta: {
         breadcrumb: false,
         loginRequired: true
       }
     },
     {
-      path: ':chatbotId/psmenu/write',
+      path: 'psmenu/write',
       name: 'ChatRoomMenuWrite',
-      component: () => import('@/views/brand/chatroom/ChatRoomMenuViewWrite.vue'),
+      component: () => import('@/views/brand/psmenu/ChatRoomMenuViewWrite.vue'),
+      meta: {
+        breadcrumb: false,
+        loginRequired: true
+      }
+    },
+    {
+      path: ':chatbotId/psmenu/:copy',
+      name: 'ChatRoomMenuCopy',
+      component: () => import('@/views/brand/psmenu/ChatRoomMenuViewWrite.vue'),
+      meta: {
+        breadcrumb: false,
+        loginRequired: true
+      }
+    },
+    {
+      path: ':chatbotId/psmenu/edit',
+      name: 'ChatRoomMenuEdit',
+      component: () => import('@/views/brand/psmenu/ChatRoomMenuViewWrite.vue'),
       meta: {
         breadcrumb: false,
         loginRequired: true

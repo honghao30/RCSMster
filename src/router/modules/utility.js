@@ -67,7 +67,6 @@ export default {
     },
     {
       path: 'join/corp/:token',
-      name: 'joinCorp',
       component: () => import('@/views/join/InviteJoinCorp.vue'),
       meta: {
         tittle: '운영자 가입'

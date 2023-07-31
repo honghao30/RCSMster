@@ -1,21 +1,19 @@
 
 // 챗봇
-import ChatbotList from '@/views/brand/chatbot/ChatbotList'
-import ChatbotRegistration from '@/views/brand/chatbot/ChatbotRegistration'
+import ChatbotList from '@/views/brand/autoreply/autoReplyMsgList.vue'
+import ChatbotRegistration from '@/views/brand/autoreply/autoReplyMsgReg.vue'
 import ChatbotModified from '@/views/brand/chatbot/ChatbotModified'
-import ChatbotView from '@/views/brand/chatbot/ChatbotView'
+import ChatbotView from '@/views/brand/autoreply/autoReplyMsgDetail.vue'
 // 템플릿
-import TemplateList from '@/views/brand/message/TemplateList'
-import TemplateMsgList from '@/views/brand/message/TemplateMsgList'
-import TemplateRegistration from '@/views/brand/message/TemplateRegistration'
-import TemplateRegistrationLMS from '@/views/brand/message/TemplateRegistrationLMS'
-import TemplateRegistrationImage from '@/views/brand/message/TemplateRegistrationImage'
-import TemplateView from '@/views/brand/message/TemplateView'
+import TemplateList from '@/views/brand/message/template/TemplateList'
+import TemplateMsgList from '@/views/brand/message/template/TemplateMsgList'
+import TemplateRegistration from '@/views/brand/message/template/TemplateRegistration'
+import TemplateView from '@/views/brand/message/template/TemplateView'
 
 // 레이아웃
-import LayoutRegistration from '@/views/brand/message/LayoutRegistration'
-import LayoutList from '@/views/brand/message/LayoutList'
-import LayoutView from '@/views/brand/message/LayoutView'
+import LayoutRegistration from '@/views/brand/message/layout/LayoutRegistration'
+import LayoutList from '@/views/brand/message/layout/LayoutList'
+import LayoutView from '@/views/brand/message/layout/LayoutView'
 export default [
   // 챗봇
   {
@@ -84,26 +82,6 @@ export default [
     name: 'Creater',
     meta: {
       tittle: '템플릿 작성',
-      breadcrumb: false
-    },
-    props: true
-  },
-  {
-    path: '/TemplateRegistrationLMS',
-    component: TemplateRegistrationLMS,
-    name: 'CreaterLMS',
-    meta: {
-      tittle: '템플릿 작성 LMS',
-      breadcrumb: false
-    },
-    props: true
-  },
-  {
-    path: '/TemplateRegistrationImage',
-    component: TemplateRegistrationImage,
-    name: 'CreaterImg',
-    meta: {
-      tittle: '템플릿 작성 Image',
       breadcrumb: false
     },
     props: true

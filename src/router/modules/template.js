@@ -7,7 +7,7 @@ export default {
     {
       path: 'list/:brandId',
       name: 'templateList',
-      component: () => import('@/views/brand/message/TemplateMsgList'),
+      component: () => import('@/views/brand/message/template/TemplateMsgList'),
       meta: {
         loginRequired: true,
         title: '템플릿 홈',
@@ -17,7 +17,7 @@ export default {
     {
       path: 'create/:brandId',
       name: 'createTemplate',
-      component: () => import('@/views/brand/message/TemplateRegistration'),
+      component: () => import('@/views/brand/message/template/TemplateRegistration'),
       meta: {
         loginRequired: true,
         title: '템플릿 생성',
@@ -27,7 +27,7 @@ export default {
     {
       path: 'edit/:tplId',
       name: 'editTemplate',
-      component: () => import('@/views/brand/message/TemplateRegistration'),
+      component: () => import('@/views/brand/message/template/TemplateRegistration'),
       meta: {
         loginRequired: true,
         title: '템플릿 수정',
