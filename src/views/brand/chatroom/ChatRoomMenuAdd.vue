@@ -104,6 +104,7 @@
                                                 <div class="input">
                                                   <input type="text" class="input" maxlength="17"
                                                     v-model="menu.menuTitle"
+                                                    @input="e => menu.menuTitle = e.target.value"
                                                     :placeholder="'메뉴명을 입력해주세요'"
                                                     ref="menuName"
                                                   >
@@ -258,7 +259,7 @@
               </div>
             </form>
           </div>
-          <div class="chatroom-emulator sticky">
+          <div class="chatroom-emulator psmenu sticky">
             <ChatEmulator
             :chatInfoData="chatInfoData"
             :chatMenuList="form.chatMenuData"
@@ -511,6 +512,7 @@ export default {
           news: '',
           chatbot: ''
         }],
+        isPsmenu: true,
         chatRoom: 'chatRoomMenu01'
       },
       dropdownOptions: [

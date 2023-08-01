@@ -1151,6 +1151,14 @@
         border-top: 0;
     }
 }
+.chatroom-emulator {
+    &.psmenu {
+        .chat-emulator__wrap {
+            height:450px;
+            min-height: 450px;
+        }
+    }
+}
 .two-content{
     width: 100%;
     display: flex;
@@ -1728,6 +1736,10 @@
     th{
         &.bd-bg{
             border-color: #BCBCBC;
+        }
+        &.templ-title {
+            border-top: 1px solid #BCBCBC;
+            background-color: #F8F8F8;
         }
     }
     td{
@@ -2578,4 +2590,60 @@
     &.flag-mt-none{
         margin-left: 0;
     }
+}
+
+.brand-side__banner {
+    background: #EEF9FF;
+    border-radius: 16px;
+    position: relative;
+    padding: 24px 32px;
+    .side-box-top {
+        h3 {
+            @include fontoption(18px,#000,700,26px);
+        }
+        h4 {
+            @include fontoption(16px,#000,700,22px);
+        }
+        p{
+            @include fontoption(12px,#666,400,18px);
+            margin-top:10px;
+        }
+    }
+    .side-company-btn {
+        margin-top: 16px;
+        display: block;
+        position: relative;
+        color: $defaultColor;
+        font-size: 12px;
+        line-height: 18px;
+        text-decoration: underline;
+        &::after {
+            content:'';
+            display:inline-block;
+            position:absolute;
+            width:16px;
+            height: 16px;
+            background: url('../assets/images/icon/icon_arrow_right.png') no-repeat 50% 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    }
+    .side-box-img{
+        margin-top: 32px;
+        display: flex;
+        justify-content: flex-end;
+        .chat_icon{
+            width: 82px;
+            height: 82px;
+            background-color: #fff;
+            border-radius: 82px;
+        }
+        .brand_icon{
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+            border-radius: 82px;
+        }
+    }    
 }
