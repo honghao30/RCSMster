@@ -35,7 +35,6 @@
       </div>
     </div>
     <!-- 매니저 일 경우 노출 -->
-    <!-- 기획서 1.0 수정 삭제 -->
     <!-- <div class="side-box side-box__invite">
       <div class="side-box-top">
         <h4>브랜드 운영자 초대하기</h4>
@@ -54,7 +53,6 @@
         </ul>
       </div>
     </div> -->
-    <!-- // 기획서 1.0 수정 삭제 -->
     <!-- // 마스터 계정 설정 -->
     <div class="link-area">
       <router-link to="" class="arrow-link">기업 히스토리</router-link>

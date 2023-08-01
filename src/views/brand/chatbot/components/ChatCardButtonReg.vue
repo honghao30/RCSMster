@@ -388,12 +388,8 @@ export default {
       }],
       buttonEventOptions: [
         {
-          label: '간편챗봇 연결',
-          value: 'simpleChatbot'
-        },
-        {
-          label: '챗봇 연결',
-          value: 'chatbot'
+          label: '전화걸기',
+          value: 'call'
         },
         {
           label: '브랜드 소식 연결',
@@ -406,26 +402,6 @@ export default {
         {
           label: '다른 대화방 연결',
           value: 'chatroom'
-        },
-        {
-          label: 'URL(외부 브라우저)',
-          value: 'urlExternal'
-        },
-        {
-          label: '지도 보여주기(좌표)',
-          value: 'mapPoint'
-        },
-        {
-          label: '지도 보여주기(쿼리)',
-          value: 'mapQuery'
-        },
-        {
-          label: '사용자 위치 공유하기',
-          value: 'location'
-        },
-        {
-          label: '캘린더 등록하기',
-          value: 'calendar'
         }
       ]
     }

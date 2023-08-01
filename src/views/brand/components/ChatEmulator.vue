@@ -1,5 +1,6 @@
 <template>
-  <div class="chat-emulator__wrap">
+  <div class="chat-emulator__wrap"
+  >
     <div class="chat-emulator">
       <div class="emulator-header">
         <div class="emulator-header__inner">
@@ -179,10 +180,11 @@
               :class="{ collapse : collapse }"
             >
               <li
-                v-for="list in chatMenuList"
-                :key="list"
+                v-for="(list, index) in chatMenuList"
+                :key="index"
+                :class="{ 'active': list.isActive === true}"
               >
-                <router-link to="#">{{ list.menuTitle }}</router-link>
+                <router-link to="#" v-if="list.menuTitle !== ''">{{ list.menuTitle }}</router-link>
               </li>
             </ul>
           </div>
@@ -267,6 +269,9 @@ export default {
       type: Array,
       default: null
     },
+    isActive: {
+      type: String
+    },
     chatInfoData: {
       type: Object,
       default: () => {
@@ -349,6 +354,7 @@ export default {
   },
   mounted() {
     [this.todayDateFull, this.todayData, this.currentTime] = getTodayDate()
+    console.log(this.chatMenuList)
   },
   methods: {
     btnToggle () {

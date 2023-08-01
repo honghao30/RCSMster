@@ -20,8 +20,7 @@ import AgencyJoinStep04 from '@/views/join/AgencyJoinStep04'
 export default [
   // 로그인
   {
-    name: 'login',
-    path: '/login',
+    path: '/LoginPage',
     component: LoginPage,
     meta: {
       tittle: '로그인',
@@ -37,7 +36,6 @@ export default [
     }
   },
   {
-    name: 'pwFind',
     path: '/pwFind',
     component: pwFind,
     meta: {
@@ -46,7 +44,6 @@ export default [
     }
   },
   {
-    name: 'IdResult',
     path: '/IdResult',
     component: IdResult,
     meta: {
@@ -55,7 +52,6 @@ export default [
     }
   },
   {
-    name: 'PwReset',
     path: '/PwReset',
     component: PwReset,
     meta: {
@@ -64,7 +60,6 @@ export default [
     }
   },
   {
-    name: 'PwChange',
     path: '/PwChange',
     component: PwChange,
     meta: {

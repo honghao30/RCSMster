@@ -1,16 +1,17 @@
 <template>
   <div class="inner notice">
     <PageTitle pagetitle="공지사항" />
-    <TabCategory :category="category" :newTabIndex="newTabIndex"/>
+    <TabCategory :allTabUseYn="true" :category="notiCateList" :activeTab="bbsCategoryType" :newTabList="newTabList" @click="selectedBbsCategoryType" />
     <div class="search-table">
       <div class="dropdown-search__wrap">
-        <Dropdown :options=dropdownOptions />
+        <Dropdown :options=dropdownOptions v-model="searchParam.keywordType"/>
         <div class="search-area">
           <span class="input search-box">
-            <input type="text" placeholder="검색어를 입력해 주세요." />
+            <input type="text" placeholder="검색어를 입력해 주세요." v-model="searchParam.keyword" @keypress.enter="findNotice"/>
             <ButtonCmp
               type="btn-only-icon"
               iconname='icon-search'
+              @click="findNotice"
             >
             </ButtonCmp>
           </span>
@@ -35,28 +36,38 @@
           </tr>
         </thead>
         <tbody>
-          <tr
-            v-for="(item, i) in noticeData" :key="i"
-            :class="[{primary: item.primary}]"
-          >
-            <td>
-              <span v-if="item.primary" class="primary__text">공지</span>
-              <span v-if="!item.primary" class="num">{{ item.id }}</span>
+          <tr v-for="(list, index) in notiYesLists" :key="`notiYes_${index}`" class="primary">
+            <td class="mo-hide">
+              <span class="primary__text">공지</span>
             </td>
             <td>
               <div class="l-align title">
-                <router-link to=""
-                >{{ item.title }}
-                </router-link>
-                <i class="ico-attach" v-if="item.attach"></i>
-                <i class="ico-new" v-if="item.new"></i>
+                <span class="primary__text only-mobile">공지</span>
+                <router-link :to="{ name: 'NoticeContent', params: { no: list.seq, page: searchParam.page } }" v-html="list.subject" />
+                <i class="ico-attach" v-if="list.fileId"></i>
+                <i class="ico-new" v-if="list.isNew"></i>
               </div>
             </td>
             <td>
-              <span class="date">{{ item.date }}</span>
+              <span class="date">{{ list.modDt | prettyDate('YYYY-MM-DD') }}</span>
             </td>
           </tr>
-          <tr><!-- 검색 결과 없을 시-->
+          <tr v-for="(list, index) in notiNoLists" :key="`notiNo_${index}`" class="primary">
+            <td class="mo-hide">
+              <span class="num">{{ list.seq }}</span>
+            </td>
+            <td>
+              <div class="l-align title">
+                <router-link :to="{ name: 'NoticeContent', params: { no: list.seq, page: searchParam.page } }" v-html="list.subject" />
+                <i class="ico-attach" v-if="list.fileId"></i>
+                <i class="ico-new" v-if="list.isNew"></i>
+              </div>
+            </td>
+            <td>
+              <span class="date">{{ list.modDt | prettyDate('YYYY-MM-DD') }}</span>
+            </td>
+          </tr>
+          <tr v-show="notiNoLists.length === 0"><!-- 검색 결과 없을 시-->
             <td colspan="3">
               <div class="notice__search-no-data">
                 <p>검색 결과가 없습니다.</p>
@@ -66,8 +77,7 @@
         </tbody>
       </table>
     </div>
-    <PagingCmp />
-
+    <PagingCmp v-if="this.noticeListNum !== 0" :total="this.noticeListNum" :current-page.sync="searchParam.page" @change="changePage" />
   </div>
 </template>
 
@@ -77,119 +87,121 @@ import PagingCmp from '@/components/common/PagingCmp.vue'
 import TabCategory from '@/components/common/TabCategory'
 import Dropdown from '@/components/common/Dropdown.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import moment from 'moment'
+import { retrieveCommonCode } from '@/api/common/code'
+import { getNoticeList } from '@/api/cs/notice'
 
 export default {
   name: 'NoticeView',
-  data() {
-    return {
-      dropdownOptions: [
-        {
-          label: '전체',
-          value: 'all'
-        },
-        {
-          label: '제목',
-          value: 'title'
-        },
-        {
-          label: '내용',
-          value: 'content'
-        }
-      ],
-      category: ['전체', '이벤트', '시스템', '정책', '서식', '업데이트 노트'],
-      activeTabIndex: 0,
-      newTabIndex: 1,
-      noticeData:
-      [
-        {
-          id: 1,
-          title: '[중요] RCS 메시지 발송 규격 추가 예정 안내',
-          date: '2023.04.25',
-          primary: true,
-          new: false,
-          attach: false
-        },
-        {
-          id: 2,
-          title: '발신번호 삭제 및 전시모드 정책 변경 등 공지 드립니다.',
-          date: '2023.04.25',
-          primary: true,
-          new: false,
-          attach: false
-        },
-        {
-          id: 45,
-          title: 'CS Biz Center X 미리캔버스 제휴 프로모션',
-          date: '2023.04.25',
-          primary: false,
-          new: true,
-          attach: false
-        },
-        {
-          id: 45,
-          title: '[작업] 서비스 점검 공지 (06월11일 14시~15시) [작업] 서비스 점검 공지 (06월11일 14시~15시) [작업] 서비스 점검 공지에 대한 안내 드립니다.',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: false
-        },
-        {
-          id: 45,
-          title: 'RCS Biz Center 제3회 전국동시조합장선거 후보자 브랜드 등록 수정',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: true
-        },
-        {
-          id: 45,
-          title: '[안내] 발신번호 신청 사업자와 증빙서류의 사업자가 상이한 경우 (발신번호 위탁서)',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: false
-        },
-        {
-          id: 45,
-          title: 'RCS Biz Center 검수기 승인 안내',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: false
-        },
-        {
-          id: 45,
-          title: '[RCS 활용사례] 국민은행 - 보이스피싱 예방',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: false
-        },
-        {
-          id: 45,
-          title: '3rd Party App의 RCS 문자 메시지 인식을 위한 개발 가이드',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: false
-        },
-        {
-          id: 45,
-          title: '[작업] 삼성 MaaP 작업에 따른 RCS Biz Center 서비스 차단 안내 (7월 19일 ~ 20일)',
-          date: '2023.04.25',
-          primary: false,
-          new: false,
-          attach: false
-        }
-      ]
-    }
-  },
   components: {
     PageTitle,
     Dropdown,
     PagingCmp,
     TabCategory,
     ButtonCmp
+  },
+  data() {
+    return {
+      searchParam: {
+        notiCate: '',
+        group: 'Notice',
+        keywordType: 'subject',
+        keyword: '',
+        page: 1,
+        size: 5
+      },
+      dropdownOptions: [
+        {
+          label: '제목',
+          value: 'subject'
+        },
+        {
+          label: '내용',
+          value: 'ctn'
+        }
+      ],
+      notiCateList: [],
+      bbsCategoryType: '',
+      bbsCategoryTypeIndex: -1,
+      notiYesLists: [],
+      notiNoLists: [],
+      noticeListNum: 0,
+      newTabList: []
+    }
+  },
+  watch: {
+    bbsCategoryType: {
+      deep: true,
+      handler() {
+        if (this.bbsCategoryType) {
+          this.resetCategory()
+        }
+      }
+    }
+  },
+  mounted() {
+    this.searchParam = this.$store.getters['searchcondition/getSearchCondition'](this.searchParam)
+    if (this.searchParam.notiCate) {
+      this.bbsCategoryType = this.searchParam.notiCate
+    }
+    this.ready = true
+    // 콤보 코드 목록 조회
+    retrieveCommonCode('NOTI_CATE').then(res => {
+      this.notiCateList = res.result
+    })
+
+    if (jglib.isEmpty(this.$route.params.page)) {
+      this.search()
+    } else {
+      this.searchParam.page = this.$route.params.page
+      this.search()
+    }
+  },
+  beforeRouteLeave (to, from, next) {
+    this.$store.dispatch('searchcondition/searchAndGo', { searchParam: this.searchParam })
+    next()
+  },
+  methods: {
+    selectedBbsCategoryType(index, item) {
+      this.$store.commit('searchcondition/allClearSearchCondition')
+      this.bbsCategoryTypeIndex = index
+      this.bbsCategoryType = (item == null ? 'ALL' : item.code)
+    },
+    resetCategory() {
+      this.searchParam.notiCate = this.bbsCategoryType === 'ALL' ? '' : this.bbsCategoryType
+      this.searchParam.page = 1
+      this.searchParam.keyword = ''
+      this.search()
+    },
+    findNotice() {
+      this.searchParam.page = 1
+      this.search()
+    },
+    changePage(page) {
+      this.searchParam.page = page
+      this.search()
+    },
+    search() {
+      this.$store.dispatch('searchcondition/searchAndGo', { searchParam: this.searchParam })
+      getNoticeList(this.searchParam)
+        .then(res => {
+          this.newTabList = res.result.newNotiCateList
+          this.notiYesLists = []
+          this.notiNoLists = []
+          res.result.noticeList.map(list => {
+            list.isNew = moment.duration(moment().diff(moment(list.regiDt))).asDays() < 7
+
+            if (list.notiYn === 'Y') {
+              this.notiYesLists.push(list)
+            } else {
+              this.notiNoLists.push(list)
+              return this.notiNoLists
+            }
+          })
+          this.noticeListNum = res.result.totalSize
+        })
+        .catch(res => {})
+    }
   }
 }
 </script>

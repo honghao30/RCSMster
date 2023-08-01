@@ -82,31 +82,11 @@
                       <tr>
                         <th scope="row"><span class="form-item__label required">이미지 사이즈</span></th>
                         <td>
-                          <div class="form-item__content">
-                              <div class="form-item-row">
-                                <div class="input-item">
-                                  <span class="radiobox">
-                                    <input type="radio" name="imgSize" id="full" value="full" v-model="form.imgSize" @click="imgSizeChangeModal"/> <!-- 기획서 v1.0 수정 --모달창 추가(p.20) -->
-                                    <label for="full"><span class="radiobox__text">900 * 900px</span></label>
-                                  </span>
-                                  <span class="radiobox">
-                                    <input type="radio" name="imgSize" id="medium" value="medium" v-model="form.imgSize" @click="imgSizeChangeModal"/> <!-- 기획서 v1.0 수정 --모달창 추가(p.20) -->
-                                    <label for="medium"><span class="radiobox__text">900 * 1,200px</span></label>
-                                  </span>
-                                </div>
-                              </div>
-                              <div class="form-item-row">
-                                <div class="input-item">
-                                  <span class="input"><input type="text" v-model="imgFile" disabled placeholder="이미지를 등록해주세요."></span>
-                                  <input type="file" id="fileUp" class="input" @change="onFileUpLoad">
-                                  <label for="fileUp"
-                                    class="btn btn-default-line"
-                                  >파일찾기</label>
-                                </div>
-                                <!-- :disabled="isSlideCardEdit"  :class="{'inactive' : isSlideCardEdit }" -->
-                                <p class="guide-text black">&middot; 파일형식: JPG, PNG, GIF, BMP<br>(최대 1MB, 단, 동일한 파일을 등록하는 경우 크기에 합산되지 않습니다.)</p>
-                              </div>
-                          </div>
+                          <ImgCmp
+                            :imgSize="form.imgSize"
+                            @update:imgSize="updateImgSize"
+                          />
+                          <!-- :imgFile="imgFile" @fileUpload="onFileUpload" -->
                         </td>
                       </tr>
                       <!-- // 이미지 사이즈 -->
@@ -629,6 +609,7 @@ import Dropdown from '@/components/common/Dropdown.vue'
 import ChatbotConnect from '@/views/brand/chatbot/components/ChatbotConnect.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import 'emoji-picker-element'
+import ImgCmp from '@/views/brand/chatbot/components/ImgCmp.vue'
 
 export default {
   components: {
@@ -643,7 +624,8 @@ export default {
     ConfirmMsg,
     Dropdown,
     ChatbotConnect,
-    Emoji
+    Emoji,
+    ImgCmp
   },
   data() {
     return {
@@ -971,12 +953,9 @@ export default {
       this.form.msgData[0].imgFile = fileName
       this.url = URL.createObjectURL(file)
     },
-    onFileUpLoad (e) {
-      const files = e.target.files
-      const file = files[0]
-      const fileName = file.name
-      this.imgFile = fileName
-      this.url = URL.createObjectURL(file)
+    onFileUpload({ imgSize, imgFile }) {
+      this.imgSize = imgSize
+      this.imgFile = imgFile
     },
     isChangeTypeCheck() {
       if (this.form.chatbotMsgName) {
@@ -1013,6 +992,9 @@ export default {
       let emoji = e
       let refName = target
       this.$refs[refName].value += emoji
+    },
+    updateImgSize(newImgSize) {
+      this.form.imgSize = newImgSize
     },
     onSubmit () {
       this.isModalViewed = true

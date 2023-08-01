@@ -9,10 +9,10 @@ import ChatRoomListView from '@/views/brand/chatroom/ChatRoomListView'
 import ChatRoomListLargeView from '@/views/brand/chatroom/ChatRoomListLargeView'
 
 // 대화방 메뉴
-import ChatRoomMenuAdd from '@/views/brand/psmenu/ChatRoomMenuAdd.vue'
-import ChatRoomMenuList from '@/views/brand/psmenu/ChatRoomMenuList.vue'
-import ChatRoomMenuView from '@/views/brand/psmenu/ChatRoomMenuView.vue'
-import ChatRoomMenuViewModified from '@/views/brand/psmenu/ChatRoomMenuViewModified.vue'
+import ChatRoomMenuAdd from '@/views/brand/chatroom/ChatRoomMenuAdd'
+import ChatRoomMenuList from '@/views/brand/chatroom/ChatRoomMenuList'
+import ChatRoomMenuView from '@/views/brand/chatroom/ChatRoomMenuView'
+import ChatRoomMenuViewModified from '@/views/brand/chatroom/ChatRoomMenuViewModified'
 
 export default [
   // 대화방
