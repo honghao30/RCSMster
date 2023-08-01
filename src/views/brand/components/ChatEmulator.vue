@@ -184,7 +184,8 @@
                 :key="index"
                 :class="{ 'active': list.isActive === true}"
               >
-                <router-link to="#" v-if="list.menuTitle !== ''">{{ list.menuTitle }}</router-link>
+                <router-link to="#" v-if="list.menuTitle == ''">대화방 메뉴명을 입력하세요</router-link>
+                <router-link to="#" v-else>{{ list.menuTitle }}</router-link>
               </li>
             </ul>
           </div>
