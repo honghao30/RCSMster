@@ -148,7 +148,7 @@
 <script>
 import draggable from 'vuedraggable'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
-import TemplateButtonReg from '@/views/brand/message/utils/TemplateButtonReg.vue'
+import TemplateButtonReg from '@/views/brand/message/components/TemplateButtonReg.vue'
 export default {
   props: {
     slideData: {

@@ -1,248 +1,149 @@
 <template>
-  <table class='table table-bodyonly form-table'>
-    <colgroup>
-      <col width='180px'>
-      <col />
-    </colgroup>
-    <tbody>
-    <tr>
-      <th colspan="2" class="templ-title">아이템A</th>
-    </tr>
-    <tr>
-      <th scope='row'><span class='form-item__label'>설명</span></th>
-      <td>
-        <div class='form-item__content'>
-          <div class='form-item-row'>
-            <div class='input-item'>
-                <span class='radiobox' @click='initDescription'>
-                  <input type='radio' name='itemDesc' id='itemDescN' value='N'
-                         v-model='titAndDescInfo.useDescription'
-                  />
-                  <label for='itemDescN'>미사용</label>
-                </span>
-              <span class='radiobox'>
-                  <input type='radio' name='itemDesc' id='itemDescY' value='Y'
-                         v-model='titAndDescInfo.useDescription'
-                  />
-                  <label for='itemDescY'>사용</label>
-                </span>
-            </div>
-          </div>
-          <div class='form-item-row' v-if="titAndDescInfo.useDescription === 'Y'">
-            <div class='input-item input-limit'>
-              <div class='input'>
-                <input type='text'
-                       class='input'
-                       @input='e => titAndDescInfo.description = e.target.value'
-                       placeholder='설명을 입력해주세요.'
-                >
-                <div class='input-limit__text'>
-                  <p
-                    :style='titAndDescInfo.description.length > componentStrSizeRule["itemADescription"] ? "color:red;" : ""'>
-                    {{ titAndDescInfo.description.length }}/{{ componentStrSizeRule['itemADescription'] }}자
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th scope='row'><span class='form-item__label required'>제목</span></th>
-      <td>
-        <div class='form-item__content'>
-          <div class='form-item-row'>
-            <div class='input-item input-limit'>
-              <div class='input'>
-                <input type='text'
-                       class='input'
-                       @input='e => titAndDescInfo.title = e.target.value'
-                       placeholder='제목을 입력해주세요.'
-                >
-                <div class='input-limit__text'>
-                  <p :style='titAndDescInfo.title.length > componentStrSizeRule["itemATitle"] ? "color:red;" : ""'>
-                    {{ titAndDescInfo.title.length }}/{{ componentStrSizeRule['itemATitle'] }}자
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th scope='row'><span class='form-item__label required'>로고</span></th>
-      <td>
-        <div class='form-item__content'>
-          <div class='form-item-row'>
-            <div class='input-item'>
-                <span class='radiobox'>
-                  <input type='radio' name='itemALogoType' id='itemABasicImage' v-model='titAndDescInfo.logoType'
-                         value='basicImage' />
-                  <label for='itemABasicImage'>기본 아이콘</label>
-                </span>
-              <span class='radiobox'>
-                  <input type='radio' name='itemALogoType' id='itemACustom' v-model='titAndDescInfo.logoType'
-                         value='custom' />
-                  <label for='itemACustom'>직접 올리기</label>
-                </span>
-            </div>
-            <template v-if="titAndDescInfo.logoType === 'basicImage'">
-              <TemplateTitleReg
-                :titleIconNewData='titleIconNewData'
-                :titleIconBasicData='titleIconBasicData'
-                @optionSelected='checkTitleSelected'
-              />
-            </template>
-            <template v-if="titAndDescInfo.logoType === 'custom'">
-              <div class='input-item w--full'>
-                  <span class='input'>
-                    <input type='text' class='input' :value='titAndDescInfo.logoFile' disabled>
-                  </span>
-                <input type='file' id='itemAFileUp' class='input blind'
-                       @change='onFileChanged'>
-                <label for='itemAFileUp' class='btn btn-default-line'>파일 선택</label>
-              </div>
-              <p class='guide-text black'>&middot; 파일형식: PNG, GIF (최대 1MB)</p>
-              <p class='guide-text black'>&middot; 권장 사이즈 : 300 * 300px (또는 1:1 비율)</p>
-            </template>
-          </div>
-        </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <table class="table table-bodyonly form-table">
+   <colgroup>
+     <col width="180px">
+     <col />
+   </colgroup>
+   <tbody>
+
+     <tr>
+       <th scope="row"><span class="form-item__label required">타이틀 - 제목</span></th>
+       <td>
+         <div class="form-item__content">
+           <div class="form-item-row">
+             <div class="input-item input-limit">
+               <div class="input">
+                 <input type="text"
+                   class="input"
+                   maxlength="30"
+                   @input="e => info.title = e.target.value"
+                   placeholder="제목을 입력해주세요."
+                 >
+                 <div class="input-limit__text">
+                   <p>{{ info.title.length }}/30자</p>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </td>
+     </tr>
+     <tr>
+       <th scope="row"><span class="form-item__label">타이틀 - 설명</span></th>
+       <td>
+         <div class="form-item__content">
+           <div class="form-item-row">
+             <div class="input-item">
+               <span class="radiobox">
+                 <input type="radio" name="desc" id="descN" value="N"
+                   v-model="info.titleDescUse"
+                 />
+                 <label for="descN">미사용</label>
+               </span>
+               <span class="radiobox">
+                 <input type="radio" name="desc" id="descY" value="Y"
+                   v-model="info.titleDescUse"
+                 />
+                 <label for="descY">사용</label>
+               </span>
+             </div>
+           </div>
+           <div class="form-item-row" v-if="info.titleDescUse === 'Y'">
+             <div class="input-item input-limit">
+               <div class="input">
+                 <input type="text"
+                   class="input"
+                   maxlength="30"
+                   @input="e => info.titleDesc = e.target.value"
+                   placeholder="설명을 입력해주세요."
+                 >
+                 <div class="input-limit__text">
+                   <p>{{ info.titleDesc.length }}/17자</p>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </td>
+     </tr>
+     <tr>
+       <th scope="row"><span class="form-item__label required">타이틀 - 로고</span></th>
+       <td>
+         <div class="form-item__content">
+           <div class="form-item-row">
+             <div class="input-item">
+               <span class="radiobox">
+                 <input type="radio" name="logoType" id="basic" v-model="info.logoType"  value="basic" />
+                 <label for="basic">기본 아이콘</label>
+               </span>
+               <span class="radiobox">
+                 <input type="radio" name="logoType" id="custom" v-model="info.logoType" value="custom" />
+                 <label for="custom">직접 올리기</label>
+               </span>
+             </div>
+             <template v-if="info.logoType === 'basic'">
+               <TemplateTitleReg
+                 :titleIconNewData="titleIconNewData"
+                 :titleIconBasicData="titleIconBasicData"
+                 @optionSelected="checkTitleSelected"
+               />
+             </template>
+             <template v-if="info.logoType === 'custom'">
+               <div class="input-item w--full">
+                 <span class="input">
+                   <input type="text" class="input" :value="info.logoFile" disabled>
+                 </span>
+                 <input type="file" id="fileUp" class="input blind"
+                 @change="onFileChanged">
+                 <label for="fileUp" class="btn btn-default-line">파일 선택</label>
+               </div>
+               <p class="guide-text black">&middot; 파일형식: PNG, GIF (최대 1MB)</p>
+               <p class="guide-text black">&middot; 권장 사이즈 : 300 * 300px (또는 1:1 비율)</p>
+             </template>
+           </div>
+         </div>
+       </td>
+     </tr>
+   </tbody>
+ </table>
 </template>
 
 <script>
-import TemplateTitleReg from '@/views/brand/message/utils/TemplateTitleReg.vue'
-
+import TemplateTitleReg from '@/views/brand/message/components/TemplateTitleReg.vue'
 export default {
-  components: {
-    TemplateTitleReg
-  },
-  props: {
-    compoInputObj: {
-      type: Array,
-      default: null
-    },
-    componentParam: {
-      type: Object,
-      default: null
-    }
-  },
-  data() {
-    return {
-      titAndDescInfo: this.compoInputObj[0],
-      titleIconNewData: [
-        {
-          title: '알림',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '이벤트',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '프로모션',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '청구서',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '영수증',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '예약안내',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '일정안내',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '티켓',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '쿠폰',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        }
-      ],
-      titleIconBasicData: [
-        {
-          title: '승인',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '입금',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '출금',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '취소',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '주문',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '출고',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '배송',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '회원가입',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        },
-        {
-          title: '인증',
-          titleIcon: require('../../../../assets/images/icon/icon_title_logo_alarm.png')
-        }
-      ]
-    }
-  },
-  computed: {
-    componentStrSizeRule() {
-      const map = {}
-      if (this.componentParam && this.componentParam['CP-ItemA']) {
-        for (const obj of this.componentParam['CP-ItemA']) {
-          map[obj.paramNm] = obj.strSize
-        }
-      }
-      return map
-    }
-  },
-  methods: {
-    onFileChanged(e) {
-      const files = e.target.files
-      const file = files[0]
-      const fileName = file.name
-      this.titAndDescInfo.logoFile = fileName
-      this.titAndDescInfo.logoFileSrc = URL.createObjectURL(file)
-    },
-    checkTitleSelected(option) {
-      console.log(option)
-      this.SelectedTitle = option
-      this.titAndDescInfo.logoFile = option[0]
-      this.titAndDescInfo.logoFileSrc = option[1]
-    },
-    initDescription() {
-      console.log('initDescription')
-      this.titAndDescInfo.description = ''
-    }
-  }
+ components: {
+   TemplateTitleReg
+ },
+ props: {
+   info: {
+     type: Object,
+     default: null
+   },
+   titleIconNewData: {
+     type: Array,
+     default: null
+   },
+   titleIconBasicData: {
+     type: Array,
+     default: null
+   }
+ },
+ data() {
+   return {
+   }
+ },
+ methods: {
+   onFileChanged (e) {
+     const files = e.target.files
+     const file = files[0]
+     const fileName = file.name
+     this.info.logoFile = fileName
+     this.url = URL.createObjectURL(file)
+   },
+   checkTitleSelected (option) {
+     this.info.logoFile = option[1]
+   }
+ }
 }
 </script>
 

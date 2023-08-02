@@ -33,6 +33,16 @@ export default {
         title: '템플릿 수정',
         breadcrumb: false
       }
+    },
+    {
+      path: 'create/list',
+      name: 'carateTemplateList',
+      component: () => import('@/views/brand/message/template/TemplateList'),
+      meta: {
+        loginRequired: true,
+        title: '템플릿 생성',
+        breadcrumb: false
+      }
     }
   ]
 }
