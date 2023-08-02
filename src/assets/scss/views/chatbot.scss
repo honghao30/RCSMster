@@ -418,19 +418,30 @@
             border-radius: 2px;
           }       
           .chat-menu__list-inemul {
-              padding:0 16px;
-              li {
-               @include fontoption(16px, #000, 400, 24px);
-               text-align: left;
-               &+li {
-                  margin-top:18px;
-               }
+            padding:0 16px;
+            li {
+              &.active {
+                a {
+                  border:1px solid #2F77FB;
+                }                  
               }
-             &.collapse {
-              height:80px;
-              overflow: hidden;
+              a {
+                display: block;
+                @include fontoption(16px, #000, 400, 24px);
+                padding: 12px 16px;
+                text-align: left;
+                border: 1px solid #D9D9D9;
+                border-radius: 12px;                  
+              }
+             &+li {
+                margin-top:8px;
              }
-          }  
+            }
+           &.collapse {
+            height:80px;
+            overflow: hidden;
+           }
+        }  
           .input {
             position:relative;
             flex: auto;
