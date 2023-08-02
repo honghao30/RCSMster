@@ -18,7 +18,7 @@
             :class="{ ismonav : isMobileNavOpen}"
           >
             <div class="mobile-nav__top">
-              <span class="user-name-mo" v-if="isLogin">{{getUserName}}</span>
+              <span class="user-name-mo" v-if="isLogin">홍길동</span>
               <h1 v-else><router-link to="/"><span class="blind">RCS Biz Center</span></router-link></h1>
               <a role="button" @click="closeNav" class="nav__button--close"><span class="irtext">닫기</span></a>
             </div>
@@ -42,17 +42,17 @@
           </ul>
         </div>
       </nav>
-      <div class="header__util" v-if="!isLogin">
+      <!-- <div class="header__util" v-if="!isLogin">
         <router-link :to="{path: '/login'}" class="is-login">로그인</router-link>
         <router-link :to="{path: '/utility/join'}">회원가입</router-link>
-      </div>
-      <div class="header__util" v-else>
+      </div> -->
+      <div class="header__util">
           <router-link  class="link-dashboard">기업 대시보드</router-link>
           <div class="user">
             <!-- <a href="javascript:void(0);" class="btn_user login" v-if="!isLogin" @click="goLogin">
             <span>로그인</span>
              </a> -->
-            <a role="button" :class="{isActive : userInfoLy}" v-if="isLogin" @click="toggleUserInfoLy"><span class="name">{{getUserName}}</span>님</a>
+            <a role="button" :class="{isActive : userInfoLy}"  @click="toggleUserInfoLy"><span class="name">홍길동</span>님</a>
             <ul class="user-menu" v-if="userInfoLy">
               <li><router-link to="/utility/my-info" @click="closeUserInfoLy">내 계정관리</router-link></li>
             <li><a role="button" @click="logout">로그아웃</a></li>
