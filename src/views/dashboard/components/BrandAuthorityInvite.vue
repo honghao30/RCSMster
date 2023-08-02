@@ -60,22 +60,22 @@
                 <td class="l-align"><span>{{ item.mail }}</span></td>
               </tr>
               <!-- 브랜드 선택 전 -->
-              <tr>
+              <!-- <tr>
                 <td colspan="3">
                   <div class="result-none">
                     <p>브랜드를 선택해주세요.</p>
                   </div>
                 </td>
-              </tr>
+              </tr> --> <!-- 0802 테이블 스크롤 + 모달창 스크롤 두개 모두 나오는 거 막기위해 주석처리함 -->
               <!-- // 브랜드 선택 전 -->
               <!-- 검색결과 없을 때 -->
-              <tr>
+              <!-- <tr>
                 <td colspan="3">
                   <div class="result-none">
                     <p>검색결과가 없습니다.</p>
                   </div>
                 </td>
-              </tr>
+              </tr> --> <!-- 0802 테이블 스크롤 + 모달창 스크롤 두개 모두 나오는 거 막기위해 주석처리함 -->
               <!-- // 검색결과 없을 때 -->
             </tbody>
           </table>

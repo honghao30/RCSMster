@@ -3,7 +3,7 @@
     <div class="brand__inner">
       <BrandLnb />
       <div class="brand-info__wrap stat__wrap barnd-stat">
-        <PageTitle pagetitle="브랜드 소식 통계" />
+        <PageTitle pagetitle="브랜드 소식 통계 목록" /> <!-- 07.31 디자인 변경으로 인한 수정(문구수정) -->
         <div class="top-notice--gray">
           <p>최근 1년 6개월 이내 기간 중 최대 31일까지 검색 가능합니다.</p>
         </div>
@@ -20,10 +20,7 @@
             />
             <!-- 조회기간 -->
             <Dropdown :options="rangeOption" v-model="selDateRange" @change="changeRange" class="range-box"/>
-            <!-- 검색 버튼 -->
-            <ButtonCmp
-              type="btn-default-line"
-            >검색</ButtonCmp>
+            <!-- 07.31 디자인 변경으로 인한 수정(검색 버튼 삭제)-->
           </div>
         </div>
         <PageTitleH3 titleh3="브랜드 소식 고객반응 추이"/>
@@ -50,7 +47,6 @@
           <a href="" download class="btn btn-blue">상세 데이터 다운로드</a>
         </div>
         <PageTitleH3 titleh3="브랜드 소식별" />
-        <!-- 기획서 적용(v0.5) / 디자인 미적용  -->
         <!-- 기본 소식 -->
         <div class="feed-stat__wrap">
           <div class="feed-stat-title">
@@ -81,7 +77,7 @@
                   <td>{{item.feedBtn}}</td>
                 </tr>
                 <!-- 검색결과 없을 경우 -->
-                <tr>
+                <tr class="basic-feed-none"> <!-- 07.31 디자인 변경으로 인한 수정(basic-feed-none 클래스 추가)-->
                   <td colspan="4">검색 결과가 없습니다.</td>
                 </tr>
                 <!-- // 검색결과 없을 경우 -->
@@ -120,7 +116,7 @@
                   <td>{{item.feedBtn}}</td>
                 </tr>
                 <!-- 검색결과 없을 경우 -->
-                <tr>
+                <tr class="search-feed-none"> <!-- 07.31 디자인 변경으로 인한 수정(search-feed-none 클래스 추가)-->
                   <td colspan="4">검색 결과가 없습니다.</td>
                 </tr>
                 <!-- // 검색결과 없을 경우 -->
@@ -129,13 +125,7 @@
             <PagingCmp />
           </div>
         </div>
-        <!-- // 기획서 적용(v0.5) / 디자인 미적용  -->
-        <div class="top-notice--gray">
-          <ul>
-            <li>- 최근 1년 6개월 이내 기간 중 최대 31일까지 검색 가능합니다.</li>
-            <li>- 1일 내 동일 고객의 버튼 클릭 수는 제외됩니다.</li>
-          </ul>
-        </div>
+        <!-- 07.31 디자인 변경으로 인한 수정(top-notice--gray 클래스 삭제)-->
       </div>
     </div>
   </div>
@@ -146,7 +136,7 @@ import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
-import ButtonCmp from '@/components/common/ButtonCmp.vue'
+// 07.31 디자인 변경으로 인한 수정으로 ButtonCmp 미사용
 import PagingCmp from '@/components/common/PagingCmp.vue'
 import StatList from '@/views/brand/stat/components/StatList.vue'
 import customerResponseTrend from '@/views/brand/stat/customerResponseTrend.js'
@@ -157,7 +147,7 @@ export default {
     BrandLnb,
     PageTitleH3,
     Dropdown,
-    ButtonCmp,
+    // 07.31 디자인 변경으로 인한 수정으로 ButtonCmp 미사용
     PagingCmp,
     StatList
   },
@@ -223,6 +213,7 @@ export default {
             legend: {
               display: true,
               position: 'top',
+              align: 'start', // 07.31 디자인 변경으로 인한 수정 (align 추가)
               labels: {
                 usePointStyle: true,
                 boxWidth: 12,

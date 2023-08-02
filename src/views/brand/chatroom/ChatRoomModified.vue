@@ -197,7 +197,7 @@
                                 </span>
                               </div>
                               <!-- 기획서 v1.0 수정 (특수 기호표 사용)-->
-                              <p class="guide-text black float-none">&middot; 문구 추가 필요</p>
+                              <p class="guide-text black float-none">&middot; <!-- 문구 추가 필요 --></p>
                               <template v-if="form.agencyConnect">
                                 <div class="inner__input">
                                   <div class="inner__input-box">

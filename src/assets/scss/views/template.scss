@@ -324,6 +324,14 @@
     }
   }
 }
+.table-bodyonly {
+  th {
+    &.btuton__area {
+      background-color: red;
+    }
+  }
+}
+
 
 .emulator__wrap {
   display: flex;

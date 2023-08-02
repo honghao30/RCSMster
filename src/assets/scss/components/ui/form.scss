@@ -231,7 +231,7 @@ $textareaHeight: 100px;
       background:#fff;
       margin-right:10px;
       position: relative;
-      top:2px;
+      top:3px;
       border-radius:4px;
     }    
   } 
@@ -859,12 +859,17 @@ $formLabelWidth : 120px;
     }
     &.w--half {
       width: 50%;
-      padding:0 5px;
+      padding:0 4px;
       flex: initial;
+      
       &:first-child {
         padding-left:0;
       }
-      &:last-child {
+      + button, + label {
+        margin-left: 4px;
+      }
+      &+.w--half {
+        margin-top: 0;
         padding-right:0;
       }
     }
@@ -908,7 +913,7 @@ $formLabelWidth : 120px;
         }
     }
     &.address {
-        gap:10px;
+        gap:8px;
         input {
             background-color: #F4F4F4;
         }                    
@@ -921,6 +926,14 @@ $formLabelWidth : 120px;
         display: inline-block;
         margin:10px 0;
         width: 33.3%;
+      }
+    }
+    &.ext-num {
+      padding-left: 20px;
+      justify-content:flex-start !important;
+      .input {
+        width: 120px;
+        flex: 0 0 120px;
       }
     }
   }
@@ -942,16 +955,24 @@ $formLabelWidth : 120px;
 .guide-text {
   margin-top:8px;
   width: 100%;
-  @include fontoption(12px,#2F77FB,400,22px); 
-  &.black {
-    color: #000;
-    padding-left:8px;
-    text-indent: -8px;  
-  }
+  display:flex;
+  gap: 6px;
+  align-items: flex-start;
+  @include fontoption(12px,#666,400,22px); 
+  &:before {
+    content:'';
+    display: inline-block;
+    width:4px;
+    height: 4px;
+    border-radius: 4px;
+    background-color:#000;
+    position:relative;
+    top:9px;
+    flex-shrink: 0;
+  } 
   &.validation {
     margin:10px 0 0;
-    display:flex;
-    align-items:flex-start;
+    color: $pointColor;
     &:before {
       content:'';
       display:inline-block;
@@ -963,13 +984,11 @@ $formLabelWidth : 120px;
       background-repeat: no-repeat;
       background-position: 50% 50%;
       background-size: 100%;
-      margin-right:4px; 
+      background-color:transparent;
     }
   }
   &.error {
     color: $errorColor;
-    display:flex;
-    align-items:flex-start;
     &:before {
       content:'';
       display:inline-block;
@@ -981,11 +1000,17 @@ $formLabelWidth : 120px;
       background-repeat: no-repeat;
       background-position: 50% 50%;
       background-size: 100%;
-      margin-right:4px;
+      background-color:transparent;
     }
   }
   +.guide-text {
     margin-top: 2px;
+  }
+  &__link {
+    color: #000;
+    &:before {
+      display: none;
+    }
   }
 }
 .error {

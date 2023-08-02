@@ -5,7 +5,7 @@ export default {
       type: 'doughnut',
       label: '발송고객 SEG TOP 5',
       data: [25, 21, 15, 10, 10, 19],
-      backgroundColor: ['#2F77FB', '#558EF6', '#76A5FC', '#8FB6FD', '#BFD4FC', '#D8E5FC']
+      backgroundColor: ['#6EB1FF', '#78E1FF', '#FF8964', '#FFD965', '#65D59A', '#A194FF'] // 07.31 디자인 변경으로 인한 수정
     }
   ]
 }

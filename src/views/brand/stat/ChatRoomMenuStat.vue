@@ -3,14 +3,14 @@
     <div class="brand__inner">
       <BrandLnb />
       <div class="brand-info__wrap stat__wrap ch-stat">
-        <PageTitle pagetitle="대화방 메뉴 통계" />
+        <PageTitle pagetitle="대화방 메뉴 통계 상세" /> <!-- 07.31 디자인 변경으로 인한 수정(문구수정)-->
         <div class="top-notice--gray">
           <p>대화방/발신번호 별 1건 이상 사용자 선택이 일어난 경우에 대해 집계됩니다.</p>
         </div>
         <div class="top-ctrl-area">
           <div class="left-area">
-            <Dropdown :options="totalOptions" placeholder="전체" />
-            <Dropdown searchable :options="PhoeIdOptions" placeholder="023352286" />
+            <Dropdown :options="totalOptions" placeholder="전체" class="w180"/> <!-- 07.31 디자인 변경으로 인한 수정(w180 클래스 추가)-->
+            <Dropdown searchable :options="PhoeIdOptions" placeholder="023352286"  class="w240"/> <!-- 07.31 디자인 변경으로 인한 수정(w240 클래스 추가)-->
             <ButtonCmp
               type="btn-default-line"
             >조회</ButtonCmp>
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <PageTitleH3 titleh3="기간별 반응 수" totalCount="30"/>
+        <PageTitleH3 titleh3="기간별 반응 수"/> <!-- 07.31 디자인 변경으로 인한 수정( totalCount="30" 삭제)-->
         <div class="top-ctrl-area">
           <div class="left-area">
             <!-- 기간 / datepicker -->
@@ -50,14 +50,16 @@
             <!-- 조회기간 -->
             <Dropdown :options="rangeOption" v-model="selDateRange" @change="changeRange" class="range-box"/>
             <!-- 검색 -->
-            <span class="input search">
+            <span class="input search w300"> <!-- 07.31 디자인 변경으로 인한 수정(w300 이중클래스 추가)-->
               <input ref="search" type="text" class="input" placeholder="검색어를 입력해 주세요.">
             </span>
-            <!-- 검색 버튼 -->
-            <ButtonCmp
-              type="btn-default-line"
-            >검색</ButtonCmp>
+            <!-- 07.31 디자인 변경으로 인한 수정(검색 버튼 삭제)-->
           </div>
+          <!-- 07.31 디자인 변경으로 인한 수정(right-area 추가) -->
+          <div class="right-area">
+            <p>총 <span class="total-strong">30</span>건</p>
+          </div>
+          <!-- // 07.31 디자인 변경으로 인한 수정(right-area 추가) -->
         </div>
         <div class="table__wrap">
           <table class="table table-list">
@@ -74,12 +76,12 @@
                 <th scope="col" rowspan="2">대화방 메뉴명</th>
                 <th scope="col" rowspan="2">응답 유형</th>
                 <th scope="col" rowspan="2">기간내 클릭 수</th>
-                <th scope="col" colspan="3">고객반응</th>
+                <th scope="col" colspan="3" class="bd-side-left">자동응답 메시지</th> <!-- 07.31 디자인 변경으로 인한 수정(bd-side-left 클래스 추가) -->
               </tr>
               <tr class="date-detail">
                 <th scope="col">버튼명</th>
                 <th scope="col">Action 종류</th>
-                <th scope="col">클릭 수</th>
+                <th scope="col" class="bd-side-right">클릭 수</th> <!-- 07.31 디자인 변경으로 인한 수정(bd-side-right 클래스 추가) -->
               </tr>
             </thead>
             <tbody>
@@ -101,7 +103,7 @@
                 </template>
               </template>
               <!-- 검색결과 없을 경우 -->
-              <tr>
+              <tr class="recent-none"> <!-- 07.31 디자인 변경으로 인한 수정(recent-none 클래스 추가) -->
                 <td colspan="6">검색 결과가 없습니다.</td>
               </tr>
               <!-- // 검색결과 없을 경우 -->
@@ -192,7 +194,7 @@ export default {
             x: {
               stacked: true,
               grid: {
-                display: false 
+                display: false
               },
               ticks: {
                 color: '#000',
@@ -224,12 +226,25 @@ export default {
             legend: {
               display: true,
               position: 'top',
+              align: 'start', // 07.31 디자인 변경으로 인한 수정 (align 추가)
               labels: {
                 usePointStyle: true,
                 boxWidth: 12,
                 font: {
                   size: 12
                 }
+              }
+            },
+            // 07.31 디자인 변경으로 인한 수정 (tooltip 추가)
+            tooltip: {
+              backgroundColor: 'rgba(255, 255, 255)',
+              titleColor: '#000',
+              bodyColor: '#000',
+              padding: {
+                top: 20,
+                bottom: 20,
+                left: 12,
+                right: 12
               }
             }
           }

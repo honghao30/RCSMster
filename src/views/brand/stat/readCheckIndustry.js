@@ -3,12 +3,12 @@ export default {
   datasets: [
     {
       type: 'bar',
-      backgroundColor: '#C1D7FF',
+      backgroundColor: '#C9F1FD', // 07.31 디자인 변경으로 인한 수정
       data: [85.5, 70, 75, 93.3, 60, 60, 60, 60, 60, 60],
       borderRadius: 4,
       barPercentage: 0.9,
       categoryPercentage: 0.3,
-      pointHoverBackgroundColor: '#2F77FB'
+      pointHoverBackgroundColor: '#78E1FF' // 07.31 디자인 변경으로 인한 수정
     }
   ]
 }

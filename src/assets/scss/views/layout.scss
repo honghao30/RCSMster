@@ -382,7 +382,7 @@ $contentWidth2: 1024px;
     .page-title__wrap {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-end;
         margin-top: 60px;
         padding-bottom: 16px;
         h3 {
@@ -393,6 +393,7 @@ $contentWidth2: 1024px;
             color: #000000;
         }
         p {
+            display:none;
             font-weight: 400;
             font-size: 16px;
             line-height: 26px;

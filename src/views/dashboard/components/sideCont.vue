@@ -312,13 +312,12 @@
         modalsize="dashboard_modal"
       >
         <div class="msg" slot="msg">
-          <h3>안심마크 서비스란 무엇인가요?</h3>
+          <h3>‘안심마크 서비스’란 무엇인가요?</h3> <!-- 0802 디자인에 맞게 문구 수정 -->
           <!-- 기획서 v1.0 수정 - 구조 변경 및 문구 수정 -->
           <div class="safetymark_des">
-            <p>안심마크는 사칭 문자 가능성이 있는 일반 문자와 쉽게 구분할 수 있도록, 기업용 RCS 메시지에서
-              만 제공되는 서비스입니다. 인증마크(<span class="safety_icon"></span>)와, 안심문구(<span class="safety_icon-text">확인된 발신번호</span>)를 결합한 형태로 RCS
+            <p>안심마크는 사칭 문자 가능성이 있는 일반 문자와 쉽게 구분할 수 있도록, 기업용 RCS 메시지에서만 제공되는 서비스입니다. 인증마크(<span class="safety_icon"></span>)와, 안심문구(<span class="safety_icon-text">확인된 발신번호</span>)를 결합한 형태로 RCS
               메시지 카드 상단에 표시되며 실제 해당 기업에서 발송했음을 증명합니다.
-            </p>
+            </p><!-- 0802 디자인에 맞게 띄어쓰기 수정 -->
             <img src="@/assets/images/modal/dashboard_safetymark.png" alt="">
             <p>안심마크는 한국인터넷진흥원(KISA)의 허가를 받은 기업만 사용 가능하며, 해당 기업의 발신번
               호로 전송되는 RCS메시지는 기본적으로 안심마크가 붙게 됩니다. 이용을 원치 않는 경우 대화방

@@ -3,7 +3,7 @@
     <div class="brand__inner">
       <BrandLnb />
       <div class="brand-info__wrap stat__wrap barnd-stat">
-        <PageTitle pagetitle="브랜드 소식 상세" />
+        <PageTitle pagetitle="브랜드 소식 통계 상세" /> <!-- 07.31 디자인 변경으로 인한 수정(문구수정) -->
         <PageTitleH3 titleh3="브랜드 소식별 - 상세정보"/>
         <div class="brand-stat-inner">
           <div class="brand-stat-flex">
@@ -47,11 +47,13 @@
                 />
                 <!-- 조회기간 -->
                 <Dropdown :options="rangeOption" v-model="selDateRange" @change="changeRange" class="range-box"/>
-                <!-- 검색 버튼 -->
-                <ButtonCmp
-                  type="btn-default-line"
-                >검색</ButtonCmp>
+                <!-- 07.31 디자인 변경으로 인한 수정(검색 버튼 삭제)-->
               </div>
+              <!-- 07.31 디자인 변경으로 인한 수정(right-area 추가) -->
+              <div class="right-area">
+                <p>총 <span class="total-strong">30</span>건</p>
+              </div>
+              <!-- // 07.31 디자인 변경으로 인한 수정(right-area 추가) -->
             </div>
             <div class="table__wrap">
               <table class="table table-list">
@@ -73,12 +75,14 @@
                     <th scope="col" colspan="2">버튼 2 클릭 수</th>
                   </tr>
                   <tr class="date-detail">
-                    <th scope="col">당일</th>
-                    <th scope="col">누적</th>
-                    <th scope="col">당일</th>
-                    <th scope="col">누적</th>
-                    <th scope="col">당일</th>
-                    <th scope="col">누적</th>
+                    <!-- 07.31 디자인 변경으로 인한 수정(각 th태그에 클래스 추가) -->
+                    <th scope="col" class="bd-side-left">당일</th>
+                    <th scope="col" class="bd-side-right">누적</th>
+                    <th scope="col" class="bd-side-left">당일</th>
+                    <th scope="col" class="bd-side-right">누적</th>
+                    <th scope="col" class="bd-side-left">당일</th>
+                    <th scope="col" class="bd-side-right">누적</th>
+                    <!-- // 07.31 디자인 변경으로 인한 수정(각 th태그에 클래스 추가) -->
                   </tr>
                 </thead>
                 <tbody>
@@ -127,7 +131,7 @@ import BrandLnb from '@/views/brand/components/BrandLnb.vue'
 import PageTitle from '@/components/common/PageTitle.vue'
 import PageTitleH3 from '@/components/common/PageTitleH3.vue'
 import Dropdown from '@/components/common/Dropdown.vue'
-import ButtonCmp from '@/components/common/ButtonCmp.vue'
+// 07.31 디자인 변경으로 인한 수정으로 ButtonCmp 미사용
 import PagingCmp from '@/components/common/PagingCmp.vue'
 import feedEmulator from '@/views/brand/feed/components/feedEmulator.vue'
 
@@ -137,7 +141,7 @@ export default {
     BrandLnb,
     PageTitleH3,
     Dropdown,
-    ButtonCmp,
+    // 07.31 디자인 변경으로 인한 수정으로 ButtonCmp 미사용
     PagingCmp,
     feedEmulator
   },

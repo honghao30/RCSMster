@@ -1034,6 +1034,15 @@
 				border: 1px solid #EAEAEA;
 				border-radius: 16px;
 				justify-content: center;
+				&:nth-child(1) {
+					&:hover {
+						.tips-layer {
+							display: block;
+							opacity: 1;
+							transition: all 0.3s;
+						}
+					}
+				}
 				.descripttion-top {
 					@include fontoption(14px,#000,500,22px);
 					text-align: center;
@@ -1068,6 +1077,8 @@
 				align-items: center;
 				justify-content: center;
 				flex-direction: column;
+				display: none;
+				opacity: 0;
 				p {
 					@include fontoption(14px,#000,400,26px);
 					padding: 6px 20px;		

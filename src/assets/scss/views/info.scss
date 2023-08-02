@@ -54,6 +54,7 @@
                 &.service {
                     .checkbox + .checkbox {
                         display:inline-block;
+                        margin-left: 34px;
                     }
                 }
                 &.w--half {
@@ -63,12 +64,13 @@
                         width: 50%;
                     }
                 }
-                &.input-half {
-                    gap: 180px;
-                }
+                
                 &.ip{
                     width: 100%;
                     margin-bottom: 8px;
+                    .input {
+                        flex:1;
+                    }
                     &+.ip{
                         margin-top: 0;
                     }
@@ -86,18 +88,22 @@
                 }
                 .form-item-row__title {
                     font-weight: 700;
-                    flex:0 0 200px;
-                    line-height: 42px;
+                    flex:0 0 170px;
+                    line-height: 36px;
                 }
                 .service-list {
-                    flex:auto;
+                    width:calc(100% - 170px);
                     display: flex;
                     flex-wrap:wrap;
                     li {
-                        width: 50%;
-                        height: 42px;
+                        width: 200px;
+                        height: 36px;
                         display:inline-flex;
                         align-items: center;
+                        &.w--full {
+                            flex: none;
+                            width: 100%;
+                        }
                     }
                 }
             }
@@ -106,12 +112,16 @@
                     display: flex;
                     align-items:center;
                     justify-content: flex-start;
+                    .radiobox {
+                        width: 280px;
+                    }
                     .item-label {
-                        margin-right: 55px;
+                        font-weight: 500;
+                        margin-right: 32px;
                     }
                 }
                 .result-text {
-                    margin-left:20px;
+                    margin-left:32px;
                 }
             }
             .agency-phone {
@@ -371,6 +381,7 @@
         .terms {
             font-size: 14px;
             line-height: 26px;
+            color: #666;
             &__h1 {
                 font-weight: 700;
                 font-size: 18px;
@@ -406,6 +417,11 @@
     .text {
         font-size: 18px;
         line-height: 28px;
+        em {
+            font-weight: 500;
+            font-style: normal;
+            text-decoration: underline;
+        }
     }
 }
 
@@ -443,9 +459,9 @@
 }
 
 .withdrawal__wrap {
+    margin-top: -20px;
     .text {
         text-align: center;
-        margin-top: -44px;
         @include fontoption(14px,#000,400,26px);
     }
     .guide-list {
@@ -455,6 +471,18 @@
         padding: 24px;
         p {
             @include fontoption(14px,#666,400,26px);
+            display:flex;
+            align-items:center;
+            gap: 8px;
+            &:before {
+                content:'';
+                display:inline-block;
+                width: 4px;
+                height: 4px;
+                background-color:#666;
+                border-radius: 100%;
+            }
+
         }
     }
     .checkbox {

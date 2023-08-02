@@ -7,16 +7,19 @@
           :key="menu.menuId"
           :command="menu.path"
         >
-          <router-link :to="menu.path">
+          <a href="#"
+            @click="goMenu(menu, $event)"
+            :class="{ 'active': menu.isActive }"
+          >
             {{ menu.name }}
-          </router-link>
+          </a>
         </li>
       </ul>
     </div>
 </template>
 
 <script>
-import store from '@/store'
+// import store from '@/store'
 
 export default {
   name: 'Gnb',
@@ -30,10 +33,13 @@ export default {
       default: function() {
         return []
       }
-    }
+    },
+    isMobileNavOpen: Boolean
   },
   data() {
-    return {}
+    return {
+      subDepthActive: false
+    }
   },
   computed: {
     visibleLevel2Menus() {
@@ -43,8 +49,16 @@ export default {
   created() {},
   mounted() {},
   methods: {
-    goMenu(menu) {
-      this.routerPush(menu.path)
+    goMenu(menu, event) {
+      event.preventDefault()
+      const navigationResult = this.$router.push(menu.path)
+      if (navigationResult) {
+        this.$emit('update:isMobileNavOpen', !this.isMobileNavOpen)
+      }
+      // 액티브 상태 변경
+      this.level2Menus.forEach(m => {
+        m.isActive = (m.menuId === menu.menuId)
+      })
     }
   }
 }

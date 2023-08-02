@@ -29,23 +29,29 @@
         </div>
         <PageTitleH3 titleh3="누적 결과"/>
         <div class="stat-box">
+          <!-- 07.31 디자인 변경으로 인한 수정(resultBarLine → resultBar)-->
           <statList
-            v-model="resultBarLine"
-            :chType="resultBarLine.chType"
-            :chart-options="resultBarLine.ChartOptions"
-            :chart-data="resultBarLine.ChartData"
-            :chart-id="resultBarLine.chartId"
-            :dataset-id-key="resultBarLine.datasetIdKey"
+            v-model="resultBar"
+            :chType="resultBar.chType"
+            :chart-options="resultBar.ChartOptions"
+            :chart-data="resultBar.ChartData"
+            :chart-id="resultBar.chartId"
+            :dataset-id-key="resultBar.datasetIdKey"
             :width="1063"
             :height="391"
           />
         </div>
         <ul class="stat-result">
-          <li>총 발송 성공 건수<span class="stat-result-num">{{sumSendSuccess.toLocaleString()}}</span></li>
-          <li>총 읽음 확인율<span class="stat-result-num">{{readCheckRate}}%</span></li>
-          <li>총 클릭률<span class="stat-result-num">{{customerClickRate}}%</span></li>
+          <li class="three-result">총 발송 성공 건수<span class="stat-result-num">{{sumSendSuccess.toLocaleString()}}</span></li> <!-- 07.31 디자인 변경으로 인한 수정(three-result 추가) -->
+          <li class="three-result">총 읽음 확인율<span class="stat-result-num">{{readCheckRate}}%</span></li> <!-- 07.31 디자인 변경으로 인한 수정(three-result 추가) -->
+          <li class="three-result">총 클릭률<span class="stat-result-num">{{customerClickRate}}%</span></li> <!-- 07.31 디자인 변경으로 인한 수정(three-result 추가) -->
         </ul>
-        <PageTitleH3 titleh3="날짜별 상세" totalCount="30"/>
+        <!-- 07.31 디자인 변경으로 인한 수정(title-flex 추가) -->
+        <div class="title-flex">
+          <PageTitleH3 titleh3="날짜별 상세"/> <!-- 07.31 디자인 변경으로 인한 수정( totalCount="30" 삭제) -->
+          <p>총 <span class="total-strong">30</span>건</p>
+        </div>
+        <!-- // 07.31 디자인 변경으로 인한 수정(title-flex 추가) -->
         <div class="table__wrap">
           <table class="table table-list">
             <colgroup>
@@ -61,12 +67,12 @@
                 <th scope="col" rowspan="2">날짜</th>
                 <th scope="col" rowspan="2">발송 성공 건수</th>
                 <th scope="col" rowspan="2">읽음 확인 수</th>
-                <th scope="col" colspan="3">고객반응</th>
+                <th scope="col" colspan="3" class="bd-side-left">고객반응</th> <!-- 07.31 디자인 변경으로 인한 수정(bd-side-left 클래스 추가) -->
               </tr>
               <tr class="date-detail">
                 <th scope="col">버튼명</th>
                 <th scope="col">Action 종류</th>
-                <th scope="col">클릭 수</th>
+                <th scope="col" class="bd-side-right">클릭 수</th> <!-- 07.31 디자인 변경으로 인한 수정(bd-side-right 클래스 추가) -->
               </tr>
             </thead>
             <tbody>
@@ -87,45 +93,55 @@
                 </tr>
                 </template>
               </template>
-              <!-- 기획서 적용(v0.5) / 디자인 미적용 -->
+              <!-- 07.31 디자인 변경으로 인한 수정(기획서 적용(v0.5) / 디자인 미적용 이었으나 현재 디자인 적용 /rowspan 삭제 , 두번째 <tr class="date-detail-result"></tr> 삭제) -->
               <tr class="date-detail-result">
-                <td rowspan="2">소계</td>
-                <td rowspan="2">{{sumSendSuccess.toLocaleString()}}</td>
+                <td>소계</td>
+                <td>{{sumSendSuccess.toLocaleString()}}</td>
                 <td>{{sumReadCheckNum.toLocaleString()}}</td>
-                <td rowspan="2"></td>
-                <td rowspan="2"></td>
+                <td></td>
+                <td></td>
                 <td>{{sumCustomerClick.toLocaleString()}}</td>
               </tr>
-              <tr class="date-detail-result">
-                <td>(읽음확인율 {{readCheckRate}}%)</td>
-                <td>(클릭률 {{customerClickRate}}%)</td>
-              </tr>
-              <!-- // 기획서 적용(v0.5) / 디자인 미적용 -->
+              <!-- // 07.31 디자인 변경으로 인한 수정(기획서 적용(v0.5) / 디자인 미적용 이었으나 현재 디자인 적용 /rowspan 삭제 , 두번째 <tr class="date-detail-result"></tr> 삭제) -->
             </tbody>
           </table>
         </div>
+        <!-- 07.31 디자인 변경으로 인한 수정(stat-result 추가 / [상세 데이터 다운로드] 버튼 위치 이동) -->
+        <ul class="stat-result">
+          <li class="two-result">읽음확인율<span class="stat-result-num">{{readCheckRate}}%</span></li>
+          <li class="two-result">클릭률<span class="stat-result-num">{{customerClickRate}}%</span></li>
+        </ul>
+        <!-- 상세 데이터 다운로드 버튼 -->
+        <div class="button__wrap flex-end data-btn">
+          <!-- 상세 데이터 다운로드 : 검색결과 없을 경우 disabled 클래스 추가 -->
+          <a href="" download class="btn btn-blue">상세 데이터 다운로드</a>
+        </div>
+        <!-- // 07.31 디자인 변경으로 인한 수정(stat-result 추가 / [상세 데이터 다운로드] 버튼 위치 이동) -->
         <PagingCmp />
-        <!-- 기획서 적용(v0.5) / 디자인 미적용 / Case3까지 존재함 -->
         <!-- 추가분석 영역 -->
         <!-- 추가분석 영역 / Case1. D+4 되기 전 -->
         <div class="stat-result add-case">
           <h3>이번 Target 고객군에 대한 추가 분석이 가능합니다.</h3>
+          <!-- 07.31 디자인 변경으로 인한 수정 ('-' 추가) -->
           <ul>
-            <li>추가분석(Beta)은 SK Telecom데이터 기반으로 제공되며 Group ID에 발송이 1건이고, 고객 중 SKT 발송건이 1천건 이상인 경우 확인이 가능합니다.</li>
-            <li>읽음확인 및 버튼 클릭 등 반응을 보인 고객들에 대한 인구통계학적 분석 등 다양한 분석정보가 제공됩니다.</li>
-            <li>추가분석 결과는 최종 발송일로부터 4일 이후에 확인이 가능합니다.</li>
+            <li>- 추가분석(Beta)은 SK Telecom데이터 기반으로 제공되며 Group ID에 발송이 1건이고, 고객 중 SKT 발송건이 1천건 이상인 경우 확인이 가능합니다.</li>
+            <li>- 읽음확인 및 버튼 클릭 등 반응을 보인 고객들에 대한 인구통계학적 분석 등 다양한 분석정보가 제공됩니다.</li>
+            <li>- 추가분석 결과는 최종 발송일로부터 4일 이후에 확인이 가능합니다.</li>
           </ul>
+          <!-- // 07.31 디자인 변경으로 인한 수정 ('-' 추가) -->
         </div>
         <!-- 추가분석 영역 / Case2. D+4 이후 조건을 만족하지 않는 경우 -->
         <div class="stat-result add-case">
           <h3>조건에 맞지 않아 추가 분석이 불가합니다.</h3>
           <h4>고객 중 SKT 발송건이 1천건 미만이거나, 그룹ID에 여러 개의 발송건이 있습니다.</h4>
+          <!-- 07.31 디자인 변경으로 인한 수정 ('-' 추가) -->
           <ul>
-            <li>추가분석(Beta)은 SK Telecom데이터 기반으로 제공되며 Group ID에 발송이 1건이고, 고객 중 SKT 발송건이 1천건 이상인 경우 확인이 가능합니다.</li>
-            <li>읽음확인 및 버튼 클릭 등 반응을 보인 고객들에 대한 인구통계학적 분석 등 다양한 분석정보가 제공됩니다.</li>
-            <li>추가분석 결과는 최종 발송일로부터 4일 이후에 확인이 가능합니다.</li>
+            <li>- 추가분석(Beta)은 SK Telecom데이터 기반으로 제공되며 Group ID에 발송이 1건이고, 고객 중 SKT 발송건이 1천건 이상인 경우 확인이 가능합니다.</li>
+            <li>- 읽음확인 및 버튼 클릭 등 반응을 보인 고객들에 대한 인구통계학적 분석 등 다양한 분석정보가 제공됩니다.</li>
+            <li>- 추가분석 결과는 최종 발송일로부터 4일 이후에 확인이 가능합니다.</li>
           </ul>
-          <p>※ 예시&#41; 그룹ID에 여러 개 발송건이 있는 경우</p>
+          <!--// 07.31 디자인 변경으로 인한 수정 ('-' 추가) -->
+          <p>예시&#41; 그룹ID에 여러 개 발송건이 있는 경우</p> <!--// 07.31 디자인 변경으로 인한 수정 ('※' 삭제) -->
           <div class="table__wrap">
             <table class="table table-list">
               <thead>
@@ -141,7 +157,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td rowspan="2">9743089AF350B7845589</td>
+                  <td>9743089AF350B7845589</td> <!--  07.31 디자인 변경으로 인한 수정 (rowspan 삭제) -->
                   <td>1588-6542</td>
                   <td>923,342,343건</td>
                   <td>456,540,245건</td>
@@ -150,6 +166,7 @@
                   <td>13.8%</td>
                 </tr>
                 <tr>
+                  <td>9743089AF350B7845589</td> <!--  07.31 디자인 변경으로 인한 수정 (td 태그 추가) -->
                   <td>6100-6545</td>
                   <td>456,540,245건</td>
                   <td>6,540,245건</td>
@@ -162,11 +179,7 @@
           </div>
         </div>
         <!-- // 추가분석 영역 -->
-        <!-- // 기획서 적용(v0.5) / 디자인 미적용 / Case3까지 존재함  -->
-        <div class="button__wrap flex-end data-btn">
-          <!-- 상세 데이터 다운로드 : 검색결과 없을 경우 disabled 클래스 추가 -->
-          <a href="" download class="btn btn-blue">상세 데이터 다운로드</a>
-        </div>
+        <!-- 07.31 디자인 변경으로 인한 수정( [상세 데이터 다운로드] 버튼 위치 이동으로 삭제) -->
         <PageTitleH3 titleh3="고객분석" />
         <div class="analysis">
           <h5>성별/ 연령별 통계</h5>
@@ -225,19 +238,118 @@
             </div>
           </div>
         </div>
+        <!-- 07.31 디자인 변경으로 인한 수정(오른쪽 목록은 기존에 이미지였으나 퍼블작업함) -->
         <div class="analysis">
           <h5>지역별 통계</h5>
           <div class="customer-type">
             <div class="two-box">
-              <div class="two-box__inner">
+              <!-- 07.31 디자인 변경으로 인한 수정 (flex-map 이중클래스 추가, flex-map-tit, map-percent 추가) -->
+              <div class="two-box__inner flex-map">
+                <div class="flex-map-tit">
+                  <p>발송률</p>
+                </div>
                 <img src="@/assets/images/dummy/stat_map_01.png" alt="">
+                <div class="map-percent blue-percent">
+                  <dl class="first">
+                    <dt></dt>
+                    <dd>
+                      <p>100%</p>
+                      <p>서울</p>
+                    </dd>
+                  </dl>
+                  <dl class="second">
+                    <dt></dt>
+                    <dd>
+                      <p>80%</p>
+                      <p>경기도, 충청북도, 광주</p>
+                    </dd>
+                  </dl>
+                  <dl class="thrid">
+                    <dt></dt>
+                    <dd>
+                      <p>60%</p>
+                      <p>경기도, 충청북도, 광주</p>
+                    </dd>
+                  </dl>
+                  <dl class="fourth">
+                    <dt></dt>
+                    <dd>
+                      <p>40%</p>
+                      <p>인천, 경상남도, 대전, 제주도</p>
+                    </dd>
+                  </dl>
+                  <dl class="fifth">
+                    <dt></dt>
+                    <dd>
+                      <p>20%</p>
+                      <p>충청남도, 경상북도, 전라남도</p>
+                    </dd>
+                  </dl>
+                  <dl class="sixth">
+                    <dt></dt>
+                    <dd>
+                      <p>0%</p>
+                      <p>울산</p>
+                    </dd>
+                  </dl>
+                </div>
               </div>
-              <div class="two-box__inner">
+              <div class="two-box__inner flex-map">
+                <div class="flex-map-tit">
+                  <p>발송률</p>
+                </div>
                 <img src="@/assets/images/dummy/stat_map_02.png" alt="">
+                <div class="map-percent red-percent">
+                  <dl class="first">
+                    <dt></dt>
+                    <dd>
+                      <p>100%</p>
+                      <p>서울</p>
+                    </dd>
+                  </dl>
+                  <dl class="second">
+                    <dt></dt>
+                    <dd>
+                      <p>80%</p>
+                      <p>경기도, 충청북도, 광주</p>
+                    </dd>
+                  </dl>
+                  <dl class="thrid">
+                    <dt></dt>
+                    <dd>
+                      <p>60%</p>
+                      <p>경기도, 충청북도, 광주</p>
+                    </dd>
+                  </dl>
+                  <dl class="fourth">
+                    <dt></dt>
+                    <dd>
+                      <p>40%</p>
+                      <p>인천, 경상남도, 대전, 제주도</p>
+                    </dd>
+                  </dl>
+                  <dl class="fifth">
+                    <dt></dt>
+                    <dd>
+                      <p>20%</p>
+                      <p>충청남도, 경상북도, 전라남도</p>
+                    </dd>
+                  </dl>
+                  <dl class="sixth">
+                    <dt></dt>
+                    <dd>
+                      <p>0%</p>
+                      <p>울산</p>
+                    </dd>
+                  </dl>
+                </div>
+                <!-- // 07.31 디자인 변경으로 인한 수정 (flex-map 이중클래스 추가, flex-map-tit, map-percent 추가) -->
               </div>
+              <!-- // 07.31 디자인 변경으로 인한 수정 (flex-map 이중클래스 추가, flex-map-tit, map-percent 추가) -->
             </div>
           </div>
         </div>
+        <!-- // 07.31 디자인 변경으로 인한 수정(오른쪽 목록은 기존에 이미지였으나 퍼블작업함) -->
         <div class="analysis">
           <h5>발송고객 / 클릭고객 분석</h5>
           <p>이번 발송대상 고객과 반응한 고객의 특성을 알 수 있습니다.</p>
@@ -252,8 +364,8 @@
                   :chart-id="sendCustomerDh.chartId"
                   :dataset-id-key="sendCustomerDh.datasetIdKey"
                   :width="503"
-                  :height="454"
-                  />
+                  :height="394"
+                  /> <!--  07.31 디자인 변경으로 인한 수정(:height="394") -->
               </div>
               <div class="two-box__inner">
                 <statList
@@ -264,8 +376,8 @@
                   :chart-id="clickCustomerDh.chartId"
                   :dataset-id-key="clickCustomerDh.datasetIdKey"
                   :width="503"
-                  :height="454"
-                  />
+                  :height="394"
+                  /> <!--  07.31 디자인 변경으로 인한 수정(:height="394") -->
               </div>
             </div>
           </div>
@@ -345,9 +457,10 @@ export default {
   },
   data() {
     return {
-      resultBarLine: {
-        chType: 'b-chart',
-        chartId: 'bar-stacked-chart',
+      // 07.31 디자인 변경으로 인한 수정 (resultBarLine → resultBar)
+      resultBar: {
+        chType: 'b-chart', // 07.31 디자인 변경으로 인한 수정 (bar-line chart 에서 bar-chart로 변경)
+        chartId: 'bar-chart0', // 07.31 디자인 변경으로 인한 수정 (bar-line chart 에서 bar-chart로 변경으로 인한 chartId 변경)
         datasetIdKey: 'label',
         ChartOptions: {
           responsive: true,
@@ -380,38 +493,37 @@ export default {
                 },
                 stepSize: 100
               }
-            },
-            y1: {
-              suggestedMin: 0,
-              suggestedMax: 90,
-              position: 'right',
-              textAlign: 'right',
-              title: {
-                display: false,
-                text: '퍼센트'
-              },
-              ticks: {
-                color: '#000',
-                font: {
-                  size: 12
-                },
-                stepSize: 10,
-                callback: function(value) {
-                  return value + '%'
-                }
-              }
+            }
+            // 07.31 디자인 변경으로 인한 수정 (y1 삭제)
+          },
+          // 07.31 디자인 변경으로 인한 수정 (layout 추가)
+          layout: {
+            padding: {
+              bottom: 16
             }
           },
           plugins: {
             legend: {
               display: true,
               position: 'top',
+              align: 'start',
               labels: {
                 usePointStyle: true,
-                boxWidth: 12,
                 font: {
                   size: 12
                 }
+              }
+            },
+            // 07.31 디자인 변경으로 인한 수정 (tooltip 추가)
+            tooltip: {
+              backgroundColor: 'rgba(255, 255, 255)',
+              titleColor: '#000',
+              bodyColor: '#000',
+              padding: {
+                top: 20,
+                bottom: 20,
+                left: 12,
+                right: 12
               }
             }
           }
@@ -478,6 +590,18 @@ export default {
                 size: 16
               },
               color: '#000'
+            },
+            // 07.31 디자인 변경으로 인한 수정 (tooltip 추가)
+            tooltip: {
+              backgroundColor: 'rgba(255, 255, 255)',
+              titleColor: '#000',
+              bodyColor: '#000',
+              padding: {
+                top: 20,
+                bottom: 20,
+                left: 12,
+                right: 12
+              }
             }
           }
         },
@@ -543,6 +667,18 @@ export default {
                 size: 16
               },
               color: '#000'
+            },
+            // 07.31 디자인 변경으로 인한 수정 (tooltip 추가)
+            tooltip: {
+              backgroundColor: 'rgba(255, 255, 255)',
+              titleColor: '#000',
+              bodyColor: '#000',
+              padding: {
+                top: 20,
+                bottom: 20,
+                left: 12,
+                right: 12
+              }
             }
           }
         },
@@ -608,6 +744,18 @@ export default {
                 size: 16
               },
               color: '#000'
+            },
+            // 07.31 디자인 변경으로 인한 수정 (tooltip 추가)
+            tooltip: {
+              backgroundColor: 'rgba(255, 255, 255)',
+              titleColor: '#000',
+              bodyColor: '#000',
+              padding: {
+                top: 20,
+                bottom: 20,
+                left: 12,
+                right: 12
+              }
             }
           }
         },
@@ -673,6 +821,18 @@ export default {
                 size: 16
               },
               color: '#000'
+            },
+            // 07.31 디자인 변경으로 인한 수정 (tooltip 추가)
+            tooltip: {
+              backgroundColor: 'rgba(255, 255, 255)',
+              titleColor: '#000',
+              bodyColor: '#000',
+              padding: {
+                top: 20,
+                bottom: 20,
+                left: 12,
+                right: 12
+              }
             }
           }
         },
@@ -688,7 +848,10 @@ export default {
           plugins: {
             legend: {
               display: true,
-              position: 'top',
+              position: 'right', // 07.31 디자인 변경으로 인한 수정 (top → right)
+              padding: {
+                left: 30
+              },
               labels: {
                 usePointStyle: true,
                 boxWidth: 12,
@@ -702,17 +865,34 @@ export default {
               display: true,
               text: '발송고객 SEG TOP 5',
               position: 'top',
+              align: 'start', // 07.31 디자인 변경으로 인한 수정 (align 추가)
               font: {
                 size: 16
               },
-              color: '#000'
+              color: '#000',
+              padding: {
+                bottom: 16
+              } // 07.31 디자인 변경으로 인한 수정 (padding 추가)
             },
             elements: {
               arc: {
                 borderWidth: 1
               }
+            },
+            // 07.31 디자인 변경으로 인한 수정 (tooltip 추가)
+            tooltip: {
+              backgroundColor: 'rgba(255, 255, 255)',
+              titleColor: '#000',
+              bodyColor: '#000',
+              padding: {
+                top: 20,
+                bottom: 20,
+                left: 12,
+                right: 12
+              }
             }
-          }
+          },
+          cutout: 120 // 07.31 디자인 변경으로 인한 수정 (cutout 추가)
         },
         ChartData: sendCustomer
       },
@@ -726,10 +906,10 @@ export default {
           plugins: {
             legend: {
               display: true,
-              position: 'top',
+              position: 'right', // 07.31 디자인 변경으로 인한 수정 (top → right)
               labels: {
+                boxWidth: 153,
                 usePointStyle: true,
-                boxWidth: 12,
                 pointStyle: 'circle',
                 font: {
                   size: 12
@@ -740,17 +920,34 @@ export default {
               display: true,
               text: '클릭고객 SEG TOP 5',
               position: 'top',
+              align: 'start', // 07.31 디자인 변경으로 인한 수정 (align 추가)
               font: {
                 size: 16
               },
-              color: '#000'
+              color: '#000',
+              padding: {
+                bottom: 16
+              } // 07.31 디자인 변경으로 인한 수정 (padding 추가)
             },
             elements: {
               arc: {
                 borderWidth: 1
               }
+            },
+            // 07.31 디자인 변경으로 인한 수정 (tooltip 추가)
+            tooltip: {
+              backgroundColor: 'rgba(255, 255, 255)',
+              titleColor: '#000',
+              bodyColor: '#000',
+              padding: {
+                top: 20,
+                bottom: 20,
+                left: 12,
+                right: 12
+              }
             }
-          }
+          },
+          cutout: 120 // 07.31 디자인 변경으로 인한 수정 (cutout 추가)
         },
         ChartData: clickCustomer
       },
@@ -802,10 +999,26 @@ export default {
               display: true,
               text: '읽음 확인율',
               position: 'top',
+              align: 'start', // 07.31 디자인 변경으로 인한 수정 (align 추가)
               font: {
                 size: 16
               },
-              color: '#000'
+              color: '#000',
+              padding: {
+                bottom: 16
+              } // 07.31 디자인 변경으로 인한 수정 (padding 추가)
+            },
+            // 07.31 디자인 변경으로 인한 수정 (tooltip 추가)
+            tooltip: {
+              backgroundColor: 'rgba(255, 255, 255)',
+              titleColor: '#000',
+              bodyColor: '#000',
+              padding: {
+                top: 20,
+                bottom: 20,
+                left: 12,
+                right: 12
+              }
             }
           }
         },
@@ -859,10 +1072,26 @@ export default {
               display: true,
               text: '클릭률',
               position: 'top',
+              align: 'start', // 07.31 디자인 변경으로 인한 수정 (align 추가)
               font: {
                 size: 16
               },
-              color: '#000'
+              color: '#000',
+              padding: {
+                bottom: 16
+              } // 07.31 디자인 변경으로 인한 수정 (padding 추가)
+            },
+            // 07.31 디자인 변경으로 인한 수정 (tooltip 추가)
+            tooltip: {
+              backgroundColor: 'rgba(255, 255, 255)',
+              titleColor: '#000',
+              bodyColor: '#000',
+              padding: {
+                top: 20,
+                bottom: 20,
+                left: 12,
+                right: 12
+              }
             }
           }
         },

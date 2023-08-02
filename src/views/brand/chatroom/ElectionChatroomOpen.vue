@@ -177,7 +177,7 @@
                                 </label>
                               </div>
                             </div>
-                            <p class="guide-text black">&middot; 문구 추가 필요</p>
+                             <!-- <p class="guide-text black">&middot; 문구 추가 필요 </p>  -->
                             <template v-if="form.agencyConnect === true">
                               <div class="inner__input">
                                 <div class="inner__input-box">

@@ -3,7 +3,7 @@ export default {
   datasets: [
     {
       label: '남성',
-      backgroundColor: '#2F77FB',
+      backgroundColor: '#65D59A', // 07.31 디자인 변경으로 인한 수정
       data: [60, 78, 60, 60, 60, 40, 20],
       borderRadius: 4,
       barPercentage: 0.9,
@@ -11,7 +11,7 @@ export default {
     },
     {
       label: '여성',
-      backgroundColor: '#F87B35',
+      backgroundColor: '#FF9DB5', // 07.31 디자인 변경으로 인한 수정
       data: [50, 85, 65, 58, 37, 25],
       borderRadius: 4,
       barPercentage: 0.9,

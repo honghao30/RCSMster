@@ -4,7 +4,7 @@ export default {
     {
       type: 'bar',
       label: '발송 성공 건수',
-      backgroundColor: '#2F77FB',
+      backgroundColor: '#6FB1FF', // 07.31 디자인 변경으로 인한 수정 (type : 'line' 삭제)
       data: [500, 600, 600, 600],
       borderRadius: 4,
       barPercentage: 0.9, // 막대의 너비 비율을 조정
@@ -14,7 +14,7 @@ export default {
     {
       type: 'bar',
       label: '읽음 확인 건수',
-      backgroundColor: '#F87B35',
+      backgroundColor: '#78E1FF', // 07.31 디자인 변경으로 인한 수정 (type : 'line' 삭제)
       data: [300, 500, 550, 550],
       borderRadius: 4,
       barPercentage: 0.9,
@@ -24,34 +24,13 @@ export default {
     {
       type: 'bar',
       label: '버튼 클릭 수',
-      backgroundColor: '#2F37FB',
+      backgroundColor: '#FF8964', // 07.31 디자인 변경으로 인한 수정 (type : 'line' 삭제)
       data: [90, 100, 100, 120],
       borderRadius: 4,
       barPercentage: 0.9,
       categoryPercentage: 0.3,
       order: 2
-    },
-    {
-      type: 'line',
-      yAxisID: 'y1', // y1 축 사용
-      label: '읽음 확인율',
-      borderColor: '#F86335',
-      data: [51, 79, 83, 88],
-      borderWidth: 2, // 라인의 두께
-      pointStyle: 'circle',
-      backgroundColor: '#fff',
-      order: 1
-    },
-    {
-      type: 'line',
-      yAxisID: 'y1',
-      label: '버튼 반응률',
-      borderColor: '#1C00C6',
-      data: [7, 12, 12, 15],
-      borderWidth: 2,
-      pointStyle: 'circle',
-      backgroundColor: '#fff',
-      order: 1
     }
+    // 07.31 디자인 변경으로 인한 수정 (type : 'line' 삭제)
   ]
 }
