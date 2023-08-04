@@ -7,12 +7,14 @@
           :list="cmpList"
           group="comp"
           handle=".btn-drag"
+          :class="{'preview': showPreview}"
         >
           <template v-for="(item, i) in cmpList">
             <div class="component-item"
               :key="i"
-              :class="[{'inactive' : !item.isActive && !item.title}, {'active': !item.title}]"
+              :class="[{'inactive' : !item.isActive}, {'active': item.isActive}]"
               v-if="!(!item.title && (isEdit || showPreview))"
+              @click="cmpActive(item)"
             >
               <div class="component-item__box" v-if="!item.title"
               >
@@ -105,7 +107,7 @@ export default {
     }
   },
   methods: {
-    addCmpItem(cmp) {
+    addCmpItem() {
       let cmpItem = {
         title: '',
         imgUrl: '',
@@ -113,14 +115,14 @@ export default {
         isActive: false
       }
       this.cmpList.push(cmpItem)
-      this.cmpList.every((item) => {
-        item.isActive = false
-        if (!item.title) {
-          item.isActive = true
-        } else {
-          item.isActive = false
-        }
-      })
+      // this.cmpList.every((item) => {
+      //   item.isActive = false
+      //   if (!item.title) {
+      //     item.isActive = true
+      //   } else {
+      //     item.isActive = false
+      //   }
+      // })
     },
     EditCmpList() {
       this.isEdit = true
@@ -134,6 +136,12 @@ export default {
     },
     preview() {
       this.showPreview = true
+    },
+    cmpActive(cmp) {
+      this.cmpList.forEach((item) => {
+        item.isActive = false
+      })
+      cmp.isActive = true
     }
   }
 }

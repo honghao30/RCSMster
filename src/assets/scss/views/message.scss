@@ -50,6 +50,9 @@
     display:flex;
     flex-direction: column;
     gap: 12px;
+    + .inner__input {
+      margin-top: 8px;
+    }
     .form-item-row {
       + .form-item-row {
         margin-top: 0;
@@ -93,6 +96,9 @@
         }
         .guide-text {
           margin-top: 0;
+          + .guide-text {
+            margin-top: -6px;
+          }
         }
         .input-item {
           margin-top: 0;
@@ -238,23 +244,27 @@
         height: 152px;
         margin-bottom: 16px;
         cursor: pointer;
-        &:hover, &:active {
-          border-color: $pointColor;
+          &:hover, &:active {
+            border-color: $pointColor;
+        }
       }
-    }
       .form-table {
         width: calc(300% + 48px);
-        &.col3 {
-          transform: translateX(calc(-33.3% - 6px));
-  }
-        &.col1 {
-          transform: translateX(calc(50% - 114px));
-}
         .radiobox {
           white-space: nowrap;
           .link {
             text-decoration: underline;
           }
+        }
+      }
+      &.col3 {
+        .form-table {
+          transform: translateX(calc(-33.3% - 6px));
+        }
+      }
+      &.col1 {
+        .form-table {
+          transform: translateX(calc(50% - 114px));
         }
       }
     }
@@ -263,43 +273,6 @@
 
 
 .layout-info__wrap {
-  .type__radio-tab {
-    label {
-      i {
-        width: 58px;
-        height: 58px;
-        flex-shrink: 0;
-        border-radius: 100%;
-        background-color: #F8F8F8;
-        &.icon-sms {
-          background-image: url('../assets/images/icon/icon_sms.png')
-        }
-        &.icon-lms {
-          background-image: url('../assets/images/icon/icon_lms.png')
-        }
-        &.icon-mms {
-          background-image: url('../assets/images/icon/icon_mms.png')
-        }
-      }
-    }
-    input[type="radio"]:checked {
-      + label {
-        border-color: $pointColor;
-        i {
-          background-color: rgba(220, 242, 255, 0.5);
-          &.icon-sms {
-            background-image: url('../assets/images/icon/icon_sms_on.png')
-          }
-          &.icon-lms {
-            background-image: url('../assets/images/icon/icon_lms_on.png')
-          }
-          &.icon-mms {
-            background-image: url('../assets/images/icon/icon_mms_on.png')
-          }
-        }
-      }
-    }
-  }
   .brand-aside {
     .guide {
       padding: 0 26px;
