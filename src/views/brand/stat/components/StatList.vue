@@ -9,6 +9,7 @@
         :dataset-id-key="datasetIdKey"
         :width="width"
         :height="height"
+        :plugins="plugins"
       />
     <!-- // 막대 + 라인 그래프 -->
     <!-- 막대 -->
@@ -20,6 +21,7 @@
       :dataset-id-key="datasetIdKey"
       :width="width"
       :height="height"
+      :plugins="plugins"
     />
     <!-- // 막대 -->
     <!-- 도넛 -->
@@ -31,6 +33,7 @@
       :dataset-id-key="datasetIdKey"
       :width="width"
       :height="height"
+      :plugins="plugins"
     />
     <!-- // 도넛 -->
   </div>
@@ -117,6 +120,10 @@ export default {
     },
     ChartData: {
       type: Object
+    },
+    plugins: {
+      type: Array,
+      default: () => []
     }
   },
   data() {

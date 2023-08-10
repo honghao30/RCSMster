@@ -1,6 +1,10 @@
 <template>
-  <div class="wrap">
-    <HeaderCmp />
+  <div class="wrap"
+    :class="{ isfixed: isHeaderFix}"
+  >
+    <HeaderCmp
+      :class="{ isfixed: isHeaderFix}"
+    />
     <div
       class="contents"
       :class="[{ bgcontainer: ShowBgcolor }, { respons: respons }]"
@@ -27,7 +31,22 @@ export default {
   },
   data() {
     return {
-      ShowBgcolor: false
+      ShowBgcolor: false,
+      isHeaderFix: false,
+      scrollY: null
+    }
+  },
+  watch: {
+    '$store.state.user.lastRequestDate'(value) {
+      this.resetTokenExpiredTimeout()
+    },
+    scrollY(newValue) {
+      if (newValue > 110 && this.$route.path !== '/Feature') {
+        this.isHeaderFix = true
+      } else {
+        this.isHeaderFix = false
+      }
+      this.scrollPosition = window.scrollY
     }
   },
   computed: {
@@ -35,11 +54,13 @@ export default {
       return this.$route.meta.respons === true
     }
   },
-  mounted() {
-    // this.breadcrumbInfo = this.$router.currentRoute.meta.breadcrumb
-    // if (this.breadcrumbInfo === false) {
-    //   this.ShowBgcolor = true
-    // }
+  mounted () {
+    window.addEventListener('scroll', () => {
+      this.scrollY = Math.round(window.scrollY)
+    })
+    console.log(this.$route.path)
+  },
+  methods: {
   }
 }
 </script>

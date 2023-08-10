@@ -27,6 +27,7 @@
                                   ref="layoutName"
                                 >
                                 <div class="input-limit__text">
+                                  <Emoji @input="onSelectEmoji($event, 'layoutName')"/>
                                   <p>{{ form.layoutName.length }}/30자</p>
                                 </div>
                               </div>
@@ -85,7 +86,6 @@
               <div class="message-cmp__list">
                 <div class="cmp-item"
                   v-for="(item, i) in cmpList" :key="i"
-                  :class="[{'col3': i % 3 === 2 }, {'col1': i % 3 === 0}]"
                   >
                   <p class="cmp-title">{{ item.title }}</p>
                   <div class="cmp-box"
@@ -94,6 +94,7 @@
                     <img :src="item.imgUrl" alt="">
                   </div>
                   <table class="table table-bodyonly form-table"
+                    :class="{'col3': i % 3 === 2 }"
                     v-if="item.regIsActive && item.title === '테이블'"
                   >
                     <colgroup>
@@ -218,20 +219,10 @@
                           </div>
                         </td>
                       </tr>
-                      <tr>
-                        <th colspan="2" class="btuton__area">
-                          <ButtonCmp
-                              type="btn-blue-line"
-                              size="medium"
-                              @click="item.regIsActive = false"
-                            >
-                              저장
-                            </ButtonCmp>
-                        </th>
-                      </tr>
                     </tbody>
                   </table>
                   <table class="table table-bodyonly form-table"
+                    :class="[{'col3': i % 3 === 2 }, {'col1': i % 3 === 0}]"
                     v-if=" item.regIsActive  && (item.title === '버튼(좌우)' ||item.title === '버튼(상하)')"
                   >
                     <colgroup>
@@ -279,17 +270,6 @@
                           </div>
                         </td>
                       </tr>
-                      <tr>
-                        <th colspan="2" class="btuton__area">
-                          <ButtonCmp
-                              type="btn-blue-line"
-                              size="medium"
-                              @click="item.regIsActive = false"
-                            >
-                              저장
-                            </ButtonCmp>
-                        </th>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -336,6 +316,8 @@ import PageTitle from '@/components/common/PageTitle.vue'
 import LayoutEmulator from '@/views/brand/message/components/LayoutEmulator.vue'
 import SampleListModal from '@/views/brand/message/components/SampleListModal.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import Emoji from '@/components/common/Emoji.vue'
+import 'emoji-picker-element'
 import ModalView from '@/components/common/ModalView.vue'
 
 export default {
@@ -344,6 +326,7 @@ export default {
     LayoutEmulator,
     BrandLnb,
     ButtonCmp,
+    Emoji,
     ModalView,
     SampleListModal
   },
@@ -382,49 +365,49 @@ export default {
           title: '메인 타이틀',
           imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
           viewImgUrl: require('@/assets/images/message/emul_cmp_title.png'),
-          isActive: true,
+          isActive: false,
           regIsActive: false
         },
         {
           title: '스타일타이틀 A',
           imgUrl: require('@/assets/images/message/icon_cmp_title_styled.png'),
           viewImgUrl: require('@/assets/images/message/emul_cmp_title_styled.png'),
-          isActive: true,
+          isActive: false,
           regIsActive: false
         },
         {
           title: 'A 아이템',
           imgUrl: require('@/assets/images/message/icon_cmp_itemA.png'),
           viewImgUrl: require('@/assets/images/message/emul_cmp_itemA.png'),
-          isActive: true,
+          isActive: false,
           regIsActive: false
         },
         {
           title: 'B 아이템',
           imgUrl: require('@/assets/images/message/icon_cmp_itemB.png'),
           viewImgUrl: require('@/assets/images/message/emul_cmp_itemB.png'),
-          isActive: true,
+          isActive: false,
           regIsActive: false
         },
         {
           title: '디스크립션',
           imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
           viewImgUrl: require('@/assets/images/message/emul_cmp_desc.png'),
-          isActive: true,
+          isActive: false,
           regIsActive: false
         },
         {
           title: '버튼(좌우)',
           imgUrl: require('@/assets/images/message/icon_cmp_button_hor.png'),
           viewImgUrl: require('@/assets/images/message/emul_cmp_button_hor.png'),
-          isActive: true,
+          isActive: false,
           regIsActive: false
         },
         {
           title: '버튼(상하)',
           imgUrl: require('@/assets/images/message/icon_cmp_button_ver.png'),
           viewImgUrl: require('@/assets/images/message/emul_cmp_button_ver.png'),
-          isActive: true,
+          isActive: false,
           regIsActive: false
         }
       ],
@@ -432,185 +415,134 @@ export default {
         {
           title: '메인타이틀',
           imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_title.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_title.png')
         },
         {
           title: '스타일 타이틀 A',
           imgUrl: require('@/assets/images/message/icon_cmp_title_styled.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_title_styled.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_title_styled.png')
         },
         {
           title: '테이블',
           imgUrl: require('@/assets/images/message/icon_cmp_table.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_table.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_table.png')
         },
         {
           title: '서브 디스크립션 태이블',
           imgUrl: require('@/assets/images/message/icon_cmp_tableB.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_tableB.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_tableB.png')
         },
         {
           title: 'A 아이템',
           imgUrl: require('@/assets/images/message/icon_cmp_itemA.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_itemA.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_itemA.png')
         },
         {
           title: 'B 아이템',
           imgUrl: require('@/assets/images/message/icon_cmp_itemB.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_itemB.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_itemB.png')
         },
         {
           title: '디스크립션',
           imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_desc.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_desc.png')
         },
         {
           title: '서브 디스크립션 이미지',
           imgUrl: require('@/assets/images/message/icon_cmp_sub_desc_img.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_sub_desc_img.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_sub_desc_img.png')
         },
         {
           title: '노티스',
           imgUrl: require('@/assets/images/message/icon_cmp_notice.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_notice.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_notice.png')
         },
         {
           title: '버튼(좌우)',
           imgUrl: require('@/assets/images/message/icon_cmp_button_hor.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_button_hor.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_button_hor.png')
         },
         {
           title: '버튼(상하)',
           imgUrl: require('@/assets/images/message/icon_cmp_button_ver.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_button_ver.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_button_ver.png')
         }
       ],
       mmsCmpList: [
         {
           title: '메인 타이틀',
           imgUrl: require('@/assets/images/message/icon_cmp_title.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_title.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_title.png')
         },
         {
           title: '스타일 타이틀 A',
           imgUrl: require('@/assets/images/message/icon_cmp_title_styled.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_title_styled.png'),isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_title_styled.png')
         },
         {
           title: '정형 이미지',
           imgUrl: require('@/assets/images/message/icon_cmp_image_square.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_image_square.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_image_square.png')
         },
         {
           title: '가로형 이미지',
           imgUrl: require('@/assets/images/message/icon_cmp_image.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_image.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_image.png')
         },
         {
           title: '테이블',
           imgUrl: require('@/assets/images/message/icon_cmp_table.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_table.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_table.png')
         },
         {
           title: '서브 디스크립션 테이블',
           imgUrl: require('@/assets/images/message/icon_cmp_tableB.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_tableB.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_tableB.png')
         },
         {
           title: 'A 아이템',
           imgUrl: require('@/assets/images/message/icon_cmp_itemA.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_itemA.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_itemA.png')
         },
         {
           title: 'B 아이템',
           imgUrl: require('@/assets/images/message/icon_cmp_itemB.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_itemB.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_itemB.png')
         },
         {
           title: '디스크립션',
           imgUrl: require('@/assets/images/message/icon_cmp_desc.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_desc.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_desc.png')
         },
         {
           title: '서브 디스크립션 이미지',
           imgUrl: require('@/assets/images/message/icon_cmp_sub_desc_img.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_sub_desc_img.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_sub_desc_img.png')
         },
         {
           title: '노티스',
           imgUrl: require('@/assets/images/message/icon_cmp_notice.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_notice.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_notice.png')
         },
         {
           title: '썸네일',
           imgUrl: require('@/assets/images/message/icon_cmp_thumnail.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_thumnail.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_thumnail.png')
         },
         {
           title: '배너',
           imgUrl: require('@/assets/images/message/icon_cmp_banner.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_banner.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_banner.png')
         },
         {
           title: '버튼(좌우)',
           imgUrl: require('@/assets/images/message/icon_cmp_button_hor.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_button_hor.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_button_hor.png')
         },
         {
           title: '버튼(상하)',
           imgUrl: require('@/assets/images/message/icon_cmp_button_ver.png'),
-          viewImgUrl: require('@/assets/images/message/emul_cmp_button_ver.png'),
-          isActive: true,
-          regIsActive: false
+          viewImgUrl: require('@/assets/images/message/emul_cmp_button_ver.png')
         }
       ],
       isModalViewed: false
@@ -631,21 +563,36 @@ export default {
         this.cmpList = this.mmsCmpList
       }
     },
+    onSelectEmoji(e, target, idx) {
+      let emoji = e
+      let refName = target
+      if (idx !== undefined) {
+        this.$refs[refName][0].value += emoji
+      } else {
+        this.$refs[refName].value += emoji
+      }
+    },
     addCmpItem(cmp) {
-      let activeIndex = this.selectedCmpList.length - 1
+      let activeIndex = 0
+      let cmpItem = {
+        title: '',
+        imgUrl: '',
+        viewImgUrl: '',
+        isActive: true
+      }
       this.selectedCmpList.forEach((item, i) => {
         if (item.isActive === true) {
           activeIndex = i
         }
       })
       if (cmp.title === '테이블' || cmp.title === '버튼(상하)' || cmp.title === '버튼(좌우)') {
-        this.cmpList.forEach((item) => {
-          item.regIsActive = false
-        })
         cmp.regIsActive = true
       }
       this.selectedCmpList.splice(activeIndex, 1, cmp)
-    },
+      if (this.selectedCmpList.length - 1 === activeIndex) {
+        this.selectedCmpList.push(cmpItem)
+      }
+    }
   }
 }
 </script>

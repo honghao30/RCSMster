@@ -262,9 +262,23 @@
   }
   .technical-list-notice{
     li{
-      @include fontoption(12px,#000,400,22px);
+      @include fontoption(12px,#666,400,22px);
+      display:flex;
+      align-items: flex-start;
+      gap: 6px;
       &+li{
         margin-top: 2px;
+      }
+      &:before {
+        content:'';
+        display: inline-block;
+        width:4px;
+        height: 4px;
+        border-radius: 4px;
+        background-color:#000;
+        position:relative;
+        top:9px;
+        flex-shrink: 0;
       }
       .list-link{
         font-weight: 700;

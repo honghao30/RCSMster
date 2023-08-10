@@ -357,7 +357,7 @@ $textareaHeight: 100px;
     position:relative;
     border:1px solid $bordersColor;
     padding:0 12px;
-    border-radius: 8px;
+    border-radius: 6px;
     padding:8px 24px 8px 16px;
     color:#000;
     background-color:#fff;
@@ -381,6 +381,8 @@ $textareaHeight: 100px;
     }
   }
   &.disabled {
+    background-color: transparent;
+    color:#999;
     .dropdown__trigger {
       background-color:#f4f4f4;
       color:#999;
@@ -399,7 +401,7 @@ $textareaHeight: 100px;
     z-index:10;
     overflow:hidden;
     .drodown__option {
-      max-height: 130px;
+      max-height: 148px;
       overflow-y: auto;
     }
     li {
@@ -412,6 +414,15 @@ $textareaHeight: 100px;
       }
       &.active {
         background-color:#F4F4F4;
+      }
+      .flag {
+        display:inline-block;
+        border:1px solid #999;
+        padding:1px 8px;
+        border-radius: 15px;
+        margin-left: 8px;
+        background-color:#fff;
+        @include fontoption(12px,#999,400,20px);
       }
     }
     .search__area {
@@ -452,6 +463,7 @@ $textareaHeight: 100px;
       .dropdown__trigger{
         border-color: transparent;
         padding-right: 20px;
+        height: 34px;
         &::before{
             content: '';
             position:absolute;
@@ -467,18 +479,22 @@ $textareaHeight: 100px;
       &.open{
           .dropdown__trigger{
               border-color: #4a5567;
-              border-radius: 8px 8px 0 0;
+              border-radius: 6px 6px 0 0;
               &::before{
                 display: none;
               }
           }
       }
+      .dropdown__menu {
+        top: 34px;
+      }
       
   }
   .input{
       input{
-          border: 0;
-          padding-right: 0;
+        height: 34px;
+        border: 0;
+        padding:0 0 0 10px;
       }
   }
   .search-area{
@@ -500,6 +516,12 @@ $textareaHeight: 100px;
   }
 }
 .switch {
+  display:inline-flex;
+  align-items:center;
+  .switch-title {
+    display:inline-block;
+    margin-right: 16px;
+  }
   &__core {
     display: inline-block;
     width:46px;

@@ -101,15 +101,75 @@
         padding: 16px;
         background-color: #f4f4f4;
         margin:12px 0 -12px;
+        .guide-text {
+            margin-top:2px;
+            &:first-child {
+                margin-top: 0;
+            }
+        }
     }
+}
+.feed-ctrl__area {
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    > div {
+        display:flex;
+        gap: 8px;
+        height: 36px;
+        justify-content: space-between;
+    }
+    .ctrl-status {
+        width: 183px;
+    }
+    .ctrl-range {
+        width: 92px;
+        min-width: 92px;
+    }
+    .el-date-editor.el-input__inner {
+        width: 230px;
+    }
+    .dropdown-search__wrap {
+        .input {
+            input {
+                width: 140px;
+            }
+        }
+    }
+    .btn-reg {
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        background-color:$pointColor;
+        i {
+            display:inline-block;
+            width: 18px;
+            height: 18px;
+            background:url('../assets/images/icon/icon_write.png') no-repeat 50% 50%;
+        }
+        &:hover, &:active {
+            background-color: #2855A7;
+        }
+        &:disabled {
+            background-color:#CCCCCC;
+        }
+        
+    }
+
 }
 .feed__wrap {
     display: flex;
     gap: 32px;
     padding-bottom: 16px;    
     border-top:3px solid #BCBCBC;
-    border-bottom:3px solid #BCBCBC;
+    border-bottom:2px solid #ddd;
     min-height: 800px;
+    .feed-reg {
+        margin-top: 16px;
+        border:2px solid $pointColor;
+        border-radius: 16px;
+        padding: 20px 20px 32px;
+    }
     .upfile-list {
         li {margin:3px 0;}
     }
@@ -119,12 +179,6 @@
     table {
         table-layout: fixed;
     }
-    .no-line {
-        th,td {
-            border-bottom: 0 !important;
-            padding-bottom:8px;
-        }
-    }    
     .feed-detail__wrap {
         margin-top:32px;
         .form-item__content  {
@@ -721,60 +775,6 @@ div[class^="feed"] {
     }
 }
 .feed-list {
-    margin-top: 32px;
-    width: calc(100% - 360px - 32px);
-    border-top: 2px solid #bcbcbc;
-    &__filter {
-        padding: 20px 0;
-        display:flex;
-        flex-direction: column;
-        gap: 12px;
-        border-bottom:1px solid #ddd;
-        .filter-row {
-            display:flex;
-            align-items:center;
-            flex-direction: row;
-            gap: 24px;
-            .filter-row__title {
-                flex: 0 0 56px;
-                padding-left: 16px;
-                font-weight: 500;
-            }
-            .scope-list {
-                flex: auto;
-                display: flex;
-                flex-direction: row;
-                align-items:center;
-                gap: 6px;
-                li {
-                    line-height: 23px;
-                    height:28px;
-                    border:1px solid #999;
-                    color: #999;
-                    border-radius: 30px;
-                    padding:2px 17px;
-                    cursor:pointer;
-                    &.active {
-                        border-color: $pointColor;
-                        color:$pointColor;
-                    }
-                }
-            }
-            &.ctrl {
-                margin-top: 8px;
-            }
-            .date-range {
-                display:flex;
-                gap: 8px;
-                .el-date-editor {
-                    width: 230px;
-                }
-                .dropdown {
-                    min-width: 88px;
-                }
-            }
-        }
-    }
     .feed-view__list {
         .feed-view__total {
             padding-top: 16px;

@@ -1,0 +1,50 @@
+.multi-accordion {
+    border-radius: none;
+    padding: 0;
+    overflow: hidden; padding-bottom: 100px;
+}
+.multi-accordion summary {
+    font-weight: 500;
+    margin: 0;
+    padding:0 30px;
+    cursor: pointer;
+	font-size: 17px; color:#333; border: 1px solid #929292;border-radius:12px; margin-bottom: 10px;
+	background: url("./image/mobile/icon_list_open.svg") no-repeat; background-position:  right 20px center; background-size: 24px;
+	height: 48px; line-height: 48px; 
+}
+
+.multi-accordion details[open] summary {
+	border-radius: 12px 12px 0 0 ; 
+	border:none;
+    border-bottom: none;
+    margin-bottom: 0em;
+    background-color: #fff !important; transition: 0.2s;
+	background: url("./image/mobile/icon_list_close.svg") no-repeat; background-position:  right 20px center; background-size: 24px;
+	
+}
+
+.multi-accordion details[open] + details > summary {
+	
+}
+
+
+
+.multi-accordion details { background: #fff; padding:0px; margin-bottom: 0px; 
+	border: none; border-top:0; border-radius:0 0 12px 12px;
+	
+}
+
+.multi-accordion details[open] { background: #f8f8f8; padding: 0px; margin-bottom: 10px; 
+	border: 2px solid #000; border-radius:12px; 
+	
+}
+
+.multi-accordion .accordion-sub  span { display: block;}
+
+summary::marker{
+    content: "";
+    font-family: monospace;
+}
+details[open] summary::marker {
+    content: "";
+}

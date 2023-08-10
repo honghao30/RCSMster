@@ -208,7 +208,7 @@
     }
   }
   .form-btm__text {
-    padding: 16px 0 0;
+    padding: 8px 0 0;
     .checkbox {
       margin-top: 32px;
     }
@@ -220,7 +220,6 @@
     border-top: 2px solid #bcbcbc;
     padding: 24px 0;
     margin-bottom: 48px;
-    border-bottom: 2px solid #ddd;
     position:relative;
     .cmp-item {
       width:calc(33.3% - 16px);
@@ -250,6 +249,16 @@
       }
       .form-table {
         width: calc(300% + 48px);
+        tr:last-child {
+          th, td {
+            border-bottom: 0;
+          }
+        }
+        tr:nth-last-child(2) {
+          th, td {
+            border-bottom: 2px solid #ddd;
+          }
+        }
         .radiobox {
           white-space: nowrap;
           .link {
@@ -398,12 +407,9 @@
         text-align:center;
         @include fontoption(16px,#fff,500,28px);
       }
-      .btn-area {
-        display: flex;
-        gap: 8px;
-    }
+      777
       .btn {
-        max-width: 110px;
+        width: 132px;
         padding: 0 10px;
   }
 }

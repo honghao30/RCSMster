@@ -39,6 +39,7 @@
             :dataset-id-key="resultBar.datasetIdKey"
             :width="1063"
             :height="391"
+            :plugins="resultBar.plugins"
           />
         </div>
         <ul class="stat-result">
@@ -528,7 +529,16 @@ export default {
             }
           }
         },
-        ChartData: AccumulatedResults
+        ChartData: AccumulatedResults,
+        plugins: [{
+          beforeInit(chart) {
+            const originalFit = chart.legend.fit
+            chart.legend.fit = function fit() {
+              originalFit.bind(chart.legend)()
+              this.height += 20
+            }
+          }
+        }]
       },
       sendBar: {
         chType: 'b-chart',

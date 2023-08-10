@@ -329,8 +329,7 @@ const homeList = [
     'depth2': '알림',
     'screenId': 'R-Util-Alam-List-01',
     'status': ['0518: 개발 공유'],
-    'link': '/notification',
-    'isPublished': true
+    'link': '/notification'
   },
   // 메인
   {
@@ -341,16 +340,13 @@ const homeList = [
   {
     'depth1': '파트너사',
     'screenId': '',
-    'link': '/partnerInfo',
-    'pubData': 'v1 07-28',
-    'isPublished': true
+    'link': '',
+    'pubData': 'v1 07-28'
   },
   {
     'depth1': '기술지원',
     'screenId': '',
-    'link': '/TechnicalSupport',
-    'pubData': 'v1 07-28',
-    'isPublished': true
+    'pubData': 'v1 07-28'
   },
   {
     'depth1': '개인정보처리방침',
@@ -370,7 +366,6 @@ const dashboardList = [
     'status': ['0524: 기획 공유', '0526: 개발 공유', '0630: 2차 공유'],
     'link': '/DashBoard',
     'pubData': 'v1 07-13',
-    'isPublished': true,
     'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_기업대시보드_v0.9_20230623']
   },
   {
@@ -379,7 +374,6 @@ const dashboardList = [
     'status': ['0630: 기획,개발 공유'],
     'link': '/ManageHistory',
     'pubData': 'v1 07-13',
-    'isPublished': true,
     'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_기업대시보드_v0.9_20230623']
   },
   {
@@ -388,7 +382,6 @@ const dashboardList = [
     'status': ['0630: 기획,개발 공유'],
     'link': '/dashboardOperationManage',
     'pubData': 'v1 07-13',
-    'isPublished': true,
     'comments': ['참고기획서 버전: 2023RBC_UIUX개편_화면설계서_기업대시보드_v0.9_20230623']
   },
   // 브랜드 관리
@@ -400,7 +393,6 @@ const dashboardList = [
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandeditstep01',
     'pubData': 'v1 07-26',
-    'isPublished': true,
     'comments': ['2023RBC_UIUX개편_화면설계서_내 브랜드 관리_v0.8_20230621(SK피드백)']
   },
   {
@@ -408,24 +400,21 @@ const dashboardList = [
     'screenId': 'R-Brand-Invi-View-01',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandeditstep02',
-    'pubData': 'v1 07-26',
-    'isPublished': true
+    'pubData': 'v1 07-26'
   },
   {
     'depth5': '브랜드 홈 탭 설정',
     'screenId': 'R-Brand-Invi-View-01',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandeditstep03',
-    'pubData': 'v1 07-26',
-    'isPublished': true
+    'pubData': 'v1 07-26'
   },
   {
     'depth4': '안심마크 관리',
     'screenId': 'R-Brand-Mgt-Mod-04',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/SafetyMarkManage',
-    'pubData': 'v1 07-26',
-    'isPublished': true
+    'pubData': 'v1 07-26'
   },
   // 대화방
   {
@@ -541,16 +530,6 @@ const dashboardList = [
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brand',
     'pubData': 'v1 07-26',
-    'isPublished': true,
-    'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
-  },
-  {
-    'depth1': '브랜드 홈 수정',
-    'screenId': '',
-    'status': ['0524: 기획 공유', '0526: 개발 공유'],
-    'link': '/BrandEditHome',
-    'pubData': 'v1 07-26',
-    'isPublished': true,
     'comments': ['참조 기획서 : 2023RBC_UIUX개편_화면설계서_대화방메뉴_v0.6_20230605']
   },
   {
@@ -558,16 +537,14 @@ const dashboardList = [
     'screenId': 'R-Brand-Mgt-List-01',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/BrandOperationManage',
-    'pubData': 'v1 07-26',
-    'isPublished': true
+    'pubData': 'v1 07-26'
   },
   {
     'depth1': '기업 히스토리',
     'screenId': 'R-Comp-Mgt-List-01',
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/operationhistory',
-    'pubData': 'v1 07-26',
-    'isPublished': true
+    'pubData': 'v1 07-26'
   },
   // 브랜드 소식
   {
@@ -591,8 +568,8 @@ const dashboardList = [
   },
   // 챗붓
   {
-    'depth3': '양방향',
-    // 'depth4': '챗봇 연결',
+    'depth3': '챗붓',
+    'depth4': '챗봇 연결',
     'depth5': '목록',
     'screenId': 'R-Brand-Chat-List-02',
     'status': ['0621: 기획 공유'],
@@ -671,7 +648,6 @@ const dashboardList = [
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandcreatestep01',
     'pubData': 'v1 07-26',
-    'isPublished': true,
     'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_브랜드개설_v0.9_20230627']
   },
   {
@@ -680,7 +656,6 @@ const dashboardList = [
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandcreatestep02',
     'pubData': 'v1 07-26',
-    'isPublished': true,
     'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_브랜드개설_v0.9_20230627']
   },
   {
@@ -689,7 +664,6 @@ const dashboardList = [
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandcreatestep03',
     'pubData': 'v1 07-26',
-    'isPublished': true,
     'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_브랜드개설_v0.9_20230627']
   },
   {
@@ -698,7 +672,6 @@ const dashboardList = [
     'status': ['0524: 기획 공유', '0526: 개발 공유'],
     'link': '/brandcreatestep04',
     'pubData': 'v1 07-26',
-    'isPublished': true,
     'comments': ['참고 기획서: 2023RBC_UIUX개편_화면설계서_브랜드개설_v0.9_20230627']
   },
   // 메시지
@@ -761,15 +734,6 @@ const dashboardList = [
     'screenId': '',
     'status': [''],
     'link': '/LayoutRegistration',
-    'pubData': 'v1 07-21',
-    'isPublished': true,
-    'comments': ['']
-  },
-  {
-    'depth4': '레이아웃 상세',
-    'screenId': '',
-    'status': [''],
-    'link': '/LayoutView',
     'pubData': 'v1 07-21',
     'isPublished': true,
     'comments': ['']

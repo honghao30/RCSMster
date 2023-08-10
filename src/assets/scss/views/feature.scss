@@ -1,0 +1,165 @@
+// RCS 특장점
+.feature__wrap{
+  .category-tab{
+    position: relative;
+    margin-bottom: 0;
+  }
+  .category-tab.fixed{
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    z-index: 10;
+  }
+  .one-box{
+    position: relative;
+    .feature-txt{
+      position: absolute;
+      top: 0;
+      left: 360px;
+      &.top-box{
+        margin: 0;
+        position: static;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
+  [class*='feature_']{
+    padding-top: 200px;
+  }
+  .feature-txt{
+    .txt-tit{
+      @include fontoption(62px,#000,700,88px);
+    }
+    .txt-des{
+      margin-top: 24px;
+      @include fontoption(16px,#777,400,23.17px);
+      .des-strong{
+        font-weight: 700;
+        color: #000;
+      }
+    }
+    .txt-notice{
+      @include fontoption(16px,#666,400,23.17px);
+    }
+  }
+  .feature-img{
+    &.bg-img{
+      img{
+        width: 100%;
+      }
+    }
+  }
+  .one-gray-box{
+    background-image: linear-gradient(#F8F8F8, #fff);
+    margin-top: 191px;
+    .feature-txt{
+      position: relative;
+      display: flex;  
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 200px;
+      z-index: 0;
+      .txt-middle{
+        max-width: 100%;
+        z-index: 0;
+        position: relative;
+        .img-des{
+          position: absolute;
+          &:nth-child(1){
+            top: 0;
+          }
+        }
+      }
+      &::before{
+        position: absolute;
+        content: '';
+        background: url('../assets/images/feature/feature_msg_01_01_bg.png') no-repeat center center;
+        background-size: 100%;
+        width: 100%;
+        height: 232px;
+      }
+    }
+    .feature-big-txt{
+      margin-top: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      .big-txt{
+        @include fontoption(80px,#ddd,700,100px);
+        font-family: Noto Sans KR;
+        .red-under{
+          color: #000;
+          position: relative;
+          z-index: 0;
+          &::before{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background-color: #FF3F02;
+            bottom: 7px;
+            left: 0;
+            z-index: -1;
+          }
+        }
+      }
+      .feature-img{
+        padding-top: 68px;
+      }
+    }
+  }
+  .feature_2{
+    .feature-img{
+      padding-top: 52px;
+    }
+  }
+  .feature_3, .feature_5{
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    .feature-txt{
+      position: relative;
+    }
+    .feature-box + .feature-box{
+      margin-top: 200px;
+    }
+    .feature-img{
+      margin-top: 70px;
+      &.only-bd{
+        background-color: #F8F8F8;
+        border-radius: 16px;
+        img{
+          background-color: #F8F8F8;
+        }
+      }
+    }
+  }
+  .feature_4{
+    .one-box{
+      margin: 0;
+    }
+  }
+  .feature_5{
+    max-width: 1196px;
+  }
+  .feature_6{
+    padding-bottom: 200px;
+    .feature-box{
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+

@@ -265,6 +265,7 @@
         }
     }
     .modal__content--inner {
+        overflow: visible;
         .modal__content--body {
             overflow: visible;
         }

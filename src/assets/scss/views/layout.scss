@@ -3,6 +3,18 @@ $contentPaddingM: 16px;
 $contentWidth: 1440px;
 $contentWidth2: 1024px;
 
+.wrap {
+    &.isfixed {
+        .brand-lnb {
+            position: sticky;            
+            align-self: flex-start;    
+            left:0;
+            top:100px;
+            transition: all 0.03s;
+        }
+    }
+}
+
 .inner { 
     width:$contentWidth;
     margin:0 auto;
@@ -15,6 +27,29 @@ $contentWidth2: 1024px;
     height:$headerHeight;
     background:#fff;
     z-index:11;
+    &.isfixed {
+        position: fixed;        
+        height:70px;
+        width: 100%;
+        top:0;
+        left:0;
+        transition: all 0.03s ease-in;
+        z-index: 9;
+        .nav {
+            &-item {
+                > a {
+                    line-height: 70px;
+                }
+            }
+        }
+        .sub-menu__wrap {
+            top: 85px;
+        }
+        .gnb_full_bg {
+            top:70px;
+            height:66px;            
+        }
+    }
     .inner {
         display:flex;
         justify-content: space-between;

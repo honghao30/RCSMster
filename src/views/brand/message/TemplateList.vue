@@ -44,10 +44,6 @@
                     size="medium"
                     @click="$router.push({ name: `${item.name}`, query: { name: `${item.name}`, type: `${item.id}` } })"
                   >새로 작성</ButtonCmp>
-                  <ButtonCmp
-                    type="btn-blue-line"
-                    size="medium"
-                  >샘플 작성</ButtonCmp>
                 </div>
               </div>
             </div>

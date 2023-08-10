@@ -20,6 +20,7 @@ import DashBoard from './menus/DashBoard'
 import ChatMsgList from './menus/ChatMsgList'
 import InfoList from './menus/InfoList'
 import Partner from './menus/Partner'
+import Service from './menus/Service'
 
 Vue.use(Router)
 
@@ -48,7 +49,8 @@ let router = new Router({
     ...DashBoard, // 대시보드(기업,브랜드,선거)
     ...ChatMsgList, // 챗붓,템플릿
     ...InfoList, // 통계,
-    ...Partner // 파트너사 소개, 기술지원
+    ...Partner, // 파트너사 소개, 기술지원
+    ...Service // RCS 특장점, 이용 가이드
   ]
 })
 
