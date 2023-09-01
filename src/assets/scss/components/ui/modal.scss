@@ -183,7 +183,7 @@
               margin: 16px auto 0;
               .phone-cert__number {
                 padding:16px 24px;
-                background-color: #F4F4F4;
+                background-color: #f8f8f8;
                 border-radius: 8px;
                 height: 58px;
               }
@@ -291,20 +291,28 @@
         a {text-decoration: underline;}
       }
       .table__wrap {
-        max-height: 406px;        
+        max-height: 406px;
+        @if( #{height} > 406) {
+          border-bottom: 1px solid #f0f0f0;
+        }        
         overflow-y: auto;
-        //스크롤 발생 시 table bottom 주기 위해
-        border-bottom: 1px solid #f0f0f0;
         .table-list{
+          table-layout: fixed;
           tr{
+            td {
+              padding: 16px !important;
+            }
             &:last-child{
               td{
-              border: none;
+                border: none;
                 &.l-align {
                   text-align: left;
                 }
               }
             }
+          }
+          .radiobox {
+            width:auto;
           }
         }
       }
@@ -317,20 +325,40 @@
         flex: auto;
       }
     }
+    .top-ctrl-area{
+      &.none-btm{
+        margin-bottom: 0;
+      }
+    }
     .guide-box {
       padding: 16px 24px;
       border-radius: 8px;
-      background-color:#f9f9f9;
+      background-color:#f8f8f8;
       .main-text {
         margin-bottom: 16px;
       }
       li {
-        font-size: 14px;
-        line-height: 26px;
-        margin-top: 4px;
+        width: 100%;
+        display:flex;
+        gap: 6px;
+        align-items: flex-start;
+        @include fontoption(12px,#666,400,22px); 
+        &:before {
+          content:'';
+          display: inline-block;
+          width:4px;
+          height: 4px;
+          border-radius: 4px;
+          background-color:#000;
+          position:relative;
+          top:9px;
+          flex-shrink: 0;
+        }
+        &+li{
+          margin-top: 4px;
+        } 
         .sm {
           display: inline-block;
-          margin-left: 6px;
           color: #999;
         }
       }
@@ -506,10 +534,6 @@
     color:#000
   }
 }
-
-  
-
-
 .modal__wrap {
   &.topPositon {
     .overlay-mask {
@@ -676,6 +700,7 @@
     .search__wrap{
       display: flex;
       flex-wrap: nowrap;
+      align-items: stretch;
       gap: 32px;
       .search-result__wrap{
         flex: 1;
@@ -687,7 +712,7 @@
           }
         }
         .table__wrap{
-          min-height: 740px;
+          max-height: 688px;
         }
       }
       .empty-emulator{
@@ -757,6 +782,7 @@
       .safetymark_des{
         display: flex;
         flex-direction: column;
+        text-align: start;
         gap: 16px;
         margin-top: 16px;
         p + p {
@@ -782,7 +808,7 @@
       }
       .top-notice--center{
         padding: 16px 24px;
-        background-color: #F4F4F4;
+        background-color: #f8f8f8;
         border-radius: 8px;
         text-align: center;
         h5{
@@ -832,10 +858,9 @@
       .new-invite-box{
         display: flex;
         padding: 16px 24px;
-        background-color: #F4F4F4;
+        background-color: #f8f8f8;
         border-radius: 8px;
         text-align: center;
-        background-color: #DCF2FF;
         justify-content: space-between;
         align-items: center;
       }
@@ -858,7 +883,7 @@
     .invite_detail{
       margin-top: 16px;
       padding: 16px 24px;
-      background-color: #f4f4f4;
+      background-color: #f8f8f8;
       border-radius: 8px;
     }
   }
@@ -928,15 +953,18 @@
     .input-item {
       display:flex;
       align-items:center;
-      gap: 8px;
+      gap: 12px;
       position: relative;
       flex: auto;
       .input {
         padding: 0 6px;
+        &.input-info{
+          max-width: 100%;
+        }
       }
       input[type='file'] {
         position: absolute;
-        width: calc(100% - 110px);
+        width: calc(100% - 112px);
         left:0;
         top:0;
         opacity: 0;
@@ -952,6 +980,11 @@
     }
   }
 }
+
+.authority-notice{
+  margin-bottom: 32px;
+}
+
 
 @media #{$phone} {
   .modal__content--inner {

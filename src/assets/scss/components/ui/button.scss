@@ -1,4 +1,4 @@
-$radius: 8px;
+$radius: 6px;
 
 //버튼 공통
 @mixin btnCommon {
@@ -84,7 +84,7 @@ $radius: 8px;
     height: 36px;
     min-width: 90px;
     font-size: 14px;
-    padding:0 32px; 
+    padding:0 18px; 
   }
   &.small {
     height: 28px;
@@ -93,6 +93,7 @@ $radius: 8px;
     font-size: 14px;
     font-weight: 500;
     width:auto;
+    border-radius: 4px;
   } 
 }
 
@@ -165,6 +166,19 @@ $radius: 8px;
       background-color:#f4f4f4;
     }
   }
+  &.btn-icon {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    .icon-excel {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: url('../assets/images/icon/icon_excel.png') no-repeat 50% 50%;
+      background-size: 100%;
+    }
+  }
+  
 }
 
 .disabled{
@@ -200,6 +214,12 @@ $iconBsUrl: '../assets/images/icon/';
   background-image: url('#{$iconBsUrl}icon_question.png');
   background-size: 100%;
 } 
+.icon-search {
+  width:20px;
+  height: 20px;
+  background-image: url('#{$iconBsUrl}icon_search.png');
+  background-size: 100%;
+}
 
 @media #{$phone} {
   .button__wrap {

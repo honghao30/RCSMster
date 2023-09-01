@@ -1,6 +1,14 @@
 .notice-table {
   .table-list {
+    border-bottom: 2px solid #ddd;
     table-layout: fixed;
+    tr{
+      &:last-child{
+        td{
+          border-bottom: 1px solid #ddd;
+        }
+      }
+    }
     th{
       font-size: 14px;
       font-weight: 500;
@@ -250,7 +258,16 @@
         }
         .accordion-title__title:hover {
           text-decoration: underline;
-        }   
+        }
+        .ico-attach {
+          display: inline-block;
+          width:18px;
+          height:19px;
+          margin-left:5px;
+          position:relative;
+          top: 4px;
+          background:url('../assets/images/customer/ico_attach.png') no-repeat 50% 50%
+        } 
       }
     }
     .accordion__content {

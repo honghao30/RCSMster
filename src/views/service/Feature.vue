@@ -2,7 +2,7 @@
   <div class="feature__wrap">
     <PageTitle pagetitle="RCS 특장점" />
     <div class="fix-box" ref="fix">
-      <div class="category-tab" :class="{fixed: isMenuFixed}">
+      <div class="category-tab" :class="{fixed: isMenuFixed, hidden: ishidden}">
         <ul>
           <li  v-for="(item, i) in featureList"
             :key="i"
@@ -25,7 +25,7 @@
               제대로 어필할 수 있습니다.
             </div>
           </div>
-          <div class="feature-img bg-img">
+          <div class="feature-img first-img">
             <img src="@/assets/images/feature/feature_msg_01.png" alt="">
           </div>
         </div>
@@ -41,7 +41,8 @@
               </div>
             </div>
             <div class="txt-middle">
-              <img src="@/assets/images/feature/feature_msg_01_01.png" alt="" class="phone-img">
+              <img src="@/assets/images/feature/feature_msg_01_01.png" alt="" class="phone-img only-pc">
+              <img src="@/assets/images/feature/feature_msg_01_01_mo.png" alt="" class="phone-img only-mo">
             </div>
             <div class="txt-bottom">
               <div class="txt-notice">
@@ -52,12 +53,13 @@
           </div>
           <div class="feature-big-txt">
             <div class="big-txt">
-              이렇게 아름다운 <span class="red-under">RCS메시지가</span><br>
-              오히려 <span class="red-under">기존 MMS메시지 대비</span><br>
-              건당 가격은 <span class="red-under">40% 저렴</span>하다구요!
+              이렇게 아름다운<br class="only-mo"> <span class="big-txt-black">RCS메시지가</span><br class="only-pc">
+              오히려<br class="only-mo"> <span class="big-txt-black">기존 MMS메시지 대비</span><br>
+              건당 가격은 <span class="blue-gradient">40% 저렴</span><br class="only-mo">하답니다!
             </div>
             <div class="feature-img">
-              <img src="@/assets/images/feature/feature_msg_01_02.png" alt="">
+              <img src="@/assets/images/feature/feature_msg_01_02.png" alt="" class="only-pc">
+              <img src="@/assets/images/feature/feature_msg_01_02_mo.png" alt="" class="only-mo">
             </div>
           </div>
         </div>
@@ -70,13 +72,14 @@
               꼭! 필요한 내용은<br>대화방 메뉴로
             </div>
             <div class="txt-des">
-              추가로 메시지를 보내지 않아도, <span class="des-strong">대화방 메뉴</span>를 통해 <span class="des-strong">고객과의 소통</span>을<br>
-              주고받을 수 있으며 매장위치안내, 영업시간안내, 진행중인 이벤트 등<br>
+              추가로 메시지를 보내지 않아도, <span class="des-strong">대화방 메뉴</span>를 통해<br class="only-mo"> <span class="des-strong">고객과의 소통</span>을<br class="only-pc">
+              주고받을 수 있으며 매장위치안내, 영업시간안내,<br class="only-mo"> 진행중인 이벤트 등<br class="only-pc">
               <span class="des-strong">다양한 정보</span>를 추가로 <span class="des-strong">전달</span>해보세요.
             </div>
           </div>
           <div class="feature-img bg-img">
-            <img src="@/assets/images/feature/feature_msg_02.png" alt="">
+            <img src="@/assets/images/feature/feature_msg_02.png" alt="" class="only-pc">
+            <img src="@/assets/images/feature/feature_msg_02_mo.png" alt="" class="only-mo">
           </div>
         </div>
       </div>
@@ -88,15 +91,16 @@
               내 브랜드의 진정성을!
             </div>
             <div class="txt-des">
-              수신 메시지에 <span class="des-strong">브랜드 로고</span>가 자동 노출되어 고객에게 <span class="des-strong">홍보와
+              수신 메시지에 <span class="des-strong">브랜드 로고</span>가 자동 노출되어 고객에게<br class="only-mo"> <span class="des-strong">홍보와
               신뢰도</span>를 동시에 얻을 수 있습니다.<br>
-              브랜드 등록은 <span class="des-strong">무료</span>이며 RCS Biz Center에 브랜드와 발신번호를 <br>
-              등록하면 RCS가 아닌<br> 기존 문자로 전송시에도 발신번호 대신
+              브랜드 등록은 <span class="des-strong">무료</span>이며 RCS Biz Center에 브랜드와 발신번호를<br class="only-mo">
+              등록하면 RCS가 아닌<br class="only-pc"> 기존 문자로 전송시에도 발신번호 대신<br class="only-mo">
               <span class="des-strong">브랜드 로고</span>가 표시됩니다.
             </div>
           </div>
           <div class="feature-img only-bd">
-            <img src="@/assets/images/feature/feature_msg_03.png" alt="">
+            <img src="@/assets/images/feature/feature_msg_03.png" alt="" class="only-pc">
+            <img src="@/assets/images/feature/feature_msg_03_mo.png" alt="" class="only-mo">
           </div>
         </div>
         <div class="feature-box">
@@ -105,18 +109,26 @@
               국가기관의 공인 안심마크
             </div>
             <div class="txt-des">
-              다른 메신저에는 없는 RCS만의 <span class="des-strong">KISA(한국인터넷진흥원)인증</span>으로 최고의 신뢰도를 자랑합니다.<br>
+              다른 메신저에는 없는 RCS만의<br class="only-mo"> <span class="des-strong">KISA(한국인터넷진흥원)인증</span>으로 최고의 신뢰도를 자랑합니다.<br>
               KISA(한국인터넷진흥원)에서 인증한 금융/공공기관에는 <br>
-              <span class="des-strong">‘안심마크’</span>를 표시하여 사칭문자로 인한 스미싱 <span class="des-strong">범죄등에 안전함</span>을 <br>
+              <span class="des-strong">‘안심마크’</span>를 표시하여 사칭문자로 인한<br class="only-mo"> 스미싱 <span class="des-strong">범죄등에 안전함</span>을
               안내할 수 있습니다.
-            </div>
-            <div class="txt-notice only-safetymark">
-              사칭문자 근절을 위해 실제 해당기업에서 문자를 보냈음을 알려주는 <br>
-              인증마크와 안심문구가 결합된 기능입니다.
             </div>
           </div>
           <div class="feature-img only-bd">
-            <img src="@/assets/images/feature/feature_msg_03_01.png" alt="">
+            <div class="txt-notice only-safetymark">
+              <div class="title">
+                <img src="@/assets/images/feature/feature_safetymark.png" alt="">
+                <h5>안심마크란?</h5>
+              </div>
+              <p>
+                사칭문자 근절을 위해 실제 해당 기업에서 문자를 보냈음을 알려주는<br class="only-mo"> 인증마크와 안심문구가 결합된 기능입니다.<br class="only-pc">
+                한국인터넷진흥원(KISA)에서<br class="only-mo"> 인증한 기관에는 안심마크(로고 이미지)를 표시하여 사칭문자로 인한<br>
+                스미싱 범죄 등에 안전함을 안내할 수 있습니다.
+              </p>
+            </div>
+            <img src="@/assets/images/feature/feature_msg_03_01.png" alt="" class="only-pc">
+            <img src="@/assets/images/feature/feature_msg_03_01_mo.png" alt="" class="only-mo">
           </div>
         </div>
       </div>
@@ -128,13 +140,14 @@
               새로운 브랜드 소식!
             </div>
             <div class="txt-des">
-              고객의 수신 <span class="des-strong">이력에 남아있는 브랜드</span>만 클릭해도 브랜드의
+              고객의 수신 <span class="des-strong">이력에 남아있는 브랜드</span>만 클릭해도 브랜드의<br class="only-mo">
               <span class="des-strong">새로운 소식</span>을 전할 수 있습니다.<br>
               내 브랜드의 이벤트, 신상소개등을 <span class="des-strong">채팅플러스</span>에 올려보세요!
             </div>
           </div>
           <div class="feature-img bg-img">
-            <img src="@/assets/images/feature/feature_msg_04.png" alt="">
+            <img src="@/assets/images/feature/feature_msg_04.png" alt="" class="only-pc">
+            <img src="@/assets/images/feature/feature_msg_04_mo.png" alt="" class="only-mo">
           </div>
         </div>
       </div>
@@ -146,18 +159,19 @@
               정확한 고객반응 분석!
             </div>
             <div class="txt-des">
-              발송한 메시지를 고객이 실제로 <span class="des-strong">읽었는지</span>, 버튼별로 얼마나
-              <span class="des-strong">반응했는지</span>,<br>그래프로 확인할 수 있습니다.
+              발송한 메시지를 고객이 실제로 <span class="des-strong">읽었는지</span>,<br class="only-mo"> 버튼별로 얼마나
+              <span class="des-strong">반응했는지</span><br class="only-pc"> 그래프로 확인할 수 있습니다.
             </div>
           </div>
           <div class="feature-img">
-            <img src="@/assets/images/feature/feature_msg_05.png" alt="">
+            <img src="@/assets/images/feature/feature_msg_05.png" alt="" class="only-pc">
+            <img src="@/assets/images/feature/feature_msg_05_mo.png" alt="" class="only-mo">
           </div>
         </div>
         <div class="feature-box">
           <div class="feature-txt">
             <div class="txt-tit">
-              내 브랜드의 진정한 고객은 누구?
+              내 브랜드의<br class="only-mo"> 진정한 고객은 누구?
             </div>
             <div class="txt-des">
               전체 및 반응고객의 <span class="des-strong">특성</span>(성별, 연령, 지역)과 <span class="des-strong">Lifestyle의 분석</span>으로<br>
@@ -165,7 +179,8 @@
             </div>
           </div>
           <div class="feature-img">
-            <img src="@/assets/images/feature/feature_msg_05_01.png" alt="">
+            <img src="@/assets/images/feature/feature_msg_05_01.png" alt="" class="only-pc">
+            <img src="@/assets/images/feature/feature_msg_05_01_mo.png" alt="" class="only-mo">
           </div>
         </div>
       </div>
@@ -177,13 +192,13 @@
               추가동의를 받지 않아도 <br>광고문자 전송 가능!
             </div>
             <div class="txt-des">
-              <span class="des-strong">기존에 광고문자</span>를 전송하던 사용자에게 <span class="des-strong">그대로</span> RCS로 광고문자 <span class="des-strong">전송이 가능</span>합니다.<br>
-              즉, 힘들게 광고문자 수신 동의를 다시 받거나, 채널추가 등의번거로운 과정이<br>
-              필요하지 않습니다.
+              <span class="des-strong">기존에 광고문자</span>를 전송하던 사용자에게 <span class="des-strong">그대로</span> RCS로 광고문자 <span class="des-strong"><br class="only-mo">전송이 가능</span>합니다.<br>
+              즉, 힘들게 광고문자 수신 동의를 다시 받거나, 채널추가 등의<br class="only-mo"> 번거로운 과정이<br class="only-pc"> 필요하지 않습니다.
             </div>
           </div>
           <div class="feature-img">
-            <img src="@/assets/images/feature/feature_msg_06.png" alt="">
+            <img src="@/assets/images/feature/feature_msg_06.png" alt="" class="only-pc">
+            <img src="@/assets/images/feature/feature_msg_06_mo.png" alt="" class="only-mo">
           </div>
         </div>
       </div>
@@ -202,6 +217,7 @@ export default {
     return {
       activeTab: 0,
       isMenuFixed: false,
+      ishidden: false,
       featureList: [{
         list: '템플릿 메시지'
       },
@@ -230,8 +246,18 @@ export default {
     window.removeEventListener('scroll', this.MenuScroll)
   },
   methods: {
-    MenuClick(index) {
+    async MenuClick(index) {
       window.removeEventListener('scroll', this.MenuScroll) // MenuScroll 활성화랑 겹쳐서 삭제
+      // 클릭 시, 메뉴가 잠깐 사라졌다가 transtion으로 나오도록 해야함
+      this.ishidden = true
+      await this.$nextTick()
+
+      // 0.1초 지난 후 MenuScroll 실행
+      setTimeout(() => {
+        this.ishidden = false
+        window.addEventListener('scroll', this.MenuScroll)
+      }, 1000)
+
       this.activeTab = index // 활성화 상태
       const refs = [this.$refs.feature1, this.$refs.feature2, this.$refs.feature3, this.$refs.feature4, this.$refs.feature5, this.$refs.feature6]
       const target = refs[index]
@@ -241,10 +267,6 @@ export default {
           block: 'start'
         })
       }
-      // 0.1초 지난 후 MenuScroll 실행
-      setTimeout(() => {
-        window.addEventListener('scroll', this.MenuScroll)
-      }, 1000)
     },
     MenuScroll() {
       const refs = [this.$refs.feature1, this.$refs.feature2, this.$refs.feature3, this.$refs.feature4, this.$refs.feature5, this.$refs.feature6]

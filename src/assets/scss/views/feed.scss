@@ -1,4 +1,4 @@
-// 브랜드 소식 
+// 브랜드 소식
 .item-reg__wrap {
     display:flex;
     justify-content: space-between;
@@ -10,12 +10,12 @@
     .item-reg__inner {
         display:flex;
         align-items: center;
-        gap: 8px;  
-        flex: auto;   
+        gap: 8px;
+        flex: auto;
     }
     .item-reg__list {
         display:flex;
-        gap: 8px; 
+        gap: 8px;
     }
     .item {
         min-width: 60px;
@@ -99,14 +99,23 @@
     .guide-box {
         width: 100%;
         padding: 16px;
-        background-color: #f4f4f4;
+        background-color: #f8f8f8;
         margin:12px 0 -12px;
         .guide-text {
-            margin-top:2px;
-            &:first-child {
-                margin-top: 0;
-            }
+            margin-top: 0;
+            color: #000;
         }
+    }
+}
+.feed-none {
+    padding: 40px;
+    text-align:center;
+    h3 {
+        @include fontoption(24px,#000,500,36px);
+    }
+    p {
+        margin-top: 16px;
+        @include fontoption(18px,#000,400,28px);
     }
 }
 .feed-ctrl__area {
@@ -160,9 +169,9 @@
 .feed__wrap {
     display: flex;
     gap: 32px;
-    padding-bottom: 16px;    
+    padding-bottom: 16px;
     border-top:3px solid #BCBCBC;
-    border-bottom:2px solid #ddd;
+    border-bottom:3px solid #BCBCBC;
     min-height: 800px;
     .feed-reg {
         margin-top: 16px;
@@ -208,7 +217,7 @@
         }
         &:only-of-type {
             border-bottom: 0;
-        }        
+        }
     }
     .feed__inner {
         flex: auto;
@@ -217,7 +226,7 @@
         }
         .tab__wrap {
             margin-top:0;
-            }
+        }
         .feed__textarea {
             textarea {
                 height: 70px;
@@ -297,13 +306,13 @@
                         margin-top:0;
                     }
                 }
-            } 
+            }
         }
-       
-        
+
+
     }
     .feed-temple-opener {
-        text-align: right; 
+        text-align: right;
         .btn-brandTip {
             @include fontoption(14px,#000,400,24px);
             text-decoration-line: underline;
@@ -326,12 +335,12 @@
                 transition: all 0.3s;
             }
             &.open {
-                &::after {      
+                &::after {
                     transform: rotate(-90deg);
                     transition: all 0.3s;
                 }
-            } 
-        } 
+            }
+        }
     }
     .feed-write__wrap--guide {
         .brand-tip__wrap {
@@ -444,7 +453,7 @@
                 @include fontoption(14px,#000,400,26px);
             }
             .input-item {
-                .btn {    
+                .btn {
                     height: 36px;
                     min-width: 100px;
                     padding: 0 24px;
@@ -512,7 +521,7 @@
     border:1px solid #eaeaea;
     background-color:#fff;
     padding:0 15px;
-    
+
 }
 .feed-emulator {
     display:flex;
@@ -540,7 +549,7 @@
                     width:100%;
                     height: 100%;
                 }
-            } 
+            }
             .brand-name {
                 padding-left:4px;
                 font-size: 16px;
@@ -572,7 +581,7 @@ div[class^="feed"] {
             font-size: 13px;
             line-height: 19px;
             color: #999;
-            margin-bottom: 14px; 
+            margin-bottom: 14px;
         }
         .feed-title {
             font-weight: 500;
@@ -601,7 +610,7 @@ div[class^="feed"] {
                     min-height: 162px;
                     border-radius: 12px;
                     overflow:hidden;
-                    position: relative; 
+                    position: relative;
                     .image {
                         position:absolute;
                         display:block;
@@ -656,7 +665,7 @@ div[class^="feed"] {
                 }
                 &.item--1 {
                     li {
-                      height: 100%;  
+                        height: 100%;
                     }
                 }
                 &.item--3 {
@@ -702,7 +711,7 @@ div[class^="feed"] {
                 margin: 0 -15px;
                 padding: 0 15px;
             }
-            
+
             .swiper-slide {
                 width: 258px !important;
                 border-radius:12px;
@@ -719,8 +728,8 @@ div[class^="feed"] {
                         word-break:break-all;
                     }
                     .description {
-                       margin-top: 8px;
-                       word-break:break-all;
+                        margin-top: 8px;
+                        word-break:break-all;
                     }
                 }
             }
@@ -738,7 +747,7 @@ div[class^="feed"] {
     }
 }
 .preview-button {
-    margin-top:20px;    
+    margin-top:20px;
     justify-content: space-between;
     display: flex;
     gap: 10px;
@@ -775,6 +784,60 @@ div[class^="feed"] {
     }
 }
 .feed-list {
+    // margin-top: 32px;
+    // width: calc(100% - 360px - 32px);
+    // border-top: 2px solid #bcbcbc;
+    // &__filter {
+    //     padding: 20px 0;
+    //     display:flex;
+    //     flex-direction: column;
+    //     gap: 12px;
+    //     border-bottom:1px solid #ddd;
+    //     .filter-row {
+    //         display:flex;
+    //         align-items:center;
+    //         flex-direction: row;
+    //         gap: 24px;
+    //         .filter-row__title {
+    //             flex: 0 0 56px;
+    //             padding-left: 16px;
+    //             font-weight: 500;
+    //         }
+    //         .scope-list {
+    //             flex: auto;
+    //             display: flex;
+    //             flex-direction: row;
+    //             align-items:center;
+    //             gap: 6px;
+    //             li {
+    //                 line-height: 23px;
+    //                 height:28px;
+    //                 border:1px solid #999;
+    //                 color: #999;
+    //                 border-radius: 30px;
+    //                 padding:2px 17px;
+    //                 cursor:pointer;
+    //                 &.active {
+    //                     border-color: $pointColor;
+    //                     color:$pointColor;
+    //                 }
+    //             }
+    //         }
+    //         &.ctrl {
+    //             margin-top: 8px;
+    //         }
+    //         .date-range {
+    //             display:flex;
+    //             gap: 8px;
+    //             .el-date-editor {
+    //                 width: 230px;
+    //             }
+    //             .dropdown {
+    //                 min-width: 88px;
+    //             }
+    //         }
+    //     }
+    // }
     .feed-view__list {
         .feed-view__total {
             padding-top: 16px;
@@ -890,7 +953,7 @@ div[class^="feed"] {
                     text-align:center;
                     line-height: 37px;
                 }
-                
+
             }
         }
         .feed-view {
@@ -906,11 +969,11 @@ div[class^="feed"] {
                     padding: 0;
                 }
             }
-            
+
         }
         + .feed-view__wrap {
             border-top: 10px solid #f8f8f8;
         }
     }
-    
+
 }

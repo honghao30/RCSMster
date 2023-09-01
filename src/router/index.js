@@ -51,7 +51,17 @@ let router = new Router({
     ...InfoList, // 통계,
     ...Partner, // 파트너사 소개, 기술지원
     ...Service // RCS 특장점, 이용 가이드
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash,
+        behavior: 'smooth',
+        offset: { x: 0, y: 100 }
+      }
+    }
+    return { x: 0, y: 0 } // Go to the top of the page if no hash
+  }
 })
 
 // url을 변경할 때 마다 실행되는 interceptor

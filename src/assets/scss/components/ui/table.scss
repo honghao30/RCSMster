@@ -35,6 +35,10 @@
       text-align: left;
       padding:0 16px;
     }
+    &.r-align {
+      text-align: right;
+      padding:0 16px;
+    }
     .date {
       color: #999;
     }
@@ -84,6 +88,9 @@
     &.l-align {
       text-align: left;
       padding:15px;
+      &.none-pd{
+        padding: 16px 0;
+      }
     }
     > .radiobox {
       display: inline-block;
@@ -141,7 +148,7 @@
   width: 100%;
   position: relative;
   border-top: 2px solid #BCBCBC;
-  border-bottom: 1px solid #ddd;
+  // border-bottom: 1px solid #ddd;
   tr {
     &.no-line {
         th,td {

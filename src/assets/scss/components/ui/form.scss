@@ -440,6 +440,12 @@ $textareaHeight: 100px;
       }
     }
   }
+  &.w140{
+      min-width: 140px;
+  }
+  &.w131{
+      min-width: 140px;
+  }
 }
 .dropdown-email {
   .dropdown {
@@ -488,7 +494,9 @@ $textareaHeight: 100px;
       .dropdown__menu {
         top: 34px;
       }
-      
+      &.w173{
+        min-width: 173px;
+      }
   }
   .input{
       input{
@@ -841,6 +849,9 @@ $formLabelWidth : 120px;
           flex: none;
         }
       }
+      &.c-align {
+        justify-content: center;
+      }
       &.space-between {
         display: flex !important;        
         justify-content: space-between !important;
@@ -868,11 +879,6 @@ $formLabelWidth : 120px;
     gap: 8px;
     position: relative;
     flex: auto;
-    &.select-button-type {
-      .radiobox {
-        width: 100px;
-      }
-    }
     &.w--full {
       width: 100%;
     }
@@ -1024,6 +1030,9 @@ $formLabelWidth : 120px;
       background-size: 100%;
       background-color:transparent;
     }
+    +.input-item {
+      margin-top: 8px;
+    }
   }
   +.guide-text {
     margin-top: 2px;
@@ -1034,6 +1043,7 @@ $formLabelWidth : 120px;
       display: none;
     }
   }
+  
 }
 .error {
   color: $errorColor;
@@ -1163,6 +1173,12 @@ $formLabelWidth : 120px;
           background:url('../assets/images/cmp/chevron_right.png') no-repeat 50% 50%;
           }
       }
+  }
+  .icon-excel {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url('../assets/images/icon/icon_excel.png') no-repeat 50% 50%;
   }
 }
 .emoji-el {
@@ -1310,13 +1326,6 @@ $formLabelWidth : 120px;
           display:inline-flex;
           align-items: center;
           justify-content: center;
-          em {
-            display:inline-block;
-            padding:0 1px 2px;
-            line-height:16px;
-            border-bottom:2px solid#BCBCBC;
-            font-style: normal;
-          }
           &.active {
             border-color: #000;
           }
@@ -1328,6 +1337,17 @@ $formLabelWidth : 120px;
           border:1px solid #ddd;
           background-color:#fff;
         }
+      }
+    }
+    &.simple{
+      width: 192px;
+      &::after {
+        left: 50%; 
+        margin-left: -6px;
+      }
+      &::before {
+        left: 50%; 
+        margin-left: -6px;
       }
     }
   }

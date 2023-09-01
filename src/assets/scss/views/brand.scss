@@ -1,9 +1,6 @@
 .brand__wrap {
     background: #F5F5F5;
     padding-bottom: 80px;
-    .page-title {
-        padding-top: 48px;
-    }
     &.brand-dash {
         padding-bottom: 0;
     }
@@ -383,7 +380,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                gap: 12px;
+                gap: 24px;
                 img{
                     width: 64px;
                     height: 64px;
@@ -404,8 +401,12 @@
     .authority{
         margin-bottom: 60px;
         .page-title__wrap{
-            margin-top: 24px;
-            padding-bottom: 24px;
+            margin-top: 32px;
+            padding-bottom: 16px;
+            h3{
+                font-size: 24px;
+                line-height: 32px;
+            }
         }
     }
     .manage-table{ 
@@ -422,7 +423,6 @@
                 }
             }
             .application-date{
-                padding-left: 15px;
                 span{
                     font-size: 14px;
                     color: #999;
@@ -452,9 +452,6 @@
         border-top: 0;
         border-bottom: 0;   
         .form-table {
-            .btn {
-                height: 36px;
-            }
             .form-item__content {
                 .form-item-row {
                     display: block;
@@ -479,6 +476,16 @@
                 td {
                     border-bottom: 0;
                 }
+                .guide-text {
+                    width: calc(100% - 100px);
+                    margin-left: 100px;
+                }
+            }
+            .brand_infotab {
+                .guide-text {
+                    width: calc(100% - 100px);
+                    margin-left: 100px;
+                }
             }
             .brand_boardTip {
                 th,
@@ -492,6 +499,16 @@
                 td {
                     border-top: 1px solid #bcbcbc;
                     border-bottom: 1px solid #ddd;
+                }
+                .checkbox {
+                    input[type=checkbox] + label{
+                        width: 136px;
+                    }
+                }
+                .text{
+                    width: calc(100% - 136px);
+                    display: inline-flex;
+                    word-break: break-all;
                 }
             }
             .text-item {
@@ -618,6 +635,7 @@
                 p {
                     padding-top: 4px;
                     @include fontoption(13px,#333,400,19px);
+                    letter-spacing: -0.2px;
                 }
             }
         }
@@ -736,7 +754,7 @@
         position: relative;
         display:block;
         overflow: hidden;
-        border-radius: 16px 16px 0 0;
+        border-radius: 15px 15px 0 0;
         height: 360px;
         &.img--none {
             background: #F4F4F4 url('../assets/images/icon/icon_potho_previe.png') no-repeat center;
@@ -875,6 +893,7 @@
             height: 62px;
             width: 62px;
             border-radius: 10px;
+            border: 1px solid #eaeaea;
             flex:0 0 62px;
             position:relative;
             overflow:hidden;
@@ -1118,6 +1137,17 @@
                 display: flex;
                 flex-direction: column;
                 gap: 12px;
+                li {
+                    &.current {
+                        > a {
+                            color: $pointColor;
+                            font-weight: 700;
+                            &:after {
+                                border-color: $pointColor;
+                            }
+                        }
+                    }                    
+                }
                 li:first-child {
                     a {
                         padding-top: 12px;
@@ -1135,7 +1165,7 @@
                         font-weight: 700;
                     }
                 }
-                &.current {
+                .current {
                     > a {
                         color: $pointColor;
                         font-weight: 700;
@@ -1145,6 +1175,12 @@
                     }
                 }
             }
+        }
+    }
+    // 브랜드 lnb 가 있는 content 영역 page-title 스타일 분기
+    + .brand-info__wrap {
+        .page-title {
+            font-size: 32px;
         }
     }
 }
@@ -1253,21 +1289,7 @@
         .table__wrap {
             &:first-child {
                 border-top: 0;
-            }      
-            &:last-child {
-                table {
-                    tr {
-                        &:last-child {
-                            th,
-                            td {border-bottom:0;}
-                        }
-                    }
-                }
-            }
-            border-top: 3px solid #BCBCBC;      
-            // &+.table__wrap {
-            //     border-top: 0;
-            // }            
+            }               
         }
         .chatroom-menu__list {
             li {
@@ -1283,6 +1305,7 @@
     }
     .chatroom-munu__h3-wrap {
         position: relative;
+        margin-top: 60px;
         button {
             position: absolute;
             left: 127px;
@@ -1336,13 +1359,7 @@
                 }
             }
             .table__wrap{
-                // border-top: 0;
-                tr {
-                    // &:last-child {
-                    //     th,
-                    //     td {border-bottom:0;}
-                    // }
-                }
+              
                 &.menu-add-table{
                     .chartroom-menu-add{
                         tr {
@@ -1581,8 +1598,6 @@
 }
 .chatroom-modify__title {
     position: relative;
-    margin-bottom: 32px;
-    padding-top: 48px;
     .chatroom-modify__title-use{
         display: flex;
         align-items: center;
@@ -1630,9 +1645,6 @@
 }
 //대화방 목록
 .brand-info__wrap {
-    .page-title{
-        margin-bottom: 32px;
-    }
     .dropdown{
         &.w135{
             min-width: 135px;
@@ -1658,6 +1670,7 @@
     }
     .chatroom__table{
         .table-list{
+            border-bottom: 2px solid #ddd;
             tr{
                 &:last-child{
                     td{
@@ -1691,6 +1704,7 @@
                             border-radius: 4px;
                             background-color: rgba(47, 119, 251, 0.08);
                             @include fontoption(12px,$pointColor,400,24px);
+                            margin-right: 8px;
                         }
                     }
                 }
@@ -1776,12 +1790,18 @@
         }
         &.templ-title {
             border-top: 1px solid #BCBCBC;
+            border-top-color:#BCBCBC;
             background-color: #F8F8F8;
         }
     }
     td{
         &.bd-bg{
             border-color: #BCBCBC;
+        }
+        &.templ-title {
+            border-top: 1px solid #BCBCBC ;
+            border-top-color:#BCBCBC;
+            background-color: #F8F8F8;
         }
     }
 }
@@ -1818,8 +1838,93 @@
             margin-top: 60px;
         }
     }
+    .brandhome_tab{
+        .table-bodyonly{
+            &.form-table{
+                th, td{
+                    border-color: #bcbcbc;
+                }
+                .brand_infotab{
+                    th{
+                        &.none-btm{
+                            border-bottom: 0;
+                        }
+                    }
+                    th, td{
+                        border-color: #f0f0f0;
+                    }
+                }
+                .btm-color{
+                    border-color: #f0f0f0;
+                }
+                .business_info{
+                    th, td{
+                        border-color: #f0f0f0;
+                    }
+                    &.btm-bold{
+                        th, td{
+                            border-color: #bcbcbc;
+                        }
+                    }
+                }
+                tr{
+                    &:last-child{
+                        th,td{
+                            border-bottom: 0;
+                        }
+                    }
+                }
+            }
+        } 
+        .brand_infotab{
+            th{
+                width: 100px;
+            }
+            .form-item__label{
+                @include fontoption(14px,#000,500,26px);
+            }
+            &:last-child{
+                th, td{
+                    border-bottom: 0;
+                }
+            }
+            .none-btm{
+                .form-item__label{
+                    @include fontoption(16px,#000,500,28px);
+                }
+            }
+        }
+        .business_info{
+            .form-item__label{
+                @include fontoption(14px,#000,500,26px);
+            }
+        }
+    }
+    .page-title__wrap{
+        &.fs24{
+            h3{
+                font-size: 24px;
+                line-height: 32px;
+            }
+        }
+        h3{
+            font-size: 24px;
+            line-height: 32px;
+        }
+    }
 }
-
+.page-title__wrap{
+    &.fs24{
+        h3{
+            font-size: 24px;
+            line-height: 32px;
+        }
+    }
+}
+.w100{
+    width: 100px;
+    padding: 16px 0 !important;
+}
 // 브랜드 대시보드
 .brand-dash {
     .brand-dash__wrap {
@@ -3127,4 +3232,7 @@
             }
         }
     }
+}
+.several-line{
+    word-break: break-all;
 }
