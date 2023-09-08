@@ -27,12 +27,13 @@
     .partner-search{
       display: flex;
       flex-wrap: nowrap;
-      align-items: flex-end;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 16px;
       margin-top: 16px;
       .list__sort-area{
         display: flex;
+        flex-wrap: wrap;
         gap: 8px;
         .checkbox {
           label {
@@ -155,6 +156,7 @@
   }
   .agency-box{
     display: flex;
+    height: fit-content;
     border-radius: 12px;
     border: 1px solid #eaeaea;
     padding: 19px 24px 19px 19px;
@@ -162,9 +164,10 @@
     flex-direction: column;
     .info-top{
       display: flex;
-      gap:40px;
+      justify-content: space-between;
       margin-bottom: 12px;
       .info-top-left{
+        width: calc(100% -63px);
         .agency-name{
           @include fontoption(20px,#000,500,32px);
           margin-bottom: 16px;
@@ -180,10 +183,16 @@
           justify-content: center;
           align-items: center;
           overflow: hidden;
+          background: url('../assets/images/partner/patner_no_logo.png') no-repeat center center;
           img{
             height: 100%;
           }
         }
+      }
+    }
+    .info-middle{
+      .agency-mail,.agency-url{
+        @include ellipsis($line: 1);
       }
     }
     .info-bottom{
@@ -443,6 +452,24 @@
 
 @media #{$phone} {
   // 파트너사 소개
+  .contents{
+    &.respons{
+      .partner__wrap{
+        .page-title__wrap{
+          margin-top: 8px;
+          padding-bottom: 12px;
+          h3{
+            font-size: 18px;
+            line-height: 25px;
+          }
+        }
+        .page-title{
+          padding-top: 32px;
+          margin-bottom: 0;
+        }
+      }
+    }
+  } 
   .partner__wrap{
     max-width:100%;
     padding: 0 16px 24px;
@@ -450,17 +477,7 @@
     h4{
       font-size: 18px;
       line-height: 25px;
-    }
-    .page-title{
-      padding-top: 32px;
-    }
-    .page-title__wrap{
-      margin-top: 8px;
-      padding-bottom: 12px;
-      h3{
-        font-size: 18px;
-        line-height: 25px;
-      }
+      font-weight: 700;
     }
     .top-notice--gray{
       padding: 16px 12px;
@@ -488,6 +505,7 @@
           overflow: hidden;
           max-height: 44px; 
           transition: max-height 0.3s ease; 
+          padding-right: 39px;
           .checkbox {
             label {
               border-radius:50px;
@@ -504,6 +522,7 @@
             position: absolute;
             top:0;
             right: 0;
+            margin-right: 0;
             &::before{
               position: absolute;
               top:0;

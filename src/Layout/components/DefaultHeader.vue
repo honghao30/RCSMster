@@ -5,7 +5,6 @@
   <div class="inner"
   :class="{ respons: respons }"
   >
-  <!-- :class="{ respons: $route.meta.respon === 'true' }"> -->
     <div class="header__logo">
       <h1><router-link to="/"><span class="blind">RCS Biz Center</span></router-link></h1>
     </div>

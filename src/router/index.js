@@ -10,6 +10,7 @@ import NotFound from '@/views/errors/404.vue'
 // import ServerError from '@/views/errors/500.vue'
 
 // 파일 링크
+import Main from './menus/Main'
 import PubGuides from './menus/guide'
 import Join from './menus/join'
 import CsList from './menus/CsList'
@@ -40,7 +41,7 @@ let router = new Router({
         headerView: false
       }
     },
-    ...PubGuides, // 퍼블 가이드
+    ...Main, // 퍼블 가이드
     ...Join, // 로그인,가입
     ...CsList, // 고객센터, 알림
     ...MypageList, // 마이페이지

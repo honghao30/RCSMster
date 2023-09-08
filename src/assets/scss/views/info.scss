@@ -3,6 +3,16 @@
     width: $contentWidth2;
     margin: 0 auto;
     padding-bottom: 80px;
+    .page-title__wrap{
+        h3{
+            font-size: 28px;
+        }
+    }
+    .guide-text{
+        &.bt16{
+            margin: 0 0 16px 0;
+        }
+    }
     .table__wrap {
         .form-table {
             th {

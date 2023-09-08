@@ -1,6 +1,9 @@
 .brand__wrap {
     background: #F5F5F5;
-    padding-bottom: 80px;
+    min-height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     &.brand-dash {
         padding-bottom: 0;
     }
@@ -11,6 +14,8 @@
     display:flex;
     gap: 32px;
     padding:24px 0;
+    min-height: 100%;
+    flex:1;
 }
 .brand-info__wrap {
     background-color:#fff;
@@ -67,7 +72,7 @@
                 width:68px;
                 height: 68px;
                 border:1px solid #ddd;
-                background-color: #EAEAEA;
+                background-color: #fff;
                 border-radius: 16px;
                 margin-bottom: 6px; 
                 background-repeat: round;
@@ -1027,6 +1032,7 @@
 }
 .brand-lnb {
     flex:0 0 217px;
+    padding-bottom: 32px;
     .brand-info {
         &__inner {
             display:flex;

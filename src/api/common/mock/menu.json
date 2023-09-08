@@ -2,7 +2,7 @@
   {
     "menuId": "M0100",
     "parentMenuId": "",
-    "path": "#",
+    "path": "/Feature",
     "level": 1,
     "sort": 1,
     "name": "서비스 소개"
@@ -10,15 +10,15 @@
   {
     "menuId": "M0101",
     "parentMenuId": "M0100",
-    "path": "#",
+    "path": "/Feature",
     "level": 2,
     "sort": 1,
-    "name": "마케팅 메시지"
+    "name": "RCS 특장점"
   },
   {
     "menuId": "M0102",
     "parentMenuId": "M0100",
-    "path": "",
+    "path": "/UseGuide",
     "level": 2,
     "sort": 2,
     "name": "서비스 이용 가이드"
@@ -26,26 +26,10 @@
   {
     "menuId": "M0200",
     "parentMenuId": "#",
-    "path": "",
+    "path": "/partnerInfo",
     "level": 1,
     "sort": 2,
     "name": "파트너사"
-  },
-  {
-    "menuId": "M0201",
-    "parentMenuId": "M0200",
-    "path": "/service/dashboard",
-    "level": 2,
-    "sort": 1,
-    "name": "브랜드"
-  },
-  {
-    "menuId": "M0202",
-    "parentMenuId": "M0200",
-    "path": "/service/support",
-    "level": 2,
-    "sort": 2,
-    "name": "기술지원"
   },
   {
     "menuId": "M0300",
@@ -77,12 +61,22 @@
     "path": "/OnlineInquire",
     "level": 2,
     "sort": 3,
-    "name": "온라인문의"
+    "name": "온라인문의",
+    "isLogin": false
+  },
+  {
+    "menuId": "M0304",
+    "parentMenuId": "M0300",
+    "path": "/RequireList",
+    "level": 2,
+    "sort": 3,
+    "name": "온라인문의",
+    "isLogin": true
   },
   {
     "menuId": "M0400",
     "parentMenuId": "",
-    "path": "",
+    "path": "/TechnicalSupport",
     "level": 1,
     "sort": 1,
     "name": "기술지원"

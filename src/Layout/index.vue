@@ -1,10 +1,8 @@
 <template>
   <div class="wrap"
-    :class="{ isfixed: isHeaderFix}"
+    :class="{ main: isMain}"
   >
-    <HeaderCmp
-      :class="{ isfixed: isHeaderFix}"
-    />
+    <HeaderCmp />
     <div
       class="contents"
       :class="[{ bgcontainer: ShowBgcolor }, { respons: respons }]"
@@ -50,6 +48,10 @@ export default {
     }
   },
   computed: {
+    // System name 적용하는 부분
+    isMain () {
+      return this.$route.name === 'Main'
+    },
     respons () {
       return this.$route.meta.respons === true
     }
