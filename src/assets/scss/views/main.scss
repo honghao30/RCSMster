@@ -491,7 +491,8 @@ body {
                     @include fontoption(38px,#000,700,48px);
                     letter-spacing: -0.025em;
                 }
-                background: url('../assets/images/main/bg_service02.png') no-repeat 314px 165px;
+                background: url('../assets/images/main/bg_service02.gif') no-repeat 314px 165px;
+                background-size: 145px auto;
             }
             @media #{$phone} {
                 width: 100%;
@@ -509,7 +510,7 @@ body {
                         font-size: 6.667vw;
                         line-height: 8.333vw;                    
                     }
-                    background: url('../assets/images/main/bg_service02_m.png') no-repeat 100% bottom;
+                    background: url('../assets/images/main/bg_service02.gif') no-repeat 100% bottom;
                     background-size: 29.444vw;
                 }
             }            
@@ -529,7 +530,8 @@ body {
                     @include fontoption(38px,#000,700,48px);
                     letter-spacing: -0.025em;
                 }
-                background: url('../assets/images/main/bg_service03.png') no-repeat 311px 178px;
+                background: url('../assets/images/main/bg_service03.gif') no-repeat 311px 178px;
+                background-size: 126px auto;
             }
             @media #{$phone} {
                 width: 100%;
@@ -546,7 +548,7 @@ body {
                         font-size: 6.667vw;
                         line-height: 8.333vw;                    
                     }
-                    background: url('../assets/images/main/bg_service03_m.png') no-repeat 90% bottom;
+                    background: url('../assets/images/main/bg_service03.gif') no-repeat 90% bottom;
                     background-size: 25.278vw;
                 }
             }             
@@ -599,7 +601,12 @@ body {
                     transform: translateX(-50%);
                     bottom: 124px;
                 }
-                background: url('../assets/images/main/bg_service04.png') no-repeat center 70px;
+                background-size: 240px 240px, 240px 240px;
+                background-position:30px 164px,193px 56px;
+                background-repeat: no-repeat;
+                background-image: url('../assets/images/main/bg_service04_01.gif'), url('../assets/images/main/bg_service04_02.gif');
+
+                // background: url('../assets/images/main/bg_service04.png') no-repeat center 70px;
             }
             @media #{$phone} {
                 width: 100%;
