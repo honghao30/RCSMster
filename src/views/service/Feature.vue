@@ -109,8 +109,8 @@
               국가기관의 공인 안심마크
             </div>
             <div class="txt-des">
-              다른 메신저에는 없는 RCS만의<br class="only-mo"> <span class="des-strong">KISA(한국인터넷진흥원)인증</span>으로 최고의 신뢰도를 자랑합니다.<br>
-              KISA(한국인터넷진흥원)에서 인증한 금융/공공기관에는 <br>
+              다른 메신저에는 없는 RCS만의<br class="only-mo"> <span class="des-strong">한국인터넷진흥원(KISA)인증</span>으로 최고의 신뢰도를 자랑합니다.<br>
+              한국인터넷진흥원(KISA)인증에서 인증한 금융/공공기관에는 <br>
               <span class="des-strong">‘안심마크’</span>를 표시하여 사칭문자로 인한<br class="only-mo"> 스미싱 <span class="des-strong">범죄등에 안전함</span>을
               안내할 수 있습니다.
             </div>
