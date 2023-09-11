@@ -539,6 +539,7 @@ $contentWidth2: 1024px;
             align-items:center;
             padding-right: 38px;           
             @include fontoption(12px,#707070,400,20px);
+            gap: 15px;
             &:after {
                 content: '';
                 display: block;
