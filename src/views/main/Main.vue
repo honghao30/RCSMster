@@ -1,14 +1,13 @@
 <template>
   <div class="main__wrap">
        <!-- // 팝업창 -->
-       <!-- <NoticePopup /> -->
-      <!-- <MainPop /> -->
+       <notice-popup/>
       <div class="key-visual__wrap" ref="keyVi">
         <div class="key-visual__inner--box">
           <div class="key-visual__text">
             <p class="text">
               브랜드에 딱! 맞는<br class="mo"> 메시지 만들기,<br>
-              RCS 에서만 가능합니다!
+              RCS에서 가능합니다!
             </p>
             <p class="btn-more">
               <router-link to="#">
@@ -19,7 +18,7 @@
         </div>
         <div class="key-visual__bar--bottom"
           :class="{ isfixed : keyVisualLinks}"
-          :style="{ top: keyVisualLinks ? keyBarPs + 'px' : 'auto' }"
+          :style="{ top: keyVisualLinks ? keyBarPs + 'px' : 'auto', bottom: keyVisualLinks ? '0' : '' }"
         >
           <div class="key-visual__inner">
             <div class="bottom-logo">
@@ -55,7 +54,7 @@
                 <h2>
                   RCS Service<br>Communication
                 </h2>
-                <p class="title-description">RCS 서비스는 브랜드와 고객의<br>커뮤니케이션을 돕습니다.</p>
+                <p class="title-description">RCS 서비스는 브랜드와 고객의<br>커뮤니케이션을 돕습니다</p>
               </div>
               <div class="rcs-service__wrap">
                 <div class="rcs-service__wrap--top">
@@ -80,7 +79,7 @@
                     <router-link to="#"  class="section__list--inner-wrap">
                       <div class="tit">
                         <p>#브랜드 소식</p>
-                        <h3>이벤트소식을 빠르게<br>전달하는 방법</h3>
+                        <h3>이벤트소식을 빠르게<br>전달하는 방법!</h3>
                       </div>
                     </router-link>
                   </div>
@@ -103,8 +102,8 @@
                   >
                     <router-link to="#" class="section__list--inner-wrap">
                       <div class="tit">
-                        <p>#대화방 메뉴4</p>
-                        <h3>24시간 고객과의<br>커뮤니케이션!</h3>
+                        <p>#대화방 메뉴</p>
+                        <h3>고객과 24시간<br>커뮤니케이션하고<br class="pc"> 싶다면?</h3>
                       </div>
                     </router-link>
                   </div>
@@ -114,9 +113,9 @@
                   >
                     <router-link to="#" class="section__list--inner-wrap">
                       <div class="tit">
-                        <p>#브랜드 프로필5</p>
+                        <p>#브랜드 프로필</p>
                         <h3>
-                          모르는 발신 번호는 그만!<br>고객이 안심하고 열어 보는<br>내 브랜드 표시
+                          모르는 발신번호는 그만!<br>고객이 안심하고 열어 보는<br>내 브랜드 표시
                         </h3>
                       </div>
                     </router-link>
@@ -136,7 +135,7 @@
               Message<br class="mo">Type
             </div>
           </h2>
-          <p class="title-description">RCS의 다양한 타입의 메시지 상품을 경험해보세요!</p>
+          <p class="title-description">RCS의 다양한 타입의<br class="mo"> 메시지 상품을 경험해보세요!</p>
           <p class="btn-link">
             <router-link to="">메시지 템플릿 더보기</router-link>
           </p>
@@ -167,7 +166,7 @@
       >
         <div class="section-title">
           <h2>
-            RCS Introduction Case
+            Success Stories
           </h2>
           <p class="title-description">RCS 서비스의 다양한 기업체에<br class="pc">도입된<br class="mo"> 사례를 접해보세요!</p>
         </div>
@@ -317,7 +316,7 @@ export default {
       rbcCase: [
         {
           customer: 'lgu',
-          title: 'Smart Score (스마트 스코어)',
+          title: 'Smart Score (스마트 스코어) ',
           description: '“회원 대상 타겟 마케팅 매체의 문자를 RCS로 변경하면서<br>반응이 늘고 매출액도 향상되었습니다.”',
           link: '#',
           card: [
@@ -333,7 +332,7 @@ export default {
         },
         {
           customer: 'skt',
-          title: 'T-Deal (티-딜)',
+          title: 'SK텔레콤 (티 딜)',
           description: 'SK 텔레콤 고객을 대상으로 AI로 큐레이션한 다양한 상품의<br>핫딜을 제공하는 서비스로 RCS 메시지를 통해 고객에게<br>다양한 제안을 제공하며 좋은 성과를 내고 있습니다.',
           link: '#',
           card: [
@@ -402,7 +401,7 @@ export default {
           cardUrl: require('@/assets/images/main/message_card07.png')
         },
         {
-          type: 'LMS 템플릿 2단형',
+          type: 'LMS 템플릿 문단형',
           cardUrl: require('@/assets/images/main/message_card08.png')
         },
         {
@@ -443,6 +442,8 @@ export default {
         spaceBetween: 0,
         slidesPerView: 1,
         parallax: true,
+        observer: true,
+        observeParents: true,
         speed: 1500,
         effect: 'fade',
         // autoplay: {
@@ -497,6 +498,7 @@ export default {
       scrollTimeout: null,
       bodyColor: '',
       currentSection: 0,
+      calculatedFontSize: 0,
       keyBarPs: ''
     }
   },
@@ -507,25 +509,20 @@ export default {
   },
   created() {
     window.addEventListener('scroll', this.handleScroll)
-    window.addEventListener('resize', this.calcPos)
+    window.addEventListener('resize', this.resizeHandler)
   },
   destroyed() {
     window.removeEventListener('scroll', this.handleScroll)
-    window.removeEventListener('resize', this.calcPos)
+    window.removeEventListener('resize', this.resizeHandler)
   },
   mounted() {
     window.addEventListener('scroll', () => {
       this.scrollY = Math.round(window.scrollY)
     })
     this.windowHeight = window.innerHeight
-    this.calcPos()
-
-    window.addEventListener('resize', this.applyStyles)
     this.applyStyles()
-  },
-  beforeDestroy() {
-    // Remove the resize event listener when the component is destroyed
-    window.removeEventListener('resize', this.applyStyles)
+    this.calcPos()
+    window.addEventListener('resize', this.resizeHandler)
   },
   methods: {
     onSwiper (swiper) {
@@ -599,37 +596,60 @@ export default {
     },
     applyStyles() {
       // .swiper-etc 클래스에 스타일을 동적으로 적용
-      const isMobile = window.innerWidth <= 768
-      if (isMobile) {
-      } else {
-        const swiperEtcElement = this.$el.querySelector('.swiper-etc')
+      let isMobile = window.innerWidth <= 768
+      const swiperEtcElement = this.$el.querySelector('.swiper-etc')
+      const etcBox = this.$el.querySelector('.swiper-etc .etc-box')
+      const etc = this.$el.querySelector('.swiper-etc .etc-box .etc')
+      if (!isMobile) {
         swiperEtcElement.style.position = 'absolute'
         swiperEtcElement.style.width = '60%'
         swiperEtcElement.style.height = '100%'
-        const etcBox = this.$el.querySelector('.swiper-etc .etc-box')
         etcBox.style.position = 'relative'
         etcBox.style.width = '100%'
         etcBox.style.height = '100%'
         etcBox.style.display = 'flex'
         etcBox.style.justifyContent = 'center'
-        const etc = this.$el.querySelector('.swiper-etc .etc-box .etc')
         etc.style.position = 'absolute'
         etc.style.width = '650px'
         etc.style.height = '24px'
         etc.style.top = '64%'
         etc.style.left = '50%'
         etc.style.marginLeft = '-325px'
+      } else {
+        swiperEtcElement.style.position = ''
+        swiperEtcElement.style.width = ''
+        swiperEtcElement.style.height = ''
+        etcBox.style.position = ''
+        etcBox.style.width = ''
+        etcBox.style.height = ''
+        etcBox.style.display = ''
+        etcBox.style.justifyContent = ''
+        etc.style.position = ''
+        etc.style.width = ''
+        etc.style.height = ''
+        etc.style.top = ''
+        etc.style.left = ''
+        etc.style.marginLeft = ''
       }
     },
     // 키비 높이 계산
     calcPos() {
       if (window.innerWidth > 768) {
         const keyViheight = this.$refs.keyVi.clientHeight
+        const MainViHeight = document.querySelector('.video-frame').clientHeight
         const winHeight = window.innerHeight
-        const thisPos1 = keyViheight - winHeight
-        console.log(winHeight, thisPos1)
         this.keyBarPs = winHeight - 100
+        // const thisPos1 = keyViheight - winHeight
+        if (MainViHeight <= winHeight || winHeight >= MainViHeight) {
+          this.keyBarPs = 'auto'
+        } else {
+          this.keyBarPs = winHeight - 100
+        }
       }
+    },
+    resizeHandler() {
+      this.calcPos()
+      this.applyStyles()
     }
   }
 }

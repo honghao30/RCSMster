@@ -160,3 +160,19 @@
 .hidebox {
   height: 20px;
 }
+
+// .alarm-text pre {
+// 	text-overflow: ellipsis;
+// 	overflow: hidden;
+// 	display: -webkit-box;
+// 	-webkit-box-orient: vertical;
+// 	-webkit-line-clamp: 2;	
+// }
+
+.noti pre {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;	
+}

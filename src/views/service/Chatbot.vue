@@ -31,10 +31,88 @@
             <h2 class="second-title">2. 대화방 종류</h2>
             <p class="content">메시지 앱에서 대화방은 다음과 같이 구분되며, 이용 가능한 메시지 상품이 상이합니다.</p>
           </div>
-          <div class="gray-box__wrap">
-            <div class="gray-box">
-                <img src="@/assets/images/guide/guide_chatbot_02.png" alt="">
-            </div>
+          <div class="table-box">
+            <table>
+                <colgroup>
+                    <col width="18%">
+                    <col width="18%">
+                    <col width="16%">
+                    <col width="16%">
+                    <col width="16%">
+                    <col width="16%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="2" rowspan="2"></th>
+                        <th scope="col" colspan="4">A2P(기업 메시징)</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">기본<br>대화방</th>
+                        <th scope="col">RCS<br>대화방</th>
+                        <th scope="col">RCS MO<br>대화방</th>
+                        <th scope="col">RCS 양방향<br>대화방</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-blue">
+                        <th colspan="2" class="text-l">RCS 등록 필요</th>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                    </tr>
+                    <tr>
+                        <th rowspan="6" class="text-l">메시지 상품</th>
+                        <th class="text-l">문자 메시지</th>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                    </tr>
+                    <tr>
+                        <th class="text-l">RCS P2P 채팅+</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="text-l">RCS 공통 포맷<br>(SMS/LMS/MMS)</th>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                    </tr>
+                    <tr>
+                        <th class="text-l">RCS 정보성 템플릿</th>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                    </tr>
+                    <tr>
+                        <th class="text-l">RCS 이미지 템플릿</th>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                    </tr>
+                    <tr>
+                        <th class="text-l">RCS 양방향</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>○</td>
+                    </tr>
+                    <tr  class="bg-bgren">
+                        <th colspan="2" class="text-l">사용자 반응 결과 집게 (버튼)</th>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>○</td>
+                    </tr>
+                </tbody>
+            </table>
           </div>
           <div class="gray-box__wrap">
             <div class="gray-box">
@@ -75,9 +153,7 @@ RCS MO 대화방은 아래와 같은 기능을 이용할 수 없습니다.
                 </div>
             </div>
             <div class="gray-box__wrap">
-                <div class="gray-box">
-                    <div style="background-color:#f0f0f0;height:500px;">이미지</div>
-                </div>
+                <img src="@/assets/images/guide/guide_chatbot_02.png" alt="">
             </div>
             <div class="gray-box__wrap">
                 <div class="gray-box">
@@ -86,7 +162,7 @@ RCS MO 대화방은 아래와 같은 기능을 이용할 수 없습니다.
                 </div>
             </div>
             <div class="btn__warp right">
-                <a href="/KeyFeatures" aria-current="page" class="side-btn">양방향 대행사 보기</a>
+                <a href="/partnerInfo" class="side-btn">양방향 대행사 보기</a>
                 <i class="next"></i>
             </div>
             <div class="third-box__wrap" id="guide_2_2_1">
@@ -106,11 +182,11 @@ RCS MO 대화방은 아래와 같은 기능을 이용할 수 없습니다.
             </div>
             <div class="btn__warp right multiline">
                 <p>
-                    <a href="/KeyFeatures" aria-current="page" class="side-btn">자동응답 메시지</a>
+                    <a href="/brand/BR.Gz8TLt7xe0/autoReplyMsg/list" class="side-btn">자동응답 메시지</a>
                     <i class="next"></i>
                 </p>
                 <p>
-                    <a href="/KeyFeatures" aria-current="page" class="side-btn">대화방 메뉴</a>
+                    <a href="/brand/BR.Gz8TLt7xe0/psmenu" class="side-btn">대화방 메뉴</a>
                     <i class="next"></i>
                 </p>
             </div>
@@ -123,9 +199,7 @@ RCS MO 대화방은 아래와 같은 기능을 이용할 수 없습니다.
                 </div>
             </div>
             <div class="gray-box__wrap">
-                <div class="gray-box">
-                    <div style="background-color:#f0f0f0;height:500px;">이미지</div>
-                </div>
+                <img src="@/assets/images/guide/guide_chatbot_03.png" alt="">
             </div>
         </div>
         <div class="guide__item" id="section03">
@@ -195,7 +269,7 @@ RCS MO 대화방은 아래와 같은 기능을 이용할 수 없습니다.
                     </div>
                 </div>
                 <div class="third-box__wrap">
-                    <div class="third-box">
+                    <div class="third-box"  id="guide_3_2">
                         <p class="title">등록 가능한 발신번호</p>
                         <p class="content">
                             RCS 기업 메시지를 발송할 때 사용할 전화번호(이하 발신번호)를 사전에 등록해야 합니다.<br>
@@ -250,7 +324,7 @@ RCS MO 대화방은 아래와 같은 기능을 이용할 수 없습니다.
                     </div>
                 </div>
                 <div class="third-box__wrap">
-                    <div class="third-box">
+                    <div class="third-box"  id="guide_3_3">
                         <p class="title">타인 명의 발신번호</p>
                         <p class="content">
                             타인 명의 발신번호로 대화방 등록 시, 발신번호 소유주의 위탁서 및 발신번호 소유 인증 자료(아래 표)를 함께 등록하시면 됩니다.
@@ -322,11 +396,11 @@ RCS MO 대화방은 아래와 같은 기능을 이용할 수 없습니다.
                 </div>
                 <div class="btn__warp right">
                     <p>
-                        <a href="/KeyFeatures" aria-current="page" class="side-btn">공지사항 / 서식</a>
+                        <a href="/notice" class="side-btn">공지사항 / 서식</a>
                         <i class="next"></i>
                     </p>
                 </div>
-                <div class="third-box__wrap">
+                <div class="third-box__wrap" id="guide_3_4">
                     <div class="third-box">
                         <p class="title">대화방 명 가이드</p>
                         <p class="content">
@@ -337,7 +411,7 @@ RCS MO 대화방은 아래와 같은 기능을 이용할 수 없습니다.
                 </div>
                 <div class="btn__warp right file-link">
                     <p>
-                        <a href="/KeyFeatures" aria-current="page" class="side-btn">
+                        <a href="/KeyFeatures" class="side-btn">
                             <img src="@/assets/images/guide/ico_pdf.png" alt="">
                             대화방명 가이드 안내.pdf
                         </a>
@@ -450,27 +524,27 @@ export default {
         },
         {
           'label': '3.1 대화방 등록 절차',
-          'to': '',
+          'to': '#guide_3_1',
           'anchorIndex': 2
         },
         {
           'label': '3.2 등록 가능한 발신번호',
-          'to': '',
+          'to': '#guide_3_2',
           'anchorIndex': 3
         },
         {
           'label': '3.3 타인 명의 발신번호',
-          'to': '',
+          'to': '#guide_3_3',
           'anchorIndex': 4
         },
         {
           'label': '3.4 대화방 명 가이드',
-          'to': '',
+          'to': '#guide_3_4',
           'anchorIndex': 5
         },
         {
           'label': '4.1 대화방 삭제 가이드',
-          'to': 'guide_4_1',
+          'to': '',
           'anchorIndex': 6,
           'children': [
             {

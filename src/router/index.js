@@ -38,7 +38,9 @@ let router = new Router({
       path: '*',
       component: NotFound,
       meta: {
-        headerView: false
+        headerView: false,
+        FooterView: false,
+        respons: true
       }
     },
     ...Main, // 퍼블 가이드

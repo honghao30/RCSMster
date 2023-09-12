@@ -88,7 +88,7 @@
               <p class="content">- 기간이 정해져있는 직함을 포함하는 경우</p>
             </div>
             <div class="btn__warp right">
-              <router-link to="" class="side-btn">온라인 문의하기</router-link>
+              <router-link to="/OnlineInquire" class="side-btn">온라인 문의하기</router-link>
               <i class="next"></i>
             </div>
           </div>

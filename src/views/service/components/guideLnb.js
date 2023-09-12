@@ -35,12 +35,12 @@ const guideLnbList = [
       },
       {
         'label': 'RCS 기업 메시지 활용 팁',
-        'to': '/#section02',
+        'to': '/RcsMessageType/#section02',
         'hash': '#section02'
       },
       {
         'label': '발송 환경 준비',
-        'to': '/#section03',
+        'to': '/RcsMessageType/#section03',
         'hash': '#section03'
       }
     ]

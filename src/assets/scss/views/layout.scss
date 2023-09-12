@@ -85,6 +85,7 @@ $contentWidth2: 1024px;
         > ul{
             display:flex;
             align-items:center;
+            padding-right: 48px;
         }
         &:after {
             content:'';
@@ -103,7 +104,9 @@ $contentWidth2: 1024px;
             position: relative;                   
         }
         &:hover {
-           > a {
+            > a {
+                color:#2F77FB !important;
+                font-weight: 500;
                 &::after {
                     content: '';
                     display: block;
@@ -114,8 +117,9 @@ $contentWidth2: 1024px;
                     height:4px;
                     width:100%;
                     background-color: rgba(47, 119, 251, 1);
+                    font-weight: 500;
                 }
-             } 
+            } 
         }         
         // 서브 메뉴
         .sub-menu__wrap {
@@ -135,7 +139,8 @@ $contentWidth2: 1024px;
                         padding: 29px 30px 23px;
                         @include fontoption(16px,#000, 400,28px);
                         &:hover {
-                            color:#2F77FB;
+                            color:#2F77FB !important;
+                            font-weight: 500; 
                         }
                     }
                 }
@@ -174,7 +179,7 @@ $contentWidth2: 1024px;
 .gnb_full_bg {
     position: absolute;
     width: 100%;
-    height: 86px;
+    height: 80px;
     left: 0;
     top: 100px;
     background-color: #fff;
@@ -247,11 +252,21 @@ $contentWidth2: 1024px;
                         background: url('../assets/images/icon/btn_remove_alarm.png') no-repeat center center;
                         width:22px;
                         height:22px;            
+                    } 
+                    pre {
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;	
+                        @include fontoption(14px,#999999,400,26px);
                     }                    
                 }
                 .alarm-info {
                     display: flex;
                     justify-content: space-between;
+                    position: relative;
+                    padding-right: 25px;
                     .data {
                         @include fontoption(14px,#999999,400,26px);
                     }
@@ -271,8 +286,18 @@ $contentWidth2: 1024px;
                             color:#999999;
                             border:1px solid #999999;
                         }
-                    }                    
-                }
+                    }  
+                    .btn-remove-alarm {
+                        position: absolute;
+                        right: 0px;
+                        bottom: 0px;
+                        min-width: 20px;        
+                        padding:0;
+                        background: url('../assets/images/icon/btn_remove_alarm.png') no-repeat center center;
+                        width:22px;
+                        height:22px;            
+                    }
+                }               
             }
         }
     }
@@ -281,7 +306,6 @@ $contentWidth2: 1024px;
     position: relative;
     display:flex;
     align-items:center;
-    margin-left:48px;
     padding-left:48px;
     &::before {
         content: '';
@@ -367,19 +391,35 @@ $contentWidth2: 1024px;
                 border-width: 1px 1px 0 0; 
                 transform: rotate(135deg) translate(-50%, -50%);
             }
+            &.isActive{
+                &::after {
+                    right: 9px;
+                    transform: rotate(-45deg) translate(60%, 150%);
+                }
+            }
         }
         .user-menu {
             position:absolute;
             left:0;
             top:30px;
-            border:1px solid #ccc;
-            width:86px;
+            width:106px;
             background-color:#fff;
-            padding:10px 12px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.10), 0px 1px 1px 0px rgba(23, 15, 73, 0.00), 0px 0px 1px 0px rgba(0, 0, 0, 0.03);
+            li{
+                padding: 8px 0;
+            }
+            li + li{
+                border-top: 1px solid #F0F0F0;
+            }
             a {
-                font-size: 12px;
-                line-height:18px;
-                cursor:pointer
+                color: #000 !important;
+                cursor:pointer;
+                &:hover {
+                    font-weight: 500;
+                    color: $pointColor !important;
+                }
             }
         }
     }
@@ -501,6 +541,7 @@ $contentWidth2: 1024px;
         display:flex;
         flex-direction: column;
         align-items: center;
+        background:#e6e6e6;
     }
     .policy-list {
         display:flex;
@@ -537,9 +578,9 @@ $contentWidth2: 1024px;
             position: relative;
             display:inline-flex;
             align-items:center;
-            padding-right: 38px;           
+            padding-right: 38px;
+            gap: 15px;                       
             @include fontoption(12px,#707070,400,20px);
-            gap: 15px;
             &:after {
                 content: '';
                 display: block;
@@ -582,7 +623,6 @@ $contentWidth2: 1024px;
 
 @media #{$phone} {
     $mobileNavWidth: 240px;
-    $headerHeight: 48px;
     .inner { 
         &.respons {
           width:100%;
@@ -590,14 +630,15 @@ $contentWidth2: 1024px;
     }
     // 컨텐츠 넓이 조정
     .header {
+        flex:0 0 13.333vw;
         &.respons {
-            height:$headerHeight;
+            height: 13.333vw;
             .mobile-nav__top {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 height: 49px;
-                padding:0 25px;
+                padding:12px 16px;
                 h1 {
                     a {
                         display: block;
@@ -610,9 +651,9 @@ $contentWidth2: 1024px;
             }
             .header__logo  {
                 h1{
-                    width:90px;
-                    height:15px;
-                    background-size:auto 11px;  
+                    width: 25vw;
+                    height: 4.167vw;
+                    background-size: contain;
                 }
                 a {
                     display:block;
@@ -620,16 +661,18 @@ $contentWidth2: 1024px;
                 }
             }
             .header__menu {
-                display:block;
+                display:inline-flex;
+                width: 6.667vw;
+                height: 6.667vw;
             }
             .nav {
                 display:block;
                 &__button {
                     display:inline-block;                    
-                    height: 24px;
-                    width: 24px;
                     background:url('../assets/images/layout/btn_nav.png') no-repeat 50% 50%;
-                    background-size:100%;
+                    background-size: 100%;
+                    width: 6.667vw;
+                    height: 6.667vw;
                 }
                 &__inner {
                     position:fixed;
@@ -652,15 +695,17 @@ $contentWidth2: 1024px;
                         margin-top:24px;
                         flex-direction: column;
                         align-items:flex-start;
+                        padding: 0 16px;
                         li {
                             width: 100%;                            
                             > a {
-                                @include fontoption(15px,#000,500, 42px);
+                                padding: 16px 0;
+                                @include fontoption(17px,#000,500, 21px);
                                 border-bottom: 1px solid #F0F0F0;
                                 display: block;
                             }
                             &.children {
-                               > a {
+                                > a {
                                     &::after {
                                         content: '';
                                         display: block;
@@ -676,6 +721,8 @@ $contentWidth2: 1024px;
                                 &.active {
                                     > a {
                                         color:#2F77FB;
+                                        font-weight: 700;   
+                                        border-bottom: 0;
                                     }
                                     .sub-menu__wrap {
                                         display: block !important;
@@ -688,7 +735,7 @@ $contentWidth2: 1024px;
                                 }
                                 &:hover,
                                 &:focus {
-                                   > a {
+                                    > a {
                                         &::after {
                                             display: block;
                                             transform: rotate(-180deg);
@@ -701,13 +748,17 @@ $contentWidth2: 1024px;
                                 }
                             }                            
                             &:hover {
-                               > a {
-                                    color:#2F77FB;   
+                                > a {
+                                    color:#2F77FB !important;
+                                    font-weight: 500;   
                                     &::after {
                                         display: none;
                                     }  
                                 }
-                            }                            
+                            }
+                            &.nav-item{
+                                padding: 0;
+                            }
                         }
                     }
                     .sub-menu__wrap {
@@ -717,15 +768,16 @@ $contentWidth2: 1024px;
                         top: auto;
                         left: auto;
                         border-bottom: 1px solid #F0F0F0;
-                        padding: 14px 0;
+                        padding: 0 0 16px 0;
                         display: none;;
                         ul {
                             flex-direction: column;
                             li {
+                                padding-top: 8px;
                                 a {
                                     @include fontoption(14px,#000, 500, 26px);
-                                    padding:4px 0;
                                     border-bottom: 0;
+                                    padding: 0;
                                     &:hover {
                                         color:#2F77FB;
                                     }
@@ -752,6 +804,10 @@ $contentWidth2: 1024px;
                 }
                 &__button--close {
                     display: block;
+                    width: 24px;
+                    height: 24px;
+                    background: url('../assets/images/icon/icon_close_mo.png') no-repeat center center;
+                    background-size: cover;
                 }
             }
             .header__util {
@@ -857,8 +913,12 @@ $contentWidth2: 1024px;
   .error-msg__wrap {
     display: flex;
     justify-content: center;
-    padding: 288px 0 80px;
-    background: url('../assets/images/icon/404.png') no-repeat center 80px;
+    img {
+        width: fit-content;
+        margin: 0 auto;
+    }
+    // padding: 288px 0 80px;
+    // background: url('../assets/images/icon/404.png') no-repeat center 80px;
     .error-msg {
         align-items: center;
         margin-top: 32px;
@@ -887,11 +947,15 @@ $contentWidth2: 1024px;
     height: 780px;
     flex-direction: column;
     border-radius: 16px;
+    overflow: hidden;
     border: 1px solid #EAEAEA;
+    transform: translateX(720px);
         @media #{$phone} {
-            width: 96vw;
-            height: 90vh;
-            top: 2%;
+            width: auto;
+            height: 465px;
+            top: 80px;
+            right: 16px;
+            transform: translateX(0%);
         }
     .modal-pop__inner {
         width: 100%;
@@ -930,5 +994,14 @@ $contentWidth2: 1024px;
             font-size: 12px;
             line-height: 12px;
         }  
+    }
+}
+@media all and (min-width:770px) and (max-width:1449px) {
+    .header{
+        border-bottom: 0;
+    }
+    .inner{
+        border-bottom: 1px solid #eaeaea;
+        padding: 0 2.778vw;
     }
 }

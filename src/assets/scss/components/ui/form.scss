@@ -401,7 +401,7 @@ $textareaHeight: 100px;
     z-index:10;
     overflow:hidden;
     .drodown__option {
-      max-height: 148px;
+      max-height: 300px;
       overflow-y: auto;
     }
     li {
@@ -1315,29 +1315,7 @@ $formLabelWidth : 120px;
           font-size: 18px;
         }
       }
-      .color-palette {
-        position: relative;
-        .btn-font--color {
-          cursor: pointer;
-          width: 30px;
-          height: 30px;
-          border-radius: 5px;
-          border:1px solid #ddd;
-          display:inline-flex;
-          align-items: center;
-          justify-content: center;
-          &.active {
-            border-color: #000;
-          }
-        }
-        .palette {
-          position:absolute;
-          left:0;
-          top:20px;
-          border:1px solid #ddd;
-          background-color:#fff;
-        }
-      }
+
     }
     &.simple{
       width: 192px;
@@ -1352,7 +1330,29 @@ $formLabelWidth : 120px;
     }
   }
 }
-
+.color-palette {
+  position: relative;
+  .btn-font--color {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border:1px solid #ddd;
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+    &.active {
+      border-color: #000;
+    }
+  }
+  .palette {
+    position:absolute;
+    left:0;
+    top:20px;
+    border:1px solid #ddd;
+    background-color:#fff;
+  }
+}
 
 
 @media #{$phone} {

@@ -1,5 +1,6 @@
 <template>
   <div class="error-msg__wrap">
+    <img src="@/assets/images/icon/404.png" alt="">
     <div class="error-msg">
       <strong>죄송합니다.</strong>
       <p>요청하신 페이지를 찾을 수 없습니다.</p>

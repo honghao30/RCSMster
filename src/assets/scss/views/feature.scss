@@ -10,15 +10,15 @@
     transform: translate(0, 0)
   }
   .category-tab.fixed{
+    padding-top: 20px;
     position: fixed;
     top: 0;
     left: 50%;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color:#fff;
     z-index: 10;
     width:100%;
     margin-left: -50%;
     -webkit-transform: translateZ(0);
-    padding-top: 20px;
   }
   .category-tab.hidden{
     transform: translate(0, -100%);
@@ -48,14 +48,14 @@
     }
     .txt-des{
       margin-top: 24px;
-      @include fontoption(16px,#777,400,23.17px);
+      @include fontoption(20px,#777,400,normal);
       .des-strong{
         font-weight: 700;
         color: #000;
       }
     }
     .txt-notice{
-      @include fontoption(16px,#666,400,23.17px);
+      @include fontoption(16px,#666,400,normal);
     }
   }
   .feature-img{
@@ -81,11 +81,8 @@
         max-width: 100%;
         z-index: 0;
         position: relative;
-        .img-des{
-          position: absolute;
-          &:nth-child(1){
-            top: 0;
-          }
+        img{
+          width: 700px;
         }
       }
       &::before{
@@ -95,6 +92,7 @@
         background-size: 100%;
         width: 100%;
         height: 232px;
+        top: 53%;
       }
     }
     .feature-big-txt{
@@ -104,7 +102,8 @@
       align-items: center;
       text-align: center;
       .big-txt{
-        @include fontoption(80px,#ddd,700,100px);
+        @include fontoption(80px,#ddd,700,110px);
+        letter-spacing: -4px;
         font-family: Noto Sans KR;
         .big-txt-black{
           color: #000;
@@ -118,6 +117,9 @@
       }
       .feature-img{
         padding-top: 68px;
+        img{
+          width: 773px;
+        }
       }
     }
   }
@@ -130,19 +132,15 @@
       justify-content: flex-end;
       margin-left: calc(100vw * 362 /1920);
       .feature-txt{
-        width: 628px;
+        width: 678px;
         position: static;
         margin-bottom: 216px;
-        .txt-tit{
-          letter-spacing: -5px;
-        }
-        
       }
     }
     .feature-img{
       &.first-img{
         img{
-          width: auto;
+          width: 100%;
           margin-left: -13%;
         }
       }
@@ -153,7 +151,7 @@
   }
   .feature_2{
     .feature-img{
-      padding-top: 52px;
+      padding-top: 90px;
     }
   }
   .feature_3, .feature_4, .feature_5{
@@ -229,6 +227,14 @@
 .only-mo{
   display: none;
 }
+.max-br{
+  display: none;
+}
+@media all and (min-width:1921px) {
+  .max-br{
+    display: block;
+  }
+}
 @media all and (min-width:770px) and (max-width:1919px) {
   .feature__wrap{
     .feature_1{
@@ -239,14 +245,25 @@
         .feature-img{
           &.first-img{
             img{
-              margin-left: -8.5%;
+              margin-left: -9.5%;
             }
           }
         }
       }
     }
   }
-} 
+}
+@media all and (max-width:1440px) {
+  .feature__wrap{
+    .feature_3{
+      .feature-img{
+        &.only-bd{
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}
 @media #{$phone} {
   .feature__wrap{
     .category-tab{
@@ -257,7 +274,7 @@
       }
     }
     [class*='feature_']{
-      padding-top: 102.5px;
+      padding-top: 74px;
     }
     .one-box{
       position: relative;
@@ -276,13 +293,14 @@
     .feature-txt{
       .txt-tit{
         @include fontoption(31px,#000,700,44px);
+        letter-spacing: -3.1px;
       }
       .txt-des{
         margin-top: 12px;
-        @include fontoption(12px,#777,400,17.375x);
+        @include fontoption(12px,#777,400,17.375px);
       }
       .txt-notice{
-        @include fontoption(11px,#666,400,15.93px);
+        @include fontoption(12px,#666,400, normal);
       }
     }
     .one-gray-box{
@@ -313,6 +331,7 @@
         margin-top: 75px;
         .big-txt{
           @include fontoption(31px,#ddd,700,44px);
+          letter-spacing: -3.6px;
         }
         .feature-img{
           padding-top: 47.5px;
@@ -331,9 +350,6 @@
           position: static;
           padding: 0 16px;
           margin-bottom: 0;
-          .txt-tit{
-            letter-spacing: -5px;
-          }
         }
       }
       .feature-img{
@@ -425,4 +441,4 @@
   .only-pc{
     display: none;
   }
-}
+ }

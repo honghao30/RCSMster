@@ -3123,6 +3123,18 @@
         margin-top: 12px;
     }
 }
+.brandcolor-box{
+    .input-item {
+        align-items: flex-end;
+        .color-palette{
+            height: 36px;
+            .btn-font--color{
+                width: 36px;
+                height: 36px;
+            }
+        }
+    }
+}
 
 .table-bodyonly tr.bd-bottom-none {
     &:last-child

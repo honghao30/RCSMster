@@ -3,6 +3,7 @@
     <ButtonCmp
       type="btn-blue-line"
       class="item-btn"
+      @click="downloadGuide"
     >RBC 이용 가이드 다운로드</ButtonCmp>
     <div class="side__banner">
       <div class="banner__info">
@@ -10,7 +11,7 @@
           <p class="side-title">RCS 발송 규격과<br/>API 연동 정보를 알고 싶으신가요?</p>
         </div>
         <div class="btn__warp">
-          <router-link to="" class="side-btn">기술지원 보러가기</router-link>
+          <router-link to="/TechnicalSupport" class="side-btn">기술지원 보러가기</router-link>
           <i class="next"></i>
         </div>
       </div>
@@ -34,7 +35,7 @@
           <p class="side-text">고객과 더 가깝게 소통할 수 있어요.</p>
         </div>
         <div class="btn__warp">
-          <router-link to="" class="side-btn">양방향 대행사 보러가기</router-link>
+          <router-link to="/partnerInfo" class="side-btn">양방향 대행사 보러가기</router-link>
           <i class="next"></i>
         </div>
       </div>
@@ -45,10 +46,25 @@
 
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
+import { downloadFileDirect } from '@/api/common/code'
 
 export default {
   components: {
     ButtonCmp
+  },
+  methods: {
+    // TODO: 일단 대화방 가이드 연결 해두었음 실제 가이드 나오면 fileNo 와 FileName 변경
+    downloadGuide() {
+      let param = {
+        fileName: 'RBC 이용 가이드 다운로드.pdf',
+        fileNo: 6
+      }
+      downloadFileDirect(param)
+        .then(() => { })
+        .catch(() => {
+          this.$alertMsg('파일 다운로드 시 오류가 발생했습니다.')
+        })
+    }
   }
 }
 </script>

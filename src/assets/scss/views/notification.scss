@@ -1,5 +1,9 @@
 .notification{
+  padding-bottom: 40px;
   .notification-des{
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
   &.button__wrap{
     justify-content: space-between;
     align-items: flex-end;
@@ -9,13 +13,18 @@
     .btn-search{
       padding: 0 32px;
     }
+    .medium {
+      min-width: 139px;
+    }
   }
   }
   .notification-item{
-    margin-top: 16px;
+    margin: 16px auto 0;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px 24px;
+    width: 100%;
+    max-width: 1024px;
     
     .notification-top{
       display: flex;
@@ -24,15 +33,21 @@
         padding: 2px 10px;
         border-radius: 20px;
         line-height: 12px;
-        background-color: $pointColor;
+        background-color: #fff;
         @include fontoption(12px,#fff,500,20px);
         &.red{
-          background-color: $errorColor
+          background-color: #fff;
+          color:#FF4830;
+          border: 1px solid #FF4830;
         }
         &.gray{
-          // 공통과 달라서 변수사용 못함
-          background-color: #ccc;
+          color:#999999;
+          border: 1px solid #999999;
         }
+        &.blue{
+          color:#2F77FB;
+          border: 1px solid #2F77FB;
+        }        
       }
       .notification-date{
         @include fontoption(14px,#999,400,24px);
@@ -40,7 +55,11 @@
     }
     .notification-cont{
       margin-top: 8px;
-      @include fontoption(16px,#000,400,26px);
+      @include fontoption(14px,#000,400,26px);
+      pre {
+        @include fontoption(14px,#000,400,26px);
+        white-space: pre-wrap;
+      }
     }
     &.dimed{
       background-color: #F4F4F4;

@@ -784,60 +784,60 @@ div[class^="feed"] {
     }
 }
 .feed-list {
-    // margin-top: 32px;
-    // width: calc(100% - 360px - 32px);
-    // border-top: 2px solid #bcbcbc;
-    // &__filter {
-    //     padding: 20px 0;
-    //     display:flex;
-    //     flex-direction: column;
-    //     gap: 12px;
-    //     border-bottom:1px solid #ddd;
-    //     .filter-row {
-    //         display:flex;
-    //         align-items:center;
-    //         flex-direction: row;
-    //         gap: 24px;
-    //         .filter-row__title {
-    //             flex: 0 0 56px;
-    //             padding-left: 16px;
-    //             font-weight: 500;
-    //         }
-    //         .scope-list {
-    //             flex: auto;
-    //             display: flex;
-    //             flex-direction: row;
-    //             align-items:center;
-    //             gap: 6px;
-    //             li {
-    //                 line-height: 23px;
-    //                 height:28px;
-    //                 border:1px solid #999;
-    //                 color: #999;
-    //                 border-radius: 30px;
-    //                 padding:2px 17px;
-    //                 cursor:pointer;
-    //                 &.active {
-    //                     border-color: $pointColor;
-    //                     color:$pointColor;
-    //                 }
-    //             }
-    //         }
-    //         &.ctrl {
-    //             margin-top: 8px;
-    //         }
-    //         .date-range {
-    //             display:flex;
-    //             gap: 8px;
-    //             .el-date-editor {
-    //                 width: 230px;
-    //             }
-    //             .dropdown {
-    //                 min-width: 88px;
-    //             }
-    //         }
-    //     }
-    // }
+    margin-top: 32px;
+    width: calc(100% - 360px - 32px);
+    border-top: 2px solid #bcbcbc;
+    &__filter {
+        padding: 20px 0;
+        display:flex;
+        flex-direction: column;
+        gap: 12px;
+        border-bottom:1px solid #ddd;
+        .filter-row {
+            display:flex;
+            align-items:center;
+            flex-direction: row;
+            gap: 24px;
+            .filter-row__title {
+                flex: 0 0 56px;
+                padding-left: 16px;
+                font-weight: 500;
+            }
+            .scope-list {
+                flex: auto;
+                display: flex;
+                flex-direction: row;
+                align-items:center;
+                gap: 6px;
+                li {
+                    line-height: 23px;
+                    height:28px;
+                    border:1px solid #999;
+                    color: #999;
+                    border-radius: 30px;
+                    padding:2px 17px;
+                    cursor:pointer;
+                    &.active {
+                        border-color: $pointColor;
+                        color:$pointColor;
+                    }
+                }
+            }
+            &.ctrl {
+                margin-top: 8px;
+            }
+            .date-range {
+                display:flex;
+                gap: 8px;
+                .el-date-editor {
+                    width: 230px;
+                }
+                .dropdown {
+                    min-width: 88px;
+                }
+            }
+        }
+    }
     .feed-view__list {
         .feed-view__total {
             padding-top: 16px;
@@ -976,4 +976,7 @@ div[class^="feed"] {
         }
     }
 
+}
+.no-bottom-line {
+    border-bottom: 0;
 }
