@@ -2,7 +2,9 @@
   <div class="wrap"
     :class="{ main: isMain}"
   >
-    <HeaderCmp />
+    <HeaderCmp
+      v-if="onlyBody"
+    />
     <div
       class="contents"
       :class="[{ bgcontainer: ShowBgcolor }, { respons: respons }]"
@@ -12,7 +14,9 @@
       <!-- <BreadCrumb /> -->
       <router-view></router-view>
     </div>
-    <FooterCmp />
+    <FooterCmp
+      v-if="onlyBody"
+    />
   </div>
 </template>
 
@@ -31,7 +35,8 @@ export default {
     return {
       ShowBgcolor: false,
       isHeaderFix: false,
-      scrollY: null
+      scrollY: null,
+      onlyBody: true
     }
   },
   watch: {
@@ -60,7 +65,9 @@ export default {
     window.addEventListener('scroll', () => {
       this.scrollY = Math.round(window.scrollY)
     })
-    console.log(this.$route.path)
+    if (this.$route.meta.headerView === false && this.$route.meta.FooterView === false) {
+      this.onlyBody = false
+    }
   },
   methods: {
   }
