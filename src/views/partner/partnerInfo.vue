@@ -137,14 +137,14 @@
     </div>
     <!-- // 전체 대행사 리스트 -->
     <!-- Best 파트너사 TOP 3 -->
-    <div class="agency__wrap">
+    <!-- <div class="agency__wrap">
       <div class="agency__tit-box">
         <div class="tit-left">
           <h4>Best 파트너사 TOP 3</h4>
         </div>
-      </div>
+      </div> -->
       <!-- pc버전 -->
-      <div class="agency__info only-pc">
+      <!-- <div class="agency__info only-pc">
         <div class="agency-box" v-for="(item, i) in sortBestAgencyList" :key="i">
           <div class="info-top">
             <div class="info-top-left">
@@ -163,10 +163,10 @@
             </span>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- // pc버전 -->
       <!-- mo버전 / swiper -->
-      <div class="agency__info only-mo">
+      <!-- <div class="agency__info only-mo">
         <swiper
           ref="carousel"
           :options="swiperOption"
@@ -191,9 +191,9 @@
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
-      </div>
+      </div> -->
       <!-- // mo버전 / swiper -->
-    </div>
+    <!-- </div> -->
     <!-- // Best 파트너사 TOP 3 -->
   </div>
 </template>
