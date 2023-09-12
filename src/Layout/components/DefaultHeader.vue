@@ -41,16 +41,13 @@
           </ul>
         </div>
       </nav>
-      <!-- <div class="header__util" v-if="!isLogin">
+      <div class="header__util">
         <router-link :to="{path: '/login'}" class="is-login">로그인</router-link>
         <router-link :to="{path: '/utility/join'}">회원가입</router-link>
-      </div> -->
-      <div class="header__util">
+      </div>
+      <!-- <div class="header__util" >
           <router-link  class="link-dashboard">기업 대시보드</router-link>
           <div class="user">
-            <!-- <a href="javascript:void(0);" class="btn_user login" v-if="!isLogin" @click="goLogin">
-            <span>로그인</span>
-             </a> -->
             <a role="button" :class="{isActive : userInfoLy}"  @click="toggleUserInfoLy"><span class="name">홍길동</span>님</a>
             <ul class="user-menu" v-if="userInfoLy">
               <li><router-link to="/utility/my-info" @click="closeUserInfoLy">내 계정관리</router-link></li>
@@ -61,7 +58,7 @@
           <span class="blind">알람</span>
           <span class="alarm__num">9+</span>
         </a>
-      </div>
+      </div> -->
         <!-- 알림 레이어 -->
         <AlarmList
           v-if="alarmLayer"
