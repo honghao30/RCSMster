@@ -98,6 +98,16 @@
         type="date"
         placeholder="날짜를 선택하세요">
     </el-date-picker>
+    <el-date-picker
+        v-model="form.date"
+        type="datetimerange"
+        placeholder="날짜를 선택하세요"
+        start-placeholder="시작 날짜"
+        end-placeholder="종료 날짜"
+        :default-time="['12:00:00']"
+        :style="{ width: 500 + 'px' }"
+      >
+    </el-date-picker>
     <TitleH3 titleh3="Textarea" />
     <!-- 이모지 미사용 : ButtonCmp,emoji-picker 제거 -->
     <div class="is-emoji">

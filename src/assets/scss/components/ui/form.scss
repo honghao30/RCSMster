@@ -569,6 +569,37 @@ $textareaHeight: 100px;
   width:328px;
   &.el-date-range-picker {
     width:632px;
+    &.has-time {
+      position: relative;
+      .el-picker-panel__body {        
+        padding-bottom: 50px;
+        .el-date-range-picker__time-header {
+          position: absolute;
+          bottom: 55px;
+          left: auto;
+          border-bottom:0;
+          .el-icon-arrow-right {
+            display: none;
+          }
+        }
+        .el-input {
+          .el-input__inner {
+            background: transparent;
+          }
+          &::after {
+            content: '';
+            display: block;
+            z-index: -1;
+            width:20px;
+            height:20px;
+            position: absolute;
+            right: 6px;
+            top: 9px;
+            background: #fff url('../assets/images/icon/icon_arrow_drop.png') no-repeat center;
+          }
+        }
+      }
+    }
   } 
   .popper__arrow {
     display: none;
@@ -751,7 +782,8 @@ $textareaHeight: 100px;
     left:auto;
     right:0;
   }
-  .el-icon-date {
+  .el-icon-date,
+  .el-icon-time {
     position:absolute;
     right:16px;
     left: auto; 

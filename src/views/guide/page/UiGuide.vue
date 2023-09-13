@@ -57,12 +57,12 @@
         >
           아코디언
         </ButtonCmp>
-        <ButtonCmp
+        <!-- <ButtonCmp
           type="blue"
           @click="goto('sect09')"
         >
           로딩
-        </ButtonCmp>
+        </ButtonCmp> -->
         <ButtonCmp
           type="blue"
           @click="goto('sect10')"
@@ -103,13 +103,13 @@
         <TitleH3 titleh3="아코디언" />
         <AccoDien />
       </div>
-      <div ref="sect09">
+      <!-- <div ref="sect09">
         <TitleH3 titleh3="로딩" />
         <Loading
           size="50"
           v-if="isLoading"
         />
-      </div>
+      </div> -->
       <div ref="sect10">
         <TitleH3 titleh3="툴팁" />
         <TooltipGuid />
