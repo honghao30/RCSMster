@@ -43,6 +43,7 @@ let router = new Router({
         respons: true
       }
     },
+    ...PubGuides,
     ...Main, // 퍼블 가이드
     ...Join, // 로그인,가입
     ...CsList, // 고객센터, 알림
