@@ -579,7 +579,7 @@ $textareaHeight: 100px;
           left: auto;
           border-bottom:0;
           .el-icon-arrow-right {
-            display: none;
+            opacity: 0;
           }
         }
         .el-input {
@@ -597,6 +597,9 @@ $textareaHeight: 100px;
             top: 9px;
             background: #fff url('../assets/images/icon/icon_arrow_drop.png') no-repeat center;
           }
+        }
+        .el-time-panel {
+          width: 148px;
         }
       }
     }
