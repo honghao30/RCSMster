@@ -153,7 +153,6 @@
     .side__banner {
       display: flex;
       align-items: flex-start;
-      gap: 16px;
       padding: 24px 32px;
       border-radius: 16px;
       border: 1px solid #EAEAEA;
@@ -173,20 +172,23 @@
         .btn__warp {
           padding-top: 16px;
           display: flex;
+          align-items: center;
           gap: 2px;
           .side-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
             @include fontoption(12px,#000,400,18px);
             text-decoration-line: underline;
-          }
-          i {
-            width: 16px;
-            height: 16px;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 100%;
-            &.next {
-              margin-top: 2px;
-              background-image: url('../assets/images/icon/icon_arrow_guide.png');
+            &::after{
+              content: '';
+              position: absolute;
+              right: -18px;
+              width: 16px;
+              height: 16px;
+              display: inline-flex;
+              align-items: center;
+              background: url('../assets/images/icon/icon_arrow_right.png') no-repeat;
             }
           }
         }
@@ -202,6 +204,7 @@
       &.btn-banner {
         flex-direction: column;
         gap: 12px;
+        padding: 24px 20px;
         .text__warp {
           padding-bottom: 12px;
           border-bottom: 1px solid #f0f0f0;
@@ -212,6 +215,11 @@
           .side-text {
             padding-top: 2px;
             @include fontoption(14px,#666,400,26px);
+          }
+        }
+        .btn{
+          &.medium{
+            padding: 0 32px;
           }
         }
         .btn__warp {
@@ -1272,8 +1280,12 @@
     margin-top: -12px;
   }
 }   
-
-// 이용 가이드 css 
+///////////////////////////////////////////////////////////////////////
+// 이용 가이드 css
+.guide_bg{
+  background-color: #F5F5F5;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12) inset;
+}
 .user-guide__wrap {
   display: flex;
   padding: 24px 24px 48px 24px;
@@ -1282,11 +1294,27 @@
   border-radius: 16px;
   border: 1px solid #EAEAEA;
   background: #FFF;
+  .only-pc{
+    display: block;
+  }
+  .only-mo{
+    display: none;
+  }
   .guide-page__title {
     margin-bottom: 24px;
     h3 {
       @include fontoption(32px,#000,700,44px);
     }
+  }
+  .guide-page__title-big {
+    h3 {
+      @include fontoption(36px,#000,700,48px);
+      margin-bottom: 8px;
+    }
+    margin-bottom: 8px;
+  }
+  .guide-page__title-gray{
+    @include fontoption(14px,#666,400,26px);
   }
   .guide__item {
     display: flex;
@@ -1301,6 +1329,25 @@
     &:last-child {
       border-bottom: 0;
       padding-bottom: 0px;
+    }
+    .gray-box__wrap{
+      &:last-child{
+        .gray-box{
+          margin-bottom: 0;
+        }
+      }
+    }
+    .gray-box__wrap{
+      .gray-box__wrap{
+        &:last-child{
+          .gray-box{
+            margin-bottom: 0;
+          }
+        }
+      }
+      +.subtitle-wrap {
+        margin-top: 16px;
+      }
     }
   }
   // 제목 분류
@@ -1317,17 +1364,24 @@
       @include fontoption(24px,#000,500,36px);
       span {
         padding-right: 8px
-      }      
+      }
+      +.description{
+        margin-top:8px;
+      }   
     }
     h5 {
       @include fontoption(20px,#000,500,32px);
     }
   }
   .subtitle-wrap + .subtitle-wrap{
-    margin-top: 8px;
+    margin-top: 16px;
+    margin-bottom: 4px;
+  }
+  .subtitle-wrap + .gray-box__wrap{
+    margin-top: 24px;
   }
   .description {
-    margin-top:8px;
+    margin-top:4px;
     @include fontoption(14px,#000,400,26px);
   }  
   // 텍스트 컨텐츠
@@ -1338,13 +1392,14 @@
     }
     strong {
       color: #2F77FB;
+      font-weight: 500;
     }
     .red {
       color: #FB2F2F;
     }
   }
   .title {
-    @include fontoption(16px,#000,500,28px);
+    @include fontoption(16px,#000,700,28px);
   }
   .title-blue {
     @include fontoption(16px,#2F77FB,700,28px);
@@ -1358,7 +1413,7 @@
         padding: 16px 0;
         text-align: center;
         border: 1px solid #DDD;
-        @include fontoption(12px,#000,400,18px);
+        @include fontoption(14px,#000,400,18px);
       }
       thead {
         th {
@@ -1402,6 +1457,10 @@
 
             }
           }
+          &.add-txt{
+            font-size: 12px;
+            line-height: 18px;
+          }
         }
       }
       .thead {
@@ -1422,6 +1481,10 @@
         &.right {
           border-right: 1px solid #DDD;
         }
+        &.add-des{
+          font-size: 11px;
+          line-height: 14px;
+        }
       }
       &.brand-table {
         th,td {
@@ -1438,7 +1501,7 @@
   }  
   // list
   .guide-list__dot {
-    margin-top:12px;
+    margin-top:8px;
     &+.table-box {
       margin-top:12px;
     }
@@ -1446,17 +1509,19 @@
       @include fontoption(12px,#666,400,22px);
       text-align: left;
       position: relative;
+      display: flex;
+      align-items: center;
       padding-left: 10px;
       &::before {
         content: '';
-        display: block;
+        display: inline-flex;
+        align-items: center;
         position: absolute;
         width: 4px;
         height: 4px;
         border-radius: 50%;
         background-color: #000;
         left:0;
-        top:8px;
       }
     }
     &.arrow {
@@ -1472,7 +1537,7 @@
   // 컨텐츠 박스 라인
   .box-gray-line {
     width: 100%;
-    padding: 8px 10px;
+    padding: 12px 16px;
     border-radius: 8px;
     border: 1px solid #DDDDDD;
     .title {
@@ -1487,17 +1552,21 @@
         margin: 0 12px;
       }
       .btn-join-link {
+        display: flex;
+        align-items: center;
         position: absolute;
         right: 0px;
         top:0px;
-        @include fontoption(14px,#000,400,26px);
+        line-height: 24px;
+        text-decoration: underline;
         &::after {
           content: '';
-          display: inline-block;
+          display: inline-flex;
+          align-items: center;
           width:16px;
           height: 16px;
-          background: url('../assets/images/guide/icon_arrow.png') no-repeat;
-          vertical-align: middle;
+          background: url('../assets/images/icon/icon_arrow_right.png') no-repeat;
+          margin-left: 4px;
         }
       }
     }
@@ -1513,12 +1582,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
     width: 100%;
     &+.guide-list__num {
       margin-top:32px;      
     }    
     .gray-box {
+      margin-bottom: 16px;
       padding: 12px 16px;
       border-radius: 8px;
       background: #F8F8F8;
@@ -1535,6 +1604,9 @@
       &.brand_img {
         padding: 24px;
       }
+      +.content{
+        margin-top: -8px;
+      }
     }
     .brand_img {
       margin: 0 auto;
@@ -1546,6 +1618,9 @@
         width: 100%;
         gap: 24px;
       }
+    }
+    +.text-box__wrap {
+      margin-top: 16px;
     }
   }
   .text-box__wrap {
@@ -1591,6 +1666,10 @@
           margin-bottom: 16px;
         }
       }
+      +.btn__warp{
+        padding-top: 0;
+        margin-top: 4px;
+      }
     }
     &+.text-box__wrap { 
       margin-top: 32px;
@@ -1599,8 +1678,11 @@
       margin-top: 32px;
     }
     &+.gray-box__wrap {
-      margin-top: 32px;
+      margin-top: 16px;
     }
+  }
+  .text-box +.guide-qna__list{
+    margin-top: 24px;
   }
   .guide-list__num {
     display: flex;
@@ -1628,11 +1710,13 @@
         // align-items: center;
         justify-content: center;
         margin-top: 6px;
+        margin-right: 5px;
+        min-width: 16px;
         width: 16px;
         height: 16px;
         background-color: #000;
         border-radius: 50%;
-        @include fontoption(11px,#fff,700,16px);
+        @include fontoption(11px,#fff,700,15px);
       }
       .item {
         width: 100%;
@@ -1641,14 +1725,21 @@
         justify-content: flex-start;
         gap: 6px;
       }
-    }    
+    }
+    +.guide-img__wrap{
+      margin-top: 32px;
+    }
   }
   .guide-process {
+    margin: 32px 0 16px 0;
     .title {
       margin-bottom:8px;
     }
     .guide-list__num {
       margin-bottom:18px;
+      &:last-child{
+        margin-bottom:4px;
+      }
     }
   }
   // qna 박스
@@ -1657,7 +1748,7 @@
     flex-direction: column;
     align-items: flex-start;    
     width: 100%;
-    margin-top: 32px;
+    margin-top: 16px;
     dt {
       position: relative;
       @include fontoption(16px,#000,500,28px);
@@ -1672,7 +1763,7 @@
         display: block;
         position: absolute;
         left:0;
-        top:1px;
+        top:0;
         background: url('../assets/images/icon/icon_qna_q.png') no-repeat;
       }
     }
@@ -1685,11 +1776,12 @@
   .hr-dot-line {
     margin:32px 0 0 0;
     width: 100%;
-    border: 1px dotted #DDDDDD;    
+    border: 1px dashed #DDDDDD;    
   }
   //버튼
   .btn__warp {
     padding-top: 16px;
+    position: relative;
     display: flex;
     width: 100%;
     &.right {
@@ -1697,18 +1789,154 @@
     }
     &.multiline { 
       flex-direction: column;
+      align-items: flex-end;
       p {
         text-align: right;
       }
     }
     .side-btn {
-      @include fontoption(12px,#000,400,18px);
+      @include fontoption(14px,#2855A7,400,24px);
       text-decoration-line: underline;
       padding-right: 20px;
-      color: #2855A7;
-      background: url('../assets/images/icon/icon_arrow_guide_blue.png') no-repeat right 2px;
+      position: relative;
+      display: flex;
+      align-items: center;
       &.color-blue {
         color: #2855A7;
+      }
+      &::after{
+        content: '';
+        display: inline-flex;
+        align-items: center;
+        position: absolute;
+        right: 0;
+        margin-left: 4px;
+        width: 16px;
+        height: 16px;
+        background: url('../assets/images/icon/icon_arrow_guide_blue.png') no-repeat;
+      }
+    }
+  }
+  .text-box + .btn__warp{
+    margin-top: 8px;
+  }
+  // 이용 가이드 첫번째 페이지
+  .btn-tit{
+    @include fontoption(20px,#000,500,32px);
+    margin: 16px 0;
+  }
+  .box-gray-line{
+    &.link-box{
+      padding: 12px 16px;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+      .btn-left{
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        .guide-icon{
+          width: 24px;
+          height: 24px;
+          display: inline-flex;
+        }
+        .btn-text{
+          @include fontoption(16px,#000,500,28px);
+
+        }
+      }
+      .btn-right{
+        display: inline-flex;
+        p{
+          position: relative;
+          padding-right: 20px;
+          @include fontoption(14px,#666,400,24px);
+          &::after{
+            position: absolute;
+            content: '';
+            display: inline-flex;
+            width: 16px;
+            height: 16px;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: url('../assets/images/icon/icon_arrow_guide_blue.png') no-repeat;
+          }
+        }
+      }
+      +.link-box{
+        margin-top: 8px;
+      }
+    }
+  }
+}
+
+// 모바일
+@media #{$phone} {
+  .guide-lnb__wrap{
+    display: none;
+  }
+  .guide-side__wrap{
+    display: none;
+  }
+  .guide__inner{
+    width: 100%;
+    gap: 0;
+    padding: 0 16px;
+  }
+  .guide_bg{
+    background-color: #fff;
+    box-shadow: none;
+  }
+  .user-guide__wrap {
+    padding: 0;
+    border-radius: 0;
+    border: 0;
+    .only-pc{
+      display: none;
+    }
+    .only-mo{
+      display: block;
+    }
+    .guide-page__title {
+      margin-bottom: 32px;
+      h3 {
+        font-size: 21px;
+        line-height: 27px;
+      }
+    }
+    .guide-page__title-big {
+      h3 {
+        font-size: 21px;
+        line-height: 27px;
+        margin-bottom: 5px;
+      }
+      margin-bottom: 16px;
+    }
+    .guide-page__title-gray{
+      line-height: 21px;
+    }
+    // 이용 가이드 첫번째 페이지
+    .btn-tit{
+      font-size: 15px;
+      line-height: 22px;
+      margin: 8px 0 16px 0;
+    }
+    .box-gray-line{
+      &.link-box{
+        padding: 16px 12px;
+        border-radius: 12px;
+        justify-content: flex-start;
+        .btn-left{
+          .btn-text{
+            font-size: 14px;
+            line-height: 20px;
+          }
+        }
+        .btn-right{
+          display: none;
+        }
       }
     }
   }

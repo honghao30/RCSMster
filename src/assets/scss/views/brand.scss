@@ -1697,8 +1697,9 @@
                 .chat_title__wrap{
                     padding-left: 16px;
                     .chat_title{
-                        display: flex;
-                        gap: 8px;
+                        // display: flex;
+                        // gap: 8px;
+                        text-align: left;
                         a {
                             text-decoration: underline;
                         }
@@ -1722,6 +1723,11 @@
                         color: $errorColor;
                     }
                 }
+                .temporary-date{
+                    margin-left: 4px;
+                    display: inline-block;
+                    @include fontoption(12px,$errorColor,400,24px);
+                }                
                 .chat_title-sub{
                     .temporary-date{
                         display: inline-block;
@@ -2206,11 +2212,12 @@
                     &.is-step2 {
                         li {
                             &:first-child {
-                                .circle {
-                                    &:after {
-                                        background: url('../assets/images/icon/icon_arrow_step_next_black.png') right center no-repeat;
+                                .isdone{
+                                    .circle {
+                                        &:after {
+                                            background: url('../assets/images/icon/icon_arrow_step_next_black.png') right center no-repeat;
+                                        }
                                     }
-                                    
                                 }
                             }
                         }                        
@@ -2219,40 +2226,51 @@
                 &.step-ing3 {
                     max-width: 100%;
                     padding-right: 50px;
-                    justify-content: space-between;    
+                    justify-content: space-between;
+                    &.is-step1 {
+                        li {
+                            &:first-child {
+                                .isdone{
+                                    .circle {
+                                        &:after {
+                                            background: url('../assets/images/icon/icon_arrow_step_next_black.png') right center no-repeat;
+                                        }
+                                    }
+                                }                                 
+                            }
+                            &:nth-child(2) {
+                                .isdone{
+                                    .circle {
+                                        &:after {
+                                            background: url('../assets/images/icon/icon_arrow_step_next_black.png') right center no-repeat;
+                                        }
+                                    }
+                                }                                 
+                            }
+                        }
+                    }  
                     &.is-step2 {
                         li {
                             &:first-child {
-                                .circle {
-                                    &:after {
-                                        background: url('../assets/images/icon/icon_arrow_step_next_black.png') right center no-repeat;
-                                    }                                       
-                                }                                  
+                                .isdone{
+                                    .circle {
+                                        &:after {
+                                            background: url('../assets/images/icon/icon_arrow_step_next_black.png') right center no-repeat;
+                                        }
+                                    }
+                                }                                 
+                            }
+                            &:nth-child(2) {
+                                .isdone{
+                                    .circle {
+                                        &:after {
+                                            background: url('../assets/images/icon/icon_arrow_step_next_black.png') right center no-repeat;
+                                        }
+                                    }
+                                }                                 
                             }
                         }
                     }   
-                    &.is-step3 {
-                        li {
-                            &:first-child {
-                                .circle {
-                                    &:after {
-                                        background: url('../assets/images/icon/icon_arrow_step_next_green.png') right center no-repeat;
-                                    }
-                                    
-                                }
-                            }
-                        }
-                        li {
-                            &:nth-child(2) {
-                                .circle {
-                                    &:after {
-                                        background: url('../assets/images/icon/icon_arrow_step_next_black.png') right center no-repeat;
-                                    }                                    
-                                
-                                } 
-                            }
-                        }                        
-                    }                                 
                 }
                 li {
                     position: relative;
@@ -2263,7 +2281,8 @@
                         justify-content: center;      
                         align-items: center;   
                         .step-name {
-                            margin-top:8px;                            
+                            margin-top:8px;
+                            @include fontoption(14px,#ddd,700,normal);                         
                         }                                       
                         .circle {                                                        
                             width: 110px;
@@ -2282,6 +2301,16 @@
                                 right: -60px;
                                 top: 48px;
                             } 
+                        }
+                        &.isIng{
+                            .step-name{
+                                color: #000;
+                            }
+                        }
+                        &.isdone{
+                            .step-name{
+                                color: #000;
+                            }
                         }
                         //대화방
                         &.chatroom {        
@@ -2318,29 +2347,28 @@
                         // 자동응답 메시지                       
                         &.autoreplay {        
                             .circle {
-                                background: url('../assets/images/icon/icon_autoreple_ing.png') no-repeat center bottom;
-                            }                            
+                                background: url('../assets/images/icon/icon_autoreply_empty.png') no-repeat center bottom;
+                            }
+                            &.isIng {
+                                .circle {
+                                    background: url('../assets/images/icon/icon_autoreply_ing.png') no-repeat center bottom;
+                                }   
+                            }                          
                             &.isdone {
                                 .circle {
-                                    background: url('../assets/images/icon/icon_autoreple_end.png') no-repeat center bottom;
+                                    background: url('../assets/images/icon/icon_autoreply_end.png') no-repeat center bottom;
                                 }                                                      
                             }
                         }
-                        // 대화방
+                        // 대화방 메뉴
                         &.psmenu {    
                             .circle {
                                 background: url('../assets/images/icon/icon_psmenu_empty.png') no-repeat center bottom;
                             } 
-                            .step-name {
-                                @include fontoption(14px,#ccc,700,20px);
-                            }
                             &.isIng {
                                 .circle {
                                     background: url('../assets/images/icon/icon_psmenu_ing.png') no-repeat center bottom;
                                 }   
-                                .step-name {
-                                    @include fontoption(14px,#000,700,20px);
-                                }                             
                             }
                             &.isdone {
                                 .circle {
@@ -2351,20 +2379,18 @@
                         // 브랜드 소식
                         &.feed {        
                             .circle {
-                                background: url('../assets/images/icon/icon_feed_end.png') no-repeat center bottom;
+                                background: url('../assets/images/icon/icon_feed_empty.png') no-repeat center bottom;
                             }  
-                            .step-name {
-                                @include fontoption(14px,#ccc,700,20px);
-                            }
-
                             &.isIng {
                                 .circle {
                                     background: url('../assets/images/icon/icon_feed_ing.png') no-repeat center bottom;
                                 }   
-                                .step-name {
-                                    @include fontoption(14px,#000,700,20px);
-                                }                                      
-                            }                            
+                            }  
+                            &.isdone {
+                                .circle {
+                                    background: url('../assets/images/icon/icon_feed_end.png') no-repeat center bottom;
+                                }                                                                                              
+                            }                           
                         }                       
 
                     }
@@ -3151,10 +3177,11 @@
 }
 
 .brand-side__banner {
-    background: #EEF9FF;
+    background: #fff;
     border-radius: 16px;
     position: relative;
     padding: 24px 32px;
+    min-height: 130px;
     .side-box-top {
         h3 {
             @include fontoption(18px,#000,700,26px);
@@ -3169,7 +3196,7 @@
     }
     .side-company-btn {
         margin-top: 16px;
-        display: block;
+        display: inline-block;
         position: relative;
         color: $defaultColor;
         font-size: 12px;
@@ -3188,9 +3215,12 @@
         }
     }
     .side-box-img{
-        margin-top: 32px;
-        display: flex;
-        justify-content: flex-end;
+        position: absolute;
+        right: 32px;
+        top: 24px;
+        // margin-top: 32px;
+        // display: flex;
+        // justify-content: flex-end;
         .chat_icon{
             width: 82px;
             height: 82px;

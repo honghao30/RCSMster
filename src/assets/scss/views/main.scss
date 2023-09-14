@@ -7,6 +7,9 @@
             top: 0;
             background-color: transparent;
             border-bottom: 1px solid rgba(255, 255, 255, 0.40);
+            @media all and (min-width:770px) and (max-width:1449px) {
+                border-bottom: 0;
+            }
             .inner{
                 @media all and (min-width:770px) and (max-width:1449px) {
                     border-bottom: 1px solid rgba(255, 255, 255, 0.40);
@@ -150,7 +153,7 @@ body {
             .text {
                 @include fontoption(48px,#fff,500,60px);
                 letter-spacing: -2.4px;
-                text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.30);
+                text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.30);
             }
             .btn-more {
                 margin-top: 20px;
@@ -534,7 +537,7 @@ body {
                     @include fontoption(36px,#000,700,46px);
                     letter-spacing: -0.72px;
                 }
-                background: url('../assets/images/main/bg_service02.gif') no-repeat 319px 165px;
+                background: url('../assets/images/main/bg_service02.gif') no-repeat 319px 130px;
                 background-size: 145px auto;
             }
             @media #{$phone} {
