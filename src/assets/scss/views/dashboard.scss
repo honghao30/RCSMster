@@ -888,15 +888,18 @@
 								a {
 									cursor: default;
 									text-decoration: none;
+									pointer-events: none;
 									&:hover {
 										cursor: default;
 										text-decoration: none;
+										pointer-events: none;
 									}
 								}
 							}
 							.link{
 								&:hover{
 									text-decoration: none;
+									pointer-events: none;
 								}
 							}
 						}

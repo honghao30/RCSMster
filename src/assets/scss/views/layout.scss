@@ -384,20 +384,23 @@ $contentWidth2: 1024px;
     }
     .user {
         position:relative;
-        margin-right: 24px;
         z-index: 10;
+        display: flex;
         > a {
             font-size: 14px;
             position:relative;
             display:inline-block;
-            width: 74px;
+            width: auto;
+            max-width: 200px;
+            padding-right: 36px;
+            @include ellipsis($line: 1);
             cursor: pointer;
             &::after {
                 content:'';
                 display:inline-block;
                 position: absolute;
-                right:6px;
-                top:6px;
+                right:30px;
+                top:8.5px;
                 width: 6px; 
                 height: 6px; 
                 border: 2px solid #666; 
@@ -406,7 +409,7 @@ $contentWidth2: 1024px;
             }
             &.isActive{
                 &::after {
-                    right: 9px;
+                    right: 35px;
                     transform: rotate(-45deg) translate(60%, 150%);
                 }
             }
@@ -670,6 +673,7 @@ $contentWidth2: 1024px;
                 align-items: center;
                 height: 49px;
                 padding:12px 16px;
+                // 네비탑 수정으로 인해 삭제해야함
                 h1 {
                     a {
                         display: block;
@@ -678,6 +682,9 @@ $contentWidth2: 1024px;
                         background: url('../assets/images/layout/logo_mo.png') no-repeat left center;
                         background-size: auto 11px;
                     }
+                }
+                h2{
+                    @include fontoption(14px,#000,400,21px);
                 }
             }
             .header__logo  {
@@ -719,8 +726,30 @@ $contentWidth2: 1024px;
                         transition:transform 300ms linear;
                         transform:translate(0%, 0);
                     }
+                    .user-left{
+                        display: flex;
+                        align-items: center;
+                        gap: 24px;
+                    }
                     .user-name-mo {
-                        @include fontoption(14px,#000,500, 22px);
+                        @include fontoption(14px,#000,400, 22px);
+                        display: inline-block;
+                        max-width: 200px;
+                        width: auto;
+                        @include ellipsis($line: 1);
+                    }
+                    .user-logout-mo {
+                        @include fontoption(14px,#000,400, 22px);
+                        position: relative;
+                        &::before{
+                            content: '';
+                            position: absolute;
+                            width: 1px;
+                            height: 10px;
+                            background-color: #ddd;
+                            top: 6.5px;
+                            left: -12px;
+                        }
                     }
                     > ul {
                         margin-top:24px;

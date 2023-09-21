@@ -607,7 +607,8 @@ export default {
       if (!isMobile) {
         swiperEtcElement.style.position = 'absolute'
         swiperEtcElement.style.width = '60%'
-        swiperEtcElement.style.height = '100%'
+        swiperEtcElement.style.height = '30px'
+        swiperEtcElement.style.bottom = '270px'
         etcBox.style.position = 'relative'
         etcBox.style.width = '100%'
         etcBox.style.height = '100%'
@@ -623,6 +624,7 @@ export default {
         swiperEtcElement.style.position = ''
         swiperEtcElement.style.width = ''
         swiperEtcElement.style.height = ''
+        swiperEtcElement.style.bottom = ''
         etcBox.style.position = ''
         etcBox.style.width = ''
         etcBox.style.height = ''

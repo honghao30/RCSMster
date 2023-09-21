@@ -298,6 +298,20 @@
 }
 @media #{$phone} {
   .feature__wrap{
+    .fix-box {
+      position: relative;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 10%;
+        height: 30px;
+        background: rgb(255,255,255);
+        background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+      }      
+    }    
     .category-tab{
       margin: 0;
       padding: 0 16px;
@@ -538,17 +552,19 @@
     justify-content: space-between;
     width: 100%;
     gap: 10px;
-    .user-guide-nav {
-      border:1px solid #ddd;
-      width: 100%;
-      border-radius: 6px;    
-      position: relative; 
+    position: sticky;
+    top:0;
+    background-color: #fff;
+    padding: 10px 0;
+    .user-guide-nav {      
+      width: 100%;        
+      position: relative;       
       &.isActive {
         .guide-lnb__wrap {
           display: block;
           position: absolute;
           left: 0%;
-          top: 60px;
+          top: 52px;
           width: 100%;          
           max-height: 500px;
           z-index: 230;
@@ -556,13 +572,45 @@
           padding: 10px;
           border: 1px solid #ddd;          
           overflow-y: auto;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          //box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.25);
+        }
+        button {          
+          background-color: #fff;
+          // box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.25);
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          &::after {
+            transform: rotate(-180deg);
+            top: 14px;
+            transition: all 0.3s;
+          }
         }
       }
       button {
         width: 100%;
-        @include fontoption(18px,#000,400,23.17px);
-        padding: 15px 10px;   
+        position: relative;
+        @include fontoption(14px,#000,400,23.17px);
+        padding: 0px 16px;   
+        height: 52px;
         text-align: left;
+        background-color: #F8F8F8;
+        border:1px solid #ddd;
+        border-radius: 6px;  
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          right: 16px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 20px;
+          height: 20px;          
+          background: url('../assets/images/icon/icon_chevron_down.png') no-repeat 50% 50%;
+          background-size: 20px;
+          transition: all 0.3s;
+        }
       }
     }
   }

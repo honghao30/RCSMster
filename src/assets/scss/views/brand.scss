@@ -1086,7 +1086,8 @@
             }
         }
         .dropdown__trigger {
-            text-overflow: ellipsis;
+            @include ellipsis($line: 1);
+            max-width: 217px;
             white-space: nowrap;
             overflow: hidden;
             display: block;
@@ -1099,6 +1100,12 @@
                 position: absolute;
                 right: 21px;
                 top: 16px;   
+            }
+        }
+        .drodown__option{
+            max-width: 213px;
+            .option-name{
+            @include ellipsis($line: 1);
             }
         }
     }
@@ -2596,6 +2603,14 @@
             @include fontoption(12px,#000,400,24px); 
             span {
                 color:#FF4830;
+            }
+            pre {
+                @include ellipsis($line: 1);
+                @include fontoption(12px,#000,400,24px);
+                display: inline-block;
+                vertical-align: bottom;
+                width: 88%;
+                max-width: 88%;
             }
         }
     }

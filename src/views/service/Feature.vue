@@ -226,6 +226,7 @@ export default {
     return {
       activeTab: 0,
       isMenuFixed: false,
+      isScrollEventEnabled: true,
       ishidden: false,
       listIWidth: '',
       pos: 0,
@@ -306,7 +307,7 @@ export default {
       const featureHeight = featureTab.offsetHeight + featureTop
       const scrollY = window.scrollY
       const featurePannels = [this.$refs.feature1, this.$refs.feature2, this.$refs.feature3, this.$refs.feature4, this.$refs.feature5, this.$refs.feature6]
-      if (scrollY > featureHeight) {
+      if (scrollY > featureHeight && this.isScrollEventEnabled === true) {
         featureTab.classList.add('fixed')
       } else {
         featureTab.classList.remove('fixed')
@@ -363,13 +364,15 @@ export default {
     },
     // scroll-to-Top
     scrollToTop (refName) {
+      this.isScrollEventEnabled = false
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       })
-      if (this.isMenuFixed === true) {
-        document.querySelector('.feature__wrap .category-tab.fixed').classList.remove('fixed')
-      }
+      document.querySelector('.feature__wrap .category-tab.fixed').classList.remove('fixed')
+      setTimeout(() => {
+        this.isScrollEventEnabled = true
+      }, 1000)
     }
   }
 }
