@@ -100,7 +100,7 @@ $radius: 6px;
 
 //button List
 .btn-blue {
-  @include btntype(16px, $pointColor, $pointColor,#fff, 8px, #2855A7,#fff, #2855A7);
+  @include btntype(16px, $pointColor, $pointColor,#fff, 6px, #2855A7,#fff, #2855A7);
   &:disabled {
     background-color:#ccc;
     border-color:#ccc;
@@ -111,7 +111,7 @@ $radius: 6px;
   }      
 }
 .btn-blue-line {
-  @include btntype(16px,$pointColor,#fff,$pointColor, 8px,  #fff, #2855A7, #2855A7);               
+  @include btntype(16px,$pointColor,#fff,$pointColor, 6px,  #fff, #2855A7, #2855A7);               
   &:disabled {
     color:#ccc;
     border-color:#ccc;
@@ -122,7 +122,7 @@ $radius: 6px;
   }            
 }
 .btn-line {
-  @include btntype(16px,#999,#fff,#999, 8px,  #fff,#777, #777);       
+  @include btntype(16px,#999,#fff,#999, 6px,  #fff,#777, #777);       
   &:disabled {
     color:#ccc;
     border-color:#ccc;
@@ -134,7 +134,7 @@ $radius: 6px;
 }
 
 .btn-search {
-  @include btntype(14px, #717883, #717883,#fff, 8px, #717883,#fff, #717883);   
+  @include btntype(14px, #717883, #717883,#fff, 6px, #717883,#fff, #717883);   
   line-height: 36px;
   min-width: auto;
   height: 36px;
@@ -147,7 +147,7 @@ $radius: 6px;
 }
 
 .btn-default-line {
-  @include btntype(14px,#bdbdbd,#fff, #6E7581, 8px, #fff,#bdbdbd, #bdbdbd);  
+  @include btntype(14px,#bdbdbd,#fff, #6E7581, 6px, #fff,#bdbdbd, #bdbdbd);  
   line-height: 36px;
   min-width: auto;
   height: 36px;

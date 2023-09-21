@@ -135,7 +135,7 @@
               Message<br class="mo">Type
             </div>
           </h2>
-          <p class="title-description">RCS의 다양한 타입의<br class="mo"> 메시지 상품을 경험해보세요!</p>
+          <p class="title-description">RCS의 다양한 타입의<br class="mo"> 메시지 상품을 경험해 보세요!</p>
           <p class="btn-link">
             <router-link to="">메시지 템플릿 더보기</router-link>
           </p>
@@ -150,6 +150,7 @@
                 <swiper-slide
                   v-for="(item, index) in messageType"
                   :key="index"
+                  :class="{ 'title-w-custom': index === 3 }"
                 >
                   <div class="message-card__templetion">
                     <div class="card-img"><img :src="item.cardUrl" :alt="item.type"></div>
@@ -168,7 +169,7 @@
           <h2>
             Success Stories
           </h2>
-          <p class="title-description">RCS 서비스의 다양한 기업체에<br class="pc">도입된<br class="mo"> 사례를 접해보세요!</p>
+          <p class="title-description">RCS 서비스의 다양한 기업체에<br class="pc"> 도입된<br class="mo"> 사례를 접해보세요!</p>
         </div>
         <div class="slider__wrap" ref="sliderSwiper">
           <swiper
@@ -260,37 +261,40 @@
         </div>
       </div>
       <!-- // section03 -->
-      <div class="section section04 slideup"
+      <div class="section section04"
         ref="section4"
         data-color="color-white"
+        :style="{ 'background-color': '#fff' }"
       >
-        <div  ref="section4"  class="section-title">
-          <h2>
-            RCS Service<br class="mo"> Guide
-          </h2>
-          <p class="title-description">RCS 서비스의 이해도에<br class="mo"> 따른 가이드를 참고하세요</p>
+        <div class="section-inner slideup">
+          <div  ref="section4"  class="section-title">
+            <h2>
+              RCS Service<br class="mo"> Guide
+            </h2>
+            <p class="title-description">RCS 서비스의 이해도에<br class="mo"> 따른 가이드를 참고하세요</p>
+          </div>
+          <ul class="rcs-service-guide__list">
+            <li>
+                <router-link to="">
+                  <h3>RCS 비즈 메시지</h3>
+                  <p>RCS서비스를 처음 사용하는 고객을<br>
+                  위한 메시지 발송 팁 & 메시지 종류</p>
+                </router-link>
+            </li>
+            <li>
+                <router-link to="">
+                  <h3>RBC 이용하기</h3>
+                  <p>계정관리, 브랜드관리, 대화방관리를<br>위한 종류와 권한 안내</p>
+                </router-link>
+            </li>
+            <li>
+                <router-link to="">
+                  <h3>RBC 화면 가이드</h3>
+                  <p>RCS 전체 서비스의 효율적인<br>활용을 위한 사용 가이드</p>
+                </router-link>
+            </li>
+          </ul>
         </div>
-        <ul class="rcs-service-guide__list">
-          <li>
-              <router-link to="">
-                <h3>RCS 비즈 메시지</h3>
-                <p>RCS서비스를 처음 사용하는 고객을<br>
-                위한 메시지 발송 팁 & 메시지 종류</p>
-              </router-link>
-          </li>
-          <li>
-              <router-link to="">
-                <h3>RBC 이용하기</h3>
-                <p>계정관리, 브랜드관리, 대화방관리를<br>위한 종류와 권한 안내</p>
-              </router-link>
-          </li>
-          <li>
-              <router-link to="">
-                <h3>RBC 화면 가이드</h3>
-                <p>RCS 전체 서비스의 효율적인<br>활용을 위한 사용 가이드</p>
-              </router-link>
-          </li>
-        </ul>
       </div>
   </div>
 </template>
@@ -317,7 +321,7 @@ export default {
         {
           customer: 'lgu',
           title: 'Smart Score (스마트 스코어) ',
-          description: '“회원 대상 타겟 마케팅 매체의 문자를 RCS로 변경하면서<br>반응이 늘고 매출액도 향상되었습니다.”',
+          description: '회원 대상 타겟 마케팅 매체의 문자를 RCS로 변경하면서<br>반응이 늘고 매출액도 향상되었습니다.',
           link: '#',
           card: [
             {
@@ -333,7 +337,7 @@ export default {
         {
           customer: 'skt',
           title: 'SK텔레콤 (티 딜)',
-          description: 'SK 텔레콤 고객을 대상으로 AI로 큐레이션한 다양한 상품의<br>핫딜을 제공하는 서비스로 RCS 메시지를 통해 고객에게<br>다양한 제안을 제공하며 좋은 성과를 내고 있습니다.',
+          description: 'SK 텔레콤 고객을 대상으로 AI로 큐레이션한 다양한<br class="mo"> 상품의<br class="pc"> 핫딜을 제공하는 서비스로 RCS 메시지를 통해<br class="mo"> 고객에게<br class="pc"> 다양한 제안을 제공하며 좋은 성과를 내고<br class="mo"> 있습니다.',
           link: '#',
           card: [
             {
@@ -362,11 +366,11 @@ export default {
             },
             {
               type: 'card',
-              cardUrl: require('@/assets/images/main/kt_card02.png')
+              cardUrl: require('@/assets/images/main/kt_card03.png')
             },
             {
               type: 'card',
-              cardUrl: require('@/assets/images/main/kt_card03.png')
+              cardUrl: require('@/assets/images/main/kt_card02.png')
             }
           ]
         }
@@ -385,7 +389,7 @@ export default {
           cardUrl: require('@/assets/images/main/message_card03.png')
         },
         {
-          type: '이미지 템플릿 신규',
+          type: '이미지 템플릿 아이템 상세형',
           cardUrl: require('@/assets/images/main/message_card04.png')
         },
         {
@@ -612,7 +616,7 @@ export default {
         etc.style.position = 'absolute'
         etc.style.width = '650px'
         etc.style.height = '24px'
-        etc.style.top = '64%'
+        etc.style.top = '67%'
         etc.style.left = '50%'
         etc.style.marginLeft = '-325px'
       } else {

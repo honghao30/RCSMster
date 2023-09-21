@@ -711,7 +711,6 @@ div[class^="feed"] {
                 margin: 0 -15px;
                 padding: 0 15px;
             }
-
             .swiper-slide {
                 width: 258px !important;
                 border-radius:12px;
@@ -765,6 +764,16 @@ div[class^="feed"] {
         &:only-child {
             flex: auto;
             width: 100%;
+        }
+    }
+}
+.preview-slideview {
+    .swiper-slide  {
+        .preview-button {
+            padding: 15px;
+            .btn-bg-gray {
+                padding: 0;
+            }
         }
     }
 }

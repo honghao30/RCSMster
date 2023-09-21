@@ -1,6 +1,6 @@
 <template>
   <header class="header"
-      :class="{ respons: respons }"
+    :class="[{ respons: respons }]"
     >
   <div class="inner"
   :class="{ respons: respons }"

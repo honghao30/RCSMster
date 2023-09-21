@@ -1,9 +1,11 @@
 <template>
-  <div class="feature__wrap">
+  <div class="feature__wrap" ref="featureTop">
     <PageTitle pagetitle="RCS 특장점" />
     <div class="fix-box" ref="fix">
-      <div class="category-tab" :class="{fixed: isMenuFixed, hidden: ishidden}">
-        <ul>
+      <div class="category-tab" :class="{fixed: isMenuFixed, hidden: ishidden}" ref="categoryTabS">
+        <ul ref="categoryTab"
+          :style="{ transform: 'translate3d(' + pos + ', 0, 0)' }"
+        >
           <li  v-for="(item, i) in featureList"
             :key="i"
             :class="{active: activeTab === i}">
@@ -16,11 +18,11 @@
         <div class="one-box">
           <div class="feature-txt">
             <div class="txt-tit">
-              고객의 마음까지 한눈에 <br class="max-br only-mo">사로잡는 비주얼!
+              고객의 마음까지 한 눈에 <br class="max-br only-mo">사로잡는 비주얼!
             </div>
             <div class="txt-des">
-              외면받는 무미건조한 문자메시지, <span class="des-strong">한 번을 보내도 제대로!</span><br>
-              RCS로 고객의 <span class="des-strong">마음까지 한눈에 사로잡는</span> 메시지를<br class="only-mo"> 보내세요.<br class="only-pc">
+              외면받는 무미건조한 문자메시지, <span class="des-strong">한번을 보내도 제대로!</span><br>
+              RCS로 고객의 <span class="des-strong">마음까지 한 눈에 사로잡는</span> 메시지를<br class="only-mo"> 보내세요.<br class="only-pc">
               <span class="des-strong">이미지, 동영상</span>은 물론 RCS만의 <span class="des-strong">다양한<br class="only-mo"> 액션버튼</span>을 활용하여<br class="only-pc">
               제대로 어필할 수 있습니다.
             </div>
@@ -37,25 +39,21 @@
                 이것이 진정한 가성비!
               </div>
               <div class="txt-des">
-                같은 단가에서도 문자보다 <br>
-                최대 <span class="des-strong">2.5배 더 많은 정보</span>를 전달!
+                같은 단가에서도 문자보다 <br class="only-mo"><span class="des-strong">최대 2.5배 더 많은 정보</span>를 전달!<br>
+                RCS 문자는 광고 표시 영역, 수신거부 표시 영역,<br class="only-mo"> 액션 버튼 영역이 제공되며, <br class="only-pc">
+                <span class="des-strong">세 영역 모두 글자수에<br class="only-mo"> 포함되지 않아 더 많은 글자 수를 이용</span>할 수 있어요.
               </div>
             </div>
             <div class="txt-middle">
               <img src="@/assets/images/feature/feature_msg_01_01.png" alt="" class="phone-img only-pc">
               <img src="@/assets/images/feature/feature_msg_01_01_mo.png" alt="" class="phone-img only-mo">
             </div>
-            <div class="txt-bottom">
-              <div class="txt-notice">
-                RCS 문자는 광고 표시 영역, 수신거부 표시 영역, 액션 버튼 영역이<br class="only-mo"> 제공되며, <br class="only-pc">세 영역 모두 글자 수에 포함되지 않아<br class="only-mo"> 더 많은 글자 수를 이용할 수 있어요.
-              </div>
-            </div>
           </div>
           <div class="feature-big-txt">
             <div class="big-txt">
-              이렇게 아름다운 <br class="only-mo"><span class="big-txt-black">RCS 메시지가</span><br class="only-pc">
-              오히려<br class="only-mo"> <span class="big-txt-black">기존 MMS 메시지 대비</span><br>
-              건당 가격은 <span class="blue-gradient">30% 저렴</span><br class="only-mo">하답니다!
+              이렇게 아름다운 <br class="only-mo"><span class="big-txt-black">RCS 메시지가 </span><br class="only-pc">
+              오히려<br class="only-mo"><span class="big-txt-black"> 기존 MMS 메시지 대비</span><br>
+              건당 가격은 <span class="blue-gradient">30% </span><br class="only-mo">저렴하답니다!
             </div>
             <div class="feature-img">
               <img src="@/assets/images/feature/feature_msg_01_02.png" alt="" class="only-pc">
@@ -95,7 +93,7 @@
               신뢰도</span>를 동시에 얻을 수 있습니다.<br>
               브랜드 등록은 <span class="des-strong">무료</span>이며 RCS Biz Center에 브랜드와<br class="only-mo"> 발신번호를
               등록하면 RCS가 아닌<br class="only-pc"> 기존 문자로 전송<br class="only-mo"> 시에도 발신번호 대신
-              <span class="des-strong">브랜드 로고</span>가 표시됩니다.
+              <span class="des-strong">브랜드 로고가 표시</span>됩니다.
             </div>
           </div>
           <div class="feature-img only-bd">
@@ -109,20 +107,23 @@
               국가기관의 공인 안심마크
             </div>
             <div class="txt-des">
-              한국인터넷진흥원(KISA)에서 인증한 금융/공공기관에서<br class="only-mo"> 발행하는 RCS메시지는<br class="only-pc">
-              ‘안심마크’를 표시하여<br class="only-mo"> 사칭문자로 인한 스미싱 범죄 등에 안전함을<br class="only-mo"> 안내할 수 있습니다.
+              <span class="des-strong">한국인터넷진흥원(KISA)에서 인증</span>한 금융/공공기관에서<br class="only-mo"> 발행하는 RCS메시지는<br class="only-pc">
+              <span class="des-strong">‘안심마크’</span>를 표시하여 <br class="only-mo"><span class="des-strong">사칭문자로 인한 스미싱 범죄 등에 안전함</span>을<br class="only-mo"> 안내할 수 있습니다.
             </div>
           </div>
           <div class="feature-img only-bd">
             <div class="txt-notice only-safetymark">
               <div class="title">
-                <img src="@/assets/images/feature/feature_safetymark.png" alt="">
                 <h5>안심마크란?</h5>
               </div>
               <p>
-                사칭문자 근절을 위해 실제 해당 기업에서 문자를 보냈음을<br class="only-mo"> 알려주는 인증마크와 안심문구가 결합된 기능입니다.<br>
-                한국인터넷진흥원(KISA)에서 인증한 기관에는 안심마크를<br class="only-mo"> 표시하여<br class="only-pc"> 사칭문자로 인한
-                스미싱 범죄 등에 안전함을<br class="only-mo"> 안내할 수 있습니다.
+                사칭문자 구별을 위해 RCS메시지 상단에 인증마크(<span class="safetymark-img"></span>)와,<br class="only-mo"> 안심문구(확인된 발신번호)<br class="only-pc">
+                를 결합하여 표시해주며, 실제<br class="only-mo"> 해당 기업이 발송했음을 증명합니다.
+              </p>
+              <p>
+                스미싱 사고가 자주 발생하는 금융/공공기관등을 대상으로 <br class="only-mo">
+                안심마크 사용권한을 부여하고 있으니, <br class="only-pc">도입을 희망하시는 경우 <br class="only-mo">
+                한국 인터넷 진흥원(<a class="safety-url" href="mailto:numbers@kisa.or.kr">numbers@kisa.or.kr</a>)으로 문의해주세요.
               </p>
             </div>
             <img src="@/assets/images/feature/feature_msg_03_01.png" alt="" class="only-pc">
@@ -138,7 +139,7 @@
               새로운 브랜드 소식!
             </div>
             <div class="txt-des">
-              고객의 수신 <span class="des-strong">이력에 남아있는 브랜드</span>만 클릭해도 브랜드의 <br class="only-mo">
+              고객의 <span class="des-strong">수신 이력에 남아있는</span> 브랜드만 클릭해도 브랜드의 <br class="only-mo">
               <span class="des-strong">새로운 소식</span>을 전할 수 있습니다.<br>
               내 브랜드의 이벤트, 신상 소개 등을 <span class="des-strong">채팅플러스</span>에<br class="only-mo"> 올려보세요!
             </div>
@@ -172,7 +173,7 @@
               내 브랜드의<br class="only-mo"> 진정한 고객은 누구?
             </div>
             <div class="txt-des">
-              전체 및 반응 고객의 <span class="des-strong">특성</span>(성별, 연령, 지역)과 <span class="des-strong">Lifestyle의<br class="only-mo"> 분석</span>으로<br class="only-pc">
+              전체 및 반응 고객의 <span class="des-strong">특성</span>(성별, 연령, 지역)과<br class="only-mo"><span class="des-strong"> Lifestyle의 분석</span>으로<br class="only-pc">
               고객의 내면을 이해하고 다음 <br class="only-mo"><span class="des-strong">마케팅 방향</span>을 다듬어보세요.
             </div>
           </div>
@@ -202,6 +203,15 @@
         </div>
       </div>
     </div>
+    <!-- scroll-to-Top -->
+    <button
+      ref="topButton"
+      class="scroll-to-top"
+      :class="{ isFixed: isScrollTop }"
+      @click="scrollToTop"
+    >
+      <span class="blind">위로</span>
+    </button>
   </div>
 </template>
 
@@ -217,6 +227,9 @@ export default {
       activeTab: 0,
       isMenuFixed: false,
       ishidden: false,
+      listIWidth: '',
+      pos: 0,
+      transitionDuration: '500ms',
       featureList: [{
         list: '템플릿 메시지'
       },
@@ -234,15 +247,33 @@ export default {
       },
       {
         list: '문자의 장점 그대로'
-      }]
+      }],
+      scrollY: null, // scroll-to-Top
+      isScrollTop: false // scroll-to-Top
     }
   },
   mounted() {
     window.addEventListener('scroll', this.MenuScroll)
     this.MenuScroll()
+    // scroll-to-Top
+    window.addEventListener('scroll', () => {
+      this.scrollY = Math.round(window.scrollY)
+    })
+    this.ActiveMove()
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.MenuScroll)
+  },
+  // scroll-to-Top
+  watch: {
+    scrollY(newValue) {
+      if (newValue >= 100) {
+        this.isScrollTop = true
+      } else {
+        this.isScrollTop = false
+      }
+      this.scrollPosition = window.scrollY
+    }
   },
   methods: {
     async MenuClick(index) {
@@ -267,26 +298,77 @@ export default {
         })
         this.isMenuFixed = true
       }
+      this.ActiveMove()
     },
     MenuScroll() {
-      const refs = [this.$refs.feature1, this.$refs.feature2, this.$refs.feature3, this.$refs.feature4, this.$refs.feature5, this.$refs.feature6]
-      const fix = this.$refs.fix.getBoundingClientRect()
-      // fix 영역, 메뉴를 고정
-      this.isMenuFixed = fix.top <= 1
-      for (let i = 0; i < refs.length; i++) {
-        const recent = refs[i].getBoundingClientRect()
-        const recentFinal = refs[5].getBoundingClientRect()
-        if (recentFinal.bottom <= window.innerHeight) {
-          this.activeTab = 5
-        } else {
-          // 스크롤 시 각 ref가 화면에 나타날 때, 활성화로 설정
-          if (recent.bottom >= 1 && recent.top <= window.innerHeight) {
-            if (this.activeTab !== i) {
-              this.activeTab = i
-            }
-            break
+      const featureTab = this.$refs.categoryTabS
+      let featureTop = featureTab.offsetTop
+      const featureHeight = featureTab.offsetHeight + featureTop
+      const scrollY = window.scrollY
+      const featurePannels = [this.$refs.feature1, this.$refs.feature2, this.$refs.feature3, this.$refs.feature4, this.$refs.feature5, this.$refs.feature6]
+      if (scrollY > featureHeight) {
+        featureTab.classList.add('fixed')
+      } else {
+        featureTab.classList.remove('fixed')
+      }
+      for (let i = 0; i < featurePannels.length; i++) {
+        let thisSection = featurePannels[i]
+        let currenTop = featurePannels[i].offsetTop
+        if (scrollY >= currenTop) {
+          if (this.activeTab !== i) {
+            this.activeTab = i
+            this.ActiveMove()
+          }
+          // 마지막 일때 체크
+          const recentFinal = featurePannels[5].getBoundingClientRect()
+          if (recentFinal.bottom <= window.innerHeight) {
+            this.activeTab = 5
           }
         }
+      }
+    },
+    ActiveMove() {
+      const AllTabEl = this.$refs.categoryTab.querySelectorAll('li')
+      let listIWidth = 0
+      let targetLeft = 0
+      if (window.innerWidth <= 768) {
+        const currentTap = this.activeTab
+        const isActiveTab = this.$refs.categoryTab.querySelectorAll('li')[currentTap]
+        const selectTarget = isActiveTab.offsetLeft
+        const selectTargetPos = selectTarget + (isActiveTab.offsetWidth / 2)
+
+        const tabListWdth = this.$refs.categoryTab.offsetWidth
+        const scrollBoxHalf = Math.ceil(tabListWdth / 2)
+
+        for (let i = 0; i < AllTabEl.length; i++) {
+          listIWidth += AllTabEl[i].offsetWidth
+        }
+        if (selectTargetPos <= scrollBoxHalf) {
+          this.pos = 0
+        } else if ((listIWidth - selectTargetPos) <= scrollBoxHalf) {
+          this.pos = listIWidth - tabListWdth
+        } else {
+          this.pos = selectTargetPos - scrollBoxHalf
+        }
+        // 실시간으로 반영하기 위한 추가 코드
+        this.$nextTick(() => {
+          this.$refs.categoryTab.style.transform = `translate3d(${-this.pos}px, 0, 0)`
+          this.$refs.categoryTab.style.transitionDuration = this.transitionDuration
+        })
+      } else {
+        this.$nextTick(() => {
+          this.$refs.categoryTab.style.transform = `translate3d(0, 0, 0)`
+        })
+      }
+    },
+    // scroll-to-Top
+    scrollToTop (refName) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+      if (this.isMenuFixed === true) {
+        document.querySelector('.feature__wrap .category-tab.fixed').classList.remove('fixed')
       }
     }
   }

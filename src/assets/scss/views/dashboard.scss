@@ -883,6 +883,23 @@
 						height: 80px;
 						background: #fff;
 						text-align: center;
+						&.temp_save {
+							.brand__title {
+								a {
+									cursor: default;
+									text-decoration: none;
+									&:hover {
+										cursor: default;
+										text-decoration: none;
+									}
+								}
+							}
+							.link{
+								&:hover{
+									text-decoration: none;
+								}
+							}
+						}
 						.brandname {
 							padding: 0px 32px;
 							display: flex;

@@ -1,5 +1,8 @@
 // RCS 특장점
 .feature__wrap{
+  .page-title{
+    padding-top: 64px;
+  }
   .category-tab{
     position: relative;
     margin-bottom: 0;
@@ -45,18 +48,18 @@
   .feature-txt{
     .txt-tit{
       @include fontoption(62px,#000,700,88px);
-      letter-spacing: -3.1px;
+      letter-spacing: -0.05em;
     }
     .txt-des{
       margin-top: 24px;
-      @include fontoption(20px,#777,400,normal);
+      @include fontoption(20px,#777,400,28.96px);
       .des-strong{
-        font-weight: 700;
+        font-weight: 500;
         color: #000;
       }
     }
     .txt-notice{
-      @include fontoption(16px,#666,400,normal);
+      @include fontoption(16px,#666,400,23.17px);
     }
   }
   .feature-img{
@@ -104,7 +107,7 @@
       text-align: center;
       .big-txt{
         @include fontoption(80px,#ddd,700,110px);
-        letter-spacing: -4px;
+        letter-spacing: -0.05em;
         font-family: Noto Sans KR;
         .big-txt-black{
           color: #000;
@@ -117,10 +120,7 @@
         }
       }
       .feature-img{
-        padding-top: 68px;
-        img{
-          width: 773px;
-        }
+        padding-top: 80px;
       }
     }
   }
@@ -128,21 +128,24 @@
     padding-top: 34px;
     .one-box{
       display: flex;
-      max-width: 1920px;
+      max-width: calc(100vw * 1318/1920);
+      margin-left: calc(100vw * 361/1920);
+      margin-right: calc(100vw * 241/1920);
+      margin-top: 160px;
+      padding-bottom: 194px;
       align-items: center;
       justify-content: flex-end;
-      margin-left: calc(100vw * 362 /1920);
+      position: relative;
       .feature-txt{
-        width: 678px;
-        position: static;
-        margin-bottom: 216px;
+        width: 650px;
+        left: 0;
       }
     }
     .feature-img{
       &.first-img{
+        padding-top: 54px;
         img{
           width: 100%;
-          margin-left: -13%;
         }
       }
     }
@@ -150,11 +153,7 @@
       margin-top: 0;
     }
   }
-  .feature_2{
-    .feature-img{
-      padding-top: 90px;
-    }
-  }
+  
   .feature_3, .feature_4, .feature_5{
     .feature-txt{
       text-align: center;
@@ -196,6 +195,28 @@
           }
           p{
             @include fontoption(16px,#666,400,23.17px);
+            &+p{
+              margin-top: 12px;
+            }
+            .safetymark-img{
+              display: inline-flex;
+              width: 25px;
+              height: 25px;
+              position: relative;
+              &::after{
+                content: '';
+                position: absolute;
+                top: 5px;
+                background: url('../assets/images/feature/feature_safetymark.png') no-repeat center center;
+                background-size: 100%;
+                width: 25px;
+                height: 25px;
+              }
+            }
+            .safety-url{
+              color: $pointColor;
+              text-decoration: underline;
+            }
           }
         }
       }
@@ -221,6 +242,24 @@
       align-items: center;
     }
   }
+  .scroll-to-top {
+    width: 88px;
+    height: 88px;
+    right: 100px;
+    bottom: 80px;
+    background-color: rgba(0, 0, 0, 0.15);
+    border:0;
+    border-radius: 100%;
+    color:#fff;
+    transition: all 0.3s linear;
+    &::after{
+      content: '';
+      display: inline-flex;
+      background: url('../assets/images/icon/icon_arrow_up_white.png') no-repeat center center;
+      width: 36px;
+      height: 20px;
+    }
+  }
 }
 .only-pc{
   display: block;
@@ -236,20 +275,12 @@
     display: block;
   }
 }
-@media all and (min-width:770px) and (max-width:1919px) {
+@media all and (min-width:770px) and (max-width:1500px) {
   .feature__wrap{
     .feature_1{
       .one-box{
-        .feature-txt{
-          // width: calc(100vw * 641/1920);
-        }
-        .feature-img{
-          &.first-img{
-            img{
-              margin-left: -9.5%;
-            }
-          }
-        }
+        max-width: 1318px;
+        margin: 160px auto 0;
       }
     }
   }
@@ -270,8 +301,25 @@
     .category-tab{
       margin: 0;
       padding: 0 16px;
+      overflow-x: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }      
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */      
       ul{
         padding: 0;
+        gap: 0;
+        overflow-x:visible;
+        li {
+          padding: 0 12px;
+          &:first-child {
+            padding-left: 0;
+          }
+          &:last-child {
+            padding-right: 0;
+          }          
+        }
       }
     }
     [class*='feature_']{
@@ -294,14 +342,14 @@
     .feature-txt{
       .txt-tit{
         @include fontoption(31px,#000,700,44px);
-        letter-spacing: -3.1px;
+        letter-spacing: -0.05em;
       }
       .txt-des{
         margin-top: 12px;
-        @include fontoption(14px,#777,400, normal);
+        @include fontoption(14px,#777,400, 20.27px);
       }
       .txt-notice{
-        @include fontoption(12px,#666,400, normal);
+        @include fontoption(12px,#666,400, 17.375px);
       }
     }
     .one-gray-box{
@@ -313,8 +361,8 @@
           z-index: 0;
           position: relative;
           img{
-            width: 90%;
-            margin: 0 auto;
+            width: 100%;
+            margin: 29.5px 0 auto;
           }
         }
         &::before{
@@ -327,42 +375,37 @@
         }
       }
       .feature-big-txt{
-        margin-top: 75px;
+        margin-top: 57.5px;
         .big-txt{
-          @include fontoption(31px,#ddd,700,48px);
-          letter-spacing: -3.6px;
+          @include fontoption(36px,#ddd,700,48px);
+          letter-spacing: -0.05em;
+          .blue-gradient{
+            padding-right: 2.6px;
+          }
         }
         .feature-img{
-          padding-top: 47.5px;
+          padding-top: 40px;
           margin-bottom: 0;
-          img{
-            width: 85%;
-            margin: 0 auto;
-          }
         }
       }
     }
     .feature_1{
       .one-box{
-        display: flex;
         flex-direction: column;
         max-width: 100%;
-        margin-left: 0;
         align-items:flex-start;
+        margin: 0;
+        padding-bottom: 100px;
         .feature-txt{
           width: 100%;
           position: static;
           padding: 0 16px;
-          margin-bottom: 0;
         }
       }
       .feature-img{
-        margin-bottom: 42.5px;
         &.first-img{
-          img{
-            width: 100%;
-            margin-left: 0;
-          }
+          padding-top: 50px;
+          width: 100%;
         }
       }
       .one-gray-box{
@@ -407,26 +450,35 @@
           border-radius: 0;
           img{
             padding-top: 11px;
-            width: 90%;
+            width: 100%;
           }
           .only-safetymark{
             padding-top: 35px;
             .title{
               gap: 5px;
-              margin-bottom: 5px;
-              img{
-                padding-top: 0;
-                width: 23.5px;
-                height: 23.5px;
-              }
+              margin-bottom: 10px;
               h5{
-                font-size: 16px;
-                line-height: 23.17px;
+                font-size: 24px;
+                line-height: 34.75px;
               }
             }
             p{
-              font-size: 10px;
-              line-height: 14.48px;
+              font-size: 12px;
+              line-height: 17.375px;
+              &+p{
+                margin-top: 9px;
+              }
+              .safetymark-img{
+                width: 19px;
+                height: 19px;
+                &::after{
+                  top: 3.5px;
+                  background: url('../assets/images/feature/feature_safetymark_mo.png') no-repeat center center;
+                  width: 19px;
+                  height: 19px;
+                  background-size: 100%;
+                }
+              }
             }
           }
           .only-safetymark + img{
@@ -453,11 +505,21 @@
         .feature-txt{
           padding: 0 16px;
         }
-      }
-      .feature-img{
-        img{
-          width: 90%;
+        .feature-img{
+          margin: 0 auto;
         }
+      }
+    }
+    .scroll-to-top {
+      width: 50px;
+      height: 50px;
+      right: 16px;
+      bottom: 40px;
+      &::after{
+        background: url('../assets/images/icon/icon_arrow_up_white_mo.png') no-repeat center center;
+        background-size: cover;
+        width: 21.5px;
+        height: 12px;
       }
     }
   }
@@ -466,5 +528,42 @@
   }
   .only-pc{
     display: none;
+  }
+}
+// 모바일 이용 가이드 네비
+.user-guide__mo-nav--wrap {
+  display: none;
+  @media #{$phone} {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+    .user-guide-nav {
+      border:1px solid #ddd;
+      width: 100%;
+      border-radius: 6px;    
+      position: relative; 
+      &.isActive {
+        .guide-lnb__wrap {
+          display: block;
+          position: absolute;
+          left: 0%;
+          top: 60px;
+          width: 100%;          
+          max-height: 500px;
+          z-index: 230;
+          background-color: #fff;
+          padding: 10px;
+          border: 1px solid #ddd;          
+          overflow-y: auto;
+        }
+      }
+      button {
+        width: 100%;
+        @include fontoption(18px,#000,400,23.17px);
+        padding: 15px 10px;   
+        text-align: left;
+      }
+    }
   }
 }

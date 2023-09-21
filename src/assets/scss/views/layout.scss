@@ -1,4 +1,4 @@
-$headerHeight: 100px;
+$headerHeight: 85px;
 $contentPaddingM: 16px;
 $contentWidth: 1440px;
 $contentWidth2: 1024px;
@@ -33,7 +33,7 @@ $contentWidth2: 1024px;
     height:$headerHeight;
     background:#fff;
     z-index:11;
-    flex:0 0 100px;
+    flex:0 0 85px;
     &.isfixed {
         position: fixed;        
         height:70px;
@@ -99,7 +99,7 @@ $contentWidth2: 1024px;
         position:relative;
         > a {
             font-size:18px;
-            line-height:100px;
+            line-height:85px;
             display:inline-block;
             position: relative;                   
         }
@@ -124,7 +124,7 @@ $contentWidth2: 1024px;
         // 서브 메뉴
         .sub-menu__wrap {
             position: absolute;
-            top: 125px;
+            top: 101px;
             left:50%;
             transform: translateX(-50%);
             z-index: 11;
@@ -136,7 +136,7 @@ $contentWidth2: 1024px;
                 li {
                     white-space: nowrap;
                     a {
-                        padding: 29px 30px 23px;
+                        padding: 16px 30px 16px;
                         @include fontoption(16px,#000, 400,28px);
                         &:hover {
                             color:#2F77FB !important;
@@ -179,9 +179,9 @@ $contentWidth2: 1024px;
 .gnb_full_bg {
     position: absolute;
     width: 100%;
-    height: 80px;
+    height: 60px;
     left: 0;
-    top: 100px;
+    top: 85px;
     background-color: #fff;
     border-bottom: 1px solid rgba(240, 240, 240, 1);
     z-index: 10;
@@ -236,6 +236,15 @@ $contentWidth2: 1024px;
         .alarm-msg__wrap {
             max-height: 650px;
             overflow: auto;
+            &.no-data {
+                text-align: center;
+                @include fontoption(14px,#888888,400,26px);
+                min-height:608px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-bottom: 1px solid #ddd;
+            }
             li {
                 padding: 20px 24px;
                 border-bottom: 1px solid #F0F0F0;
@@ -330,6 +339,10 @@ $contentWidth2: 1024px;
                 border-radius: 50%;
                 margin:0 24px;
             }
+        }
+        &:hover {
+            color:#2F77FB !important;
+            font-weight: 500; 
         }
     }
     .link-dashboard {
@@ -609,6 +622,24 @@ $contentWidth2: 1024px;
                 display: block;
                 width: 48px;
                 height: 48px;
+                background-size: 48px auto;
+            }
+            &.tworld {
+                a {
+                    background:url('../assets/images/layout/logo_tworld.svg') no-repeat 50% 50%;
+                }
+                margin-left: 0;
+            }
+            &.kt {
+                a {
+                    background:url('../assets/images/layout/logo_kt.svg') no-repeat 50% 50%;
+                }
+            }
+            &.uplus {
+                a {
+                    background:url('../assets/images/layout/logo_lgu.svg') no-repeat 50% 50%;
+                }
+                margin-right: 0;
             }
         }
     }
@@ -873,11 +904,26 @@ $contentWidth2: 1024px;
                 a {
                     width: 32px;
                     height: 32px;
-                    img {
-                        width: 32px;
-                        height: auto;
+                }
+                &.tworld {
+                    a {
+                        background:url('../assets/images/layout/logo_tworld.svg') no-repeat 50% 50%;
+                        background-size: 100%;
                     }
-                    
+                    margin-left: 0;
+                }
+                &.kt {
+                    a {
+                        background:url('../assets/images/layout/logo_kt.svg') no-repeat 50% 50%;
+                        background-size: 100%;
+                    }
+                }
+                &.uplus {
+                    a {
+                        background:url('../assets/images/layout/logo_lgu.svg') no-repeat 50% 50%;
+                        background-size: 100%;
+                    }
+                    margin-right: 0;
                 }
             }
         }
@@ -897,6 +943,11 @@ $contentWidth2: 1024px;
                 }
                 &:after {
                     display: none;
+                }
+                span{
+                    &:last-child{
+                        margin-left: 8px;
+                    }
                 }
             }
         }        
