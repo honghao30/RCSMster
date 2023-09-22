@@ -460,7 +460,7 @@ export default {
       ],
       messageType: [
         {
-          type: '이미지 강조 타입형',
+          type: '이미지 강조형',
           cardUrl: require('@/assets/images/main/message_card01.png')
         },
         {
