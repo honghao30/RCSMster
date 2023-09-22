@@ -184,27 +184,6 @@
               :key="index"
               :class="item.customer"
             >
-              <!-- <div class="inner-rapper">
-                  <div class="inner__text--left">
-                    <h4 class="ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1.5s" swiper-animate-delay="0s" v-html="item.title"></h4>
-                    <p class="description  ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="2.0s" swiper-animate-delay="0s" v-html="item.description"></p>
-                    <p class="btn-more ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="2.2s" swiper-animate-delay="0s">
-                      <router-link :to="item.link">자세히 보기</router-link>
-                    </p>
-                  </div>
-                  <div class="card__list">
-                    <div class="card__list--innerbox">
-                      <div v-for="(card, index) in item.card"
-                          swiper-animate-effect="rotate" swiper-animate-duration="1.0s" swiper-animate-delay="0.5s"
-                          class="card-item"
-                          :key="index"
-                          :class="`card0${index + 1}`"
-                        >
-                        <img :src="card.cardUrl" alt="">
-                      </div>
-                    </div>
-                  </div>
-              </div> -->
               <div class="inner-rapper">
                   <div class="inner-rapper-blue">
                       <div class="inner__text--left">
@@ -212,7 +191,8 @@
                             <h4 class="ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1.5s" swiper-animate-delay="0s" v-html="item.title"></h4>
                             <p class="description  ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="2.0s" swiper-animate-delay="0s" v-html="item.description"></p>
                             <p class="btn-more ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="2.2s" swiper-animate-delay="0s">
-                              <router-link :to="item.link">자세히 보기</router-link>
+                              <!-- <router-link :to="item.link">자세히 보기</router-link> -->
+                              <a href="#" @click="caseModalOpen($event, index)">자세히 보기</a>
                             </p>
                         </div>
                         <div class="card__list mo">
@@ -296,6 +276,99 @@
           </ul>
         </div>
       </div>
+      <!-- 모달 케이스 -->
+      <ModalView
+        v-if="isModalViewed" @closeModal="isModalViewed = false">
+        <ConfirmMsg
+           v-if="caseView01"
+          @closeModal="caseView01 = false, isModalViewed = false"
+          modalsize="Max1060"
+        >
+          <div class="msg" slot="msg">
+              <div class="main-case__modal--wrap">
+                  <div class="main-case__title">
+                      <h3>스마트 스코어</h3>
+                      <ButtonCmp
+                        type="btn-only-icon"
+                        @click="isModalViewed = false, caseView01 = false"
+                      >
+                        <i></i>
+                      </ButtonCmp>
+                  </div>
+                  <div class="main-case__content smartscore">
+                    <!-- <div class="main-pop-top pop-flex">
+                      <div class="main-pop-top-left">
+                        <img src="@/assets/images/main/smartscore_pop_01.png" alt="" class="only-pc">
+                        <img src="@/assets/images/main/smartscore_pop_01_mo.png" alt="" class="only-mo">
+                      </div>
+                      <div class="main-pop-top-right">
+                        <h4>비용 절감 및 고객 반응 향상!</h4>
+                        <p>스마트 스코어 (골프앱)는 광고성 문자 표기 의무 공간이<br class="only-mo"> 별도로 제공되는 <br class="only-pc">
+                          RCS 메시지의 특징을 활용하여 마케팅<br class="only-mo"> 문자를 LMS에서 RCS SMS로 <br class="only-pc">
+                          전환하였으며 <br class="only-mo">그 결과 비용 절감 및 고객 반응이 향상되었습니다.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="main-pop-btm">
+                      <img src="@/assets/images/main/smartscore_pop_02.png" alt="" class="only-pc">
+                      <img src="@/assets/images/main/smartscore_pop_02_mo.png" alt="" class="only-mo">
+                    </div> -->
+                    <img src="@/assets/images/main/smartscore_pop_full.png" alt="" class="only-pc">
+                    <img src="@/assets/images/main/smartscore_pop_full_mo.png" alt="" class="only-mo">
+              </div>
+              </div>
+          </div>
+        </ConfirmMsg>
+        <ConfirmMsg
+           v-if="caseView02"
+          @closeModal="caseView02 = false, isModalViewed = false"
+          modalsize="Max1060"
+        >
+          <div class="msg" slot="msg">
+              <div class="main-case__modal--wrap">
+                  <div class="main-case__title">
+                      <h3>BC 카드</h3>
+                      <ButtonCmp
+                        type="btn-only-icon"
+                        @click="isModalViewed = false, caseView02 = false"
+                      >
+                        <i></i>
+                      </ButtonCmp>
+                  </div>
+                  <div class="main-case__content bccard">
+                    <img src="@/assets/images/main/bccard_pop_full.png" alt="" class="only-pc">
+                    <img src="@/assets/images/main/bccard_pop_full_mo.png" alt="" class="only-mo">
+                  </div>
+              </div>
+          </div>
+        </ConfirmMsg>
+        <ConfirmMsg
+           v-if="caseView03"
+          @closeModal="caseView03 = false, isModalViewed = false"
+          modalsize="Max1060"
+        >
+          <div class="msg" slot="msg">
+              <div class="main-case__modal--wrap">
+                  <div class="main-case__title">
+                      <h3>T deal - 티딜</h3>
+                      <ButtonCmp
+                        type="btn-only-icon"
+                        @click="isModalViewed = false, caseView03 = false"
+                      >
+                        <i></i>
+                      </ButtonCmp>
+                  </div>
+                  <div class="main-case__content tdeal">
+                    <img src="@/assets/images/main/tdeal_pop_full.png" alt="" class="only-pc">
+                    <img src="@/assets/images/main/tdeal_pop_full_mo.png" alt="" class="only-mo">
+                  </div>
+              </div>
+          </div>
+        </ConfirmMsg>
+      </ModalView>
+
+      <!-- //모달 케이스 -->
+
   </div>
 </template>
 
@@ -305,24 +378,34 @@ import 'swiper/css/swiper.css'
 import '@/assets/swiper/animate.css'
 import swiperAni from '@/assets/swiper/swiper.animate.js'
 import NoticePopup from '@/views/mypage/components/popupSet/NoticePopup.vue'
+import ModalView from '@/components/common/ModalView.vue'
+import ConfirmMsg from './ConfirmMsg.vue'
+import ButtonCmp from '@/components/common/ButtonCmp.vue'
 
 export default {
   components: {
     Swiper,
     SwiperSlide,
-    NoticePopup
+    NoticePopup,
+    ModalView,
+    ConfirmMsg,
+    ButtonCmp
   },
   data() {
     return {
       activeSlide: 0,
       isSliderEnter: false,
       keyVisualLinks: true,
+      isModalViewed: false,
+      caseView01: false,
+      caseView02: false,
+      caseView03: false,
       rbcCase: [
         {
           customer: 'lgu',
           title: 'Smart Score (스마트 스코어) ',
           description: '회원 대상 타겟 마케팅 매체의 문자를 RCS로 변경하면서<br>반응이 늘고 매출액도 향상되었습니다.',
-          link: '#',
+          link: 'caseView01',
           card: [
             {
               type: 'card',
@@ -338,7 +421,7 @@ export default {
           customer: 'skt',
           title: 'SK텔레콤 (티 딜)',
           description: 'SK 텔레콤 고객을 대상으로 AI로 큐레이션한 다양한<br class="mo"> 상품의<br class="pc"> 핫딜을 제공하는 서비스로 RCS 메시지를 통해<br class="mo"> 고객에게<br class="pc"> 다양한 제안을 제공하며 좋은 성과를 내고<br class="mo"> 있습니다.',
-          link: '#',
+          link: 'caseView02',
           card: [
             {
               type: 'card',
@@ -358,7 +441,7 @@ export default {
           customer: 'kt',
           title: 'BC Card (BC 카드)',
           description: '이미지, 액션버튼등 클릭 가능 영역이 확대되어<br>이벤트 페이지 진입율이 증가했습니다.',
-          link: '#',
+          link: 'caseView03',
           card: [
             {
               type: 'card',
@@ -504,6 +587,16 @@ export default {
       currentSection: 0,
       calculatedFontSize: 0,
       keyBarPs: ''
+    }
+  },
+  watch: {
+    isModalViewed () {
+      if (this.isModalViewed) {
+        document.documentElement.style.overflow = 'hidden'
+        // this.start()
+        return
+      }
+      document.documentElement.style.overflow = 'auto'
     }
   },
   computed: {
@@ -656,6 +749,11 @@ export default {
     resizeHandler() {
       this.calcPos()
       this.applyStyles()
+    },
+    caseModalOpen(event, index) {
+      event.preventDefault()
+      this.isModalViewed = true
+      this[`caseView0${index + 1}`] = true
     }
   }
 }
