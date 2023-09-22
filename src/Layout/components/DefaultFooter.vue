@@ -9,9 +9,9 @@
         <li  v-if="!isLogin"><router-link :to='{ name: "joinAgency" }'>대행사 가입</router-link></li>
       </ul>
       <ul class="agency-info">
-        <li><span class="tit">SK 텔레콤㈜</span><span>대표이사/사장: 유영상</span><span>사업자등록번호: 104-81-37225</span></li>
+        <li><span class="tit">SK 텔레콤㈜</span><span>대표이사/사장 : 유영상</span><span>사업자등록번호 : 104-81-37225</span></li>
         <li><span class="tit">(주)케이티</span><span>대표이사 : 김영섭</span><span>사업자등록번호 : 102-81-42945</span></li>
-        <li><span class="tit">㈜엘지유플러스</span><span>대표이사: 황현식</span><span>사업자등록번호 220-81-39938</span></li>
+        <li><span class="tit">㈜엘지유플러스</span><span>대표이사 : 황현식</span><span>사업자등록번호 : 220-81-39938</span></li>
       </ul>
       <ul class="agency-list">
           <li class="tworld">

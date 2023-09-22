@@ -10,8 +10,8 @@
               RCS에서 가능합니다!
             </p>
             <p class="btn-more">
-              <router-link to="#">
-                메시지 템플릿 가이드
+              <router-link to="/CompanyMsg">
+                RCS 기업 메시지
               </router-link>
             </p>
           </div>
@@ -63,7 +63,7 @@
                   >
                     <router-link to="#" class="section__list--inner-wrap">
                       <div class="tit">
-                        <p>#템플릿 메시지</p>
+                        <p>#템플릿</p>
                         <h3>
                           가격이 저렴하면서<br>
                           가독성 높은 메시지를<br>
@@ -137,7 +137,7 @@
           </h2>
           <p class="title-description">RCS의 다양한 타입의<br class="mo"> 메시지 상품을 경험해 보세요!</p>
           <p class="btn-link">
-            <router-link to="">메시지 템플릿 더보기</router-link>
+            <a href="/RcsMessageType">RCS 기업 메시지 더보기</a>
           </p>
         </div>
         <div class="message-swiper__container">
@@ -275,20 +275,20 @@
           </div>
           <ul class="rcs-service-guide__list">
             <li>
-                <router-link to="">
+                <router-link to="/CompanyMsg">
                   <h3>RCS 비즈 메시지</h3>
                   <p>RCS서비스를 처음 사용하는 고객을<br>
                   위한 메시지 발송 팁 & 메시지 종류</p>
                 </router-link>
             </li>
             <li>
-                <router-link to="">
+                <router-link to="/GuideAccount">
                   <h3>RBC 이용하기</h3>
                   <p>계정관리, 브랜드관리, 대화방관리를<br>위한 종류와 권한 안내</p>
                 </router-link>
             </li>
             <li>
-                <router-link to="">
+                <router-link to="/ScreenGuide01">
                   <h3>RBC 화면 가이드</h3>
                   <p>RCS 전체 서비스의 효율적인<br>활용을 위한 사용 가이드</p>
                 </router-link>
@@ -377,7 +377,7 @@ export default {
       ],
       messageType: [
         {
-          type: '이미지 강조 타입',
+          type: '이미지 강조 타입형',
           cardUrl: require('@/assets/images/main/message_card01.png')
         },
         {
