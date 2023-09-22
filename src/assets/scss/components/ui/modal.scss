@@ -1147,12 +1147,13 @@
               }
             }
             .main-case__content{
-              margin-top: 32px;
               max-height: auto;
               overflow-y: auto;
               height: 100%;
-              padding: 0;
+              padding: 32px 0 0 0;
               &.smartscore {
+                margin-top: 32px;
+                padding: 0 0 0 0;
                 max-height: fit-content;
               } 
               &.bccard {
