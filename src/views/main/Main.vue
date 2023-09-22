@@ -460,7 +460,7 @@ export default {
       ],
       messageType: [
         {
-          type: '이미지 강조 타입형',
+          type: '이미지 강조형',
           cardUrl: require('@/assets/images/main/message_card01.png')
         },
         {
@@ -476,7 +476,7 @@ export default {
           cardUrl: require('@/assets/images/main/message_card04.png')
         },
         {
-          type: 'LMS 템플릿 청구서형',
+          type: 'LMS 템플릿 스타일형',
           cardUrl: require('@/assets/images/main/message_card05.png')
         },
         {
