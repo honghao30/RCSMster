@@ -883,26 +883,6 @@
 						height: 80px;
 						background: #fff;
 						text-align: center;
-						&.temp_save {
-							.brand__title {
-								a {
-									cursor: default;
-									text-decoration: none;
-									pointer-events: none;
-									&:hover {
-										cursor: default;
-										text-decoration: none;
-										pointer-events: none;
-									}
-								}
-							}
-							.link{
-								&:hover{
-									text-decoration: none;
-									pointer-events: none;
-								}
-							}
-						}
 						.brandname {
 							padding: 0px 32px;
 							display: flex;
@@ -1191,6 +1171,22 @@
 	}
 	.board-main__box{
 		&.mymain-box{
+			.page-title__wrap{
+				h3{
+					display: inline-flex;
+					align-items: center;
+					>a{
+						margin-left: 8px;
+						i{
+							display: inline-flex;
+							background: url('../assets/images/icon/icon_setting.png') no-repeat;
+							width: 24px;
+							height: 24px;
+							background-size: 100%;
+						}
+					}
+				}
+			}
 			table {
 				tbody{ 
 					tr{
@@ -1216,6 +1212,18 @@
 										display: flex;
 										flex-direction: column;
 										.row-data{
+											a{
+												&.neverline{
+													cursor: none;
+													text-decoration: none;
+													pointer-events: none;
+													span.underline{
+														cursor: none;
+														text-decoration: none;
+														pointer-events: none;
+													}
+												}
+											}
 											span{
 												&:nth-child(1){
 													@include fontoption(16px,#000,500,28px);

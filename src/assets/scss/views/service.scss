@@ -85,9 +85,15 @@
           display: flex;
           flex-direction: column;
           gap: 12px;
+          @media #{$phone} {
+            gap: 0;
+          }
           li:first-child {
             a {
               padding-top: 12px;
+              @media #{$phone} {
+                padding-top: 0;
+              }              
             }
           }
           a {
@@ -97,6 +103,9 @@
             align-items: center;
             font-size: 14px;
             justify-content: space-between;
+            @media #{$phone} {
+              padding: 10px 12px;
+            }  
             &:hover, &:active {
               color: $pointColor;
               font-weight: 700;
@@ -105,7 +114,7 @@
           &.current {
             > a {
               color: $pointColor;
-              font-weight: 700;
+              font-weight: 700;               
               &:after {
                 border-color: $pointColor;
               }
