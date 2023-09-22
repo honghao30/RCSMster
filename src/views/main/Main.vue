@@ -25,8 +25,8 @@
               <img src="@/assets/images/main/key-visual-logo.png" alt="">
             </div>
             <ul class="key-vi__links">
-              <li><router-link to="">RCS 시작</router-link></li>
-              <li><router-link to="">온라인 문의</router-link></li>
+              <li><router-link to="/utility/join">RCS 시작</router-link></li>
+              <li><router-link to="/OnlineInquire">온라인 문의</router-link></li>
             </ul>
           </div>
         </div>
@@ -324,10 +324,10 @@
           @closeModal="caseView02 = false, isModalViewed = false"
           modalsize="Max1060"
         >
-          <div class="msg" slot="msg">
+        <div class="msg" slot="msg">
               <div class="main-case__modal--wrap">
                   <div class="main-case__title">
-                      <h3>BC 카드</h3>
+                      <h3>T deal - 티딜</h3>
                       <ButtonCmp
                         type="btn-only-icon"
                         @click="isModalViewed = false, caseView02 = false"
@@ -335,9 +335,9 @@
                         <i></i>
                       </ButtonCmp>
                   </div>
-                  <div class="main-case__content bccard">
-                    <img src="@/assets/images/main/bccard_pop_full.png" alt="" class="only-pc">
-                    <img src="@/assets/images/main/bccard_pop_full_mo.png" alt="" class="only-mo">
+                  <div class="main-case__content tdeal">
+                    <img src="@/assets/images/main/tdeal_pop_full.png" alt="" class="only-pc">
+                    <img src="@/assets/images/main/tdeal_pop_full_mo.png" alt="" class="only-mo">
                   </div>
               </div>
           </div>
@@ -350,7 +350,7 @@
           <div class="msg" slot="msg">
               <div class="main-case__modal--wrap">
                   <div class="main-case__title">
-                      <h3>T deal - 티딜</h3>
+                      <h3>BC 카드</h3>
                       <ButtonCmp
                         type="btn-only-icon"
                         @click="isModalViewed = false, caseView03 = false"
@@ -358,9 +358,9 @@
                         <i></i>
                       </ButtonCmp>
                   </div>
-                  <div class="main-case__content tdeal">
-                    <img src="@/assets/images/main/tdeal_pop_full.png" alt="" class="only-pc">
-                    <img src="@/assets/images/main/tdeal_pop_full_mo.png" alt="" class="only-mo">
+                  <div class="main-case__content bccard">
+                    <img src="@/assets/images/main/bccard_pop_full.png" alt="" class="only-pc">
+                    <img src="@/assets/images/main/bccard_pop_full_mo.png" alt="" class="only-mo">
                   </div>
               </div>
           </div>
