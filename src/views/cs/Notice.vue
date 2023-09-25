@@ -18,15 +18,15 @@
         </div>
       </div>
       <p class="list-number">
-        총 <span>{{ this.noticeListNum }}</span> 건
+        총 <span>{{ this.noticeListNum }}</span>건
       </p>
     </div>
     <div class="table__wrap notice-table">
       <table class="table table-list">
         <colgroup>
-          <col width="10%">
+          <col width="11%">
           <col>
-          <col width="16%">
+          <col width="18%">
         </colgroup>
         <thead>
           <tr>
@@ -38,12 +38,12 @@
         <tbody>
           <tr v-for="(list, index) in notiYesLists" :key="`notiYes_${index}`" class="primary">
             <td class="mo-hide">
-              <span class="primary__text">공지</span>
+              <span class="primary__text">중요</span>
             </td>
             <td>
               <div class="l-align title">
-                <span class="primary__text only-mobile">공지</span>
-                <router-link :to="{ name: 'NoticeContent', params: { no: list.seq, page: searchParam.page } }" v-html="list.subject" />
+                <span class="primary__text only-mobile">중요</span>
+                <router-link :to="{ name: 'NoticeContent', params: { no: list.seq, page: searchParam.page, notiYn: 'Y' } }" v-html="list.subject" />
                 <i class="ico-attach" v-if="list.fileId"></i>
                 <i class="ico-new" v-if="list.isNew"></i>
               </div>
@@ -58,7 +58,7 @@
             </td>
             <td>
               <div class="l-align title">
-                <router-link :to="{ name: 'NoticeContent', params: { no: list.seq, page: searchParam.page } }" v-html="list.subject" />
+                <router-link :to="{ name: 'NoticeContent', params: { no: list.seq, page: searchParam.page, notiCate: searchParam.notiCate, notiYn: 'N' } }" v-html="list.subject" />
                 <i class="ico-attach" v-if="list.fileId"></i>
                 <i class="ico-new" v-if="list.isNew"></i>
               </div>
@@ -108,7 +108,8 @@ export default {
         keywordType: 'subject',
         keyword: '',
         page: 1,
-        size: 5
+        size: 10,
+        userId: ''
       },
       dropdownOptions: [
         {
@@ -120,7 +121,7 @@ export default {
           value: 'ctn'
         }
       ],
-      notiCateList: [],
+      notiCateList: ['이벤트', '시스템', '정책', '서식', '업데이트 노트'],
       bbsCategoryType: '',
       bbsCategoryTypeIndex: -1,
       notiYesLists: [],
@@ -182,6 +183,11 @@ export default {
       this.search()
     },
     search() {
+      if (!jglib.isEmpty(this.$store.state.user.userId)) {
+        this.searchParam.userId = this.$store.state.user.userId
+      } else {
+        this.searchParam.userId = ''
+      }
       this.$store.dispatch('searchcondition/searchAndGo', { searchParam: this.searchParam })
       getNoticeList(this.searchParam)
         .then(res => {

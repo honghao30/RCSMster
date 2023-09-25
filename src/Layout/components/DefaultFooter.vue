@@ -1,12 +1,12 @@
 <template>
   <footer class="footer">
     <div class="inner"
-      :class="{ respons: respons }"  
+      :class="{ respons: respons }"
     >
       <ul class="policy-list">
         <li><router-link to='/terms'>이용약관</router-link></li>
         <li><router-link to='/OnlineInquire'>온라인 문의</router-link></li>
-        <li  v-if="!isLogin"><router-link :to='{ name: "joinAgency" }'>대행사 가입</router-link></li>
+        <li><router-link :to='{ name: "joinAgency" }'>대행사 가입</router-link></li>
       </ul>
       <ul class="agency-info">
         <li><span class="tit">SK 텔레콤㈜</span><span>대표이사/사장: 유영상</span><span>사업자등록번호: 104-81-37225</span></li>

@@ -65,15 +65,6 @@
     "isLogin": false
   },
   {
-    "menuId": "M0304",
-    "parentMenuId": "M0300",
-    "path": "/RequireList",
-    "level": 2,
-    "sort": 3,
-    "name": "온라인문의",
-    "isLogin": true
-  },
-  {
     "menuId": "M0400",
     "parentMenuId": "",
     "path": "/TechnicalSupport",
