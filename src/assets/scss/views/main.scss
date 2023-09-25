@@ -6,13 +6,13 @@
             left: 0;
             top: 0;
             background-color: transparent;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.40);
+            border-bottom: 0;
             @media all and (min-width:770px) and (max-width:1449px) {
                 border-bottom: 0;
             }
             .inner{
                 @media all and (min-width:770px) and (max-width:1449px) {
-                    border-bottom: 1px solid rgba(255, 255, 255, 0.40);
+                    border-bottom: 0;
                 }
             }
             .header__logo {
