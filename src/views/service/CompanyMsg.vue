@@ -45,7 +45,7 @@
             <div class="text-two-box">
               <div class="text-box">
                 <p class="title" id="guide_2_1_1">동적 이미지 (GIF)</p>
-                <p class="content">단조로운 메시지에 강조하고 싶은 내용을 동적 이미지로 만들어 제공할 수 <br class="only-pc">있습니다.<br>빠른 움직임이 자칫 메시지의 피로도를 줄 수 있으므로 이미지 제작 시, 적절한 속도감과<br class="only-pc"> Pause(멈춤)를 주는 것을 추천드립니다.</p>
+                <p class="content">단조로운 메시지에 강조하고 싶은 내용을 동적 이미지로 만들어 제공할 수 있습니다.<br>빠른 움직임이 자칫 메시지의 피로도를 줄 수 있으므로 이미지 제작 시, 적절한 속도감과<br class="only-pc"> Pause(멈춤)를 주는 것을 추천드립니다.</p>
               </div>
               <div class="text-two-box__inner inner-gif">
                 <img src="@/assets/images/guide/feature_company_msg_02.png" alt="" class="only-pc">

@@ -93,7 +93,7 @@
             </div>
           </div>
           <div class="btn__warp right">
-            <router-link to="/OnlineInquire" class="side-btn">온라인 문의하기</router-link>
+            <router-link to="/OnlineInquire" target="_blank" class="side-btn">온라인 문의하기</router-link>
           </div>
           <p class="content mt-t32">다음과 같은 케이스로 브랜드를 만드는 경우는 별도 확인이 필요합니다.</p>
           <div class="gray-box__wrap">

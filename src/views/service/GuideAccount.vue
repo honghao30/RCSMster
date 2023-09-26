@@ -141,7 +141,7 @@
               <li>임시 등록 : 매니저 권한으로 기업 계정과 브랜드를 최초 생성할 수 있으나, 실제 사용을 위해서는 소속 증명(사업자등록증 등 제출)을 해야 합니다.</li>
             </ul>
             <div class="btn__warp right">
-              <a href="/GuideBrand#section05" class="side-btn color-blue">브랜드 운영 권한 종류</a>
+              <router-link to="/GuideBrand#section05" class="side-btn color-blue">브랜드 운영 권한 종류</router-link>
             </div>
           </div>
           <div class="guide__item" id="section02">
@@ -232,7 +232,7 @@
                 <div class="title-item">
                   <p class="title" id="guide_2_2_1">브랜드 대표 운영자인 경우</p>
                   <div class="btn__warp right">
-                    <router-link to="" class="side-btn">대표 운영자 란?</router-link>
+                    <router-link to="/GuideBrand#guide_5_1" class="side-btn">대표 운영자 란?</router-link>
                   </div>
                 </div>
                 <p class="content">브랜드의 대표 운영자인 경우, 다른 마스터에게 권한 위임을 하거나 브랜드 삭제 후, 탈퇴할 수 있습니다.<br/>탈퇴 후, 동일 아이디로 재 가입이 불가합니다. 재 가입시, 이전의 회원 정보와 서비스 정보는 복구되지 않습니다.<br/>유일한 기업 계정의 운영자인 경우, 탈퇴와 함께 기업 계정도 함께 삭제됩니다.</p>
@@ -323,7 +323,7 @@
               <dd>브랜드의 운영 대행 권한을 얻은 후, 브랜드 정보의 수정 및 하위 기능들의 추가/수정/삭제 등이 가능합니다.<br/>자세한 사항은 계정별 사용 가능 메뉴에서 확인하세요.</dd>
             </dl>
             <div class="btn__warp right">
-              <router-link to="/GuideAccount#section01" class="side-btn">계정별 사용 가능 메뉴</router-link>
+              <router-link to="/GuideAccount#guide_1_1" class="side-btn">계정별 사용 가능 메뉴</router-link>
             </div>
             <hr class="hr-dot-line">
             <div class="subtitle-wrap">

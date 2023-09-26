@@ -402,6 +402,7 @@
 					@include fontoption(16px,#000,700,22px);
 				}
 				p{
+					margin-top:4px;
 					@include fontoption(12px,#666,400,18px);
 				}
 			}
@@ -679,7 +680,7 @@
 				}
 			}
 			&.side-box__banner {
-				background: #EEF9FF;
+				background: #fff;
 				border-radius: 16px;
 				position: relative;
 				padding: 24px 32px;
@@ -711,6 +712,14 @@
 						cursor: pointer;
 					}
 				}
+				.chat_icon{
+					width: 82px;
+					height: 82px;					
+					border-radius: 82px;
+					position: absolute;
+					right: 32px;
+					top:24px;
+				}				
 				.side-box-img{
 					margin-top: 32px;
 					display: flex;

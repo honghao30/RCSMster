@@ -19,7 +19,7 @@
         <!-- // 모바일 네비 -->
         <div class="guide-page__title">
           <h3>RCS 기업 메시지 종류</h3>
-          <p class="description">더 효율적으로 브랜드가 고객과 만날 수 있도록 RBC에서 다양한 기능을 제공하고 있습니다.</p>
+          <p class="description">비즈니스 목적으로 보내는 모든 메시지를 RCS 기업 메시지로 바꿔보세요.</p>
         </div>
         <div class="guide__item" id="section01">
           <div class="subtitle-wrap">
@@ -315,8 +315,8 @@
           </div>
           <p class="content">
             공통포맷과 동일 발송하는 방식은 동일합니다.<br>
-            각 컴포넌트별로 메시지 발송 시, 값이 없을 경우 발송 실패되는 요소와 해당 컴포넌트 영역이 보여지지않는 요소가 다르니,<br>
-            유의해 주시기 바랍니다.<br>
+            각 컴포넌트별로 메시지 발송 시, 값이 없을 경우 발송 실패되는 요소와 해당 컴포넌트<br>
+            영역이 보여지지않는 요소가 다르니, 유의해 주시기 바랍니다.<br>
             각 컴포넌트별 필수 요소를 확인해주시기 바랍니다.
           </p>
           <hr class="hr-dot-line">
@@ -393,7 +393,7 @@
                     tmplt
                   </td>
                   <td>
-                    1itmpl
+                    itmpl
                   </td>
                   <td>
                     lms
@@ -448,8 +448,8 @@
           </div>
           <div class="gray-box__wrap">
             <div class="gray-box mt-t16 mt-b0">
-              <p class="content"><span class="color-blue">정보성 템플릿</span> :  승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지체될 수 있습니다.</p>
-              <p class="content"><span class="color-blue">이미지 템플릿 / LMS 템플릿</span> : 12시 전 신청 건은 당일 오후, 12시 이후 신청 건에 대해서는 익일 오전 중 심사 예정입니다.<br>
+              <p class="content line-before-none"><span class="color-blue">정보성 템플릿</span> :  승인 심사는 영업일 기준 48시간 이내이며 내부 사정상 지체될 수 있습니다.</p>
+              <p class="content line-before-none"><span class="color-blue">이미지 템플릿 / LMS 템플릿</span> : 12시 전 신청 건은 당일 오후, 12시 이후 신청 건에 대해서는 익일 오전 중 심사 예정입니다.<br>
               (주말 신청 건에 대해서는 차주 월요일 중 심사) 내부 사정상 지체될 수 있습니다.</p>
             </div>
           </div>
@@ -731,7 +731,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th rowspan="4" colspan="2">
+                  <th rowspan="4" colspan="2" class="c-align">
                     이미지 템플릿
                   </th>
                   <th class="pd-th14">
@@ -790,7 +790,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th rowspan="2" colspan="2">
+                  <th rowspan="2" colspan="2" class="c-align">
                     텍스트 템플릿<br>타이틀 자유형
                   </th>
                   <th class="pd-th14">
@@ -1001,11 +1001,11 @@ export default {
       isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768,
       isMobileSize: 768,
       OnlyPcNav: false,
-      name: '이름',
-      phone: '인증번호',
-      variable: '변수',
-      date: 'date',
-      description: 'description',
+      name: '{{이름}}',
+      phone: '{{인증번호}}',
+      variable: '{{변수}}',
+      date: '{{date}}',
+      description: '{{description}}',
       sign: '{{ }}',
       brandMenu: [
         {

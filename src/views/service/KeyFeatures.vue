@@ -189,11 +189,12 @@
         <div class="side__item">
           <div class="side__list">
             <div class="guide-lnb__wrap">
-                <GuideLnbSide :rightMenuData="brandMenu" /><GuideSide />
+                <GuideLnbSide :rightMenuData="brandMenu" />
+              </div>
             </div>
           </div>
+          <GuideSide />
         </div>
-      </div>
     </div>
   </div>
   </template>

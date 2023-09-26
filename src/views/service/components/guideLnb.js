@@ -5,7 +5,7 @@ const guideLnbList = [
   },
   {
     'label': 'RCS 기업 메시지',
-    'to': '/CompanyMsg',
+    'to': '/CompanyMsg#section01',
     'children': [
       {
         'label': '서비스 구조',
@@ -26,7 +26,7 @@ const guideLnbList = [
   },
   {
     'label': 'RCS 기업 메시지 종류',
-    'to': '',
+    'to': '/RcsMessageType',
     'children': [
       {
         'label': 'RCS 기업 메시지 구분',
@@ -35,17 +35,17 @@ const guideLnbList = [
       },
       {
         'label': '공통 포맷',
-        'to': '/RcsMessageType/#section02',
+        'to': '/RcsMessageType#section02',
         'hash': '#section02'
       },
       {
         'label': '레이아웃',
-        'to': '/RcsMessageType/#section03',
+        'to': '/RcsMessageType#section03',
         'hash': '#section03'
       },
       {
         'label': '템플릿',
-        'to': '/RcsMessageType/#section04',
+        'to': '/RcsMessageType#section04',
         'hash': '#section04'
       }
     ]
@@ -177,7 +177,7 @@ const guideLnbList = [
   },
   {
     'label': '화면 가이드',
-    'to': '',
+    'to': '/ScreenGuide01',
     'children': [
       {
         'label': '회원가입',

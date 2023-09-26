@@ -469,6 +469,12 @@ $textareaHeight: 100px;
           border:1px solid #999;
         }            
       }
+      &.no-result {
+        text-align: center;
+        @include fontoption(14px,#999, 400, 26px);
+        padding: 13px  0;
+        justify-content: center;
+      }
     }
     .search__area {
       padding:8px 16px;

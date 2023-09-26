@@ -14,7 +14,7 @@
             > a {
               color: $pointColor;
               font-weight: 700;
-              &:after {
+              &::after {
                 border-color: $pointColor;
               }
             }
@@ -27,7 +27,7 @@
           font-size:16px;
           line-height: 24px;
           font-weight: 500;
-          &:after {
+          &::after {
             content:'';
             display:inline-block;
             width: 8px;
@@ -39,14 +39,14 @@
             transform: rotate(135deg);
           }
           &.children {
-            &:after {
+            &::after {
               transform: rotate(-135deg);
             }
           }
           &.open {
             color: $pointColor;
             font-weight: 700;
-            &:after {
+            &::after {
               border-top:2px solid $pointColor;
               border-left:2px solid $pointColor;
               transform: rotate(45deg);
@@ -55,7 +55,7 @@
           &:hover, &.active {
             color: $pointColor;
             font-weight: 700;
-            &:after {
+            &::after {
               border-color: $pointColor;
             }
           }
@@ -63,6 +63,9 @@
             &.router-link-active{
               color: $pointColor;
               font-weight: 700;
+              &::after {
+                border-color: $pointColor;
+              }
             }
           }
         }
@@ -408,6 +411,9 @@
   }
   .title {
     @include fontoption(16px,#000,700,28px);
+    .thin-weight{
+      font-weight: 400;
+    }
   }
   .title-blue {
     @include fontoption(16px,#2F77FB,700,28px);
@@ -1192,6 +1198,9 @@
         &.only-bg{
           background-color: #f8f8f8;
           text-align: start;
+          + td{
+            text-align: start;
+          }
         }
       }
     }
@@ -1246,6 +1255,9 @@
               width: 100%;
               text-align: center;
               @include fontoption(9px,$pointColor,500,18px);
+            }
+            &.c-align{
+              text-align: center;
             }
             &.dot-th{
               padding: 10px;
@@ -1784,6 +1796,9 @@
         padding: 16px 0;
         border-radius: 0;
         width: calc(100% + 32px);
+        img{
+          width: 50%;
+        }
       }
     }
     // qna 박스

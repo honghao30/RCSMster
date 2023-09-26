@@ -442,6 +442,7 @@
     .top-ctrl-area{
       &.none-btm{
         margin-bottom: 0;
+        flex-direction: column;
       }
     }
     .guide-box {

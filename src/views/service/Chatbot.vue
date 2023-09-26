@@ -179,8 +179,8 @@
             </div>
           </div>
           <div class="btn__warp right multiline">
-            <p><router-link to="/Chatbot#guide_2_2_1" class="side-btn">자동응답 메시지</router-link></p>
-            <p><router-link to="/KeyFeatures#section03" class="side-btn">대화방 메뉴</router-link></p>
+            <p><router-link to="/KeyFeatures#section03" class="side-btn">자동응답 메시지</router-link></p>
+            <p><router-link to="/Chatbot#guide_2_2_1" class="side-btn">대화방 메뉴</router-link></p>
           </div>
           <div class="text-box__wrap mt-t32">
             <div class="text-box">
@@ -343,7 +343,7 @@
           </div>
           <p class="content">발신번호 위탁서는 &#60;공지사항 / 서식&#62; 에서 다운로드 가능합니다.</p>
           <div class="btn__warp right">
-            <router-link to="/notice" class="side-btn">공지사항 / 서식</router-link>
+            <router-link to="/notice" target="_blank" class="side-btn">공지사항 / 서식</router-link>
           </div>
           <div class="text-box__wrap mt-t32">
             <div class="text-box">

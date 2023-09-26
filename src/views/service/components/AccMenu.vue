@@ -16,7 +16,7 @@
           >{{ item.label }}</router-link>
           <Transition name="slide">
             <ul class="sub-menu" v-if="activeIndex === i || allOpen === true"> <!-- 현재 페이지는 클래스 current 추가 해주세요. -->
-              <li v-for="(sub, j) in item.children" :key="j" :class="{ 'current': subActiveIndex === j  }">
+              <li v-for="(sub, j) in item.children" :key="j" :class="{ 'current': item.to.indexOf(activePage) > -1 && subActiveIndex === j  }">
                 <a role="button" @click="goSubMenu($event, j)">{{ sub.label }}</a>
               </li>
             </ul>
@@ -26,6 +26,31 @@
     </nav>
   </div>
 </template>
+<!-- <template>
+  <div class="guide-lnb">
+    <nav>
+      <ul>
+        <li class="menu-item"
+          :class="{ 'current active' :  $route.meta.lnbIndex === i}"
+          v-for="(item, i) in menuData" :key="i"
+        >
+          <router-link
+            :to="item.to"
+            class="link"
+          >{{ item.label }}</router-link>
+          <Transition name="slide">
+            <ul class="sub-menu" v-if="$route.meta.lnbIndex === i">
+              <li v-for="(sub, j) in item.children" :key="j"
+                  :class="{ 'current' :  ($route.path + $route.hash) === sub.to}">
+                <router-link :to='sub.to' >{{ sub.label }}</router-link>
+              </li>
+            </ul>
+          </Transition>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</template> -->
 
 <script>
 export default {
@@ -43,6 +68,7 @@ export default {
   },
   data() {
     return {
+      activePage: '',
       activeIndex: '',
       subActiveIndex: '',
       guideId: ''
@@ -53,20 +79,28 @@ export default {
     let getUrl = window.location.href
 
     if (getUrl.indexOf('/UseGuide') > -1) {
+      this.activePage = '/UseGuide'
       this.activeIndex = 0
     } else if (getUrl.indexOf('/CompanyMsg') > -1) {
+      this.activePage = '/CompanyMsg'
       this.activeIndex = 1
     } else if (getUrl.indexOf('/RcsMessageType') > -1) {
+      this.activePage = '/RcsMessageType'
       this.activeIndex = 2
     } else if (getUrl.indexOf('/KeyFeatures') > -1) {
+      this.activePage = '/KeyFeatures'
       this.activeIndex = 3
     } else if (getUrl.indexOf('/GuideAccount') > -1) {
+      this.activePage = '/GuideAccount'
       this.activeIndex = 4
     } else if (getUrl.indexOf('/GuideBrand') > -1) {
+      this.activePage = '/GuideBrand'
       this.activeIndex = 5
     } else if (getUrl.indexOf('/Chatbot') > -1) {
+      this.activePage = '/Chatbot'
       this.activeIndex = 6
     } else if (getUrl.indexOf('/ScreenGuide') > -1) {
+      this.activePage = '/ScreenGuide'
       this.activeIndex = 7
     }
 
@@ -77,8 +111,15 @@ export default {
       } else {
         sectionIndex += (i + 1)
       }
-      if (getUrl.indexOf('#section' + sectionIndex) > -1) {
-        this.subActiveIndex = i
+
+      if (getUrl.indexOf('/ScreenGuide') > -1) {
+        if (getUrl.indexOf('/ScreenGuide' + sectionIndex) > -1) {
+          this.subActiveIndex = i
+        }
+      } else {
+        if (getUrl.indexOf('#section' + sectionIndex) > -1) {
+          this.subActiveIndex = i
+        }
       }
     }
   },
