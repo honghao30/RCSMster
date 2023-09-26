@@ -364,7 +364,7 @@
             </div>
             <div class="subtitle-wrap"  id="guide_8">
               <h5 id="guide_4_1">4. 1. 시즌의 정의</h5>
-              <p class="description">RCS 기업 메시지가 필요한 주요 이벤트가 있을 때마다 RBC에서는 시즌 계정을 관리할 수 있도록 정의할 예정입니다.<br/>시즌 계정이 필요한 경우, 대행사를 통해 제공되므로 계약한 대행사로 문의주시기 바랍니다.<br/>만약 추가적으로 기간 설정/연장이 필요한 경우, RBC에 문의해주시기 바랍니다.</p>
+              <p class="description">RCS 기업 메시지가 필요한 주요 이벤트가 있을 때마다 RBC에서는 시즌 계정을 관리할 수 있도록 정의할 예정입니다.<br/>시즌 계정이 필요한 경우, 대행사를 통해 제공되므로 계약한 대행사로 문의주시기 바랍니다.<br/>계정 생성 후 , 기간 설정/연장이 필요한 경우, RBC에 문의해주시기 바랍니다.</p>
             </div>
             <div class="box-gray-line">
                 <div class="title only-pc">
