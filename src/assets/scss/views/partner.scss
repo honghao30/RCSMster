@@ -162,10 +162,12 @@
     padding: 19px 24px 19px 19px;
     width: 330px;
     flex-direction: column;
+    word-break: break-all;
     .info-top{
       display: flex;
       justify-content: space-between;
       margin-bottom: 12px;
+      gap: 8px;
       .info-top-left{
         width: calc(100% -63px);
         .agency-name{
@@ -177,8 +179,8 @@
         .agency-img{
           border-radius: 11px;
           border: 1px solid #ddd;
-          height: 63px;
-          min-width: 63px;
+          height: 62px;
+          min-width: 62px;
           display: inline-flex;
           justify-content: center;
           align-items: center;
@@ -596,6 +598,12 @@
         }
       }
     }
+    .total-case{
+      .agency__tit-box{
+        margin-top: 0;
+        margin-right: 0;
+      }
+    }
     .agency__info{
       gap: 12px;
       &.none-result{
@@ -644,7 +652,7 @@
       .info-top{
         display: flex;
         justify-content: space-between;
-        gap:0;
+        gap: 4px;
         margin-bottom: 16px;
         .info-top-left{
           line-height: 21px;
@@ -677,8 +685,7 @@
         }
       }
     }
-    //전체 대행사 리스트
-    .total-case{
+    .agency__wrap + .agency__wrap{
       margin-top: 12px;
     }
   }

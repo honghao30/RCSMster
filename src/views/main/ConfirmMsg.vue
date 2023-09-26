@@ -3,12 +3,8 @@
     class="modal__content--inner small-message__modal main-case"
     :class="modalsize"
   >
-    <div class="modal__content--body">
-      <slot name="msg"></slot>
-    </div>
-    <div class="modal__content--footer">
-      <slot name="button"></slot>
-    </div>
+    <slot name="msg">
+    </slot>
   </div>
 </template>
 
@@ -24,10 +20,6 @@ export default {
   data() {
     return {}
   },
-  methods: {
-    moveChange () {
-      this.$router.push('./pwFind')
-    }
-  }
+  methods: {}
 }
 </script>

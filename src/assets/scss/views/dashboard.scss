@@ -377,6 +377,7 @@
 	}
 	.dashBoard-side {
 		width: 100%;
+		max-width: 360px;
 		flex: 0 0 360px;
 		display: flex;
 		flex-direction: column;
@@ -460,6 +461,7 @@
 			}
 			.side-box-cont {
 				.authority-list {
+					word-break: break-all;
 					border-bottom: 1px solid #F0F0F0;
 					padding: 8px 0 12px 0;
 					&:last-child{
@@ -468,13 +470,17 @@
 					}
 					.authority-list__company {
 						@include fontoption(12px,#333,700,22px);
+						@include ellipsis($line: 1);
 						margin-bottom: 2px;
 					}
 					.authority-list-between {
 						ul {
 							display: flex;
 							justify-content: space-between;
+							gap: 8px;
 							.authority-list__name{
+								max-width: 50%;
+								@include ellipsis($line: 1);
 								color: #333;
 								line-height: 22px;
 							}
@@ -491,6 +497,12 @@
 							li {
 								color: #333;
 								line-height: 22px;
+								&.authority-list__phone{
+									min-width: 30%;
+								}
+								&.authority-list__mail{
+									@include ellipsis($line: 1);
+								}
 							}
 						}
 					}
@@ -568,7 +580,12 @@
 					.side-box-top {
 						display: flex;
 						justify-content: space-between;
+						gap: 8px;
+						h4{
+							@include ellipsis($line: 1);
+						}
 						.authority{
+							min-width: 54px;
 							@include fontoption(12px,#fff,500,22px);
 							padding: 2px 10px;
 							border-radius: 20px;
@@ -1177,6 +1194,7 @@
 					align-items: center;
 					>a{
 						margin-left: 8px;
+						margin-top: 4px;
 						i{
 							display: inline-flex;
 							background: url('../assets/images/icon/icon_setting.png') no-repeat;

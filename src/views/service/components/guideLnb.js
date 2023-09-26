@@ -18,7 +18,7 @@ const guideLnbList = [
         'hash': '#section02'
       },
       {
-        'label': '발송 환경 준비',
+        'label': '발송 과정 안내',
         'to': '/CompanyMsg#section03',
         'hash': '#section03'
       }
@@ -34,14 +34,19 @@ const guideLnbList = [
         'hash': '#section01'
       },
       {
-        'label': 'RCS 기업 메시지 활용 팁',
+        'label': '공통 포맷',
         'to': '/RcsMessageType/#section02',
         'hash': '#section02'
       },
       {
-        'label': '발송 환경 준비',
+        'label': '레이아웃',
         'to': '/RcsMessageType/#section03',
         'hash': '#section03'
+      },
+      {
+        'label': '템플릿',
+        'to': '/RcsMessageType/#section04',
+        'hash': '#section04'
       }
     ]
   },
@@ -63,6 +68,21 @@ const guideLnbList = [
         'label': '대화방 메뉴',
         'to': '/KeyFeatures#section03',
         'hash': '#section03'
+      },
+      {
+        'label': '자동응답 메시지',
+        'to': '/KeyFeatures#section04',
+        'hash': '#section04'
+      },
+      {
+        'label': '통계',
+        'to': '/KeyFeatures#section05',
+        'hash': '#section05'
+      },
+      {
+        'label': '레이아웃',
+        'to': '/KeyFeatures#section06',
+        'hash': '#section06'
       }
     ]
   },
@@ -130,7 +150,7 @@ const guideLnbList = [
   },
   {
     'label': '대화방',
-    'to': 'Chatbot',
+    'to': '/Chatbot',
     'children': [
       {
         'label': '대화방 프로필',
@@ -149,76 +169,59 @@ const guideLnbList = [
 
       },
       {
-        'label': '대화방 관리',
+        'label': '대화방 삭제',
         'to': '/Chatbot#section04',
         'hash': '#section04'
-
-      },
-      {
-        'label': '대화방 삭제',
-        'to': '/Chatbot#section05',
-        'hash': '#section05'
       }
     ]
   },
   {
     'label': '화면 가이드',
-    'to': '/feedReg',
+    'to': '',
     'children': [
       {
+        'label': '회원가입',
+        'to': '/ScreenGuide01'
+      },
+      {
         'label': '기업 대시보드',
-        'to': '/feedReg#section01',
-        'hash': '#section01'
+        'to': '/ScreenGuide02'
+      },
+      {
+        'label': '브랜드 개설',
+        'to': '/ScreenGuide03'
       },
       {
         'label': '브랜드 대시보드',
-        'to': '/feedReg#section02',
-        'hash': '#section02'
-      },
-      {
-        'label': '브랜드',
-        'to': '/feedReg#section03',
-        'hash': '#section03'
+        'to': '/ScreenGuide04'
       },
       {
         'label': '대화방',
-        'to': '/feedReg#section04',
-        'hash': '#section04'
-      },
-      {
-        'label': '메시지',
-        'to': '/feedReg#section05',
-        'hash': '#section05'
+        'to': '/ScreenGuide05'
       },
       {
         'label': '양방향',
-        'to': '/feedReg#section06',
-        'hash': '#section06'
+        'to': '/ScreenGuide06'
+      },
+      {
+        'label': '메시지(템플릿/레이아웃)',
+        'to': '/ScreenGuide07'
+      },
+      {
+        'label': '양방향(자동응답 메시지)',
+        'to': '/ScreenGuide08'
+      },
+      {
+        'label': '대화방 메뉴',
+        'to': '/ScreenGuide09'
       },
       {
         'label': '브랜드 소식',
-        'to': '/feedReg#section07',
-        'hash': '#section07'
+        'to': '/ScreenGuide10'
       },
       {
         'label': '통계',
-        'to': '/feedReg#section08',
-        'hash': '#section08'
-      },
-      {
-        'label': '내 브랜드 관리',
-        'to': '/feedReg#section09',
-        'hash': '#section09'
-      },
-      {
-        'label': '가입',
-        'to': '/feedReg#section10',
-        'hash': '#section10'
-      },
-      {
-        'label': '마이 페이지',
-        'to': '/feedReg#section11',
-        'hash': '#section11'
+        'to': '/ScreenGuide11'
       }
     ]
   }

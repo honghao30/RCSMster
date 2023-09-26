@@ -12,7 +12,6 @@
         </div>
         <div class="btn__warp">
           <router-link to="/TechnicalSupport" class="side-btn">기술지원 보러가기</router-link>
-          <i class="next"></i>
         </div>
       </div>
     </div>
@@ -36,7 +35,6 @@
         </div>
         <div class="btn__warp">
           <router-link to="/partnerInfo" class="side-btn">양방향 대행사 보러가기</router-link>
-          <i class="next"></i>
         </div>
       </div>
       <div class="side-img"></div>

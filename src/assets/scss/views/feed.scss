@@ -845,6 +845,17 @@ div[class^="feed"] {
                     min-width: 88px;
                 }
             }
+            .dropdown-search__wrap {
+                flex: 1;
+            }
+        }
+        .tottal-cout {
+            min-width: 50px;
+            text-align: right;
+            @include fontoption(14px,#000,400,24px);
+            strong {
+                font-weight: 700;
+            }
         }
     }
     .feed-view__list {
