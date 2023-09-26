@@ -19,6 +19,7 @@
         <!-- // 모바일 네비 -->
         <div class="guide-page__title">
           <h3>브랜드</h3>
+          <p class="description">RCS 기업 메시지와 RBC에서 제공하는 기능은 브랜드 단위로 이용할 수 있습니다.</p>
         </div>
         <div class="guide__item" id="section01">
           <div class="subtitle-wrap">
@@ -57,7 +58,7 @@
         <div class="guide__item" id="section02">
           <div class="subtitle-wrap">
             <h4>2. 브랜드 구조</h4>
-            <p class="description">브랜드는 하나의 프로필 이미지와 브랜드 정보를 기준으로 다수의 대화방으로 이루어져 있습니다.
+            <p class="description">브랜드는 하나의 프로필 이미지와 브랜드 정보를 기준으로 다수의 대화방으로 이루어져 있습니다.<br>
             브랜드 단위로 다음과 같은 기능을 함께 사용할 수 있습니다.</p>
           </div>
           <div class="guide-img__wrap">
@@ -68,7 +69,7 @@
         <div class="guide__item" id="section03">
           <div class="subtitle-wrap">
             <h4>3. 브랜드 등록</h4>
-            <p class="description">메시지 앱을 사용하는 수신자들에게 신뢰감있는 메시지를 보내고 싶다면, 브랜드 프로필 등록이 필요합니다.
+            <p class="description">메시지 앱을 사용하는 수신자들에게 신뢰감있는 메시지를 보내고 싶다면, 브랜드 프로필 등록이 필요합니다.<br>
             브랜드 프로필을 등록하면, 문자를 받는 고객의 대화방 정보가, 기업에서 등록한 브랜드 로고/브랜드 명 등으로 보여집니다.</p>
           </div>
           <div class="guide-img__wrap mt-b0">
@@ -77,7 +78,7 @@
           </div>
           <div class="subtitle-wrap mt-b0">
             <h5 id="guide_3_1">3. 1. 브랜드 가이드</h5>
-            <p class="description">브랜드 명과 브랜드 프로필을 적절히 사용할 수 있도록 브랜드 등록 시, 심사 승인 과정을 거치게 됩니다.
+            <p class="description">브랜드 명과 브랜드 프로필을 적절히 사용할 수 있도록 브랜드 등록 시, 심사 승인 과정을 거치게 됩니다.<br>
             브랜드 명과 브랜드 프로필을 올바르게 등록할 수 있도록 브랜드 개설 안내 가이드를 꼭 확인해주시기 바랍니다.</p>
           </div>
           <div class="btn__warp right">
@@ -164,7 +165,7 @@
                 신규 운영자에게는 이메일로 초대 링크가 전송됩니다.<br>
                 링크를 통하여 운영자 등록을 하게 되면, 등록과 함께 자동으로 브랜드 운영권한도 함께 설정되어 바로 이용할 수 있습니다.</p>
             </li>
-            <li>
+            <li class="mt-t16">
               <span class="num">2</span>
               <p><strong>RBC에 이미 가입되어 있는 동료 초대하기</strong><br>&lt;브랜드 운영 권한 초대&gt; 메뉴에서 브랜드 운영 권한을 줄 수 있습니다.</p>
             </li>
@@ -182,9 +183,9 @@
           </div>
           <div class="gray-box__wrap">
             <div class="gray-box mt-t16">
-              <p class="content">1&#41; RBC에서 직접 브랜드를 관리할 수 있습니다.</p>
-              <p class="content">2&#41; API를 통하여 브랜드를 관리할 수 있습니다.</p>
-              <p class="content">3&#41; 브랜드 이름으로 RCS 메시지를 발송할 수 있습니다.</p>
+              <p class="content line-before-none">1&#41; RBC에서 직접 브랜드를 관리할 수 있습니다.</p>
+              <p class="content line-before-none">2&#41; API를 통하여 브랜드를 관리할 수 있습니다.</p>
+              <p class="content line-before-none">3&#41; 브랜드 이름으로 RCS 메시지를 발송할 수 있습니다.</p>
             </div>
           </div>
           <p class="content">대행사가 관리할 수 있는 정보는 이곳에서 확인할 수 있습니다.</p>
@@ -207,7 +208,7 @@
               <p class="content">이전 대표 운영자로부터 위임받은 경우</p>
             </div>
           </div>
-          <p class="content">대행사 운영권한 설정 전에는 사전에 브랜드와 대행사 간 계약이 체결되어야 합니다.</p>
+          <p class="content">대표 운영자는 다른 브랜드 운영자들과 달리 다음과 같은 권한을 추가적으로 가질 수 있습니다.</p>
           <div class="gray-box__wrap">
             <div class="gray-box mt-t8">
               <p class="content">브랜드 삭제</p>

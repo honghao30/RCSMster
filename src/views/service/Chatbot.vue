@@ -75,7 +75,7 @@
                 </tr>
                 <tr>
                   <th>RCS P2P 채팅+</th>
-                  <td></td>
+                  <td>○</td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -120,9 +120,9 @@
           </div>
           <div class="gray-box__wrap">
             <div class="gray-box mt-b0">
-              <p class="content"><strong class="color-blue">RCS 대화방</strong> : RBC에 등록한 가장 기본적인 대화방</p>
-              <p class="content"><strong class="color-blue">RCS MO 대화방</strong>: 대표번호 문자수신 서비스(MO)를 이용중인 발신번호로 만든 RCS 대화방</p>
-              <p class="content"><strong class="color-blue">RCS 양방향 대화방</strong> : RCS 양방향 메시지 / 자동응답 메시지 등을 이용할 수 있는 RCS 대화방</p>
+              <p class="content line-before-none"><strong class="color-blue">RCS 대화방</strong> : RBC에 등록한 가장 기본적인 대화방</p>
+              <p class="content line-before-none"><strong class="color-blue">RCS MO 대화방</strong>: 대표번호 문자수신 서비스(MO)를 이용중인 발신번호로 만든 RCS 대화방</p>
+              <p class="content line-before-none"><strong class="color-blue">RCS 양방향 대화방</strong> : RCS 양방향 메시지 / 자동응답 메시지 등을 이용할 수 있는 RCS 대화방</p>
             </div>
           </div>
           <div class="subtitle-wrap">
@@ -185,7 +185,7 @@
           <div class="text-box__wrap mt-t32">
             <div class="text-box">
               <p class="title">양방향 대화방 검색</p>
-              <p class="content">채팅+ 앱에서 고객이 브랜드명을 검색하여, 양방향 대화방을 찾을 수 있습니다.</p>
+              <p class="content">채팅<sup>+</sup> 앱에서 고객이 브랜드명을 검색하여, 양방향 대화방을 찾을 수 있습니다.</p>
             </div>
           </div>
           <div class="guide-img__wrap mt-b0">
