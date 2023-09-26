@@ -160,7 +160,7 @@
           <hr class="hr-dot-line">
           <div class="subtitle-wrap">
             <h5 id="guide_5_3">5.3. 브랜드 소식 통계</h5>
-            <p class="description">브랜드 홈에 얼마나 많은 고객이 방문하였는지 확인할 수 있습니다.</p>
+            <p class="description">등록한 브랜드 소식이 얼마나 조회되었는지 통계 데이터를 제공합니다.</p>
           </div>
           <div class="guide-img__wrap mt-0">
             <img src="@/assets/images/guide/guide_keyfeature_11.png" alt="" class="only-pc">

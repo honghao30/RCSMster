@@ -70,12 +70,12 @@
                     <th rowspan="2">초대&권한<br/>설정</th>
                   </tr>
                   <tr class="thead">
-                    <th>등록</th>
-                    <th>수정</th>
-                    <th>삭제</th>
-                    <th>등록</th>
-                    <th>수정</th>
-                    <th>삭제</th>
+                    <th style="width:6.5%">등록</th>
+                    <th style="width:6.5%">수정</th>
+                    <th style="width:6.5%">삭제</th>
+                    <th style="width:6.5%">등록</th>
+                    <th style="width:6.5%">수정</th>
+                    <th style="width:6.5%">삭제</th>
                   </tr>
                   <tr>
                     <th rowspan="3" class="thead">기업<br/>계정</th>
@@ -187,7 +187,7 @@
                 가입 신청
               </div>
               <ol class="guide-list__num">
-                <li><span class="num">1</span> 승인 요청 버튼을 선택합니다.<br class="only-mo">승인 전에도 바로 브랜드 등록 및 브랜드 운영 기능을 이용하실 수 있습니다.</li>
+                <li><span class="num">1</span> 승인 요청 버튼을 선택합니다.<br>승인 전에도 바로 브랜드 등록 및 브랜드 운영 기능을 이용하실 수 있습니다.</li>
                 <li><span class="num">2</span> 기업 계정 가입 신청이 완료되면, 운영자 가입도 함께 완료됩니다.</li>
               </ol>
               <div  class="title">
@@ -235,7 +235,7 @@
                     <router-link to="/GuideBrand#guide_5_1" class="side-btn">대표 운영자 란?</router-link>
                   </div>
                 </div>
-                <p class="content">브랜드의 대표 운영자인 경우, 다른 마스터에게 권한 위임을 하거나 브랜드 삭제 후, 탈퇴할 수 있습니다.<br/>탈퇴 후, 동일 아이디로 재 가입이 불가합니다. 재 가입시, 이전의 회원 정보와 서비스 정보는 복구되지 않습니다.<br/>유일한 기업 계정의 운영자인 경우, 탈퇴와 함께 기업 계정도 함께 삭제됩니다.</p>
+                <p class="content">브랜드의 대표 운영자인 경우, 다른 마스터에게 권한 위임을 하거나 브랜드 삭제 후, 탈퇴할 수 있습니다.<br/>탈퇴 후, 동일 아이디로 재 가입이 불가합니다. 재 가입시, 이전의 회원 정보와 서비스 정보는 복구되지 않습니다.<br/>기업계정의 운영자가 유일할 경우, 브랜드 삭제 후에 탈퇴가 가능합니다. 탈퇴 시 기업계정도 삭제 됩니다.</p>
                 <div class="btn__warp multiline">
                   <router-link to="/GuideBrand#guide_5_3_2" class="side-btn">대표 운영자 변경</router-link>
                   <router-link to="/GuideBrand#section06" class="side-btn">브랜드 삭제</router-link>
@@ -245,13 +245,13 @@
             <div class="text-box__wrap mt-t32">
               <div class="text-box">
                 <p class="title" id="guide_2_2_2">운영자인 경우</p>
-                <p class="content">탈퇴 후, 동일 아이디로 재 가입이 불가합니다. 재 가입시, 이전의 회원 정보와 서비스 정보는 복구되지 않습니다.<br/>유일한 기업 계정의 운영자인 경우, 탈퇴와 함께 기업 계정도 함께 삭제됩니다.</p>
+                <p class="content">탈퇴 후, 동일 아이디로 재 가입이 불가합니다. 재 가입시, 이전의 회원 정보와 서비스 정보는 복구되지 않습니다.<br/>기업계정의 운영자가 유일할 경우, 브랜드 삭제 후에 탈퇴가 가능합니다. 탈퇴 시 기업계정도 삭제 됩니다.</p>
               </div>
             </div>
             <hr class="hr-dot-line">
             <div class="subtitle-wrap">
               <h5 id="guide_2_3">2. 3. 기업 계정 삭제</h5>
-              <p class="description">기업 계정은 사업자번호 기준으로 공동 운영이 가능하기 때문에 다음과 같은 조건이 충족되어야 기업 계정을 삭제할 수 있습니다.</p>
+              <p class="description">기업 계정은 사업자등록번호 기준으로 공동 운영이 가능하기 때문에 다음과 같은 조건이 충족되어야 기업 계정을 삭제할 수 있습니다.</p>
             </div>
             <div class="gray-box__wrap">
               <div class="gray-box">
