@@ -24,6 +24,7 @@
         <ButtonCmp
           type="btn-blue-line"
           size="medium"
+          @click="guideSampleMsg"
         >메시지 샘플 보기</ButtonCmp>
       </div>
     </div>
@@ -39,16 +40,38 @@
       </div>
       <div class="side-img"></div>
     </div>
+    <ModalView
+      v-if="isModalViewed"
+      @closeModal="isModalViewed = false"
+    >
+      <GuideSampleMsg
+        v-if="isSamlpeMsg"
+        @closeModal="isModalViewed = false"
+        modalsize="Max1080"
+        class="only-pc"
+      >
+      </GuideSampleMsg>
+    </ModalView>
   </div>
 </template>
 
 <script>
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import { downloadFileDirect } from '@/api/common/code'
+import ModalView from '@/components/common/ModalView.vue'
+import GuideSampleMsg from '@/views/service/components/GuideSampleMsg.vue'
 
 export default {
   components: {
-    ButtonCmp
+    ButtonCmp,
+    ModalView,
+    GuideSampleMsg
+  },
+  data () {
+    return {
+      isModalViewed: false,
+      isSamlpeMsg: false
+    }
   },
   methods: {
     // TODO: 일단 대화방 가이드 연결 해두었음 실제 가이드 나오면 fileNo 와 FileName 변경
@@ -62,6 +85,10 @@ export default {
         .catch(() => {
           this.$alertMsg('파일 다운로드 시 오류가 발생했습니다.')
         })
+    },
+    guideSampleMsg () {
+      this.isModalViewed = true
+      this.isSamlpeMsg = true
     }
   }
 }

@@ -1925,3 +1925,20 @@
     }
   }
 }
+.tost-popup__wrap {
+  display: flex;
+  position: absolute;
+  bottom: 71px;
+  padding: 12px;
+  left: 16px;
+  right: 16px;
+  align-items: center;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.70);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);  
+  .tost-msg {
+    @include fontoption(12px,#fff,400,13px);
+    background: url('../assets/images/icon/icon_move_wt.png') no-repeat left center;
+    padding-left: 30px;
+  }
+}
