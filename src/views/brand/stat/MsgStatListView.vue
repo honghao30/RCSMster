@@ -249,7 +249,10 @@
                 <div class="flex-map-tit">
                   <p>발송률</p>
                 </div>
-                <img src="@/assets/images/dummy/stat_map_01.png" alt="">
+                <KoreanMap
+                  :MapChartData="MapChartData"
+                />
+                <!-- <img src="@/assets/images/dummy/stat_map_01.png" alt=""> -->
                 <div class="map-percent blue-percent">
                   <dl class="first">
                     <dt></dt>
@@ -445,6 +448,7 @@ import sendCustomer from '@/views/brand/stat/sendCustomer.js'
 import clickCustomer from '@/views/brand/stat/clickCustomer.js'
 import readCheckIndustry from '@/views/brand/stat/readCheckIndustry.js'
 import clickIndustry from '@/views/brand/stat/clickIndustry.js'
+import KoreanMap from '@/views/brand/stat/components/mapCmp.vue'
 
 export default {
   components: {
@@ -452,7 +456,8 @@ export default {
     BrandLnb,
     PageTitleH3,
     PagingCmp,
-    StatList
+    StatList,
+    KoreanMap
   },
   props: {
   },
@@ -1167,6 +1172,93 @@ export default {
               customerClick: 54320
             }
           ]
+        }
+      ],
+      MapChartData: [
+        {
+          'area': '서울',
+          'data': '100%',
+          'id': 'KR-11'
+        },
+        {
+          'area': '부산',
+          'data': '30%',
+          'id': 'KR-26'
+        },
+        {
+          'area': '인천',
+          'data': '10%',
+          'id': 'KR-28'
+        },
+        {
+          'area': '대구',
+          'data': '10%',
+          'id': 'KR-27'
+        },
+        {
+          'area': '광주',
+          'data': '50%',
+          'id': 'KR-29'
+        },
+        {
+          'area': '대전',
+          'data': '10%',
+          'id': 'KR-30'
+        },
+        {
+          'area': '울산',
+          'data': '35%',
+          'id': 'KR-31'
+        },
+        {
+          'area': '경기',
+          'data': '25%',
+          'id': 'KR-41'
+        },
+        {
+          'area': '강원',
+          'data': '35%',
+          'id': 'KR-42'
+        },
+        {
+          'area': '충청북도',
+          'data': '23%',
+          'id': 'KR-43'
+        },
+        {
+          'area': '충청남도',
+          'data': '23%',
+          'id': 'KR-44'
+        },
+        {
+          'area': '전라북도',
+          'data': '46%',
+          'id': 'KR-45'
+        },
+        {
+          'area': '전라남도',
+          'data': '36%',
+          'id': 'KR-46'
+        },
+        {
+          'area': '경상북도',
+          'data': '26%',
+          'id': 'KR-47'
+        },
+        {
+          'area': '경상남도',
+          'data': '29%',
+          'id': 'KR-48'
+        },
+        {
+          'area': '제주',
+          'data': '29%',
+          'id': 'KR-49'
+        },
+        {
+          'area': '세종',
+          'data': '39%',
+          'id': 'KR-50'
         }
       ]
     }

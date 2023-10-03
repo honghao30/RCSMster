@@ -3337,3 +3337,24 @@
     word-break: break-all;
 }
 
+.korea-map {
+    position: relative;
+    .land__info--layer {
+        position: absolute;
+        background-color: rgba(220, 242, 255, 0.5);
+        color:#000;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        padding: 16px;
+    }
+}
+.land {
+    fill: #CCCCCC;
+    fill-opacity: 1;
+    stroke:white;
+    stroke-opacity: 1;
+    stroke-width:0.5;
+    &:hover {
+        fill: red;
+    }
+}
