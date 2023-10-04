@@ -2799,70 +2799,125 @@
                             }
                         }
                         &.blue-percent{
-                            .first{
+                            .bluest1{
                                 dt{
                                 background-color: #3894FF;
                                 }
                             }
-                            .second{
+                            .bluest2{
                                 dt{
                                     background-color: #6EB1FF;
                                 }
                             }
-                            .thrid{
+                            .bluest3{
                                 dt{
                                     background-color: rgba(110, 177, 255, 0.70);
                                 }
                             }
-                            .fourth{
+                            .bluest4{
                                 dt{
                                     background-color: rgba(110, 177, 255, 0.50);
                                 }
                             }
-                            .fifth{
+                            .bluest5{
                                 dt{
                                     background-color: rgba(110, 177, 255, 0.30);
                                 }
                             }
-                            .sixth{
+                            .bluest6{
                                 dt{
                                     background-color: rgba(110, 177, 255, 0.15);
                                 }
                             }
+                            .bluest7{
+                                dt{
+                                    background-color: rgba(110, 177, 255, 0.15);
+                                }
                             }
-                            &.red-percent{
-                                .first{
-                                    dt{
-                                        background-color: #FF6C3E;;
-                                    }
+                            .bluest8{
+                                dt{
+                                    background-color: rgba(110, 177, 255, 0.15);
                                 }
-                                .second{
-                                    dt{
-                                        background-color: #FF8964;
-                                    }
+                            }
+                            .bluest9{
+                                dt{
+                                    background-color: rgba(110, 177, 255, 0.15);
                                 }
-                                .thrid{
-                                    dt{
-                                        background-color: rgba(255, 137, 100, 0.70);
-                                    }
+                            }
+                            .bluest10{
+                                dt{
+                                    background-color: rgba(110, 177, 255, 0.15);
                                 }
-                                .fourth{
-                                    dt{
-                                        background-color: rgba(255, 137, 100, 0.50);
-                                    }
+                            }  
+                            .bluest11{
+                                dt{
+                                    background-color: rgba(110, 177, 255, 0.15);
                                 }
-                                .fifth{
-                                    dt{
-                                        background-color: rgba(255, 137, 100, 0.30);
-                                    }
+                            } 
+                            .bluest12{
+                                dt{
+                                    background-color: rgba(110, 177, 255, 0.15);
                                 }
-                                .sixth{
-                                    dt{
-                                        background-color: rgba(255, 137, 100, 0.15);
-                                    }
+                            }  
+                            .bluest13{
+                                dt{
+                                    background-color: rgba(110, 177, 255, 0.15);
+                                }
+                            } 
+                            .bluest14{
+                                dt{
+                                    background-color: rgba(110, 177, 255, 0.15);
+                                }
+                            }
+                            .bluest15{
+                                dt{
+                                    background-color: rgba(110, 177, 255, 0.15);
+                                }
+                            } 
+                            .bluest16{
+                                dt{
+                                    background-color: rgba(110, 177, 255, 0.15);
+                                }
+                            } 
+                            .bluest17{
+                                dt{
+                                    background-color: rgba(110, 177, 255, 0.15);
+                                }
+                            }                                                                                                                                                                                                                                                                                                                                                           
+                        }
+                        &.red-percent{
+                            .redst01{
+                                dt{
+                                    background-color: #FF6C3E;;
+                                }
+                            }
+                            .redst02{
+                                dt{
+                                    background-color: #FF8964;
+                                }
+                            }
+                            .redst03{
+                                dt{
+                                    background-color: rgba(255, 137, 100, 0.70);
+                                }
+                            }
+                            .redst04{
+                                dt{
+                                    background-color: rgba(255, 137, 100, 0.50);
+                                }
+                            }
+                            .redst05{
+                                dt{
+                                    background-color: rgba(255, 137, 100, 0.30);
+                                }
+                            }
+                            .redst06{
+                                dt{
+                                    background-color: rgba(255, 137, 100, 0.15);
                                 }
                             }
                         }
+                    }
                     }
                     &:nth-child(1){
                         &::after{
