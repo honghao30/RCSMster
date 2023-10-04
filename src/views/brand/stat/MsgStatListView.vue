@@ -247,49 +247,50 @@
               <!-- 07.31 디자인 변경으로 인한 수정 (flex-map 이중클래스 추가, flex-map-tit, map-percent 추가) -->
               <div class="two-box__inner flex-map">
                 <div class="flex-map-tit">
-                  <p>발송률</p>
+                  <p>발송량</p>
                 </div>
+                <!-- <img src="@/assets/images/dummy/stat_map_01.png" alt=""> -->
                 <KoreanMap
                   :MapChartData="MapChartData"
+                  :ColorType="ColorType"
                 />
-                <!-- <img src="@/assets/images/dummy/stat_map_01.png" alt=""> -->
                 <div class="map-percent blue-percent">
-                  <dl class="first">
+                  <dl class="bluest1">
                     <dt></dt>
                     <dd>
                       <p>100%</p>
                       <p>서울</p>
                     </dd>
                   </dl>
-                  <dl class="second">
+                  <dl class="bluest2">
                     <dt></dt>
                     <dd>
                       <p>80%</p>
                       <p>경기도, 충청북도, 광주</p>
                     </dd>
                   </dl>
-                  <dl class="thrid">
+                  <dl class="bluest3">
                     <dt></dt>
                     <dd>
                       <p>60%</p>
                       <p>경기도, 충청북도, 광주</p>
                     </dd>
                   </dl>
-                  <dl class="fourth">
+                  <dl class="bluest4">
                     <dt></dt>
                     <dd>
                       <p>40%</p>
                       <p>인천, 경상남도, 대전, 제주도</p>
                     </dd>
                   </dl>
-                  <dl class="fifth">
+                  <dl class="bluest5">
                     <dt></dt>
                     <dd>
                       <p>20%</p>
                       <p>충청남도, 경상북도, 전라남도</p>
                     </dd>
                   </dl>
-                  <dl class="sixth">
+                  <dl class="bluest6">
                     <dt></dt>
                     <dd>
                       <p>0%</p>
@@ -300,46 +301,50 @@
               </div>
               <div class="two-box__inner flex-map">
                 <div class="flex-map-tit">
-                  <p>발송률</p>
+                  <p>RCS 버튼 반응률</p>
                 </div>
-                <img src="@/assets/images/dummy/stat_map_02.png" alt="">
+                <!-- <img src="@/assets/images/dummy/stat_map_02.png" alt=""> -->
+                <KoreanMap
+                  :MapChartData="MapChartData"
+                  :ColorType="ColorType2"
+                />
                 <div class="map-percent red-percent">
-                  <dl class="first">
+                  <dl class="redst01">
                     <dt></dt>
                     <dd>
                       <p>100%</p>
                       <p>서울</p>
                     </dd>
                   </dl>
-                  <dl class="second">
+                  <dl class="redst02">
                     <dt></dt>
                     <dd>
                       <p>80%</p>
                       <p>경기도, 충청북도, 광주</p>
                     </dd>
                   </dl>
-                  <dl class="thrid">
+                  <dl class="redst03">
                     <dt></dt>
                     <dd>
                       <p>60%</p>
                       <p>경기도, 충청북도, 광주</p>
                     </dd>
                   </dl>
-                  <dl class="fourth">
+                  <dl class="redst04">
                     <dt></dt>
                     <dd>
                       <p>40%</p>
                       <p>인천, 경상남도, 대전, 제주도</p>
                     </dd>
                   </dl>
-                  <dl class="fifth">
+                  <dl class="redst05">
                     <dt></dt>
                     <dd>
                       <p>20%</p>
                       <p>충청남도, 경상북도, 전라남도</p>
                     </dd>
                   </dl>
-                  <dl class="sixth">
+                  <dl class="redst06">
                     <dt></dt>
                     <dd>
                       <p>0%</p>
@@ -1260,7 +1265,9 @@ export default {
           'data': '39%',
           'id': 'KR-50'
         }
-      ]
+      ],
+      ColorType: 'blue',
+      ColorType2: 'red'
     }
   },
   methods: {
