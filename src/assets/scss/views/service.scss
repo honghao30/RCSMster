@@ -2247,3 +2247,44 @@
     }
   }
 }
+// 이용약관
+.terms__wrap {
+  max-width: 1024px;
+  margin: 0 auto;
+  .h4-title {
+    @include fontoption(20px,#000, 500, 32px);
+  }
+  .yakguan-text {
+    margin: 8px 0 20px;
+    p  {
+      @include fontoption(14px,#000, 400, 26px);
+      word-break: keep-all;
+    }
+    .yakguan-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      &.multi-line {
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+      }
+    }
+    .yakguan-list-small {      
+      margin: 10px 0 10px 20px;
+      li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+    .hs-children {
+      display: flex;
+      gap: 10px;
+    }
+  }
+  .supplementary {
+    @include fontoption(14px,#000, 400, 26px);
+    padding-bottom:100px;
+  }
+}
