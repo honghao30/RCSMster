@@ -247,7 +247,7 @@
               <!-- 07.31 디자인 변경으로 인한 수정 (flex-map 이중클래스 추가, flex-map-tit, map-percent 추가) -->
               <div class="two-box__inner flex-map">
                 <div class="flex-map-tit">
-                  <p>발송량</p>
+                  <p>발송 성공 건수</p>
                 </div>
                 <!-- <img src="@/assets/images/dummy/stat_map_01.png" alt=""> -->
                 <KoreanMap
