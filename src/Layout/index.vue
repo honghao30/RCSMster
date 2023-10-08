@@ -4,6 +4,7 @@
   >
     <HeaderCmp
       v-if="onlyBody"
+      :class="{ hederfix: isHeaderFix}"
     />
     <div
       class="contents"
@@ -44,7 +45,7 @@ export default {
       this.resetTokenExpiredTimeout()
     },
     scrollY(newValue) {
-      if (newValue > 110 && this.$route.path !== '/Feature') {
+      if (newValue > 85 && this.$route.path !== '/Feature') {
         this.isHeaderFix = true
       } else {
         this.isHeaderFix = false

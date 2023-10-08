@@ -1,7 +1,7 @@
 <template>
   <div class="main__wrap">
        <!-- // 팝업창 -->
-       <notice-popup/>
+       <!-- <notice-popup/> -->
       <div class="key-visual__wrap" ref="keyVi">
         <div class="key-visual__inner--box">
           <div class="key-visual__text">
@@ -18,9 +18,6 @@
         </div>
         <div class="key-visual__bar--bottom">
           <div class="key-visual__inner">
-            <div class="bottom-logo">
-              <img src="@/assets/images/main/key-visual-logo.png" alt="">
-            </div>
             <ul class="key-vi__links">
               <li><router-link to="/utility/join">RCS 시작</router-link></li>
               <li><router-link to="/OnlineInquire">온라인 문의</router-link></li>
@@ -475,18 +472,22 @@ export default {
       caseView03: false,
       rbcCase: [
         {
-          customer: 'lgu',
-          title: 'Smart Score (스마트 스코어) ',
-          description: '회원 대상 타겟 마케팅 매체의 문자를 RCS로 변경하면서<br>반응이 늘고 매출액도 향상되었습니다.',
-          link: 'caseView01',
+          customer: 'kt',
+          title: 'BC Card (BC 카드)',
+          description: '이미지, 액션버튼등 클릭 가능 영역이 확대되어<br>이벤트 페이지 진입율이 증가했습니다.',
+          link: 'caseView03',
           card: [
             {
               type: 'card',
-              cardUrl: require('@/assets/images/main/lgu_card01.png')
+              cardUrl: require('@/assets/images/main/kt_card01.png')
             },
             {
               type: 'card',
-              cardUrl: require('@/assets/images/main/lgu_card02.png')
+              cardUrl: require('@/assets/images/main/kt_card03.png')
+            },
+            {
+              type: 'card',
+              cardUrl: require('@/assets/images/main/kt_card02.png')
             }
           ]
         },
@@ -511,22 +512,18 @@ export default {
           ]
         },
         {
-          customer: 'kt',
-          title: 'BC Card (BC 카드)',
-          description: '이미지, 액션버튼등 클릭 가능 영역이 확대되어<br>이벤트 페이지 진입율이 증가했습니다.',
-          link: 'caseView03',
+          customer: 'lgu',
+          title: 'Smart Score (스마트 스코어) ',
+          description: '회원 대상 타겟 마케팅 매체의 문자를 RCS로 변경하면서<br>반응이 늘고 매출액도 향상되었습니다.',
+          link: 'caseView01',
           card: [
             {
               type: 'card',
-              cardUrl: require('@/assets/images/main/kt_card01.png')
+              cardUrl: require('@/assets/images/main/lgu_card01.png')
             },
             {
               type: 'card',
-              cardUrl: require('@/assets/images/main/kt_card03.png')
-            },
-            {
-              type: 'card',
-              cardUrl: require('@/assets/images/main/kt_card02.png')
+              cardUrl: require('@/assets/images/main/lgu_card02.png')
             }
           ]
         }

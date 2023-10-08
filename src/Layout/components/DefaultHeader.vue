@@ -71,6 +71,7 @@
       size="50"
       v-if="isLoading"
     />
+    <div class="sub_menu_bg" v-if="isSubMask"></div>
   </header>
 </template>
 <script>
@@ -96,7 +97,14 @@ export default {
       hasChildren: false,
       isMoSize: false,
       activeParent: null,
-      showDepthMenu: false
+      showDepthMenu: false,
+      visibleLevel2Menus: false,
+      isSubMask: false
+    }
+  },
+  watch: {
+    visibleLevel2Menus(newValue) {
+      this.isSubMask = newValue
     }
   },
   created() {
