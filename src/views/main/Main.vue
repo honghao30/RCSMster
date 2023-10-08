@@ -594,6 +594,8 @@ export default {
         observer: true,
         observeParents: true,
         effect: 'slide',
+        loop: this.SwioperLength > 1, // 슬라이드가 한개 이상일때만 loop: true
+        watchOverflow: true,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'

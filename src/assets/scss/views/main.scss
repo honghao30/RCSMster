@@ -339,8 +339,8 @@ body {
                     margin-top: 4.444vw;
                     padding: 3.333vw 7.222vw;
                     border-radius: 7.222vw;
-                    @include fontoption(4.167vw,$pointColor,700,5.833vw);
-                    box-shadow: 0px 0px 50px 0px #3C3733;
+                    @include fontoption(4.167vw,#fff,700,5.833vw);
+                    border: 1px solid #fff;
                 }
             }
         }
@@ -400,7 +400,7 @@ body {
             // }
         }
         @media #{$phone} {
-            height: 100vh;
+            // height: 100vh;
             video {
                 
             }            
