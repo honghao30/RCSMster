@@ -3,35 +3,52 @@
        <!-- // 팝업창 -->
        <!-- <notice-popup/> -->
       <div class="key-visual__wrap" ref="keyVi">
-        <div class="key-visual__inner--box">
-          <div class="key-visual__text">
-            <p class="text">
-              브랜드에 딱! 맞는<br class="mo"> 메시지 만들기,<br>
-              RCS에서 가능합니다!
-            </p>
-            <p class="btn-more">
-              <router-link to="/CompanyMsg">
-                자세히 보기
-              </router-link>
-            </p>
-          </div>
-        </div>
+        <swiper
+            :options="mainKeyVisual"
+          >
+            <swiper-slide
+              class="is-mask"
+            >
+            <div class="key-visual__inner--box">
+              <div class="key-visual__text">
+                <p class="text">
+                  브랜드에 딱! 맞는<br class="mo"> 메시지 만들기,<br>
+                  RCS에서 가능합니다!
+                </p>
+                <p class="btn-more">
+                  <router-link to="/CompanyMsg">
+                    자세히 보기
+                  </router-link>
+                </p>
+              </div>
+            </div>
+              <div class="video-frame">
+                <div class="video-frame__inner">
+                  <video type="video/mp4" class="pc" loop muted="muted" poster="@/assets/images/dummy/main_visual.png" autoplay>
+                    <source src="@/assets/images/main/main.mp4"/>
+                  </video>
+                  <video type="video/mp4"  class="mo"  loop muted="muted" poster="@/assets/images/dummy/main_visual.png" autoplay>
+                    <source  src="@/assets/images/main/main_mo.mp4"/>
+                  </video>
+                </div>
+              </div>
+            </swiper-slide>
+            <swiper-slide>
+                <img src="@/assets/images/main/main_visual02.png" class="pc" alt="">
+                <img src="@/assets/images/main/main_visual02_mo.png" class="mo" alt="">
+            </swiper-slide>
+            <!-- pagination -->
+            <div class="swiper-pagination" slot="pagination"></div>
+            <!-- navigation -->
+            <div class="swiper-button-prev swiper-btn-prev" slot="button-prev"></div>
+            <div class="swiper-button-next swiper-btn-next" slot="button-next"></div>
+        </swiper>
         <div class="key-visual__bar--bottom">
           <div class="key-visual__inner">
             <ul class="key-vi__links">
               <li><router-link to="/utility/join">RCS 시작</router-link></li>
               <li><router-link to="/OnlineInquire">온라인 문의</router-link></li>
             </ul>
-          </div>
-        </div>
-        <div class="video-frame">
-          <div class="video-frame__inner">
-            <video type="video/mp4" class="pc" loop muted="muted" poster="@/assets/images/dummy/main_visual.png" autoplay>
-              <source src="@/assets/images/main/main.mp4"/>
-            </video>
-            <video type="video/mp4"  class="mo"  loop muted="muted" poster="@/assets/images/dummy/main_visual.png" autoplay>
-              <source  src="@/assets/images/main/main_mo.mp4"/>
-            </video>
           </div>
         </div>
       </div>
@@ -570,6 +587,25 @@ export default {
           cardUrl: require('@/assets/images/main/message_card10.png')
         }
       ],
+      mainKeyVisual: {
+        spaceBetween: 0,
+        slidesPerView: 1,
+        parallax: true,
+        observer: true,
+        observeParents: true,
+        effect: 'slide',
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          renderBullet: function (index, className) {
+            return `<button type="button" class="${className}"><span class="irtext">${index}</span></button>`
+          }
+        }
+      },
       messageSwiper: {
         spaceBetween: 10,
         // watchOverflow: true,

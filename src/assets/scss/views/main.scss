@@ -222,30 +222,70 @@ body {
 }
 
 // key visual
-.key-visual__wrap {
-    width: 100%;
-    // height: 100vh;
-    position: relative;
-    padding-top: 50%;
-    overflow: hidden;
-    @media #{$phone} {
-        padding-top: 100vh;
-        // max-height: 640px;
-    }
-    &::after {
-        content: '';
-        display: block;
-        position: absolute;
+.main {
+    .swiper-slide {
+        &.is-mask {
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left:0;
+                top:0;   
+                background: url('../assets/images/main/main_dim_pc.png') no-repeat center;
+                background-size: 100% 100%;    
+                z-index: 2;   
+            } 
+        }
+       img {
         width: 100%;
         height: 100%;
-        left:0;
-        top:0;   
-        background: url('../assets/images/main/main_dim_pc.png') no-repeat center;
-        background-size: 100% 100%;
+       }
+    }
+    .swiper-pagination-bullets {
+        left: 50%;
+        top: 650px;
+        width: 1440px;
+        text-align: left;
+        transform: translateX(-50%);
+        .swiper-pagination-bullet {
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 10px;
+            height: 10px;
+        }
+    }
+    .video-frame {
+        width: 100%;    
+        position: relative;
+        padding-top: 50%;
+        overflow: hidden;
+        z-index: 1;
         @media #{$phone} {
-//             background: url('../assets/images/main/main_dim_mo.png') repeat-x center;
-        }        
-    }         
+            padding-top: 100vh;        
+        }         
+    }
+}
+.key-visual__wrap {
+    position: relative;
+    // width: 100%;    
+    // position: relative;
+    // padding-top: 50%;
+    // overflow: hidden;
+    // @media #{$phone} {
+    //     padding-top: 100vh;        
+    // }
+    // &::after {
+    //     content: '';
+    //     display: block;
+    //     position: absolute;
+    //     width: 100%;
+    //     height: 100%;
+    //     left:0;
+    //     top:0;   
+    //     background: url('../assets/images/main/main_dim_pc.png') no-repeat center;
+    //     background-size: 100% 100%;       
+    // }         
 
     .key-visual__inner--box {
         width: 100%;        
@@ -306,29 +346,13 @@ body {
         }
     }
     .video-frame {
-        // height: 100vh;
-        // flex-direction: column;
-        // justify-content: center;
-        // align-items: center;
-        // display: flex;
-        // position: relative;
-        // z-index: -1;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        z-index: -1;        
+        // position: absolute;
+        // left: 0;
+        // right: 0;
+        // top: 0;
+        // bottom: 0;
+        // z-index: -1;        
         .video-frame__inner {
-            // display: block;
-            // z-index: -2;
-            // width: 100vw;
-            // height: 100vh;
-            // position: absolute;
-            // top: 0%;
-            // bottom: 0%;
-            // left: 0%;
-            // right: 0%;
             position: absolute;
             left: 0;
             right: 0;
