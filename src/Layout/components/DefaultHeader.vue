@@ -72,7 +72,7 @@
       v-if="isLoading"
     />
     <div class="sub_menu_bg"
-      v-show="gnbDepthBg"
+      v-show="gnbDepthBg && !isMoSize"
     >
     </div>
   </header>
