@@ -297,31 +297,60 @@
         >
           <template  slot="msg">
             <div class="main-case__title">
-                <h3>스마트 스코어</h3>
+                <h3>BC 카드</h3>
                 <ButtonCmp
                   type="btn-only-icon"
-                  @click="isModalViewed = false, caseView01 = false"
+                  @click="isModalViewed = false, caseView03 = false"
                 >
                   <i></i>
                 </ButtonCmp>
             </div>
-            <div class="main-case__content smartscore">
-              <div class="main-pop-top pop-flex">
+            <div class="main-case__content bccard">
+              <div class="main-pop-top pop-flex img-left">
                 <div class="main-pop-top-left">
-                  <img src="@/assets/images/main/smartscore_pop_01.png" alt="" class="only-pc">
-                  <img src="@/assets/images/main/smartscore_pop_01_mo.png" alt="" class="only-mo">
+                  <img src="@/assets/images/main/bccard_pop_01_pc.png" alt="" class="only-pc">
+                  <img src="@/assets/images/main/bccard_pop_01_mo.png" alt="" class="only-mo">
                 </div>
                 <div class="main-pop-top-right">
-                  <h4>비용 절감 및 고객 반응 향상!</h4>
-                  <p>스마트 스코어 (골프앱)는 광고성 문자 표기 의무 공간이 별도로 제공되는 <br class="only-pc">
-                    RCS 메시지의 특징을 활용하여 마케팅 문자를 LMS에서 RCS SMS로 <br class="only-pc">
-                    전환하였으며 그 결과 비용 절감 및 고객 반응이 향상되었습니다.
+                  <h4>스타일리쉬한 문자 발송으로<br class="only-pc">
+                  마케팅 퍼포먼스 향상</h4>
+                  <p>다양한 스타일의 마케팅 문자 발송이 가능하여 수신 고객의 주목도가 향상되며<br class="only-pc">
+                    이미지, 액션버튼까지 클릭 가능하여, 이벤트 페이지 인입율이 증가합니다.<br class="only-pc">
+                    또한 기존 MMS보다 더 저렴한 가격으로 이미지가 포함된 마케팅 문자 발송이<br class="only-pc">
+                    가능하여 최대 34% 비용 절감이 가능합니다.
                   </p>
                 </div>
               </div>
-              <div class="main-pop-btm">
-                <img src="@/assets/images/main/smartscore_pop_02.png" alt="" class="only-pc">
-                <img src="@/assets/images/main/smartscore_pop_02_mo.png" alt="" class="only-mo">
+              <div class="main-pop-top pop-flex img-right">
+                <div class="main-pop-top-left">
+                  <img src="@/assets/images/main/bccard_pop_02_pc.png" alt="" class="only-pc">
+                  <img src="@/assets/images/main/bccard_pop_02_mo.png" alt="" class="only-mo">
+                </div>
+                <div class="main-pop-top-right">
+                  <h4>카드 승인 문자도 더 합리적인<br class="only-pc">
+가격으로 스타일리쉬하게!</h4>
+                  <p>카드 승인 문자를 RCS 템플릿으로 발송해 최대 28% 요금 절감!<br class="only-pc">
+RCS 카드 승인 문자에도 액션버튼을 적용하여 웹사이트 인입율을 향상하고<br class="only-pc">
+타이틀에 기업이 원하는 문구를 자유롭게 커스터마이징이 가능합니다.<br class="only-pc">
+또한 타이틀 강조라인, 문자 Body 및 문구 컬러 등을 변경하여 문자 주목도가<br class="only-pc">
+향상됩니다.
+                  </p>
+                </div>
+              </div>
+              <div class="main-pop-top pop-flex img-left">
+                <div class="main-pop-top-left">
+                  <img src="@/assets/images/main/bccard_pop_04_pc.png" alt="" class="only-pc">
+                  <img src="@/assets/images/main/bccard_pop_04_mo.png" alt="" class="only-mo">
+                </div>
+                <div class="main-pop-top-right">
+                  <h4>대화방 메뉴 도입으로<br class="only-pc">마케팅 접점 확대!</h4>
+                  <p>카드 승인 문자 대화방에 대화방 메뉴를 적용하여 정보성 문자를 받는<br class="only-pc">
+고객들에게도 기업 고객 마케팅 정보를 노출하고, BC카드의 경우, 일평균<br class="only-pc">
+약 6만건 마케팅 정보 클릭이 이루어집니다.<br class="only-pc">
+또한 대화방 메뉴 클릭 시 RCS SMS/LMS/MMS 형태로 자동응답메시지가<br class="only-pc">
+발송되어 메시지 비용이 최대 88% 절감 가능합니다.
+                  </p>
+                </div>
               </div>
             </div>
           </template>
@@ -392,68 +421,38 @@ RCS 카드 승인 문자에도 액션버튼을 적용하여 웹사이트 인입�
           @closeModal="caseView03 = false, isModalViewed = false"
           modalsize="Max1060"
         >
-          <template  slot="msg">
-            <div class="main-case__title">
-                  <h3>BC 카드</h3>
-                  <ButtonCmp
-                    type="btn-only-icon"
-                    @click="isModalViewed = false, caseView03 = false"
-                  >
-                    <i></i>
-                  </ButtonCmp>
+        <template  slot="msg">
+          <div class="main-case__title">
+              <h3>스마트 스코어</h3>
+              <ButtonCmp
+                type="btn-only-icon"
+                @click="isModalViewed = false, caseView01 = false"
+              >
+                <i></i>
+              </ButtonCmp>
+          </div>
+          <div class="main-case__content smartscore">
+            <div class="main-pop-top pop-flex">
+              <div class="main-pop-top-left">
+                <img src="@/assets/images/main/smartscore_pop_01.png" alt="" class="only-pc">
+                <img src="@/assets/images/main/smartscore_pop_01_mo.png" alt="" class="only-mo">
               </div>
-              <div class="main-case__content bccard">
-                <div class="main-pop-top pop-flex img-left">
-                  <div class="main-pop-top-left">
-                    <img src="@/assets/images/main/bccard_pop_01_pc.png" alt="" class="only-pc">
-                    <img src="@/assets/images/main/bccard_pop_01_mo.png" alt="" class="only-mo">
-                  </div>
-                  <div class="main-pop-top-right">
-                    <h4>스타일리쉬한 문자 발송으로<br class="only-pc">
-                    마케팅 퍼포먼스 향상</h4>
-                    <p>다양한 스타일의 마케팅 문자 발송이 가능하여 수신 고객의 주목도가 향상되며<br class="only-pc">
-                      이미지, 액션버튼까지 클릭 가능하여, 이벤트 페이지 인입율이 증가합니다.<br class="only-pc">
-                      또한 기존 MMS보다 더 저렴한 가격으로 이미지가 포함된 마케팅 문자 발송이<br class="only-pc">
-                      가능하여 최대 34% 비용 절감이 가능합니다.
-                    </p>
-                  </div>
-                </div>
-                <div class="main-pop-top pop-flex img-right">
-                  <div class="main-pop-top-left">
-                    <img src="@/assets/images/main/bccard_pop_02_pc.png" alt="" class="only-pc">
-                    <img src="@/assets/images/main/bccard_pop_02_mo.png" alt="" class="only-mo">
-                  </div>
-                  <div class="main-pop-top-right">
-                    <h4>카드 승인 문자도 더 합리적인<br class="only-pc">
-  가격으로 스타일리쉬하게!</h4>
-                    <p>카드 승인 문자를 RCS 템플릿으로 발송해 최대 28% 요금 절감!<br class="only-pc">
-  RCS 카드 승인 문자에도 액션버튼을 적용하여 웹사이트 인입율을 향상하고<br class="only-pc">
-  타이틀에 기업이 원하는 문구를 자유롭게 커스터마이징이 가능합니다.<br class="only-pc">
-  또한 타이틀 강조라인, 문자 Body 및 문구 컬러 등을 변경하여 문자 주목도가<br class="only-pc">
-  향상됩니다.
-                    </p>
-                  </div>
-                </div>
-                <div class="main-pop-top pop-flex img-left">
-                  <div class="main-pop-top-left">
-                    <img src="@/assets/images/main/bccard_pop_04_pc.png" alt="" class="only-pc">
-                    <img src="@/assets/images/main/bccard_pop_04_mo.png" alt="" class="only-mo">
-                  </div>
-                  <div class="main-pop-top-right">
-                    <h4>대화방 메뉴 도입으로<br class="only-pc">마케팅 접점 확대!</h4>
-                    <p>카드 승인 문자 대화방에 대화방 메뉴를 적용하여 정보성 문자를 받는<br class="only-pc">
-고객들에게도 기업 고객 마케팅 정보를 노출하고, BC카드의 경우, 일평균<br class="only-pc">
-약 6만건 마케팅 정보 클릭이 이루어집니다.<br class="only-pc">
-또한 대화방 메뉴 클릭 시 RCS SMS/LMS/MMS 형태로 자동응답메시지가<br class="only-pc">
-발송되어 메시지 비용이 최대 88% 절감 가능합니다.
-                    </p>
-                  </div>
-                </div>
+              <div class="main-pop-top-right">
+                <h4>비용 절감 및 고객 반응 향상!</h4>
+                <p>스마트 스코어 (골프앱)는 광고성 문자 표기 의무 공간이 별도로 제공되는 <br class="only-pc">
+                  RCS 메시지의 특징을 활용하여 마케팅 문자를 LMS에서 RCS SMS로 <br class="only-pc">
+                  전환하였으며 그 결과 비용 절감 및 고객 반응이 향상되었습니다.
+                </p>
               </div>
-          </template>
+            </div>
+            <div class="main-pop-btm">
+              <img src="@/assets/images/main/smartscore_pop_02.png" alt="" class="only-pc">
+              <img src="@/assets/images/main/smartscore_pop_02_mo.png" alt="" class="only-mo">
+            </div>
+          </div>
+        </template>
         </ConfirmMsg>
       </ModalView>
-
       <!-- //모달 케이스 -->
 
   </div>
