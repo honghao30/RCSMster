@@ -15,7 +15,7 @@
             :class="{ 'current': $route.path === item.to }"
           >{{ item.label }}</router-link>
           <Transition name="slide">
-            <ul class="sub-menu" v-if="activeIndex === i || allOpen === true"> <!-- 현재 페이지는 클래스 current 추가 해주세요. -->
+            <ul class="sub-menu" v-if="showDepth[i]"> <!-- 현재 페이지는 클래스 current 추가 해주세요. -->
               <li v-for="(sub, j) in item.children" :key="j" :class="{ 'current': item.to.indexOf(activePage) > -1 && subActiveIndex === j  }">
                 <a role="button" @click="goSubMenu($event, j)">{{ sub.label }}</a>
               </li>
@@ -71,7 +71,8 @@ export default {
       activePage: '',
       activeIndex: '',
       subActiveIndex: '',
-      guideId: ''
+      guideId: '',
+      showDepth: Array(this.menuData.length).fill(true)
     }
   },
   mounted() {
@@ -125,12 +126,10 @@ export default {
   },
   methods: {
     handleOpen (index) {
-      if (this.allOpen === false) {
-        if (this.activeIndex === index) {
-          this.activeIndex = ''
-        } else {
-          this.activeIndex = index
-        }
+      if (this.showDepth[index]) {
+        this.$set(this.showDepth, index, false)
+      } else {
+        this.$set(this.showDepth, index, true)
       }
     },
     goSubMenu(event, j) {
