@@ -17,6 +17,7 @@ import terms from '@/views/service/terms'
 // RCS 기업 메시지
 import CompanyMsg from '@/views/service/CompanyMsg'
 
+import ScreenGuide01 from '@/views/service/ScreenGuide01'
 export default [
   // RCS 특장점
   {
@@ -102,6 +103,15 @@ export default [
     component: CompanyMsg,
     meta: {
       tittle: 'RCS 기업 메시지',
+      respons: true
+    }
+  },
+  // 화면 가이드
+  {
+    path: '/ScreenGuide01',
+    component: ScreenGuide01,
+    meta: {
+      tittle: '화면 가이드',
       respons: true
     }
   }
