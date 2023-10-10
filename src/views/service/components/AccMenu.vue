@@ -17,7 +17,8 @@
           <Transition name="slide">
             <ul class="sub-menu" v-if="showDepth[i]"> <!-- 현재 페이지는 클래스 current 추가 해주세요. -->
               <li v-for="(sub, j) in item.children" :key="j" :class="{ 'current': item.to.indexOf(activePage) > -1 && subActiveIndex === j  }">
-                <a role="button" @click="goSubMenu($event, j)">{{ sub.label }}</a>
+                <!-- <a role="button" @click="goSubMenu($event, j)">{{ sub.label }}</a> <li v-for="(sub, j) in item.children" :key="j" :class="{ 'current': item.to.indexOf(activePage) > -1 && subActiveIndex === j  }">-->
+                <a href="#" @click="goSubSect(sub.to, $event)">{{ sub.label }}</a>
               </li>
             </ul>
           </Transition>
@@ -133,22 +134,24 @@ export default {
       }
     },
     goSubMenu(event, j) {
-      if (this.allOpen === false) {
-        const sub = this.menuData[this.activeIndex].children[j]
-        this.$router.replace(sub.to)
-        if (this.subActiveIndex === j) {
-          this.subActiveIndex = ''
-        } else {
-          this.subActiveIndex = j
-        }
+      const sub = this.menuData[this.activeIndex].children[j]
+      this.$router.replace(sub.to)
+      if (this.subActiveIndex === j) {
+        this.subActiveIndex = ''
       } else {
-        const sub = this.menuData[j].children[j]
-        console.log(j, sub.anchorIndex)
-        this.$router.replace(sub.to)
+        this.subActiveIndex = j
       }
       const subLabel = event.target.innerText
       this.$emit('subItemClick', subLabel, j)
+    },
+    goSubSect (to, event) {
+      event.preventDefault()
+      console.log('이동')
+      this.$router.push(to)
+      const subLabel = event.target.innerText
+      this.$emit('subItemClick', subLabel)
     }
+
   }
 }
 </script>
