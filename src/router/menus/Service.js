@@ -16,8 +16,18 @@ import Chatbot from '@/views/service/Chatbot'
 import terms from '@/views/service/terms'
 // RCS 기업 메시지
 import CompanyMsg from '@/views/service/CompanyMsg'
-
+// 화면 가이드
 import ScreenGuide01 from '@/views/service/ScreenGuide01'
+import ScreenGuide02 from '@/views/service/ScreenGuide02'
+import ScreenGuide03 from '@/views/service/ScreenGuide03'
+import ScreenGuide04 from '@/views/service/ScreenGuide04'
+import ScreenGuide05 from '@/views/service/ScreenGuide05'
+import ScreenGuide06 from '@/views/service/ScreenGuide06'
+import ScreenGuide07 from '@/views/service/ScreenGuide07'
+import ScreenGuide08 from '@/views/service/ScreenGuide08'
+import ScreenGuide09 from '@/views/service/ScreenGuide09'
+import ScreenGuide10 from '@/views/service/ScreenGuide10'
+
 export default [
   // RCS 특장점
   {
@@ -110,6 +120,78 @@ export default [
   {
     path: '/ScreenGuide01',
     component: ScreenGuide01,
+    meta: {
+      tittle: '화면 가이드',
+      respons: true
+    }
+  },
+  {
+    path: '/ScreenGuide02',
+    component: ScreenGuide02,
+    meta: {
+      tittle: '화면 가이드',
+      respons: true
+    }
+  },
+  {
+    path: '/ScreenGuide03',
+    component: ScreenGuide03,
+    meta: {
+      tittle: '화면 가이드',
+      respons: true
+    }
+  },
+  {
+    path: '/ScreenGuide04',
+    component: ScreenGuide04,
+    meta: {
+      tittle: '화면 가이드',
+      respons: true
+    }
+  },
+  {
+    path: '/ScreenGuide05',
+    component: ScreenGuide05,
+    meta: {
+      tittle: '화면 가이드',
+      respons: true
+    }
+  },
+  {
+    path: '/ScreenGuide06',
+    component: ScreenGuide06,
+    meta: {
+      tittle: '화면 가이드',
+      respons: true
+    }
+  },
+  {
+    path: '/ScreenGuide07',
+    component: ScreenGuide07,
+    meta: {
+      tittle: '화면 가이드',
+      respons: true
+    }
+  },
+  {
+    path: '/ScreenGuide08',
+    component: ScreenGuide08,
+    meta: {
+      tittle: '화면 가이드',
+      respons: true
+    }
+  },
+  {
+    path: '/ScreenGuide09',
+    component: ScreenGuide09,
+    meta: {
+      tittle: '화면 가이드',
+      respons: true
+    }
+  },
+  {
+    path: '/ScreenGuide10',
+    component: ScreenGuide10,
     meta: {
       tittle: '화면 가이드',
       respons: true
