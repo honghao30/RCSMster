@@ -18,35 +18,42 @@
         </div>
         <!-- // 모바일 네비 -->
         <div class="guide-page__title">
-          <h3>통계</h3>
-          <p class="description">기업 담당자와 대행사는 브랜드의 RCS메시지 통계자료를 확인할 수 있습니다.<br/>
-            RBC에서 제공하는 통계를 활용하여 브랜드가 더 성장할 수 있도록 전략을 세울 수 있습니다.</p>
+          <h3>브랜드 소식</h3>
+          <p class="description">기업 담당자와 대행사는 브랜드 소식을 통해 신상품, 이벤트, 공지사항 등 다양한 레이아웃으로 콘텐츠를 생성하여 홍보할 수 있습니다.</p>
         </div>
         <div class="guide__item">
           <div class="subtitle-wrap">
-            <h4>1. 메시지 통계</h4>
+            <h4>1. 브랜드 소식 목록 </h4>
           </div>
           <div class="guide-img__wrap">
-            <img src="@/assets/images/guide/guide_ScreenGuide10_01.png" alt="" class="only-pc">
-            <img src="@/assets/images/guide/guide_ScreenGuide10_01_mo.png" alt="" class="only-mo">
-          </div>
-        </div>
-        <div class="guide__item">
-          <div class="subtitle-wrap">
-            <h4>2. 대화방 메뉴 통계</h4>
-          </div>
-          <div class="guide-img__wrap">
-            <img src="@/assets/images/guide/guide_ScreenGuide10_02.png" alt="" class="only-pc">
-            <img src="@/assets/images/guide/guide_ScreenGuide10_02_mo.png" alt="" class="only-mo">
+            <img src="@/assets/images/guide/guide_ScreenGuide01_01.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide01_01_mo.png" alt="" class="only-mo">
           </div>
         </div>
         <div class="guide__item">
           <div class="subtitle-wrap">
-            <h4>3. 브랜드 소식 통계</h4>
+            <h4>2. 템플릿 작성</h4>
+          </div>
+          <div class="subtitle-wrap">
+            <h5>2. 1. 갤러리 유형 등록</h5>
           </div>
           <div class="guide-img__wrap">
-            <img src="@/assets/images/guide/guide_ScreenGuide10_03.png" alt="" class="only-pc">
-            <img src="@/assets/images/guide/guide_ScreenGuide10_03_mo.png" alt="" class="only-mo">
+            <img src="@/assets/images/guide/guide_ScreenGuide01_02.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide01_02_mo.png" alt="" class="only-mo">
+          </div>
+          <div class="subtitle-wrap">
+            <h5>2. 2. 쉐어링 유형 등록</h5>
+          </div>
+          <div class="guide-img__wrap">
+            <img src="@/assets/images/guide/guide_ScreenGuide01_03.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide01_03_mo.png" alt="" class="only-mo">
+          </div>
+          <div class="subtitle-wrap">
+            <h5>2. 3. 슬라이드 유형 등록</h5>
+          </div>
+          <div class="guide-img__wrap">
+            <img src="@/assets/images/guide/guide_ScreenGuide01_04.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide01_04_mo.png" alt="" class="only-mo">
           </div>
         </div>
       </div>

@@ -18,16 +18,35 @@
         </div>
         <!-- // 모바일 네비 -->
         <div class="guide-page__title">
-          <h3>대화방 메뉴</h3>
-          <p class="description">자주 묻는 질문 또는 프로모션 소개를 대화방 메뉴에 미리 등록해보세요!</p>
+          <h3>통계</h3>
+          <p class="description">기업 담당자와 대행사는 브랜드의 RCS메시지 통계자료를 확인할 수 있습니다.<br/>
+            RBC에서 제공하는 통계를 활용하여 브랜드가 더 성장할 수 있도록 전략을 세울 수 있습니다.</p>
         </div>
         <div class="guide__item">
           <div class="subtitle-wrap">
-            <h4>1. 대화방 메뉴 등록</h4>
+            <h4>1. 메시지 통계</h4>
           </div>
           <div class="guide-img__wrap">
-            <img src="@/assets/images/guide/guide_ScreenGuide09_01.png" alt="" class="only-pc">
-            <img src="@/assets/images/guide/guide_ScreenGuide09_01_mo.png" alt="" class="only-mo">
+            <img src="@/assets/images/guide/guide_ScreenGuide11_01.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide11_01_mo.png" alt="" class="only-mo">
+          </div>
+        </div>
+        <div class="guide__item">
+          <div class="subtitle-wrap">
+            <h4>2. 대화방 메뉴 통계</h4>
+          </div>
+          <div class="guide-img__wrap">
+            <img src="@/assets/images/guide/guide_ScreenGuide11_02.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide11_02_mo.png" alt="" class="only-mo">
+          </div>
+        </div>
+        <div class="guide__item">
+          <div class="subtitle-wrap">
+            <h4>3. 브랜드 소식 통계</h4>
+          </div>
+          <div class="guide-img__wrap">
+            <img src="@/assets/images/guide/guide_ScreenGuide11_03.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide11_03_mo.png" alt="" class="only-mo">
           </div>
         </div>
       </div>

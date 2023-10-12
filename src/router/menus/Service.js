@@ -27,6 +27,7 @@ import ScreenGuide07 from '@/views/service/ScreenGuide07'
 import ScreenGuide08 from '@/views/service/ScreenGuide08'
 import ScreenGuide09 from '@/views/service/ScreenGuide09'
 import ScreenGuide10 from '@/views/service/ScreenGuide10'
+import ScreenGuide11 from '@/views/service/ScreenGuide11'
 
 export default [
   // RCS 특장점
@@ -192,6 +193,14 @@ export default [
   {
     path: '/ScreenGuide10',
     component: ScreenGuide10,
+    meta: {
+      tittle: '화면 가이드',
+      respons: true
+    }
+  },
+  {
+    path: '/ScreenGuide11',
+    component: ScreenGuide11,
     meta: {
       tittle: '화면 가이드',
       respons: true

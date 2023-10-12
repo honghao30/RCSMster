@@ -18,16 +18,35 @@
         </div>
         <!-- // 모바일 네비 -->
         <div class="guide-page__title">
-          <h3>대화방 메뉴</h3>
-          <p class="description">자주 묻는 질문 또는 프로모션 소개를 대화방 메뉴에 미리 등록해보세요!</p>
+          <h3>양방향(자동응답 메시지)</h3>
+          <p class="description">사전에 메시지를 작성하고, 해당 메시지를 대화방 메뉴의 응답 메시지로 설정할 수 있습니다.<br/>
+            고객은 선택한 메뉴에 대해 사전에 등록한 메시지로 실시간 응대를 받을 수 있습니다.</p>
         </div>
         <div class="guide__item">
           <div class="subtitle-wrap">
-            <h4>1. 대화방 메뉴 등록</h4>
+            <h4>1. 말풍선</h4>
           </div>
           <div class="guide-img__wrap">
             <img src="@/assets/images/guide/guide_ScreenGuide08_01.png" alt="" class="only-pc">
             <img src="@/assets/images/guide/guide_ScreenGuide08_01_mo.png" alt="" class="only-mo">
+          </div>
+        </div>
+        <div class="guide__item">
+          <div class="subtitle-wrap">
+            <h4>2. 카드</h4>
+          </div>
+          <div class="guide-img__wrap">
+            <img src="@/assets/images/guide/guide_ScreenGuide08_02.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide08_02_mo.png" alt="" class="only-mo">
+          </div>
+        </div>
+        <div class="guide__item">
+          <div class="subtitle-wrap">
+            <h4>3. 슬라이드</h4>
+          </div>
+          <div class="guide-img__wrap">
+            <img src="@/assets/images/guide/guide_ScreenGuide08_03.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide08_03_mo.png" alt="" class="only-mo">
           </div>
         </div>
       </div>
