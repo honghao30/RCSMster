@@ -18,61 +18,35 @@
         </div>
         <!-- // 모바일 네비 -->
         <div class="guide-page__title">
-          <h3>메시지(템플릿)</h3>
-          <p class="description">기업 담당자와 대행사는 고객에게 RCS에서 제공하는 다양한 유형의 템플릿을 작성하여 발송할 수 있습니다.</p>
+          <h3>양방향(자동응답 메시지)</h3>
+          <p class="description">사전에 메시지를 작성하고, 해당 메시지를 대화방 메뉴의 응답 메시지로 설정할 수 있습니다.<br/>
+            고객은 선택한 메뉴에 대해 사전에 등록한 메시지로 실시간 응대를 받을 수 있습니다.</p>
         </div>
         <div class="guide__item">
           <div class="subtitle-wrap">
-            <h4>1. 템플릿 등록 </h4>
+            <h4>1. 말풍선</h4>
           </div>
           <div class="guide-img__wrap">
-            <img src="@/assets/images/guide/guide_ScreenGuide01_01.png" alt="" class="only-pc">
-            <img src="@/assets/images/guide/guide_ScreenGuide01_01_mo.png" alt="" class="only-mo">
+            <img src="@/assets/images/guide/guide_ScreenGuide07_01.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide07_01_mo.png" alt="" class="only-mo">
           </div>
         </div>
         <div class="guide__item">
           <div class="subtitle-wrap">
-            <h4>2. 템플릿 작성</h4>
-          </div>
-          <div class="subtitle-wrap">
-            <h5>2. 1. 텍스트 템플릿(7종)</h5>
-            <p class="description">간단한 내용과 아이콘, 버튼을 활용하여 간결한 내용을 전달하고 싶을 때 유용하게 사용할 수 있습니다. (최대 100자까지 텍스트를 작성할 수 있습니다.)<br/>
-              *아이템 강조형 - 서술, 아이템 강조형 - 스타일은 신규 템플릿입니다. </p>
+            <h4>2. 카드</h4>
           </div>
           <div class="guide-img__wrap">
-            <img src="@/assets/images/guide/guide_ScreenGuide01_02.png" alt="" class="only-pc">
-            <img src="@/assets/images/guide/guide_ScreenGuide01_02_mo.png" alt="" class="only-mo">
+            <img src="@/assets/images/guide/guide_ScreenGuide07_02.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide07_02_mo.png" alt="" class="only-mo">
           </div>
-          <div class="subtitle-wrap">
-            <h5>2. 2. LMS 템플릿(4종)</h5>
-            <p class="description">텍스트 템플릿보다 더 많은 내용을 전달하고 싶을 때 유용한 신규 템플릿입니다. (최대 1,300자까지 텍스트를 작성할 수 있습니다.)<br/>
-              *LMS 템플릿 4종은 신규 템플릿입니다.<br/>
-              *LMS 템플릿 중 서술형과 문단형은 움직이는 아이콘을 사용할 수 있습니다.</p>
-          </div>
-          <div class="guide-img__wrap">
-            <img src="@/assets/images/guide/guide_ScreenGuide01_03.png" alt="" class="only-pc">
-            <img src="@/assets/images/guide/guide_ScreenGuide01_03_mo.png" alt="" class="only-mo">
-          </div>
-          <div class="subtitle-wrap">
-            <h5>2. 3. 이미지 템플릿(8종)</h5>
-            <p class="description">텍스트와 아이콘, 버튼뿐 아니라 이미지도 함께 사용하여 내용을 풍부하게 구성할 때 유용하게 사용할 수 있습니다. (최대 500자까지 텍스트를 작성할 수 있습니다.)<br/>
-              *이미지 템플릿 신규, 이미지 템플릿 캐러셀은 신규 템플릿입니다.</p>
-          </div>
-          <div class="guide-img__wrap">
-            <img src="@/assets/images/guide/guide_ScreenGuide01_04.png" alt="" class="only-pc">
-            <img src="@/assets/images/guide/guide_ScreenGuide01_04_mo.png" alt="" class="only-mo">
-          </div>
-        </div>
-        <div class="guide-page__title">
-          <h3>메시지(레이아웃)</h3>
         </div>
         <div class="guide__item">
           <div class="subtitle-wrap">
-            <h4>1. 레이아웃(대행사)</h4>
+            <h4>3. 슬라이드</h4>
           </div>
           <div class="guide-img__wrap">
-            <img src="@/assets/images/guide/guide_ScreenGuide01_05.png" alt="" class="only-pc">
-            <img src="@/assets/images/guide/guide_ScreenGuide01_05_mo.png" alt="" class="only-mo">
+            <img src="@/assets/images/guide/guide_ScreenGuide07_03.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide07_03_mo.png" alt="" class="only-mo">
           </div>
         </div>
       </div>

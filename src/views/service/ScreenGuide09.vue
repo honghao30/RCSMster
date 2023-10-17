@@ -18,16 +18,42 @@
         </div>
         <!-- // 모바일 네비 -->
         <div class="guide-page__title">
-          <h3>대화방 메뉴</h3>
-          <p class="description">자주 묻는 질문 또는 프로모션 소개를 대화방 메뉴에 미리 등록해보세요!</p>
+          <h3>브랜드 소식</h3>
+          <p class="description">기업 담당자와 대행사는 브랜드 소식을 통해 신상품, 이벤트, 공지사항 등 다양한 레이아웃으로 콘텐츠를 생성하여 홍보할 수 있습니다.</p>
         </div>
         <div class="guide__item">
           <div class="subtitle-wrap">
-            <h4>1. 대화방 메뉴 등록</h4>
+            <h4>1. 브랜드 소식 목록 </h4>
           </div>
           <div class="guide-img__wrap">
             <img src="@/assets/images/guide/guide_ScreenGuide09_01.png" alt="" class="only-pc">
             <img src="@/assets/images/guide/guide_ScreenGuide09_01_mo.png" alt="" class="only-mo">
+          </div>
+        </div>
+        <div class="guide__item">
+          <div class="subtitle-wrap">
+            <h4>2. 템플릿 작성</h4>
+          </div>
+          <div class="subtitle-wrap">
+            <h5>2. 1. 갤러리 유형 등록</h5>
+          </div>
+          <div class="guide-img__wrap">
+            <img src="@/assets/images/guide/guide_ScreenGuide09_02.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide09_02_mo.png" alt="" class="only-mo">
+          </div>
+          <div class="subtitle-wrap">
+            <h5>2. 2. 쉐어링 유형 등록</h5>
+          </div>
+          <div class="guide-img__wrap">
+            <img src="@/assets/images/guide/guide_ScreenGuide09_03.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide09_03_mo.png" alt="" class="only-mo">
+          </div>
+          <div class="subtitle-wrap">
+            <h5>2. 3. 슬라이드 유형 등록</h5>
+          </div>
+          <div class="guide-img__wrap">
+            <img src="@/assets/images/guide/guide_ScreenGuide09_04.png" alt="" class="only-pc">
+            <img src="@/assets/images/guide/guide_ScreenGuide09_04_mo.png" alt="" class="only-mo">
           </div>
         </div>
       </div>

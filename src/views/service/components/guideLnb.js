@@ -199,29 +199,25 @@ const guideLnbList = [
         'label': '대화방',
         'to': '/ScreenGuide05'
       },
-      // {
-      //   'label': '양방향',
-      //   'to': '/ScreenGuide06'
-      // },
       {
         'label': '메시지(템플릿/레이아웃)',
-        'to': '/ScreenGuide07'
+        'to': '/ScreenGuide06'
       },
       {
         'label': '양방향(자동응답 메시지)',
-        'to': '/ScreenGuide08'
+        'to': '/ScreenGuide07'
       },
       {
         'label': '대화방 메뉴',
-        'to': '/ScreenGuide09'
+        'to': '/ScreenGuide08'
       },
       {
         'label': '브랜드 소식',
-        'to': '/ScreenGuide10'
+        'to': '/ScreenGuide09'
       },
       {
         'label': '통계',
-        'to': '/ScreenGuide11'
+        'to': '/ScreenGuide10'
       }
     ]
   }

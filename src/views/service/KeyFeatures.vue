@@ -71,7 +71,7 @@
             <img src="@/assets/images/guide/guide_keyfeature_05_mo.png" alt="" class="only-mo">
           </div>
           <div class="btn__warp right">
-            <router-link to="/ScreenGuide10" class="side-btn">화면 가이드 / 브랜드 소식</router-link>
+            <router-link to="/ScreenGuide09" class="side-btn">화면 가이드 / 브랜드 소식</router-link>
           </div>
           <hr class="hr-dot-line">
           <div class="subtitle-wrap">
@@ -103,7 +103,7 @@
             <img src="@/assets/images/guide/guide_keyfeature_07_mo.png" alt="" class="only-mo">
           </div>
           <div class="btn__warp right">
-            <router-link to="/ScreenGuide09" class="side-btn">화면 가이드 / 대화방 메뉴</router-link>
+            <router-link to="/ScreenGuide08" class="side-btn">화면 가이드 / 대화방 메뉴</router-link>
           </div>
         </div>
         <div class="guide__item" id="section04">
@@ -121,7 +121,7 @@
             </div>
           </div>
           <div class="btn__warp right">
-            <router-link to="/ScreenGuide08" class="side-btn">화면 가이드 / 자동응답 메시지</router-link>
+            <router-link to="/ScreenGuide07" class="side-btn">화면 가이드 / 자동응답 메시지</router-link>
           </div>
           <div class="subtitle-wrap">
             <h5 id="guide_4_1">4.1. 칩 리스트</h5>
@@ -167,7 +167,7 @@
             <img src="@/assets/images/guide/guide_keyfeature_11_mo.png" alt="" class="only-mo">
           </div>
           <div class="btn__warp right">
-            <router-link to="/ScreenGuide11" class="side-btn">화면 가이드 / 통계</router-link>
+            <router-link to="/ScreenGuide10" class="side-btn">화면 가이드 / 통계</router-link>
           </div>
         </div>
         <div class="guide__item" id="section06">
@@ -180,7 +180,7 @@
             <img src="@/assets/images/guide/guide_keyfeature_12_mo.png" alt="" class="only-mo">
           </div>
           <div class="btn__warp multiline">
-            <router-link to="/ScreenGuide07" class="side-btn">화면 가이드 / 레이아웃</router-link>
+            <router-link to="/ScreenGuide06" class="side-btn">화면 가이드 / 레이아웃</router-link>
             <router-link to="/RcsMessageType#guide_3_2_1" class="side-btn">컴포넌트 종류</router-link>
           </div>
         </div>
