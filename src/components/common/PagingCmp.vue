@@ -1,7 +1,7 @@
 <template>
-  <div class="paging" :class="{className: true}">
-    <a role="button" class="btn-first" @click="changePageFirst"><span class="blind">처음으로</span></a>
-    <a role="button" class="btn-prev" @click="changeRangePrev"><span class="blind">이전으로</span></a>
+  <div class="paging" :class="{className: true}" v-show="isShow">
+    <a role="button" class="btn-first"  :class="{ 'disabled': currentPage == 1 }" @click="changePageFirst"><span class="blind">처음으로</span></a>
+    <a role="button" class="btn-prev" :class="{ 'disabled': currentPage - rangeMax < 1 }" @click="changeRangePrev"><span class="blind">이전으로</span></a>
     <a
       role="button"
       class="btn-num"
@@ -10,8 +10,8 @@
       :class="{'active': parseInt(currentPage) === page}"
       @click="changePage(page)"
     >{{ page }}</a>
-    <a role="button" class="btn-next" @click="changeRangeNext"><span class="blind">다음으로</span></a>
-    <a role="button" class="btn-last" @click="changePageLast"><span class="blind">마지막으로</span></a>
+    <a role="button" class="btn-next" :class="{ 'disabled': currentPage + rangeMax > lastPage }" @click="changeRangeNext"><span class="blind">다음으로</span></a>
+    <a role="button" class="btn-last" :class="{ 'disabled': currentPage == lastPage }"  @click="changePageLast"><span class="blind">마지막으로</span></a>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
     },
     pageSize: {
       type: [Number, String],
-      default: 10
+      default: 5
     },
     currentPage: {
       type: [Number, String],
@@ -37,16 +37,20 @@ export default {
     },
     rangeMax: {
       type: [Number, String],
-      default: 10
+      default: 5
     }
   },
   data() {
     return {
-      range: 0
+      range: 0,
+      isShow: true
     }
   },
-  created() {},
-  mounted() {},
+  created() {
+  },
+  mounted() {
+    this.setIsShow()
+  },
   computed: {
     visiblePage() {
       let range = []
@@ -79,9 +83,13 @@ export default {
   watch: {
     total() {
       this.init()
+      this.setIsShow()
     },
     currentPage() {
       this.setRange()
+    },
+    pageSize() {
+      this.setIsShow()
     }
   },
   methods: {
@@ -93,9 +101,14 @@ export default {
         (parseInt(this.currentPage) - 1) / parseInt(this.rangeMax)
       )
     },
+    setIsShow() {
+      this.isShow = parseInt(this.total) > parseInt(this.pageSize)
+    },
     changePage(page) {
+      console.log(this.currentPage)
       this.$emit('update:currentPage', page)
       this.$emit('change', page)
+      console.log(this.currentPage)
     },
     changeRangePrev() {
       if (this.range > 0) {
@@ -112,11 +125,14 @@ export default {
       }
     },
     changePageFirst() {
+      console.log(this.currentPage)
       this.range = 0
       this.$emit('update:currentPage', 1)
+      console.log(this.currentPage)
       this.$emit('change', 1)
     },
     changePageLast() {
+      console.log(this.currentPage - this.rangeMax)
       if (parseInt(this.total) > 0) {
         this.range = this.lastRange - 1
       } else {

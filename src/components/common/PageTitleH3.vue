@@ -9,9 +9,9 @@
     <Dropdown
       v-if="DropData !== null"
       :options="DropData"/>
-    <Dropdown searchable
-    v-if="DropDataSearchable !== null"
-    :options="DropDataSearchable"/>
+<!--    <Dropdown searchable
+      v-if="DropDataSearchable !== null"
+      :options="DropDataSearchable"/>-->
 </div>
 </template>
 
@@ -29,15 +29,15 @@ export default {
       default: null
     },
     totalCount: {
-      type: String,
+      type: Number,
       default: null
     },
     DropData: {
-      type: Object,
+      type: Array,
       default: null
     },
     DropDataSearchable: {
-      type: Object,
+      type: Array,
       default: null
     }
   }
@@ -45,31 +45,5 @@ export default {
 </script>
 
 <style lang="scss">
-.page-title__wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 60px;
-  padding-bottom: 16px;
-  h3 {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 32px;
-    color: #000000;
-  }
-  p {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 26px;
-    color: #000000;
-    padding-left:12px;
-    &:before {
-      content:'*';
-      color: #2f77fb;
-      position:relative;
-      top:-1px
-    }
-  }
-}
+
 </style>
