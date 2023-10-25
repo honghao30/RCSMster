@@ -7,6 +7,7 @@
         <div class="wsg-note__wrap--gray-box">
           <ul class="ia-note-desc">
             <li>- 본 가이드는 개발팀 및 Vue의 폴더 구조에 따르며 scss의 경로 및 마크업에 해당하는 부분에 대해서 가이드 합니다.</li>
+            <li>- element-ui를 사용한 ui는 본 가이드가 적용되지 않습니다.</li>
           </ul>
         </div>
       </div>
@@ -54,10 +55,24 @@
             <td>공통</td>
             <td></td>
           </tr>
+          <tr>
+            <td></td>
+            <td>components</td>
+            <td>components 별 scss</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>views</td>
+            <td>각 메뉴별 scss</td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
+      <ul class="wsg_desc">
+      <li>모든 scss파일은 index.scss 파일에서 import해서 관리합니다.</li>
+    </ul>
     </div>
-
     <div class="content-body">
       <TitleH3 titleh3="이미지 폴더 명" />
       <table class="wsg-table-body">
@@ -90,8 +105,8 @@
     <div class="content-body">
       <TitleH3 titleh3="마크업 규칙" />
       <ul class="wsg_desc">
-        <li>Publishing 파일은 view 디렉토리 publish 디렉토리에서 관리 합니다.</li>
-        <li>마크업 구조는 Vue의 구조를 따르며 style은 import 해서 사용 합니다.</li>
+        <li>Publishing 파일은 view 디렉토리 publish 디렉토리에서 관리합니다.</li>
+        <li>마크업 구조는 Vue의 구조를 따르며 style은 import 해서 사용합니다.</li>
       </ul>
     </div>
   </div>

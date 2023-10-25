@@ -183,11 +183,45 @@ $radius: 6px;
   }
   
 }
-
+.btn{
+  &.medium{
+    &.stat-btn-excel{
+      position: relative;
+      min-width: 171px;
+      padding: 0 32px 0 58px;
+      &::before{
+        content: '';
+        position: absolute;
+        display: inline-flex;
+        width: 20px;
+        height: 20px;
+        background: url('../assets/images/icon/icon_excel.png') no-repeat 50% 50%;
+        background-size: 100%;
+        left:32px;
+      }
+      &.disabled{
+        background-color: transparent;
+        border-color:#ccc;
+        cursor: default;
+        color: #ccc;
+      }
+    }
+  }
+  &[disabled] {
+    pointer-events : none;
+  }
+}
 .disabled{
   color:#ccc;
   border-color:#ddd;
   background-color:#f4f4f4;
+  &:hover,
+  &:focus {
+    color:#ccc;
+    border-color:#ddd;
+    background-color:#f4f4f4;
+    pointer-events : none;
+  }
 }
 
 
@@ -222,6 +256,24 @@ $iconBsUrl: '../assets/images/icon/';
   height: 20px;
   background-image: url('#{$iconBsUrl}icon_search.png');
   background-size: 100%;
+}
+.btn-sort-up,
+.btn-sort-down {
+    width:10px;
+    height: 10px;
+    padding:0;
+    min-width: 10px;
+    position: absolute;
+}
+.btn-sort-up {
+    background: url('../assets/images/icon/icon_sort_up.png') no-repeat center center;
+    top: 3px;
+    margin-left: 5px;
+}
+.btn-sort-down {
+    background: url('../assets/images/icon/icon_sort_down.png') no-repeat center center;
+    bottom: 3px;
+    margin-left: 5px;
 }
 
 @media #{$phone} {

@@ -55,11 +55,6 @@
                     }
                 }
             }
-            .tr-tel-notice{
-                td {
-                    padding: 0px 0px 16px 0px;
-                }
-            }
             .input-item {
                 &.service {
                     .checkbox + .checkbox {
@@ -140,9 +135,9 @@
                 .input-item {
                     flex: auto;
                     width: auto;
-                    padding-left: 24px;
+                    padding-left: 8px;
                     &:first-child {
-                        flex: 0 0 338px;
+                        flex: 0 0 348px;
                         padding-left:0;
                     }
                     &__title {
@@ -319,6 +314,17 @@
     padding:16px 24px;
     background-color:#F8F8F8;
     border-radius: 8px;
+    .no-default-style {
+        li {
+            list-style: none;
+            .flag-progress {
+                margin-right: 4px;
+            }
+            &+li {
+                margin-top: 8px;
+            }
+        }
+    }
     +.page-title__wrap {
         margin-top: 24px;
     }
@@ -443,7 +449,7 @@
 
 // flag-progress
 .flag-progress {
-    padding: 6px 12px;
+    padding: 5px 12px 7px 12px;
     border-radius: 15px;
     font-weight: 500;
     color:#999;
@@ -469,8 +475,22 @@
      }
      // 요청 (기업 대시보드에서 사용됨)
      &.request {
-        background-color: rgba(255, 131, 16, 0.1);
-        color: #FF8310;
+        background-color: rgba(248, 248, 248, 1);
+        color:rgba(136, 136, 136, 1);  
+     }
+     &.reject {
+        border-radius: 15px;
+        border: 1px solid #FF4830;
+        background-color: #fff;
+        @include fontoption(12px,#FF4830,400, 20px);
+        padding: 2px 10px 0px 10px;
+        position:absolute;
+        height: 27px;
+        box-sizing: border-box;
+        margin-top: 1px;
+     }
+     +.flag-progress {
+        margin-left: 16px;
      }
 }
 
@@ -520,15 +540,18 @@
     }
 }
 
-.table-bodyonly{
-    tr{
-        &.tr-tel-notice{
-            border-bottom: 2px solid #ddd;
-            td {
-                border: 0;
+.table__wrap{
+    &:last-child{
+        &.btm-line__wrap{
+            tr{
+                &:last-child{
+                    th,td{
+                        border-bottom: 2px solid #ddd;
+                    }
+                }
             }
         }
-    }   
+    }
 }
 
 .join{
@@ -539,4 +562,15 @@
         }
         }
     } 
+}
+.confirm-msg {
+    @include fontoption(16px,#666,400,26px);
+}
+
+.btn{
+    &.medium{
+        &.leave-btn{
+            padding: 0 30px;
+        }
+    }
 }

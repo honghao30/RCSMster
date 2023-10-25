@@ -179,7 +179,7 @@
 		&.agency-brand{
 			flex: auto;
 			.top-ctrl-area{
-				margin-top: 24px;
+				// margin-top: 24px;
 				margin-bottom: 16px;
 				padding: 0;
 				.num-area{
@@ -615,11 +615,15 @@
 						.safetymark {
 							font-weight: 700;
 						}
+						a.safetymark {
+							text-decoration: underline;
+						}
 						.safety_icon-text{
 							color: $pointColor;
 							display: flex;
 							align-items: center;
 							justify-content: center;
+							img {height: 20px;}
 							.safety_icon{
 								display: inline-flex;
 								width: 16px;
@@ -943,15 +947,19 @@
 								align-items: center;
 								.brand__logo {
 									min-width: 40px;
+									max-width: 40px;
+									overflow: hidden;
 									border-radius: 8px;
 									height: 40px;
 									margin:0 16px;
 									border:1px solid #EAEAEA;
+									display: flex;
+									align-items: center;
+									justify-content: center;
 									background: #EAEAEA url('../assets/images/icon/icon_potho_frofile.png') no-repeat center;
 									img {
-										max-height:38px;
-										border-radius: 7px;
-										max-width: 38px;
+										max-height:40px;										
+										max-width: 40px;
 									}						
 								}
 								.brnad__new{
@@ -1149,12 +1157,30 @@
 	text-decoration: underline;
 }
 //전체 브랜드 운영관리
+.dashboard__wrap--inner{
+	&.manage_cont-box{
+		padding: 0 32px 48px;
+		margin: 24px auto;
+		background-color: #fff;
+		border: 1px solid #eaeaea;
+		border-radius: 16px;
+		.board-main__box--roun-type{
+			padding: 0;
+			border: 0;
+			border-radius: 0;
+			.page-title__wrap{
+				margin-top: 0;
+			}
+		}
+	}
+}
 .dashBoard-main__content{
 	&.manage_cont{
+		gap: 32px;
 		.case-box{
 			width: 100%;
 			background-color: #fff;
-			border-radius: 16px;
+			border-radius: 8px;
 			border: 1px solid #eaeaea;
 			padding: 32px;
 			.case-box__type {
@@ -1178,6 +1204,10 @@
 				}
 			}
 		}
+		.dashboard-manage-title{
+			@include fontoption(32px,#000,700,44px);
+			margin: 48px auto 0;
+		}
 	}
 	.board-main__box--roun-type{
 		.page-title__wrap{
@@ -1193,6 +1223,9 @@
 			display: flex;
 			justify-content: center;
 			gap: 8px;
+		}
+		& +.board-main__box--roun-type{
+			margin-top: 60px;
 		}
 	}
 	.board-main__box{
@@ -1270,6 +1303,9 @@
 											border-radius: 7px;
 											max-width: 38px;
 										}
+										&.imgnone{
+											background: #EAEAEA url('../assets/images/icon/icon_potho_frofile.png') no-repeat center;
+										}
 									}
 								}
 								.brand__title{
@@ -1293,9 +1329,15 @@
 									flex: 1;
 									.manage-authority{
 										flex: 0 0 auto;
+										display: flex;
+										align-items: center;
+										gap: 10px;
 										.btn-blue-line{
 											border-radius: 4px;
 										}
+									}
+									.brandname{
+										gap: 16px;
 									}
 								}
 							}
@@ -1330,7 +1372,12 @@
 				flex-wrap: nowrap;
 				align-items: center;
 				gap: 8px;
+				.data-brand{
+					max-width: 260px;
+				}
 				.data-brand-ing{
+					width: 50px;
+					max-width: 50px;
 					padding: 0 8px;
 					background-color: #f4f4f4;
 					border-radius: 4px;

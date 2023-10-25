@@ -3,21 +3,34 @@
     <div class="wsg-guide-content">
       <div class="wsg-note__wrap--gray-box">
         <ul class="wsg_desc">
-          <li>font의 대한 정의는 @mixin fontoption 에 매개변수로 전달하는 방식으로 사용</li>
+          <li>font의 대한 정의는 @mixin fontoption 에 매개변수로 전달하는 방식으로 사용 합니다.</li>
         </ul>
       </div>
     </div>
     <TitleH3 titleh3="H 태그 가이드" />
     <div class="wsg-guide-content">
-    </div>
-    <TitleH3 titleh3="문단 가이드" />
-    <div class="wsg-guide-content">
+      <div class="wsg-note__wrap--gray-box">
+        <ul class="wsg_desc">
+          <li>각 페이지에서 공통적으로 사용되는 2가지 타이틀 컴포넌트를 사용 합니다.</li>
+          <li>1. PageTitle.vue 컴포넌트 (전체 타이틀)
+              <ul>
+                <li>- 기본 폰트 사이즈: 36px</li>
+                <li>- 브랜드 LNB와 함께 있는 PageTitle.vue 컴포넌트의 경우 폰트 사이즈: 32px</li>
+              </ul>
+          </li>
+          <li>2. PageTitleH3.vue 컴포넌트 (소타이틀)
+              <ul>
+                <li>- 기본 폰트 사이즈: 24px</li>
+              </ul>
+          </li>
+        </ul>
+      </div>
     </div>
     <TitleH3 titleh3="한줄 말 줄임" />
     <div class="wsg-guide-content">
       <div class="wsg-note__wrap--gray-box">
         <ul class="wsg_desc">
-          <li>말 줄임이 필요한 영역은 mixin 으로 ellipsis($line: 1) 호출하고 줄 갯수를 매개 변수로 전달한다.</li>
+          <li>말 줄임이 필요한 영역은 mixin 으로 ellipsis($line: 1) 호출하고 줄 개수를 매개 변수로 전달합니다.</li>
         </ul>
       </div>
     </div>
@@ -26,7 +39,7 @@
     <div class="wsg-guide-content">
       <div class="wsg-note__wrap--gray-box">
         <ul class="wsg_desc">
-          <li>여러줄 말 줄임이 필요한 경우 ellipsis($line: 3) 줄 갯수를 매개 변수로 전달한다.</li>
+          <li>여러줄 말 줄임이 필요한 경우 ellipsis($line: 3) 줄 갯수를 매개 변수로 전달합니다.</li>
         </ul>
       </div>
     </div>

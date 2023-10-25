@@ -47,3 +47,16 @@ $defaultFontSize: 14px;
 $defaultLineHeight: 26px;
 
 
+.text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;  
+}
+.text-ellipsis-wd {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;  
+    display: block;
+    max-width: 90%;
+    margin: 0 auto;
+}

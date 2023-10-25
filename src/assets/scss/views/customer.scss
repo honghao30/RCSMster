@@ -88,7 +88,7 @@
 // search - no data
 .notice__search-no-data {
   text-align: center;
-  border-bottom: 1px solid rgba(221, 221, 221, 1);
+  border-bottom: 1px solid #ddd;
   p{
     padding: 160px 0;
     color: #999;
@@ -221,7 +221,11 @@
 .notice-faq, .require-list {
   .accordion-list__wrap {
     border-top: 2px solid #BCBCBC;
+    border-bottom: 2px solid #ddd;
     width: 100%;
+    &.no-borbottom {
+      border-bottom: 0;
+    }
     .accordion__item {    
       border-bottom: 1px solid #F0F0F0;
       a.accordion__title {
@@ -435,7 +439,14 @@
           .require-list__question {
             width: 885px;
             padding-top: 12px;
-            @include fontoption(14px,#000000,400,24px)
+            @include fontoption(14px,#000000,400,24px);
+            &.file-list {
+              padding:0;
+              width: 100%;
+              .attach-area {
+                padding: 10px 30px;
+              }
+            }
           }
           .require-list__question-keyword {
             @include fontoption(14px,#000000,500,24px)
@@ -462,6 +473,16 @@
             padding-left: 58px;
             @include fontoption(14px,#999,400,24px);
           }
+          .require__view {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding:0;
+            .attach-area {
+              padding: 10px 20px;
+              width: 100%;
+            }
+          }
         }
       }
     }
@@ -480,7 +501,7 @@
             }
             .textarea {
               textarea {
-                height: 70px;
+                height: 268px;
               }
             }
             .btn {
@@ -496,6 +517,7 @@
               }
               .file-upload{
                 width: 100%;
+                max-width: 778px;
                 .el-upload{
                   width: 100%;
                   .el-upload-dragger{
@@ -537,6 +559,11 @@
                   @include fontoption(14px,#000,400,26px);
                   position: relative;
                   display: flex;
+                  align-items: center;
+                  span{
+                    white-space: nowrap;
+                    max-width: 87%;
+                  }
                   em{
                     font-style: normal;
                   }
@@ -575,10 +602,23 @@
         .checkbox{
           margin-top: 16px;
         }
+        .agree__item{
+          .agree__box{
+            .terms{
+              color: #000;
+            }
+          }
+        }
       }
     }
   }
 }
+// .online-result{
+//   @include fontoption(28px,#000,500,46px);
+//   &+p{
+//     @include fontoption(28px,#000,400,46px);
+//   }
+// }
 
 @media #{$phone} {
 .notice-table {
@@ -687,14 +727,70 @@
 }
 .mo-hide {
   display: none !important;
-} 
+}
+.search-table{
+  &+.notice-table{
+    border-bottom: 2px solid #ddd;
+  }
+}
 // search-no-data
 .notice__search-no-data {
   text-align: center;
+  &+.accordion-list__wrap {
+    border-bottom: 0;
+  }
   p{
     padding: 100px 0;
     line-height: 21px;
   }
+}
+.inner{
+  &.notice{
+    .notice-table{
+      .table-list{
+        &:last-child{
+          td{
+            border-bottom: 0;
+            .notice__search-no-data {
+              >p{
+                padding: 84px 0;
+              }
+            }
+          }
+        }
+        
+      }
+    }
+  }
+}
+.notice{
+  &.notice-content{
+    .table__wrap{
+      &.notice-table{
+        .table-list{
+          tr{
+            &:last-child{
+              td{
+                border-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+    } 
+    .notice-content__table{
+      tbody{
+        tr{
+          &:first-child{
+            border-bottom: 2px solid #ddd;
+          }
+          &:last-child{
+            border-bottom: 2px solid #ddd;
+          }
+        }
+      }
+    }
+  }  
 }
 // content
 .notice-content {
@@ -760,7 +856,13 @@
       }
     }
   }
+  .notice-content__button {
+    .btn{
+      min-width: 100px;
+    }
+  }
   .notice-content__list {
+    border-top: 2px solid #ddd;
     tbody {
       tr {
         flex-direction: initial;
@@ -873,7 +975,11 @@
             .require-list__question {
               width: calc(100vw - 85px);
               padding-top: 8px;
-              @include fontoption(13px,#000000,400,21px)
+              @include fontoption(13px,#000000,400,21px);
+              &.file-list {
+                padding:0;
+                width: 100%;
+              }
             }
             .require-list__question-keyword {
               @include fontoption(13px,#000000,500,21px)
@@ -896,6 +1002,10 @@
             }
             .require-list__answer-date {
               display: none;
+            }
+            .require__view {
+              display: flex;
+              flex-direction: column;
             }
           }
         }
@@ -1043,7 +1153,11 @@
           .require-list__question {
             width: calc(100vw - 85px);
             padding-top: 8px;
-            @include fontoption(13px,#000000,400,21px)
+            @include fontoption(13px,#000000,400,21px);
+            &.file-list {
+              padding:0;
+              width: 100%;
+            }
           }
           .require-list__question-keyword {
             @include fontoption(13px,#000000,500,21px)
@@ -1066,6 +1180,10 @@
           }
           .require-list__answer-date {
             display: none;
+          }
+          .require__view {
+            display: flex;
+            flex-direction: column;
           }
         }
       }
@@ -1106,6 +1224,7 @@
           }
         }
         .form-item__content{
+          max-width: calc(100vw - 32px);
           .file-choice{
             .file-choice__title{
               margin-bottom: 12px;
@@ -1114,6 +1233,9 @@
               }
             }
             .file-upload{
+              max-width: 100%;
+              // max-width: 91.111vw;
+              // min-width: 91.111vw;
               .el-upload{
                 .el-upload-dragger{
                   height: 108px;
@@ -1135,6 +1257,9 @@
               li{
                 font-size: 14px;
                 line-height: 21px;
+                span{
+                  max-width: 70%;
+                }
                 .btn-file--del{
                   padding: 0;
                   &::before{
@@ -1144,6 +1269,9 @@
               }
             }
           }
+          // &.file-upload__cmp {
+          //   max-width: calc(100vw - 32px);
+          // }
         }  
       }
     }
@@ -1191,5 +1319,5 @@ border: 0 !important;
 }
 .ql-editor {
 min-height: 0 !important;
-padding: 0 12px 15px 0 !important;
+padding: 0 !important;
 }

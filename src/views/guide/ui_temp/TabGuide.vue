@@ -8,7 +8,7 @@
       </div>
     </div>
     <TitleH3 titleh3="Tab(스와이프 형)" />
-    <TabCategory :category="category"/>
+    <TabCategory :category="category" :activeTab="0"/>
     <TitleH3 titleh3="Tab (자동 넓이 꽉차게) " />
     <TabCmp>
       <TabItem title="Tab1">
@@ -62,7 +62,20 @@ export default {
   data() {
     return {
       currentTab: 0,
-      category: ['tab1', 'tab2', 'tab3', 'tab4', 'tab5', 'tab6 긴 이름~~']
+      category: [
+        {
+          code: 0,
+          codeNm: 'tab1'
+        },
+        {
+          code: 1,
+          codeNm: 'tab2'
+        },
+        {
+          code: 2,
+          codeNm: 'tab3'
+        }
+      ]
     }
   },
   components: {

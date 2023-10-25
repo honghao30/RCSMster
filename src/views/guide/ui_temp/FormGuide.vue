@@ -17,7 +17,7 @@
         <div class="input">
           <input type="text" class="input" maxlength="17"
             v-model="form.guideInputEmoji"
-            :placeholder="'메뉴명을 입력해주세요'"
+            :placeholder="'메뉴명을 입력해 주세요.'"
             ref="menuName"
           >
           <div class="input-limit__text">
@@ -60,7 +60,7 @@
       <Dropdown :options="TitleOptions"/>
       <div class="search-area">
         <span class="input search-box">
-          <input type="text" placeholder="검색어를 입력하세요."/>
+          <input type="text" placeholder="검색어를 입력해 주세요."/>
           <ButtonCmp
             type="btn-only-icon"
             iconname='icon-search'
@@ -68,6 +68,14 @@
           </ButtonCmp>
         </span>
       </div>
+    </div>
+    <div class="">
+      <Dropdown
+        :options="dropdownOptions"
+        v-model="form.dropdown"
+        @beforeChange="dropdownBeforeChange"
+        >
+      </Dropdown>
     </div>
     <!-- search 가 필요하시면 searchable 추가해주세요.-->
     <TitleH3 titleh3="Checkbox" />
@@ -116,7 +124,7 @@
     <div class="is-emoji">
       <div class="input-item input-limit">
         <div class="textarea">
-          <textarea maxlength="1000" placeholder="문의 내용을 입력해주세요." v-model="form.textarea" ref="quest"></textarea>
+          <textarea maxlength="1000" placeholder="문의 내용을 입력해 주세요." v-model="form.textarea" ref="quest"></textarea>
           <div class="textarea-limit__text">
             <Emoji @input="onSelectEmoji($event, 'quest')"/>
             <p>
@@ -126,6 +134,8 @@
         </div>
       </div>
     </div>
+    <TitleH3 titleh3="자동완성" />
+    <AutoCompleteEl  />
     <TitleH3 titleh3="이모지" />
     <Emoji  @input="onSelectEmoji($event, 'ref이름' )" />
     <!-- // 이모지 미사용 : ButtonCmp,emoji-picker 제거 -->
@@ -145,7 +155,7 @@
           <div class="form-item__content">
             <input type="text" class="input" v-model="form.id"/>
           </div>
-          <p class="guide-text error" v-if="!idValidation">아이디를 입력해주세요.</p>
+          <p class="guide-text error" v-if="!idValidation">아이디를 입력해 주세요.</p>
         </div>
         <div class="form-item">
           <span class="form-item__label">휴대폰번호</span>
@@ -153,7 +163,7 @@
             <input type="text" class="input">
             <button class="btn__certi">인증번호 요청</button>
           </div>
-          <p class="guide-text error" v-if="!idValidation">휴대폰번호를 입력해주세요.</p>
+          <p class="guide-text error" v-if="!idValidation">휴대폰번호를 입력해 주세요.</p>
         </div>
       </div>
       <button @click="checkValidation">Validation Check</button>
@@ -172,7 +182,7 @@
               <div class="form-item__content">
                 <div class="form-item-row">
                     <div class="input-item">
-                      <span class="input"><input type="text" class="input" placeholder="담당자 이름을 입력해주세요."></span>
+                      <span class="input"><input type="text" class="input" placeholder="담당자 이름을 입력해 주세요."></span>
                     </div>
                 </div>
               </div>
@@ -184,14 +194,14 @@
                 <div class="form-item__content">
                     <div class="form-item-row">
                         <div class="input-item">
-                            <span class="input"><input type="text" class="input" placeholder="‘-’없이 자리 숫자만 입력해주세요."></span>
+                            <span class="input"><input type="text" class="input" placeholder="‘-’없이 숫자만 입력해 주세요."></span>
                             <ButtonCmp
                                 type="btn-default-line"
                             >
                             휴대폰 번호 인증
                             </ButtonCmp>
                         </div>
-                        <p class="guide-text error">휴대폰 번호을 입력해주세요.</p>
+                        <p class="guide-text error">휴대폰 번호을 입력해 주세요.</p>
                     </div>
                 </div>
             </td>
@@ -208,6 +218,7 @@ import Dropdown from '@/components/common/Dropdown.vue'
 import ButtonCmp from '@/components/common/ButtonCmp.vue'
 import Emoji from '@/components/common/Emoji.vue'
 import TextStyleInput from '@/components/common/TextStyleInput.vue'
+import AutoCompleteEl from '@/components/common/AutoCompleteEl.vue'
 import 'emoji-picker-element'
 
 export default {
@@ -226,6 +237,7 @@ export default {
         switch: '',
         guideInputEmoji: ''
       },
+      Autocomplete: '',
       textStyleInput: {},
       textStyle: {},
       emojiCode: '',
@@ -233,30 +245,47 @@ export default {
       showSpecialTextarea: false, // 특수문자 선택창 show 여부
       dropdownOptions: [
         {
-          label: 'all',
-          value: 'all'
+          code: '시스템 스튜디오1',
+          codeNm: '시스템 스튜디오1',
+          flag: '임시저장'
         },
         {
-          label: 'option1',
-          value: 'option1'
+          code: '시스템 스튜디오2',
+          codeNm: '시스템 스튜디오2',
+          flag: '반려'
         },
         {
-          label: 'option2',
-          value: 'option2'
+          code: '시스템 스튜디오3',
+          codeNm: '시스템 스튜디오3',
+          flag: '승인완료'
         },
         {
-          label: 'option3',
-          value: 'option3'
+          code: '시스템 스튜디오4',
+          codeNm: '시스템 스튜디오4',
+          flag: '승인완료'
         }
       ],
-      TitleOptargettions: [
+      searchTerm: '',
+      suggestions: ['문자', '문자나라', '통신사', '알림', '브랜드'],
+      links: [],
+      state1: '',
+      state2: '',
+      TitleOptions: [
         {
-          label: '대화방 명',
-          value: 'chatroom'
+          codeNm: '권한',
+          code: 'authority'
         },
         {
-          label: '챗봇 ID',
-          value: 'chatbot'
+          codeNm: '이메일',
+          code: 'email'
+        },
+        {
+          codeNm: '이름',
+          code: 'name'
+        },
+        {
+          codeNm: '브랜드 명',
+          code: 'brandName'
         }
       ],
       idValidation: true
@@ -267,7 +296,13 @@ export default {
     Dropdown,
     ButtonCmp,
     Emoji,
-    TextStyleInput
+    TextStyleInput,
+    AutoCompleteEl
+  },
+  computed: {
+    filteredSuggestions() {
+      return this.suggestions.filter(suggestion => suggestion.includes(this.searchTerm))
+    }
   },
   mounted: {
   },
@@ -311,6 +346,17 @@ export default {
         color: target.textColor
       }
       return style
+    },
+    showAutocomplete() {
+      this.showSuggestions = true
+    },
+    hideAutocomplete() {
+      this.showSuggestions = false
+    },
+    selectSuggestion(suggestion) {
+      // 추천 단어를 클릭하면 해당 단어를 입력란에 채웁니다.
+      this.searchTerm = suggestion
+      this.showSuggestions = false
     }
   }
 

@@ -103,26 +103,36 @@
         <TitleH3 titleh3="아코디언" />
         <AccoDien />
       </div>
-      <!-- <div ref="sect09">
+      <div ref="sect09">
         <TitleH3 titleh3="로딩" />
-        <Loading
-          size="50"
+        <div class="wsg-guide-content">
+          <div class="wsg-note__wrap--gray-box">
+            <ul class="wsg_desc">
+              <li>loading.vue 컴포넌트 import 후 작업 실행합니다.</li>
+            </ul>
+          </div>
+        </div>
+        <!-- <Loading
           v-if="isLoading"
-        />
-      </div> -->
+          msg="1~2분 정도 시간이 소요 됩니다. 잠시만 기다려주세요."
+        /> -->
+      </div>
       <div ref="sect10">
         <TitleH3 titleh3="툴팁" />
         <TooltipGuid />
       </div>
+      <div ref="sect11">
+        <TitleH3 titleh3="스크롤탑" />
+        <div class="wsg-guide-content">
+          <div class="wsg-note__wrap--gray-box">
+            <ul class="wsg_desc">
+              <li>ScrollTop.vue 컴포넌트 import 후 작업 실행합니다.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <button
-      ref="topButton"
-      class="scroll-to-top"
-      :class="{ isFixed: isScrollTop }"
-      @click="scrollToTop"
-    >
-       위로
-    </button>
+    <GotoTop />
   </div>
 </template>
 
@@ -141,6 +151,7 @@ import TabGuide from '@/views/guide/ui_temp/TabGuide.vue'
 import HeaterGuide from '../cmp/Header'
 import Loading from '@/components/common/loading.vue'
 import TooltipGuid from '@/views/guide/ui_temp/TooltipGuid.vue'
+import GotoTop from '@/components/common/ScrollTop.vue'
 
 export default {
   name: 'BasicGuide',
@@ -158,7 +169,8 @@ export default {
     HeaterGuide,
     AccoDien,
     Loading,
-    TooltipGuid
+    TooltipGuid,
+    GotoTop
   },
   data() {
     return {
@@ -214,7 +226,7 @@ export default {
       setTimeout(() => {
         document.body.classList.remove('is-loading')
         this.isLoading = false
-      }, 7000)
+      }, 1000)
     }
   },
   mounted () {

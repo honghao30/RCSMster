@@ -12,7 +12,6 @@
     @include fontoption(24px,#000,500,36px);
   }
   .page-title{
-    padding-top: 40px;
     margin-bottom: 0;
   }
   .page-title__wrap{
@@ -64,7 +63,7 @@
         }
       }
       .dropdown-search__wrap{
-        max-width: 196px;
+        width: 311px;
         border-radius: 0;
         border: 0;
         height: 42px;
@@ -180,14 +179,14 @@
           border-radius: 11px;
           border: 1px solid #ddd;
           height: 62px;
-          min-width: 62px;
+          width: 62px;
           display: inline-flex;
           justify-content: center;
           align-items: center;
           overflow: hidden;
           background: url('../assets/images/partner/patner_no_logo.png') no-repeat center center;
           img{
-            height: 100%;
+            width: 100%;
           }
         }
       }
@@ -238,7 +237,6 @@
     display: none;
   }
   .page-title{
-    padding-top: 40px;
     margin-bottom: 0;
   }
   .page-title__wrap{
@@ -668,7 +666,7 @@
         .info-top-right{
           .agency-img{
             height: 50px;
-            min-width: 50px;
+            width: 50px;
           }
         }
       }

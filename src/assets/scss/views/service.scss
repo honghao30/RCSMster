@@ -20,6 +20,17 @@
             }
           }
         }
+        &.off {
+          a {
+            &.children {
+              &::after {
+                transform: rotate(-135deg);
+                transition: all 0.3s;
+                margin: 0 6px 2px;
+              }
+            }
+          }
+        }
         > a {
           display: flex;
           align-items:center;
@@ -32,7 +43,7 @@
             display:inline-block;
             width: 8px;
             height: 8px;
-            margin:0 6px;
+            margin: 0 6px;
             position:relative;
             border-top:2px solid #666;
             border-left:2px solid #666;
@@ -40,7 +51,9 @@
           }
           &.children {
             &::after {
-              transform: rotate(-135deg);
+              transform: rotate(45deg);
+              transition: all 0.3s;
+              margin: 4px 6px 0;
             }
           }
           &.open {
@@ -149,6 +162,29 @@
         }
       }
     }
+    &.right-side {
+      .menu-item {
+        a {
+          &.children {
+            &::after {
+              transform: rotate(135deg);
+              transition: all 0.3s;
+              margin: 0 6px;
+            }
+          }
+        }
+        &.active {
+          a {
+            &.children {
+              &::after {
+                transform: rotate(135deg);
+                transition: all 0.3s;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 // 가이드 사이드
@@ -223,7 +259,8 @@
               height: 16px;
               display: inline-flex;
               align-items: center;
-              background: url('../assets/images/icon/icon_arrow_right.png') no-repeat;
+              background: url('../assets/images/icon/icon_arrow_guide_right.png') no-repeat;
+              background-size: 16px 16px;
             }
           }
         }
@@ -314,6 +351,9 @@
 .mt-b8{
   margin-bottom: 8px !important;
 }
+.mt-t12{
+  margin-top: 12px !important;
+}
 .mt-t16{
   margin-top: 16px !important;
 }
@@ -339,6 +379,9 @@
   }
   .only-mo{
     display: none;
+  }
+  img{
+    width: 100%;
   }
   .guide-page__title {
     margin-bottom: 24px;
@@ -383,21 +426,28 @@
     }
     h4 {
       @include fontoption(24px,#000,500,36px);
+      width: 100%;
       span {
-        padding-right: 8px
+        padding-right: 8px;
       }
     }
     h5 {
       @include fontoption(20px,#000,500,32px);
+      width: 100%;
     }
   }
   .description {
     margin-top: 8px;
     @include fontoption(14px,#000,400,26px);
+    width: 100%;
+    .bold {
+      font-weight: 700;
+    }
   }  
   // 텍스트 컨텐츠
   .content {
     @include fontoption(14px,#000,400,26px);
+    width: 100%;
     &.blue {
       color: #2F77FB;
     }
@@ -411,6 +461,7 @@
   }
   .title {
     @include fontoption(16px,#000,700,28px);
+    width: 100%;
     .thin-weight{
       font-weight: 400;
     }
@@ -593,8 +644,9 @@
           align-items: center;
           width:16px;
           height: 16px;
-          background: url('../assets/images/icon/icon_arrow_right.png') no-repeat;
-          margin-left: 4px;
+          margin: 2px 0 0 4px;
+          background: url('../assets/images/icon/icon_arrow_guide_right.png') no-repeat;
+          background-size: 16px 16px;
         }
       }
     }
@@ -604,6 +656,12 @@
   }  
   .guide-img__wrap {
     margin: 16px 0;
+    @media #{$phone} {
+      img  {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
   // 회색 박스
   .gray-box__wrap {
@@ -794,6 +852,7 @@
       position: relative;
       @include fontoption(16px,#000,500,28px);
       padding-left: 38px;
+      width: 100%;
       &:not(:first-child) {
         margin-top: 24px;
       }
@@ -806,6 +865,7 @@
         left:0;
         top:0;
         background: url('../assets/images/icon/icon_qna_q.png') no-repeat;
+        background-size: 28px 28px;
       }
     }
     dd {
@@ -890,6 +950,7 @@
         width: 16px;
         height: 16px;
         background: url('../assets/images/icon/icon_arrow_guide_blue.png') no-repeat;
+        background-size: 16px 16px;
       }
       &.black{
         color: #000;
@@ -1032,6 +1093,7 @@
             right: 0;
             transform: translateY(-50%);
             background: url('../assets/images/icon/icon_arrow_guide_blue.png') no-repeat;
+            background-size: 16px 16px;
           }
         }
       }
@@ -1144,6 +1206,7 @@
         border-radius: 10px;
         border: 1px solid #ddd;
         box-shadow: 0px -2px 4px 0px rgba(0, 0, 0, 0.1);
+        width: fit-content;
       }
     }
   }
@@ -1218,6 +1281,21 @@
   .table-box{
     &.color-custom-table{
       margin-top: 16px;
+      td{
+        img{
+          width: fit-content;
+        }
+        .check{
+          position: relative;
+          display: inline-flex;
+          width: 15px;
+          height: 15px;
+          background: url('../assets/images/guide/ico_check-table.png') no-repeat;
+          top: 0;
+          right: 0;
+          background-size: 15px 15px;
+        }
+      }
       table{
         thead{
           tr{
@@ -1431,11 +1509,37 @@
       &:not(:first-child) {
         margin-top:44px;
       }
+      &.screen-subtit-type {
+        >h4 {
+          margin-bottom: 32px;
+        }
+      }
+      &.screen-subtit-type02 {
+        >h4 {
+          margin-bottom: 0;
+        }
+      }
+      &.screen-subtit-type03 {
+        >h5{
+          margin-bottom: 8px;
+          & +p{
+            margin-top: 0;
+          }
+        }
+        &+.guide-img__wrap{
+          margin-top: 32px;
+        }
+      }
     }
     .guide-img__wrap{
       margin: 0;
       &.des-add-img{
         margin-top: 12px;
+      }
+    }
+    .guide-page__title{
+      &.screen-page__title-type{
+        margin-top: 44px;
       }
     }
   }
@@ -1818,7 +1922,7 @@
           left:0;
           top:0;
           background: url('../assets/images/icon/icon_qna_q.png') no-repeat;
-          background-size: cover;
+          background-size: 25px;
         }
       }
       dd {
@@ -2071,7 +2175,7 @@
           width: 100%;
           li{
             &+li{
-              margin-left: 108px;
+              margin-left: 99px;
             }
             .wd100{
               margin-left: 6px;
@@ -2098,11 +2202,45 @@
         &:not(:first-child) {
           margin-top:32px;
         }
+        &.screen-subtit-type {
+          h4 {
+            margin-bottom: 12px;
+          }
+        }
+        &.screen-subtit-type02 {
+          >h4 {
+            margin-bottom: 0;
+          }
+        }
+        &.screen-subtit-type03 {
+          >h5{
+            margin-bottom: 8px;
+            & +p{
+              margin-top: 0;
+            }
+          }
+          &+.guide-img__wrap{
+            margin-top: 12px;
+          }
+        }
       }
       .guide-img__wrap{
         margin: 0 -16px;
         &.des-add-img{
           margin-top: 32px;
+        }
+      }
+      .guide-page__title{
+        &.screen-page__title-type{
+          margin-top: 48px;
+        }
+      }
+    }
+    .description-bottom__wrap{
+      dl{
+        dt{
+          min-width: 80px;
+          width: auto;
         }
       }
     }
@@ -2125,6 +2263,9 @@
     border-bottom-right-radius: 8px;
     background-clip: padding-box;
     border: 4px solid transparent;
+  }
+  .modal__content--inner.Max656 .template-sample__list ul .sample-msg-item .sample-img img {
+    width: 100%;
   }
 }
 
@@ -2158,7 +2299,7 @@
           display: block;
           position: absolute;
           top: 50%;
-          margin-top: -8px;
+          margin-top: -10px;
           right: 16px;
           width: 20px;
           height: 20px;          

@@ -124,7 +124,7 @@ $contentWidth2: 1024px;
         // 서브 메뉴
         .sub-menu__wrap {
             position: absolute;
-            top: 101px;
+            top: 99px;
             left:50%;
             transform: translateX(-50%);
             z-index: 11;
@@ -146,6 +146,17 @@ $contentWidth2: 1024px;
                 }
             }
         }
+        &:first-child{
+            .sub-menu__wrap{
+                ul{
+                    li{
+                        &:first-child{
+                            margin-left: 52px;
+                        }
+                    }
+                }
+            }
+        }
     }
     &-sub {
         position:absolute;
@@ -157,7 +168,6 @@ $contentWidth2: 1024px;
         border:1px solid #ccc;
         background-color:#fff;
         li {
-            
             a {
                 font-size: 14px;
             }
@@ -228,13 +238,15 @@ $contentWidth2: 1024px;
         }
     }
     .alarm-wrap__body {
+        height: calc(100% - 80px);
         .alarm-msg__notice {
             padding: 20px 24px;
             @include fontoption(14px, #000, 400, 26px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.12);
         }
         .alarm-msg__wrap {
-            max-height: 650px;
+            // max-height: 650px;
+            max-height: calc(100% - 227px);
             overflow: auto;
             &.no-data {
                 text-align: center;
@@ -290,6 +302,7 @@ $contentWidth2: 1024px;
                         &.reject {
                             color:$errorColor;
                             border:1px solid  $errorColor;
+                            line-height: 100%;
                         }
                         &.ing {
                             color:#999999;
@@ -341,7 +354,7 @@ $contentWidth2: 1024px;
             }
         }
         &:hover {
-            color:#2F77FB !important;
+            color:#2F77FB;
             font-weight: 500; 
         }
     }
@@ -469,7 +482,7 @@ $contentWidth2: 1024px;
             color:#fff;  
            }
            &.ing {
-            background-color: #FF8310;
+            background-color: #ccc;
             color:#fff;                
            }
            &.return {
@@ -761,32 +774,48 @@ $contentWidth2: 1024px;
                         align-items:flex-start;
                         padding: 0 16px;
                         li {
-                            width: 100%;                            
+                            width: 100%;  
                             > a {
+                                position: relative;
                                 padding: 16px 0;
                                 @include fontoption(17px,#000,500, 21px);
                                 border-bottom: 1px solid #F0F0F0;
                                 display: block;
                             }
+                            &.active {
+                                a {
+                                    color: $pointColor;
+                                }
+                            }                            
                             &.children {
                                 > a {
                                     &::after {
                                         content: '';
                                         display: block;
-                                        position: absolute;
-                                        right: 0px;
-                                        top: 10px;
+                                        position: absolute;                                        
+                                        right: 0;
+                                        top: 50%;
+                                        transform: translateY(-50%);
                                         width:20px;
                                         height:20px;
-                                        background: url('../assets/images/icon/icon_chevron_down.png') no-repeat right center;      
+                                        background: url('../assets/images/icon/icon_chevron_down.png') no-repeat center center;      
                                         background-size: 20px 20px;                                     
                                     }
                                 }
-                                &.active {
+                                &.active,
+                                &:hover,
+                                &:focus {
                                     > a {
                                         color:#2F77FB;
                                         font-weight: 700;   
                                         border-bottom: 0;
+                                        &::after {
+                                            transform: translateY(-50%) rotate(180deg);                                            
+                                            display: block;
+                                            top: 50%;
+                                            left:  auto;
+                                            transition: all 0.3s;
+                                        }
                                     }
                                     .sub-menu__wrap {
                                         display: block !important;
@@ -797,19 +826,19 @@ $contentWidth2: 1024px;
                                         }
                                     }
                                 }
-                                &:hover,
-                                &:focus {
-                                    > a {
-                                        &::after {
-                                            display: block;
-                                            transform: rotate(-180deg);
-                                            right: 0;
-                                            top: 10px;
-                                            bottom: auto;
-                                            left:  auto;
-                                        }                                        
-                                    }
-                                }
+                                // &:hover,
+                                // &:focus {
+                                //     > a {
+                                //         &::after {
+                                //             display: block;
+                                //             transform: rotate(-180deg);
+                                //             right: 0;
+                                //             top: 27px;
+                                //             bottom: auto;
+                                //             left:  auto;
+                                //         }                                        
+                                //     }
+                                // }
                             }                            
                             &:hover {
                                 > a {
@@ -822,6 +851,7 @@ $contentWidth2: 1024px;
                             }
                             &.nav-item{
                                 padding: 0;
+                                width: 100%;
                             }
                         }
                     }
@@ -879,6 +909,19 @@ $contentWidth2: 1024px;
             }
         .inner {
             padding:0 16px;
+        }
+      }
+      .nav-item{
+        &:first-child{
+            .sub-menu__wrap{
+                ul{
+                    li{
+                        &:first-child{
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
         }
       }
     }
@@ -1028,15 +1071,18 @@ $contentWidth2: 1024px;
     top: 100px;
     display: flex;
     width: 628px;
-    height: 780px;
+    height: 680px;
     flex-direction: column;
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid #EAEAEA;
     transform: translateX(720px);
+    &.winMedium {
+        height: 540px;
+    }
         @media #{$phone} {
             width: auto;
-            height: 465px;
+            height: 400px;
             top: 80px;
             right: 16px;
             transform: translateX(0%);

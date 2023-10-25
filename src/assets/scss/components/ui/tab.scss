@@ -109,6 +109,16 @@
 			}
 		}
 	}
+	&.big-radius{
+		.tab-list{
+			border-radius: 8px 8px 0 0;
+			background-color: transparent;
+			li{
+				border-radius: 8px 8px 0 0;
+				background-color: #F8F8F8;
+			}
+		}
+	}
 }
 .category-tab {
 	margin-bottom: 32px;
@@ -143,8 +153,8 @@
 					border-radius: 100%;
 					background-color:$pointColor;
 					position:absolute;
-					right:-7px;
-					top:6px;
+					right: -7px;
+					top: 0px;
 				}
 			}
 		}

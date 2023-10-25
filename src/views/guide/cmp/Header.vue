@@ -44,7 +44,7 @@
 
 <script>
 export default {
-  name: 'DefaultHeader'
+  name: 'DefaultHeaderGuide'
 }
 </script>
 
