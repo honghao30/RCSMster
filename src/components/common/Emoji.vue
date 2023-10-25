@@ -46,6 +46,7 @@ export default {
     onSelect (e) {
       let code = e.detail.unicode
       this.$emit('input', code)
+      // this.showEmoji = false // 이모지 입력 후 이모지 창 닫음.
     }
   }
 }

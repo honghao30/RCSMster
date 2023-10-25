@@ -13,6 +13,7 @@
       <div
         class="tool-tip__wrap"
         :style="{'width': width + 'px'}"
+        v-if="isActive"
         :class="[mode, direction, elAlign, {'active': isActive}]"
         ref="tooltipMsg"
       >

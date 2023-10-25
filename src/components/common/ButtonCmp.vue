@@ -5,6 +5,7 @@
     :class="[type, size, icondrection]"
     :disabled="disabled"
     @click="$emit('click')"
+    @mousedown="$emit('mousedown')"
     >
     <i
       v-if="iconname !== null"
@@ -19,7 +20,7 @@
 export default {
   props: {
     type: String,
-    disabled: Boolean,
+    disabled: [String, Boolean],
     size: String,
     icondrection: String,
     iconname: {

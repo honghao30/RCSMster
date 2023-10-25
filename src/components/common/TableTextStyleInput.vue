@@ -1,18 +1,24 @@
 <template>
   <div class="custom-textarea" v-click-outside="onClickOutside">
-    <textarea
-      @input="e => info.text = e.target.value"
-      @change="textFind()"
-      class="input"
-      @focus="isShow = true"
-      :row="`${index}`"
-    ></textarea>
-    <div class="style-picker" v-show="isShow" >
+    <div class="emoji-table">
+      <Emoji @input="onSelectEmoji($event, cellBindType, `${index}`)" />
+      <textarea
+        @input="inputTableCell($event)"
+        :ref='`${index}`'
+        v-model="info.text"
+        @change="textFind()"
+        class="input"
+        @focus="isShow = true"
+        :row="`${index}`"
+        rows="1"
+        onkeydown="resizeCellInput(this)"
+        onkeyup="resizeCellInput(this)"
+        placeholder="내용 입력해 주세요."
+      >
+      </textarea>
+    </div>
+    <div class="style-picker" v-show="isStyleTable && isShow" :class="{'simple': type === 'simple'}">
       <div class="style-picker__inner">
-        <span class="custom-radio bold">
-          <input type="checkbox" :name="`${index}_fontStyle`" :id="`${index}_bold`" class="blind" v-model="info.textBold" value="700"/>
-          <label :for="`${index}_bold`">가</label>
-        </span>
         <span class="custom-radio align">
           <input type="radio" :name="`${index}_align`" :id="`${index}_alignL`" value="left" v-model="info.textAlign" class="blind"/>
           <label :for="`${index}_alignL`"><i class="icon-align--left"></i><span class="irtext">좌측정렬</span></label>
@@ -21,30 +27,39 @@
           <input type="radio" :name="`${index}_align`" :id="`${index}_alignR`" value="right" v-model="info.textAlign" class="blind" />
           <label :for="`${index}_alignR`"><i class="icon-align--right"></i><span class="irtext">우측정렬</span></label>
         </span>
-        <span class="custom-radio sml">
-          <input type="radio" :name="`${index}_fontSize`" :id="`${index}_smSize`" value="14" 
+        <span class="custom-radio sml" v-if="type !== 'simple'">
+          <input type="radio" :name="`${index}_fontSize`" :id="`${index}_smSize`" value="14"
             v-model="info.textSize" class="blind"
           />
           <label :for="`${index}_smSize`">가</label>
         </span>
-        <span class="custom-radio mid">
-          <input type="radio" :name="`${index}_fontSize`" :id="`${index}_midSize`" value="16" 
+        <span class="custom-radio mid" v-if="type !== 'simple'">
+          <input type="radio" :name="`${index}_fontSize`" :id="`${index}_midSize`" value="16"
           v-model="info.textSize" class="blind"
           />
           <label :for="`${index}_midSize`" >가</label>
         </span>
-        <span class="custom-radio big">
-          <input type="radio" :name="`${index}_fontSize`" :id="`${index}_bigSize`" value="18" 
+        <span class="custom-radio big" v-if="type !== 'simple'">
+          <input type="radio" :name="`${index}_fontSize`" :id="`${index}_bigSize`" value="18"
           v-model="info.textSize" class="blind"
           />
           <label :for="`${index}_bigSize`">가</label>
         </span>
+        <span class="custom-radio bold">
+          <input type="checkbox" :name="`${index}_fontStyle`" :id="`${index}_bold`" class="blind" v-model="info.textBold" value="700"/>
+          <label :for="`${index}_bold`">가</label>
+        </span>
+        <!-- 테이블 글자색 -->
         <div class="color-palette" v-click-outside="onPaletteClickOutside">
-          <span class="btn-font--color" :style="`color: ${info.textColor}`" @click="isShowPalette = !isShowPalette">가</span>
+          <span class="btn-font--color" :style="`background-color: ${info.textColor}`" @click="isShowPalette = !isShowPalette"></span>
           <div class="palette" v-if="isShowPalette" >
             <Sketch v-model="textColorSketch" :preset-colors="colors">
             </Sketch>
           </div>
+        </div>
+
+        <div class="color-palette" v-if='this.brandColor && this.brandColor !== "#E4E4E4"'>
+          <span class='btn-font--color' :style='`background-color:${this.brandColor}`' @click='setBrandColor'></span>
         </div>
       </div>
     </div>
@@ -54,8 +69,14 @@
 <script>
 import { Sketch } from 'vue-color'
 import vClickOutside from 'v-click-outside'
+import Emoji from '@/components/common/Emoji.vue'
+import componentUtilsV2 from '../../views/brand/message/utils/js/componentUtilsV2'
 
 export default {
+  components: {
+    Emoji,
+    Sketch
+  },
   directives: {
     clickOutside: vClickOutside.directive
   },
@@ -67,10 +88,11 @@ export default {
       isShowPalette: false
     }
   },
-  components: {
-    Sketch
-  },
   props: {
+    isStyleTable: {
+      type: Boolean,
+      default: true
+    },
     index: {
       type: String,
       default: 'textView'
@@ -86,18 +108,38 @@ export default {
           textSize: '14'
         }
       }
+    },
+    type: {
+      type: String,
+      default: null
+    },
+    cellBindType: {
+      type: String,
+      default: null
+    },
+    brandColor: {
+      type: String,
+      default: () => {
+        return '#E4E4E4'
+      }
     }
   },
   watch: {
     textColorSketch: {
       handler(val) {
-        this.info.textColor = val.hex
+        if (val) {
+          this.info.textColor = val.hex
+        }
       },
       deep: true,
       immediate: true
     }
   },
   methods: {
+    onSelectEmoji(e, target, refName) {
+      console.log('emit onSelectEmoji(TextInput)', e, target, refName)
+      this.$emit('onSelectEmoji', e, target, this.$refs[refName])
+    },
     onClickOutside() {
       this.isShow = false
       this.isShowPalette = false
@@ -105,9 +147,23 @@ export default {
     onPaletteClickOutside() {
       this.isShowPalette = false
     },
-    textFind(){
+    textFind() {
       console.log(this.info.text)
+    },
+    inputTableCell(e) {
+      this.$emit('inputTableCell', e)
+    },
+    setBrandColor() {
+      console.log('setBrandColor', this.brandColor)
+      this.$set(this.info, 'textColor', this.brandColor)
     }
+  }
+}
+window.resizeCellInput = function(obj) {
+  obj.style.height = '0px'
+  obj.style.height = 2 + obj.scrollHeight + 'px'
+  if (obj.value === '') {
+    obj.style.height = '36px'
   }
 }
 </script>

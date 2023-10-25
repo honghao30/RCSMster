@@ -3,11 +3,11 @@
     <ol :class="`step--0${stepTitle.length}`">
       <li v-for="(step, i) in stepTitle"
         :key="i"
-        :class="[{ing: activeStep === i}, {end: activeStep > i}]"
+        :class="[{ing: getStepActiveIndex === i}, {end: getStepActiveIndex > i}]"
       >
         <div class="step__inner">
-          <i class="step__icon" v-if="activeStep > i"></i>
-          <span class="step__num" v-if="activeStep <= i">{{ i + 1 }}</span>
+          <i class="step__icon" v-if="getStepActiveIndex > i"></i>
+          <span class="step__num" v-if="getStepActiveIndex <= i">{{ i + 1 }}</span>
           <span class="step__text">{{ step }}</span>
         </div>
       </li>
@@ -23,12 +23,14 @@ export default {
     },
     stepTitle: Array
   },
-  mounted() {
-    this.activeStep = this.stepActiveIndex - 1
-  },
   data() {
     return {
-      activeStep: undefined
+      activeStep: 0
+    }
+  },
+  computed: {
+    getStepActiveIndex() {
+      return this.stepActiveIndex - 1
     }
   }
 }

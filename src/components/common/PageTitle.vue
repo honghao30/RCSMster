@@ -21,6 +21,7 @@ export default {
       const progressMap = {
         '승인대기': 'weit',
         '임시저장': 'weit',
+        '임시승인대기': 'weit',
         '미사용': 'weit',
         '처리중': 'ing',
         '반려': 'return',
