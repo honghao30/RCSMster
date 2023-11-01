@@ -157,6 +157,9 @@ export default {
   padding: 20px 50px;
   border-radius: 20px;
   border: 1px solid #ccc;
+  &+.font-guide-box {
+    margin-top: 30px;
+  }
 }
 .font-guide {
   font-size: 16px;
